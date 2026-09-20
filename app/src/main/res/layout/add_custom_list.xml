@@ -15,7 +15,7 @@
             android:id="@+id/type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Тип, например ArrayListandroid:hint="Тип, например ArrayList&lt;Data&gt;"lt;Dataandroid:hint="Тип, например ArrayList&lt;Data&gt;"gt;"
+            android:hint="Тип, например ArrayList&lt;Data&gt;"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
