@@ -481,7 +481,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
         bottomPopupMenu = new PopupMenu(this, btnOptions);
         bottomMenu = bottomPopupMenu.getMenu();
-        bottomMenu.add(Menu.NONE, 1, Menu.NONE, "Build Settings").setOnMenuItemClickListener(item -> {
+        bottomMenu.add(Menu.NONE, 1, Menu.NONE, "Настройки сборки").setOnMenuItemClickListener(item -> {
             BuildSettingsBottomSheet sheet = BuildSettingsBottomSheet.newInstance(sc_id);
             sheet.show(getSupportFragmentManager(), BuildSettingsBottomSheet.TAG);
             return true;
@@ -494,11 +494,11 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             }).start();
             return true;
         });
-        bottomMenu.add(Menu.NONE, 3, Menu.NONE, "Show last compile error").setOnMenuItemClickListener(item -> {
+        bottomMenu.add(Menu.NONE, 3, Menu.NONE, "Показать последнюю ошибку сборки").setOnMenuItemClickListener(item -> {
             new CompileErrorSaver(sc_id).showLastErrors(this);
             return true;
         });
-        bottomMenu.add(Menu.NONE, 5, Menu.NONE, "Show source code").setOnMenuItemClickListener(item -> {
+        bottomMenu.add(Menu.NONE, 5, Menu.NONE, "Показать исходный код").setOnMenuItemClickListener(item -> {
             showCurrentActivitySrcCode();
             return true;
         });
@@ -513,7 +513,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             apkSignatures.showSignaturesDialog();
             return true;
         });
-        bottomMenu.add(Menu.NONE, 7, Menu.NONE, "Direct XML editor").setOnMenuItemClickListener(item -> {
+        bottomMenu.add(Menu.NONE, 7, Menu.NONE, "Прямой XML-редактор").setOnMenuItemClickListener(item -> {
             toViewCodeEditor();
             return true;
         });

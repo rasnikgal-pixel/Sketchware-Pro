@@ -146,8 +146,8 @@ public class ViewCodeEditorActivity extends BaseAppCompatActivity {
                 && projectLibrary.isEnabled()) {
             menu.add(Menu.NONE, 3, Menu.NONE, "Edit AppCompat");
         }
-        menu.add(Menu.NONE, 4, Menu.NONE, "Reload color schemes");
-        menu.add(Menu.NONE, 5, Menu.NONE, "Layout Preview");
+        menu.add(Menu.NONE, 4, Menu.NONE, "Перезагрузить цветовые схемы");
+        menu.add(Menu.NONE, 5, Menu.NONE, "Предпросмотр макета");
         return true;
     }
 

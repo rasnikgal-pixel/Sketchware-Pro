@@ -414,7 +414,7 @@ public class ExtraPaletteBlock {
                 StringsEditorManager stringsEditorManager = new StringsEditorManager();
                 stringsEditorManager.convertXmlStringsToListMap(FileUtil.readFileIfExist(filePath), StringsListMap);
 
-                logicEditor.b("Open Resources editor", "openResourcesEditor");
+                logicEditor.b("Открыть редактор ресурсов", "openResourcesEditor");
 
                 logicEditor.a("s", "getResString");
                 logicEditor.a("Saved Res Strings :", getTitleBgColor());
@@ -428,16 +428,16 @@ public class ExtraPaletteBlock {
                 }
                 return;
             case 0:
-                logicEditor.b("Add variable", "variableAdd");
-                logicEditor.b("Add custom variable", "variableAddNew", clickListener);
-                logicEditor.b("Remove variable", "variableRemove", clickListener);
+                logicEditor.b("Добавить переменную", "variableAdd");
+                logicEditor.b("Добавить свою переменную", "variableAddNew", clickListener);
+                logicEditor.b("Удалить переменную", "variableRemove", clickListener);
                 variables();
                 return;
 
             case 1:
-                logicEditor.b("Add list", "listAdd");
+                logicEditor.b("Добавить список", "listAdd");
                 logicEditor.b("Add custom List", "listAddCustom", clickListener);
-                logicEditor.b("Remove list", "listRemove", clickListener);
+                logicEditor.b("Удалить список", "listRemove", clickListener);
                 list();
                 return;
 
@@ -950,7 +950,7 @@ public class ExtraPaletteBlock {
             return;
 
             case 7:
-                logicEditor.b("Add component", "componentAdd");
+                logicEditor.b("Добавить компонент", "componentAdd");
                 logicEditor.a(" ", "changeStatebarColour");
                 logicEditor.a(" ", "LightStatusBar");
                 logicEditor.a(" ", "showKeyboard");
