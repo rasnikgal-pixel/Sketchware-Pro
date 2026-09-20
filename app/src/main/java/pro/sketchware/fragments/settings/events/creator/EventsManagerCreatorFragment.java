@@ -154,7 +154,7 @@ public class EventsManagerCreatorFragment extends qA {
 
     private void save() {
         if (!filledIn()) {
-            SketchwareUtil.toast("Some required fields are empty!");
+            SketchwareUtil.toast("Некоторые обязательные поля пусты!");
             return;
         }
         if (!OldResourceIdMapper.isValidIconId(Helper.getText(binding.eventsCreatorIcon))) {

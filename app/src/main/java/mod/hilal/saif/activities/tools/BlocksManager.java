@@ -467,14 +467,14 @@ public class BlocksManager extends BaseAppCompatActivity {
             String colorInput = Objects.requireNonNull(dialogBinding.colorEditText.getText()).toString();
 
             if (nameInput.isEmpty()) {
-                SketchwareUtil.toast("Name cannot be empty", Toast.LENGTH_SHORT);
+                SketchwareUtil.toast("Имя не может быть пустым", Toast.LENGTH_SHORT);
                 return;
             }
             // add hash for the color 
             colorInput = "#" + colorInput;
 
             if (!PropertiesUtil.isHexColor(colorInput)) {
-                SketchwareUtil.toast("Please enter a valid HEX color", Toast.LENGTH_SHORT);
+                SketchwareUtil.toast("Введите корректный HEX-код цвета", Toast.LENGTH_SHORT);
                 return;
             }
 

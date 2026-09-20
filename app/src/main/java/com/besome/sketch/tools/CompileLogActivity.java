@@ -68,9 +68,9 @@ public class CompileLogActivity extends BaseAppCompatActivity {
             binding.clearButton.setOnClickListener(v -> {
                 if (compileErrorSaver.logFileExists()) {
                     compileErrorSaver.deleteSavedLogs();
-                    SketchwareUtil.toast("Compile logs have been cleared.");
+                    SketchwareUtil.toast("Журнал компиляции очищен.");
                 } else {
-                    SketchwareUtil.toast("No compile logs found.");
+                    SketchwareUtil.toast("Журнал компиляции не найден.");
                 }
 
                 setErrorText();

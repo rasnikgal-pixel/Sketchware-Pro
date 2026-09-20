@@ -76,7 +76,7 @@ public class GetKeyStoreCredentialsDialog {
                     ));
                 }
             } else {
-                SketchwareUtil.toastError("Keystore not found");
+                SketchwareUtil.toastError("Хранилище ключей не найдено");
             }
         } else if (mode == SigningMode.TESTKEY) {
             dialogInterface.dismiss();

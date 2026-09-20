@@ -191,7 +191,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
         dialog.setPositiveButton(Helper.getResString(R.string.common_word_save), (v, which) -> {
             if (!Helper.getText(activity_name_input).trim().isEmpty()) {
                 addNewActivity(Helper.getText(activity_name_input));
-                SketchwareUtil.toast("New Activity added");
+                SketchwareUtil.toast("Добавлена новая активность");
                 v.dismiss();
             } else {
                 activity_name_input.setError("Введите имя activity");
@@ -293,7 +293,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
         FileUtil.writeFile(path, getGson().toJson(data));
         refreshList();
         removeComponents(activity_name);
-        SketchwareUtil.toast("Activity removed");
+        SketchwareUtil.toast("Активность удалена");
     }
 
     private void removeComponents(String str) {
@@ -347,7 +347,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
                 if (isFinishing()) return;
                 h();
                 var intent = new Intent(this, CodeViewerActivity.class);
-                intent.putExtra("code", !source.isEmpty() ? source : "Failed to generate source.");
+                intent.putExtra("code", !source.isEmpty() ? source : "Не удалось сгенерировать исходный код.");
                 intent.putExtra("sc_id", sc_id);
                 intent.putExtra("scheme", CodeViewerActivity.SCHEME_XML);
                 startActivity(intent);

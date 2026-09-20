@@ -207,7 +207,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                     try {
                         prettifiedString = Lx.j(Lx.j(prettifiedString, false), false);
                     } catch (Exception e) {
-                        SketchwareUtil.toastError("Error: Your code contains incorrectly nested parentheses");
+                        SketchwareUtil.toastError("Ошибка: в коде неправильно вложены скобки");
                         break;
                     }
 

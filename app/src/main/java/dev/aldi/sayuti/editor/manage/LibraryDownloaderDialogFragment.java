@@ -308,7 +308,7 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
                 @Override
                 public void onTaskCompleted(@NonNull List<String> dependencies) {
                     handler.post(() -> {
-                        SketchwareUtil.toast("Library downloaded successfully");
+                        SketchwareUtil.toast("Библиотека успешно скачана");
                         if (!notAssociatedWithProject) {
                             var fileContent = FileUtil.readFile(localLibFile);
                             var enabledLibs = gson.fromJson(fileContent, Helper.TYPE_MAP_LIST);

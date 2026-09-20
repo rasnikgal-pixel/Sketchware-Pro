@@ -237,7 +237,7 @@ public class ViewCodeEditorActivity extends BaseAppCompatActivity {
                 }
                 SketchwareUtil.toast("Saved");
             } else {
-                SketchwareUtil.toast("No changes to save");
+                SketchwareUtil.toast("Нет изменений для сохранения");
             }
         } catch (Exception e) {
             SketchwareUtil.toastError(e.toString());

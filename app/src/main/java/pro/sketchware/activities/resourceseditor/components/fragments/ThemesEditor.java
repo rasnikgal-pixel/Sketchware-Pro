@@ -131,7 +131,7 @@ public class ThemesEditor extends Fragment {
             String header = Objects.requireNonNull(binding.styleHeaderInput.getText()).toString();
 
             if (themeName.isEmpty()) {
-                SketchwareUtil.toastError("Theme name Input is Empty");
+                SketchwareUtil.toastError("Имя темы не введено");
                 return;
             }
 
@@ -168,7 +168,7 @@ public class ThemesEditor extends Fragment {
             String header = Objects.requireNonNull(binding.styleHeaderInput.getText()).toString();
 
             if (themeName.isEmpty()) {
-                SketchwareUtil.toastError("Theme name Input is Empty");
+                SketchwareUtil.toastError("Имя темы не введено");
                 return;
             }
 
@@ -266,7 +266,7 @@ public class ThemesEditor extends Fragment {
             String value = Objects.requireNonNull(binding.attrValue.getText()).toString();
 
             if (attribute.isEmpty() || value.isEmpty()) {
-                SketchwareUtil.toastError("Please fill in all fields");
+                SketchwareUtil.toastError("Заполните все поля");
                 return;
             }
 

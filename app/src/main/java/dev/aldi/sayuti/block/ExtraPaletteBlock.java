@@ -196,7 +196,7 @@ public class ExtraPaletteBlock {
             if (split.length > 1) {
                 logicEditor.a(split[1], "v", split[0], "getVar").setTag(customVariables.get(i));
             } else {
-                SketchwareUtil.toastError("Found invalid data of Custom Variable #" + (i + 1) + ": \"" + customVariables.get(i) + "\"");
+                SketchwareUtil.toastError("Найдены недопустимые данные пользовательской переменной #" + (i + 1) + ": \"" + customVariables.get(i) + "\"");
             }
         }
 
@@ -1227,7 +1227,7 @@ public class ExtraPaletteBlock {
                                     if (spec instanceof String specString) {
                                         logicEditor.a(specString, getTitleBgColor());
                                     } else {
-                                        SketchwareUtil.toastError("Custom Block #" + paletteBlocks +
+                                        SketchwareUtil.toastError("Пользовательский блок #" + paletteBlocks +
                                                 " of current palette has an invalid spec data type");
                                     }
                                 } else {
@@ -1242,17 +1242,17 @@ public class ExtraPaletteBlock {
                                             logicEditor.a("", typeString, "", nameString);
                                         }
                                     } else {
-                                        SketchwareUtil.toastError("Custom Block #" + paletteBlocks +
+                                        SketchwareUtil.toastError("Пользовательский блок #" + paletteBlocks +
                                                 " of current palette has an invalid name data type");
                                     }
                                 }
                             } else {
-                                SketchwareUtil.toastError("Custom Block #" + paletteBlocks +
+                                SketchwareUtil.toastError("Пользовательский блок #" + paletteBlocks +
                                         " of current palette has an invalid block type data type");
                             }
                         }
                     } else {
-                        SketchwareUtil.toastError("Custom Block #" + paletteBlocks +
+                        SketchwareUtil.toastError("Пользовательский блок #" + paletteBlocks +
                                 " of current palette has an invalid block palette data type");
                     }
                 }

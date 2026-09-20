@@ -362,13 +362,13 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
                     Shell.cmd("cat " + apkUri + " | pm install -S " + length).to(stdout, stderr).submit(result -> {
                         if (result.isSuccess()) {
-                            SketchwareUtil.toast("Package installed successfully!");
+                            SketchwareUtil.toast("Пакет успешно установлен!");
                             if (ConfigActivity.isSettingEnabled(ConfigActivity.SETTING_ROOT_AUTO_OPEN_AFTER_INSTALLING)) {
                                 Intent launcher = getPackageManager().getLaunchIntentForPackage(q.packageName);
                                 if (launcher != null) {
                                     startActivity(launcher);
                                 } else {
-                                    SketchwareUtil.toastError("Couldn't launch project, either not installed or not with launcher activity.");
+                                    SketchwareUtil.toastError("Не удалось запустить проект: он не установлен или не имеет launcher activity.");
                                 }
                             }
                         } else {
@@ -378,7 +378,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                         }
                     });
                 } else {
-                    SketchwareUtil.toastError("No root access granted. Continuing using default package install prompt.");
+                    SketchwareUtil.toastError("Root-доступ не предоставлен. Используется стандартный запрос на установку пакета.");
                     requestPackageInstallerInstall();
                 }
             });
@@ -490,7 +490,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             new Thread(() -> {
                 FileUtil.deleteFile(q.projectMyscPath);
                 updateBottomMenu();
-                runOnUiThread(() -> SketchwareUtil.toast("Done cleaning temporary files!"));
+                runOnUiThread(() -> SketchwareUtil.toast("Очистка временных файлов завершена!"));
             }).start();
             return true;
         });
@@ -505,7 +505,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
         bottomMenu.add(Menu.NONE, 4, Menu.NONE, "Установить последний APK").setVisible(false).setOnMenuItemClickListener(item -> {
             if (FileUtil.isExistFile(q.finalToInstallApkPath)) {
                 installBuiltApk();
-            } else SketchwareUtil.toast("APK doesn't exist anymore");
+            } else SketchwareUtil.toast("APK больше не существует");
             return true;
         });
         bottomMenu.add(Menu.NONE, 6, Menu.NONE, "Показать подписи APK").setVisible(false).setOnMenuItemClickListener(item -> {
@@ -805,7 +805,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 if (isFinishing()) return;
                 h();
                 if (code.isEmpty()) {
-                    SketchwareUtil.toast("Failed to generate source.");
+                    SketchwareUtil.toast("Не удалось сгенерировать исходный код.");
                     return;
                 }
                 var scheme = filename.endsWith(".xml") ? CodeViewerActivity.SCHEME_XML : CodeViewerActivity.SCHEME_JAVA;
@@ -1212,7 +1212,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                         dialog.setNeutralButton("Create", (v, which) -> {
                             v.dismiss();
                             if (!e.getMissingFile().mkdirs()) {
-                                SketchwareUtil.toastError("Failed to create directory / directories!");
+                                SketchwareUtil.toastError("Не удалось создать директорию / директории!");
                             }
                         });
                     } else {

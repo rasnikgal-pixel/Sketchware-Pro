@@ -445,7 +445,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
                     if (name instanceof String) {
                         id_detector.add((String) name);
                     } else {
-                        SketchwareUtil.toastError("Custom Block #" + i + " in current palette has an invalid name");
+                        SketchwareUtil.toastError("Пользовательский блок #" + i + " in current palette has an invalid name");
                     }
                 }
                 return;

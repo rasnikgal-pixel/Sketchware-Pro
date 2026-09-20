@@ -195,7 +195,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
             positiveButton.setOnClickListener(view -> {
                 String name = Helper.getText(inputText);
                 if (name.isEmpty()) {
-                    SketchwareUtil.toastError("Invalid file name");
+                    SketchwareUtil.toastError("Недопустимое имя файла");
                     return;
                 }
 
@@ -222,7 +222,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                     extension = "";
                     newFileContent = "";
                 } else {
-                    SketchwareUtil.toast("Select a file type");
+                    SketchwareUtil.toast("Выберите тип файла");
                     return;
                 }
                 String targetPath = new File(current_path, name + extension).getAbsolutePath();
@@ -298,7 +298,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                     if (frc.getJavaManifestList().contains(filesAdapter.getFullName(position))) {
                         frc.getJavaManifestList().remove(filesAdapter.getFullName(position));
                         FileUtil.writeFile(fpu.getManifestJava(sc_id), new Gson().toJson(frc.listJavaManifest));
-                        SketchwareUtil.toast("NOTE: Removed Activity from manifest");
+                        SketchwareUtil.toast("Примечание: активность удалена из манифеста");
                     }
 
                     if (renameOccurrencesCheckBox.isChecked()) {
@@ -309,7 +309,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
 
                 FileUtil.renameFile(filesAdapter.getItem(position), new File(current_path, Helper.getText(inputText)).getAbsolutePath());
                 refresh();
-                SketchwareUtil.toast("Renamed successfully");
+                SketchwareUtil.toast("Успешно переименовано");
             }
             dialogInterface.dismiss();
         }).create();
@@ -340,7 +340,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
 
             FileUtil.deleteFile(filesAdapter.getItem(position));
             refresh();
-            SketchwareUtil.toast("Deleted successfully");
+            SketchwareUtil.toast("Успешно удалено");
         }).setNegativeButton(R.string.common_word_cancel, null).create().show();
     }
 
@@ -518,7 +518,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                             FileUtil.writeFile(fpu.getManifestJava(sc_id), new Gson().toJson(frc.listJavaManifest));
                             SketchwareUtil.toast("Successfully removed Activity " + getFileNameWoExt(position) + " from AndroidManifest");
                         } else {
-                            SketchwareUtil.toast("Activity was not defined in AndroidManifest.");
+                            SketchwareUtil.toast("Активность не определена в AndroidManifest.");
                         }
                     }
                     case "Add as Service to manifest" -> {
@@ -531,7 +531,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                             FileUtil.writeFile(fpu.getManifestService(sc_id), new Gson().toJson(frc.listServiceManifest));
                             SketchwareUtil.toast("Successfully removed Service " + getFileNameWoExt(position) + " from AndroidManifest");
                         } else {
-                            SketchwareUtil.toast("Service was not defined in AndroidManifest.");
+                            SketchwareUtil.toast("Служба не определена в AndroidManifest.");
                         }
                     }
                     case "Edit" -> goEditFile(position);

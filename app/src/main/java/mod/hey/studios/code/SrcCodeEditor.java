@@ -437,7 +437,7 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                                 ss = Lx.j(ss, true);
                             } catch (Exception e) {
                                 err = true;
-                                SketchwareUtil.toastError("Your code contains incorrectly nested parentheses");
+                                SketchwareUtil.toastError("В коде неправильно вложены скобки");
                             }
 
                             if (!err) binding.editor.setText(ss);
@@ -448,10 +448,10 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                             if (format != null) {
                                 binding.editor.setText(format);
                             } else {
-                                SketchwareUtil.toastError("Failed to format XML file", Toast.LENGTH_LONG);
+                                SketchwareUtil.toastError("Не удалось отформатировать XML-файл", Toast.LENGTH_LONG);
                             }
                         } else {
-                            SketchwareUtil.toast("Only Java and XML files can be formatted");
+                            SketchwareUtil.toast("Форматировать можно только Java- и XML-файлы");
                         }
                         break;
 

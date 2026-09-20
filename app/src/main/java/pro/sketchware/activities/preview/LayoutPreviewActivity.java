@@ -60,7 +60,7 @@ public class LayoutPreviewActivity extends BaseAppCompatActivity {
                 SketchwareUtil.toastError(e.toString());
             }
         } else {
-            SketchwareUtil.toastError("content is null");
+            SketchwareUtil.toastError("содержимое отсутствует");
         }
     }
 

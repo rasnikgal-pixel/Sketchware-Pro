@@ -168,7 +168,7 @@ public class EventsManagerFragment extends qA {
                         addListenerItem();
                         di.dismiss();
                     } else {
-                        SketchwareUtil.toastError("Invalid name!");
+                        SketchwareUtil.toastError("Недопустимое имя!");
                     }
                 })
                 .setNegativeButton("Cancel", (di, i) -> di.dismiss()).create();
@@ -194,9 +194,9 @@ public class EventsManagerFragment extends qA {
             @Override
             public void onFileSelected(File file) {
                 if (FileUtil.readFile(file.getAbsolutePath()).isEmpty()) {
-                    SketchwareUtil.toastError("The selected file is empty!");
+                    SketchwareUtil.toastError("Выбранный файл пуст!");
                 } else if (FileUtil.readFile(file.getAbsolutePath()).equals("[]")) {
-                    SketchwareUtil.toastError("The selected file is empty!");
+                    SketchwareUtil.toastError("Выбранный файл пуст!");
                 } else {
                     try {
                         String[] split = FileUtil.readFile(file.getAbsolutePath()).split("\n");
@@ -224,7 +224,7 @@ public class EventsManagerFragment extends qA {
         listMap.addAll(data);
         FileUtil.writeFile(EventsManagerConstants.LISTENERS_FILE.getAbsolutePath(), new Gson().toJson(listMap));
         refreshList();
-        SketchwareUtil.toast("Successfully imported events");
+        SketchwareUtil.toast("События успешно импортированы");
     }
 
     private void exportListener(int p) {

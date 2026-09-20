@@ -143,12 +143,12 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                 } else if (checkedChipId == R.id.chip_folder) {
                     FileUtil.makeDir(new File(current_path, editable).getAbsolutePath());
                 } else {
-                    SketchwareUtil.toast("Select a file type");
+                    SketchwareUtil.toast("Выберите тип файла");
                     return;
                 }
 
                 refresh();
-                SketchwareUtil.toast("File was created successfully");
+                SketchwareUtil.toast("Файл успешно создан");
                 dialogInterface.dismiss();
             });
         });
@@ -177,7 +177,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                         FileUtil.copyDirectory(file, new File(current_path, file.getName()));
                         refresh();
                     } catch (IOException e) {
-                        SketchwareUtil.toastError("Couldn't import file! [" + e.getMessage() + "]");
+                        SketchwareUtil.toastError("Не удалось импортировать файл! [" + e.getMessage() + "]");
                     }
                 }
             }
@@ -199,7 +199,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                     if (!Helper.getText(inputText).isEmpty()) {
                         FileUtil.renameFile(assetsAdapter.getItem(position), new File(current_path, Helper.getText(inputText)).getAbsolutePath());
                         refresh();
-                        SketchwareUtil.toast("Renamed successfully");
+                        SketchwareUtil.toast("Успешно переименовано");
                     }
                     dialogInterface.dismiss();
                 })
@@ -221,7 +221,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                 .setPositiveButton(R.string.common_word_delete, (dialog, which) -> {
                     FileUtil.deleteFile(assetsAdapter.getItem(position));
                     refresh();
-                    SketchwareUtil.toast("Deleted successfully");
+                    SketchwareUtil.toast("Успешно удалено");
                 })
                 .setNegativeButton(R.string.common_word_cancel, null)
                 .create()

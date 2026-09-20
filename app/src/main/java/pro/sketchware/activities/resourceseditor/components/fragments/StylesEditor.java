@@ -138,7 +138,7 @@ public class StylesEditor extends Fragment {
             String header = Objects.requireNonNull(binding.styleHeaderInput.getText()).toString();
 
             if (styleName.isEmpty()) {
-                SketchwareUtil.toastError("Style name Input is Empty");
+                SketchwareUtil.toastError("Имя стиля не введено");
                 return;
             }
 
@@ -180,7 +180,7 @@ public class StylesEditor extends Fragment {
             String header = Objects.requireNonNull(binding.styleHeaderInput.getText()).toString();
 
             if (styleName.isEmpty()) {
-                SketchwareUtil.toastError("Style name Input is Empty");
+                SketchwareUtil.toastError("Имя стиля не введено");
                 return;
             }
 
@@ -278,7 +278,7 @@ public class StylesEditor extends Fragment {
             String value = Objects.requireNonNull(binding.attrValue.getText()).toString();
 
             if (attribute.isEmpty() || value.isEmpty()) {
-                SketchwareUtil.toastError("Please fill in all fields");
+                SketchwareUtil.toastError("Заполните все поля");
                 return;
             }
 

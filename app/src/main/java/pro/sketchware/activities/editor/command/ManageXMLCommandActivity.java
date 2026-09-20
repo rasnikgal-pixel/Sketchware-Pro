@@ -260,11 +260,11 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                     var reference = Helper.getText(binding.reference);
                     var command = Helper.getText(binding.command);
                     if (TextUtils.isEmpty(xmlName)) {
-                        SketchwareUtil.toastError("XML name is required");
+                        SketchwareUtil.toastError("Требуется имя XML");
                         return;
                     }
                     if (TextUtils.isEmpty(reference)) {
-                        SketchwareUtil.toastError("reference is required");
+                        SketchwareUtil.toastError("требуется ссылка");
                         return;
                     }
                     HashMap<String, Object> map = new HashMap<>();
@@ -346,7 +346,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                                         editor.setText(
                                                 !source.isEmpty()
                                                         ? source
-                                                        : "Failed to generate source.");
+                                                        : "Не удалось сгенерировать исходный код.");
                                         editor.getComponent(Magnifier.class)
                                                 .setWithinEditorForcibly(true);
 

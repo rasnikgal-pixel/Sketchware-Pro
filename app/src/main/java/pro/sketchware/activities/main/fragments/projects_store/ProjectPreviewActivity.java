@@ -73,7 +73,7 @@ public class ProjectPreviewActivity extends BaseAppCompatActivity {
         binding.filesize.setText("Размер:" + project.getProjectSize());
         binding.timestamp.setText("Выпущено:" + DateFormat.getDateInstance().format(new Date(Long.parseLong(project.getPublishedTimestamp()))));
         binding.btnComments.setOnClickListener(v -> openCommentsSheet());
-        binding.btnDownload.setOnClickListener(v -> SketchwareUtil.toastError("Downloading projects is unavailable right now!"));
+        binding.btnDownload.setOnClickListener(v -> SketchwareUtil.toastError("Загрузка проектов сейчас недоступна!"));
         binding.btnOpenIn.setOnClickListener(v -> openProject());
         binding.btnBack.setOnClickListener(v -> finish());
 

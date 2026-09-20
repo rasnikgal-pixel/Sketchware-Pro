@@ -281,7 +281,7 @@ public class ManageAppCompatActivity extends BaseAppCompatActivity {
                         map.put("value", newValue);
                         if (type.equals("create")) {
                             activityInjections.add(map);
-                            SketchwareUtil.toast("Added");
+                            SketchwareUtil.toast("Добавлено");
                         } else if (type.equals("edit")) {
                             if (position != -1) {
                                 activityInjections.remove(position);

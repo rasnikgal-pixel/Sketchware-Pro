@@ -177,7 +177,7 @@ public class ShowMoreBlockCollectionActivity extends BaseAppCompatActivity imple
             addBlocks(moreBlock.blocks);
             resizeBottomViews();
         } else {
-            SketchwareUtil.toastError("Can't open corrupt More Block");
+            SketchwareUtil.toastError("Не удалось открыть повреждённый More Block");
             finish();
         }
     }
@@ -199,9 +199,9 @@ public class ShowMoreBlockCollectionActivity extends BaseAppCompatActivity imple
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == 12) {
             if (ImageFactory.saveBitmap(binding.editor.getChildAt(0), moreBlockName).exists()) {
-                SketchwareUtil.toast("Saved image to /Internal storage/sketchware/saved_block/" + moreBlockName + ".png!");
+                SketchwareUtil.toast("Изображение сохранено в /Internal storage/sketchware/saved_block/" + moreBlockName + ".png!");
             } else {
-                SketchwareUtil.toastError("Couldn't save image");
+                SketchwareUtil.toastError("Не удалось сохранить изображение");
             }
         }
 

@@ -710,10 +710,10 @@ public class ProjectBuilder {
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Invalid DEX file path of enabled Local library #" + i1, Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError("Недопустимый путь к DEX-файлу у включённой локальной библиотеки #" + i1, Toast.LENGTH_LONG);
                 }
             } else {
-                SketchwareUtil.toastError("Invalid name of enabled Local library #" + i1, Toast.LENGTH_LONG);
+                SketchwareUtil.toastError("Недопустимое имя включённой локальной библиотеки #" + i1, Toast.LENGTH_LONG);
             }
         }
 

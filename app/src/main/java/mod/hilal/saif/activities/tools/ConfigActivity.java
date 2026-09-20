@@ -116,7 +116,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 // fall-through to shared error handler
             }
 
-            SketchwareUtil.toastError("Couldn't parse App Settings! Restoring defaults.");
+            SketchwareUtil.toastError("Не удалось прочитать настройки приложения! Восстановлены значения по умолчанию.");
             LogUtil.e("ConfigActivity", "Failed to parse App Settings.", toLog);
         }
         settings = new HashMap<>();

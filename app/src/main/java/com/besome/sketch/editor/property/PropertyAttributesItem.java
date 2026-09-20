@@ -206,7 +206,7 @@ public class PropertyAttributesItem extends LinearLayout implements View.OnClick
                                                         valueChangeListener.a(key, value);
                                                     adapter.submitList(new ArrayList<>(value.keySet()));
                                                 } else {
-                                                    SketchwareUtil.toastError("IllegalStateException : Circular dependencies cannot exist in RelativeLayout");
+                                                    SketchwareUtil.toastError("IllegalStateException: в RelativeLayout не может быть циклических зависимостей");
                                                 }
                                             })
                                             .setNegativeButton("Отмена", (d2, which) -> d.dismiss())

@@ -94,7 +94,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                 intent.putExtra("pallet", String.valueOf(palette));
                 startActivity(intent);
             } else {
-                SketchwareUtil.toastError("Invalid color of palette #" + (palette - 9));
+                SketchwareUtil.toastError("Недопустимый цвет палитры #" + (palette - 9));
             }
         });
     }
@@ -108,15 +108,15 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
             @Override
             public void onFileSelected(File file) {
                 if (FileUtil.readFile(file.getAbsolutePath()).isEmpty()) {
-                    SketchwareUtil.toastError("The selected file is empty!");
+                    SketchwareUtil.toastError("Выбранный файл пуст!");
                 } else if (FileUtil.readFile(file.getAbsolutePath()).equals("[]")) {
-                    SketchwareUtil.toastError("The selected file is empty!");
+                    SketchwareUtil.toastError("Выбранный файл пуст!");
                 } else {
                     try {
                         ArrayList<HashMap<String, Object>> readMap = getGson().fromJson(FileUtil.readFile(file.getAbsolutePath()), Helper.TYPE_MAP_LIST);
                         _importBlocks(readMap);
                     } catch (JsonParseException e) {
-                        SketchwareUtil.toastError("Invalid JSON file");
+                        SketchwareUtil.toastError("Недопустимый JSON-файл");
                     }
                 }
             }
@@ -202,7 +202,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                     FileUtil.writeFile(exportTo, getGson().toJson(filtered_list));
                     SketchwareUtil.toast("Successfully exported blocks to:\n" + exportTo, Toast.LENGTH_LONG);
                 } else {
-                    SketchwareUtil.toastError("Invalid name of palette #" + (palette - 9));
+                    SketchwareUtil.toastError("Недопустимое имя палитры #" + (palette - 9));
                 }
                 break;
 
@@ -289,7 +289,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         filtered_list.add(block);
                     }
                 } catch (NumberFormatException e) {
-                    SketchwareUtil.toastError("Invalid palette entry in block #" + (i + 1));
+                    SketchwareUtil.toastError("Недопустимая запись палитры в блоке #" + (i + 1));
                 }
             }
         }
@@ -351,7 +351,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         intent.putExtra("pos", String.valueOf(position));
                         startActivity(intent);
                     } else {
-                        SketchwareUtil.toastError("Invalid color of palette #" + (palette - 9));
+                        SketchwareUtil.toastError("Недопустимый цвет палитры #" + (palette - 9));
                     }
                     break;
 
@@ -414,7 +414,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
             if (name instanceof String) {
                 paletteNames.add((String) name);
             } else {
-                SketchwareUtil.toastError("Invalid name of Custom Block palette #" + (j + 1));
+                SketchwareUtil.toastError("Недопустимое имя палитры пользовательского блока #" + (j + 1));
             }
         }
 
@@ -456,7 +456,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                 if (blockName instanceof String) {
                     names.add((String) blockName);
                 } else {
-                    SketchwareUtil.toastError("Invalid name entry of Custom Block #" + (i + 1) + " in Blocks to import");
+                    SketchwareUtil.toastError("Недопустимая запись имени пользовательского блока #" + (i + 1) + " in Blocks to import");
                 }
             }
             MaterialAlertDialogBuilder import_dialog = new MaterialAlertDialogBuilder(this);
@@ -478,7 +478,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         }
                         FileUtil.writeFile(blocks_path, getGson().toJson(all_blocks_list));
                         _refreshLists();
-                        SketchwareUtil.toast("Imported successfully");
+                        SketchwareUtil.toast("Успешно импортировано");
                     })
                     .setNegativeButton("Reverse", (dialog, which) -> {
                         for (int i = 0; i < blocks.size(); i++) {
@@ -490,7 +490,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         }
                         FileUtil.writeFile(blocks_path, getGson().toJson(all_blocks_list));
                         _refreshLists();
-                        SketchwareUtil.toast("Imported successfully");
+                        SketchwareUtil.toast("Успешно импортировано");
                     })
                     .setNeutralButton("All", (dialog, which) -> {
                         for (int i = 0; i < blocks.size(); i++) {
@@ -500,11 +500,11 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         }
                         FileUtil.writeFile(blocks_path, getGson().toJson(all_blocks_list));
                         _refreshLists();
-                        SketchwareUtil.toast("Imported successfully");
+                        SketchwareUtil.toast("Успешно импортировано");
                     })
                     .show();
         } catch (Exception e) {
-            SketchwareUtil.toastError("An error occurred! [" + e.getMessage() + "]");
+            SketchwareUtil.toastError("Произошла ошибка! [" + e.getMessage() + "]");
         }
     }
 
@@ -625,14 +625,14 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         try {
                             color = Color.parseColor((String) blockColor);
                         } catch (IllegalArgumentException e) {
-                            SketchwareUtil.toastError("Invalid color entry in block #" + (position + 1));
+                            SketchwareUtil.toastError("Недопустимая запись цвета в блоке #" + (position + 1));
                         }
 
                         if (color != -1) {
                             spec.getBackground().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
                         }
                     } else {
-                        SketchwareUtil.toastError("Invalid color entry in block #" + (position + 1));
+                        SketchwareUtil.toastError("Недопустимая запись цвета в блоке #" + (position + 1));
                     }
                 } else {
                     HashMap<String, Object> paletteObject = pallet_list.get(palette - 9);
@@ -645,7 +645,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                                     PorterDuff.Mode.MULTIPLY
                             ));
                         } catch (IllegalArgumentException e) {
-                            SketchwareUtil.toastError("Invalid color in Custom Block palette #" + (palette - 8));
+                            SketchwareUtil.toastError("Недопустимый цвет в палитре пользовательского блока #" + (palette - 8));
                         }
                     }
                 }

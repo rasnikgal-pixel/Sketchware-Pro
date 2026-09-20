@@ -215,7 +215,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
                 FileUtil.makeDir(path);
                 handleAdapter(nativeLibrariesPath);
-                SketchwareUtil.toast("Created folder successfully");
+                SketchwareUtil.toast("Папка успешно создана");
 
                 dialog.dismiss();
             });
@@ -243,7 +243,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                     try {
                         FileUtil.copyDirectory(file, new File(nativeLibrariesPath + File.separator + Uri.fromFile(file).getLastPathSegment()));
                     } catch (IOException e) {
-                        SketchwareUtil.toastError("Couldn't import library! [" + e.getMessage() + "]");
+                        SketchwareUtil.toastError("Не удалось импортировать библиотеку! [" + e.getMessage() + "]");
                     }
                 }
 
@@ -267,14 +267,14 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                     String newName = Helper.getText(inputText);
                     if (!newName.isEmpty()) {
                         if (FileUtil.renameFile(path, path.substring(0, path.lastIndexOf(File.separator)) + File.separator + newName)) {
-                            SketchwareUtil.toast("Renamed successfully");
+                            SketchwareUtil.toast("Успешно переименовано");
                         } else {
-                            SketchwareUtil.toastError("Renaming failed");
+                            SketchwareUtil.toastError("Не удалось переименовать");
                         }
                         handleAdapter(nativeLibrariesPath);
                         handleFab();
                     } else {
-                        SketchwareUtil.toast("Nothing changed");
+                        SketchwareUtil.toast("Ничего не изменилось");
                     }
                     dialogInterface.dismiss();
                 })

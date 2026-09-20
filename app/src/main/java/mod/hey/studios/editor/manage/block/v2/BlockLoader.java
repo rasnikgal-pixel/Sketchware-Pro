@@ -102,7 +102,7 @@ public class BlockLoader {
                 info.setName((String) name);
             } else {
                 info.setName("");
-                SketchwareUtil.toastError("Invalid name entry in Custom Block #" + (i + 1));
+                SketchwareUtil.toastError("Недопустимая запись имени в пользовательском блоке #" + (i + 1));
                 continue;
             }
 
@@ -139,7 +139,7 @@ public class BlockLoader {
                         int harmonizedColor = harmonizeWithPrimary(context, Color.parseColor((String) color));
                         info.setColor(harmonizedColor);
                     } catch (IllegalArgumentException e) {
-                        SketchwareUtil.toastError("Invalid color in Custom Block #" + (i + 1));
+                        SketchwareUtil.toastError("Недопустимый цвет в пользовательском блоке #" + (i + 1));
                         continue;
                     }
                 }
@@ -166,22 +166,22 @@ public class BlockLoader {
                                             try {
                                                 info.setPaletteColor((Integer) paletteColor);
                                             } catch (IllegalArgumentException e) {
-                                                SketchwareUtil.toastError("Invalid color in Custom Block palette #" + (j + 1));
+                                                SketchwareUtil.toastError("Недопустимый цвет в палитре пользовательского блока #" + (j + 1));
                                             }
                                         } else {
-                                            SketchwareUtil.toastError("Invalid color value type in Custom Block palette #" + (j + 1));
+                                            SketchwareUtil.toastError("Недопустимый тип значения цвета в палитре пользовательского блока #" + (j + 1));
                                         }
                                     }
                                 } else {
-                                    SketchwareUtil.toastError("Invalid palette index value type in Custom Block palette #" + (j + 1));
+                                    SketchwareUtil.toastError("Недопустимый тип значения индекса палитры в палитре пользовательского блока #" + (j + 1));
                                 }
                             }
                         } catch (NumberFormatException e) {
-                            SketchwareUtil.toastError("Invalid palette number in Custom Block #" + (i + 1));
+                            SketchwareUtil.toastError("Недопустимый номер палитры в пользовательском блоке #" + (i + 1));
                             continue;
                         }
                     } else {
-                        SketchwareUtil.toastError("Invalid palette number value type in Custom Block #" + (i + 1));
+                        SketchwareUtil.toastError("Недопустимый тип значения номера палитры в пользовательском блоке #" + (i + 1));
                         continue;
                     }
                 }

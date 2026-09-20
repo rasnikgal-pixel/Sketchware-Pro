@@ -154,7 +154,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
 
     private void exportLogcat(ArrayList<HashMap<String, Object>> logs) {
         if (logs.isEmpty()) {
-            SketchwareUtil.toastError("Nothing to Export");
+            SketchwareUtil.toastError("Нечего экспортировать");
             return;
         }
         try {
@@ -192,7 +192,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
             FileUtil.writeFile(filePath, contentBuilder.toString());
             SketchwareUtil.toast("Logcat exported successfully: " + filePath);
         } catch (Exception ex) {
-            SketchwareUtil.toastError("Something went wrong!");
+            SketchwareUtil.toastError("Что-то пошло не так!");
         }
     }
 
@@ -348,7 +348,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
                 binding.dateHeader.setVisibility(View.GONE);
             }
             binding.getRoot().setOnLongClickListener(v -> {
-                SketchwareUtil.toast("Copied to clipboard");
+                SketchwareUtil.toast("Скопировано в буфер обмена");
                 ((ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("clipboard", data.get(position).get("logRaw").toString()));
                 return true;
             });

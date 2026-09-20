@@ -222,7 +222,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                 }
 
                 if (FileUtil.isExistFile(path)) {
-                    SketchwareUtil.toastError("File exists already");
+                    SketchwareUtil.toastError("Файл уже существует");
                     return;
                 }
                 if (isFolder) {
@@ -231,7 +231,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                     FileUtil.writeFile(path, "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                 }
                 handleAdapter(temp);
-                SketchwareUtil.toast("Created file successfully");
+                SketchwareUtil.toast("Файл успешно создан");
                 dialog.dismiss();
             });
 
@@ -259,14 +259,14 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
             @Override
             public void onFilesSelected(@NotNull List<? extends File> files) {
                 if (files.isEmpty()) {
-                    SketchwareUtil.toastError("No files selected");
+                    SketchwareUtil.toastError("Файлы не выбраны");
                     return;
                 }
                 for (File file : files) {
                     try {
                         FileUtil.copyDirectory(file, new File(temp + File.separator + file.getName()));
                     } catch (IOException e) {
-                        SketchwareUtil.toastError("Couldn't import resource! [" + e.getMessage() + "]");
+                        SketchwareUtil.toastError("Не удалось импортировать ресурс! [" + e.getMessage() + "]");
                     }
                 }
                 handleAdapter(temp);
@@ -289,9 +289,9 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                 .setPositiveButton("Rename", (dialogInterface, i) -> {
                     if (!Helper.getText(inputText).isEmpty()) {
                         if (FileUtil.renameFile(path, path.substring(0, path.lastIndexOf("/")) + "/" + Helper.getText(inputText))) {
-                            SketchwareUtil.toast("Renamed successfully");
+                            SketchwareUtil.toast("Успешно переименовано");
                         } else {
-                            SketchwareUtil.toastError("Renaming failed");
+                            SketchwareUtil.toastError("Не удалось переименовать");
                         }
                         handleAdapter(temp);
                         handleFab();
@@ -341,7 +341,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
             }
             startActivity(intent);
         } else {
-            SketchwareUtil.toast("Only XML files can be edited");
+            SketchwareUtil.toast("Редактировать можно только XML-файлы");
         }
     }
 
@@ -354,7 +354,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
             intent.putExtra("xml", "");
             startActivity(intent);
         } else {
-            SketchwareUtil.toast("Only XML files can be edited");
+            SketchwareUtil.toast("Редактировать можно только XML-файлы");
         }
     }
 
@@ -409,7 +409,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                                 intent.setDataAndType(Uri.fromFile(new File(frc.listFileResource.get(position))), "text/plain");
                                 startActivity(intent);
                             } else {
-                                SketchwareUtil.toast("Only XML files can be edited");
+                                SketchwareUtil.toast("Редактировать можно только XML-файлы");
                             }
                         }
                         case "Edit" -> goEdit2(position);

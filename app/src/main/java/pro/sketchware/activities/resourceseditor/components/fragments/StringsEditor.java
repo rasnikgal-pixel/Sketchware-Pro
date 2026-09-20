@@ -148,7 +148,7 @@ public class StringsEditor extends Fragment {
             String value = Objects.requireNonNull(binding.stringValueInput.getText()).toString();
 
             if (key.isEmpty() || value.isEmpty()) {
-                SketchwareUtil.toastError("Please fill in all fields");
+                SketchwareUtil.toastError("Заполните все поля");
                 return;
             }
 

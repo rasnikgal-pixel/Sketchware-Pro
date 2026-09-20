@@ -218,7 +218,7 @@ public class AppSettings extends BaseAppCompatActivity {
 
         apkPathDialog.setPositiveButton("Continue", (v, which) -> {
             if (!isAPKSelected[0]) {
-                SketchwareUtil.toast("Please select an APK file to sign", Toast.LENGTH_SHORT);
+                SketchwareUtil.toast("Выберите APK-файл для подписи", Toast.LENGTH_SHORT);
                 shakeView(binding.selectFile);
                 return;
             }
@@ -288,7 +288,7 @@ public class AppSettings extends BaseAppCompatActivity {
                 runOnUiThread(() -> {
                     if (ApkSigner.LogCallback.errorCount.get() == 0) {
                         building_dialog.dismiss();
-                        SketchwareUtil.toast("Successfully saved signed APK to: /Internal storage/sketchware/signed_apk/"
+                        SketchwareUtil.toast("Подписанный APK успешно сохранён в: /Internal storage/sketchware/signed_apk/"
                                         + Uri.fromFile(new File(outputApkPath)).getLastPathSegment(),
                                 Toast.LENGTH_LONG);
                     } else {

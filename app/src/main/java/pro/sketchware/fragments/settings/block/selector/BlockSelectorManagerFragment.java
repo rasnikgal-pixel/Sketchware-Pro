@@ -141,7 +141,7 @@ public class BlockSelectorManagerFragment extends qA {
 
         if ("typeview".equals(Objects.requireNonNull(dialogBinding.palettesPath.getText()).toString())) {
             dialogBinding.palettesPath.setEnabled(false);
-            dialogBinding.tilPalettesPath.setOnClickListener(v -> SketchwareUtil.toast("You cannot change the name of this selector"));
+            dialogBinding.tilPalettesPath.setOnClickListener(v -> SketchwareUtil.toast("Нельзя изменить имя этого селектора"));
         }
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
@@ -152,18 +152,18 @@ public class BlockSelectorManagerFragment extends qA {
             String selectorTitle = Objects.requireNonNull(dialogBinding.blocksPath.getText()).toString();
 
             if (selectorName.isEmpty()) {
-                SketchwareUtil.toast("Please type the selector's name");
+                SketchwareUtil.toast("Введите имя селектора");
                 return;
             }
             if (selectorTitle.isEmpty()) {
-                SketchwareUtil.toast("Please type the selector's title");
+                SketchwareUtil.toast("Введите заголовок селектора");
                 return;
             }
             if (!isEdit) {
                 if (!itemAlreadyExists(selectorName)) {
                     selectors.add(new Selector(selectorTitle, selectorName, new ArrayList<>()));
                 } else {
-                    SketchwareUtil.toast("An item with this name already exists");
+                    SketchwareUtil.toast("Элемент с таким именем уже существует");
                 }
             } else {
                 selectors.set(index, new Selector(selectorTitle, selectorName, selectors.get(index).getData()));
@@ -273,7 +273,7 @@ public class BlockSelectorManagerFragment extends qA {
                     saveAllSelectors();
                     adapter.notifyDataSetChanged();
                 } else {
-                    SketchwareUtil.toastError("Make sure you select a file that contains selector item(s).");
+                    SketchwareUtil.toastError("Убедитесь, что выбрали файл, содержащий элементы селектора.");
                 }
             } else {
                 List<Selector> selectorsN = getSelectorsFromFile(file);
@@ -282,12 +282,12 @@ public class BlockSelectorManagerFragment extends qA {
                     saveAllSelectors();
                     adapter.notifyDataSetChanged();
                 } else {
-                    SketchwareUtil.toastError("Make sure you select a file that contains selector item(s).");
+                    SketchwareUtil.toastError("Убедитесь, что выбрали файл, содержащий элементы селектора.");
                 }
             }
         } catch (Exception e) {
             Log.e(BlockSelectorConsts.TAG, e.toString());
-            SketchwareUtil.toastError("Make sure you select a file that contains a selector item(s).");
+            SketchwareUtil.toastError("Убедитесь, что выбрали файл, содержащий элемент(ы) селектора.");
         }
     }
 
@@ -297,7 +297,7 @@ public class BlockSelectorManagerFragment extends qA {
             return getGson().fromJson(json, Selector.class);
         } catch (Exception e) {
             Log.e(BlockSelectorConsts.TAG, e.toString());
-            SketchwareUtil.toastError("An error occurred while trying to get the selector");
+            SketchwareUtil.toastError("Ошибка при получении селектора");
             return null;
         }
     }
@@ -310,7 +310,7 @@ public class BlockSelectorManagerFragment extends qA {
             return getGson().fromJson(json, itemListType);
         } catch (Exception e) {
             Log.e(BlockSelectorConsts.TAG, e.toString());
-            SketchwareUtil.toastError("An error occurred while trying to get the selectors");
+            SketchwareUtil.toastError("Ошибка при получении селекторов");
             return null;
         }
     }

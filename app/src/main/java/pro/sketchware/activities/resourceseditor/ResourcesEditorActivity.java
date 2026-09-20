@@ -398,7 +398,7 @@ public class ResourcesEditorActivity extends BaseAppCompatActivity {
         themesEditor.saveThemesFile();
         arraysEditor.saveArraysFile();
         updateProjectMetadata();
-        SketchwareUtil.toast("Save completed");
+        SketchwareUtil.toast("Сохранение завершено");
     }
 
     private void updateProjectMetadata() {
@@ -547,7 +547,7 @@ public class ResourcesEditorActivity extends BaseAppCompatActivity {
             if (newVariant.startsWith(variantFullNameStarts)) {
                 initializeBackgroundTask(newVariant.replace("values", ""));
             } else {
-                SketchwareUtil.toastError("Invalid variant input");
+                SketchwareUtil.toastError("Недопустимый ввод варианта");
             }
         } else {
             initializeBackgroundTask(variants.get(selectedChoice.get()).replace("values", ""));
