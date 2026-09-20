@@ -396,7 +396,7 @@ Do you want to continue?"</string>
     <string name="invalid_value_rule_2">Используйте только буквы (a-z), цифры и специальные символы (.)</string>
     <string name="invalid_value_rule_3">Используйте только буквы (a-z), цифры и специальный символ (_)</string>
     <string name="invalid_value_rule_4">Используйте только строчные буквы (a-z), цифры и специальный символ (_)</string>
-    <string name="invalid_value_rule_5">"Специальные символы (&amp;, &lt;, >, &quot;, ') не допускаются"</string>
+    <string name="invalid_value_rule_5">Специальные символы (&amp;, &lt;, >, &quot;, ') не допускаются</string>
     <string name="invalid_value_rule_6">Пробелы не допускаются</string>
     <string name="logic_block_favorites_delete_message">Вы уверены, что хотите удалить сохранённый блок из моей коллекции? Это действие нельзя отменить.</string>
     <string name="logic_block_favorites_delete_title">Удалить из моей коллекции</string>
