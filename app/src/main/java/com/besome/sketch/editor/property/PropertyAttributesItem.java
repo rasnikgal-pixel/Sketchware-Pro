@@ -209,7 +209,7 @@ public class PropertyAttributesItem extends LinearLayout implements View.OnClick
                                                     SketchwareUtil.toastError("IllegalStateException : Circular dependencies cannot exist in RelativeLayout");
                                                 }
                                             })
-                                            .setNegativeButton("Cancel", (d2, which) -> d.dismiss())
+                                            .setNegativeButton("Отмена", (d2, which) -> d.dismiss())
                                             .show();
                                 } else {
                                     value.put(attr, "false");
@@ -218,7 +218,7 @@ public class PropertyAttributesItem extends LinearLayout implements View.OnClick
                                     adapter.submitList(new ArrayList<>(value.keySet()));
                                 }
                             })
-                    .setNegativeButton("Cancel", (d, which) -> d.dismiss())
+                    .setNegativeButton("Отмена", (d, which) -> d.dismiss())
                     .show();
         });
     }
@@ -295,7 +295,7 @@ public class PropertyAttributesItem extends LinearLayout implements View.OnClick
                                 if (valueChangeListener != null)
                                     valueChangeListener.a(key, value);
                             })
-                            .setNegativeButton("Cancel", (d, which) -> d.dismiss())
+                            .setNegativeButton("Отмена", (d, which) -> d.dismiss())
                             .show();
                 });
                 itemView.setOnLongClickListener(v -> {

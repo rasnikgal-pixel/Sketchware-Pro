@@ -75,8 +75,8 @@
     <string name="common_word_word_wrap">Перенос слов</string>
     <string name="common_word_pretty_print">Форматированный вывод</string>
     <string name="common_word_auto_complete">Автодополнение</string>
-    <string name="common_word_projects">Projects</string>
-    <string name="common_word_store">Store</string>
+    <string name="common_word_projects">Проекты</string>
+    <string name="common_word_store">Магазин</string>
     <string name="common_word_import_events">Импортировать события</string>
     <string name="common_word_export_events">Экспортировать события</string>
     <string name="str_edit">EDIT</string>
@@ -84,7 +84,7 @@
     <string name="common_word_blocks_collection">Коллекция блоков</string>
     <string name="common_word_app_information">Информация о приложении</string>
     <string name="common_word_create_keystore">Создать keystore</string>
-    <string name="common_word_apps">Apps</string>
+    <string name="common_word_apps">Приложения</string>
     <string name="common_word_related_links">Связанные ссылки</string>
     <string name="common_word_style_name">Имя стиля</string>
     <string name="common_word_style_parent">Родитель стиля</string>

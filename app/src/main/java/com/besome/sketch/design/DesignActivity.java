@@ -486,7 +486,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             sheet.show(getSupportFragmentManager(), BuildSettingsBottomSheet.TAG);
             return true;
         });
-        bottomMenu.add(Menu.NONE, 2, Menu.NONE, "Clean temporary files").setVisible(false).setOnMenuItemClickListener(item -> {
+        bottomMenu.add(Menu.NONE, 2, Menu.NONE, "Очистить временные файлы").setVisible(false).setOnMenuItemClickListener(item -> {
             new Thread(() -> {
                 FileUtil.deleteFile(q.projectMyscPath);
                 updateBottomMenu();
@@ -502,13 +502,13 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             showCurrentActivitySrcCode();
             return true;
         });
-        bottomMenu.add(Menu.NONE, 4, Menu.NONE, "Install last built APK").setVisible(false).setOnMenuItemClickListener(item -> {
+        bottomMenu.add(Menu.NONE, 4, Menu.NONE, "Установить последний APK").setVisible(false).setOnMenuItemClickListener(item -> {
             if (FileUtil.isExistFile(q.finalToInstallApkPath)) {
                 installBuiltApk();
             } else SketchwareUtil.toast("APK doesn't exist anymore");
             return true;
         });
-        bottomMenu.add(Menu.NONE, 6, Menu.NONE, "Show Apk signatures").setVisible(false).setOnMenuItemClickListener(item -> {
+        bottomMenu.add(Menu.NONE, 6, Menu.NONE, "Показать подписи APK").setVisible(false).setOnMenuItemClickListener(item -> {
             ApkSignatures apkSignatures = new ApkSignatures(this, q.finalToInstallApkPath);
             apkSignatures.showSignaturesDialog();
             return true;
@@ -1350,7 +1350,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             btnRun.setIcon(ContextCompat.getDrawable(context, isRunning ? R.drawable.ic_mtrl_stop : R.drawable.ic_mtrl_run));
             btnRun.setIconTint(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorOnErrorContainer : R.attr.colorSurfaceContainerLowest)));
             btnRun.setTextColor(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorOnErrorContainer : R.attr.colorSurfaceContainerLowest)));
-            btnRun.setText(isRunning ? "Stop" : "Run");
+            btnRun.setText(isRunning ? "Стоп" : "Запустить");
             btnOptions.setEnabled(!isRunning);
             progressContainer.setVisibility(isRunning ? View.VISIBLE : View.GONE);
         }

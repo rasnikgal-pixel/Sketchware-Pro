@@ -197,7 +197,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                 .setTitle(isFolder ? "Create a new folder" : "Create a new file")
                 .setMessage("Введите имя для нового" + (isFolder ? "folder" : "file"))
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Create", null)
+                .setPositiveButton("Создать", null)
                 .create();
 
         dialogBinding.chipGroupTypes.setVisibility(View.GONE);

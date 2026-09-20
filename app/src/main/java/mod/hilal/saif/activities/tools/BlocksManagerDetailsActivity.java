@@ -310,14 +310,14 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
             PopupMenu popupMenu = new PopupMenu(this, view);
             Menu menu = popupMenu.getMenu();
             menu.add("Delete permanently");
-            menu.add("Restore");
+            menu.add("Восстановить");
             popupMenu.setOnMenuItemClickListener(item -> {
                 switch (item.getTitle().toString()) {
                     case "Delete permanently":
                         _deleteBlock(position);
                         break;
 
-                    case "Restore":
+                    case "Восстановить":
                         _changePallette(position);
                         break;
 
@@ -424,7 +424,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
             AtomicInteger restoreToChoice = new AtomicInteger(-1);
             builder.setTitle("Восстановить в")
                     .setSingleChoiceItems(paletteNames.toArray(new String[0]), -1, (dialog, which) -> restoreToChoice.set(which))
-                    .setPositiveButton("Restore", (dialog, which) -> {
+                    .setPositiveButton("Восстановить", (dialog, which) -> {
                         if (restoreToChoice.get() != -1) {
                             all_blocks_list.get(position).put("palette", String.valueOf(restoreToChoice.get() + 9));
                             Collections.swap(all_blocks_list, position, all_blocks_list.size() - 1);

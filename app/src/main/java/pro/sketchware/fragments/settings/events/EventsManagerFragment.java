@@ -54,7 +54,7 @@ public class EventsManagerFragment extends qA {
                 }
             }
         }
-        return "Events: " + eventAmount;
+        return "Событий: " + eventAmount;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class EventsManagerFragment extends qA {
         }
 
         var dialog = new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(existingListener == null ? "New Listener" : "Edit Listener")
+                .setTitle(existingListener == null ? "Новый слушатель" : "Редактировать слушателя")
                 .setView(listenerBinding.getRoot())
                 .setPositiveButton("Save", (di, i) -> {
                     String listenerName = Helper.getText(listenerBinding.listenerName);

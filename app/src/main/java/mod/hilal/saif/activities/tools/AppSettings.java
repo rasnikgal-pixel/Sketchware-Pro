@@ -93,25 +93,25 @@ public class AppSettings extends BaseAppCompatActivity {
         var preferences = new ArrayList<LibraryCategoryView>();
 
         LibraryCategoryView managersCategory = new LibraryCategoryView(this);
-        managersCategory.setTitle("Managers");
+        managersCategory.setTitle("Менеджеры");
         preferences.add(managersCategory);
 
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_block, "Block manager", "Manage your own blocks to use in Logic Editor", new ActivityLauncher(BlocksManager.class)), true);
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_pull_down, "Block selector menu manager", "Manage your own block selector menus", openSettingsActivity(SettingsActivity.BLOCK_SELECTOR_MANAGER_FRAGMENT)), true);
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_component, "Component manager", "Manage your own components", new ActivityLauncher(ManageCustomComponentActivity.class)), true);
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_list, "Event manager", "Manage your own events", openSettingsActivity(SettingsActivity.EVENTS_MANAGER_FRAGMENT)), true);
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_box, "Local library manager", "Manage and download local libraries", new ActivityLauncher(ManageLocalLibraryActivity.class, new Pair<>("sc_id", "system"))), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_block, "Менеджер блоков", "Управляйте своими блоками для использования в редакторе логики", new ActivityLauncher(BlocksManager.class)), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_pull_down, "Менеджер меню выбора блоков", "Управляйте своими меню выбора блоков", openSettingsActivity(SettingsActivity.BLOCK_SELECTOR_MANAGER_FRAGMENT)), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_component, "Менеджер компонентов", "Управляйте своими компонентами", new ActivityLauncher(ManageCustomComponentActivity.class)), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_list, "Менеджер событий", "Управляйте своими событиями", openSettingsActivity(SettingsActivity.EVENTS_MANAGER_FRAGMENT)), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_box, "Менеджер локальных библиотек", "Управляйте и скачивайте локальные библиотеки", new ActivityLauncher(ManageLocalLibraryActivity.class, new Pair<>("sc_id", "system"))), true);
         managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_article, Helper.getResString(R.string.design_drawer_menu_title_logcat_reader), Helper.getResString(R.string.design_drawer_menu_subtitle_logcat_reader), new ActivityLauncher(LogReaderActivity.class)), false);
 
         LibraryCategoryView generalCategory = new LibraryCategoryView(this);
-        generalCategory.setTitle("General");
+        generalCategory.setTitle("Общие");
         preferences.add(generalCategory);
 
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings_applications, "App settings", "Change general app settings", new ActivityLauncher(ConfigActivity.class)), true);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings_applications, "Настройки приложения", "Изменить общие настройки приложения", new ActivityLauncher(ConfigActivity.class)), true);
         generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_palette, Helper.getResString(R.string.settings_appearance), Helper.getResString(R.string.settings_appearance_description), openSettingsActivity(SettingsActivity.SETTINGS_APPEARANCE_FRAGMENT)), true);
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_folder, "Open working directory", "Open Sketchware Pro's directory and edit files in it", v -> openWorkingDirectory()), true);
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_apk_document, "Sign an APK file with testkey", "Sign an already existing APK file with testkey and signature schemes up to V4", v -> signApkFileDialog()), true);
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings, Helper.getResString(R.string.main_drawer_title_system_settings), "Auto-save and vibrations", new ActivityLauncher(SystemSettingActivity.class)), false);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_folder, "Открыть рабочую директорию", "Открыть директорию Sketchware Pro и редактировать файлы", v -> openWorkingDirectory()), true);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_apk_document, "Подписать APK тестовым ключом", "Подписать существующий APK тестовым ключом и схемами подписи до V4", v -> signApkFileDialog()), true);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings, Helper.getResString(R.string.main_drawer_title_system_settings), "Автосохранение и вибрации", new ActivityLauncher(SystemSettingActivity.class)), false);
 
         preferences.forEach(content::addView);
     }

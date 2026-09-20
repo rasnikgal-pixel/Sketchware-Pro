@@ -62,7 +62,7 @@ public class BlockSelectorManagerFragment extends qA {
         if (FileUtil.isExistFile(BlockSelectorConsts.BLOCK_SELECTORS_FILE.getAbsolutePath())) {
             selectors = parseJson(FileUtil.readFile(BlockSelectorConsts.BLOCK_SELECTORS_FILE.getAbsolutePath()));
         } else {
-            selectors.add(new Selector("Select typeview:", "typeview", getTypeViewList()));
+            selectors.add(new Selector("Выберите просмотр типов:", "typeview", getTypeViewList()));
             saveAllSelectors();
         }
 
@@ -145,7 +145,7 @@ public class BlockSelectorManagerFragment extends qA {
         }
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
-        dialog.setTitle(!isEdit ? "New selector" : "Edit selector");
+        dialog.setTitle(!isEdit ? "Новый селектор" : "Редактировать селектор");
         dialog.setView(dialogBinding.getRoot());
         dialog.setPositiveButton(!isEdit ? "Create" : "Save", (v, which) -> {
             String selectorName = Helper.getText(dialogBinding.palettesPath);
