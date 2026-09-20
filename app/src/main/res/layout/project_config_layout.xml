@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
-        android:hint="Classpath 'separated by :'">
+        android:hint="Classpath (разделённые :')">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="Hide warnings in error log"
+            android:text="Скрыть предупреждения в журнале ошибок"
             android:textAppearance="?attr/textAppearanceBodyMedium" />
 
         <CheckBox
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="Don't include http-legacy-28.dex"
+            android:text="Не включать http-legacy-28.dex"
             android:textAppearance="?attr/textAppearanceBodyMedium" />
 
         <CheckBox

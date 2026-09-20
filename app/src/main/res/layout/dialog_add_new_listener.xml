@@ -42,7 +42,7 @@
             android:id="@+id/listener_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Code (### => variable name)" />
+            android:hint="Код (### => имя переменной)" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.materialswitch.MaterialSwitch

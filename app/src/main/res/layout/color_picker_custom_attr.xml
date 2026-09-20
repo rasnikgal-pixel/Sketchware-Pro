@@ -27,7 +27,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="4dp"
         android:padding="8dp"
-        android:text="Color Preview :"
+        android:text="Предпросмотр цвета:"
         android:textAppearance="?attr/textAppearanceLabelLarge" />
 
     <include layout="@layout/item_attr" />

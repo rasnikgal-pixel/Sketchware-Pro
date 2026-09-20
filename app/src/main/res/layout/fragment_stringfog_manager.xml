@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="16dp"
-        android:text="Activating StringFog will encrypt the strings in compilation time, which will make your app more difficult to reverse-engineer."
+        android:text="Активация StringFog шифрует строки во время компиляции, что усложняет реверс-инжиниринг вашего приложения."
         android:textAppearance="?attr/textAppearanceBodyMedium"
         android:textColor="?attr/colorOnSurfaceVariant"
         app:drawableStartCompat="@drawable/ic_mtrl_info"
