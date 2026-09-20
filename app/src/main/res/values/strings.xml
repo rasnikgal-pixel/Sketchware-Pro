@@ -37,7 +37,6 @@
     <string name="about_title">О Sketchware Pro</string>
     <string name="add_to">Добавить в категорию</string>
     <string name="androidx_startup">androidx.startup</string>
-    <string name="app_name">Sketchware Pro</string>
     <string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="assets_manager_add_file">Импортировать файл</string>
     <string name="assets_manager_add_new">Создать новый</string>
@@ -130,14 +129,6 @@
     <string name="common_open_on_phone">Открыть на телефоне</string>
     <string name="common_signin_button_text">Войти</string>
     <string name="common_signin_button_text_long">Войти через Google</string>
-    <string name="common_word_bottomsheetdialogfragment">BottomSheetDialogFragment</string>
-    <string name="common_word_code_editor">Редактор кода</string>
-    <string name="common_word_contributor">Участник</string>
-    <string name="common_word_dialogfragment">DialogFragment</string>
-    <string name="common_word_fragment">Фрагмент</string>
-    <string name="common_word_github">GitHub</string>
-    <string name="common_word_swassist">SwAssist</string>
-    <string name="common_word_widget">Виджет</string>
     <string name="component_add_docs_button_title_go_to_docs">Читать документацию</string>
     <string name="component_add_message_docs_updated_soon">Страница документации будет обновлена в ближайшее время</string>
     <string name="component_context_menu_title">Меню компонентов</string>
@@ -356,7 +347,6 @@ ex)\"users/username\""</string>
     <string name="design_manager_block_detail_actionbar_title">Детали блока</string>
     <string name="design_manager_block_hint_enter_block_name">Введите имя блока</string>
     <string name="design_manager_change_name_button">ИЗМЕНИТЬ ИМЯ</string>
-    <string name="design_manager_font_description_example_sentence">Пример предложения для предпросмотра 预览 的例句 عرض مثالي للتوضيح プレビューの例文 Пример предложения для предварительного просмотра</string>
     <string name="design_manager_font_description_guide_add_font">Добавьте файлы шрифтов с расширением .ttf</string>
     <string name="design_manager_font_description_look_like_this">Мой новый шрифт будет выглядеть так!</string>
     <string name="design_manager_font_hint_enter_font_name">Введите имя шрифта</string>
@@ -529,7 +519,6 @@ ex)\"users/username\""</string>
     <string name="fab_transformation_sheet_behavior">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
     <string name="facebook_url">https://fb.com/sketchware</string>
     <string name="fcm_fallback_notification_channel_label">Разное</string>
-    <string name="firebase_database_url">https://dependable-flag-825.firebaseio.com</string>
     <string name="ga_trackingId">UA-80718117-1</string>
     <string name="gcm_defaultSenderId">000000000000</string>
     <string name="github_api_date_unavailable">Дата недоступна</string>
@@ -557,15 +546,6 @@ ex)\"users/username\""</string>
     <string name="invalid_value_rule_5">Специальные символы (&amp;, &lt;, >, &quot;, ') не допускаются</string>
     <string name="invalid_value_rule_6">Пробелы не допускаются</string>
     <string name="item_view_role_description">Вкладка</string>
-    <string name="link_about_team">https://sketchware-pro.github.io/Sketchware-Pro/about.json</string>
-    <string name="link_discord_invite">https://discord.gg/kq39yhT4rX</string>
-    <string name="link_docs_url">https://docs.sketchware.pro</string>
-    <string name="link_github_commits_url" formatted="false">https://api.github.com/repos/Sketchware-Pro/Sketchware-Pro/commits?per_page=%s&amp;page=%s</string>
-    <string name="link_github_release">https://github.com/Sketchware-Pro/Sketchware-Pro/releases</string>
-    <string name="link_github_url">https://github.com/Sketchware-Pro/Sketchware-Pro</string>
-    <string name="link_ideas_url">https://discord.gg/4uxhMwCt</string>
-    <string name="link_sw_assist">https://play.google.com/store/apps/details?id=com.w3wide.swassist</string>
-    <string name="link_telegram_invite">https://t.me/sketchwarepro</string>
     <string name="local_library_manager">Менеджер локальных библиотек</string>
     <string name="local_library_manager_dependency_example">Пример: org.ow2.asm:asm:9.5</string>
     <string name="local_library_manager_dependency_info">Вы можете найти зависимость библиотеки на GitHub, обычно в файле Readme.</string>
