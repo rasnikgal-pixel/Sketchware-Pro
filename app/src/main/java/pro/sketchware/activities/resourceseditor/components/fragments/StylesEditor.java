@@ -131,7 +131,7 @@ public class StylesEditor extends Fragment {
     public void showAddStyleDialog() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
         StyleEditorAddBinding binding = StyleEditorAddBinding.inflate(getLayoutInflater());
-        dialog.setTitle("Create new style");
+        dialog.setTitle("Создать новый стиль");
         dialog.setPositiveButton("Create", (d, which) -> {
             String styleName = Objects.requireNonNull(binding.styleName.getText()).toString();
             String parent = Objects.requireNonNull(binding.styleParent.getText()).toString();
@@ -173,7 +173,7 @@ public class StylesEditor extends Fragment {
             binding.styleHeaderInput.setText(notesMap.get(position));
         }
 
-        dialog.setTitle("Edit style");
+        dialog.setTitle("Редактировать стиль");
         dialog.setPositiveButton("Edit", (d, which) -> {
             String styleName = Objects.requireNonNull(binding.styleName.getText()).toString();
             String parent = Objects.requireNonNull(binding.styleParent.getText()).toString();
@@ -196,7 +196,7 @@ public class StylesEditor extends Fragment {
         });
         dialog.setNeutralButton(Helper.getResString(R.string.common_word_delete), (d, which) -> new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.common_word_warning)
-                .setMessage("Are you sure you want to delete " + style.getStyleName() + "?")
+                .setMessage("Вы уверены, что хотите удалить" + style.getStyleName() + "?")
                 .setPositiveButton(R.string.common_word_yes, (d2, w) -> {
                     stylesList.remove(position);
                     notesMap.remove(position);
@@ -234,7 +234,7 @@ public class StylesEditor extends Fragment {
                     public void onItemLongClick(LinkedHashMap<String, String> attributes, String attr) {
                         new MaterialAlertDialogBuilder(requireContext())
                                 .setTitle(R.string.common_word_warning)
-                                .setMessage("Are you sure you want to delete " + attr + "?")
+                                .setMessage("Вы уверены, что хотите удалить" + attr + "?")
                                 .setPositiveButton(R.string.common_word_yes, (d, w) -> {
                                     attributes.remove(attr);
                                     style.setAttributes(attributes);

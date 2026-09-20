@@ -319,7 +319,7 @@ public class Fw extends qA {
 
                 binding.viewItem.setOnLongClickListener(view -> {
                     if (getLayoutPosition() == 0) {
-                        Toast.makeText(getContext(), "Main activity cannot be deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Главное activity нельзя удалить", Toast.LENGTH_SHORT).show();
                         return true;
                     }
                     ((ManageViewActivity) getActivity()).a(true);

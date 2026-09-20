@@ -92,7 +92,7 @@ public class LogicClickListener implements View.OnClickListener {
 
     private void addCustomVariable() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(logicEditor);
-        dialog.setTitle("Add a new custom variable");
+        dialog.setTitle("Добавить новую пользовательскую переменную");
 
         AddCustomVariableBinding binding = AddCustomVariableBinding.inflate(logicEditor.getLayoutInflater());
 
@@ -128,7 +128,7 @@ public class LogicClickListener implements View.OnClickListener {
             } else {
                 binding.typeLayout.requestFocus();
                 if (variableType.isEmpty()) {
-                    binding.typeLayout.setError("Type can't be empty");
+                    binding.typeLayout.setError("Тип не может быть пустым");
                     binding.typeLayout.setErrorEnabled(true);
                 }
                 return;
@@ -140,7 +140,7 @@ public class LogicClickListener implements View.OnClickListener {
             } else {
                 binding.nameLayout.requestFocus();
                 if (variableName.isEmpty()) {
-                    binding.nameLayout.setError("Name can't be empty");
+                    binding.nameLayout.setError("Имя не может быть пустым");
                     binding.nameLayout.setErrorEnabled(true);
                 }
                 return;
@@ -220,7 +220,7 @@ public class LogicClickListener implements View.OnClickListener {
 
     private void addCustomList() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(logicEditor);
-        dialog.setTitle("Add a new custom List");
+        dialog.setTitle("Добавить новый пользовательский список");
 
         AddCustomListBinding listBinding = AddCustomListBinding.inflate(logicEditor.getLayoutInflater());
 
@@ -239,7 +239,7 @@ public class LogicClickListener implements View.OnClickListener {
                 listBinding.typeLayout.setErrorEnabled(false);
             } else {
                 if (validName) listBinding.typeLayout.requestFocus();
-                listBinding.typeLayout.setError("Type can't be empty");
+                listBinding.typeLayout.setError("Тип не может быть пустым");
                 listBinding.typeLayout.setErrorEnabled(true);
             }
 
@@ -250,7 +250,7 @@ public class LogicClickListener implements View.OnClickListener {
                     listBinding.nameLayout.setErrorEnabled(false);
                 } else {
                     listBinding.nameLayout.requestFocus();
-                    listBinding.nameLayout.setError("Name can't be empty");
+                    listBinding.nameLayout.setError("Имя не может быть пустым");
                     listBinding.nameLayout.setErrorEnabled(true);
                 }
             }

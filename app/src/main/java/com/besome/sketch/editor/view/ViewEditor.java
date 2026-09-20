@@ -812,10 +812,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     private void b(boolean z, boolean isCustomWidget) {
         if (isCustomWidget) {
             deleteIcon.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.ic_mtrl_edit));
-            deleteText.setText("Drag here to see the Actions");
+            deleteText.setText("Перетащите сюда, чтобы увидеть Actions");
         } else if (z) {
             deleteIcon.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.ic_mtrl_delete));
-            deleteText.setText("Drag here to delete");
+            deleteText.setText("Перетащите сюда, чтобы удалить");
             setDeleteViewIconAndTextUi(false);
         }
         deleteView.bringToFront();

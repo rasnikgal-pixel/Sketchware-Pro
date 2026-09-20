@@ -122,7 +122,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
                 .setTitle(R.string.assets_manager_add_new)
-                .setMessage("If you're creating a file, make sure to add an extension.")
+                .setMessage("Если вы создаёте файл, обязательно добавьте расширение.")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Create", null)
                 .create();
@@ -167,7 +167,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
         FilePickerOptions options = new FilePickerOptions();
         options.setSelectionMode(SelectionMode.BOTH);
         options.setMultipleSelection(true);
-        options.setTitle("Select an asset file");
+        options.setTitle("Выберите файл ресурса");
 
         FilePickerCallback callback = new FilePickerCallback() {
             @Override
@@ -216,7 +216,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
     private void showDeleteDialog(int position) {
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Delete " + assetsAdapter.getFileName(position) + "?")
-                .setMessage("Are you sure you want to delete this " + (assetsAdapter.isFolder(position) ? "folder" : "file") + "? "
+                .setMessage("Вы уверены, что хотите удалить этот" + (assetsAdapter.isFolder(position) ? "folder" : "file") + "? "
                         + "This action cannot be undone.")
                 .setPositiveButton(R.string.common_word_delete, (dialog, which) -> {
                     FileUtil.deleteFile(assetsAdapter.getItem(position));

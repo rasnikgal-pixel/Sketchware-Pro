@@ -138,7 +138,7 @@ public class AppSettings extends BaseAppCompatActivity {
         FilePickerOptions options = new FilePickerOptions();
         options.setSelectionMode(SelectionMode.BOTH);
         options.setMultipleSelection(true);
-        options.setTitle("Select an entry to modify");
+        options.setTitle("Выберите элемент для изменения");
         options.setInitialDirectory(getFilesDir().getParentFile().getAbsolutePath());
 
         FilePickerCallback callback = new FilePickerCallback() {
@@ -147,11 +147,11 @@ public class AppSettings extends BaseAppCompatActivity {
                 boolean isDirectory = files.get(0).isDirectory();
                 if (files.size() > 1 || isDirectory) {
                     new MaterialAlertDialogBuilder(AppSettings.this)
-                            .setTitle("Select an action")
+                            .setTitle("Выберите действие")
                             .setSingleChoiceItems(new String[]{"Delete"}, -1, (actionDialog, which) -> {
                                 new MaterialAlertDialogBuilder(AppSettings.this)
                                         .setTitle("Delete " + (isDirectory ? "folder" : "file") + "?")
-                                        .setMessage("Are you sure you want to delete this " + (isDirectory ? "folder" : "file") + " permanently? This cannot be undone.")
+                                        .setMessage("Вы уверены, что хотите удалить этот" + (isDirectory ? "folder" : "file") + " permanently? This cannot be undone.")
                                         .setPositiveButton(R.string.common_word_delete, (deleteConfirmationDialog, pressedButton) -> {
                                             for (File file : files) {
                                                 FileUtil.deleteFile(file.getAbsolutePath());
@@ -165,7 +165,7 @@ public class AppSettings extends BaseAppCompatActivity {
                             .show();
                 } else {
                     new MaterialAlertDialogBuilder(AppSettings.this)
-                            .setTitle("Select an action")
+                            .setTitle("Выберите действие")
                             .setSingleChoiceItems(new String[]{"Edit", "Delete"}, -1, (actionDialog, which) -> {
                                 switch (which) {
                                     case 0 -> {
@@ -176,8 +176,8 @@ public class AppSettings extends BaseAppCompatActivity {
                                         startActivity(intent);
                                     }
                                     case 1 -> new MaterialAlertDialogBuilder(AppSettings.this)
-                                            .setTitle("Delete file?")
-                                            .setMessage("Are you sure you want to delete this file permanently? This cannot be undone.")
+                                            .setTitle("Удалить файл?")
+                                            .setMessage("Вы уверены, что хотите удалить этот файл навсегда? Это нельзя отменить.")
                                             .setPositiveButton(R.string.common_word_delete, (deleteDialog, pressedButton) ->
                                                     FileUtil.deleteFile(files.get(0).getAbsolutePath()))
                                             .setNegativeButton(R.string.common_word_cancel, null)
@@ -196,7 +196,7 @@ public class AppSettings extends BaseAppCompatActivity {
     private void signApkFileDialog() {
         boolean[] isAPKSelected = {false};
         MaterialAlertDialogBuilder apkPathDialog = new MaterialAlertDialogBuilder(this);
-        apkPathDialog.setTitle("Sign APK with testkey");
+        apkPathDialog.setTitle("Подписать APK тестовым ключом");
 
         DialogSelectApkToSignBinding binding = DialogSelectApkToSignBinding.inflate(getLayoutInflater());
         View testkey_root = binding.getRoot();
@@ -230,8 +230,8 @@ public class AppSettings extends BaseAppCompatActivity {
             if (new File(output_apk_path).exists()) {
                 MaterialAlertDialogBuilder confirmOverwrite = new MaterialAlertDialogBuilder(this);
                 confirmOverwrite.setIcon(R.drawable.color_save_as_new_96);
-                confirmOverwrite.setTitle("File exists");
-                confirmOverwrite.setMessage("An APK named " + output_apk_file_name + " already exists at /sketchware/signed_apk/.  Overwrite it?");
+                confirmOverwrite.setTitle("Файл существует");
+                confirmOverwrite.setMessage("APK с именем" + output_apk_file_name + " already exists at /sketchware/signed_apk/.  Overwrite it?");
 
                 confirmOverwrite.setNegativeButton(Helper.getResString(R.string.common_word_cancel), null);
                 confirmOverwrite.setPositiveButton("Overwrite", (view, which1) -> {
@@ -263,7 +263,7 @@ public class AppSettings extends BaseAppCompatActivity {
         scroll_view.addView(tv_log);
         layout_quiz.addView(scroll_view);
 
-        tv_progress.setText("Signing APK...");
+        tv_progress.setText("Подписание APK...");
 
         AlertDialog building_dialog = new MaterialAlertDialogBuilder(this)
                 .setView(building_root)
@@ -292,7 +292,7 @@ public class AppSettings extends BaseAppCompatActivity {
                                         + Uri.fromFile(new File(outputApkPath)).getLastPathSegment(),
                                 Toast.LENGTH_LONG);
                     } else {
-                        tv_progress.setText("An error occurred. Check the log for more details.");
+                        tv_progress.setText("Произошла ошибка. Проверьте журнал для подробностей.");
                     }
                 });
             }

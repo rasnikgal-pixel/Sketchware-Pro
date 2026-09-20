@@ -106,7 +106,7 @@ public class CustomBlocksDialog {
 
             } else {
                 context.runOnUiThread(() -> {
-                    dialogBinding.subtitle.setText("You haven't used any custom blocks in this project");
+                    dialogBinding.subtitle.setText("Вы не использовали пользовательские блоки в этом проекте");
                     dialogBinding.progressIndicator.setVisibility(View.GONE);
                 });
             }
@@ -137,9 +137,9 @@ public class CustomBlocksDialog {
         AtomicInteger selectedPalette = new AtomicInteger(paletteList.size() - 1);
 
         new MaterialAlertDialogBuilder(context)
-                .setTitle("Import Custom blocks to")
+                .setTitle("Импортировать пользовательские блоки в")
                 .setSingleChoiceItems(paletteNames.toArray(new String[0]), selectedPalette.get(), (dialog, which) -> selectedPalette.set(which))
-                .setNegativeButton("Create new palette", (dialog, which) -> {
+                .setNegativeButton("Создать новую палитру", (dialog, which) -> {
                     showCreatePaletteDialog(context, paletteList, paletteDir, customBlocksManager, list, blocksList, allBlocksList, blocksDir);
                     dialog.dismiss();
                 })
@@ -183,7 +183,7 @@ public class CustomBlocksDialog {
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
         dialog.setIcon(R.drawable.icon_style_white_96);
-        dialog.setTitle("Create a new palette");
+        dialog.setTitle("Создать новую палитру");
 
         DialogPaletteBinding binding = DialogPaletteBinding.inflate(((Activity) context).getLayoutInflater());
 
@@ -233,19 +233,19 @@ public class CustomBlocksDialog {
 
     private boolean validateInput(DialogPaletteBinding binding, String name, String color) {
         if (name.isEmpty()) {
-            binding.name.setError("Name cannot be empty");
+            binding.name.setError("Имя не может быть пустым");
             binding.name.requestFocus();
             return false;
         }
         if (color.isEmpty()) {
-            binding.color.setError("Color cannot be empty");
+            binding.color.setError("Цвет не может быть пустым");
             binding.color.requestFocus();
             return false;
         }
         try {
             Color.parseColor(color);
         } catch (IllegalArgumentException e) {
-            binding.color.setError("Invalid hexadecimal color");
+            binding.color.setError("Неверный шестнадцатеричный цвет");
             binding.color.requestFocus();
             return false;
         }

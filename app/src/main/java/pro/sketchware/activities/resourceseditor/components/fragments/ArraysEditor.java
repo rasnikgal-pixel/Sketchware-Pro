@@ -130,12 +130,12 @@ public class ArraysEditor extends Fragment {
     public void showAddArrayDialog() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
         ArraysEditorAddBinding binding = ArraysEditorAddBinding.inflate(getLayoutInflater());
-        dialog.setTitle("Create new array");
+        dialog.setTitle("Создать новый массив");
 
         binding.arrayType.setOnClickListener(view -> {
             String[] arrayTypes = {"STRING", "INTEGER", "OBJECT"};
             new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Select Array Type")
+                    .setTitle("Выберите тип массива")
                     .setSingleChoiceItems(arrayTypes, -1, (dialogInterface, which) -> {
                         binding.arrayType.setText(arrayTypes[which]);
                         dialogInterface.dismiss();
@@ -189,7 +189,7 @@ public class ArraysEditor extends Fragment {
         binding.arrayType.setOnClickListener(view -> {
             String[] arrayTypes = {"STRING", "INTEGER", "OBJECT"};
             new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Select Array Type")
+                    .setTitle("Выберите тип массива")
                     .setSingleChoiceItems(arrayTypes, -1, (dialogInterface, which) -> {
                         binding.arrayType.setText(arrayTypes[which]);
                         dialogInterface.dismiss();
@@ -197,7 +197,7 @@ public class ArraysEditor extends Fragment {
                     .show();
         });
 
-        dialog.setTitle("Edit array");
+        dialog.setTitle("Редактировать массив");
         dialog.setPositiveButton("Edit", (d, which) -> {
             String arrayName = Objects.requireNonNull(binding.arrayName.getText()).toString();
             String arrayType = Objects.requireNonNull(binding.arrayType.getText()).toString();
@@ -220,7 +220,7 @@ public class ArraysEditor extends Fragment {
         });
         dialog.setNeutralButton(Helper.getResString(R.string.common_word_delete), (d, which) -> new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.common_word_warning)
-                .setMessage("Are you sure you want to delete " + array.getArrayName() + "?")
+                .setMessage("Вы уверены, что хотите удалить" + array.getArrayName() + "?")
                 .setPositiveButton(R.string.common_word_yes, (d2, w) -> {
                     arraysList.remove(position);
                     notesMap.remove(position);
@@ -257,7 +257,7 @@ public class ArraysEditor extends Fragment {
                     public void onItemLongClick(LinkedHashMap<String, String> attributes, String attr) {
                         new MaterialAlertDialogBuilder(requireContext())
                                 .setTitle(R.string.common_word_warning)
-                                .setMessage("Are you sure you want to delete " + attr + "?")
+                                .setMessage("Вы уверены, что хотите удалить" + attr + "?")
                                 .setPositiveButton(R.string.common_word_yes, (d, w) -> {
                                     attributes.remove(attr);
                                     array.setAttributes(attributes);

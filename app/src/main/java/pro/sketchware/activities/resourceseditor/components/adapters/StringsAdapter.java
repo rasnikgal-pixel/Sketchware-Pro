@@ -99,7 +99,7 @@ public class StringsAdapter extends RecyclerView.Adapter<StringsAdapter.ViewHold
                 dialogBinding.stringKeyInput.setEnabled(false);
             }
 
-            dialog.setTitle("Edit string");
+            dialog.setTitle("Редактировать строку");
             dialog.setPositiveButton("Save", (d, which) -> {
                 String keyInput = Objects.requireNonNull(dialogBinding.stringKeyInput.getText()).toString();
                 String valueInput = Objects.requireNonNull(dialogBinding.stringValueInput.getText()).toString();

@@ -104,9 +104,9 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
     private void handleFab() {
         if (isInMainDirectory()) {
-            binding.showOptionsButton.setText("New folder");
+            binding.showOptionsButton.setText("Новая папка");
         } else {
-            binding.showOptionsButton.setText("Import library");
+            binding.showOptionsButton.setText("Импортировать библиотеку");
         }
     }
 
@@ -169,14 +169,14 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
-                .setTitle("Create a new folder")
-                .setMessage("Enter the name of the new folder")
+                .setTitle("Создать новую папку")
+                .setMessage("Введите имя новой папки")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Create", null)
                 .create();
 
         dialogBinding.chipGroupTypes.setVisibility(View.GONE);
-        textInputLayout.setHint("Folder name");
+        textInputLayout.setHint("Имя папки");
 
         inputText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -200,7 +200,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                 String name = Helper.getText(inputText);
 
                 if (name.isEmpty()) {
-                    textInputLayout.setError("Invalid folder name");
+                    textInputLayout.setError("Неверное имя папки");
                     return;
                 }
                 textInputLayout.setError(null);
@@ -208,7 +208,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                 String path = fpu.getPathNativelibs(numProj) + "/" + name;
 
                 if (FileUtil.isExistFile(path)) {
-                    textInputLayout.setError("Folder already exists");
+                    textInputLayout.setError("Папка уже существует");
                     return;
                 }
                 textInputLayout.setError(null);
@@ -233,7 +233,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
     private void setupDialog() {
         FilePickerOptions options = new FilePickerOptions();
-        options.setTitle("Import Native Libraries");
+        options.setTitle("Импортировать нативные библиотеки");
         options.setMultipleSelection(true);
         options.setExtensions(new String[]{"so"});
         FilePickerCallback callback = new FilePickerCallback() {

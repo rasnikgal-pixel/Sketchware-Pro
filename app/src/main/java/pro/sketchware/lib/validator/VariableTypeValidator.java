@@ -26,33 +26,33 @@ public class VariableTypeValidator extends MB {
         String reconsInput = String.join(" ", words);
 
         if (!variableType.equals(reconsInput)) {
-            b.setError("Extra spaces between or at the end are not allowed.");
+            b.setError("Дополнительные пробелы между словами или в конце не допускаются.");
             d = false;
             return;
         }
 
         if (!TextUtils.isEmpty(charSequence)) {
             if (!Character.isLetter(charSequence.charAt(0))) {
-                b.setError("Variable data type must start with a letter");
+                b.setError("Тип данных переменной должен начинаться с буквы");
                 d = false;
                 return;
             }
         }
 
         if (!isValidAngleBracket(variableType)) {
-            b.setError("Angle bracket not matched");
+            b.setError("Угловая скобка не закрыта");
             d = false;
             return;
         }
 
         if (!isValidBoxBracket(variableType)) {
-            b.setError("Box bracket not matched");
+            b.setError("Квадратная скобка не закрыта");
             d = false;
             return;
         }
 
         if (!PATTERN_TYPE.matcher(variableType).matches()) {
-            b.setError("Invalid variable data type");
+            b.setError("Неверный тип данных переменной");
             d = false;
             return;
         }

@@ -141,7 +141,7 @@ public class SrcViewerActivity extends BaseAppCompatActivity {
                 Gravity.CENTER));
 
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Select font size")
+                .setTitle("Выберите размер шрифта")
                 .setIcon(R.drawable.ic_mtrl_formattext)
                 .setView(layout)
                 .setPositiveButton("Apply", (dialog, which) -> {

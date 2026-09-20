@@ -158,7 +158,7 @@ public class EventsManagerCreatorFragment extends qA {
             return;
         }
         if (!OldResourceIdMapper.isValidIconId(Helper.getText(binding.eventsCreatorIcon))) {
-            binding.eventsCreatorIconTil.setError("Invalid icon ID");
+            binding.eventsCreatorIconTil.setError("Неверный ID иконки");
             binding.eventsCreatorIcon.requestFocus();
             return;
         }
@@ -210,12 +210,12 @@ public class EventsManagerCreatorFragment extends qA {
         configureToolbar(binding.toolbar);
 
         if (isEdit) {
-            binding.toolbar.setTitle("Event Properties");
+            binding.toolbar.setTitle("Свойства события");
             binding.toolbar.setSubtitle(event_name);
         } else if (isActivityEvent) {
-            binding.toolbar.setTitle("New Activity Event");
+            binding.toolbar.setTitle("Новое событие Activity");
         } else {
-            binding.toolbar.setTitle("New Event");
+            binding.toolbar.setTitle("Новое событие");
             binding.toolbar.setSubtitle(lisName);
         }
     }

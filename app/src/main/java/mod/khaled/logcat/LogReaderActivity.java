@@ -127,8 +127,8 @@ public class LogReaderActivity extends BaseAppCompatActivity {
         dialogBinding.imgDelete.setVisibility(View.GONE);
 
         var builder = new MaterialAlertDialogBuilder(this)
-                .setTitle("Filter by package name")
-                .setMessage("For multiple package names, separate them with a comma (,).")
+                .setTitle("Фильтр по имени пакета")
+                .setMessage("Для нескольких имён пакетов разделяйте их запятой (,).")
                 .setIcon(R.drawable.ic_mtrl_filter)
                 .setView(view)
                 .setPositiveButton("Apply", (dialog, which) -> {

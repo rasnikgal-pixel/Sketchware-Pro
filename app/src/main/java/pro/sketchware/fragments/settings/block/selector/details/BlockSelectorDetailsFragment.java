@@ -130,7 +130,7 @@ public class BlockSelectorDetailsFragment extends qA {
         }
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
-        dialog.setTitle("New Selector Item");
+        dialog.setTitle("Новый элемент селектора");
         dialog.setPositiveButton("Create", (v, which) -> {
             String newItem = Helper.getText(dialogBinding.activityNameInput);
             if (newItem != null && !newItem.isEmpty()) {

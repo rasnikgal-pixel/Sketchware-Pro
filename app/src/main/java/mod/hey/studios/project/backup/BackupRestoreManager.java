@@ -67,7 +67,7 @@ public class BackupRestoreManager {
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(act);
         dialog.setIcon(R.drawable.ic_backup);
-        dialog.setTitle("Backup Options");
+        dialog.setTitle("Параметры резервного копирования");
 
         LinearLayout checkboxContainer = new LinearLayout(act);
         checkboxContainer.setOrientation(LinearLayout.VERTICAL);
@@ -99,7 +99,7 @@ public class BackupRestoreManager {
 
         CheckBox includeLocalLibraries = new CheckBox(act);
         includeLocalLibraries.setTag(localLibrariesTag);
-        includeLocalLibraries.setText("Include used Local libraries");
+        includeLocalLibraries.setText("Включить используемые локальные библиотеки");
         includeLocalLibraries.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -108,7 +108,7 @@ public class BackupRestoreManager {
 
         CheckBox includeUsedCustomBlocks = new CheckBox(act);
         includeUsedCustomBlocks.setTag(customBlocksTag);
-        includeUsedCustomBlocks.setText("Include used Custom Blocks");
+        includeUsedCustomBlocks.setText("Включить используемые пользовательские блоки");
         includeUsedCustomBlocks.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -116,7 +116,7 @@ public class BackupRestoreManager {
         checkboxContainer.addView(includeUsedCustomBlocks);
 
         dialog.setView(checkboxContainer);
-        dialog.setPositiveButton("Back up", (v, which) -> {
+        dialog.setPositiveButton("Создать резервную копию", (v, which) -> {
             v.dismiss();
             doBackup(sc_id, project_name);
         });
@@ -135,7 +135,7 @@ public class BackupRestoreManager {
         FilePickerOptions options = new FilePickerOptions();
         options.setMultipleSelection(true);
         options.setExtensions(new String[]{BackupFactory.EXTENSION});
-        options.setTitle("Select backups to restore (" + BackupFactory.EXTENSION + ")");
+        options.setTitle("Выберите резервные копии для восстановления (" + BackupFactory.EXTENSION + ")");
 
         FilePickerCallback callback = new FilePickerCallback() {
             @Override
@@ -151,7 +151,7 @@ public class BackupRestoreManager {
                                 .setMessage(getRestoreIntegratedLocalLibrariesMessage(restoringMultipleBackups, i, files.size(),
                                         FileUtil.getFileNameNoExtension(backupFilePath)))
                                 .setPositiveButton("Copy", (dialog, which) -> doRestore(backupFilePath, true))
-                                .setNegativeButton("Don't copy", (dialog, which) -> doRestore(backupFilePath, false))
+                                .setNegativeButton("Не копировать", (dialog, which) -> doRestore(backupFilePath, false))
                                 .setNeutralButton(R.string.common_word_cancel, null)
                                 .show();
 
@@ -188,9 +188,9 @@ public class BackupRestoreManager {
         @Override
         protected void onPreExecute() {
             ProgressMsgBoxBinding loadingDialogBinding = ProgressMsgBoxBinding.inflate(LayoutInflater.from(activityWeakReference.get()));
-            loadingDialogBinding.tvProgress.setText("Creating backup...");
+            loadingDialogBinding.tvProgress.setText("Создание резервной копии...");
             dlg = new MaterialAlertDialogBuilder(activityWeakReference.get())
-                    .setTitle("Please wait")
+                    .setTitle("Пожалуйста, подождите")
                     .setCancelable(false)
                     .setView(loadingDialogBinding.getRoot())
                     .create();
@@ -240,9 +240,9 @@ public class BackupRestoreManager {
         @Override
         protected void onPreExecute() {
             ProgressMsgBoxBinding loadingDialogBinding = ProgressMsgBoxBinding.inflate(LayoutInflater.from(activityWeakReference.get()));
-            loadingDialogBinding.tvProgress.setText("Restoring...");
+            loadingDialogBinding.tvProgress.setText("Восстановление...");
             dlg = new MaterialAlertDialogBuilder(activityWeakReference.get())
-                    .setTitle("Please wait")
+                    .setTitle("Пожалуйста, подождите")
                     .setCancelable(false)
                     .setView(loadingDialogBinding.getRoot())
                     .create();

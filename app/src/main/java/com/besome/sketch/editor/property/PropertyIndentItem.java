@@ -134,7 +134,7 @@ public class PropertyIndentItem extends RelativeLayout implements View.OnClickLi
         k = top;
         l = right;
         m = bottom;
-        tvValue.setText("left: " + j + ", top: " + k + ", right: " + l + ", bottom: " + m);
+        tvValue.setText("осталось:" + j + ", top: " + k + ", right: " + l + ", bottom: " + m);
     }
 
     private void showDialog() {

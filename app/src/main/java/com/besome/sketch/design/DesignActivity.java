@@ -318,7 +318,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
      */
     private void indicateCompileErrorOccurred(String error) {
         new CompileErrorSaver(sc_id).writeLogsToFile(error);
-        Snackbar snackbar = Snackbar.make(coordinatorLayout, "Show compile log", Snackbar.LENGTH_INDEFINITE);
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, "Показать журнал компиляции", Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction(Helper.getResString(R.string.common_word_show), v -> {
             if (!mB.a()) {
                 snackbar.dismiss();
@@ -1205,8 +1205,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
                     MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
                     if (isMissingDirectory) {
-                        dialog.setTitle("Missing directory detected");
-                        dialog.setMessage("A directory important for building is missing. " +
+                        dialog.setTitle("Обнаружена отсутствующая директория");
+                        dialog.setMessage("Отсутствует директория, важная для сборки." +
                                 "Sketchware Pro can try creating " + e.getMissingFile().getAbsolutePath() +
                                 " if you'd like to.");
                         dialog.setNeutralButton("Create", (v, which) -> {
@@ -1216,8 +1216,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                             }
                         });
                     } else {
-                        dialog.setTitle("Missing file detected");
-                        dialog.setMessage("A file needed for building is missing. " +
+                        dialog.setTitle("Обнаружен отсутствующий файл");
+                        dialog.setMessage("Отсутствует файл, необходимый для сборки." +
                                 "Put the correct file back to " + e.getMissingFile().getAbsolutePath() +
                                 " and try building again.");
                     }
@@ -1297,8 +1297,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(activity, CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_mtrl_code)
-                        .setContentTitle("Building project")
-                        .setContentText("Starting build...")
+                        .setContentTitle("Сборка проекта")
+                        .setContentText("Начало сборки...")
                         .setOngoing(true)
                         .setProgress(0, 0, true)
                         .addAction(R.drawable.ic_cancel_white_96dp, "Cancel build", getCancelPendingIntent());
@@ -1314,7 +1314,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(activity, CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_mtrl_code)
-                    .setContentTitle("Building project")
+                    .setContentTitle("Сборка проекта")
                     .setContentText(progress)
                     .setOngoing(true)
                     .setProgress(0, 0, true)

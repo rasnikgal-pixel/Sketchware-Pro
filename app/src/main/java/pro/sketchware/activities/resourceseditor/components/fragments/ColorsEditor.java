@@ -156,10 +156,10 @@ public class ColorsEditor extends Fragment {
             dialogBinding.colorPreview.setBackgroundColor(PropertiesUtil.parseColor(colorsEditorManager.getColorValue(activity.getApplicationContext(), colorModel.getColorValue(), 3, isNightVariant)));
             dialogBinding.importantNote.setVisibility(defaultColors.containsKey(colorModel.getColorName()) ? View.VISIBLE : View.GONE);
 
-            dialog.setTitle("Edit color");
+            dialog.setTitle("Редактировать цвет");
 
         } else {
-            dialog.setTitle("Create new color");
+            dialog.setTitle("Создать новый цвет");
             dialogBinding.colorPreview.setBackgroundColor(0xFFFFFF);
         }
 
@@ -181,7 +181,7 @@ public class ColorsEditor extends Fragment {
             public void afterTextChanged(Editable s) {
                 String value = s.toString();
                 if (value.startsWith("#") && !PropertiesUtil.isHexColor(value)) {
-                    dialogBinding.colorValueInputLayout.setError("Invalid HEX color");
+                    dialogBinding.colorValueInputLayout.setError("Неверный HEX-цвет");
                     return;
                 }
                 dialogBinding.colorValueInput.setError(null);

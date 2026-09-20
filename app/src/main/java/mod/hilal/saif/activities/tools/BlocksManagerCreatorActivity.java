@@ -98,7 +98,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
                     binding.nameLayout.setErrorEnabled(false);
                     binding.save.setEnabled(true);
                 } else if (!mode.equals("edit")) {
-                    binding.nameLayout.setError("Block name already in use");
+                    binding.nameLayout.setError("Имя блока уже используется");
                     binding.nameLayout.setErrorEnabled(true);
                     binding.save.setEnabled(false);
                 } else {
@@ -106,7 +106,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
                     Object blockNameObject = savedBlocksListBlock.get("name");
 
                     if (!string.equals(blockNameObject)) {
-                        binding.nameLayout.setError("Block name already in use");
+                        binding.nameLayout.setError("Имя блока уже используется");
                         binding.nameLayout.setErrorEnabled(true);
                         binding.save.setEnabled(false);
                     }
@@ -135,7 +135,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
                     "Header (h)"
             );
             AtomicInteger choice = new AtomicInteger();
-            new MaterialAlertDialogBuilder(this).setTitle("Block type")
+            new MaterialAlertDialogBuilder(this).setTitle("Тип блока")
                     .setSingleChoiceItems(choices.toArray(new String[0]),
                             types.indexOf(Helper.getText(binding.type)), (dialog, which) -> choice.set(which))
                     .setPositiveButton(R.string.common_word_save, (dialog, which) -> binding.type.setText(types.get(choice.get())))
@@ -178,7 +178,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!PropertiesUtil.isHexColor(s.toString())) {
-                    binding.colourLayout.setError("Invalid hex color");
+                    binding.colourLayout.setError("Неверный hex-цвет");
                     binding.colourLayout.setErrorEnabled(true);
                 } else {
                     binding.colourLayout.setError(null);
@@ -339,14 +339,14 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
         if (mode.equals("add")) {
             blockPosition = Integer.parseInt(getIntent().getStringExtra("pallet"));
             binding.colour.setText(palletColour);
-            getSupportActionBar().setTitle("Add a new block");
+            getSupportActionBar().setTitle("Добавить новый блок");
             return;
         }
         blockPosition = Integer.parseInt(getIntent().getStringExtra("pos"));
         binding.colour.setText(palletColour);
-        getSupportActionBar().setTitle("Insert block");
+        getSupportActionBar().setTitle("Вставить блок");
         if (mode.equals("edit")) {
-            getSupportActionBar().setTitle("Edit block");
+            getSupportActionBar().setTitle("Редактировать блок");
             fillUpInputs(blockPosition);
         }
     }
@@ -358,7 +358,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
         if (nameObject instanceof String) {
             binding.name.setText((String) nameObject);
         } else {
-            binding.nameLayout.setError("Invalid name block data");
+            binding.nameLayout.setError("Неверные данные имени блока");
             binding.nameLayout.setErrorEnabled(true);
         }
 
@@ -371,7 +371,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
                 binding.type.setText(typeString);
             }
         } else {
-            binding.typeLayout.setError("Invalid type block data");
+            binding.typeLayout.setError("Неверные данные типа блока");
             binding.typeLayout.setErrorEnabled(true);
         }
 
@@ -380,7 +380,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
             if (typeName instanceof String) {
                 binding.typename.setText((String) typeName);
             } else {
-                binding.typenameLayout.setError("Invalid typeName block data");
+                binding.typenameLayout.setError("Неверные данные typeName блока");
                 binding.typenameLayout.setErrorEnabled(true);
             }
         }
@@ -389,7 +389,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
         if (specObject instanceof String) {
             binding.spec.setText((String) specObject);
         } else {
-            binding.specLayout.setError("Invalid spec block data");
+            binding.specLayout.setError("Неверные данные spec блока");
             binding.specLayout.setErrorEnabled(true);
         }
 
@@ -398,7 +398,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
             if (spec2Object instanceof String) {
                 binding.spec2.setText((String) spec2Object);
             } else {
-                binding.spec2Layout.setError("Invalid spec2 block data");
+                binding.spec2Layout.setError("Неверные данные spec2 блока");
                 binding.spec2Layout.setErrorEnabled(true);
             }
         }
@@ -408,7 +408,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
             if (importsObject instanceof String) {
                 binding.customImport.setText((String) importsObject);
             } else {
-                binding.customImportLayout.setError("Invalid imports block data");
+                binding.customImportLayout.setError("Неверные данные imports блока");
                 binding.customImportLayout.setErrorEnabled(true);
             }
         }
@@ -418,7 +418,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
             if (colorObject instanceof String) {
                 binding.colour.setText((String) colorObject);
             } else {
-                binding.colourLayout.setError("Invalid color block data");
+                binding.colourLayout.setError("Неверные данные цвета блока");
                 binding.colourLayout.setErrorEnabled(true);
             }
         } else {
@@ -429,7 +429,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
         if (codeObject instanceof String) {
             binding.code.setText((String) codeObject);
         } else {
-            binding.code.setHint("(Invalid code block data)");
+            binding.code.setHint("(Неверные данные кода блока)");
         }
     }
 
@@ -471,7 +471,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
             if (matcher.find()) {
                 int position = matcher.end();
                 //Unable to resolve this error because the Rs class still undecompiled.
-                block.setText("Error: '%m' must be followed by '.param' at position " + position);
+                block.setText("Ошибка: за '%m' должно следовать '.param' на позиции" + position);
             } else {
                 block.setText(e.toString());
             }

@@ -149,7 +149,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                                     MaterialAlertDialogBuilder dialog =
                                             new MaterialAlertDialogBuilder(this);
                                     dialog.setTitle(R.string.common_word_delete);
-                                    dialog.setMessage("Are you sure you want to delete this item?");
+                                    dialog.setMessage("Вы уверены, что хотите удалить этот элемент?");
                                     dialog.setPositiveButton(
                                             R.string.common_word_yes,
                                             (d, w) -> {
@@ -187,7 +187,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
         switch (item.getItemId()) {
             case 0 -> {
                 new MaterialAlertDialogBuilder(this)
-                        .setTitle("Select an XML")
+                        .setTitle("Выберите XML")
                         .setAdapter(
                                 new ArrayAdapter<>(
                                         this, android.R.layout.simple_list_item_1, xmlFiles),

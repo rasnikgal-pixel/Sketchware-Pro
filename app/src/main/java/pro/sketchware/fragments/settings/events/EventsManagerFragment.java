@@ -187,7 +187,7 @@ public class EventsManagerFragment extends qA {
 
     private void showImportEventsDialog() {
         FilePickerOptions options = new FilePickerOptions();
-        options.setTitle("Select a .txt file");
+        options.setTitle("Выберите файл .txt");
         options.setExtensions(new String[]{"txt"});
 
         FilePickerCallback callback = new FilePickerCallback() {
@@ -326,8 +326,8 @@ public class EventsManagerFragment extends qA {
                                     break;
                                 case 2:
                                     new MaterialAlertDialogBuilder(context)
-                                            .setTitle("Delete listener")
-                                            .setMessage("Are you sure you want to delete this item?")
+                                            .setTitle("Удалить слушатель")
+                                            .setMessage("Вы уверены, что хотите удалить этот элемент?")
                                             .setPositiveButton("Yes", (di, i) -> {
                                                 deleteRelatedEvents(name);
                                                 deleteItem(position);

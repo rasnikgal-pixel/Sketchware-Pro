@@ -123,8 +123,8 @@ public class BlockSelectorManagerFragment extends qA {
 
     private void showCreateEditDialog(int index, boolean isEdit) {
         DialogBlockConfigurationBinding dialogBinding = DialogBlockConfigurationBinding.inflate(LayoutInflater.from(requireContext()));
-        dialogBinding.tilPalettesPath.setHint("Selector name");
-        dialogBinding.tilBlocksPath.setHint("Selector title (ex: Select View:)");
+        dialogBinding.tilPalettesPath.setHint("Имя селектора");
+        dialogBinding.tilBlocksPath.setHint("Заголовок селектора (например: Select View:)");
 
         if (isEdit) {
             dialogBinding.palettesPath.setText(selectors.get(index).getName());
@@ -133,7 +133,7 @@ public class BlockSelectorManagerFragment extends qA {
 
         addBasicTextChangedListener(dialogBinding.palettesPath, str -> {
             if (itemAlreadyExists(str)) {
-                dialogBinding.tilPalettesPath.setError("An item with this name already exists");
+                dialogBinding.tilPalettesPath.setError("Элемент с таким именем уже существует");
             } else {
                 dialogBinding.tilPalettesPath.setError(null);
             }
@@ -232,7 +232,7 @@ public class BlockSelectorManagerFragment extends qA {
 
     private void showImportSelectorDialog() {
         FilePickerOptions options = new FilePickerOptions();
-        options.setTitle("Select .json selector file");
+        options.setTitle("Выберите файл-селектор .json");
         options.setExtensions(new String[]{"json"});
 
         FilePickerCallback callback = new FilePickerCallback() {

@@ -297,9 +297,9 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                             binding.tiInput.setError(null);
                         } else {
                             if (key.equals("property_scale_x") || key.equals("property_scale_y")) {
-                                binding.tiInput.setError("Value must be 0.1 or greater");
+                                binding.tiInput.setError("Значение должно быть 0.1 или больше");
                             } else {
-                                binding.tiInput.setError("Value must be 0 or greater");
+                                binding.tiInput.setError("Значение должно быть 0 или больше");
                             }
                         }
                     } else if (key.equals("property_progress") && bean != null) {
@@ -319,7 +319,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                         }
                     }
                 } catch (NumberFormatException e) {
-                    binding.tiInput.setError("Invalid value");
+                    binding.tiInput.setError("Неверное значение");
                 }
             }
         });
@@ -958,7 +958,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                         var builder =
                                 new MaterialAlertDialogBuilder(getContext())
                                         .setTitle(R.string.common_word_delete)
-                                        .setMessage("Are you sure you want to delete " + attr + "?")
+                                        .setMessage("Вы уверены, что хотите удалить" + attr + "?")
                                         .setPositiveButton(
                                                 R.string.common_word_yes,
                                                 (d, w) -> {
@@ -1028,7 +1028,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
             @Override
             public void onItemLongClick(LinkedHashMap<String, String> attributes, String attr) {
                 new MaterialAlertDialogBuilder(getContext())
-                        .setTitle("Delete Shortcut")
+                        .setTitle("Удалить ярлык")
                         .setMessage("Delete " + attr + "?")
                         .setPositiveButton("Delete", (d, w) -> {
                             manager.removeShortcut(attr);
@@ -1051,7 +1051,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
 
     private void showAddShortcutDialog(AttributeShortcutsManager manager, AttributesAdapter adapter) {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext());
-        builder.setTitle("Add Shortcut");
+        builder.setTitle("Добавить ярлык");
 
         StyleEditorAddAttrBinding binding = StyleEditorAddAttrBinding.inflate(LayoutInflater.from(getContext()));
         builder.setView(binding.getRoot());
@@ -1078,7 +1078,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
 
     private void addNewAttribute(Map<String, String> attributes) {
         var builder = new MaterialAlertDialogBuilder(getContext());
-        builder.setTitle("Add new attribute");
+        builder.setTitle("Добавить новый атрибут");
 
         PropertyPopupInputTextBinding binding =
                 PropertyPopupInputTextBinding.inflate(LayoutInflater.from(getContext()));
@@ -1086,7 +1086,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
         var input = binding.edTiAutoCompleteInput;
         binding.tiInput.setVisibility(View.GONE);
         binding.tiAutoCompleteInput.setVisibility(View.VISIBLE);
-        binding.tiAutoCompleteInput.setHint("Enter new attribute");
+        binding.tiAutoCompleteInput.setHint("Введите новый атрибут");
         input.setAdapter(
                 new ArrayAdapter<>(
                         getContext(),

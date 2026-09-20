@@ -1376,7 +1376,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 crashlytics.log("Loading font preview");
                 crashlytics.recordException(e);
                 typeface = Typeface.DEFAULT;
-                preview.setText("Couldn't load font");
+                preview.setText("Не удалось загрузить шрифт");
             }
         }
 
@@ -1569,7 +1569,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         }
 
         dialog.setView(customView);
-        dialog.setNeutralButton("Code Editor", (v, which) -> {
+        dialog.setNeutralButton("Редактор кода", (v, which) -> {
             AsdDialog editor = new AsdDialog(this);
             editor.setContent(ss.getArgValue().toString());
             editor.show();

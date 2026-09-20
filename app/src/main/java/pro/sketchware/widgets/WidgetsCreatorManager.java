@@ -278,7 +278,7 @@ public class WidgetsCreatorManager {
                 FilePickerOptions options = new FilePickerOptions();
                 options.setMultipleSelection(true);
                 options.setExtensions(new String[]{"json"});
-                options.setTitle("Select .json widgets files");
+                options.setTitle("Выберите файлы виджетов .json");
 
                 FilePickerCallback callback = new FilePickerCallback() {
                     @Override

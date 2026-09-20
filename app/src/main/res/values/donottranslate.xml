@@ -24,5 +24,5 @@
     <string name="common_word_fragment" translatable="false">Fragment</string>
     <string name="common_word_dialogfragment" translatable="false">DialogFragment</string>
     <string name="common_word_bottomsheetdialogfragment" translatable="false">BottomSheetDialogFragment</string>
-    <string name="common_word_code_editor" translatable="false">Code Editor</string>
+    <string name="common_word_code_editor" translatable="false">Редактор кода</string>
 </resources>
