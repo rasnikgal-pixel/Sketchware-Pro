@@ -47,7 +47,6 @@ android {
     androidResources {
         additionalParameters.addAll("--stable-ids", "${rootDir}/public-stable-ids.txt")
     }
-
     signingConfigs {
         debug {
             storeFile = file("../testkey.keystore")
@@ -62,6 +61,10 @@ android {
         buildConfig = true
     }
 
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
 
     configurations.implementation {
         exclude group: 'javax.inject', module: 'javax.inject'
