@@ -259,21 +259,21 @@ public class ViewEditorFragment extends qA {
         viewEditor.addWidget(PaletteWidget.b.h, "", "WebView", "WebView");
         widgetsCreatorManager.addWidgetsByTitle("Виджеты");
 
-        viewEditor.paletteWidget.extraTitle("List", 1);
+        viewEditor.paletteWidget.extraTitle("Списки", 1);
         viewEditor.addWidget(PaletteWidget.b.e, "", "ListView", "ListView");
         viewEditor.extraWidget("", "GridView", "GridView");
         viewEditor.extraWidget("", "RecyclerView", "RecyclerView");
         viewEditor.addWidget(PaletteWidget.b.f, "", "Spinner", "Spinner");
         viewEditor.extraWidget("", "ViewPager", "ViewPager");
-        widgetsCreatorManager.addWidgetsByTitle("List");
+        widgetsCreatorManager.addWidgetsByTitle("Списки");
 
-        viewEditor.paletteWidget.extraTitle("Library", 1);
+        viewEditor.paletteWidget.extraTitle("Библиотеки", 1);
         viewEditor.extraWidget("", "WaveSideBar", "WaveSideBar");
         viewEditor.extraWidget("", "PatternLockView", "PatternLockView");
         viewEditor.extraWidget("", "CodeView", "CodeView");
         viewEditor.extraWidget("", "LottieAnimation", "LottieAnimation");
         viewEditor.extraWidget("", "OTPView", "OTPView");
-        widgetsCreatorManager.addWidgetsByTitle("Library");
+        widgetsCreatorManager.addWidgetsByTitle("Библиотеки");
 
         viewEditor.paletteWidget.extraTitle("Google", 1);
         viewEditor.addWidget(PaletteWidget.b.l, "", "AdView", "AdView");
@@ -282,13 +282,13 @@ public class ViewEditorFragment extends qA {
         viewEditor.extraWidget("", "YoutubePlayer", "YoutubePlayer");
         widgetsCreatorManager.addWidgetsByTitle("Google");
 
-        viewEditor.paletteWidget.extraTitle("Date & Time", 1);
+        viewEditor.paletteWidget.extraTitle("Дата и время", 1);
         viewEditor.extraWidget("", "AnalogClock", "AnalogClock");
         viewEditor.extraWidget("", "DigitalClock", "DigitalClock");
         viewEditor.extraWidget("", "TimePicker", "TimePicker");
         viewEditor.extraWidget("", "DatePicker", "DatePicker");
         viewEditor.addWidget(PaletteWidget.b.k, "", "CalendarView", "CalendarView");
-        widgetsCreatorManager.addWidgetsByTitle("Date & Time");
+        widgetsCreatorManager.addWidgetsByTitle("Дата и время");
         widgetsCreatorManager.addExtraClasses();
     }
 

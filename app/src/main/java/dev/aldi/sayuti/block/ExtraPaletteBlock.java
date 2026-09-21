@@ -162,35 +162,35 @@ public class ExtraPaletteBlock {
     private void variables() {
         ArrayList<String> booleanVariables = jC.a(sc_id).e(javaName, 0);
         for (int i = 0; i < booleanVariables.size(); i++) {
-            if (i == 0) logicEditor.a("Boolean", getTitleBgColor());
+            if (i == 0) logicEditor.a("Логическое", getTitleBgColor());
 
             logicEditor.a(booleanVariables.get(i), "b", "getVar").setTag(booleanVariables.get(i));
         }
 
         ArrayList<String> numberVariables = jC.a(sc_id).e(javaName, 1);
         for (int i = 0; i < numberVariables.size(); i++) {
-            if (i == 0) logicEditor.a("Number", getTitleBgColor());
+            if (i == 0) logicEditor.a("Число", getTitleBgColor());
 
             logicEditor.a(numberVariables.get(i), "d", "getVar").setTag(numberVariables.get(i));
         }
 
         ArrayList<String> stringVariables = jC.a(sc_id).e(javaName, 2);
         for (int i = 0; i < stringVariables.size(); i++) {
-            if (i == 0) logicEditor.a("String", getTitleBgColor());
+            if (i == 0) logicEditor.a("Строка", getTitleBgColor());
 
             logicEditor.a(stringVariables.get(i), "s", "getVar").setTag(stringVariables.get(i));
         }
 
         ArrayList<String> mapVariables = jC.a(sc_id).e(javaName, 3);
         for (int i = 0; i < mapVariables.size(); i++) {
-            if (i == 0) logicEditor.a("Map", getTitleBgColor());
+            if (i == 0) logicEditor.a("Карта", getTitleBgColor());
 
             logicEditor.a(mapVariables.get(i), "a", "getVar").setTag(mapVariables.get(i));
         }
 
         ArrayList<String> customVariables = jC.a(sc_id).e(javaName, 5);
         for (int i = 0; i < customVariables.size(); i++) {
-            if (i == 0) logicEditor.a("Custom Variable", getTitleBgColor());
+            if (i == 0) logicEditor.a("Своя переменная", getTitleBgColor());
 
             String[] split = customVariables.get(i).split(" ");
             if (split.length > 1) {
@@ -202,7 +202,7 @@ public class ExtraPaletteBlock {
 
         ArrayList<String> customVariables2 = jC.a(sc_id).e(javaName, 6);
         for (int i = 0; i < customVariables2.size(); i++) {
-            if (i == 0) logicEditor.a("Custom Variable", getTitleBgColor());
+            if (i == 0) logicEditor.a("Своя переменная", getTitleBgColor());
 
             String variable = customVariables2.get(i);
             String variableType = CustomVariableUtil.getVariableType(variable);
@@ -217,7 +217,7 @@ public class ExtraPaletteBlock {
                 };
                 logicEditor.a(variableName, type, variableType, "getVar").setTag(variable);
             } else {
-                logicEditor.a("Invalid: " + variable, getColor(logicEditor, R.attr.colorError));
+                logicEditor.a("Неверно: " + variable, getColor(logicEditor, R.attr.colorError));
             }
         }
         BlocksHandler.primaryBlocksA(
@@ -240,7 +240,7 @@ public class ExtraPaletteBlock {
             ComponentBean component = components.get(i);
 
             if (i == 0) {
-                logicEditor.a("Components", getTitleBgColor());
+                logicEditor.a("Компоненты", getTitleBgColor());
             }
 
             if (component.type != 27) {
@@ -271,7 +271,7 @@ public class ExtraPaletteBlock {
                         ViewBean customView = customViews.get(i);
 
                         if (i == 0) {
-                            logicEditor.a("Custom Views", getTitleBgColor());
+                            logicEditor.a("Свои View", getTitleBgColor());
                         }
 
                         if (!customView.convert.equals("include")) {
@@ -296,7 +296,7 @@ public class ExtraPaletteBlock {
                 Set<String> toNotAdd = new Ox(new jq(), projectFile).readAttributesToReplace(view);
 
                 if (i == 0) {
-                    logicEditor.a("Views", getTitleBgColor());
+                    logicEditor.a("View", getTitleBgColor());
                 }
 
                 if (!view.convert.equals("include")) {
@@ -378,7 +378,7 @@ public class ExtraPaletteBlock {
                     if (variableName != null) {
                         logicEditor.a(variableName, "l", "List", "getVar").setTag(name);
                     } else {
-                        logicEditor.a("Invalid: " + name, getColor(logicEditor, R.attr.colorError));
+                        logicEditor.a("Неверно: " + name, getColor(logicEditor, R.attr.colorError));
                     }
                 }
             }
@@ -400,7 +400,7 @@ public class ExtraPaletteBlock {
             if (paletteId == 3) {
                 logicEditor.a(" ", "addSourceDirectly");
             } else {
-                logicEditor.a("Enter the path without import & semicolon", getTitleBgColor());
+                logicEditor.a("Введите путь без import и точки с запятой", getTitleBgColor());
                 logicEditor.a(" ", "customImport");
                 logicEditor.a(" ", "customImport2");
             }
@@ -417,7 +417,7 @@ public class ExtraPaletteBlock {
                 logicEditor.b("Открыть редактор ресурсов", "openResourcesEditor");
 
                 logicEditor.a("s", "getResString");
-                logicEditor.a("Saved Res Strings :", getTitleBgColor());
+                logicEditor.a("Сохранённые строки ресурсов:", getTitleBgColor());
                 if (!stringsEditorManager.isXmlStringsExist(StringsListMap, "app_name")) {
                     logicEditor.a("app_name", "s", "getResStr").setTag("S98ZCSapp_name");
                 }
@@ -436,7 +436,7 @@ public class ExtraPaletteBlock {
 
             case 1:
                 logicEditor.b("Добавить список", "listAdd");
-                logicEditor.b("Add custom List", "listAddCustom", clickListener);
+                logicEditor.b("Добавить свой список", "listAddCustom", clickListener);
                 logicEditor.b("Удалить список", "listRemove", clickListener);
                 list();
                 return;
@@ -478,7 +478,7 @@ public class ExtraPaletteBlock {
 
             case 5:
                 extraBlocks.fileBlocks();
-                logicEditor.a("FileUtil Blocks", getTitleBgColor());
+                logicEditor.a("Блоки FileUtil", getTitleBgColor());
                 if (!frc.getAssetsFile().isEmpty()) {
                     logicEditor.a(" ", "getAssetFile");
                     logicEditor.a("s", "copyAssetFile");
@@ -584,7 +584,7 @@ public class ExtraPaletteBlock {
                 if (textViewUsed || compoundButtonUsed || autoCompleteTextViewUsed
                         || multiAutoCompleteTextViewUsed || imageViewUsed || ratingBarUsed
                         || seekBarUsed || progressBarUsed || videoViewUsed || webViewUsed) {
-                    logicEditor.a("Widgets", getTitleBgColor());
+                    logicEditor.a("Виджеты", getTitleBgColor());
 
                     if (textViewUsed) {
                         logicEditor.a(" ", "setText");
@@ -689,7 +689,7 @@ public class ExtraPaletteBlock {
                 boolean viewPagerUsed = isWidgetUsed("ViewPager");
 
                 if (spinnerUsed || listViewUsed || recyclerViewUsed || gridViewUsed || viewPagerUsed) {
-                    logicEditor.a("List", getTitleBgColor());
+                    logicEditor.a("Списки", getTitleBgColor());
 
                     if (spinnerUsed) {
                         logicEditor.a(" ", "spnSetData");
@@ -821,7 +821,7 @@ public class ExtraPaletteBlock {
                 boolean otpViewUsed = isWidgetUsed("OTPView");
 
                 if (waveSideBarUsed || badgeViewUsed || bubbleLayoutUsed || patternLockViewUsed || codeViewUsed || lottieAnimationViewUsed) {
-                    logicEditor.a("Library", getTitleBgColor());
+                    logicEditor.a("Библиотеки", getTitleBgColor());
 
                     if (otpViewUsed) {
                         logicEditor.a(" ", "otpViewSetFieldCount");
@@ -924,7 +924,7 @@ public class ExtraPaletteBlock {
                 boolean calendarViewUsed = isWidgetUsed("CalendarView");
 
                 if (timePickerUsed || calendarViewUsed) {
-                    logicEditor.a("Date & Time", getTitleBgColor());
+                    logicEditor.a("Дата и время", getTitleBgColor());
 
                     if (timePickerUsed) {
                         logicEditor.a(" ", "timepickerSetHour");
@@ -941,7 +941,7 @@ public class ExtraPaletteBlock {
                     }
                 }
             }
-            logicEditor.a("Function", getTitleBgColor());
+            logicEditor.a("Функции", getTitleBgColor());
             logicEditor.a(" ", "performClick");
             logicEditor.a("c", "viewOnClick");
             logicEditor.a("c", "viewOnLongClick");
@@ -1193,13 +1193,13 @@ public class ExtraPaletteBlock {
                 }
                 moreBlocks();
                 if (ConfigActivity.isSettingEnabled(ConfigActivity.SETTING_SHOW_BUILT_IN_BLOCKS)) {
-                    logicEditor.a("Command Blocks", getTitleBgColor());
+                    logicEditor.a("Командные блоки", getTitleBgColor());
                     logicEditor.a("c", "CommandBlockJava");
                     logicEditor.addDeprecatedBlock("Deprecated: Use XML Command Manager", "c", "CommandBlockXML");
-                    logicEditor.a("Permission Command Blocks", getTitleBgColor());
+                    logicEditor.a("Командные блоки разрешений", getTitleBgColor());
                     logicEditor.a(" ", "addPermission");
                     logicEditor.a(" ", "removePermission");
-                    logicEditor.a("Other Command Blocks", getTitleBgColor());
+                    logicEditor.a("Другие командные блоки", getTitleBgColor());
                     logicEditor.a(" ", "addCustomVariable");
                     logicEditor.a(" ", "addInitializer");
                     return;

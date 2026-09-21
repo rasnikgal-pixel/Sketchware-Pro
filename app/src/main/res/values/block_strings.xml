@@ -49,14 +49,14 @@
     <string name="block_calendarview_set_min_date_body_1" translatable="false">setMinDate</string>
     <string name="block_calendarview_set_min_date_tail" translatable="false">ms</string>
     <string name="block_camera_start_take_picture_tail" translatable="false">сделать снимок</string>
-    <string name="block_category_component_func" translatable="false">Component</string>
-    <string name="block_category_control" translatable="false">Control</string>
-    <string name="block_category_file" translatable="false">File</string>
-    <string name="block_category_list" translatable="false">List</string>
-    <string name="block_category_math" translatable="false">Math</string>
+    <string name="block_category_component_func" translatable="false">Компоненты</string>
+    <string name="block_category_control" translatable="false">Управление</string>
+    <string name="block_category_file" translatable="false">Файлы</string>
+    <string name="block_category_list" translatable="false">Списки</string>
+    <string name="block_category_math" translatable="false">Математика</string>
     <string name="block_category_moreblock" translatable="false">Больше блоков</string>
-    <string name="block_category_operator" translatable="false">Operator</string>
-    <string name="block_category_var" translatable="false">Variable</string>
+    <string name="block_category_operator" translatable="false">Операторы</string>
+    <string name="block_category_var" translatable="false">Переменные</string>
     <string name="block_category_view_func" translatable="false">View</string>
     <string name="block_clear_list_head" translatable="false">clear</string>
     <string name="block_close_drawer_head" translatable="false">closeDrawer</string>

@@ -2824,7 +2824,7 @@ public class BlocksHandler {
             logicEditorActivity.a("s", "GsonListTojsonString");
             logicEditorActivity.a(" ", "stringSplitToList");
         }
-        logicEditorActivity.a("add source directly", getTitleBgColor(logicEditorActivity));
+        logicEditorActivity.a("добавить источник напрямую", getTitleBgColor(logicEditorActivity));
         logicEditorActivity.a(" ", "addSourceDirectly");
         logicEditorActivity.a("b", "asdBoolean");
         logicEditorActivity.a("d", "asdNumber");
