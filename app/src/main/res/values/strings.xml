@@ -1043,7 +1043,7 @@ ACTION_VIEW
     <string name="select_file">Выберите файл</string>
     <string name="select_folder">Выберите папку</string>
     <string name="select_items">Выберите элементы</string>
-    <string name="settings_appearance">Appearance</string>
+    <string name="settings_appearance">Оформление</string>
     <string name="settings_appearance_description">Изменить внешний вид Sketchware</string>
     <string name="settings_appearance_theme">Тема Sketchware</string>
     <string name="settings_appearance_theme_dark">Тёмная тема</string>

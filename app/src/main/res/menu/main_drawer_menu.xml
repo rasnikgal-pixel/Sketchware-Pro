@@ -49,6 +49,16 @@
                 android:id="@+id/social_github"
                 android:icon="@drawable/ic_github"
                 android:title="@string/common_word_github" />
+
+            <item
+                android:id="@+id/social_russian_github"
+                android:icon="@drawable/ic_github"
+                android:title="Локализация RasNikGal (GitHub)" />
+
+            <item
+                android:id="@+id/social_russian_4pda"
+                android:icon="@drawable/ic_sketchware_24"
+                android:title="Локализация RasNikGal (4PDA)" />
         </menu>
     </item>
 
