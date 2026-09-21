@@ -228,7 +228,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                     }
                 });
         dialog.show();
-        binding.title.setText(!edit ? "Add new command" : "Edit command");
+        binding.title.setText(!edit ? "Добавить новую команду" : "Редактировать команду");
 
         if (edit) {
             var command = commands.get(position);

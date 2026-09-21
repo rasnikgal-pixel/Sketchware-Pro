@@ -1036,7 +1036,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                             adapter.submitList(new ArrayList<>(attributes.keySet()));
                             adapter.notifyDataSetChanged();
                         })
-                        .setNegativeButton("Cancel", null)
+                        .setNegativeButton("Отмена", null)
                         .show();
             }
         });
@@ -1056,7 +1056,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
         StyleEditorAddAttrBinding binding = StyleEditorAddAttrBinding.inflate(LayoutInflater.from(getContext()));
         builder.setView(binding.getRoot());
 
-        builder.setPositiveButton("Save", (dialog, which) -> {
+        builder.setPositiveButton("Сохранить", (dialog, which) -> {
             String name = binding.attrName.getText().toString().trim();
             String value = binding.attrValue.getText().toString().trim();
 
@@ -1072,7 +1072,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
             }
         });
 
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton("Отмена", null);
         builder.show();
     }
 

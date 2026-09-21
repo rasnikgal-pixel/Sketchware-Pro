@@ -1209,7 +1209,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                         dialog.setMessage("Отсутствует директория, важная для сборки." +
                                 "Sketchware Pro can try creating " + e.getMissingFile().getAbsolutePath() +
                                 " if you'd like to.");
-                        dialog.setNeutralButton("Create", (v, which) -> {
+                        dialog.setNeutralButton("Создать", (v, which) -> {
                             v.dismiss();
                             if (!e.getMissingFile().mkdirs()) {
                                 SketchwareUtil.toastError("Не удалось создать директорию / директории!");

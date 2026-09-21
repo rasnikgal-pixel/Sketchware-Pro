@@ -137,7 +137,7 @@ public class ExcludeBuiltInLibrariesActivity extends BaseAppCompatActivity {
     }
 
     public static String getItemTitle() {
-        return "Exclude built-in libraries";
+        return "Исключить встроенные библиотеки";
     }
 
     public static String getDefaultItemDescription() {

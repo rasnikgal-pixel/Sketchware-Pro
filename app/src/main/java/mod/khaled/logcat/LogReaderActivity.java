@@ -131,7 +131,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
                 .setMessage("Для нескольких имён пакетов разделяйте их запятой (,).")
                 .setIcon(R.drawable.ic_mtrl_filter)
                 .setView(view)
-                .setPositiveButton("Apply", (dialog, which) -> {
+                .setPositiveButton("Применить", (dialog, which) -> {
                     pkgFilter = Helper.getText(dialogBinding.easyEdInput);
                     pkgFilterList = new ArrayList<>(Arrays.asList(pkgFilter.split(",")));
                     binding.searchInput.setText(Helper.getText(binding.searchInput));

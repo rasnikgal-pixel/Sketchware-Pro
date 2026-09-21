@@ -30,7 +30,7 @@ public class ExcludeBuiltInLibrariesLibraryItemView extends LibraryItemView {
                         : String.format(ExcludeBuiltInLibrariesActivity.getSelectedLibrariesItemDescription(),
                         excludedLibraries.size(), BuiltInLibraries.KNOWN_BUILT_IN_LIBRARIES.length)
         );
-        enabled.setText(excludingEnabled ? "ON" : "OFF");
+        enabled.setText(excludingEnabled ? "ВКЛ" : "ВЫКЛ");
         enabled.setSelected(excludingEnabled);
     }
 }

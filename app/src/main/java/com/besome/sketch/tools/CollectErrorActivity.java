@@ -40,7 +40,7 @@ public class CollectErrorActivity extends BaseAppCompatActivity {
                             "Do you want to report this error log so that we can fix it? " +
                             "No personal information will be included.")
                     .setPositiveButton("Copy", null)
-                    .setNegativeButton("Cancel", (dialogInterface, which) -> finish())
+                    .setNegativeButton("Отмена", (dialogInterface, which) -> finish())
                     .setNeutralButton("Показать ошибку", null) // null to set proper onClick listeners later without dismissing the AlertDialog
                     .setCancelable(false)
                     .show();

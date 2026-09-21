@@ -283,7 +283,7 @@ public class ImportIconActivity extends BaseAppCompatActivity implements IconAda
                 .setView(dialogBinding.getRoot())
                 .setTitle("Фильтр иконок")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Apply", null)
+                .setPositiveButton("Применить", null)
                 .create();
         dialog.setView(dialogBinding.getRoot());
 

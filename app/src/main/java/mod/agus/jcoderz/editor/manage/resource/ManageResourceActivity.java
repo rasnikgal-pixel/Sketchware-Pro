@@ -194,7 +194,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
 
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
-                .setTitle(isFolder ? "Create a new folder" : "Create a new file")
+                .setTitle(isFolder ? "Создать новую папку" : "Создать новый файл")
                 .setMessage("Введите имя для нового" + (isFolder ? "folder" : "file"))
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Создать", null)

@@ -43,7 +43,7 @@ public class LibraryItemView extends FrameLayout {
 
     public void setData(ProjectLibraryBean projectLibraryBean) {
         boolean enabledChecked = ProjectLibraryBean.LIB_USE_Y.equals(projectLibraryBean.useYn);
-        CharSequence enabledLabel = enabledChecked ? "ON" : "OFF";
+        CharSequence enabledLabel = enabledChecked ? "ВКЛ" : "ВЫКЛ";
 
         icon.setImageResource(ProjectLibraryBean.getLibraryIcon(projectLibraryBean.libType));
         title.setText(ProjectLibraryBean.getLibraryResName(projectLibraryBean.libType));

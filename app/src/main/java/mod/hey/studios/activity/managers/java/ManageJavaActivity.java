@@ -184,7 +184,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                 .setTitle(R.string.assets_manager_add_new)
                 .setMessage("Расширение файла будет добавлено автоматически в зависимости от выбранного типа файла")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Create", null)
+                .setPositiveButton("Создать", null)
                 .create();
 
         dialog.setOnShowListener(dialogInterface -> {

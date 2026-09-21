@@ -124,7 +124,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                 .setTitle(R.string.assets_manager_add_new)
                 .setMessage("Если вы создаёте файл, обязательно добавьте расширение.")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Create", null)
+                .setPositiveButton("Создать", null)
                 .create();
 
         dialog.setOnShowListener(dialogInterface -> {

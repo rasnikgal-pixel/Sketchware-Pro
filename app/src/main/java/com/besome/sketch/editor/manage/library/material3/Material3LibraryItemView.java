@@ -26,7 +26,7 @@ public class Material3LibraryItemView extends LibraryItemView {
         description.setText("Современный Material design с адаптивной динамической темой");
         assert projectLibraryBean != null;
         boolean isEnabled = new Material3LibraryManager(projectLibraryBean).isMaterial3Enabled();
-        enabled.setText(isEnabled ? "ON" : "OFF");
+        enabled.setText(isEnabled ? "ВКЛ" : "ВЫКЛ");
         enabled.setSelected(isEnabled);
     }
 }
