@@ -345,27 +345,27 @@ public class ManageEvent {
      */
     public static String getEventDescription(String eventName) {
         return switch (eventName) {
-            case "onScrolled", "onRecyclerScrolled" -> "onScroll";
-            case "onFailureLink" -> "onFailure";
-            case "onSaveInstanceState" -> "On activity save instance state";
-            case "onCreateOptionsMenu" -> "On create options menu";
-            case "onVerificationCompleted" -> "onVerificationCompleted";
-            case "onRecyclerScrollChanged", "onScrollChanged" -> "onScrollStateChanged";
-            case "onCreateContextMenu" -> "On create context menu";
-            case "onRestoreInstanceState" -> "On activity restore instance state";
-            case "onContextItemSelected" -> "On context menu selected";
-            case "onSuccessLink" -> "onSuccess";
-            case "onAccountPickerCancelled" -> "onAccountCancelled";
-            case "onFragmentAdded" -> "Return Fragment";
-            case "onPageChanged" -> "onPageScrollStateChanged";
-            case "onOptionsItemSelected" -> "On options menu selected";
-            case "onBannerAdClicked" -> "onAdClicked";
-            case "onBannerAdLoaded" -> "onAdLoaded";
-            case "onTabAdded" -> "Return Title";
-            case "onBannerAdFailedToLoad", "onInterstitialAdFailedToLoad" -> "onAdFailedToLoad";
-            case "onBannerAdClosed" -> "onAdClosed";
-            case "onRewardAdLoaded" -> "onRewardedAdLoaded";
-            case "onRewardAdFailedToLoad" -> "onRewardedAdFailedToLoad";
+            case "onScrolled", "onRecyclerScrolled" -> "при прокрутке";
+            case "onFailureLink" -> "при ошибке";
+            case "onSaveInstanceState" -> "Сохранить состояние Activity";
+            case "onCreateOptionsMenu" -> "При создании меню опций";
+            case "onVerificationCompleted" -> "при завершении проверки";
+            case "onRecyclerScrollChanged", "onScrollChanged" -> "при изменении состояния прокрутки";
+            case "onCreateContextMenu" -> "При создании контекстного меню";
+            case "onRestoreInstanceState" -> "Восстановить состояние Activity";
+            case "onContextItemSelected" -> "При выборе пункта контекстного меню";
+            case "onSuccessLink" -> "при успехе";
+            case "onAccountPickerCancelled" -> "при отмене аккаунта";
+            case "onFragmentAdded" -> "вернуть Fragment";
+            case "onPageChanged" -> "при изменении состояния прокрутки страниц";
+            case "onOptionsItemSelected" -> "При выборе пункта меню";
+            case "onBannerAdClicked" -> "при клике на рекламу";
+            case "onBannerAdLoaded" -> "при загрузке рекламы";
+            case "onTabAdded" -> "вернуть заголовок";
+            case "onBannerAdFailedToLoad", "onInterstitialAdFailedToLoad" -> "при ошибке загрузки рекламы";
+            case "onBannerAdClosed" -> "при закрытии рекламы";
+            case "onRewardAdLoaded" -> "при загрузке рекламы с вознаграждением";
+            case "onRewardAdFailedToLoad" -> "при ошибке загрузки рекламы с вознаграждением";
             case "onUpdateProfileComplete", "onEmailVerificationSent", "onDateChanged",
                  "onDeleteUserComplete", "onNavigationItemSelected", "onDateSet", "onCompletion",
                  "onPatternLockCleared", "onQueryTextChanged", "onUpdateEmailComplete", "onError",

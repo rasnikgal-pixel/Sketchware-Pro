@@ -261,12 +261,12 @@ public class EventsHandler {
 
     public static String getDesc(String name) {
         return switch (name) {
-            case "Import" -> "add custom imports";
+            case "Import" -> "Добавить свои импорты";
             case "onActivityResult" -> "onActivityResult";
             case "initializeLogic" -> "initializeLogic";
             case "onSwipeRefreshLayout" -> "On SwipeRefreshLayout swipe";
             case " onLongClick" -> "onLongClick";
-            case "onTabLayoutNewTabAdded" -> "return the name of current tab";
+            case "onTabLayoutNewTabAdded" -> "возвращает имя текущей вкладки";
             case "onPreExecute" ->
                     "This method contains the code which is executed before the background processing starts.";
             case "doInBackground" ->
