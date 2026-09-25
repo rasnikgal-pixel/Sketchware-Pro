@@ -125,7 +125,7 @@ public class ThemesEditor extends Fragment {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
         StyleEditorAddBinding binding = StyleEditorAddBinding.inflate(getLayoutInflater());
         dialog.setTitle("Создать новую тему");
-        dialog.setPositiveButton("Create", (d, which) -> {
+        dialog.setPositiveButton("Создать", (d, which) -> {
             String themeName = Objects.requireNonNull(binding.styleName.getText()).toString();
             String parent = Objects.requireNonNull(binding.styleParent.getText()).toString();
             String header = Objects.requireNonNull(binding.styleHeaderInput.getText()).toString();

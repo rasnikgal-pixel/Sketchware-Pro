@@ -132,7 +132,7 @@ public class StylesEditor extends Fragment {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
         StyleEditorAddBinding binding = StyleEditorAddBinding.inflate(getLayoutInflater());
         dialog.setTitle("Создать новый стиль");
-        dialog.setPositiveButton("Create", (d, which) -> {
+        dialog.setPositiveButton("Создать", (d, which) -> {
             String styleName = Objects.requireNonNull(binding.styleName.getText()).toString();
             String parent = Objects.requireNonNull(binding.styleParent.getText()).toString();
             String header = Objects.requireNonNull(binding.styleHeaderInput.getText()).toString();

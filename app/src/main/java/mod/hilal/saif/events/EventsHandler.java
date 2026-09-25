@@ -420,7 +420,7 @@ public class EventsHandler {
 
     public static String getSpec(String name, String event) {
         return switch (event) {
-            case "Import" -> "create new import";
+            case "Import" -> "создать новый импорт";
             case "onActivityResult" ->
                     "OnActivityResult %d.requestCode %d.resultCode %m.intent.data";
             case "initializeLogic" -> "initializeLogic";

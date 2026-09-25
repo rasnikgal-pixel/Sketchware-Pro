@@ -100,16 +100,16 @@ public class AndroidManifestInjectionDetails extends BaseAppCompatActivity {
 
     private void setToolbar() {
         String str = switch (type) {
-            case "all" -> "Attributes for all activities";
-            case "application" -> "Application Attributes";
-            case "permission" -> "Application Permissions";
+            case "all" -> "Атрибуты для всех Activity";
+            case "application" -> "Атрибуты приложения";
+            case "permission" -> "Разрешения приложения";
             default -> activityName;
         };
         binding.toolbar.setTitle(str);
 
         binding.toolbar.setNavigationOnClickListener(Helper.getBackPressedClickListener(this));
 
-        if (!str.equals("Attributes for all activities") && !str.equals("Application Attributes") && !str.equals("Application Permissions")) {
+        if (!str.equals("Атрибуты для всех Activity") && !str.equals("Атрибуты приложения") && !str.equals("Разрешения приложения")) {
             binding.toolbar.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.asd_components) {
                     Intent intent = new Intent(this, SrcCodeEditor.class);
@@ -146,13 +146,13 @@ public class AndroidManifestInjectionDetails extends BaseAppCompatActivity {
 
     private void showAddDial() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-        dialog.setTitle(type.equals("permission") ? "Add new permission" : "Add new attribute");
+        dialog.setTitle(type.equals("permission") ? "Добавить разрешение" : "Добавить атрибут");
         CustomDialogAttributeBinding attributeBinding = CustomDialogAttributeBinding.inflate(getLayoutInflater());
         dialog.setView(attributeBinding.getRoot());
         if (type.equals("permission")) {
             attributeBinding.inputRes.setText("android");
             attributeBinding.inputAttr.setText("name");
-            attributeBinding.inputLayoutValue.setHint("permission");
+            attributeBinding.inputLayoutValue.setHint("разрешение");
         }
         dialog.setPositiveButton(R.string.common_word_save, (dialog1, which) -> {
             String fstr = Helper.getText(attributeBinding.inputRes).trim() + ":" + Helper.getText(attributeBinding.inputAttr).trim() + "=\"" + Helper.getText(attributeBinding.inputValue).trim() + "\"";

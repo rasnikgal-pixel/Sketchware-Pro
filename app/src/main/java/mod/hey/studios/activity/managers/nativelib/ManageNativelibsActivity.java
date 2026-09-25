@@ -172,7 +172,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                 .setTitle("Создать новую папку")
                 .setMessage("Введите имя новой папки")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Create", null)
+                .setPositiveButton("Создать", null)
                 .create();
 
         dialogBinding.chipGroupTypes.setVisibility(View.GONE);

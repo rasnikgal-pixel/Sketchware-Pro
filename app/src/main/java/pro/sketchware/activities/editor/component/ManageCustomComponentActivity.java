@@ -130,7 +130,7 @@ public class ManageCustomComponentActivity extends BaseAppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 0, 0, "Import");
+        menu.add(0, 0, 0, "Импорт");
         return super.onCreateOptionsMenu(menu);
     }
 

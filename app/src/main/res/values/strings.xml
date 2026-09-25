@@ -420,8 +420,8 @@ ex)\"users/username\""</string>
     <string name="developer_tools_component_build_class">Класс сборки</string>
     <string name="developer_tools_component_define_add_var">Определить дополнительные переменные</string>
     <string name="developer_tools_component_description">Описание (необязательно)</string>
-    <string name="developer_tools_component_description_guide_add_component">"If you add a component here
- You can use it in Logic Editor"</string>
+    <string name="developer_tools_component_description_guide_add_component">"Если вы добавите компонент здесь,
+ вы сможете использовать его в редакторе логики"</string>
     <string name="developer_tools_component_icon">Иконка компонента (обязательно)</string>
     <string name="developer_tools_component_id">ID компонента (обязательно)</string>
     <string name="developer_tools_component_imports">Imports</string>
@@ -871,7 +871,7 @@ ex)\"users/username\""</string>
     <string name="myprojects_settings_title_advanced_settings">Расширенные настройки</string>
     <string name="myprojects_settings_version_control_title">Контроль версий</string>
     <string name="myprojects_settings_version_control_title_code">Код</string>
-    <string name="myprojects_settings_version_control_title_name">Name</string>
+    <string name="myprojects_settings_version_control_title_name">Имя</string>
     <string name="myprojects_sign_apk_dialog_complete_create_certificate">Новый сертификат создан</string>
     <string name="myprojects_sign_apk_error_failed_create_new_certificate">Не удалось создать новый сертификат</string>
     <string name="myprojects_sign_apk_hint_enter_new_password">Введите новый пароль</string>
