@@ -395,11 +395,11 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
             if (isFileInLayoutFolder() && getIntent().hasExtra("sc_id")) {
                 toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Предпросмотр макета");
             }
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Find & Replace");
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Word wrap").setCheckable(true).setChecked(local_pref.getBoolean("act_ww", false));
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Pretty print");
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Select language");
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Select theme");
+            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Найти и заменить");
+            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Перенос строк").setCheckable(true).setChecked(local_pref.getBoolean("act_ww", false));
+            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Форматировать");
+            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Язык");
+            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Тема");
             toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Auto complete").setCheckable(true).setChecked(local_pref.getBoolean("act_ac", true));
             toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Auto complete symbol pair").setCheckable(true).setChecked(local_pref.getBoolean("act_acsp", true));
 
@@ -418,7 +418,7 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                         save();
                         break;
 
-                    case "Pretty print":
+                    case "Форматировать":
                         if (getIntent().hasExtra("java")) {
                             StringBuilder b = new StringBuilder();
 
@@ -455,19 +455,19 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                         }
                         break;
 
-                    case "Select language":
+                    case "Язык":
                         showSwitchLanguageDialog(this, binding.editor, (dialog, which) -> {
                             selectLanguage(binding.editor, which);
                             dialog.dismiss();
                         });
                         break;
 
-                    case "Find & Replace":
+                    case "Найти и заменить":
                         binding.editor.getSearcher().stopSearch();
                         binding.editor.beginSearchMode();
                         break;
 
-                    case "Select theme":
+                    case "Тема":
                         showSwitchThemeDialog(this, binding.editor, (dialog, which) -> {
                             selectTheme(binding.editor, which);
                             pref.edit().putInt("act_theme", which).apply();
@@ -475,7 +475,7 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                         });
                         break;
 
-                    case "Word wrap":
+                    case "Перенос строк":
                         item.setChecked(!item.isChecked());
                         binding.editor.setWordwrap(item.isChecked());
 

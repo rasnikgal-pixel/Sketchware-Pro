@@ -103,7 +103,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
         basicCategoryView.setTitle(null);
         options.add(basicCategoryView);
 
-        basicCategoryView.addLibraryItem(createOption("Application", "Default properties for the app", R.drawable.ic_mtrl_settings_applications, v -> {
+        basicCategoryView.addLibraryItem(createOption("Приложение", "Свойства приложения по умолчанию", R.drawable.ic_mtrl_settings_applications, v -> {
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), AndroidManifestInjectionDetails.class);
             intent.putExtra("sc_id", sc_id);
@@ -119,8 +119,8 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
             intent.putExtra("type", "permission");
             startActivity(intent);
         }), true);
-        basicCategoryView.addLibraryItem(createOption("Launcher Activity", "Change the default Launcher Activity", R.drawable.ic_mtrl_login, v -> showLauncherActDialog(AndroidManifestInjector.getLauncherActivity(sc_id))), true);
-        basicCategoryView.addLibraryItem(createOption("All Activities", "Add attributes for all Activities", R.drawable.ic_mtrl_frame_source, v -> {
+        basicCategoryView.addLibraryItem(createOption("Activity запуска", "Изменить Activity запуска", R.drawable.ic_mtrl_login, v -> showLauncherActDialog(AndroidManifestInjector.getLauncherActivity(sc_id))), true);
+        basicCategoryView.addLibraryItem(createOption("Все Activity", "Добавить атрибуты для всех Activity", R.drawable.ic_mtrl_frame_source, v -> {
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), AndroidManifestInjectionDetails.class);
             intent.putExtra("sc_id", sc_id);
@@ -128,7 +128,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
             intent.putExtra("type", "all");
             startActivity(intent);
         }), true);
-        basicCategoryView.addLibraryItem(createOption("App Components", "Add extra components", R.drawable.ic_mtrl_component, v -> showAppComponentDialog()), false);
+        basicCategoryView.addLibraryItem(createOption("Компоненты приложения", "Добавить доп. компоненты", R.drawable.ic_mtrl_component, v -> showAppComponentDialog()), false);
 
         options.forEach(binding.cards::addView);
     }

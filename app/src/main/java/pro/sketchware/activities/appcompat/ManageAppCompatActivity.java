@@ -252,7 +252,7 @@ public class ManageAppCompatActivity extends BaseAppCompatActivity {
 
     private void dialog(String type, int position) {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-        dialog.setTitle(type.equals("create") ? "Add new attribute" : "Edit attribute");
+        dialog.setTitle(type.equals("create") ? "Добавить атрибут" : "Изменить атрибут");
         CustomDialogAttributeBinding attributeBinding =
                 CustomDialogAttributeBinding.inflate(getLayoutInflater());
         dialog.setView(attributeBinding.getRoot());

@@ -143,7 +143,7 @@ public class ArraysEditor extends Fragment {
                     .show();
         });
 
-        dialog.setPositiveButton("Create", (d, which) -> {
+        dialog.setPositiveButton("Создать", (d, which) -> {
             String arrayName = Objects.requireNonNull(binding.arrayName.getText()).toString();
             String arrayTypeString = Objects.requireNonNull(binding.arrayType.getText()).toString();
             String header = Objects.requireNonNull(binding.arrayHeaderInput.getText()).toString();

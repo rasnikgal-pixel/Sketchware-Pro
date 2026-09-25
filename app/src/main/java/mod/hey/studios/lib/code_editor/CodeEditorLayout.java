@@ -129,7 +129,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
         menu.add("Font size")
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add("Word wrap")
+        menu.add("Перенос строк")
                 .setCheckable(true)
                 .setChecked(word_wrap)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
@@ -144,7 +144,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                 .setChecked(dark_theme)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add("Pretty print")
+        menu.add("Форматировать")
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
         menu.add("Exit confirmation")
@@ -173,7 +173,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                             .show();
                     break;
 
-                case "Word wrap":
+                case "Перенос строк":
                     item.setChecked(!item.isChecked());
                     setWordWrap(item.isChecked());
                     break;
@@ -191,7 +191,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                     startHighlighting(type);
                     break;
 
-                case "Pretty print":
+                case "Форматировать":
                     StringBuilder string = new StringBuilder();
                     String[] lines = getText().split("\n");
 

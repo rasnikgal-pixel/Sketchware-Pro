@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="16dp"
         android:layout_height="wrap_content"
-        android:text="Independent class/method"
+        android:text="Независимый класс/метод"
         android:textSize="14sp" />
     </LinearLayout>
 </ScrollView>
