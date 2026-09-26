@@ -176,7 +176,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="8dp"
-                                android:text="Listener properties :"
+                                android:text="Свойства слушателя:"
                                 android:textSize="16sp" />
 
                             <com.google.android.material.textfield.TextInputLayout

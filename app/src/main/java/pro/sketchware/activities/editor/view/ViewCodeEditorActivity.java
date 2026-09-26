@@ -144,7 +144,7 @@ public class ViewCodeEditorActivity extends BaseAppCompatActivity {
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         if (projectFile.fileType == ProjectFileBean.PROJECT_FILE_TYPE_ACTIVITY
                 && projectLibrary.isEnabled()) {
-            menu.add(Menu.NONE, 3, Menu.NONE, "Edit AppCompat");
+            menu.add(Menu.NONE, 3, Menu.NONE, "Изменить AppCompat");
         }
         menu.add(Menu.NONE, 4, Menu.NONE, "Перезагрузить цветовые схемы");
         menu.add(Menu.NONE, 5, Menu.NONE, "Предпросмотр макета");

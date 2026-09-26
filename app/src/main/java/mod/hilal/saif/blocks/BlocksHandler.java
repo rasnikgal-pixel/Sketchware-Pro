@@ -2611,7 +2611,7 @@ public class BlocksHandler {
             boolean isIntUsed,
             boolean isStrUsed,
             boolean isMapUsed) {
-        logicEditorActivity.a("Blocks", getTitleBgColor(logicEditorActivity));
+        logicEditorActivity.a("Блоки", getTitleBgColor(logicEditorActivity));
         if (showAll() || isBoolUsed) {
             logicEditorActivity.a(" ", "setVarBoolean");
         }
@@ -2720,7 +2720,7 @@ public class BlocksHandler {
                 || isListNumUsed
                 || inOnBindCustomViewEvent
                 || inOnFilesPickedEvent) {
-            logicEditorActivity.a("General", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a("Общие", getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a(" ", "listAddAll");
             logicEditorActivity.a("d", "lengthList");
             logicEditorActivity.a(" ", "deleteList");
