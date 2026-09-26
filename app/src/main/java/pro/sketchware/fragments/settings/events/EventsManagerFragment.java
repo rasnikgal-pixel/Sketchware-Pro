@@ -148,9 +148,9 @@ public class EventsManagerFragment extends qA {
         }
 
         var dialog = new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(existingListener == null ? "Новый слушатель" : "Редактировать слушателя")
+                .setTitle(existingListener == null ? "Новое событие" : "Редактировать событие")
                 .setView(listenerBinding.getRoot())
-                .setPositiveButton("Save", (di, i) -> {
+                .setPositiveButton("Сохранить", (di, i) -> {
                     String listenerName = Helper.getText(listenerBinding.listenerName);
                     if (!listenerName.isEmpty()) {
                         HashMap<String, Object> hashMap = existingListener != null ? existingListener : new HashMap<>();
@@ -326,7 +326,7 @@ public class EventsManagerFragment extends qA {
                                     break;
                                 case 2:
                                     new MaterialAlertDialogBuilder(context)
-                                            .setTitle("Удалить слушатель")
+                                            .setTitle("Удалить событие")
                                             .setMessage("Вы уверены, что хотите удалить этот элемент?")
                                             .setPositiveButton("Yes", (di, i) -> {
                                                 deleteRelatedEvents(name);

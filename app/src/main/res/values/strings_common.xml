@@ -183,7 +183,7 @@
     <string name="common_word_sharp">Острый</string>
     <string name="common_word_two_tone">Двухцветный</string>
     <string name="common_word_selected_color">Выбранный цвет</string>
-    <string name="common_word_new_listener">Новый слушатель</string>
+    <string name="common_word_new_listener">Новое событие</string>
     <string name="common_word_badge">badge</string>
     <string name="common_word_background_type">Тип фона</string>
     <string name="common_word_gradient">Градиент</string>
@@ -281,7 +281,7 @@
     <string name="common_word_actions">Действия</string>
     <string name="common_word_custom_activities">Пользовательские Activity</string>
     <string name="common_word_select_permissions">Выберите разрешения</string>
-    <string name="common_word_delete_listener">Удалить слушатель</string>
+    <string name="common_word_delete_listener">Удалить событие</string>
     <string name="common_word_activity_event">Событие Activity</string>
     <string name="common_word_event_details">Детали события</string>
     <string name="common_word_2131165298">2131165298</string>

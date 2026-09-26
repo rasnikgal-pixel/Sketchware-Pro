@@ -154,7 +154,7 @@ public class EventsHandler {
                                 list.add((String) listener);
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных слушателя в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError("Найден недопустимый тип данных события в пользовательском событии #" + (i + 1));
                         }
                     }
                 } else {
@@ -204,7 +204,7 @@ public class EventsHandler {
                                 }
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных слушателя в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError("Найден недопустимый тип данных события в пользовательском событии #" + (i + 1));
                         }
                     } else {
                         SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);

@@ -191,7 +191,7 @@ public class CompileLogActivity extends BaseAppCompatActivity {
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Выберите размер шрифта")
                 .setView(layout)
-                .setPositiveButton("Save", (dialog, which) -> {
+                .setPositiveButton("Сохранить", (dialog, which) -> {
                     logViewerPreferences.edit().putInt(PREFERENCE_FONT_SIZE, picker.getValue()).apply();
 
                     binding.tvCompileLog.setTextSize((float) picker.getValue());

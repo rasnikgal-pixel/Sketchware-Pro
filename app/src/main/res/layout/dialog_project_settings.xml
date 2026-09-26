@@ -28,7 +28,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:hint="Minimum SDK version">
+                android:hint="Минимальная версия SDK">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_minimum_sdk_version"
@@ -44,7 +44,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:hint="Target SDK version">
+                android:hint="Целевая версия SDK">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_target_sdk_version"
@@ -60,7 +60,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:hint="Application class name">
+                android:hint="Имя класса приложения">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_application_class_name"
@@ -99,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="This will enable ViewBinding in your project. Note: Manual changes may be required for widgets used in ASD block"
+                        android:text="Это включит ViewBinding в проекте. Примечание: может потребоваться ручная правка виджетов в ASD-блоке"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?attr/colorOnSurfaceVariant" />
 

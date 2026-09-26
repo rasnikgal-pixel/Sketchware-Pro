@@ -205,7 +205,7 @@ public class ColorsEditor extends Fragment {
             }
         });
 
-        dialog.setPositiveButton("Save", (v1, which) -> {
+        dialog.setPositiveButton("Сохранить", (v1, which) -> {
             String key = Objects.requireNonNull(dialogBinding.colorKeyInput.getText()).toString();
             String value = Objects.requireNonNull(dialogBinding.colorValueInput.getText()).toString();
 
@@ -259,7 +259,7 @@ public class ColorsEditor extends Fragment {
         });
 
         if (colorModel != null && !defaultColors.containsKey(colorModel.getColorName())) {
-            dialog.setNeutralButton("Delete", (v1, which) -> {
+            dialog.setNeutralButton("Удалить", (v1, which) -> {
                 colorList.remove(position);
                 adapter.notifyItemRemoved(position);
                 adapter.notifyItemRangeChanged(position, colorList.size());
