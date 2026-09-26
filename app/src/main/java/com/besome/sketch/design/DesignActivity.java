@@ -513,7 +513,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             apkSignatures.showSignaturesDialog();
             return true;
         });
-        bottomMenu.add(Menu.NONE, 7, Menu.NONE, "Прямой XML-редактор").setOnMenuItemClickListener(item -> {
+        bottomMenu.add(Menu.NONE, 7, Menu.NONE, "Редактор XML").setOnMenuItemClickListener(item -> {
             toViewCodeEditor();
             return true;
         });

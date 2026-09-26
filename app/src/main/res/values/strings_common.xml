@@ -118,9 +118,9 @@
     <string name="common_word_enter_name">Введите имя</string>
     <string name="common_word_important_note">Важное примечание</string>
     <string name="common_word_type">Тип</string>
-    <string name="common_word_portrait">Портретная</string>
-    <string name="common_word_landscape">Альбомная</string>
-    <string name="common_word_both">Оба</string>
+    <string name="common_word_portrait">Портрет</string>
+    <string name="common_word_landscape">Альбом</string>
+    <string name="common_word_both">Авто</string>
     <string name="common_word_unspecified">Не указано</string>
     <string name="common_word_visible">Видимый</string>
     <string name="common_word_hidden">Скрытый</string>
@@ -162,7 +162,7 @@
     <string name="common_word_top">top</string>
     <string name="common_word_bottom">bottom</string>
     <string name="common_word_enable_material3">Включить Material3</string>
-    <string name="common_word_daynight">DayNight</string>
+    <string name="common_word_daynight">День/Ночь</string>
     <string name="common_word_filter">Фильтр</string>
     <string name="common_word_main">main</string>
     <string name="common_word_edit_block">Редактировать блок</string>
