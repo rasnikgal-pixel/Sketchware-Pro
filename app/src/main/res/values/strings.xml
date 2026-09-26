@@ -667,7 +667,7 @@ ex)\"users/username\""</string>
     <string name="logic_more_block_title_select_more_block">Выбоать дополнительный блок</string>
     <string name="logic_search_events">Поиск событий…</string>
     <string name="logic_sort_alphabetical">A-Z</string>
-    <string name="logic_sort_default">Default</string>
+    <string name="logic_sort_default">По умолчанию</string>
     <string name="logic_sort_menu">Параметры сортировки</string>
     <string name="logic_sort_type">По виджету</string>
     <string name="logic_variable_type_boolean">Булев</string>
@@ -716,7 +716,7 @@ ex)\"users/username\""</string>
     <string name="main_tab_title_tutorials">Инструкции</string>
     <string name="manage_export_url_actionbar_title">Управление экспортированными URL-адресами</string>
     <string name="manage_export_url_list_app_name">Имя приложения</string>
-    <string name="manage_export_url_list_expire_dt_expired">Expired</string>
+    <string name="manage_export_url_list_expire_dt_expired">Истёк</string>
     <string name="manage_export_url_list_expire_dt_left">Дата истечения : осталось %s дней</string>
     <string name="manage_export_url_list_menu_extend">Продлить дату истечения</string>
     <string name="manage_export_url_list_package_name">Имя пакета</string>
@@ -730,7 +730,7 @@ ex)\"users/username\""</string>
     <string name="manage_export_url_popup_title_extend_expire">Продлить дату истечения URL-адреса</string>
     <string name="manage_export_url_tab_title_apk">Подписанный APK</string>
     <string name="manage_export_url_tab_title_data">Экспортированные данные</string>
-    <string name="manage_export_url_word_extend">Expand</string>
+    <string name="manage_export_url_word_extend">Развернуть</string>
     <string name="material_clock_display_divider">:</string>
     <string name="material_clock_toggle_content_description">Выберите AM или PM</string>
     <string name="material_hour_24h_suffix">%1$s часов</string>
@@ -882,10 +882,10 @@ ex)\"users/username\""</string>
     <string name="myprojects_sign_apk_new_certificate_hint_confirm_password">Подтвердите пароль</string>
     <string name="myprojects_sign_apk_new_certificate_hint_country_code">Код страны (XX)</string>
     <string name="myprojects_sign_apk_new_certificate_hint_first_and_last_name">Имя и фамилия</string>
-    <string name="myprojects_sign_apk_new_certificate_hint_organization">Organization</string>
+    <string name="myprojects_sign_apk_new_certificate_hint_organization">Организация</string>
     <string name="myprojects_sign_apk_new_certificate_hint_organizational_unit">Организационное подразделение</string>
     <string name="myprojects_sign_apk_new_certificate_hint_state">Область или регион</string>
-    <string name="myprojects_sign_apk_new_certificate_title_certificate">Certificate</string>
+    <string name="myprojects_sign_apk_new_certificate_title_certificate">Сертификат</string>
     <string name="myprojects_sign_apk_new_certificate_title_certificate_creds">Учётные данные сертификата</string>
     <string name="myprojects_sign_apk_new_certificate_title_new_certificate">Создать новый сертификат</string>
     <string name="myprojects_sign_apk_new_certificate_title_validity">Срок действия (лет)</string>
@@ -1015,8 +1015,8 @@ ACTION_VIEW
     <string name="review_firebase_config_title">Обзор</string>
     <string name="s1">Сохранить изображение</string>
     <string name="s2">Разрешить Ad сохранять изображение в галерее?</string>
-    <string name="s3">Accept</string>
-    <string name="s4">Decline</string>
+    <string name="s3">Принять</string>
+    <string name="s4">Отклонить</string>
     <string name="s5">Создать событие календаря</string>
     <string name="s6">Разрешить Ad создавать событие календаря?</string>
     <string name="s7">Тестовая реклама</string>
@@ -1119,10 +1119,10 @@ ACTION_VIEW
     <string name="title_besome_blog">Medium</string>
     <string name="title_community">Социальная сеть</string>
     <string name="title_company_addr">Адрес</string>
-    <string name="title_company_email">E-mail</string>
+    <string name="title_company_email">Почта</string>
     <string name="title_company_intro">Описание компании</string>
-    <string name="title_company_tel">Telephone</string>
-    <string name="title_company_url">Website</string>
+    <string name="title_company_tel">Телефон</string>
+    <string name="title_company_url">Сайт</string>
     <string name="title_compatible_chrome_browser">Требуется браузер Chrome</string>
     <string name="title_discord_community">Discord</string>
     <string name="title_sketchware">Sketchware Pro</string>
