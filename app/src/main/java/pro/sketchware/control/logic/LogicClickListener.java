@@ -96,7 +96,7 @@ public class LogicClickListener implements View.OnClickListener {
 
         AddCustomVariableBinding binding = AddCustomVariableBinding.inflate(logicEditor.getLayoutInflater());
 
-        binding.modifierLayout.setHelperText("Enter modifier e.g. private, public, public static, or empty (package private).");
+        binding.modifierLayout.setHelperText("Введите модификатор, например private, public, public static, или пусто (package private).");
 
         VariableModifierValidator modifiersValidator = new VariableModifierValidator(getContext(), binding.modifierLayout);
         binding.modifier.addTextChangedListener(modifiersValidator);

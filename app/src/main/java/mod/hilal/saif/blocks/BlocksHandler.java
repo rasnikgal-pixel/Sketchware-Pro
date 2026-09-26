@@ -2625,7 +2625,7 @@ public class BlocksHandler {
         }
         if (showAll() || isMapUsed) {
             logicEditorActivity.a(" ", "mapCreateNew");
-            logicEditorActivity.a("Map put values", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a("Map: запись", getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a(" ", "mapPut");
         }
         if (showBuiltIn() && (showAll() || isMapUsed)) {
@@ -2637,7 +2637,7 @@ public class BlocksHandler {
             logicEditorActivity.a(" ", "hashmapPutListmap");
         }
         if (showAll() || isMapUsed) {
-            logicEditorActivity.a("Map get values", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a("Map: чтение", getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("s", "mapGet");
         }
         if (showBuiltIn() && (showAll() || isMapUsed)) {
@@ -2648,7 +2648,7 @@ public class BlocksHandler {
             logicEditorActivity.a("", "l", "List Map", "hashmapGetListmap");
         }
         if (showAll() || isMapUsed) {
-            logicEditorActivity.a("Map general", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a("Map: общее", getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("b", "mapIsEmpty");
             logicEditorActivity.a("b", "mapContainKey");
             logicEditorActivity.a("b", "mapContainValue");
