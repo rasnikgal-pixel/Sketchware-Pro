@@ -121,18 +121,18 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
                     "d", "v", "a", "f", "l", "p", "h"
             );
             List<String> choices = Arrays.asList(
-                    "Regular block (regular)",
-                    "if block (c)",
-                    "if-else block (e)",
-                    "String (s)",
-                    "Boolean (b)",
-                    "Number (d)",
-                    "Variable (v)",
+                    "Обычный блок (regular)",
+                    "Блок if (c)",
+                    "Блок if-else (e)",
+                    "Строка (s)",
+                    "Булев (b)",
+                    "Число (d)",
+                    "Переменная (v)",
                     "Map (a)",
-                    "stop block (f)",
-                    "List (l)",
-                    "Component (p)",
-                    "Header (h)"
+                    "Блок stop (f)",
+                    "Список (l)",
+                    "Компонент (p)",
+                    "Заголовок (h)"
             );
             AtomicInteger choice = new AtomicInteger();
             new MaterialAlertDialogBuilder(this).setTitle("Тип блока")
