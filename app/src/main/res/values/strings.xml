@@ -1053,7 +1053,7 @@ ACTION_VIEW
     <string name="settings_events_manager">Менеджер событий</string>
     <string name="settings_events_manager_activity_events">События Activity</string>
     <string name="settings_events_manager_details">Детали менеджера событий</string>
-    <string name="settings_events_manager_listeners">Слушатели</string>
+    <string name="settings_events_manager_listeners">События</string>
     <string name="side_sheet_accessibility_pane_title">Боковая панель</string>
     <string name="side_sheet_behavior">com.google.android.material.sidesheet.SideSheetBehavior</string>
     <string name="sign_apk_desc_export_apk_file">APK-файл создан. APK-файл создан в директории сохранения ниже. Пожалуйста, проверьте директорию сохранения.</string>

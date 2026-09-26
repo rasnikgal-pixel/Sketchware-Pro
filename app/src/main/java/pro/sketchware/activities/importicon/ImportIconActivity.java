@@ -401,7 +401,7 @@ public class ImportIconActivity extends BaseAppCompatActivity implements IconAda
                 .setView(dialogBinding.getRoot())
                 .setTitle(R.string.common_word_save)
                 .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Save", null)
+                .setPositiveButton("Сохранить", null)
                 .create();
 
         dialog.setOnShowListener(dialogInterface -> {

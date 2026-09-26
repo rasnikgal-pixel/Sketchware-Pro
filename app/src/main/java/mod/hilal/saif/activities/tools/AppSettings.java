@@ -216,7 +216,7 @@ public class AppSettings extends BaseAppCompatActivity {
             dialog.show(getSupportFragmentManager(), "file_picker");
         });
 
-        apkPathDialog.setPositiveButton("Continue", (v, which) -> {
+        apkPathDialog.setPositiveButton("Продолжить", (v, which) -> {
             if (!isAPKSelected[0]) {
                 SketchwareUtil.toast("Выберите APK-файл для подписи", Toast.LENGTH_SHORT);
                 shakeView(binding.selectFile);
@@ -234,7 +234,7 @@ public class AppSettings extends BaseAppCompatActivity {
                 confirmOverwrite.setMessage("APK с именем" + output_apk_file_name + " already exists at /sketchware/signed_apk/.  Overwrite it?");
 
                 confirmOverwrite.setNegativeButton(Helper.getResString(R.string.common_word_cancel), null);
-                confirmOverwrite.setPositiveButton("Overwrite", (view, which1) -> {
+                confirmOverwrite.setPositiveButton("Перезаписать", (view, which1) -> {
                     v.dismiss();
                     signApkFileWithDialog(input_apk_path, output_apk_path, true,
                             null, null, null, null);
