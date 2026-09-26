@@ -227,7 +227,7 @@ public class EventsManagerDetailsFragment extends qA {
                             fragment.setArguments(args);
                             openFragment(fragment);
                         })
-                        .setNegativeButton("Cancel", (di, i) -> di.dismiss())
+                        .setNegativeButton("Отмена", (di, i) -> di.dismiss())
                         .show();
                 return true;
             });

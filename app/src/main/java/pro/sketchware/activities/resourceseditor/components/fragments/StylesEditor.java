@@ -205,7 +205,7 @@ public class StylesEditor extends Fragment {
                     updateNoContentLayout();
                     hasUnsavedChanges = true;
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Отмена", null)
                 .create()
                 .show());
         dialog.setNegativeButton(getString(R.string.cancel), null);
@@ -241,7 +241,7 @@ public class StylesEditor extends Fragment {
                                     attributesAdapter.submitList(new ArrayList<>(attributes.keySet()));
                                     hasUnsavedChanges = true;
                                 })
-                                .setNegativeButton("Cancel", null)
+                                .setNegativeButton("Отмена", null)
                                 .create()
                                 .show();
                     }
@@ -271,7 +271,7 @@ public class StylesEditor extends Fragment {
             binding.attrValue.setText(style.getAttribute(attr));
         }
 
-        dialog.setTitle(isEditing ? "Edit attribute" : "Create new attribute");
+        dialog.setTitle(isEditing ? "Изменить атрибут" : "Создать новый атрибут");
 
         dialog.setPositiveButton(Helper.getResString(R.string.common_word_save), (d, which) -> {
             String attribute = Objects.requireNonNull(binding.attrName.getText()).toString();

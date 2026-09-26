@@ -183,7 +183,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                 .setView(dialogBinding.getRoot())
                 .setTitle(R.string.assets_manager_add_new)
                 .setMessage("Расширение файла будет добавлено автоматически в зависимости от выбранного типа файла")
-                .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Создать", null)
                 .create();
 
@@ -292,7 +292,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
         var inputText = dialogBinding.inputText;
         var renameOccurrencesCheckBox = dialogBinding.renameOccurrencesCheckBox;
 
-        var dialog = new MaterialAlertDialogBuilder(this).setTitle("Rename " + filesAdapter.getFileName(position)).setView(dialogBinding.getRoot()).setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss()).setPositiveButton("Rename", (dialogInterface, i) -> {
+        var dialog = new MaterialAlertDialogBuilder(this).setTitle("Rename " + filesAdapter.getFileName(position)).setView(dialogBinding.getRoot()).setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss()).setPositiveButton("Rename", (dialogInterface, i) -> {
             if (!Helper.getText(inputText).isEmpty()) {
                 if (!filesAdapter.isFolder(position)) {
                     if (frc.getJavaManifestList().contains(filesAdapter.getFullName(position))) {

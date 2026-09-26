@@ -171,7 +171,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                 .setView(dialogBinding.getRoot())
                 .setTitle("Создать новую папку")
                 .setMessage("Введите имя новой папки")
-                .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Создать", null)
                 .create();
 
@@ -262,7 +262,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.assets_manager_rename)
                 .setView(dialogBinding.getRoot())
-                .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Rename", (dialogInterface, i) -> {
                     String newName = Helper.getText(inputText);
                     if (!newName.isEmpty()) {

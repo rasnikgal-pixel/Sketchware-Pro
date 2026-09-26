@@ -144,7 +144,7 @@ public class BlockSelectorDetailsFragment extends qA {
             }
             v.dismiss();
         });
-        dialog.setNegativeButton("Cancel", null);
+        dialog.setNegativeButton("Отмена", null);
         dialog.setView(dialogBinding.getRoot());
         dialog.show();
     }
@@ -185,7 +185,7 @@ public class BlockSelectorDetailsFragment extends qA {
         dialog.setTitle("Attention");
         dialog.setMessage(message);
         dialog.setPositiveButton("Yes", (v, which) -> onConfirm.onClick(v));
-        dialog.setNegativeButton("Cancel", (v, which) -> onCancel.onClick(v));
+        dialog.setNegativeButton("Отмена", (v, which) -> onCancel.onClick(v));
 
         dialog.show();
     }

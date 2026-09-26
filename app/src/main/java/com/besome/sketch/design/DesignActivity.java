@@ -1086,7 +1086,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             try {
                 var q = activity.q;
                 var sc_id = DesignActivity.sc_id;
-                onProgress("Deleting temporary files...", 1);
+                onProgress("Удаление временных файлов...", 1);
                 FileUtil.deleteFile(q.projectMyscPath);
 
                 q.c(activity.getApplicationContext());
@@ -1137,7 +1137,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     return;
                 }
 
-                onProgress("AAPT2 is running...", 8);
+                onProgress("Выполняется AAPT2...", 8);
                 builder.compileResources();
                 if (canceled) {
                     return;
@@ -1154,7 +1154,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     return;
                 }
 
-                onProgress("Java is compiling...", 13);
+                onProgress("Компиляция Java...", 13);
                 builder.compileJavaCode();
                 if (canceled) {
                     return;

@@ -196,7 +196,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                 .setView(dialogBinding.getRoot())
                 .setTitle(isFolder ? "Создать новую папку" : "Создать новый файл")
                 .setMessage("Введите имя для нового" + (isFolder ? "folder" : "file"))
-                .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Создать", null)
                 .create();
 
@@ -285,7 +285,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.assets_manager_rename)
                 .setView(dialogBinding.getRoot())
-                .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Rename", (dialogInterface, i) -> {
                     if (!Helper.getText(inputText).isEmpty()) {
                         if (FileUtil.renameFile(path, path.substring(0, path.lastIndexOf("/")) + "/" + Helper.getText(inputText))) {

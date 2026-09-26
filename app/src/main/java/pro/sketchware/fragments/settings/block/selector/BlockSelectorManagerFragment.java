@@ -172,7 +172,7 @@ public class BlockSelectorManagerFragment extends qA {
             adapter.notifyDataSetChanged();
             v.dismiss();
         });
-        dialog.setNegativeButton("Cancel", (v, which) -> v.dismiss());
+        dialog.setNegativeButton("Отмена", (v, which) -> v.dismiss());
         dialog.show();
     }
 
@@ -210,7 +210,7 @@ public class BlockSelectorManagerFragment extends qA {
         dialog.setTitle("Attention");
         dialog.setMessage(message);
         dialog.setPositiveButton("Yes", (v, which) -> onConfirm.onConfirm(v));
-        dialog.setNegativeButton("Cancel", (v, which) -> onCancel.onCancel(v));
+        dialog.setNegativeButton("Отмена", (v, which) -> onCancel.onCancel(v));
         dialog.setCancelable(false);
         dialog.show();
     }
