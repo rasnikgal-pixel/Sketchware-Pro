@@ -349,7 +349,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
         });
 
         dialog.setNegativeButton(Helper.getResString(R.string.common_word_reset), null);
-        dialog.setNeutralButton("Custom", null);
+        dialog.setNeutralButton("Свой", null);
 
         AlertDialog alertDialog = dialog.create();
 
@@ -387,7 +387,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                 } else {
                     binding.sliderSection.setVisibility(View.VISIBLE);
                     binding.tiInput.setVisibility(View.GONE);
-                    customButton.setText("Custom");
+                    customButton.setText("Свой");
                 }
             });
 

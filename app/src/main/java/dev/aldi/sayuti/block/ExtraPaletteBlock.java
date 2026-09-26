@@ -317,7 +317,7 @@ public class ExtraPaletteBlock {
                     ViewBean drawerView = drawerViews.get(i);
 
                     if (i == 0) {
-                        logicEditor.a("Drawer Views", getTitleBgColor());
+                        logicEditor.a("Views навигации", getTitleBgColor());
                     }
 
                     if (!drawerView.convert.equals("include")) {
@@ -333,11 +333,11 @@ public class ExtraPaletteBlock {
     private void blockEvents() {
         switch (eventName) {
             case "onTabAdded", "onTabLayoutNewTabAdded" -> {
-                logicEditor.a("Fragment & TabLayout", getTitleBgColor());
+                logicEditor.a("Фрагменты и TabLayout", getTitleBgColor());
                 logicEditor.a("f", "returnTitle");
             }
             case "onFragmentAdded" -> {
-                logicEditor.a("Fragment & TabLayout", getTitleBgColor());
+                logicEditor.a("Фрагменты и TabLayout", getTitleBgColor());
                 logicEditor.a("f", "returnFragment");
             }
             case "onScrollChanged" -> {
@@ -354,7 +354,7 @@ public class ExtraPaletteBlock {
                 logicEditor.a("d", "pagerscrollparam");
             }
             case "onCreateOptionsMenu" -> {
-                logicEditor.a("Menu", getTitleBgColor());
+                logicEditor.a("Меню", getTitleBgColor());
                 logicEditor.a(" ", "menuInflater");
                 logicEditor.a(" ", "menuAddItem");
                 logicEditor.a(" ", "menuAddMenuItem");
@@ -977,11 +977,11 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "startActivityWithChooser");
                 }
                 if (!frc.getBroadcastFile().isEmpty()) {
-                    logicEditor.a("Broadcast", getTitleBgColor());
+                    logicEditor.a("Широковещание", getTitleBgColor());
                     logicEditor.a(" ", "sendBroadcast");
                 }
                 if (!frc.getServiceFile().isEmpty()) {
-                    logicEditor.a("Service", getTitleBgColor());
+                    logicEditor.a("Сервис", getTitleBgColor());
                     logicEditor.a(" ", "startService");
                     logicEditor.a(" ", "stopService");
                 }
