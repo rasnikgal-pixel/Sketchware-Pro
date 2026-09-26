@@ -247,7 +247,7 @@ public class ManageLocalLibrary {
                 if (resPath instanceof String) {
                     localLibraryRes.add((String) resPath);
                 } else {
-                    SketchwareUtil.toastError("Недопустимый путь к папке res/ у включённой локальной библиотеки #" + i, Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError("Недопустимый путь к каталогу res/ у включённой локальной библиотеки #" + i, Toast.LENGTH_LONG);
                 }
             }
         }

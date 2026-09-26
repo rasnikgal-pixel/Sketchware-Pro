@@ -285,7 +285,7 @@ ex)\"*/*\", \"image/*\", \"audio/*\", \"text/*\""</string>
     <string name="design_library_appcompat_need_m3_disable">Вы не можете отключить библиотеку AppCompat, когда используются Material3 и динамические цвета.</string>
     <string name="design_library_button_import_from_other_project">Импортировать из другого проекта</string>
     <string name="design_library_description_admob">Использовать Google AdMob</string>
-    <string name="design_library_description_appcompat_and_design">Drawer Layout, Floating Action Button</string>
+    <string name="design_library_description_appcompat_and_design">Панель навигации, плавающая кнопка</string>
     <string name="design_library_description_firebase">Использовать Firebase Database и Authentication</string>
     <string name="design_library_description_google_map">Использовать Google Map</string>
     <string name="design_library_dynamic_colors_description">Включение динамических цветов позволяет вашему приложению адаптировать цветовую схему в зависимости от системных предпочтений пользователя, создавая бесшовный и персонализированный опыт, отражающий выбранную пользователем тему и внешний вид.</string>
@@ -1132,7 +1132,7 @@ ACTION_VIEW
     <string name="v7_preference_off">ВЫКЛ</string>
     <string name="v7_preference_on">ВКЛ</string>
     <string name="var_is_required">%s is required</string>
-    <string name="view_panel_title_layouts">Layouts</string>
+    <string name="view_panel_title_layouts">Макеты</string>
     <string name="view_panel_title_properties">Properties</string>
     <string name="view_panel_title_widgets">Виджет</string>
     <string name="view_widget_delete_description">Вы уверены, что хотите удалить это представление и его дочерние элементы? \nПри необходимости вы можете отменить это действие</string>

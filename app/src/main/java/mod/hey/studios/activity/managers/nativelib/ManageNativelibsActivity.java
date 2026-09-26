@@ -104,7 +104,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
     private void handleFab() {
         if (isInMainDirectory()) {
-            binding.showOptionsButton.setText("Новая папка");
+            binding.showOptionsButton.setText("Новый каталог");
         } else {
             binding.showOptionsButton.setText("Импортировать библиотеку");
         }
@@ -169,14 +169,14 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
-                .setTitle("Создать новую папку")
-                .setMessage("Введите имя новой папки")
+                .setTitle("Создать новый каталог")
+                .setMessage("Введите имя нового каталога")
                 .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Создать", null)
                 .create();
 
         dialogBinding.chipGroupTypes.setVisibility(View.GONE);
-        textInputLayout.setHint("Имя папки");
+        textInputLayout.setHint("Имя каталога");
 
         inputText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -200,7 +200,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                 String name = Helper.getText(inputText);
 
                 if (name.isEmpty()) {
-                    textInputLayout.setError("Неверное имя папки");
+                    textInputLayout.setError("Неверное имя каталога");
                     return;
                 }
                 textInputLayout.setError(null);
@@ -208,14 +208,14 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                 String path = fpu.getPathNativelibs(numProj) + "/" + name;
 
                 if (FileUtil.isExistFile(path)) {
-                    textInputLayout.setError("Папка уже существует");
+                    textInputLayout.setError("Каталог уже существует");
                     return;
                 }
                 textInputLayout.setError(null);
 
                 FileUtil.makeDir(path);
                 handleAdapter(nativeLibrariesPath);
-                SketchwareUtil.toast("Папка успешно создана");
+                SketchwareUtil.toast("Каталог успешно создан");
 
                 dialog.dismiss();
             });
