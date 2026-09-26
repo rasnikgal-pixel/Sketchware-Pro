@@ -457,7 +457,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
             String sc_id = activity.get().sc_id;
 
             try {
-                publishProgress("Deleting temporary files...");
+                publishProgress("Удаление временных файлов...");
                 FileUtil.deleteFile(project_metadata.projectMyscPath);
 
                 publishProgress(Helper.getResString(R.string.design_run_title_ready_to_build));
@@ -544,7 +544,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
 
                 builder.buildBuiltInLibraryInformation();
 
-                publishProgress("AAPT2 is running...");
+                publishProgress("Выполняется AAPT2...");
                 builder.compileResources();
                 if (canceled) {
                     cancel(true);
@@ -557,7 +557,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
                     return;
                 }
 
-                publishProgress("Java is compiling...");
+                publishProgress("Компиляция Java...");
                 builder.compileJavaCode();
                 if (canceled) {
                     cancel(true);

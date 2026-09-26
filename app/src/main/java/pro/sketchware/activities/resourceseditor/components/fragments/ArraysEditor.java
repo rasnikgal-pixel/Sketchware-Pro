@@ -229,7 +229,7 @@ public class ArraysEditor extends Fragment {
                     updateNoContentLayout();
                     hasUnsavedChanges = true;
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Отмена", null)
                 .show());
         dialog.setNegativeButton(getString(R.string.cancel), null);
         dialog.setView(binding.getRoot());
@@ -264,7 +264,7 @@ public class ArraysEditor extends Fragment {
                                     attributesAdapter.submitList(new ArrayList<>(attributes.keySet()));
                                     hasUnsavedChanges = true;
                                 })
-                                .setNegativeButton("Cancel", null)
+                                .setNegativeButton("Отмена", null)
                                 .create()
                                 .show();
                     }

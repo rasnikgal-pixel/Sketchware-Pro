@@ -123,7 +123,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                 .setView(dialogBinding.getRoot())
                 .setTitle(R.string.assets_manager_add_new)
                 .setMessage("Если вы создаёте файл, обязательно добавьте расширение.")
-                .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Создать", null)
                 .create();
 
@@ -194,7 +194,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setTitle("Rename " + assetsAdapter.getFileName(position))
                 .setView(dialogBinding.getRoot())
-                .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Rename", (dialogInterface, i) -> {
                     if (!Helper.getText(inputText).isEmpty()) {
                         FileUtil.renameFile(assetsAdapter.getItem(position), new File(current_path, Helper.getText(inputText)).getAbsolutePath());

@@ -162,7 +162,7 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
                 .setTitle("Подтвердите загрузку")
                 .setMessage(message)
                 .setPositiveButton("Download", (dialog, which) -> startDownloadProcess(group, artifact, version))
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Отмена", null)
                 .show();
     }
 

@@ -310,7 +310,7 @@ public class ProjectsFragment extends DA {
             v.dismiss();
             refreshProjectsList();
         });
-        dialog.setNegativeButton("Cancel", null);
+        dialog.setNegativeButton("Отмена", null);
         dialog.show();
     }
 

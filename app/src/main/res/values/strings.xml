@@ -43,7 +43,7 @@
     <string name="assets_manager_nofiles_body">У вас здесь ещё нет файлов, попробуйте создать.</string>
     <string name="assets_manager_nofiles_title">Здесь нет файлов</string>
     <string name="assets_manager_options">Создать или импортировать</string>
-    <string name="assets_manager_rename">Rename</string>
+    <string name="assets_manager_rename">Переименовать</string>
     <string name="assets_manager_title">Менеджер ресурсов</string>
     <string name="attr_already_exist">Этот атрибут уже существует</string>
     <string name="besome_blog_url">http://medium.com/sketchware</string>
@@ -69,7 +69,7 @@
     <string name="call_notification_screening_text">Фильтрация входящего звонка</string>
     <string name="cancel">Отмена</string>
     <string name="change_firebase_config_title">Изменить конфигурацию Firebase</string>
-    <string name="change_launcher_activity_dialog_title">Launcher Activity</string>
+    <string name="change_launcher_activity_dialog_title">Activity запуска</string>
     <string name="character_counter_content_description">Введено символов %1$d из %2$d</string>
     <string name="character_counter_overflowed_content_description">Превышен лимит символов %1$d из %2$d</string>
     <string name="character_counter_pattern">%1$d/%2$d</string>
@@ -124,7 +124,7 @@
     <string name="common_message_permission_storage1">"В разрешении отказано.
 Пожалуйста, нажмите «Настройки», чтобы разрешить доступ к хранилищу. Без этого разрешения некоторые функции могут работать неправильно"</string>
     <string name="common_message_permission_title_storage">Требуется разрешение</string>
-    <string name="common_message_progress">Progressing</string>
+    <string name="common_message_progress">Выполняется...</string>
     <string name="common_message_selected_file_empty">Выбранный файл пуст</string>
     <string name="common_open_on_phone">Открыть на телефоне</string>
     <string name="common_signin_button_text">Войти</string>
@@ -201,7 +201,7 @@ ex)\"*/*\", \"image/*\", \"audio/*\", \"text/*\""</string>
     <string name="design_cancel_build_title">Отменить сборку?</string>
     <string name="design_drawer_menu_androidmanifest">Менеджер AndroidManifest</string>
     <string name="design_drawer_menu_androidmanifest_subtitle">Изменить AndroidManifest</string>
-    <string name="design_drawer_menu_bottom_title">Global</string>
+    <string name="design_drawer_menu_bottom_title">Общие</string>
     <string name="design_drawer_menu_customblocks">Просмотреть пользовательские блоки</string>
     <string name="design_drawer_menu_customblocks_subtitle">Просмотреть используемые пользовательские блоки</string>
     <string name="design_drawer_menu_description_collection">Мои сохранённые коллекции</string>
@@ -339,7 +339,7 @@ ex)\"users/username\""</string>
     <string name="design_library_message_confirm_uncheck_google_map">Существующий MapView будет удалён. Хотите продолжить?</string>
     <string name="design_library_message_slow_down_compilation_time">Включение библиотеки может замедлить время компиляции на некоторых устройствах.</string>
     <string name="design_library_settings_guide_tutorial">"Пожалуйста, обратитесь к руководству, если вы настраиваете это впервые."</string>
-    <string name="design_library_settings_title_enabled">Enabled</string>
+    <string name="design_library_settings_title_enabled">Включено</string>
     <string name="design_library_title_appcompat">AppCompat</string>
     <string name="design_library_title_appcompat_and_design">AppCompat и Design</string>
     <string name="design_library_title_material3">"Менеджер Material3"</string>
@@ -424,7 +424,7 @@ ex)\"users/username\""</string>
  вы сможете использовать его в редакторе логики"</string>
     <string name="developer_tools_component_icon">Иконка компонента (обязательно)</string>
     <string name="developer_tools_component_id">ID компонента (обязательно)</string>
-    <string name="developer_tools_component_imports">Imports</string>
+    <string name="developer_tools_component_imports">Импорты</string>
     <string name="developer_tools_component_manager">Менеджер компонентов</string>
     <string name="developer_tools_component_message_export">Вы уверены, что хотите экспортировать %s?</string>
     <string name="developer_tools_component_name">Имя компонента (обязательно)</string>
@@ -441,7 +441,7 @@ ex)\"users/username\""</string>
     <string name="event_context_menu_title_delete_event">Удалить событие</string>
     <string name="event_context_menu_title_delete_more_block">Удалить moreBlock</string>
     <string name="event_context_menu_title_initialize_logic">Инициализировать логику</string>
-    <string name="event_definefunc">MoreBlock</string>
+    <string name="event_definefunc">Свой блок</string>
     <string name="event_dialog_confirm_delete_component">Вы уверены, что хотите удалить выбранный компонент?</string>
     <string name="event_dialog_confirm_delete_logic">"Все данные логики выбранного события будут потеряны
 Хотите продолжить?"</string>
@@ -893,7 +893,7 @@ ex)\"users/username\""</string>
     <string name="nav_rail_expanded_a11y_label">Развёрнуто</string>
     <string name="new_class">Или создайте новую категорию</string>
     <string name="no_file_selected">Файл не выбран</string>
-    <string name="no_folder_selected">Папка не выбрана</string>
+    <string name="no_folder_selected">Каталог не выбран</string>
     <string name="no_item_selected">Элемент не выбран</string>
     <string name="not_set">Не установлено</string>
     <string name="password_toggle_content_description">Показать пароль</string>
@@ -902,7 +902,7 @@ ex)\"users/username\""</string>
     <string name="path_password_eye_mask_visible">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
     <string name="pick_a_file">Выберите файл</string>
-    <string name="pick_a_folder">Выберите папку</string>
+    <string name="pick_a_folder">Выберите каталог</string>
     <string name="pick_items">Выберите элементы</string>
     <string name="picker_color_already_exist">Этот цвет уже существует</string>
     <string name="picker_color_custom_color_not_found">Пользовательские цвета не найдены</string>
@@ -1041,7 +1041,7 @@ ACTION_VIEW
     <string name="searchview_clear_text_content_description">Очистить текст</string>
     <string name="searchview_navigation_content_description">Назад</string>
     <string name="select_file">Выберите файл</string>
-    <string name="select_folder">Выберите папку</string>
+    <string name="select_folder">Выберите каталог</string>
     <string name="select_items">Выберите элементы</string>
     <string name="settings_appearance">Оформление</string>
     <string name="settings_appearance_description">Изменить внешний вид Sketchware</string>
@@ -1134,7 +1134,7 @@ ACTION_VIEW
     <string name="var_is_required">%s is required</string>
     <string name="view_panel_title_layouts">Layouts</string>
     <string name="view_panel_title_properties">Properties</string>
-    <string name="view_panel_title_widgets">Widgets</string>
+    <string name="view_panel_title_widgets">Виджет</string>
     <string name="view_widget_delete_description">Вы уверены, что хотите удалить это представление и его дочерние элементы? \nПри необходимости вы можете отменить это действие</string>
     <string name="view_widget_delete_title">Удалить виджет</string>
     <string name="view_widget_favorites_delete_message">Вы уверены, что хотите удалить сохранённый виджет из моей коллекции? Это действие нельзя отменить.</string>

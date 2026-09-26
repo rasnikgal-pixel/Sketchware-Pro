@@ -141,7 +141,7 @@ public class ExcludeBuiltInLibrariesActivity extends BaseAppCompatActivity {
     }
 
     public static String getDefaultItemDescription() {
-        return "Use custom Library versions";
+        return "Использовать свои версии библиотек";
     }
 
     public static String getSelectedLibrariesItemDescription() {

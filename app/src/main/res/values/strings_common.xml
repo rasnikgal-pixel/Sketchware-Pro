@@ -16,7 +16,7 @@
     <string name="common_word_detail">Подробнее</string>
     <string name="common_word_download">Скачать</string>
     <string name="common_word_duplicate">Дублировать</string>
-    <string name="common_word_drawer">Drawer</string>
+    <string name="common_word_drawer">Панель навигации</string>
     <string name="common_word_exit">Выход</string>
     <string name="common_word_export">Экспорт</string>
     <string name="common_word_font">Шрифт</string>
@@ -25,7 +25,7 @@
     <string name="common_word_image">Изображение</string>
     <string name="common_word_import">Импорт</string>
     <string name="common_word_import_count">Импортировать %s элемент(ов)</string>
-    <string name="common_word_moreblock">More Block</string>
+    <string name="common_word_moreblock">Свой блок</string>
     <string name="common_word_next">ДАЛЕЕ</string>
     <string name="common_word_no">Нет</string>
     <string name="common_word_ok">ОК</string>
@@ -140,7 +140,7 @@
     <string name="common_word_pin_project">Закрепить проект</string>
     <string name="common_word_backup_project">Резервное копирование проекта</string>
     <string name="common_word_project_configuration">Конфигурация проекта</string>
-    <string name="common_word_folder">Папка</string>
+    <string name="common_word_folder">Каталог</string>
     <string name="common_word_class">Class</string>
     <string name="common_word_java_class">Java-класс</string>
     <string name="common_word_java_activity">Java Activity</string>
@@ -242,9 +242,9 @@
     <string name="common_word_none">NONE</string>
     <string name="common_word_unpin_project">Открепить проект</string>
     <string name="common_word_compile_log">Журнал компиляции</string>
-    <string name="common_word_new_folder">Новая папка</string>
+    <string name="common_word_new_folder">Новый каталог</string>
     <string name="common_word_import_library">Импортировать библиотеку</string>
-    <string name="common_word_folder_name">Имя папки</string>
+    <string name="common_word_folder_name">Имя каталога</string>
     <string name="common_word_renamed_successfully">Успешно переименовано</string>
     <string name="common_word_nothing_changed">Ничего не изменено</string>
     <string name="str_deleted">Удалено</string>

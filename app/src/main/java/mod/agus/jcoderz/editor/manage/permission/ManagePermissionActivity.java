@@ -144,7 +144,7 @@ public class ManagePermissionActivity extends BaseAppCompatActivity {
                     frc = new FileResConfig(numProj);
                     loadAndSortData();
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Отмена", null)
                 .show();
     }
 

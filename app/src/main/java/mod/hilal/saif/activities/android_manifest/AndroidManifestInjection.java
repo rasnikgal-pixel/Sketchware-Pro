@@ -111,7 +111,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
             intent.putExtra("type", "application");
             startActivity(intent);
         }), true);
-        basicCategoryView.addLibraryItem(createOption("Permissions", "Add custom Permissions to the app", R.drawable.ic_mtrl_shield_check, v -> {
+        basicCategoryView.addLibraryItem(createOption("Разрешения", "Добавить свои разрешения приложению", R.drawable.ic_mtrl_shield_check, v -> {
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), AndroidManifestInjectionDetails.class);
             intent.putExtra("sc_id", sc_id);

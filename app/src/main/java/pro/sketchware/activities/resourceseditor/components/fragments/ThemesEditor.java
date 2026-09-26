@@ -194,7 +194,7 @@ public class ThemesEditor extends Fragment {
                     updateNoContentLayout();
                     hasUnsavedChanges = true;
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Отмена", null)
                 .show());
         dialog.setNegativeButton(getString(R.string.cancel), null);
         dialog.setView(binding.getRoot());
@@ -229,7 +229,7 @@ public class ThemesEditor extends Fragment {
                                     attributesAdapter.submitList(new ArrayList<>(attributes.keySet()));
                                     hasUnsavedChanges = true;
                                 })
-                                .setNegativeButton("Cancel", null)
+                                .setNegativeButton("Отмена", null)
                                 .create()
                                 .show();
                     }
@@ -259,7 +259,7 @@ public class ThemesEditor extends Fragment {
             binding.attrValue.setText(theme.getAttribute(attr));
         }
 
-        dialog.setTitle(isEditing ? "Edit attribute " : "Create new attribute");
+        dialog.setTitle(isEditing ? "Изменить атрибут" : "Создать новый атрибут");
 
         dialog.setPositiveButton(Helper.getResString(R.string.common_word_save), (d, which) -> {
             String attribute = Objects.requireNonNull(binding.attrName.getText()).toString();

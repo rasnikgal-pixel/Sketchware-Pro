@@ -569,7 +569,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         tvToolbar.setPadding((int) (dip * 16f), 0, 0, 0);
         tvToolbar.setGravity(Gravity.CENTER_VERTICAL);
         tvToolbar.setTextSize(15f);
-        tvToolbar.setText("Toolbar");
+        tvToolbar.setText("Панель инструментов");
         tvToolbar.setTypeface(null, Typeface.BOLD);
         toolbar.addView(tvToolbar);
         shape.addView(toolbar);

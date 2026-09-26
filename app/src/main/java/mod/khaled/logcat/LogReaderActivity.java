@@ -141,7 +141,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
                     pkgFilterList.clear();
                     dialogBinding.easyEdInput.setText("");
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Отмена", null)
                 .create();
 
         builder.show();

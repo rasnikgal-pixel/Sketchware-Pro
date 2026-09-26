@@ -215,7 +215,7 @@ public class ProjectBuilder {
     }
 
     public String getDxRunningText() {
-        return (isD8Enabled() ? "D8" : "Dx") + " is running...";
+        return (isD8Enabled() ? "D8" : "Dx") + " выполняется...";
     }
 
     /**

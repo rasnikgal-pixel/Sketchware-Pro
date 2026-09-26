@@ -171,7 +171,7 @@ public class EventsManagerFragment extends qA {
                         SketchwareUtil.toastError("Недопустимое имя!");
                     }
                 })
-                .setNegativeButton("Cancel", (di, i) -> di.dismiss()).create();
+                .setNegativeButton("Отмена", (di, i) -> di.dismiss()).create();
         dialog.show();
     }
 
