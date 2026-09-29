@@ -964,7 +964,7 @@ public class ExtraPaletteBlock {
                 logicEditor.a("f", "finishAffinity");
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_INTENT)
                         || extraBlocks.isCustomVarUsed("Intent")) {
-                    logicEditor.a("Intent", getTitleBgColor());
+                    logicEditor.a("Намерения", getTitleBgColor());
                     logicEditor.a(" ", "intentSetAction");
                     logicEditor.a(" ", "intentSetData");
                     logicEditor.a(" ", "intentSetType");
@@ -986,7 +986,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "stopService");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_SHAREDPREF)) {
-                    logicEditor.a("SharedPreferences", getTitleBgColor());
+                    logicEditor.a("Настройки приложения", getTitleBgColor());
                     logicEditor.a("b", "fileContainsData");
                     logicEditor.a("s", "fileGetData");
                     logicEditor.a(" ", "fileSetData");
@@ -1022,7 +1022,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "timerCancel");
                 }
                 if (extraBlocks.isComponentUsed(36)) {
-                    logicEditor.a("AsyncTask", getTitleBgColor());
+                    logicEditor.a("Асинхронные задачи", getTitleBgColor());
                     logicEditor.a(" ", "AsyncTaskExecute");
                     logicEditor.a(" ", "AsyncTaskPublishProgress");
                 }
@@ -1052,14 +1052,14 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "mediaplayerRelease");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_SOUNDPOOL)) {
-                    logicEditor.a("SoundPool", getTitleBgColor());
+                    logicEditor.a("Пул звуков", getTitleBgColor());
                     logicEditor.a(" ", "soundpoolCreate");
                     logicEditor.a("d", "soundpoolLoad");
                     logicEditor.a("d", "soundpoolStreamPlay");
                     logicEditor.a(" ", "soundpoolStreamStop");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_OBJECTANIMATOR)) {
-                    logicEditor.a("ObjectAnimator", getTitleBgColor());
+                    logicEditor.a("Аниматор объектов", getTitleBgColor());
                     logicEditor.a(" ", "objectanimatorSetTarget");
                     logicEditor.a(" ", "objectanimatorSetProperty");
                     logicEditor.a(" ", "objectanimatorSetValue");
@@ -1073,7 +1073,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a("b", "objectanimatorIsRunning");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_FIREBASE)) {
-                    logicEditor.a("Firebase", getTitleBgColor());
+                    logicEditor.a("БД Firebase", getTitleBgColor());
                     logicEditor.a(" ", "firebaseAdd");
                     logicEditor.a(" ", "firebasePush");
                     logicEditor.a("s", "firebaseGetPushKey");
@@ -1083,7 +1083,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "firebaseStopListen");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_FIREBASE_AUTH)) {
-                    logicEditor.a("FirebaseAuth", getTitleBgColor());
+                    logicEditor.a("Аутентификация Firebase", getTitleBgColor());
                     logicEditor.a("b", "firebaseauthIsLoggedIn");
                     logicEditor.a("s", "firebaseauthGetCurrentUser");
                     logicEditor.a("s", "firebaseauthGetUid");
@@ -1099,18 +1099,18 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "gyroscopeStopListen");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_INTERSTITIAL_AD)) {
-                    logicEditor.a("AdMob Interstitial", getTitleBgColor());
+                    logicEditor.a("Межстраничная реклама AdMob", getTitleBgColor());
                     logicEditor.a(" ", "interstitialAdLoad");
                     logicEditor.a(" ", "interstitialAdShow");
                     logicEditor.a("b", "interstitialAdIsLoaded");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_REWARDED_VIDEO_AD)) {
-                    logicEditor.a("RewardedVideoAd", getTitleBgColor());
+                    logicEditor.a("Реклама за вознаграждение", getTitleBgColor());
                     logicEditor.a(" ", "rewardedVideoAdLoad");
                     logicEditor.a(" ", "rewardedVideoAdShow");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_FIREBASE_STORAGE)) {
-                    logicEditor.a("Firebase Storage", getTitleBgColor());
+                    logicEditor.a("Хранилище Firebase", getTitleBgColor());
                     logicEditor.a(" ", "firebasestorageUploadFile");
                     logicEditor.a(" ", "firebasestorageDownloadFile");
                     logicEditor.a(" ", "firebasestorageDelete");
@@ -1147,7 +1147,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "speechToTextShutdown");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_BLUETOOTH_CONNECT)) {
-                    logicEditor.a("Bluetooth", getTitleBgColor());
+                    logicEditor.a("Блютуз", getTitleBgColor());
                     logicEditor.a("b", "bluetoothConnectIsBluetoothEnabled");
                     logicEditor.a("b", "bluetoothConnectIsBluetoothActivated");
                     logicEditor.a("s", "bluetoothConnectGetRandomUuid");
@@ -1186,7 +1186,7 @@ public class ExtraPaletteBlock {
 
             case 8:
                 logicEditor.b("Создать", "blockAdd");
-                logicEditor.b("Import From Collection", "blockImport");
+                logicEditor.b("Импорт из коллекции", "blockImport");
                 if (ConfigActivity.isSettingEnabled(ConfigActivity.SETTING_SHOW_BUILT_IN_BLOCKS)) {
                     logicEditor.a(" ", "customToast");
                     logicEditor.a(" ", "customToastWithIcon");
@@ -1195,7 +1195,7 @@ public class ExtraPaletteBlock {
                 if (ConfigActivity.isSettingEnabled(ConfigActivity.SETTING_SHOW_BUILT_IN_BLOCKS)) {
                     logicEditor.a("Командные блоки", getTitleBgColor());
                     logicEditor.a("c", "CommandBlockJava");
-                    logicEditor.addDeprecatedBlock("Deprecated: Use XML Command Manager", "c", "CommandBlockXML");
+                    logicEditor.addDeprecatedBlock("Устарело: используйте XML Command Manager", "c", "CommandBlockXML");
                     logicEditor.a("Командные блоки разрешений", getTitleBgColor());
                     logicEditor.a(" ", "addPermission");
                     logicEditor.a(" ", "removePermission");
