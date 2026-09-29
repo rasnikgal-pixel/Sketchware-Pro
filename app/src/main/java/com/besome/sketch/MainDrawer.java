@@ -78,6 +78,8 @@ public class MainDrawer extends NavigationView {
                 url = R.string.link_russian_github;
             } else if (id == R.id.social_russian_4pda) {
                 url = R.string.link_russian_4pda;
+            } else if (id == R.id.social_russian_help) {
+                url = R.string.link_russian_help;
             } else if (id == R.id.app_sw_assist) {
                 url = R.string.link_sw_assist;
             }

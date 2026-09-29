@@ -59,6 +59,11 @@
                 android:id="@+id/social_russian_4pda"
                 android:icon="@drawable/ic_sketchware_24"
                 android:title="Локализация RasNikGal (4PDA)" />
+
+            <item
+                android:id="@+id/social_russian_help"
+                android:icon="@drawable/ic_sketchware_24"
+                android:title="Справка RasNikGal" />
         </menu>
     </item>
 
