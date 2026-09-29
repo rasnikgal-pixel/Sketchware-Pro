@@ -2668,7 +2668,7 @@ public class BlocksHandler {
         boolean inOnBindCustomViewEvent = eventName.equals("onBindCustomView");
         boolean inOnFilesPickedEvent = eventName.equals("onFilesPicked");
         if (showAll() || isListNumUsed) {
-            logicEditorActivity.a("List Number", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a("Список чисел", getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("b", "containListInt");
             logicEditorActivity.a("d", "getAtListInt");
             logicEditorActivity.a("d", "indexListInt");
@@ -2682,7 +2682,7 @@ public class BlocksHandler {
             logicEditorActivity.a(" ", "sortListnum");
         }
         if (showAll() || isListStrUsed || inOnFilesPickedEvent) {
-            logicEditorActivity.a("List String", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a("Список строк", getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("b", "containListStr");
             logicEditorActivity.a("d", "indexListStr");
             logicEditorActivity.a("s", "getAtListStr");
@@ -2696,7 +2696,7 @@ public class BlocksHandler {
             logicEditorActivity.a(" ", "sortList");
         }
         if (showAll() || isListMapUsed || inOnBindCustomViewEvent) {
-            logicEditorActivity.a("List Map", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a("Список Map", getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("b", "containListMap");
             logicEditorActivity.a("s", "getAtListMap");
             if (showBuiltIn()) {

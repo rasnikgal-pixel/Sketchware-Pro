@@ -16,8 +16,6 @@
     <string name="link_about_team" translatable="false">https://sketchware-pro.github.io/Sketchware-Pro/about.json</string>
     <string name="link_github_commits_url" formatted="false" translatable="false">https://api.github.com/repos/Sketchware-Pro/Sketchware-Pro/commits?per_page=%s&amp;page=%s</string>
     <string name="link_github_url" translatable="false">https://github.com/Sketchware-Pro/Sketchware-Pro</string>
-
-    <string name="link_russian_github" translatable="false">https://github.com/rasnikgal-pixel/Sketchware-Pro</string>
     <string name="link_russian_4pda" translatable="false">https://4pda.to/forum/index.php?showtopic=1126677</string>
     <string name="link_russian_help" translatable="false">https://rasnikgal-pixel.github.io/sketchware-help/</string>
     <string name="link_sw_assist" translatable="false">https://play.google.com/store/apps/details?id=com.w3wide.swassist</string>

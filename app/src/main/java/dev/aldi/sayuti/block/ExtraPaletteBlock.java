@@ -296,7 +296,7 @@ public class ExtraPaletteBlock {
                 Set<String> toNotAdd = new Ox(new jq(), projectFile).readAttributesToReplace(view);
 
                 if (i == 0) {
-                    logicEditor.a("View", getTitleBgColor());
+                    logicEditor.a("Элементы", getTitleBgColor());
                 }
 
                 if (!view.convert.equals("include")) {
@@ -757,7 +757,7 @@ public class ExtraPaletteBlock {
                 boolean textInputLayoutUsed = isWidgetUsed("TextInputLayout") || extraBlocks.isCustomVarUsed("TextInputLayout");
 
                 if (drawerUsed || fabUsed || bottomNavigationViewUsed || swipeRefreshLayoutUsed || cardViewUsed || tabLayoutUsed || textInputLayoutUsed) {
-                    logicEditor.a("AndroidX components", getTitleBgColor());
+                    logicEditor.a("Компоненты AndroidX", getTitleBgColor());
 
                     if (drawerUsed) {
                         logicEditor.a("b", "isDrawerOpen");
@@ -993,15 +993,15 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "fileRemoveData");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_DATE_PICKER_DIALOG)) {
-                    logicEditor.a("DatePickerDialog", getTitleBgColor());
+                    logicEditor.a("Диалог выбора даты", getTitleBgColor());
                     logicEditor.a(" ", "datePickerDialogShow");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_TIME_PICKER_DIALOG)) {
-                    logicEditor.a("TimePickerDialog", getTitleBgColor());
+                    logicEditor.a("Диалог выбора времени", getTitleBgColor());
                     logicEditor.a(" ", "timePickerDialogShow");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_CALENDAR)) {
-                    logicEditor.a("Calendar", getTitleBgColor());
+                    logicEditor.a("Календарь", getTitleBgColor());
                     logicEditor.a(" ", "calendarGetNow");
                     logicEditor.a(" ", "calendarAdd");
                     logicEditor.a(" ", "calendarSet");
@@ -1011,12 +1011,12 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "calendarSetTime");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_VIBRATOR)) {
-                    logicEditor.a("Vibrator", getTitleBgColor());
+                    logicEditor.a("Вибратор", getTitleBgColor());
                     logicEditor.a(" ", "vibratorAction");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_TIMERTASK)
                         || extraBlocks.isCustomVarUsed("Timer")) {
-                    logicEditor.a("Timer", getTitleBgColor());
+                    logicEditor.a("Таймер", getTitleBgColor());
                     logicEditor.a("c", "timerAfter");
                     logicEditor.a("c", "timerEvery");
                     logicEditor.a(" ", "timerCancel");
@@ -1028,7 +1028,7 @@ public class ExtraPaletteBlock {
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_DIALOG)
                         || extraBlocks.isCustomVarUsed("Dialog")) {
-                    logicEditor.a("Dialog", getTitleBgColor());
+                    logicEditor.a("Диалог", getTitleBgColor());
                     logicEditor.a(" ", "dialogSetTitle");
                     logicEditor.a(" ", "Dialog SetIcon");
                     logicEditor.a(" ", "dialogSetMessage");
@@ -1038,7 +1038,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "dialogShow");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_MEDIAPLAYER)) {
-                    logicEditor.a("MediaPlayer", getTitleBgColor());
+                    logicEditor.a("Медиаплеер", getTitleBgColor());
                     logicEditor.a(" ", "mediaplayerCreate");
                     logicEditor.a(" ", "mediaplayerStart");
                     logicEditor.a(" ", "mediaplayerPause");
@@ -1094,7 +1094,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "firebaseauthSignOutUser");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_GYROSCOPE)) {
-                    logicEditor.a("Gyroscope", getTitleBgColor());
+                    logicEditor.a("Гироскоп", getTitleBgColor());
                     logicEditor.a(" ", "gyroscopeStartListen");
                     logicEditor.a(" ", "gyroscopeStopListen");
                 }
@@ -1116,23 +1116,23 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "firebasestorageDelete");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_CAMERA)) {
-                    logicEditor.a("Camera", getTitleBgColor());
+                    logicEditor.a("Камера", getTitleBgColor());
                     logicEditor.a(" ", "camerastarttakepicture");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_FILE_PICKER)) {
-                    logicEditor.a("FilePicker", getTitleBgColor());
+                    logicEditor.a("Выбор файла", getTitleBgColor());
                     logicEditor.a(" ", "filepickerstartpickfiles");
                     logicEditor.a(" ", "imageCrop");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_REQUEST_NETWORK)) {
-                    logicEditor.a("RequestNetwork", getTitleBgColor());
+                    logicEditor.a("Сетевые запросы", getTitleBgColor());
                     logicEditor.a("b", "isConnected");
                     logicEditor.a(" ", "requestnetworkSetParams");
                     logicEditor.a(" ", "requestnetworkSetHeaders");
                     logicEditor.a(" ", "requestnetworkStartRequestNetwork");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_TEXT_TO_SPEECH)) {
-                    logicEditor.a("TextToSpeech", getTitleBgColor());
+                    logicEditor.a("Синтез речи", getTitleBgColor());
                     logicEditor.a("b", "textToSpeechIsSpeaking");
                     logicEditor.a(" ", "textToSpeechSetPitch");
                     logicEditor.a(" ", "textToSpeechSetSpeechRate");
@@ -1141,7 +1141,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "textToSpeechShutdown");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_SPEECH_TO_TEXT)) {
-                    logicEditor.a("SpeechToText", getTitleBgColor());
+                    logicEditor.a("Распознавание речи", getTitleBgColor());
                     logicEditor.a(" ", "speechToTextStartListening");
                     logicEditor.a(" ", "speechToTextStopListening");
                     logicEditor.a(" ", "speechToTextShutdown");
@@ -1161,7 +1161,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "bluetoothConnectGetPairedDevices");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_LOCATION_MANAGER)) {
-                    logicEditor.a("LocationManager", getTitleBgColor());
+                    logicEditor.a("Геолокация", getTitleBgColor());
                     logicEditor.a(" ", "locationManagerRequestLocationUpdates");
                     logicEditor.a(" ", "locationManagerRemoveUpdates");
                 }
@@ -1169,7 +1169,7 @@ public class ExtraPaletteBlock {
                         || extraBlocks.isCustomVarUsed("ProgressDialog")
                         || eventName.equals("onPreExecute") || eventName.equals("onProgressUpdate")
                         || eventName.equals("onPostExecute")) {
-                    logicEditor.a("ProgressDialog", getTitleBgColor());
+                    logicEditor.a("Диалог прогресса", getTitleBgColor());
                     logicEditor.a(" ", "progressdialogCreate");
                     logicEditor.a(" ", "progressdialogSetTitle");
                     logicEditor.a(" ", "progressdialogSetMessage");
