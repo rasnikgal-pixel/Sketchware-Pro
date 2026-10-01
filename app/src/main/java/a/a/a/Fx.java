@@ -991,6 +991,9 @@ public class Fx {
             case "dialogShow":
                 opcode = String.format("%s.create().show();", params.get(0));
                 break;
+            case "dialogDismiss":
+                opcode = String.format("%s.dismiss();", params.get(0));
+                break;
             case "dialogOkButton":
                 String onClick = (bean.subStack1 >= 0) ? a(String.valueOf(bean.subStack1), "") : "";
 

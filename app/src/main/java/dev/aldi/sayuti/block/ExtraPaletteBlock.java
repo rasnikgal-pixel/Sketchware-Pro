@@ -1036,6 +1036,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a("c", "dialogCancelButton");
                     logicEditor.a("c", "dialogNeutralButton");
                     logicEditor.a(" ", "dialogShow");
+                    logicEditor.a(" ", "dialogDismiss");
                 }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_MEDIAPLAYER)) {
                     logicEditor.a("Медиаплеер", getTitleBgColor());
