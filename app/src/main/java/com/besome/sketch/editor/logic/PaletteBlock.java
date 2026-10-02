@@ -29,6 +29,31 @@ public class PaletteBlock extends LinearLayout {
     private String pendingHeaderTitle = null;
     private int pendingHeaderColor = 0;
     private boolean hasPendingHeader = false;
+    private int currentPaletteId = -1;
+    private static final String PREFS_SCROLL = "palette_scroll_positions";
+
+    public void setCurrentPaletteId(int paletteId) {
+        this.currentPaletteId = paletteId;
+    }
+
+    /** Saves the current scroll position for the active palette. */
+    public void saveScrollPosition() {
+        if (currentPaletteId < 0) return;
+        try {
+            android.content.SharedPreferences prefs = context.getSharedPreferences(PREFS_SCROLL, Context.MODE_PRIVATE);
+            prefs.edit().putInt("palette_" + currentPaletteId, binding.scroll.getScrollY()).apply();
+        } catch (Throwable ignored) {}
+    }
+
+    /** Restores the scroll position for the active palette. Call after blocks have been added. */
+    public void restoreScrollPosition() {
+        if (currentPaletteId < 0) return;
+        try {
+            android.content.SharedPreferences prefs = context.getSharedPreferences(PREFS_SCROLL, Context.MODE_PRIVATE);
+            int y = prefs.getInt("palette_" + currentPaletteId, 0);
+            binding.scroll.post(() -> binding.scroll.scrollTo(0, y));
+        } catch (Throwable ignored) {}
+    }
 
     public void setBlockSearchQuery(String query) {
         this.blockSearchQuery = (query == null) ? "" : query.toLowerCase().trim();
@@ -163,6 +188,7 @@ public class PaletteBlock extends LinearLayout {
     }
 
     public void a() {
+        saveScrollPosition();
         binding.blockBuilder.removeAllViews();
         binding.actionsContainer.removeAllViews();
         clearPendingHeader();

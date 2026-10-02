@@ -673,11 +673,17 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     public void a(int i, int i2) {
         lastPaletteId = i;
         lastPaletteColor = i2;
-        if (m != null) m.setBlockSearchQuery(blockSearchQuery);
+        if (m != null) {
+            m.setBlockSearchQuery(blockSearchQuery);
+            m.setCurrentPaletteId(i);
+        }
         if (blockSearchQuery == null || blockSearchQuery.isEmpty()) {
             extraPaletteBlock.setBlock(i, i2);
         } else {
             extraPaletteBlock.setBlockAll(i2);
+        }
+        if (m != null) {
+            m.postDelayed(m::restoreScrollPosition, 50);
         }
     }
 
