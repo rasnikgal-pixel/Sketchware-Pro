@@ -170,9 +170,19 @@ public class Fx {
                 return param;
             }
         } else if (type == 0) {
-            //the same with type == 1
             if (param.isEmpty()) {
                 return "true";
+            }
+            if ("true".equals(param) || "false".equals(param)) {
+                return param;
+            }
+            // A number may have been placed in a boolean slot; wrap it as
+            // (value != 0) to keep the generated Java compilable.
+            try {
+                Double.parseDouble(param);
+                return "(" + param + " != 0)";
+            } catch (NumberFormatException ignored) {
+                return param;
             }
         }
         return param;
@@ -190,7 +200,8 @@ public class Fx {
         ArrayList<String> params = new ArrayList<>();
         ArrayList<String> paramsTypes = extractParamsTypes(bean.spec);
         for (int i = 0; i < bean.parameters.size(); i++) {
-            String param = getParamValue(bean.parameters.get(i), paramsTypes.get(i));
+            String paramType = i < paramsTypes.size() ? paramsTypes.get(i) : "%s";
+            String param = getParamValue(bean.parameters.get(i), paramType);
             int type = getBlockType(bean, i);
             params.add(a(param, type, bean.opCode));
         }
@@ -252,7 +263,8 @@ public class Fx {
 
                     for (int i = 0; i < params.size(); i++) {
                         if (i > 0) opcode += ", ";
-                        String param = getParamValue(params.get(i), paramsTypes.get(i));
+                        String paramType = i < paramsTypes.size() ? paramsTypes.get(i) : "%s";
+                        String param = getParamValue(params.get(i), paramType);
                         if (param.isEmpty()) {
                             Gx paramInfo = bean.getParamClassInfo().get(i);
                             if (paramInfo.b("boolean")) {
@@ -1439,7 +1451,8 @@ public class Fx {
         ArrayList<String> paramsTypes = extractParamsTypes(blockBean.spec);
 
         for (int i = 0; i < blockBean.parameters.size(); i++) {
-            String parameterValue = getParamValue(blockBean.parameters.get(i), paramsTypes.get(i));
+            String paramType = i < paramsTypes.size() ? paramsTypes.get(i) : "%s";
+            String parameterValue = getParamValue(blockBean.parameters.get(i), paramType);
 
             switch (getBlockType(blockBean, i)) {
                 case 0:
