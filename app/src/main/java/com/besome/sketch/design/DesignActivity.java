@@ -678,10 +678,23 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             finish();
         }
 
-        if (!B) {
+        if (!B && hasAnyUnsavedData()) {
             UnsavedChangesSaver unsavedChangesSaver = new UnsavedChangesSaver(this);
             unsavedChangesSaver.execute();
         }
+    }
+
+    /**
+     * Returns true if there is any unsaved project data in any editor.
+     * Prevents launching UnsavedChangesSaver on empty segments,
+     * which causes ConcurrentModificationException in eC.k() (issue #1812).
+     */
+    private boolean hasAnyUnsavedData() {
+        return jC.c(sc_id).g()
+                || jC.b(sc_id).g()
+                || jC.d(sc_id).q()
+                || jC.a(sc_id).d()
+                || jC.a(sc_id).c();
     }
 
     @Override
