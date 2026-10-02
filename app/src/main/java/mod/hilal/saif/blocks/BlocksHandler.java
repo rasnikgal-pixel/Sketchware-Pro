@@ -492,6 +492,70 @@ public class BlocksHandler {
         hashMap.put("spec", "%m.progressdialog show");
         arrayList.add(hashMap);
 
+        // =============== Dialog blocks ===============
+        hashMap = new HashMap<>();
+        hashMap.put("name", "dialogSetTitle");
+        hashMap.put("type", " ");
+        hashMap.put("code", "%s.setTitle(%s);");
+        hashMap.put("color", "#2CA5E2");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "%m.dialog setTitle %s");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "dialogSetMessage");
+        hashMap.put("type", " ");
+        hashMap.put("code", "%s.setMessage(%s);");
+        hashMap.put("color", "#2CA5E2");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "%m.dialog setMessage %s");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "dialogOkButton");
+        hashMap.put("type", "c");
+        hashMap.put("code", "%s.setPositiveButton(%s, new DialogInterface.OnClickListener() {\n@Override\npublic void onClick(DialogInterface _dialog, int _which) {\n%s\n}\n});");
+        hashMap.put("color", "#2CA5E2");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "%m.dialog OK Button %s Clicked");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "dialogCancelButton");
+        hashMap.put("type", "c");
+        hashMap.put("code", "%s.setNegativeButton(%s, new DialogInterface.OnClickListener() {\n@Override\npublic void onClick(DialogInterface _dialog, int _which) {\n%s\n}\n});");
+        hashMap.put("color", "#2CA5E2");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "%m.dialog Cancel Button %s Clicked");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "dialogNeutralButton");
+        hashMap.put("type", "c");
+        hashMap.put("code", "%s.setNeutralButton(%s, new DialogInterface.OnClickListener() {\n@Override\npublic void onClick(DialogInterface _dialog, int _which) {\n%s\n}\n});");
+        hashMap.put("color", "#2CA5E2");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "%m.dialog Neutral Button %s Clicked");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "dialogShow");
+        hashMap.put("type", " ");
+        hashMap.put("code", "%s.create().show(); _isDialogShowing = true;");
+        hashMap.put("color", "#2CA5E2");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "%m.dialog show");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("name", "dialogDismiss");
+        hashMap.put("type", " ");
+        hashMap.put("code", "%s.dismiss(); _isDialogShowing = false;");
+        hashMap.put("color", "#2CA5E2");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "%m.dialog dismiss");
+        arrayList.add(hashMap);
+
         hashMap = new HashMap<>();
         hashMap.put("name", "startService");
         hashMap.put("type", " ");
