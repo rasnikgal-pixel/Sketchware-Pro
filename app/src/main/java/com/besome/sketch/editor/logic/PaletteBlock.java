@@ -75,10 +75,17 @@ public class PaletteBlock extends LinearLayout {
     }
 
     /** Removes whitespace, dashes, underscores and any non-alphanumeric chars. */
-    /** Adds long-tap handler that toggles this block in/out of Favorites. */
+    /** Adds long-tap handler that toggles this block in/out of Favorites.
+     *  We use OnTouchListener instead of OnLongClickListener because Rs installs
+     *  its own OnLongClickListener for drag & drop and swallows ours. */
     private void attachFavoriteLongTap(View blockView, String title, String type, String name, String typeName) {
         if (name == null || name.isEmpty()) return;
-        blockView.setOnLongClickListener(v -> {
+        final float[] downX = {0};
+        final float[] downY = {0};
+        final boolean[] fired = {false};
+        final android.os.Handler handler = new android.os.Handler(android.os.Looper.getMainLooper());
+        final Runnable showDialog = () -> {
+            fired[0] = true;
             boolean inFav = mod.jbk.util.FavoriteBlocksManager.contains(name);
             String msg = inFav
                     ? "Убрать этот блок из избранного?"
@@ -98,7 +105,26 @@ public class PaletteBlock extends LinearLayout {
                     })
                     .setNegativeButton("Отмена", null)
                     .show();
-            return true;
+        };
+        blockView.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case android.view.MotionEvent.ACTION_DOWN:
+                    downX[0] = event.getX();
+                    downY[0] = event.getY();
+                    fired[0] = false;
+                    handler.postDelayed(showDialog, 700);
+                    return false;
+                case android.view.MotionEvent.ACTION_MOVE:
+                    if (Math.abs(event.getX() - downX[0]) > 10 || Math.abs(event.getY() - downY[0]) > 10) {
+                        handler.removeCallbacks(showDialog);
+                    }
+                    return false;
+                case android.view.MotionEvent.ACTION_UP:
+                case android.view.MotionEvent.ACTION_CANCEL:
+                    handler.removeCallbacks(showDialog);
+                    return fired[0];
+            }
+            return false;
         });
     }
 
