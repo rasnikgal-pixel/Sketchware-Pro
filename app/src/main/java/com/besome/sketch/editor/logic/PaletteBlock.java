@@ -23,6 +23,21 @@ import pro.sketchware.databinding.PaletteBlockBinding;
 public class PaletteBlock extends LinearLayout {
 
     public float f = 0.0F;
+    /** Search filter for block palette (issue #1971). Empty = show all. */
+    public String blockSearchQuery = "";
+
+    public void setBlockSearchQuery(String query) {
+        this.blockSearchQuery = (query == null) ? "" : query.toLowerCase().trim();
+    }
+
+    private boolean matchesSearch(String... fields) {
+        if (blockSearchQuery.isEmpty()) return true;
+        for (String s : fields) {
+            if (s != null && s.toLowerCase().contains(blockSearchQuery)) return true;
+        }
+        return false;
+    }
+
     private PaletteBlockBinding binding;
     private Context context;
 
@@ -43,6 +58,11 @@ public class PaletteBlock extends LinearLayout {
     }
 
     public Ts a(String var1, String var2, String var3) {
+        if (!matchesSearch(var1, var3)) {
+            Rs stub = new Rs(context, -1, var1, var2, var3);
+            stub.setVisibility(GONE);
+            return stub;
+        }
         View view = new View(context);
         view.setLayoutParams(getLayoutParams(8.0F));
         binding.blockBuilder.addView(view);
@@ -54,6 +74,11 @@ public class PaletteBlock extends LinearLayout {
     }
 
     public Ts a(String var1, String var2, String var3, String var4) {
+        if (!matchesSearch(var1, var3, var4)) {
+            Rs stub = new Rs(context, -1, var1, var2, var3, var4);
+            stub.setVisibility(GONE);
+            return stub;
+        }
         View view = new View(context);
         view.setLayoutParams(getLayoutParams(8.0F));
         binding.blockBuilder.addView(view);

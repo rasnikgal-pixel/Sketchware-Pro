@@ -141,6 +141,13 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private final FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
     public ProjectFileBean M;
     public PaletteBlock m;
+
+    private int lastPaletteId = -1;
+    private int lastPaletteColor = 0;
+    private final android.os.Handler searchHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+    private Runnable pendingSearchRunnable;
+    private String blockSearchQuery = "";
+
     public BlockPane o;
     public String scId = "";
     public String id = "";
@@ -664,7 +671,14 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     @Override
     public void a(int i, int i2) {
-        extraPaletteBlock.setBlock(i, i2);
+        lastPaletteId = i;
+        lastPaletteColor = i2;
+        if (m != null) m.setBlockSearchQuery(blockSearchQuery);
+        if (blockSearchQuery == null || blockSearchQuery.isEmpty()) {
+            extraPaletteBlock.setBlock(i, i2);
+        } else {
+            extraPaletteBlock.setBlockAll(i2);
+        }
     }
 
     public void a(int i, String str) {
@@ -1945,6 +1959,38 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         O = findViewById(R.id.right_drawer);
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
         extraPaletteBlock = new ExtraPaletteBlock(this, isViewBindingEnabled);
+
+        // Search field for block palette (issue #1971)
+        android.widget.EditText blockSearchInput = findViewById(R.id.block_search_input);
+        if (blockSearchInput != null) {
+            blockSearchInput.addTextChangedListener(new android.text.TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+                @Override
+                public void afterTextChanged(android.text.Editable s) {
+                    blockSearchQuery = s == null ? "" : s.toString();
+                    if (m != null) m.setBlockSearchQuery(blockSearchQuery);
+                    if (pendingSearchRunnable != null) {
+                        searchHandler.removeCallbacks(pendingSearchRunnable);
+                    }
+                    pendingSearchRunnable = () -> {
+                        if (extraPaletteBlock == null) return;
+                        if (blockSearchQuery.isEmpty()) {
+                            if (lastPaletteId != -1) {
+                                extraPaletteBlock.setBlock(lastPaletteId, lastPaletteColor);
+                            }
+                        } else {
+                            extraPaletteBlock.setBlockAll(lastPaletteColor);
+                        }
+                    };
+                    searchHandler.postDelayed(pendingSearchRunnable, 350);
+                }
+            });
+        }
 
         svgUtils = new SvgUtils(this);
     }

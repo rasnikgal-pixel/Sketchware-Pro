@@ -395,7 +395,18 @@ public class ExtraPaletteBlock {
     public void setBlock(int paletteId, int paletteColor) {
         // Remove previous palette's blocks
         logicEditor.m.a();
+        setBlockInternal(paletteId, paletteColor);
+    }
 
+    /** Fill the palette with blocks from all palettes (used by block search). */
+    public void setBlockAll(int paletteColor) {
+        logicEditor.m.a();
+        for (int i = 0; i <= 8; i++) {
+            setBlockInternal(i, paletteColor);
+        }
+    }
+
+    private void setBlockInternal(int paletteId, int paletteColor) {
         if (eventName.equals("Import")) {
             if (paletteId == 3) {
                 logicEditor.a(" ", "addSourceDirectly");
