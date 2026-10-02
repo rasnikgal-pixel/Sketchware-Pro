@@ -117,3 +117,47 @@
 - **Сообществу 4PDA** за обратную связь и тестирование локализации.
 
 **Автор форка и локализации:** RasNikGal
+
+---
+
+## 📅 Обновление от 2026-10-03
+
+Добавлены новые фичи для удобства работы:
+
+### #1 — Сохранение позиции скролла в палитре блоков
+**Что:** при переключении между категориями палитры позиция скролла сохраняется отдельно для каждой. При возврате — восстанавливается.
+**Файлы:** `PaletteBlock.java`, `LogicEditorActivity.java`
+**PR:** [#19](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/19)
+
+### #4 — Экспорт и импорт настроек приложения
+**Что:** в Настройках появились пункты:
+- **Экспорт настроек** — сохраняет `.sketchware/data/settings.json` в выбранную папку с именем `settings_backup_YYYY-MM-DD_HHmmss.json`.
+- **Импорт настроек** — загружает настройки из JSON-файла и предлагает перезапустить приложение.
+
+**Полезно:** при переустановке APK (из-за смены подписи в #2035) настройки больше не теряются.
+**Файлы:** `ConfigActivity.java`, `preferences_config_activity.xml`
+**PR:** [#19](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/19)
+
+### #6 — Избранные блоки
+**Что:** новая категория **«Избранное»** в самом верху списка палитр (с золотой полоской).
+**Особенности:**
+- Предзаполненный набор популярных блоков: `customToast`, `dialogShow`, `dialogDismiss`, `setVarBoolean`, `setVarInt`, `setVarString`, `mathPi`, `mathRandom`, `getResString`, `fileutilread`, `fileutilwrite`.
+- **Иконка звёздочки ☆** рядом с каждым блоком в палитре — тап добавляет/убирает из избранного.
+- Заполненная звёздочка ★ — блок уже в избранном.
+
+**Файлы:** `FavoriteBlocksManager.java` (новый), `PaletteSelector.java`, `ExtraPaletteBlock.java`, `PaletteBlock.java`
+**PR:** [#19](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/19)
+
+### #7 — Умный поиск блоков
+**Что:** поиск теперь нормализует запросы, игнорируя пробелы, дефисы и подчёркивания.
+- `dialog show` → находит `dialogShow`.
+- `math pi` → находит `mathPi`.
+- `get res string` → находит `getResString`.
+
+**Файлы:** `PaletteBlock.java`
+**PR:** [#19](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/19)
+
+### #1971 (доп.) — Чекбокс «Заголовки при поиске блоков»
+**Что:** новая настройка в Preferences. При поиске заголовки подразделов (Boolean, Number, String и т.д.) скрываются, если под ними нет найденных блоков. Можно отключить — тогда заголовки скрываются полностью.
+**Файлы:** `PaletteBlock.java`, `ConfigActivity.java`, `preferences_config_activity.xml`
+**PR:** [#18](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/18)
