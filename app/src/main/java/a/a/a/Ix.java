@@ -660,6 +660,15 @@ public class Ix {
                 writeBroadcast(applicationTag, receiverName);
             }
         }
+        // Merge manifests from local libraries (issue #1971)
+        try {
+            mod.agus.jcoderz.editor.manage.library.locallibrary.ManageLocalLibrary mllForMerge =
+                    new mod.agus.jcoderz.editor.manage.library.locallibrary.ManageLocalLibrary(c.sc_id);
+            mod.jbk.build.LocalLibraryManifestMerger.merge(a, applicationTag, mllForMerge.getManifestPaths());
+        } catch (Throwable t) {
+            android.util.Log.w("Ix", "Local library manifest merge failed", t);
+        }
+
         a.addChildNode(applicationTag);
         // Needed, as crashing on my SM-A526B with Android 12 / One UI 4.1 / firmware build A526BFXXS1CVD1 otherwise
         //noinspection RegExpRedundantEscape

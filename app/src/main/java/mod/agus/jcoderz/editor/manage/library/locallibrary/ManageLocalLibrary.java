@@ -129,6 +129,19 @@ public class ManageLocalLibrary {
         return extraDexes;
     }
 
+
+    public ArrayList<String> getManifestPaths() {
+        ArrayList<String> manifests = new ArrayList<>();
+        for (int i = 0, listSize = list.size(); i < listSize; i++) {
+            HashMap<String, Object> localLibrary = list.get(i);
+            Object manifestPath = localLibrary.get("manifestPath");
+            if (manifestPath instanceof String && FileUtil.isExistFile((String) manifestPath)) {
+                manifests.add((String) manifestPath);
+            }
+        }
+        return manifests;
+    }
+
     public ArrayList<String> getGenLocalLibrary() {
         ArrayList<String> genPaths = new ArrayList<>();
 
