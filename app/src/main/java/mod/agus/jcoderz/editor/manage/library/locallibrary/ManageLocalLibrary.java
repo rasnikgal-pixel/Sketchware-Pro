@@ -81,6 +81,27 @@ public class ManageLocalLibrary {
             }
         }
 
+        // Issue #1929: include transitive dependency DEX files
+        try {
+            File libsRoot = new File(pro.sketchware.utility.FileUtil.getExternalStorageDir()
+                    + "/.sketchware/libs/local_libs/");
+            if (libsRoot.isDirectory()) {
+                File[] subdirs = libsRoot.listFiles(File::isDirectory);
+                if (subdirs != null) {
+                    java.util.Set<String> alreadyAdded = new java.util.HashSet<>(dexes);
+                    for (File dir : subdirs) {
+                        File classesDex = new File(dir, "classes.dex");
+                        if (classesDex.isFile()) {
+                            String abs = classesDex.getAbsolutePath();
+                            if (alreadyAdded.add(abs)) {
+                                dexes.add(abs);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Throwable ignored) {
+        }
         return dexes;
     }
 
@@ -168,6 +189,30 @@ public class ManageLocalLibrary {
             }
         }
 
+        // Issue #1929: add transitive dependency jars from local_libs/
+        try {
+            File libsRoot = new File(pro.sketchware.utility.FileUtil.getExternalStorageDir()
+                    + "/.sketchware/libs/local_libs/");
+            if (libsRoot.isDirectory()) {
+                File[] subdirs = libsRoot.listFiles(File::isDirectory);
+                if (subdirs != null) {
+                    java.util.Set<String> alreadyAdded = new java.util.HashSet<>();
+                    for (String part : classpath.toString().split(":")) {
+                        if (!part.isEmpty()) alreadyAdded.add(new File(part).getAbsolutePath());
+                    }
+                    for (File dir : subdirs) {
+                        File classesJar = new File(dir, "classes.jar");
+                        if (classesJar.isFile()) {
+                            String abs = classesJar.getAbsolutePath();
+                            if (alreadyAdded.add(abs)) {
+                                classpath.append(":").append(abs);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Throwable ignored) {
+        }
         return classpath.toString();
     }
 

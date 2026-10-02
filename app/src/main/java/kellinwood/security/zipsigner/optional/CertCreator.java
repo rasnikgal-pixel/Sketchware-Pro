@@ -33,7 +33,7 @@ public class CertCreator {
     public static void createKeystoreAndKey( String storePath, char[] password,
                                       String keyName, DistinguishedNameValues distinguishedNameValues)
     {
-        createKeystoreAndKey(storePath, password, "RSA", 2048, keyName, password, "SHA1withRSA", 30,
+        createKeystoreAndKey(storePath, password, "RSA", 2048, keyName, password, "SHA256withRSA", 30,
             distinguishedNameValues);
     }
 

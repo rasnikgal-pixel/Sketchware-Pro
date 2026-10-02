@@ -471,6 +471,11 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 return;
             }
 
+            // защита от гонки: старый таск ещё жив, не стартуем новый
+            if (currentBuildTask != null && !currentBuildTask.isBuildFinished) {
+                return;
+            }
+
             BuildTask buildTask = new BuildTask(this);
             currentBuildTask = buildTask;
             buildTask.execute();
@@ -1278,6 +1283,9 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                         notificationManager.cancel(notificationId);
                         isShowingNotification = false;
                     }
+                    if (activity.currentBuildTask == this) {
+                        activity.currentBuildTask = null;
+                    }
                     updateRunButton(false);
                     activity.updateBottomMenu();
                     activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -1296,7 +1304,9 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             if (activity != null) {
                 activity.runOnUiThread(() -> {
                     activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                    btnRun.setEnabled(false);
+                    btnRun.setEnabled(true);
+                    btnRun.setIcon(ContextCompat.getDrawable(activity, R.drawable.ic_mtrl_run));
+                    btnRun.setText("Отмена...");
                 });
             }
         }
