@@ -89,25 +89,29 @@ public class SettingsAppearanceFragment extends qA {
             unselectSelectedThemeCard();
             setThemeCardsEnabled(!isChecked);
             if (isChecked) {
-                ThemeManager.applyTheme(requireContext(), ThemeManager.THEME_SYSTEM);
+                ThemeManager.setTheme(requireContext(), ThemeManager.THEME_SYSTEM);
+                setupColorThemes(); // redraw: no color theme should be checked
                 return;
             }
             int theme = ThemeManager.getSystemAppliedTheme(requireContext());
-            ThemeManager.applyTheme(requireContext(), theme);
+            ThemeManager.setTheme(requireContext(), theme);
             updateThemeCardSelection(theme);
+            setupColorThemes(); // redraw
         });
 
         binding.themeLight.setOnClickListener(v -> {
             if (!binding.switchSystem.isChecked()) {
                 updateThemeCardSelection(ThemeManager.THEME_LIGHT);
-                ThemeManager.applyTheme(requireContext(), ThemeManager.THEME_LIGHT);
+                ThemeManager.setTheme(requireContext(), ThemeManager.THEME_LIGHT);
+                setupColorThemes(); // redraw: no color theme should be checked
             }
         });
 
         binding.themeDark.setOnClickListener(v -> {
             if (!binding.switchSystem.isChecked()) {
                 updateThemeCardSelection(ThemeManager.THEME_DARK);
-                ThemeManager.applyTheme(requireContext(), ThemeManager.THEME_DARK);
+                ThemeManager.setTheme(requireContext(), ThemeManager.THEME_DARK);
+                setupColorThemes(); // redraw: no color theme should be checked
             }
         });
     }
@@ -193,13 +197,27 @@ public class SettingsAppearanceFragment extends qA {
         card.setOnClickListener(v -> {
             int current = ThemeManager.getCurrentTheme(requireContext());
             if (current == themeId) return; // already selected
+            // sync: color theme selected -> uncheck System toggle and reset Light/Dark cards
+            binding.switchSystem.setChecked(false);
+            unselectSelectedThemeCard();
+            setThemeCardsEnabled(true);
             ThemeManager.setTheme(requireContext(), themeId);
-            radio.setChecked(true);
+            setupColorThemes(); // redraw all color theme cards with new selection
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Тема сохранена")
                     .setMessage("Чтобы применить тему, приложение нужно перезапустить.\n\nПерезапустить сейчас?")
                     .setPositiveButton("Перезапустить", (d, w) -> {
-                        requireActivity().recreate();
+                        android.content.Context ctx = requireContext().getApplicationContext();
+                        android.content.Intent intent = ctx.getPackageManager()
+                                .getLaunchIntentForPackage(ctx.getPackageName());
+                        if (intent != null) {
+                            intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                    | android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            ctx.startActivity(intent);
+                        }
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(0);
                     })
                     .setNegativeButton("Позже", null)
                     .show();

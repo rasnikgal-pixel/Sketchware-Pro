@@ -406,9 +406,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             if (currentTabNumber > 0) {
                 currentTabNumber--;
                 viewPager.setCurrentItem(currentTabNumber);
-            } else if (t.c("P12I2")) {
-                k();
-                saveChangesAndCloseProject();
             } else {
                 showSaveBeforeQuittingDialog();
             }
@@ -1401,9 +1398,10 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     activity.updateBottomMenu();
                     activity.refresh();
                     activity.h();
-                    if (savedInstanceState == null) {
-                        activity.checkForUnsavedProjectData();
-                    }
+                    // The automatic "Restore" dialog is disabled because the jar-provided
+                    // flags (jC.*.g()/q()/d()/c()) stay true even after saving, causing
+                    // the dialog to appear on every project open. Users can still
+                    // restore manually from the bottom menu.
                 });
             }
         }
