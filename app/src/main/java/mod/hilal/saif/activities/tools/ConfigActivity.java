@@ -209,6 +209,76 @@ public class ConfigActivity extends BaseAppCompatActivity {
     }
 
     public static class PreferenceFragment extends PreferenceFragmentCompat {
+
+        private void exportAppSettings() {
+            dev.pranav.filepicker.FilePickerOptions options = new dev.pranav.filepicker.FilePickerOptions();
+            options.setSelectionMode(dev.pranav.filepicker.SelectionMode.BOTH);
+            options.setMultipleSelection(false);
+            options.setTitle("Выберите папку для сохранения");
+            options.setInitialDirectory(FileUtil.getExternalStorageDir());
+
+            dev.pranav.filepicker.FilePickerCallback callback = new dev.pranav.filepicker.FilePickerCallback() {
+                @Override
+                public void onFilesSelected(@org.jetbrains.annotations.NotNull java.util.List<? extends java.io.File> files) {
+                    if (files.isEmpty()) return;
+                    java.io.File selectedDir = files.get(0);
+                    if (!selectedDir.isDirectory()) {
+                        selectedDir = selectedDir.getParentFile();
+                    }
+                    if (selectedDir == null) return;
+                    String ts = new java.text.SimpleDateFormat("yyyy-MM-dd_HHmmss", java.util.Locale.US).format(new java.util.Date());
+                    java.io.File dest = new java.io.File(selectedDir, "settings_backup_" + ts + ".json");
+                    try {
+                        pro.sketchware.utility.FileUtil.copyFile(SETTINGS_FILE.getAbsolutePath(), dest.getAbsolutePath());
+                        android.widget.Toast.makeText(requireContext(), "Настройки сохранены в " + dest.getAbsolutePath(), android.widget.Toast.LENGTH_LONG).show();
+                    } catch (Throwable t) {
+                        android.widget.Toast.makeText(requireContext(), "Ошибка экспорта: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                    }
+                }
+            };
+            new dev.pranav.filepicker.FilePickerDialogFragment(options, callback).show(getChildFragmentManager(), "settings_export");
+        }
+
+        private void importAppSettings() {
+            dev.pranav.filepicker.FilePickerOptions options = new dev.pranav.filepicker.FilePickerOptions();
+            options.setSelectionMode(dev.pranav.filepicker.SelectionMode.BOTH);
+            options.setMultipleSelection(false);
+            options.setTitle("Выберите файл настроек");
+            options.setInitialDirectory(FileUtil.getExternalStorageDir());
+
+            dev.pranav.filepicker.FilePickerCallback callback = new dev.pranav.filepicker.FilePickerCallback() {
+                @Override
+                public void onFilesSelected(@org.jetbrains.annotations.NotNull java.util.List<? extends java.io.File> files) {
+                    if (files.isEmpty()) return;
+                    java.io.File source = files.get(0);
+                    if (source.isDirectory()) {
+                        android.widget.Toast.makeText(requireContext(), "Нужно выбрать файл, а не папку", android.widget.Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    try {
+                        String json = pro.sketchware.utility.FileUtil.readFile(source.getAbsolutePath());
+                        if (json == null || json.trim().isEmpty() || !json.trim().startsWith("{")) {
+                            android.widget.Toast.makeText(requireContext(), "Файл не похож на настройки", android.widget.Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        pro.sketchware.utility.FileUtil.writeFile(SETTINGS_FILE.getAbsolutePath(), json);
+                        new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                                .setTitle("Настройки импортированы")
+                                .setMessage("Чтобы применить все настройки, приложение нужно перезапустить.\n\nПерезапустить сейчас?")
+                                .setPositiveButton("Перезапустить", (d, w) -> {
+                                    android.os.Process.killProcess(android.os.Process.myPid());
+                                    System.exit(0);
+                                })
+                                .setNegativeButton("Позже", null)
+                                .show();
+                    } catch (Throwable t) {
+                        android.widget.Toast.makeText(requireContext(), "Ошибка импорта: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                    }
+                }
+            };
+            new dev.pranav.filepicker.FilePickerDialogFragment(options, callback).show(getChildFragmentManager(), "settings_import");
+        }
+
         private View snackbarView;
         private DataStore dataStore;
 
@@ -246,6 +316,21 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 dialog.show();
                 return true;
             });
+
+            Preference exportPref = findPreference("export-app-settings");
+            if (exportPref != null) {
+                exportPref.setOnPreferenceClickListener(preference -> {
+                    exportAppSettings();
+                    return true;
+                });
+            }
+            Preference importPref = findPreference("import-app-settings");
+            if (importPref != null) {
+                importPref.setOnPreferenceClickListener(preference -> {
+                    importAppSettings();
+                    return true;
+                });
+            }
 
             SwitchPreferenceCompat installWithRoot = findPreference("root-auto-install-projects");
             assert installWithRoot != null;

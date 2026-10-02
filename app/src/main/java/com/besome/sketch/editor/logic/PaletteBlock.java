@@ -29,6 +29,31 @@ public class PaletteBlock extends LinearLayout {
     private String pendingHeaderTitle = null;
     private int pendingHeaderColor = 0;
     private boolean hasPendingHeader = false;
+    private int currentPaletteId = -1;
+    private static final String PREFS_SCROLL = "palette_scroll_positions";
+
+    public void setCurrentPaletteId(int paletteId) {
+        this.currentPaletteId = paletteId;
+    }
+
+    /** Saves the current scroll position for the active palette. */
+    public void saveScrollPosition() {
+        if (currentPaletteId < 0) return;
+        try {
+            android.content.SharedPreferences prefs = context.getSharedPreferences(PREFS_SCROLL, Context.MODE_PRIVATE);
+            prefs.edit().putInt("palette_" + currentPaletteId, binding.scroll.getScrollY()).apply();
+        } catch (Throwable ignored) {}
+    }
+
+    /** Restores the scroll position for the active palette. Call after blocks have been added. */
+    public void restoreScrollPosition() {
+        if (currentPaletteId < 0) return;
+        try {
+            android.content.SharedPreferences prefs = context.getSharedPreferences(PREFS_SCROLL, Context.MODE_PRIVATE);
+            int y = prefs.getInt("palette_" + currentPaletteId, 0);
+            binding.scroll.post(() -> binding.scroll.scrollTo(0, y));
+        } catch (Throwable ignored) {}
+    }
 
     public void setBlockSearchQuery(String query) {
         this.blockSearchQuery = (query == null) ? "" : query.toLowerCase().trim();
@@ -36,10 +61,76 @@ public class PaletteBlock extends LinearLayout {
 
     private boolean matchesSearch(String... fields) {
         if (blockSearchQuery.isEmpty()) return true;
+        String normalizedQuery = normalizeForSearch(blockSearchQuery);
         for (String s : fields) {
-            if (s != null && s.toLowerCase().contains(blockSearchQuery)) return true;
+            if (s == null) continue;
+            String lower = s.toLowerCase();
+            // 1. Прямое вхождение подстроки
+            if (lower.contains(blockSearchQuery)) return true;
+            // 2. Нормализованное сравнение (без пробелов и разделителей):
+            //    'dialog show' -> 'dialogShow', 'math pi' -> 'mathPi'
+            if (!normalizedQuery.isEmpty() && normalizeForSearch(lower).contains(normalizedQuery)) return true;
         }
         return false;
+    }
+
+    /** Removes whitespace, dashes, underscores and any non-alphanumeric chars. */
+    
+    /** Wraps the block view in a horizontal row with a star icon on the left. */
+    private View wrapWithStar(View blockView, String type, String name, String typeName) {
+        LinearLayout row = new LinearLayout(context);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        row.setLayoutParams(rowParams);
+        row.setGravity(android.view.Gravity.CENTER_VERTICAL);
+
+        android.widget.ImageView star = new android.widget.ImageView(context);
+        int starSize = (int) (f * 22.0F);
+        LinearLayout.LayoutParams starParams = new LinearLayout.LayoutParams(starSize, starSize);
+        star.setLayoutParams(starParams);
+        star.setImageResource(
+                mod.jbk.util.FavoriteBlocksManager.contains(name)
+                        ? android.R.drawable.btn_star_big_on
+                        : android.R.drawable.btn_star_big_off);
+        star.setScaleType(android.widget.ImageView.ScaleType.CENTER_INSIDE);
+        star.setAlpha(0.7f);
+        star.setOnClickListener(v -> {
+            boolean inFav = mod.jbk.util.FavoriteBlocksManager.contains(name);
+            boolean newState = !inFav;
+            if (newState) {
+                mod.jbk.util.FavoriteBlocksManager.add(name, type, typeName);
+            } else {
+                mod.jbk.util.FavoriteBlocksManager.remove(name);
+            }
+            star.setImageResource(newState
+                    ? android.R.drawable.btn_star_big_on
+                    : android.R.drawable.btn_star_big_off);
+            android.widget.Toast.makeText(context,
+                    newState ? "Добавлено в избранное" : "Убрано из избранного",
+                    android.widget.Toast.LENGTH_SHORT).show();
+        });
+
+        LinearLayout.LayoutParams blockParams = new LinearLayout.LayoutParams(
+                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+        blockView.setLayoutParams(blockParams);
+
+        row.addView(star);
+        row.addView(blockView);
+        return row;
+    }
+
+    private static String normalizeForSearch(String s) {
+        if (s == null) return "";
+        StringBuilder sb = new StringBuilder(s.length());
+        for (int i = 0; i < s.length(); i++) {
+            char c = Character.toLowerCase(s.charAt(i));
+            if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || (c >= 'а' && c <= 'я') || c == 'ё') {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 
     /** Adds the pending header (if any) to the UI and clears it. */
@@ -122,7 +213,7 @@ public class PaletteBlock extends LinearLayout {
         Rs blockView = new Rs(context, -1, var1, var2, var3);
         blockView.setContentDescription(generateContentDescription(var3));
         blockView.setBlockType(1);
-        binding.blockBuilder.addView(blockView);
+        binding.blockBuilder.addView(wrapWithStar(blockView, var2, var3, null));
         return blockView;
     }
 
@@ -139,7 +230,7 @@ public class PaletteBlock extends LinearLayout {
         Rs blockView = new Rs(context, -1, var1, var2, var3, var4);
         blockView.setContentDescription(generateContentDescription(var4));
         blockView.setBlockType(1);
-        binding.blockBuilder.addView(blockView);
+        binding.blockBuilder.addView(wrapWithStar(blockView, var2, var4, var3));
         return blockView;
     }
 
@@ -163,6 +254,7 @@ public class PaletteBlock extends LinearLayout {
     }
 
     public void a() {
+        saveScrollPosition();
         binding.blockBuilder.removeAllViews();
         binding.actionsContainer.removeAllViews();
         clearPendingHeader();
