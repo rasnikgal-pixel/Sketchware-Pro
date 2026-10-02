@@ -672,7 +672,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         lastPaletteId = i;
         lastPaletteColor = i2;
         if (m != null) m.setBlockSearchQuery(blockSearchQuery);
-        extraPaletteBlock.setBlock(i, i2);
+        if (blockSearchQuery == null || blockSearchQuery.isEmpty()) {
+            extraPaletteBlock.setBlock(i, i2);
+        } else {
+            extraPaletteBlock.setBlockAll(i2);
+        }
     }
 
     public void a(int i, String str) {
@@ -1968,8 +1972,14 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 public void afterTextChanged(android.text.Editable s) {
                     blockSearchQuery = s == null ? "" : s.toString();
                     if (m != null) m.setBlockSearchQuery(blockSearchQuery);
-                    if (lastPaletteId != -1 && extraPaletteBlock != null) {
-                        extraPaletteBlock.setBlock(lastPaletteId, lastPaletteColor);
+                    if (extraPaletteBlock != null) {
+                        if (blockSearchQuery.isEmpty()) {
+                            if (lastPaletteId != -1) {
+                                extraPaletteBlock.setBlock(lastPaletteId, lastPaletteColor);
+                            }
+                        } else {
+                            extraPaletteBlock.setBlockAll(lastPaletteColor);
+                        }
                     }
                 }
             });

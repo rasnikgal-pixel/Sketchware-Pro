@@ -62,8 +62,11 @@
                 style="@style/Widget.SketchwarePro.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/action_button_margin"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 android:hint="Поиск блока"
+                app:boxCollapsedPaddingTop="6dp"
                 app:endIconMode="clear_text"
                 app:startIconDrawable="@drawable/ic_mtrl_search">
 
@@ -73,7 +76,10 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.besome.sketch.editor.logic.PaletteBlock
