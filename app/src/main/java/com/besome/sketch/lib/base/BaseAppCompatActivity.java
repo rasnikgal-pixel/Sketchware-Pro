@@ -109,6 +109,8 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // Apply custom color theme BEFORE super.onCreate (must call setTheme before setContentView)
+        pro.sketchware.utility.theme.ThemeManager.applyCustomTheme(this);
         super.onCreate(savedInstanceState);
         e = getApplicationContext();
         taskList = new ArrayList<>();
