@@ -16,6 +16,11 @@
         app:key="show-every-single-block"
         app:summary="Будет показан каждый доступный блок. Замедлит открытие палитр!"
         app:title="Показывать все блоки палитр" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:key="show-headers-when-searching-blocks"
+        app:summary="При поиске блоков оставлять заголовки подразделов только если под ними есть найденные блоки."
+        app:title="Заголовки при поиске блоков" />
     <Preference
         app:iconSpaceReserved="false"
         app:key="backup-dir"

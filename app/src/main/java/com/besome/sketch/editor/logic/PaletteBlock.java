@@ -26,6 +26,10 @@ public class PaletteBlock extends LinearLayout {
     /** Search filter for block palette (issue #1971). Empty = show all. */
     public String blockSearchQuery = "";
 
+    private String pendingHeaderTitle = null;
+    private int pendingHeaderColor = 0;
+    private boolean hasPendingHeader = false;
+
     public void setBlockSearchQuery(String query) {
         this.blockSearchQuery = (query == null) ? "" : query.toLowerCase().trim();
     }
@@ -36,6 +40,54 @@ public class PaletteBlock extends LinearLayout {
             if (s != null && s.toLowerCase().contains(blockSearchQuery)) return true;
         }
         return false;
+    }
+
+    /** Adds the pending header (if any) to the UI and clears it. */
+    private void flushPendingHeader() {
+        if (!hasPendingHeader) return;
+        hasPendingHeader = false;
+        if (blockSearchQuery.isEmpty()) {
+            // No active filter — add header as usual
+            addHeaderToUi(pendingHeaderTitle, pendingHeaderColor);
+        } else {
+            // Search active — only add if the setting allows it
+            try {
+                boolean showHeaders = mod.hilal.saif.activities.tools.ConfigActivity
+                        .isSettingEnabled(mod.hilal.saif.activities.tools.ConfigActivity.SETTING_SHOW_HEADERS_WHEN_SEARCHING_BLOCKS);
+                if (showHeaders) {
+                    addHeaderToUi(pendingHeaderTitle, pendingHeaderColor);
+                }
+            } catch (Throwable ignored) {
+                // If setting not available yet, fall back to showing headers
+                addHeaderToUi(pendingHeaderTitle, pendingHeaderColor);
+            }
+        }
+        pendingHeaderTitle = null;
+    }
+
+    private void clearPendingHeader() {
+        hasPendingHeader = false;
+        pendingHeaderTitle = null;
+    }
+
+    /** Actual implementation of "add a section header to the UI" (extracted from a(String,int)). */
+    private void addHeaderToUi(String title, int color) {
+        var cardView = new MaterialCardView(context);
+        var params = getLayoutParams(18.0F);
+        params.topMargin = (int) (f * 16.0F);
+        cardView.setLayoutParams(params);
+        cardView.setCardBackgroundColor(color);
+        cardView.setRadius(f * 8f);
+
+        TextView textView = new TextView(context);
+        textView.setText(title);
+        textView.setTextColor(getColor(context, isDarkThemeEnabled(context) ? R.attr.colorOnSurface : R.attr.colorOnSurfaceInverse));
+        textView.setTextSize(10.0F);
+        textView.setGravity(Gravity.CENTER | Gravity.LEFT);
+        textView.setPadding((int) (f * 12.0F), 0, (int) (f * 12.0F), 0);
+        cardView.addView(textView);
+
+        binding.blockBuilder.addView(cardView);
     }
 
     private PaletteBlockBinding binding;
@@ -63,6 +115,7 @@ public class PaletteBlock extends LinearLayout {
             stub.setVisibility(GONE);
             return stub;
         }
+        flushPendingHeader();
         View view = new View(context);
         view.setLayoutParams(getLayoutParams(8.0F));
         binding.blockBuilder.addView(view);
@@ -79,6 +132,7 @@ public class PaletteBlock extends LinearLayout {
             stub.setVisibility(GONE);
             return stub;
         }
+        flushPendingHeader();
         View view = new View(context);
         view.setLayoutParams(getLayoutParams(8.0F));
         binding.blockBuilder.addView(view);
@@ -111,25 +165,19 @@ public class PaletteBlock extends LinearLayout {
     public void a() {
         binding.blockBuilder.removeAllViews();
         binding.actionsContainer.removeAllViews();
+        clearPendingHeader();
     }
 
     public void a(String title, int color) {
-        var cardView = new MaterialCardView(context);
-        var params = getLayoutParams(18.0F);
-        params.topMargin = (int) (f * 16.0F);
-        cardView.setLayoutParams(params);
-        cardView.setCardBackgroundColor(color);
-        cardView.setRadius(f * 8f);
-
-        TextView textView = new TextView(context);
-        textView.setText(title);
-        textView.setTextColor(getColor(context, isDarkThemeEnabled(context) ? R.attr.colorOnSurface : R.attr.colorOnSurfaceInverse));
-        textView.setTextSize(10.0F);
-        textView.setGravity(Gravity.CENTER | Gravity.LEFT);
-        textView.setPadding((int) (f * 12.0F), 0, (int) (f * 12.0F), 0);
-        cardView.addView(textView);
-
-        binding.blockBuilder.addView(cardView);
+        if (blockSearchQuery != null && !blockSearchQuery.isEmpty()) {
+            // Search active — defer header. It will be added only if a matching block follows.
+            pendingHeaderTitle = title;
+            pendingHeaderColor = color;
+            hasPendingHeader = true;
+            return;
+        }
+        // No active search — add header immediately
+        addHeaderToUi(title, color);
     }
 
     public void addDeprecatedBlock(String message, String type, String opCode) {
