@@ -2115,7 +2115,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         new MoreblockImporter(this, scId, M).importMoreblock(moreBlockCollectionBean, () -> a(8, 0xff8a55d7));
     }
 
-    @Override
     private long lastBlockCheckTime = 0;
     private String lastBlockIssueHash = "";
 
@@ -2171,6 +2170,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         } catch (Throwable ignored) {}
     }
 
+    @Override
     public boolean onTouch(View v, MotionEvent event) {
         int actionMasked = event.getActionMasked();
         if (event.getPointerId(event.getActionIndex()) > 0) {
