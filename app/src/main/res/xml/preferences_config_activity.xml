@@ -51,4 +51,16 @@
         app:key="backup-filename"
         app:summary="По умолчанию — &quot;$projectName v$versionName ($pkgName, $versionCode) $time(yyyy-MM-dd'T'HHmmss)&quot;"
         app:title="Формат имени файла резервной копии" />
+    <PreferenceCategory app:title="Резервное копирование настроек">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="export-app-settings"
+            app:summary="Сохранить все настройки приложения в JSON-файл"
+            app:title="Экспорт настроек" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="import-app-settings"
+            app:summary="Загрузить настройки приложения из JSON-файла"
+            app:title="Импорт настроек" />
+    </PreferenceCategory>
 </PreferenceScreen>
