@@ -372,7 +372,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                                 }
                             }
                         } else {
-                            String sharedErrorMessage = "Failed to install package, result code: " + result.getCode() + ". ";
+                            String sharedErrorMessage = "Не удалось установить пакет, код ошибки: " + result.getCode() + ". ";
                             SketchwareUtil.toastError(sharedErrorMessage + "Logs are available in /Internal storage/.sketchware/debug.txt", Toast.LENGTH_LONG);
                             LogUtil.e("DesignActivity", sharedErrorMessage + "stdout: " + stdout + ", stderr: " + stderr);
                         }
@@ -1125,7 +1125,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     }
                 }
 
-                onProgress("Generating source code...", 2);
+                onProgress("Генерация исходного кода...", 2);
                 kC kC = jC.d(sc_id);
                 kC.b(q.resDirectoryPath + File.separator + "drawable-xhdpi");
                 kC = jC.d(sc_id);
@@ -1149,7 +1149,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     return;
                 }
 
-                onProgress("Extracting built-in libraries...", 3);
+                onProgress("Распаковка встроенных библиотек...", 3);
                 BuiltInLibraries.extractCompileAssets(this);
                 if (canceled) {
                     return;
@@ -1161,7 +1161,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     return;
                 }
 
-                onProgress("Generating view binding...", 11);
+                onProgress("Генерация ViewBinding...", 11);
                 builder.generateViewBinding();
                 if (canceled) {
                     return;
@@ -1196,19 +1196,19 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     return;
                 }
 
-                onProgress("Merging DEX files...", 18);
+                onProgress("Объединение DEX-файлов...", 18);
                 builder.getDexFilesReady();
                 if (canceled) {
                     return;
                 }
 
-                onProgress("Building APK...", 19);
+                onProgress("Сборка APK...", 19);
                 builder.buildApk();
                 if (canceled) {
                     return;
                 }
 
-                onProgress("Signing APK...", 20);
+                onProgress("Подпись APK...", 20);
                 builder.signDebugApk();
                 if (canceled) {
                     return;
@@ -1295,7 +1295,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
         public void cancelBuild() {
             canceled = true;
-            onProgress("Canceling build...", -1);
+            onProgress("Отмена сборки...", -1);
             if (isShowingNotification) {
                 notificationManager.cancel(notificationId);
                 isShowingNotification = false;
