@@ -33,7 +33,7 @@ public class KeySet {
     // signature block template
     byte[] sigBlockTemplate = null;
 
-    String signatureAlgorithm = "SHA1withRSA";
+    String signatureAlgorithm = "SHA256withRSA";
     
     public KeySet() {
     }
@@ -92,7 +92,7 @@ public class KeySet {
     }
 
     public void setSignatureAlgorithm(String signatureAlgorithm) {
-        if (signatureAlgorithm == null) signatureAlgorithm = "SHA1withRSA";
+        if (signatureAlgorithm == null) signatureAlgorithm = "SHA256withRSA";
         else this.signatureAlgorithm = signatureAlgorithm;
     }
 }

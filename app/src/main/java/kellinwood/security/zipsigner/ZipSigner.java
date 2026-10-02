@@ -593,7 +593,7 @@ public class ZipSigner
         throws ClassNotFoundException, IllegalAccessException, InstantiationException,
         IOException, GeneralSecurityException
     {
-        signZip( keystoreURL, keystoreType, keystorePw.toCharArray(), certAlias, certPw.toCharArray(), "SHA1withRSA", inputZipFilename, outputZipFilename);
+        signZip( keystoreURL, keystoreType, keystorePw.toCharArray(), certAlias, certPw.toCharArray(), "SHA256withRSA", inputZipFilename, outputZipFilename);
     }
 
     public void signZip( URL keystoreURL, 
