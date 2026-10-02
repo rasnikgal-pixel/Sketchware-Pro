@@ -283,7 +283,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
     }
 
     private void handleEditModeInitialization() {
-        nameValidator = new YB(getApplicationContext(), binding.tiName, uq.b, new ArrayList<>(), projectFileBean.fileName);
+        nameValidator = new YB(getApplicationContext(), binding.tiName, getExtendedReservedNames(), new ArrayList<>(), projectFileBean.fileName);
         binding.edName.setText(projectFileBean.fileName);
         binding.edName.setEnabled(false);
         binding.edName.setBackgroundResource(R.color.transparent);
@@ -306,7 +306,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
     private void handleCreateModeInitialization() {
         featureToolbar = true;
         featureStatusBar = true;
-        nameValidator = new YB(getApplicationContext(), binding.tiName, uq.b, screenNames);
+        nameValidator = new YB(getApplicationContext(), binding.tiName, getExtendedReservedNames(), screenNames);
     }
 
 
@@ -333,6 +333,23 @@ public class AddViewActivity extends BaseAppCompatActivity {
         AutoTransition autoTransition = new AutoTransition();
         autoTransition.setDuration(200);
         TransitionManager.beginDelayedTransition(linearLayout, autoTransition);
+    }
+
+
+    /**
+     * Reserved names that would conflict with Android framework classes
+     * when ViewBinding is enabled (issue #1917). For example, a layout
+     * named "notification" generates a NotificationBinding class that
+     * clashes with android.app.Notification and breaks compilation.
+     */
+    private static String[] getExtendedReservedNames() {
+        String[] extra = {"notification", "activity", "fragment", "item",
+                "menu", "dialog", "android", "content", "toolbar", "layout"};
+        String[] base = uq.b;
+        String[] result = new String[base.length + extra.length];
+        System.arraycopy(base, 0, result, 0, base.length);
+        System.arraycopy(extra, 0, result, base.length, extra.length);
+        return result;
     }
 
     private void setManifestViewState(boolean vis) {
