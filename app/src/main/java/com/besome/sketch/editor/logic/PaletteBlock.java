@@ -75,57 +75,50 @@ public class PaletteBlock extends LinearLayout {
     }
 
     /** Removes whitespace, dashes, underscores and any non-alphanumeric chars. */
-    /** Adds long-tap handler that toggles this block in/out of Favorites.
-     *  We use OnTouchListener instead of OnLongClickListener because Rs installs
-     *  its own OnLongClickListener for drag & drop and swallows ours. */
-    private void attachFavoriteLongTap(View blockView, String title, String type, String name, String typeName) {
-        if (name == null || name.isEmpty()) return;
-        final float[] downX = {0};
-        final float[] downY = {0};
-        final boolean[] fired = {false};
-        final android.os.Handler handler = new android.os.Handler(android.os.Looper.getMainLooper());
-        final Runnable showDialog = () -> {
-            fired[0] = true;
+    
+    /** Wraps the block view in a horizontal row with a star icon on the left. */
+    private View wrapWithStar(View blockView, String type, String name, String typeName) {
+        LinearLayout row = new LinearLayout(context);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        row.setLayoutParams(rowParams);
+        row.setGravity(android.view.Gravity.CENTER_VERTICAL);
+
+        android.widget.ImageView star = new android.widget.ImageView(context);
+        int starSize = (int) (f * 22.0F);
+        LinearLayout.LayoutParams starParams = new LinearLayout.LayoutParams(starSize, starSize);
+        star.setLayoutParams(starParams);
+        star.setImageResource(
+                mod.jbk.util.FavoriteBlocksManager.contains(name)
+                        ? android.R.drawable.btn_star_big_on
+                        : android.R.drawable.btn_star_big_off);
+        star.setScaleType(android.widget.ImageView.ScaleType.CENTER_INSIDE);
+        star.setAlpha(0.7f);
+        star.setOnClickListener(v -> {
             boolean inFav = mod.jbk.util.FavoriteBlocksManager.contains(name);
-            String msg = inFav
-                    ? "Убрать этот блок из избранного?"
-                    : "Добавить этот блок в избранное?";
-            new com.google.android.material.dialog.MaterialAlertDialogBuilder(context)
-                    .setTitle("Избранное")
-                    .setMessage(msg + "\n\nБлок: " + name)
-                    .setPositiveButton(inFav ? "Убрать" : "Добавить", (d, w) -> {
-                        if (inFav) {
-                            mod.jbk.util.FavoriteBlocksManager.remove(name);
-                        } else {
-                            mod.jbk.util.FavoriteBlocksManager.add(name, type, typeName);
-                        }
-                        android.widget.Toast.makeText(context,
-                                inFav ? "Убрано из избранного" : "Добавлено в избранное",
-                                android.widget.Toast.LENGTH_SHORT).show();
-                    })
-                    .setNegativeButton("Отмена", null)
-                    .show();
-        };
-        blockView.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case android.view.MotionEvent.ACTION_DOWN:
-                    downX[0] = event.getX();
-                    downY[0] = event.getY();
-                    fired[0] = false;
-                    handler.postDelayed(showDialog, 700);
-                    return false;
-                case android.view.MotionEvent.ACTION_MOVE:
-                    if (Math.abs(event.getX() - downX[0]) > 10 || Math.abs(event.getY() - downY[0]) > 10) {
-                        handler.removeCallbacks(showDialog);
-                    }
-                    return false;
-                case android.view.MotionEvent.ACTION_UP:
-                case android.view.MotionEvent.ACTION_CANCEL:
-                    handler.removeCallbacks(showDialog);
-                    return fired[0];
+            boolean newState = !inFav;
+            if (newState) {
+                mod.jbk.util.FavoriteBlocksManager.add(name, type, typeName);
+            } else {
+                mod.jbk.util.FavoriteBlocksManager.remove(name);
             }
-            return false;
+            star.setImageResource(newState
+                    ? android.R.drawable.btn_star_big_on
+                    : android.R.drawable.btn_star_big_off);
+            android.widget.Toast.makeText(context,
+                    newState ? "Добавлено в избранное" : "Убрано из избранного",
+                    android.widget.Toast.LENGTH_SHORT).show();
         });
+
+        LinearLayout.LayoutParams blockParams = new LinearLayout.LayoutParams(
+                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+        blockView.setLayoutParams(blockParams);
+
+        row.addView(star);
+        row.addView(blockView);
+        return row;
     }
 
     private static String normalizeForSearch(String s) {
@@ -220,8 +213,7 @@ public class PaletteBlock extends LinearLayout {
         Rs blockView = new Rs(context, -1, var1, var2, var3);
         blockView.setContentDescription(generateContentDescription(var3));
         blockView.setBlockType(1);
-        attachFavoriteLongTap(blockView, var1, var2, var3, null);
-        binding.blockBuilder.addView(blockView);
+        binding.blockBuilder.addView(wrapWithStar(blockView, var2, var3, null));
         return blockView;
     }
 
@@ -238,8 +230,7 @@ public class PaletteBlock extends LinearLayout {
         Rs blockView = new Rs(context, -1, var1, var2, var3, var4);
         blockView.setContentDescription(generateContentDescription(var4));
         blockView.setBlockType(1);
-        attachFavoriteLongTap(blockView, var1, var2, var4, var3);
-        binding.blockBuilder.addView(blockView);
+        binding.blockBuilder.addView(wrapWithStar(blockView, var2, var4, var3));
         return blockView;
     }
 
