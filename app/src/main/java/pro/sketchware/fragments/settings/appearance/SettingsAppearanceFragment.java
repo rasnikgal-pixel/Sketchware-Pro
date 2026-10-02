@@ -139,12 +139,15 @@ public class SettingsAppearanceFragment extends qA {
     }
 
     private void setThemeCardsEnabled(boolean enabled) {
-        binding.themeLight.setEnabled(enabled);
-        binding.themeDark.setEnabled(enabled);
-
-        float alpha = enabled ? 1.0f : 0.5f;
-        binding.themeLight.animate().alpha(alpha).start();
-        binding.themeDark.animate().alpha(alpha).start();
+        // Light/Dark cards stay always clickable — the user may override the System toggle.
+        binding.themeLight.setEnabled(true);
+        binding.themeDark.setEnabled(true);
+        binding.themeLight.setClickable(true);
+        binding.themeDark.setClickable(true);
+        binding.themeLight.setFocusable(true);
+        binding.themeDark.setFocusable(true);
+        binding.themeLight.animate().alpha(1.0f).start();
+        binding.themeDark.animate().alpha(1.0f).start();
     }
 
     private void setupColorThemes() {
@@ -153,6 +156,7 @@ public class SettingsAppearanceFragment extends qA {
         container.removeAllViews();
 
         int currentTheme = ThemeManager.getCurrentTheme(requireContext());
+        boolean colorThemesEnabled = !binding.switchSystem.isChecked();
         int[] ids = {
                 ThemeManager.THEME_PURPLE_DARK,
                 ThemeManager.THEME_BLACK,
@@ -171,11 +175,11 @@ public class SettingsAppearanceFragment extends qA {
         for (int i = 0; i < ids.length; i++) {
             int themeId = ids[i];
             int previewColor = previewColors[i];
-            container.addView(createThemeCard(themeId, previewColor, themeId == currentTheme));
+            container.addView(createThemeCard(themeId, previewColor, themeId == currentTheme, colorThemesEnabled));
         }
     }
 
-    private android.view.View createThemeCard(int themeId, int previewColor, boolean selected) {
+    private android.view.View createThemeCard(int themeId, int previewColor, boolean selected, boolean enabled) {
         android.view.View card = getLayoutInflater().inflate(
                 pro.sketchware.R.layout.item_color_theme, binding.colorThemesContainer, false);
 
@@ -186,6 +190,11 @@ public class SettingsAppearanceFragment extends qA {
 
         nameView.setText(ThemeManager.getThemeName(themeId));
         radio.setChecked(selected);
+        card.setEnabled(enabled);
+        card.setClickable(enabled);
+        card.setFocusable(enabled);
+        card.setAlpha(enabled ? 1.0f : 0.5f);
+        radio.setEnabled(enabled);
 
         // Set preview circle color
         android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
