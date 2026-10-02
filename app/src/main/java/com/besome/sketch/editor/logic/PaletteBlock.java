@@ -84,7 +84,7 @@ public class PaletteBlock extends LinearLayout {
                     ? "Убрать этот блок из избранного?"
                     : "Добавить этот блок в избранное?";
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(context)
-                    .setTitle("⭐ Избранное")
+                    .setTitle("Избранное")
                     .setMessage(msg + "\n\nБлок: " + name)
                     .setPositiveButton(inFav ? "Убрать" : "Добавить", (d, w) -> {
                         if (inFav) {

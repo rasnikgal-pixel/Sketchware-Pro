@@ -1226,7 +1226,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a("⭐ Пока нет избранных блоков.\n\nЗажмите любой блок в палитре,\nчтобы добавить его сюда.", getTitleBgColor());
                     return;
                 }
-                logicEditor.a("⭐ Избранное", getTitleBgColor());
+                logicEditor.a("Избранное", getTitleBgColor());
                 for (java.util.Map<String, String> entry : favorites) {
                     String fType = entry.get("type");
                     String fName = entry.get("name");
