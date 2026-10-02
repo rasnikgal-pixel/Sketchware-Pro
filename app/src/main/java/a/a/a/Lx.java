@@ -268,6 +268,9 @@ public class Lx {
             case "onBackPressed" -> "@Override\r\n" +
                     "public void onBackPressed() {\r\n"
                     + eventLogic + "\r\n" +
+                    "if (!_isDialogShowing) {\r\n" +
+                    "    super.onBackPressed();\r\n" +
+                    "}\r\n" +
                     "}";
             case "onPostCreate" -> "@Override\r\n" +
                     "protected void onPostCreate(Bundle _savedInstanceState) {\r\n" +
