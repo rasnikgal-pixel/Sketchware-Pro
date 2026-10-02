@@ -144,6 +144,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     private int lastPaletteId = -1;
     private int lastPaletteColor = 0;
+
+    private static final String PALETTE_PREFS_PER_PROJECT = "palette_state_per_project";
+    private static final String KEY_LAST_PALETTE_ID_SUFFIX = "_last_palette_id";
     private final android.os.Handler searchHandler = new android.os.Handler(android.os.Looper.getMainLooper());
     private Runnable pendingSearchRunnable;
     private String blockSearchQuery = "";
@@ -673,6 +676,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     public void a(int i, int i2) {
         lastPaletteId = i;
         lastPaletteColor = i2;
+        // Remember this palette for this project
+        if (scId != null && !scId.isEmpty()) {
+            getSharedPreferences(PALETTE_PREFS_PER_PROJECT, MODE_PRIVATE).edit()
+                    .putInt(scId + KEY_LAST_PALETTE_ID_SUFFIX, i).apply();
+        }
         if (m != null) {
             m.setBlockSearchQuery(blockSearchQuery);
             m.setCurrentPaletteId(i);
@@ -1965,6 +1973,17 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         O = findViewById(R.id.right_drawer);
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
         extraPaletteBlock = new ExtraPaletteBlock(this, isViewBindingEnabled);
+        // Pass project id to PaletteBlock so it can store per-project scroll positions
+        if (m != null) {
+            m.setScId(scId);
+        }
+        // Restore the last opened palette for this project
+        if (scId != null && !scId.isEmpty() && paletteSelector != null) {
+            int savedPalette = getSharedPreferences(PALETTE_PREFS_PER_PROJECT, MODE_PRIVATE)
+                    .getInt(scId + KEY_LAST_PALETTE_ID_SUFFIX, 0);
+            final int paletteToRestore = savedPalette;
+            paletteSelector.post(() -> paletteSelector.selectPaletteById(paletteToRestore));
+        }
 
         // Search field for block palette (issue #1971)
         android.widget.EditText blockSearchInput = findViewById(R.id.block_search_input);
