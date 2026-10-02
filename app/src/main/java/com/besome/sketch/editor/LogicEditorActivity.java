@@ -2116,6 +2116,61 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     }
 
     @Override
+    private long lastBlockCheckTime = 0;
+    private String lastBlockIssueHash = "";
+
+    /**
+     * Checks the current event's blocks for logic issues (duplicates, etc.)
+     * and shows a warning dialog if any are found. Called after every drop.
+     * Respects the "Проверка логики блоков" toggle in app settings.
+     */
+    private void checkBlocksAfterChange() {
+        try {
+            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK)) {
+                return;
+            }
+            long now = System.currentTimeMillis();
+            if (now - lastBlockCheckTime < 500) return;
+            lastBlockCheckTime = now;
+
+            if (o == null) return;
+            java.util.List<com.besome.sketch.beans.BlockBean> blocks;
+            try {
+                blocks = o.getBlocks();
+            } catch (Throwable t) {
+                return;
+            }
+            if (blocks == null || blocks.isEmpty()) return;
+
+            java.util.List<String> issues = mod.jbk.util.BlockLogicChecker.check(blocks);
+            if (issues.isEmpty()) {
+                lastBlockIssueHash = "";
+                return;
+            }
+
+            String hash = issues.toString();
+            if (hash.equals(lastBlockIssueHash)) return;
+            lastBlockIssueHash = hash;
+
+            try {
+                mod.jbk.util.BlockLogicJournal.record(scId, id, issues);
+            } catch (Throwable ignored) {}
+
+            StringBuilder msg = new StringBuilder("В событии \"").append(id)
+                    .append("\" обнаружены проблемы:\n\n");
+            for (String s : issues) msg.append("• ").append(s).append("\n");
+            msg.append("\nПродолжить?");
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Проверка логики блоков")
+                    .setMessage(msg.toString())
+                    .setPositiveButton("Продолжить", null)
+                    .setNegativeButton("Понятно", null)
+                    .show();
+        } catch (Throwable ignored) {}
+    }
+
     public boolean onTouch(View v, MotionEvent event) {
         int actionMasked = event.getActionMasked();
         if (event.getPointerId(event.getActionIndex()) > 0) {
@@ -2193,6 +2248,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         a(rs, event.getX(), event.getY());
                     }
                 }
+                checkBlocksAfterChange();
                 return false;
             }
             m.setDragEnabled(true);
@@ -2442,6 +2498,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             dummy.setAllow(false);
             h(false);
             isDragged = false;
+            checkBlocksAfterChange();
             return true;
         } else if (actionMasked == MotionEvent.ACTION_CANCEL) {
             handler.removeCallbacks(longPressed);
