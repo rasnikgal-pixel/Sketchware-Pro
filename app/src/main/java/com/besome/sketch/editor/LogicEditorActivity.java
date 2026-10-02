@@ -1982,7 +1982,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             int savedPalette = getSharedPreferences(PALETTE_PREFS_PER_PROJECT, MODE_PRIVATE)
                     .getInt(scId + KEY_LAST_PALETTE_ID_SUFFIX, 0);
             final int paletteToRestore = savedPalette;
-            paletteSelector.post(() -> paletteSelector.selectPaletteById(paletteToRestore));
+            paletteSelector.post(() -> paletteSelector.performClickPalette(paletteToRestore));
         }
 
         // Search field for block palette (issue #1971)
