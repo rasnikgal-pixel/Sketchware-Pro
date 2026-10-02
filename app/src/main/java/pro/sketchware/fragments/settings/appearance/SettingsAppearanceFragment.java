@@ -32,6 +32,7 @@ public class SettingsAppearanceFragment extends qA {
         setupToolbar();
         initializeThemeSettings();
         setupClickListeners();
+        setupColorThemes();
 
         {
             View view1 = binding.content;
@@ -140,6 +141,71 @@ public class SettingsAppearanceFragment extends qA {
         float alpha = enabled ? 1.0f : 0.5f;
         binding.themeLight.animate().alpha(alpha).start();
         binding.themeDark.animate().alpha(alpha).start();
+    }
+
+    private void setupColorThemes() {
+        android.widget.LinearLayout container = binding.colorThemesContainer;
+        if (container == null) return;
+        container.removeAllViews();
+
+        int currentTheme = ThemeManager.getCurrentTheme(requireContext());
+        int[] ids = {
+                ThemeManager.THEME_PURPLE_DARK,
+                ThemeManager.THEME_BLACK,
+                ThemeManager.THEME_BLUE,
+                ThemeManager.THEME_GREEN,
+                ThemeManager.THEME_GOLD
+        };
+        int[] previewColors = {
+                0xFFc2b0ff, // Purple Dark primary
+                0xFFbbd6ff, // Black primary
+                0xFFa8c8ff, // Blue primary
+                0xFF9bd4b7, // Green primary
+                0xFFebc23c  // Gold primary
+        };
+
+        for (int i = 0; i < ids.length; i++) {
+            int themeId = ids[i];
+            int previewColor = previewColors[i];
+            container.addView(createThemeCard(themeId, previewColor, themeId == currentTheme));
+        }
+    }
+
+    private android.view.View createThemeCard(int themeId, int previewColor, boolean selected) {
+        android.view.View card = getLayoutInflater().inflate(
+                pro.sketchware.R.layout.item_color_theme, binding.colorThemesContainer, false);
+
+        android.view.View preview = card.findViewById(pro.sketchware.R.id.color_preview);
+        android.widget.TextView nameView = card.findViewById(pro.sketchware.R.id.theme_name);
+        com.google.android.material.radiobutton.MaterialRadioButton radio =
+                card.findViewById(pro.sketchware.R.id.theme_radio);
+
+        nameView.setText(ThemeManager.getThemeName(themeId));
+        radio.setChecked(selected);
+
+        // Set preview circle color
+        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+        bg.setShape(android.graphics.drawable.GradientDrawable.OVAL);
+        bg.setColor(previewColor);
+        bg.setStroke((int) (getResources().getDisplayMetrics().density * 1), 0x33FFFFFF);
+        preview.setBackground(bg);
+
+        card.setOnClickListener(v -> {
+            int current = ThemeManager.getCurrentTheme(requireContext());
+            if (current == themeId) return; // already selected
+            ThemeManager.setTheme(requireContext(), themeId);
+            radio.setChecked(true);
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Тема сохранена")
+                    .setMessage("Чтобы применить тему, приложение нужно перезапустить.\n\nПерезапустить сейчас?")
+                    .setPositiveButton("Перезапустить", (d, w) -> {
+                        requireActivity().recreate();
+                    })
+                    .setNegativeButton("Позже", null)
+                    .show();
+        });
+
+        return card;
     }
 
     @Override
