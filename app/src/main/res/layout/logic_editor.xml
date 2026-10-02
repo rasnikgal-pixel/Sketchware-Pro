@@ -59,27 +59,21 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/block_search_layout"
-                style="@style/Widget.SketchwarePro.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:hint="Поиск блока"
-                app:boxCollapsedPaddingTop="6dp"
-                app:endIconMode="clear_text"
-                app:startIconDrawable="@drawable/ic_mtrl_search">
+                android:layout_marginBottom="4dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/block_search_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Поиск блока"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
-                    android:maxLines="1"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
-                    android:textSize="14sp" />
+                    android:singleLine="true"
+                    android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.besome.sketch.editor.logic.PaletteBlock

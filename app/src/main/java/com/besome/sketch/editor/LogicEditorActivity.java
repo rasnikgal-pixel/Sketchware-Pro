@@ -144,6 +144,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     private int lastPaletteId = -1;
     private int lastPaletteColor = 0;
+    private final android.os.Handler searchHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+    private Runnable pendingSearchRunnable;
     private String blockSearchQuery = "";
 
     public BlockPane o;
@@ -1972,7 +1974,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 public void afterTextChanged(android.text.Editable s) {
                     blockSearchQuery = s == null ? "" : s.toString();
                     if (m != null) m.setBlockSearchQuery(blockSearchQuery);
-                    if (extraPaletteBlock != null) {
+                    if (pendingSearchRunnable != null) {
+                        searchHandler.removeCallbacks(pendingSearchRunnable);
+                    }
+                    pendingSearchRunnable = () -> {
+                        if (extraPaletteBlock == null) return;
                         if (blockSearchQuery.isEmpty()) {
                             if (lastPaletteId != -1) {
                                 extraPaletteBlock.setBlock(lastPaletteId, lastPaletteColor);
@@ -1980,7 +1986,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         } else {
                             extraPaletteBlock.setBlockAll(lastPaletteColor);
                         }
-                    }
+                    };
+                    searchHandler.postDelayed(pendingSearchRunnable, 350);
                 }
             });
         }
