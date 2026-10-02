@@ -989,10 +989,10 @@ public class Fx {
                 opcode = String.format("%s.setMessage(%s);", params.get(0), params.get(1));
                 break;
             case "dialogShow":
-                opcode = String.format("%s.create().show(); _isDialogShowing = true;", params.get(0));
+                opcode = String.format("_alertDialog = %s.create(); _alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() { public void onDismiss(DialogInterface _d) { _isDialogShowing = false; } }); _alertDialog.show(); _isDialogShowing = true;", params.get(0));
                 break;
             case "dialogDismiss":
-                opcode = String.format("%s.dismiss(); _isDialogShowing = false;", params.get(0));
+                opcode = String.format("if (_alertDialog != null) _alertDialog.dismiss();");
                 break;
             case "dialogOkButton":
                 String onClick = (bean.subStack1 >= 0) ? a(String.valueOf(bean.subStack1), "") : "";

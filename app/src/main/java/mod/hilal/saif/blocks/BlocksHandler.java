@@ -541,7 +541,7 @@ public class BlocksHandler {
         hashMap = new HashMap<>();
         hashMap.put("name", "dialogShow");
         hashMap.put("type", " ");
-        hashMap.put("code", "%s.create().show(); _isDialogShowing = true;");
+        hashMap.put("code", "_alertDialog = %s.create(); _alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() { public void onDismiss(DialogInterface _d) { _isDialogShowing = false; } }); _alertDialog.show(); _isDialogShowing = true;");
         hashMap.put("color", "#2CA5E2");
         hashMap.put("palette", "-1");
         hashMap.put("spec", "%m.dialog show");
@@ -550,7 +550,7 @@ public class BlocksHandler {
         hashMap = new HashMap<>();
         hashMap.put("name", "dialogDismiss");
         hashMap.put("type", " ");
-        hashMap.put("code", "%s.dismiss(); _isDialogShowing = false;");
+        hashMap.put("code", "if (_alertDialog != null) _alertDialog.dismiss();");
         hashMap.put("color", "#2CA5E2");
         hashMap.put("palette", "-1");
         hashMap.put("spec", "%m.dialog dismiss");

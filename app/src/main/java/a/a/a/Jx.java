@@ -744,6 +744,7 @@ public class Jx {
         }
 
         fields.add("private boolean _isDialogShowing = false;");
+        fields.add("private AlertDialog _alertDialog;");
 
         if (buildConfig.g) {
             if (projectFileBean.hasActivityOption(ProjectFileBean.OPTION_ACTIVITY_TOOLBAR) && !projectFileBean.fileName.contains("_fragment")) {
