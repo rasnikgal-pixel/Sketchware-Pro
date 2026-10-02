@@ -61,10 +61,57 @@ public class PaletteBlock extends LinearLayout {
 
     private boolean matchesSearch(String... fields) {
         if (blockSearchQuery.isEmpty()) return true;
+        String normalizedQuery = normalizeForSearch(blockSearchQuery);
         for (String s : fields) {
-            if (s != null && s.toLowerCase().contains(blockSearchQuery)) return true;
+            if (s == null) continue;
+            String lower = s.toLowerCase();
+            // 1. Прямое вхождение подстроки
+            if (lower.contains(blockSearchQuery)) return true;
+            // 2. Нормализованное сравнение (без пробелов и разделителей):
+            //    'dialog show' -> 'dialogShow', 'math pi' -> 'mathPi'
+            if (!normalizedQuery.isEmpty() && normalizeForSearch(lower).contains(normalizedQuery)) return true;
         }
         return false;
+    }
+
+    /** Removes whitespace, dashes, underscores and any non-alphanumeric chars. */
+    /** Adds long-tap handler that toggles this block in/out of Favorites. */
+    private void attachFavoriteLongTap(View blockView, String title, String type, String name, String typeName) {
+        if (name == null || name.isEmpty()) return;
+        blockView.setOnLongClickListener(v -> {
+            boolean inFav = mod.jbk.util.FavoriteBlocksManager.contains(name);
+            String msg = inFav
+                    ? "Убрать этот блок из избранного?"
+                    : "Добавить этот блок в избранное?";
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(context)
+                    .setTitle("⭐ Избранное")
+                    .setMessage(msg + "\n\nБлок: " + name)
+                    .setPositiveButton(inFav ? "Убрать" : "Добавить", (d, w) -> {
+                        if (inFav) {
+                            mod.jbk.util.FavoriteBlocksManager.remove(name);
+                        } else {
+                            mod.jbk.util.FavoriteBlocksManager.add(name, type, typeName);
+                        }
+                        android.widget.Toast.makeText(context,
+                                inFav ? "Убрано из избранного" : "Добавлено в избранное",
+                                android.widget.Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Отмена", null)
+                    .show();
+            return true;
+        });
+    }
+
+    private static String normalizeForSearch(String s) {
+        if (s == null) return "";
+        StringBuilder sb = new StringBuilder(s.length());
+        for (int i = 0; i < s.length(); i++) {
+            char c = Character.toLowerCase(s.charAt(i));
+            if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || (c >= 'а' && c <= 'я') || c == 'ё') {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 
     /** Adds the pending header (if any) to the UI and clears it. */
@@ -147,6 +194,7 @@ public class PaletteBlock extends LinearLayout {
         Rs blockView = new Rs(context, -1, var1, var2, var3);
         blockView.setContentDescription(generateContentDescription(var3));
         blockView.setBlockType(1);
+        attachFavoriteLongTap(blockView, var1, var2, var3, null);
         binding.blockBuilder.addView(blockView);
         return blockView;
     }
@@ -164,6 +212,7 @@ public class PaletteBlock extends LinearLayout {
         Rs blockView = new Rs(context, -1, var1, var2, var3, var4);
         blockView.setContentDescription(generateContentDescription(var4));
         blockView.setBlockType(1);
+        attachFavoriteLongTap(blockView, var1, var2, var4, var3);
         binding.blockBuilder.addView(blockView);
         return blockView;
     }

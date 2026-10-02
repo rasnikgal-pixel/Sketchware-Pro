@@ -1218,6 +1218,29 @@ public class ExtraPaletteBlock {
                 }
                 return;
 
+            case 100:
+                // Favorites
+                java.util.List<java.util.Map<String, String>> favorites =
+                        mod.jbk.util.FavoriteBlocksManager.getAll();
+                if (favorites.isEmpty()) {
+                    logicEditor.a("⭐ Пока нет избранных блоков.\n\nЗажмите любой блок в палитре,\nчтобы добавить его сюда.", getTitleBgColor());
+                    return;
+                }
+                logicEditor.a("⭐ Избранное", getTitleBgColor());
+                for (java.util.Map<String, String> entry : favorites) {
+                    String fType = entry.get("type");
+                    String fName = entry.get("name");
+                    String fTypeName = entry.get("typeName");
+                    if (fType == null) fType = " ";
+                    if (fName == null || fName.isEmpty()) continue;
+                    if (fTypeName != null && !fTypeName.isEmpty()) {
+                        logicEditor.a("", fType, fTypeName, fName);
+                    } else {
+                        logicEditor.a(fType, fName);
+                    }
+                }
+                return;
+
             default:
                 int paletteIndex = -1, paletteBlocks = 0;
                 ArrayList<HashMap<String, Object>> extraBlockData = ExtraBlockFile.getExtraBlockData();

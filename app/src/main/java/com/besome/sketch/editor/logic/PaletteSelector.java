@@ -29,6 +29,7 @@ public class PaletteSelector extends RecyclerView {
     private final Context context;
 
     private final String[] MainCategoriesNames = {
+            "⭐ Избранное",
             Helper.getResString(R.string.block_category_var),
             Helper.getResString(R.string.block_category_list),
             Helper.getResString(R.string.block_category_control),
@@ -42,6 +43,7 @@ public class PaletteSelector extends RecyclerView {
     };
 
     private final int[] MainCategoriesColors = {
+            0xffd4af37,
             0xffee7d16, 0xffcc5b22, 0xffe1a92a,
             0xff5cb722, 0xff23b9a9, 0xffa1887f,
             0xff4a6cd4, 0xff2ca5e2, 0xff7c83db,
@@ -49,6 +51,7 @@ public class PaletteSelector extends RecyclerView {
     };
 
     private final int[] MainCategoriesIds = {
+            mod.jbk.util.FavoriteBlocksManager.FAVORITE_PALETTE_ID,
             0, 1, 2, 3, 4, 5, 6, 7, -1, 8
     };
 
