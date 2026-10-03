@@ -163,6 +163,29 @@ public final class BlockTemplatesManager {
             }
         }
 
+        // Automatic chaining: link top-level sibling blocks via nextBlock
+        // (do not touch subStack1/subStack2 — they were set above).
+        {
+            Integer prevId = null;
+            for (Object item : blockDefs) {
+                if (!(item instanceof java.util.Map)) continue;
+                Integer id = idMap.get(item);
+                if (id == null) continue;
+                if (prevId != null) {
+                    for (com.besome.sketch.beans.BlockBean b : allBeans) {
+                        try {
+                            if (b.id != null && Integer.parseInt(b.id) == prevId) {
+                                b.nextBlock = id;
+                                break;
+                            }
+                        } catch (Throwable ignored) {}
+                    }
+                }
+                prevId = id;
+            }
+        }
+
+
         result.addAll(allBeans);
         return result;
     }
