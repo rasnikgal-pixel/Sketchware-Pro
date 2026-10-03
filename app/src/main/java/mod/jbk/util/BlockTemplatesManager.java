@@ -85,116 +85,35 @@ public final class BlockTemplatesManager {
     }
 
     private static void seedDefaults() {
-        String json = """{
-  "templates": [
-    {
-      "id": "dialog_ok",
-      "name": "📦 Диалог OK",
-      "description": "Простой диалог с одной кнопкой OK. Требует компонент Dialog с именем DlgExt.",
-      "blocks": [
-        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Заголовок\\\""]},
-        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Сообщение\\\""]},
-        {"type":"c","opCode":"dialogOkButton","spec":"%m.dialog OK Button %s Clicked","parameters":["DlgExt","\\\"OK\\\""]},
-        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
-      ]
-    },
-    {
-      "id": "dialog_confirm",
-      "name": "📦 Диалог подтверждения",
-      "description": "Диалог с кнопками OK и Cancel. Требует DlgExt.",
-      "blocks": [
-        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Подтверждение\\\""]},
-        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Вы уверены?\\\""]},
-        {"type":"c","opCode":"dialogOkButton","spec":"%m.dialog OK Button %s Clicked","parameters":["DlgExt","\\\"Да\\\""]},
-        {"type":"c","opCode":"dialogCancelButton","spec":"%m.dialog Cancel Button %s Clicked","parameters":["DlgExt","\\\"Отмена\\\""]},
-        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
-      ]
-    },
-    {
-      "id": "dialog_3buttons",
-      "name": "📦 Диалог с 3 кнопками",
-      "description": "Диалог с OK, Cancel и Neutral. Требует DlgExt.",
-      "blocks": [
-        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Выбор\\\""]},
-        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Выберите действие\\\""]},
-        {"type":"c","opCode":"dialogOkButton","spec":"%m.dialog OK Button %s Clicked","parameters":["DlgExt","\\\"Да\\\""]},
-        {"type":"c","opCode":"dialogCancelButton","spec":"%m.dialog Cancel Button %s Clicked","parameters":["DlgExt","\\\"Отмена\\\""]},
-        {"type":"c","opCode":"dialogNeutralButton","spec":"%m.dialog Neutral Button %s Clicked","parameters":["DlgExt","\\\"Позже\\\""]},
-        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
-      ]
-    },
-    {
-      "id": "dialog_dismiss",
-      "name": "📦 Диалог с dismiss",
-      "description": "Простой диалог с закрытием. Требует DlgExt.",
-      "blocks": [
-        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Внимание\\\""]},
-        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Сообщение\\\""]},
-        {"type":" ","opCode":"dialogDismiss","spec":"%m.dialog dismiss","parameters":["DlgExt"]},
-        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
-      ]
-    },
-    {
-      "id": "dialog_exit_app",
-      "name": "📦 Диалог выхода из приложения",
-      "description": "Подтверждение выхода. Да — завершить приложение, Остаться — закрыть диалог. Требует DlgExt.",
-      "blocks": [
-        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Выход\\\""]},
-        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Вы уверены, что хотите выйти?\\\""]},
-        {"type":"c","opCode":"dialogOkButton","spec":"%m.dialog OK Button %s Clicked","parameters":["DlgExt","\\\"Да, выйти\\\""],"subStack1":{"type":"f","opCode":"finishActivity","spec":"Finish Activity","parameters":[]}},
-        {"type":"c","opCode":"dialogCancelButton","spec":"%m.dialog Cancel Button %s Clicked","parameters":["DlgExt","\\\"Остаться\\\""],"subStack1":{"type":" ","opCode":"dialogDismiss","spec":"%m.dialog dismiss","parameters":["DlgExt"]}},
-        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
-      ]
-    },
-    {
-      "id": "progressdialog_simple",
-      "name": "📦 Прогресс-диалог",
-      "description": "Create + setTitle + setMessage + show. Требует компонент ProgressDialog с именем PDlg.",
-      "blocks": [
-        {"type":" ","opCode":"progressdialogCreate","spec":"%m.progressdialog Create in %m.activity","parameters":["PDlg","MainActivity.this"]},
-        {"type":" ","opCode":"progressdialogSetTitle","spec":"%m.progressdialog setTitle %s","parameters":["PDlg","\\\"Загрузка\\\""]},
-        {"type":" ","opCode":"progressdialogSetMessage","spec":"%m.progressdialog setMessage %s","parameters":["PDlg","\\\"Пожалуйста, подождите...\\\""]},
-        {"type":" ","opCode":"progressdialogShow","spec":"%m.progressdialog show","parameters":["PDlg"]}
-      ]
-    },
-    {
-      "id": "progressdialog_dismiss",
-      "name": "📦 Закрыть прогресс-диалог",
-      "description": "Dismiss прогресс-диалога. Требует PDlg.",
-      "blocks": [
-        {"type":" ","opCode":"progressdialogDismiss","spec":"%m.progressdialog dismiss","parameters":["PDlg"]}
-      ]
-    },
-    {
-      "id": "finish_activity",
-      "name": "📦 Завершить Activity",
-      "description": "Завершает текущую Activity (finish).",
-      "blocks": [
-        {"type":"f","opCode":"finishActivity","spec":"Finish Activity","parameters":[]}
-      ]
-    },
-    {
-      "id": "finish_affinity",
-      "name": "📦 Завершить приложение",
-      "description": "Полное завершение приложения (finishAffinity).",
-      "blocks": [
-        {"type":"f","opCode":"finishAffinity","spec":"Finish Affinity","parameters":[]}
-      ]
-    },
-    {
-      "id": "custom_toast",
-      "name": "📦 Всплывающее сообщение (Toast)",
-      "description": "Показывает Toast-сообщение.",
-      "blocks": [
-        {"type":" ","opCode":"customToast","spec":"CustomToast %s textColor %m.color textSize %d bgColor %m.color cornerRadius %d gravity %m.gravity_t","parameters":["\\\"Сообщение\\\"","\\\"#FFFFFF\\\"","14","\\\"#000000\\\"","8","BOTTOM"]}
-      ]
-    }
-  ]
-}""";
+        // Read the default template JSON from assets/block_templates.json
+        // This avoids messy escaping inside a Java string.
         try {
-            FileUtil.writeFile(FILE_PATH, json);
+            android.content.Context ctx = getAppContext();
+            if (ctx != null) {
+                java.io.InputStream is = ctx.getAssets().open("block_templates.json");
+                java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+                byte[] buf = new byte[8192];
+                int n;
+                while ((n = is.read(buf)) > 0) {
+                    baos.write(buf, 0, n);
+                }
+                is.close();
+                String json = baos.toString("UTF-8");
+                FileUtil.writeFile(FILE_PATH, json);
+                return;
+            }
+        } catch (Throwable ignored) {}
+
+        // Fallback: empty template list
+        try {
+            FileUtil.writeFile(FILE_PATH, "{\"templates\":[]}");
         } catch (Throwable ignored) {}
     }
+
+    /** Returns an application Context if one is available, otherwise null. */
+    private static android.content.Context cachedContext;
+    public static void setContext(android.content.Context c) { cachedContext = c; }
+    private static android.content.Context getAppContext() { return cachedContext; }
 
     /** Converts a template's "blocks" array to ArrayList<BlockBean> with chained nextBlock. */
     public static java.util.ArrayList<com.besome.sketch.beans.BlockBean> toBlockBeans(

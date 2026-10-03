@@ -1972,6 +1972,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         logicTopMenu = findViewById(R.id.top_menu);
         O = findViewById(R.id.right_drawer);
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
+        mod.jbk.util.BlockTemplatesManager.setContext(getApplicationContext());
         extraPaletteBlock = new ExtraPaletteBlock(this, isViewBindingEnabled);
         // Pass project id to PaletteBlock so it can store per-project scroll positions
         if (m != null) {
