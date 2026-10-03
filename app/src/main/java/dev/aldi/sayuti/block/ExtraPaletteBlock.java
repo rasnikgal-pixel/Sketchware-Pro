@@ -1241,6 +1241,27 @@ public class ExtraPaletteBlock {
                 }
                 return;
 
+            case 200:
+                // Block templates (ready-made chains)
+                java.util.List<java.util.Map<String, Object>> templates =
+                        mod.jbk.util.BlockTemplatesManager.getAll();
+                if (templates.isEmpty()) {
+                    logicEditor.a("Сборки пусты.\n\nДобавьте шаблоны в файл:\n/sdcard/.sketchware/block_templates.json", getTitleBgColor());
+                    return;
+                }
+                logicEditor.a("Сборки", getTitleBgColor());
+                for (java.util.Map<String, Object> tpl : templates) {
+                    Object tid = tpl.get("id");
+                    Object tname = tpl.get("name");
+                    Object tdesc = tpl.get("description");
+                    if (!(tid instanceof String) || !(tname instanceof String)) continue;
+                    String opCode = mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid;
+                    // Show as a single collapsed block. Description goes to typeName (bottom row).
+                    String typeName = (tdesc instanceof String) ? (String) tdesc : "";
+                    logicEditor.a(" ", " ", typeName, opCode);
+                }
+                return;
+
             default:
                 int paletteIndex = -1, paletteBlocks = 0;
                 ArrayList<HashMap<String, Object>> extraBlockData = ExtraBlockFile.getExtraBlockData();

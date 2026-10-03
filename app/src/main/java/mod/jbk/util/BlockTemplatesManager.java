@@ -1,0 +1,109 @@
+package mod.jbk.util;
+
+import android.content.Context;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import pro.sketchware.utility.FileUtil;
+
+/**
+ * Manages block templates (ready-made block chains) stored in
+ * /sdcard/.sketchware/block_templates.json
+ *
+ * Each template:
+ *   id          — unique string (used as opCode suffix: "template_" + id)
+ *   name        — display name in the palette
+ *   description — optional description
+ *   blocks      — array of blocks to insert, each:
+ *                  type        — "s", "d", "b", " ", "c", ...
+ *                  opCode      — the real opCode of the block
+ *                  parameters  — array of String parameters (may be empty)
+ *                  typeName    — optional type name for 4-arg blocks
+ */
+public final class BlockTemplatesManager {
+
+    public static final int TEMPLATES_PALETTE_ID = 200;
+    public static final int TEMPLATES_PALETTE_COLOR = 0xff7e57c2; // deep purple
+    public static final String TEMPLATE_OPCODE_PREFIX = "template_";
+
+    private static final String FILE_PATH = FileUtil.getExternalStorageDir()
+            + "/.sketchware/block_templates.json";
+
+    private BlockTemplatesManager() {}
+
+    /** Returns all templates (seeds defaults on first run). */
+    public static List<Map<String, Object>> getAll() {
+        if (!FileUtil.isExistFile(FILE_PATH)) {
+            seedDefaults();
+        }
+        try {
+            String json = FileUtil.readFile(FILE_PATH);
+            if (json == null || json.trim().isEmpty()) return new ArrayList<>();
+
+            // JSON structure: {"templates":[...]}
+            Map<String, Object> root = new Gson().fromJson(json,
+                    new TypeToken<Map<String, Object>>() {}.getType());
+            if (root == null) return new ArrayList<>();
+
+            Object templatesObj = root.get("templates");
+            if (!(templatesObj instanceof List)) return new ArrayList<>();
+
+            List<Map<String, Object>> result = new ArrayList<>();
+            for (Object item : (List<?>) templatesObj) {
+                if (item instanceof Map) {
+                    @SuppressWarnings("unchecked")
+                    Map<String, Object> m = (Map<String, Object>) item;
+                    result.add(m);
+                }
+            }
+            return result;
+        } catch (Throwable t) {
+            return new ArrayList<>();
+        }
+    }
+
+    /** Finds a template by id. Returns null if not found. */
+    public static Map<String, Object> getById(String id) {
+        if (id == null) return null;
+        for (Map<String, Object> t : getAll()) {
+            Object tid = t.get("id");
+            if (id.equals(tid)) return t;
+        }
+        return null;
+    }
+
+    /** Extracts the template id from an opCode like "template_dialog_exit" → "dialog_exit". */
+    public static String extractIdFromOpCode(String opCode) {
+        if (opCode == null || !opCode.startsWith(TEMPLATE_OPCODE_PREFIX)) return null;
+        return opCode.substring(TEMPLATE_OPCODE_PREFIX.length());
+    }
+
+    private static void seedDefaults() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
+        sb.append("  \"templates\": [\n");
+        sb.append("    {\n");
+        sb.append("      \"id\": \"dialog_exit\",\n");
+        sb.append("      \"name\": \"📦 Диалог выхода из приложения\",\n");
+        sb.append("      \"description\": \"Готовый диалог подтверждения выхода с OK и Cancel\",\n");
+        sb.append("      \"blocks\": [\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetTitle\",\"parameters\":[\"\\\"Выход\\\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetMessage\",\"parameters\":[\"\\\"Вы уверены, что хотите выйти?\\\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogOkButton\",\"parameters\":[\"\\\"Выйти\\\"\",\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogCancelButton\",\"parameters\":[\"\\\"Остаться\\\"\",\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogShow\",\"parameters\":[\"DlgExt\"]}\n");
+        sb.append("      ]\n");
+        sb.append("    }\n");
+        sb.append("  ]\n");
+        sb.append("}\n");
+        try {
+            FileUtil.writeFile(FILE_PATH, sb.toString());
+        } catch (Throwable ignored) {}
+    }
+}
