@@ -2280,16 +2280,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
             java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
 
-            // Determine the root bean (On back button press = first in the list)
-            com.besome.sketch.beans.BlockBean prevBean = null;
-            try {
-                java.util.List<com.besome.sketch.beans.BlockBean> existing = o.getBlocks();
-                if (existing != null && !existing.isEmpty()) {
-                    prevBean = existing.get(0).clone();
-                }
-            } catch (Throwable ignored) {}
-
+            java.util.List<a.a.a.Rs> addedRs = new java.util.ArrayList<>();
             int created = 0;
+
             for (Object obj : blockDefs) {
                 if (!(obj instanceof java.util.Map)) continue;
                 java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) obj;
@@ -2314,26 +2307,49 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         }
                     }
 
-                    // Add via the same path used for normal drops
                     a.a.a.Rs added = a(rs, baseX, y, false);
-
-                    // Register in history with prevBean for chaining
-                    try {
-                        bC.d(scId).a(s(),
-                                added.getBean().clone(),
-                                baseX - oLoc[0],
-                                y - oLoc[1],
-                                prevBean,
-                                null);
-                    } catch (Throwable ignored) {}
-
-                    prevBean = added.getBean().clone();
+                    if (added != null) {
+                        addedRs.add(added);
+                        try {
+                            android.util.Log.d("BlockTemplates",
+                                    "added id=" + added.getBean().id
+                                            + " opCode=" + added.getBean().opCode
+                                            + " nextBlock=" + added.getBean().nextBlock);
+                        } catch (Throwable ignored) {}
+                    }
                     y += 60;
                     created++;
                 } catch (Throwable inner) {
                     android.util.Log.e("BlockTemplates", "Failed to create block " + opCode, inner);
                 }
             }
+
+            // Chain blocks via nextBlock
+            for (int i = 0; i < addedRs.size() - 1; i++) {
+                try {
+                    com.besome.sketch.beans.BlockBean curr = addedRs.get(i).getBean();
+                    com.besome.sketch.beans.BlockBean next = addedRs.get(i + 1).getBean();
+                    if (curr.id != null && next.id != null) {
+                        curr.nextBlock = Integer.parseInt(next.id);
+                    }
+                } catch (Throwable ignored) {}
+            }
+
+            // Attach first block to root (onBackPressed)
+            try {
+                java.util.List<com.besome.sketch.beans.BlockBean> allBlocks = o.getBlocks();
+                com.besome.sketch.beans.BlockBean root = null;
+                for (com.besome.sketch.beans.BlockBean b : allBlocks) {
+                    if ("onBackPressed".equals(b.opCode)) { root = b; break; }
+                }
+                if (root == null && !allBlocks.isEmpty()) root = allBlocks.get(0);
+                if (root != null && !addedRs.isEmpty()) {
+                    String firstId = addedRs.get(0).getBean().id;
+                    if (firstId != null) {
+                        root.nextBlock = Integer.parseInt(firstId);
+                    }
+                }
+            } catch (Throwable ignored) {}
 
             try { o.b(); } catch (Throwable ignored) {}
             try { C(); } catch (Throwable ignored) {}
