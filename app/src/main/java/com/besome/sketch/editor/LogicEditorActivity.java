@@ -2210,7 +2210,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         }
     }
 
-    @Override
     private long lastTemplateCheckTime = 0;
 
     /**
@@ -2272,6 +2271,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         return null;
     }
 
+    @Override
     public boolean onTouch(View v, MotionEvent event) {
         int actionMasked = event.getActionMasked();
         if (event.getPointerId(event.getActionIndex()) > 0) {
