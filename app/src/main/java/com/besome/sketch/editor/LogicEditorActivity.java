@@ -2142,32 +2142,72 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
             if (blocks == null || blocks.isEmpty()) return;
 
-            java.util.List<String> issues = mod.jbk.util.BlockLogicChecker.check(blocks);
+            java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues =
+                    mod.jbk.util.BlockLogicChecker.check(blocks);
             if (issues.isEmpty()) {
                 lastBlockIssueHash = "";
                 return;
             }
 
-            String hash = issues.toString();
+            StringBuilder hashBuilder = new StringBuilder();
+            for (mod.jbk.util.BlockLogicChecker.Issue i : issues) hashBuilder.append(i.message).append(";");
+            String hash = hashBuilder.toString();
             if (hash.equals(lastBlockIssueHash)) return;
             lastBlockIssueHash = hash;
 
+            java.util.List<String> messages = new java.util.ArrayList<>();
+            for (mod.jbk.util.BlockLogicChecker.Issue i : issues) messages.add(i.message);
             try {
-                mod.jbk.util.BlockLogicJournal.record(scId, id, issues);
+                mod.jbk.util.BlockLogicJournal.record(scId, id, messages);
             } catch (Throwable ignored) {}
 
             StringBuilder msg = new StringBuilder("В событии \"").append(id)
                     .append("\" обнаружены проблемы:\n\n");
-            for (String s : issues) msg.append("• ").append(s).append("\n");
-            msg.append("\nПродолжить?");
+            for (String s : messages) msg.append("• ").append(s).append("\n");
+            msg.append("\nУдалить лишние блоки?");
 
+            final java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issuesFinal = issues;
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                     .setTitle("Проверка логики блоков")
                     .setMessage(msg.toString())
-                    .setPositiveButton("Продолжить", null)
-                    .setNegativeButton("Понятно", null)
+                    .setPositiveButton("Удалить", (d, w) -> deleteDuplicates(issuesFinal))
+                    .setNegativeButton("Оставить", null)
                     .show();
         } catch (Throwable ignored) {}
+    }
+
+    /**
+     * Deletes duplicate blocks for each issue, keeping the first occurrence.
+     */
+    private void deleteDuplicates(java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues) {
+        try {
+            java.util.List<com.besome.sketch.beans.BlockBean> toDelete = new java.util.ArrayList<>();
+            if (o != null) {
+                java.util.List<com.besome.sketch.beans.BlockBean> all;
+                try { all = o.getBlocks(); } catch (Throwable t) { all = null; }
+                if (all != null) {
+                    for (mod.jbk.util.BlockLogicChecker.Issue issue : issues) {
+                        for (String blockId : issue.duplicateBlockIds) {
+                            for (com.besome.sketch.beans.BlockBean b : all) {
+                                if (b != null && blockId.equals(b.id)) {
+                                    toDelete.add(b);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            for (com.besome.sketch.beans.BlockBean b : toDelete) {
+                try { o.a(b, false); } catch (Throwable ignored) {}
+            }
+            try { o.b(); } catch (Throwable ignored) {}
+            try { C(); } catch (Throwable ignored) {}
+            lastBlockIssueHash = "";
+            android.widget.Toast.makeText(this, "Удалено: " + toDelete.size(), android.widget.Toast.LENGTH_SHORT).show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Ошибка удаления: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
