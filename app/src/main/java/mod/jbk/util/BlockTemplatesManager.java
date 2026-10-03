@@ -106,4 +106,47 @@ public final class BlockTemplatesManager {
             FileUtil.writeFile(FILE_PATH, sb.toString());
         } catch (Throwable ignored) {}
     }
+
+    /** Converts a template's "blocks" array to ArrayList<BlockBean> with chained nextBlock. */
+    public static java.util.ArrayList<com.besome.sketch.beans.BlockBean> toBlockBeans(
+            java.util.Map<String, Object> template) {
+        java.util.ArrayList<com.besome.sketch.beans.BlockBean> result = new java.util.ArrayList<>();
+        if (template == null) return result;
+
+        Object blocksObj = template.get("blocks");
+        if (!(blocksObj instanceof java.util.List)) return result;
+        java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
+
+        long baseId = System.currentTimeMillis();
+        for (int i = 0; i < blockDefs.size(); i++) {
+            Object item = blockDefs.get(i);
+            if (!(item instanceof java.util.Map)) continue;
+            java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) item;
+
+            String type = String.valueOf(bdef.get("type"));
+            String opCode = String.valueOf(bdef.get("opCode"));
+
+            com.besome.sketch.beans.BlockBean bean = new com.besome.sketch.beans.BlockBean();
+            bean.id = String.valueOf(baseId + i);
+            bean.opCode = opCode;
+            bean.type = type;
+            bean.typeName = "";
+            bean.parameters = new java.util.ArrayList<>();
+            Object paramsObj = bdef.get("parameters");
+            if (paramsObj instanceof java.util.List) {
+                for (Object p : (java.util.List<?>) paramsObj) {
+                    bean.parameters.add(String.valueOf(p));
+                }
+            }
+            if (i < blockDefs.size() - 1) {
+                bean.nextBlock = (int) (baseId + i + 1);
+            } else {
+                bean.nextBlock = -1;
+            }
+            bean.subStack1 = -1;
+            bean.subStack2 = -1;
+            result.add(bean);
+        }
+        return result;
+    }
 }

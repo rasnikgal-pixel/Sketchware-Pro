@@ -1255,10 +1255,30 @@ public class ExtraPaletteBlock {
                     Object tname = tpl.get("name");
                     Object tdesc = tpl.get("description");
                     if (!(tid instanceof String) || !(tname instanceof String)) continue;
-                    String opCode = mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid;
-                    // Show as a single collapsed block: name in title, description in typeName.
-                    String typeName = (tdesc instanceof String) ? (String) tdesc : "";
-                    logicEditor.a(tname.toString(), " ", typeName, opCode);
+
+                    try {
+                        java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks =
+                                mod.jbk.util.BlockTemplatesManager.toBlockBeans(tpl);
+                        if (blocks.isEmpty()) continue;
+
+                        com.besome.sketch.beans.BlockBean first = blocks.get(0);
+                        String title = tname.toString();
+
+                        // Build a Us (collection view) from the first block's meta.
+                        a.a.a.Us us = new a.a.a.Us(logicEditor,
+                                first.type == null ? " " : first.type,
+                                first.typeName == null ? "" : first.typeName,
+                                first.opCode == null ? "" : first.opCode,
+                                title, blocks);
+                        us.setTag(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid);
+
+                        // Add via PaletteBlock's helper.
+                        if (logicEditor.m != null) {
+                            logicEditor.m.addTemplateView(us);
+                        }
+                    } catch (Throwable t) {
+                        SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
+                    }
                 }
                 return;
 
