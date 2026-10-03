@@ -2277,6 +2277,12 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
 
             int created = 0;
+            int[] oLoc = new int[2];
+            try { o.getLocationOnScreen(oLoc); } catch (Throwable ignored) {}
+            int baseX = oLoc[0] + 60;
+            int baseY = oLoc[1] + 140;
+            int y = baseY;
+
             for (Object obj : blockDefs) {
                 if (!(obj instanceof java.util.Map)) continue;
                 java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) obj;
@@ -2287,7 +2293,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 String opCode = (String) opCodeObj;
 
                 try {
-                    // Create new Rs block
                     a.a.a.Rs rs = new a.a.a.Rs(this, -1, "", type, opCode);
                     com.besome.sketch.beans.BlockBean bean = rs.getBean();
                     if (bean != null) {
@@ -2301,8 +2306,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                             }
                         }
                     }
-                    // Add to BlockPane
-                    o.a(rs, 0);
+                    o.a(rs, baseX, y, false);
+                    y += 60;
                     created++;
                 } catch (Throwable inner) {
                     android.util.Log.e("BlockTemplates", "Failed to create block " + opCode, inner);
