@@ -2263,10 +2263,14 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private void expandTemplate(com.besome.sketch.beans.BlockBean templateBlock,
                                 java.util.Map<String, Object> tpl) {
         try {
-            // 1. Remove the container template block
+            int[] oLoc = new int[2];
+            try { o.getLocationOnScreen(oLoc); } catch (Throwable ignored) {}
+            int baseX = oLoc[0] + 60;
+            int baseY = oLoc[1] + 140;
+            int y = baseY;
+
             try { o.a(templateBlock, false); } catch (Throwable ignored) {}
 
-            // 2. Read block definitions
             Object blocksObj = tpl.get("blocks");
             if (!(blocksObj instanceof java.util.List)) {
                 android.widget.Toast.makeText(this, "Ошибка: нет списка блоков",
@@ -2276,13 +2280,16 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
             java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
 
-            int created = 0;
-            int[] oLoc = new int[2];
-            try { o.getLocationOnScreen(oLoc); } catch (Throwable ignored) {}
-            int baseX = oLoc[0] + 60;
-            int baseY = oLoc[1] + 140;
-            int y = baseY;
+            // Determine the root bean (On back button press = first in the list)
+            com.besome.sketch.beans.BlockBean prevBean = null;
+            try {
+                java.util.List<com.besome.sketch.beans.BlockBean> existing = o.getBlocks();
+                if (existing != null && !existing.isEmpty()) {
+                    prevBean = existing.get(0).clone();
+                }
+            } catch (Throwable ignored) {}
 
+            int created = 0;
             for (Object obj : blockDefs) {
                 if (!(obj instanceof java.util.Map)) continue;
                 java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) obj;
@@ -2306,7 +2313,21 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                             }
                         }
                     }
-                    o.a(rs, baseX, y, false);
+
+                    // Add via the same path used for normal drops
+                    a.a.a.Rs added = a(rs, baseX, y, false);
+
+                    // Register in history with prevBean for chaining
+                    try {
+                        bC.d(scId).a(s(),
+                                added.getBean().clone(),
+                                baseX - oLoc[0],
+                                y - oLoc[1],
+                                prevBean,
+                                null);
+                    } catch (Throwable ignored) {}
+
+                    prevBean = added.getBean().clone();
                     y += 60;
                     created++;
                 } catch (Throwable inner) {
