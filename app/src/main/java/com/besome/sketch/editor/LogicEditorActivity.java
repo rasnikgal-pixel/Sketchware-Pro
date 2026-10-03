@@ -2251,13 +2251,24 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     .setTitle("Развернуть шаблон?")
                     .setMessage(displayName)
                     .setPositiveButton("Развернуть", (d, w) -> {
-                        android.widget.Toast.makeText(this, "TODO: expand", android.widget.Toast.LENGTH_SHORT).show();
+                        android.widget.Toast.makeText(this, "Разворот — в разработке", android.widget.Toast.LENGTH_SHORT).show();
                     })
                     .setNegativeButton("Оставить как есть", (d, w) -> {
-                        android.widget.Toast.makeText(this, "TODO: leave", android.widget.Toast.LENGTH_SHORT).show();
+                        deleteTemplateBlock(templateBlock);
                     })
                     .show();
         } catch (Throwable ignored) {}
+    }
+
+    private void deleteTemplateBlock(com.besome.sketch.beans.BlockBean templateBlock) {
+        try {
+            o.a(templateBlock, false);
+            try { o.b(); } catch (Throwable ignored) {}
+            try { C(); } catch (Throwable ignored) {}
+            android.widget.Toast.makeText(this, "Шаблон отменён", android.widget.Toast.LENGTH_SHORT).show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+        }
     }
 
     private com.besome.sketch.beans.BlockBean findTemplateBlock(
