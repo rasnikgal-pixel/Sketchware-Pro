@@ -89,25 +89,29 @@ public class SettingsAppearanceFragment extends qA {
             unselectSelectedThemeCard();
             setThemeCardsEnabled(!isChecked);
             if (isChecked) {
-                ThemeManager.applyTheme(requireContext(), ThemeManager.THEME_SYSTEM);
+                ThemeManager.setTheme(requireContext(), ThemeManager.THEME_SYSTEM);
+                setupColorThemes(); // redraw: no color theme should be checked
                 return;
             }
             int theme = ThemeManager.getSystemAppliedTheme(requireContext());
-            ThemeManager.applyTheme(requireContext(), theme);
+            ThemeManager.setTheme(requireContext(), theme);
             updateThemeCardSelection(theme);
+            setupColorThemes(); // redraw
         });
 
         binding.themeLight.setOnClickListener(v -> {
             if (!binding.switchSystem.isChecked()) {
                 updateThemeCardSelection(ThemeManager.THEME_LIGHT);
-                ThemeManager.applyTheme(requireContext(), ThemeManager.THEME_LIGHT);
+                ThemeManager.setTheme(requireContext(), ThemeManager.THEME_LIGHT);
+                setupColorThemes(); // redraw: no color theme should be checked
             }
         });
 
         binding.themeDark.setOnClickListener(v -> {
             if (!binding.switchSystem.isChecked()) {
                 updateThemeCardSelection(ThemeManager.THEME_DARK);
-                ThemeManager.applyTheme(requireContext(), ThemeManager.THEME_DARK);
+                ThemeManager.setTheme(requireContext(), ThemeManager.THEME_DARK);
+                setupColorThemes(); // redraw: no color theme should be checked
             }
         });
     }
@@ -135,12 +139,15 @@ public class SettingsAppearanceFragment extends qA {
     }
 
     private void setThemeCardsEnabled(boolean enabled) {
-        binding.themeLight.setEnabled(enabled);
-        binding.themeDark.setEnabled(enabled);
-
-        float alpha = enabled ? 1.0f : 0.5f;
-        binding.themeLight.animate().alpha(alpha).start();
-        binding.themeDark.animate().alpha(alpha).start();
+        // Light/Dark cards stay always clickable — the user may override the System toggle.
+        binding.themeLight.setEnabled(true);
+        binding.themeDark.setEnabled(true);
+        binding.themeLight.setClickable(true);
+        binding.themeDark.setClickable(true);
+        binding.themeLight.setFocusable(true);
+        binding.themeDark.setFocusable(true);
+        binding.themeLight.animate().alpha(1.0f).start();
+        binding.themeDark.animate().alpha(1.0f).start();
     }
 
     private void setupColorThemes() {
@@ -149,6 +156,7 @@ public class SettingsAppearanceFragment extends qA {
         container.removeAllViews();
 
         int currentTheme = ThemeManager.getCurrentTheme(requireContext());
+        boolean colorThemesEnabled = !binding.switchSystem.isChecked();
         int[] ids = {
                 ThemeManager.THEME_PURPLE_DARK,
                 ThemeManager.THEME_BLACK,
@@ -167,11 +175,11 @@ public class SettingsAppearanceFragment extends qA {
         for (int i = 0; i < ids.length; i++) {
             int themeId = ids[i];
             int previewColor = previewColors[i];
-            container.addView(createThemeCard(themeId, previewColor, themeId == currentTheme));
+            container.addView(createThemeCard(themeId, previewColor, themeId == currentTheme, colorThemesEnabled));
         }
     }
 
-    private android.view.View createThemeCard(int themeId, int previewColor, boolean selected) {
+    private android.view.View createThemeCard(int themeId, int previewColor, boolean selected, boolean enabled) {
         android.view.View card = getLayoutInflater().inflate(
                 pro.sketchware.R.layout.item_color_theme, binding.colorThemesContainer, false);
 
@@ -182,6 +190,11 @@ public class SettingsAppearanceFragment extends qA {
 
         nameView.setText(ThemeManager.getThemeName(themeId));
         radio.setChecked(selected);
+        card.setEnabled(enabled);
+        card.setClickable(enabled);
+        card.setFocusable(enabled);
+        card.setAlpha(enabled ? 1.0f : 0.5f);
+        radio.setEnabled(enabled);
 
         // Set preview circle color
         android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
@@ -193,13 +206,27 @@ public class SettingsAppearanceFragment extends qA {
         card.setOnClickListener(v -> {
             int current = ThemeManager.getCurrentTheme(requireContext());
             if (current == themeId) return; // already selected
+            // sync: color theme selected -> uncheck System toggle and reset Light/Dark cards
+            binding.switchSystem.setChecked(false);
+            unselectSelectedThemeCard();
+            setThemeCardsEnabled(true);
             ThemeManager.setTheme(requireContext(), themeId);
-            radio.setChecked(true);
+            setupColorThemes(); // redraw all color theme cards with new selection
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Тема сохранена")
                     .setMessage("Чтобы применить тему, приложение нужно перезапустить.\n\nПерезапустить сейчас?")
                     .setPositiveButton("Перезапустить", (d, w) -> {
-                        requireActivity().recreate();
+                        android.content.Context ctx = requireContext().getApplicationContext();
+                        android.content.Intent intent = ctx.getPackageManager()
+                                .getLaunchIntentForPackage(ctx.getPackageName());
+                        if (intent != null) {
+                            intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                    | android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            ctx.startActivity(intent);
+                        }
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(0);
                     })
                     .setNegativeButton("Позже", null)
                     .show();

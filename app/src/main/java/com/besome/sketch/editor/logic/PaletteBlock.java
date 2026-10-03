@@ -30,7 +30,16 @@ public class PaletteBlock extends LinearLayout {
     private int pendingHeaderColor = 0;
     private boolean hasPendingHeader = false;
     private int currentPaletteId = -1;
-    private static final String PREFS_SCROLL = "palette_scroll_positions";
+    private String scId = "";
+    private static final String PREFS_SCROLL = "palette_scroll_positions_per_project";
+
+    public void setScId(String scId) {
+        this.scId = scId == null ? "" : scId;
+    }
+
+    private String keyPrefix() {
+        return (scId.isEmpty() ? "global" : scId) + "_";
+    }
 
     public void setCurrentPaletteId(int paletteId) {
         this.currentPaletteId = paletteId;
@@ -41,7 +50,7 @@ public class PaletteBlock extends LinearLayout {
         if (currentPaletteId < 0) return;
         try {
             android.content.SharedPreferences prefs = context.getSharedPreferences(PREFS_SCROLL, Context.MODE_PRIVATE);
-            prefs.edit().putInt("palette_" + currentPaletteId, binding.scroll.getScrollY()).apply();
+            prefs.edit().putInt(keyPrefix() + "palette_" + currentPaletteId, binding.scroll.getScrollY()).apply();
         } catch (Throwable ignored) {}
     }
 
@@ -50,7 +59,7 @@ public class PaletteBlock extends LinearLayout {
         if (currentPaletteId < 0) return;
         try {
             android.content.SharedPreferences prefs = context.getSharedPreferences(PREFS_SCROLL, Context.MODE_PRIVATE);
-            int y = prefs.getInt("palette_" + currentPaletteId, 0);
+            int y = prefs.getInt(keyPrefix() + "palette_" + currentPaletteId, 0);
             binding.scroll.post(() -> binding.scroll.scrollTo(0, y));
         } catch (Throwable ignored) {}
     }

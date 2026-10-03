@@ -51,6 +51,11 @@
         app:key="backup-filename"
         app:summary="По умолчанию — &quot;$projectName v$versionName ($pkgName, $versionCode) $time(yyyy-MM-dd'T'HHmmss)&quot;"
         app:title="Формат имени файла резервной копии" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:key="block-logic-check"
+        app:summary="Предупреждать о дубликатах блоков и логических ошибках в событиях."
+        app:title="Проверка логики блоков" />
     <PreferenceCategory app:title="Резервное копирование настроек">
         <Preference
             app:iconSpaceReserved="false"

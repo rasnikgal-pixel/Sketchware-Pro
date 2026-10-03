@@ -144,6 +144,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     private int lastPaletteId = -1;
     private int lastPaletteColor = 0;
+
+    private static final String PALETTE_PREFS_PER_PROJECT = "palette_state_per_project";
+    private static final String KEY_LAST_PALETTE_ID_SUFFIX = "_last_palette_id";
     private final android.os.Handler searchHandler = new android.os.Handler(android.os.Looper.getMainLooper());
     private Runnable pendingSearchRunnable;
     private String blockSearchQuery = "";
@@ -673,6 +676,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     public void a(int i, int i2) {
         lastPaletteId = i;
         lastPaletteColor = i2;
+        // Remember this palette for this project
+        if (scId != null && !scId.isEmpty()) {
+            getSharedPreferences(PALETTE_PREFS_PER_PROJECT, MODE_PRIVATE).edit()
+                    .putInt(scId + KEY_LAST_PALETTE_ID_SUFFIX, i).apply();
+        }
         if (m != null) {
             m.setBlockSearchQuery(blockSearchQuery);
             m.setCurrentPaletteId(i);
@@ -1965,6 +1973,17 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         O = findViewById(R.id.right_drawer);
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
         extraPaletteBlock = new ExtraPaletteBlock(this, isViewBindingEnabled);
+        // Pass project id to PaletteBlock so it can store per-project scroll positions
+        if (m != null) {
+            m.setScId(scId);
+        }
+        // Restore the last opened palette for this project
+        if (scId != null && !scId.isEmpty() && paletteSelector != null) {
+            int savedPalette = getSharedPreferences(PALETTE_PREFS_PER_PROJECT, MODE_PRIVATE)
+                    .getInt(scId + KEY_LAST_PALETTE_ID_SUFFIX, 0);
+            final int paletteToRestore = savedPalette;
+            paletteSelector.post(() -> paletteSelector.performClickPalette(paletteToRestore));
+        }
 
         // Search field for block palette (issue #1971)
         android.widget.EditText blockSearchInput = findViewById(R.id.block_search_input);
@@ -2096,6 +2115,61 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         new MoreblockImporter(this, scId, M).importMoreblock(moreBlockCollectionBean, () -> a(8, 0xff8a55d7));
     }
 
+    private long lastBlockCheckTime = 0;
+    private String lastBlockIssueHash = "";
+
+    /**
+     * Checks the current event's blocks for logic issues (duplicates, etc.)
+     * and shows a warning dialog if any are found. Called after every drop.
+     * Respects the "Проверка логики блоков" toggle in app settings.
+     */
+    private void checkBlocksAfterChange() {
+        try {
+            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK)) {
+                return;
+            }
+            long now = System.currentTimeMillis();
+            if (now - lastBlockCheckTime < 500) return;
+            lastBlockCheckTime = now;
+
+            if (o == null) return;
+            java.util.List<com.besome.sketch.beans.BlockBean> blocks;
+            try {
+                blocks = o.getBlocks();
+            } catch (Throwable t) {
+                return;
+            }
+            if (blocks == null || blocks.isEmpty()) return;
+
+            java.util.List<String> issues = mod.jbk.util.BlockLogicChecker.check(blocks);
+            if (issues.isEmpty()) {
+                lastBlockIssueHash = "";
+                return;
+            }
+
+            String hash = issues.toString();
+            if (hash.equals(lastBlockIssueHash)) return;
+            lastBlockIssueHash = hash;
+
+            try {
+                mod.jbk.util.BlockLogicJournal.record(scId, id, issues);
+            } catch (Throwable ignored) {}
+
+            StringBuilder msg = new StringBuilder("В событии \"").append(id)
+                    .append("\" обнаружены проблемы:\n\n");
+            for (String s : issues) msg.append("• ").append(s).append("\n");
+            msg.append("\nПродолжить?");
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Проверка логики блоков")
+                    .setMessage(msg.toString())
+                    .setPositiveButton("Продолжить", null)
+                    .setNegativeButton("Понятно", null)
+                    .show();
+        } catch (Throwable ignored) {}
+    }
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int actionMasked = event.getActionMasked();
@@ -2174,6 +2248,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         a(rs, event.getX(), event.getY());
                     }
                 }
+                checkBlocksAfterChange();
                 return false;
             }
             m.setDragEnabled(true);
@@ -2423,6 +2498,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             dummy.setAllow(false);
             h(false);
             isDragged = false;
+            checkBlocksAfterChange();
             return true;
         } else if (actionMasked == MotionEvent.ACTION_CANCEL) {
             handler.removeCallbacks(longPressed);
