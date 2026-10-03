@@ -1272,6 +1272,11 @@ public class ExtraPaletteBlock {
                                 title, blocks);
                         us.setTag(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid);
 
+                        // Make text visible on the light background of the template card
+                        try {
+                            us.tvSpec.setTextColor(0xff000000);
+                        } catch (Throwable ignored) {}
+
                         // Make it draggable: attach the same touch listener used for Rs blocks
                         us.setClickable(true);
                         us.setFocusable(true);
