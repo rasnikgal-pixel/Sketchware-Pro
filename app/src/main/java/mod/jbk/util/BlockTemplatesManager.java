@@ -85,25 +85,114 @@ public final class BlockTemplatesManager {
     }
 
     private static void seedDefaults() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{\n");
-        sb.append("  \"templates\": [\n");
-        sb.append("    {\n");
-        sb.append("      \"id\": \"dialog_exit\",\n");
-        sb.append("      \"name\": \"📦 Диалог выхода из приложения\",\n");
-        sb.append("      \"description\": \"Готовый диалог подтверждения выхода с OK и Cancel\",\n");
-        sb.append("      \"blocks\": [\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetTitle\",\"spec\":\"%m.dialog setTitle %s\",\"parameters\":[\"DlgExt\",\"\\\"Выход\\\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetMessage\",\"spec\":\"%m.dialog setMessage %s\",\"parameters\":[\"DlgExt\",\"\\\"Вы уверены, что хотите выйти?\\\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogOkButton\",\"spec\":\"%m.dialog OK Button %s Clicked\",\"parameters\":[\"DlgExt\",\"\\\"Выйти\\\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogCancelButton\",\"spec\":\"%m.dialog Cancel Button %s Clicked\",\"parameters\":[\"DlgExt\",\"\\\"Остаться\\\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogShow\",\"spec\":\"%m.dialog show\",\"parameters\":[\"DlgExt\"]}\n");
-        sb.append("      ]\n");
-        sb.append("    }\n");
-        sb.append("  ]\n");
-        sb.append("}\n");
+        String json = """{
+  "templates": [
+    {
+      "id": "dialog_ok",
+      "name": "📦 Диалог OK",
+      "description": "Простой диалог с одной кнопкой OK. Требует компонент Dialog с именем DlgExt.",
+      "blocks": [
+        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Заголовок\\\""]},
+        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Сообщение\\\""]},
+        {"type":"c","opCode":"dialogOkButton","spec":"%m.dialog OK Button %s Clicked","parameters":["DlgExt","\\\"OK\\\""]},
+        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
+      ]
+    },
+    {
+      "id": "dialog_confirm",
+      "name": "📦 Диалог подтверждения",
+      "description": "Диалог с кнопками OK и Cancel. Требует DlgExt.",
+      "blocks": [
+        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Подтверждение\\\""]},
+        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Вы уверены?\\\""]},
+        {"type":"c","opCode":"dialogOkButton","spec":"%m.dialog OK Button %s Clicked","parameters":["DlgExt","\\\"Да\\\""]},
+        {"type":"c","opCode":"dialogCancelButton","spec":"%m.dialog Cancel Button %s Clicked","parameters":["DlgExt","\\\"Отмена\\\""]},
+        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
+      ]
+    },
+    {
+      "id": "dialog_3buttons",
+      "name": "📦 Диалог с 3 кнопками",
+      "description": "Диалог с OK, Cancel и Neutral. Требует DlgExt.",
+      "blocks": [
+        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Выбор\\\""]},
+        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Выберите действие\\\""]},
+        {"type":"c","opCode":"dialogOkButton","spec":"%m.dialog OK Button %s Clicked","parameters":["DlgExt","\\\"Да\\\""]},
+        {"type":"c","opCode":"dialogCancelButton","spec":"%m.dialog Cancel Button %s Clicked","parameters":["DlgExt","\\\"Отмена\\\""]},
+        {"type":"c","opCode":"dialogNeutralButton","spec":"%m.dialog Neutral Button %s Clicked","parameters":["DlgExt","\\\"Позже\\\""]},
+        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
+      ]
+    },
+    {
+      "id": "dialog_dismiss",
+      "name": "📦 Диалог с dismiss",
+      "description": "Простой диалог с закрытием. Требует DlgExt.",
+      "blocks": [
+        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Внимание\\\""]},
+        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Сообщение\\\""]},
+        {"type":" ","opCode":"dialogDismiss","spec":"%m.dialog dismiss","parameters":["DlgExt"]},
+        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
+      ]
+    },
+    {
+      "id": "dialog_exit_app",
+      "name": "📦 Диалог выхода из приложения",
+      "description": "Подтверждение выхода. Да — завершить приложение, Остаться — закрыть диалог. Требует DlgExt.",
+      "blocks": [
+        {"type":" ","opCode":"dialogSetTitle","spec":"%m.dialog setTitle %s","parameters":["DlgExt","\\\"Выход\\\""]},
+        {"type":" ","opCode":"dialogSetMessage","spec":"%m.dialog setMessage %s","parameters":["DlgExt","\\\"Вы уверены, что хотите выйти?\\\""]},
+        {"type":"c","opCode":"dialogOkButton","spec":"%m.dialog OK Button %s Clicked","parameters":["DlgExt","\\\"Да, выйти\\\""],"subStack1":{"type":"f","opCode":"finishActivity","spec":"Finish Activity","parameters":[]}},
+        {"type":"c","opCode":"dialogCancelButton","spec":"%m.dialog Cancel Button %s Clicked","parameters":["DlgExt","\\\"Остаться\\\""],"subStack1":{"type":" ","opCode":"dialogDismiss","spec":"%m.dialog dismiss","parameters":["DlgExt"]}},
+        {"type":" ","opCode":"dialogShow","spec":"%m.dialog show","parameters":["DlgExt"]}
+      ]
+    },
+    {
+      "id": "progressdialog_simple",
+      "name": "📦 Прогресс-диалог",
+      "description": "Create + setTitle + setMessage + show. Требует компонент ProgressDialog с именем PDlg.",
+      "blocks": [
+        {"type":" ","opCode":"progressdialogCreate","spec":"%m.progressdialog Create in %m.activity","parameters":["PDlg","MainActivity.this"]},
+        {"type":" ","opCode":"progressdialogSetTitle","spec":"%m.progressdialog setTitle %s","parameters":["PDlg","\\\"Загрузка\\\""]},
+        {"type":" ","opCode":"progressdialogSetMessage","spec":"%m.progressdialog setMessage %s","parameters":["PDlg","\\\"Пожалуйста, подождите...\\\""]},
+        {"type":" ","opCode":"progressdialogShow","spec":"%m.progressdialog show","parameters":["PDlg"]}
+      ]
+    },
+    {
+      "id": "progressdialog_dismiss",
+      "name": "📦 Закрыть прогресс-диалог",
+      "description": "Dismiss прогресс-диалога. Требует PDlg.",
+      "blocks": [
+        {"type":" ","opCode":"progressdialogDismiss","spec":"%m.progressdialog dismiss","parameters":["PDlg"]}
+      ]
+    },
+    {
+      "id": "finish_activity",
+      "name": "📦 Завершить Activity",
+      "description": "Завершает текущую Activity (finish).",
+      "blocks": [
+        {"type":"f","opCode":"finishActivity","spec":"Finish Activity","parameters":[]}
+      ]
+    },
+    {
+      "id": "finish_affinity",
+      "name": "📦 Завершить приложение",
+      "description": "Полное завершение приложения (finishAffinity).",
+      "blocks": [
+        {"type":"f","opCode":"finishAffinity","spec":"Finish Affinity","parameters":[]}
+      ]
+    },
+    {
+      "id": "custom_toast",
+      "name": "📦 Всплывающее сообщение (Toast)",
+      "description": "Показывает Toast-сообщение.",
+      "blocks": [
+        {"type":" ","opCode":"customToast","spec":"CustomToast %s textColor %m.color textSize %d bgColor %m.color cornerRadius %d gravity %m.gravity_t","parameters":["\\\"Сообщение\\\"","\\\"#FFFFFF\\\"","14","\\\"#000000\\\"","8","BOTTOM"]}
+      ]
+    }
+  ]
+}""";
         try {
-            FileUtil.writeFile(FILE_PATH, sb.toString());
+            FileUtil.writeFile(FILE_PATH, json);
         } catch (Throwable ignored) {}
     }
 
@@ -117,44 +206,94 @@ public final class BlockTemplatesManager {
         if (!(blocksObj instanceof java.util.List)) return result;
         java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
 
-        // Use a small, unique base for block IDs — large millis values may
-        // overflow nextBlock (int) or clash with existing IDs.
+        // Собираем все блоки рекурсивно (с subStack1/subStack2) в один плоский список,
+        // но с правильными связями nextBlock/subStack1/subStack2 между ними.
         int startId = (int) (System.currentTimeMillis() % 100000) * 100;
-        for (int i = 0; i < blockDefs.size(); i++) {
-            Object item = blockDefs.get(i);
-            if (!(item instanceof java.util.Map)) continue;
-            java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) item;
+        final int[] nextId = { startId };
+        java.util.Map<Object, Integer> idMap = new java.util.HashMap<>();
+        java.util.List<com.besome.sketch.beans.BlockBean> allBeans = new java.util.ArrayList<>();
 
-            String type = String.valueOf(bdef.get("type"));
-            String opCode = String.valueOf(bdef.get("opCode"));
+        // Первый проход — создать BlockBean-и и запомнить их ID по исходному объекту JSON
+        // Второй проход — установить связи.
+        java.util.List<Object[]> pendingLinks = new java.util.ArrayList<>();
 
-            com.besome.sketch.beans.BlockBean bean = new com.besome.sketch.beans.BlockBean();
-            bean.id = String.valueOf(startId + i);
-            bean.opCode = opCode == null ? "" : opCode;
-            bean.type = type == null ? " " : type;
-            bean.typeName = "";
-            bean.spec = " ";
-            bean.color = 0;
-            bean.parameters = new java.util.ArrayList<>();
-            Object paramsObj = bdef.get("parameters");
-            if (paramsObj instanceof java.util.List) {
-                for (Object p : (java.util.List<?>) paramsObj) {
-                    bean.parameters.add(String.valueOf(p));
-                }
-            }
-            Object specObj = bdef.get("spec");
-            if (specObj instanceof String && !((String) specObj).isEmpty()) {
-                bean.spec = (String) specObj;
-            }
-            if (i < blockDefs.size() - 1) {
-                bean.nextBlock = startId + i + 1;
-            } else {
-                bean.nextBlock = -1;
-            }
-            bean.subStack1 = -1;
-            bean.subStack2 = -1;
-            result.add(bean);
+        for (Object item : blockDefs) {
+            collectBlocksRecursive(item, idMap, allBeans, nextId, pendingLinks);
         }
+
+        // Второй проход: установить связи
+        for (Object[] pair : pendingLinks) {
+            com.besome.sketch.beans.BlockBean bean = (com.besome.sketch.beans.BlockBean) pair[0];
+            Object def = pair[1];
+            java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) def;
+
+            Object sub1 = bdef.get("subStack1");
+            if (sub1 instanceof java.util.Map) {
+                Integer id = idMap.get(sub1);
+                if (id != null) bean.subStack1 = id;
+            }
+            Object sub2 = bdef.get("subStack2");
+            if (sub2 instanceof java.util.Map) {
+                Integer id = idMap.get(sub2);
+                if (id != null) bean.subStack2 = id;
+            }
+            Object next = bdef.get("nextBlock");
+            if (next instanceof java.util.Map) {
+                Integer id = idMap.get(next);
+                if (id != null) bean.nextBlock = id;
+            }
+        }
+
+        result.addAll(allBeans);
         return result;
+    }
+
+    private static void collectBlocksRecursive(
+            Object def,
+            java.util.Map<Object, Integer> idMap,
+            java.util.List<com.besome.sketch.beans.BlockBean> out,
+            int[] nextId,
+            java.util.List<Object[]> pendingLinks) {
+        if (!(def instanceof java.util.Map)) return;
+        java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) def;
+
+        String type = String.valueOf(bdef.get("type"));
+        String opCode = String.valueOf(bdef.get("opCode"));
+
+        com.besome.sketch.beans.BlockBean bean = new com.besome.sketch.beans.BlockBean();
+        int myId = nextId[0]++;
+        bean.id = String.valueOf(myId);
+        bean.opCode = opCode == null ? "" : opCode;
+        bean.type = type == null ? " " : type;
+        bean.typeName = "";
+        bean.spec = " ";
+        bean.color = 0;
+        bean.parameters = new java.util.ArrayList<>();
+        Object paramsObj = bdef.get("parameters");
+        if (paramsObj instanceof java.util.List) {
+            for (Object p : (java.util.List<?>) paramsObj) {
+                bean.parameters.add(String.valueOf(p));
+            }
+        }
+        Object specObj = bdef.get("spec");
+        if (specObj instanceof String && !((String) specObj).isEmpty()) {
+            bean.spec = (String) specObj;
+        }
+
+        idMap.put(def, myId);
+        out.add(bean);
+        pendingLinks.add(new Object[] { bean, def });
+
+        // Рекурсивно обходим subStack1/subStack2
+        Object sub1 = bdef.get("subStack1");
+        if (sub1 instanceof java.util.Map) {
+            collectBlocksRecursive(sub1, idMap, out, nextId, pendingLinks);
+        }
+        Object sub2 = bdef.get("subStack2");
+        if (sub2 instanceof java.util.Map) {
+            collectBlocksRecursive(sub2, idMap, out, nextId, pendingLinks);
+        }
+        // nextBlock в JSON-описании обычно не используется: связи "по цепочке" 
+        // задаются автоматически через subStack-структуру, но можно указать явно.
     }
 }
