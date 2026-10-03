@@ -2748,6 +2748,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
 
             isDragged = true;
+            android.util.Log.d("BlockTemplates", "drop blockType=" + ((Rs) currentTouchedView).getBlockType() + " class=" + currentTouchedView.getClass().getSimpleName());
             if (((Rs) currentTouchedView).getBlockType() == 0) {
                 a((Rs) currentTouchedView);
                 f(true);
