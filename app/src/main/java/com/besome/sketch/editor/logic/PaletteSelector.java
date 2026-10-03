@@ -79,7 +79,14 @@ public class PaletteSelector extends RecyclerView {
     private void initializePalettes() {
         allPalettes = new ArrayList<>();
 
+        boolean hideTemplates = !mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_TEMPLATES);
+
         for (int i = 0; i < MainCategoriesNames.length; i++) {
+            if (hideTemplates
+                    && MainCategoriesIds[i] == mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID) {
+                continue;
+            }
             allPalettes.add(new paletteSelectorRecord(MainCategoriesIds[i], MainCategoriesNames[i], MainCategoriesColors[i]));
         }
 

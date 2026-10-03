@@ -56,6 +56,11 @@
         app:key="block-logic-check"
         app:summary="Предупреждать о дубликатах блоков и логических ошибках в событиях."
         app:title="Проверка логики блоков" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:key="block-templates"
+        app:summary="Показывать раздел «Сборки» в палитре блоков — готовые наборы блоков."
+        app:title="Сборки блоков" />
     <PreferenceCategory app:title="Резервное копирование настроек">
         <Preference
             app:iconSpaceReserved="false"
