@@ -1146,4 +1146,14 @@ ACTION_VIEW
     <string name="widget_editor">Редактор виджетов</string>
     <string name="widget_type_title">Тип виджета</string>
     <string name="xml_strings">XML-строки</string>
+    <string name="smartdrop_dialog_title">Найден компонент: %s</string>
+    <string name="smartdrop_create_new">➕ Создать новый</string>
+    <string name="smartdrop_new_name">Имя нового компонента:</string>
+    <string name="smartdrop_toast_attached">Блок подключён к %s</string>
+    <string name="smartdrop_toast_created">Создан компонент %s</string>
+    <string name="smartdrop_dialog_create_title">Создать компонент: %s</string>
+    <string name="smartdrop_connect_to">Подключить блок к %s?</string>
+    <string name="smartdrop_btn_connect">Подключить</string>
+    <string name="smartdrop_btn_new">Новый</string>
+    <string name="smartdrop_btn_create">Создать</string>
 </resources>

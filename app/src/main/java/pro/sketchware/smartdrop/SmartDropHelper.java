@@ -2,6 +2,9 @@ package pro.sketchware.smartdrop;
 
 import android.content.Context;
 import android.util.Log;
+import com.besome.sketch.beans.BlockBean;
+import android.widget.Toast;
+import android.app.Activity;
 
 import com.besome.sketch.beans.ComponentBean;
 import com.google.gson.Gson;
@@ -146,5 +149,77 @@ public class SmartDropHelper {
             Log.e(TAG, "createComponent failed", e);
             return false;
         }
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // Основной метод: обработка drop блока
+    // ─────────────────────────────────────────────────────────────
+
+    /**
+     * Вызывается после drop блока в workspace.
+     *
+     * @param activity   текущая Activity (для показа диалога и Toast)
+     * @param scId       ID проекта
+     * @param javaName   javaName экрана (ProjectFileBean.getJavaName())
+     * @param blockBean  упавший блок
+     * @param onUpdated  колбэк, вызывается после изменения blockBean.parameters
+     */
+    public void handleDrop(Activity activity,
+                           String scId,
+                           String javaName,
+                           BlockBean blockBean,
+                           Runnable onUpdated) {
+        if (activity == null || blockBean == null || blockBean.opCode == null) return;
+
+        Integer componentType = getRequiredComponent(blockBean.opCode);
+        if (componentType == null) return;
+
+        ArrayList<ComponentBean> existing = findComponents(scId, javaName, componentType);
+        String typeName = ComponentBean.getComponentName(activity, componentType);
+        String suggestedName = generateComponentName(existing, typeName);
+
+        SmartDropDialog dialog = new SmartDropDialog(activity, componentType, existing,
+                suggestedName, new SmartDropDialog.Callback() {
+
+            private void applyName(String componentId) {
+                if (blockBean.parameters == null || blockBean.parameters.isEmpty()) {
+                    blockBean.parameters = new ArrayList<>();
+                    blockBean.parameters.add(componentId);
+                } else {
+                    blockBean.parameters.set(0, componentId);
+                }
+                if (onUpdated != null) onUpdated.run();
+            }
+
+            @Override
+            public void onAttachExisting(ComponentBean existing) {
+                applyName(existing.componentId);
+                Toast.makeText(activity,
+                        activity.getString(pro.sketchware.R.string.smartdrop_toast_attached)
+                                .replace("%s", existing.componentId),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCreateNew(String newName) {
+                boolean ok = createComponent(scId, javaName, componentType, newName);
+                if (ok) {
+                    applyName(newName);
+                    Toast.makeText(activity,
+                            activity.getString(pro.sketchware.R.string.smartdrop_toast_created)
+                                    .replace("%s", newName),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(activity,
+                            "Ошибка создания компонента", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled() {
+                // Блок остаётся как есть
+            }
+        });
+        dialog.show();
     }
 }
