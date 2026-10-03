@@ -68,4 +68,16 @@
             app:summary="Загрузить настройки приложения из JSON-файла"
             app:title="Импорт настроек" />
     </PreferenceCategory>
+    <PreferenceCategory app:title="Отладка">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="debug-log-enabled"
+            app:summary="Записывать все действия приложения в файл"
+            app:title="Журнал отладки" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="debug-log-open"
+            app:summary="Просмотр, копирование и отправка журнала"
+            app:title="Открыть журнал" />
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -3,6 +3,13 @@ package mod.hilal.saif.activities.tools;
 import static pro.sketchware.utility.GsonUtils.getGson;
 
 import android.content.DialogInterface;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
+import pro.sketchware.smartdrop.DebugLogger;
+import pro.sketchware.smartdrop.LogViewerActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -348,6 +355,23 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 }
                 return true;
             });
+
+            SwitchPreferenceCompat debugLogEnabled = findPreference("debug-log-enabled");
+            if (debugLogEnabled != null) {
+                DebugLogger logger = DebugLogger.get(requireContext());
+                debugLogEnabled.setChecked(logger.isEnabled());
+                debugLogEnabled.setOnPreferenceChangeListener((pref, newValue) -> {
+                    DebugLogger.get(requireContext()).setEnabled((Boolean) newValue);
+                    return true;
+                });
+            }
+            Preference debugLogOpen = findPreference("debug-log-open");
+            if (debugLogOpen != null) {
+                debugLogOpen.setOnPreferenceClickListener(pref -> {
+                    startActivity(new Intent(requireContext(), LogViewerActivity.class));
+                    return true;
+                });
+            }
 
             Preference backupFilename = findPreference("backup-filename");
             assert backupFilename != null;

@@ -284,6 +284,10 @@
             android:theme="@style/Theme.SketchwarePro.ProjectPreview" />
 
         <activity android:name="pro.sketchware.activities.settings.SettingsActivity" />
+        <activity
+            android:name="pro.sketchware.smartdrop.LogViewerActivity"
+            android:exported="false"
+            android:label="@string/log_viewer_title" />
 
         <activity android:name="pro.sketchware.activities.resourceseditor.ResourcesEditorActivity" />
 

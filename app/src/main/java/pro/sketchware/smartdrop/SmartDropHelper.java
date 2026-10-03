@@ -169,15 +169,25 @@ public class SmartDropHelper {
                            String javaName,
                            BlockBean blockBean,
                            Runnable onUpdated) {
-        if (activity == null || blockBean == null || blockBean.opCode == null) return;
+        if (activity == null || blockBean == null || blockBean.opCode == null) {
+            return;
+        }
 
-        android.widget.Toast.makeText(activity, "SmartDrop: opCode=" + blockBean.opCode, android.widget.Toast.LENGTH_LONG).show();
+        DebugLogger log = DebugLogger.get(activity);
+        log.d(TAG, "log_smartdrop_opcode", blockBean.opCode);
 
         Integer componentType = getRequiredComponent(blockBean.opCode);
-        if (componentType == null) return;
+        if (componentType == null) {
+            log.d(TAG, "log_smartdrop_no_component_required", "");
+            return;
+        }
+
+        String typeName = ComponentBean.getComponentName(activity, componentType);
+        log.i(TAG, "log_smartdrop_required", typeName);
 
         ArrayList<ComponentBean> existing = findComponents(scId, javaName, componentType);
-        String typeName = ComponentBean.getComponentName(activity, componentType);
+        log.d(TAG, "log_smartdrop_found_existing", String.valueOf(existing.size()));
+
         String suggestedName = generateComponentName(existing, typeName);
 
         SmartDropDialog dialog = new SmartDropDialog(activity, componentType, existing,
@@ -195,6 +205,7 @@ public class SmartDropHelper {
 
             @Override
             public void onAttachExisting(ComponentBean existing) {
+                log.i(TAG, "log_smartdrop_attached", existing.componentId);
                 applyName(existing.componentId);
                 Toast.makeText(activity,
                         activity.getString(pro.sketchware.R.string.smartdrop_toast_attached)
@@ -206,12 +217,14 @@ public class SmartDropHelper {
             public void onCreateNew(String newName) {
                 boolean ok = createComponent(scId, javaName, componentType, newName);
                 if (ok) {
+                    log.i(TAG, "log_smartdrop_component_created", newName);
                     applyName(newName);
                     Toast.makeText(activity,
                             activity.getString(pro.sketchware.R.string.smartdrop_toast_created)
                                     .replace("%s", newName),
                             Toast.LENGTH_SHORT).show();
                 } else {
+                    log.e(TAG, "log_smartdrop_exception", new Exception("createComponent returned false"));
                     Toast.makeText(activity,
                             "Ошибка создания компонента", Toast.LENGTH_SHORT).show();
                 }
@@ -219,7 +232,7 @@ public class SmartDropHelper {
 
             @Override
             public void onCancelled() {
-                // Блок остаётся как есть
+                log.d(TAG, "log_smartdrop_cancelled", "");
             }
         });
         dialog.show();

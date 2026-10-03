@@ -35,5 +35,8 @@ public class SketchApplication extends Application {
         });
         super.onCreate();
         ThemeManager.applyTheme(this, ThemeManager.getCurrentTheme(this));
+
+        pro.sketchware.smartdrop.DebugLogger.get(this)
+                .i("App", "log_app_started", "");
     }
 }
