@@ -2280,6 +2280,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
             return true;
         } else if (actionMasked == MotionEvent.ACTION_UP) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .d("SmartDrop", "log_smartdrop_hook_triggered", "ACTION_UP, view=" + v.getClass().getSimpleName());
             currentTouchedView = null;
             handler.removeCallbacks(longPressed);
             if (!isDragged) {
