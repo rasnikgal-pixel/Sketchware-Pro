@@ -93,10 +93,10 @@ public final class BlockTemplatesManager {
         sb.append("      \"name\": \"📦 Диалог выхода из приложения\",\n");
         sb.append("      \"description\": \"Готовый диалог подтверждения выхода с OK и Cancel\",\n");
         sb.append("      \"blocks\": [\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetTitle\",\"spec\":\"%m.dialog setTitle %s\",\"parameters\":[\"\\\"Выход\\\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetMessage\",\"spec\":\"%m.dialog setMessage %s\",\"parameters\":[\"\\\"Вы уверены, что хотите выйти?\\\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogOkButton\",\"spec\":\"%m.dialog OK Button %s Clicked\",\"parameters\":[\"\\\"Выйти\\\"\",\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogCancelButton\",\"spec\":\"%m.dialog Cancel Button %s Clicked\",\"parameters\":[\"\\\"Остаться\\\"\",\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetTitle\",\"spec\":\"%m.dialog setTitle %s\",\"parameters\":[\"DlgExt\",\"\\\"Выход\\\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetMessage\",\"spec\":\"%m.dialog setMessage %s\",\"parameters\":[\"DlgExt\",\"\\\"Вы уверены, что хотите выйти?\\\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogOkButton\",\"spec\":\"%m.dialog OK Button %s Clicked\",\"parameters\":[\"DlgExt\",\"\\\"Выйти\\\"\",\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogCancelButton\",\"spec\":\"%m.dialog Cancel Button %s Clicked\",\"parameters\":[\"DlgExt\",\"\\\"Остаться\\\"\",\"\"]},\n");
         sb.append("        {\"type\":\" \",\"opCode\":\"dialogShow\",\"spec\":\"%m.dialog show\",\"parameters\":[\"DlgExt\"]}\n");
         sb.append("      ]\n");
         sb.append("    }\n");
