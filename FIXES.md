@@ -161,3 +161,152 @@
 **Что:** новая настройка в Preferences. При поиске заголовки подразделов (Boolean, Number, String и т.д.) скрываются, если под ними нет найденных блоков. Можно отключить — тогда заголовки скрываются полностью.
 **Файлы:** `PaletteBlock.java`, `ConfigActivity.java`, `preferences_config_activity.xml`
 **PR:** [#18](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/18)
+
+---
+
+## 📅 Обновление от 2026-10-03 (часть 2)
+
+### 🎨 Цветные темы (5 новых)
+**Что:** в Настройках → Внешний вид появилась секция **«Цветовая тема»** с 5 вариантами:
+- **Фиолетовая тёмная** — based on reference screenshot
+- **Чёрная (AMOLED)** — для OLED-экранов
+- **Синяя**
+- **Зелёная**
+- **Золотая**
+
+**Как работает:**
+- При выборе темы — **тумблер «Следовать системной»** выключается.
+- **Перезапуск** приложения → применяется новая тема.
+- При включении System → **все цветные темы отключаются**, Light/Dark активны.
+- При выборе Light/Dark → **автоматически отключается System**, цветные не выбраны.
+
+**Что визуально меняется:**
+- Основной акцент (кнопки, FAB, ползунки).
+- Фон, поверхности (карточки, тулбары).
+- Текст, иконки.
+- Все цвета соответствуют **Material3** (правильные контрасты, читаемость).
+
+**Файлы:**
+- `m3_colors_themes.xml` (новый) — 5 палитр по ~35 цветов.
+- `m3_schemes.xml` — 5 новых схем.
+- `themes.xml` — 5 обёрток + 5 платформенных цепочек.
+- `ThemeManager.java` — константы + `applyCustomTheme()`.
+- `BaseAppCompatActivity.java` — вызов `applyCustomTheme()` в `onCreate`.
+- `SettingsAppearanceFragment.java` — UI выбора.
+- `item_color_theme.xml`, `theme_color_circle.xml` (новые).
+
+**PR:** [#21](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/21)
+
+### 🧠 Block Logic Checker — проверка логики блоков
+**Что:** при **добавлении/перемещении/удалении** блока в редакторе логики автоматически проверяется **список блоков текущего события** на 8 типов проблем.
+
+**Правила:**
+1. **Дубликаты** `dialogSetTitle` × 2+.
+2. **Дубликаты** `dialogSetMessage` × 2+.
+3. **Дубликаты** `dialogShow` × 2+.
+4. **Дубликаты** `dialogDismiss` × 2+.
+5. `dialogSetTitle` без `dialogShow`.
+6. `dialogSetMessage` без `dialogShow`.
+7. `dialogDismiss` без `dialogShow`.
+8. `dialogDismiss` **до** `dialogShow`.
+
+**Диалог:**
+> **Проверка логики блоков**
+> В событии «onBackPressed» обнаружены проблемы:
+> • dialogSetTitle × 2
+>
+> Удалить лишние блоки?
+> **[Удалить] [Оставить]**
+
+**Кнопка «Удалить»:**
+- Удаляет **все дубликаты**, оставляя **первый**.
+- Для правил 5-7 — **ничего не удаляет** (проблема информационная).
+
+**Журнал:**
+- Файл: `/sdcard/.sketchware/block_logic_journal.json`.
+- Формат: `[{time, sc_id, event, issues}]`.
+- Максимум 200 записей.
+
+**Тумблер:**
+- **Настройки → Настройки приложения → Проверка логики блоков** (включён по умолчанию).
+
+**Технические особенности:**
+- Throttle 500 мс — не спамит.
+- Дедупликация по hash — не показывает диалог повторно.
+- Все исключения подавлены — не ломает редактор.
+
+**Файлы:**
+- `BlockLogicChecker.java` (новый, 145 строк) — правила.
+- `BlockLogicJournal.java` (новый, 56 строк) — журнал.
+- `LogicEditorActivity.java` — хук в `onTouch` (после drop + tap).
+- `ConfigActivity.java`, `preferences_config_activity.xml` — тумблер.
+
+**PR:** [#22](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/22), [#23](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/23)
+
+### 🎯 Per-project последняя палитра + скролл
+**Что:** каждый проект запоминает **свой последний открытый раздел палитры** (Математика, Компоненты и т.д.) и **позицию скролла** внутри него.
+
+**Пример:**
+- В проекте А — раздел «Математика», скролл до `mathPi`.
+- В проекте Б — раздел «Компоненты», скролл до `dialogShow`.
+- Вернулся в А → открывается «Математика» на том же месте.
+- Вернулся в Б → «Компоненты» на том же месте.
+
+**Где хранится:**
+- `SharedPreferences` `palette_state_per_project`.
+- Ключи: `<sc_id>_last_palette_id`, `<sc_id>_palette_<id>`.
+
+**Файлы:**
+- `PaletteBlock.java` — `setScId`, `keyPrefix`, сохранение/восстановление скролла.
+- `LogicEditorActivity.java` — сохранение/восстановление последнего раздела.
+
+**PR:** [#22](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/22)
+
+### 🔄 Синхронизация тумблера темы и цветных тем
+**Что:** логика взаимодействия **System ↔ Light/Dark ↔ Color themes**:
+
+| Состояние | Light/Dark | Цветные темы |
+|---|---|---|
+| **System ON** | активны | серые |
+| **System OFF** | активны | активны |
+| **Выбрал Light/Dark** | галка | активны, без галки |
+| **Выбрал цветную** | активны, без галки | галка на выбранной |
+
+**Поведение:**
+- Тап на **Light/Dark** → System **выключается**.
+- Тап на **цветную** → System **выключается**.
+- Включение **System** → все галки снимаются, цветные отключаются.
+
+**Файлы:** `SettingsAppearanceFragment.java`
+**PR:** [#22](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/22)
+
+### 💾 Диалоги сохранения/восстановления
+**Что исправлено:**
+1. **Диалог «Восстановить»** больше **не появляется** при каждом открытии проекта (была проблема с jar-флагами).
+2. **Кнопка Back** теперь **всегда спрашивает** «Сохранить и выйти?» — раньше диалог не показывался из-за неверного флага `t.c("P12I2")`.
+
+**Файлы:** `DesignActivity.java`
+**PR:** [#22](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/22)
+
+---
+
+## 📋 Сводная таблица всех фич и фиксов
+
+| # | Фикс/Фича | PR |
+|---|---|---|
+| **1812** | ConcurrentModificationException | [#10](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/10) |
+| **1716** | Run-кнопка залипает | [#11](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/11) |
+| **1929** | Транзитивные зависимости | [#11](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/11) |
+| **2035** | SHA256withRSA | [#11](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/11) |
+| **1971** (search) | Поиск блоков | [#12](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/12) |
+| **1971** (manifest) | Manifest merger | [#13](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/13) |
+| Переводы | Сообщения сборки | [#14](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/14) |
+| **1917** | ViewBinding warning | [#15](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/15) |
+| **Fx.java** | Типы + IndexOutOfBounds | [#16](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/16) |
+| FIXES.md | Документация | [#17](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/17) |
+| **1971** (headers) | Заголовки при поиске | [#18](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/18) |
+| Usability pack | Скролл, экспорт, избранное, поиск | [#19](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/19) |
+| FIXES.md update | Документация | [#20](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/20) |
+| **Color themes** | 5 новых тем | [#21](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/21) |
+| **Save/Restore + theme sync + palette + logic** | Много | [#22](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/22) |
+| **Delete duplicates** | Block logic checker | [#23](https://github.com/rasnikgal-pixel/Sketchware-Pro/pull/23) |
