@@ -110,13 +110,13 @@ public class LogViewerActivity extends BaseAppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         handler.post(autoRefresh);
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         handler.removeCallbacks(autoRefresh);
     }
