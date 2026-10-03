@@ -171,6 +171,8 @@ public class SmartDropHelper {
                            Runnable onUpdated) {
         if (activity == null || blockBean == null || blockBean.opCode == null) return;
 
+        android.widget.Toast.makeText(activity, "SmartDrop: opCode=" + blockBean.opCode, android.widget.Toast.LENGTH_LONG).show();
+
         Integer componentType = getRequiredComponent(blockBean.opCode);
         if (componentType == null) return;
 

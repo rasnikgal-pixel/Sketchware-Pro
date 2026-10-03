@@ -2320,8 +2320,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 }
                 q();
                 // ─── SmartDrop: автоподключение компонента ───
+                android.widget.Toast.makeText(LogicEditorActivity.this, "SmartDrop hook: type=" + rs2.getBlockType(), android.widget.Toast.LENGTH_LONG).show();
                 final Rs rsForSmartDrop = rs2;
                 rs2.post(() -> {
+                    android.widget.Toast.makeText(LogicEditorActivity.this, "SmartDrop post: entered", android.widget.Toast.LENGTH_LONG).show();
                     BlockBean bean = rsForSmartDrop.getBean();
                     if (bean != null) {
                         pro.sketchware.smartdrop.SmartDropHelper.get(LogicEditorActivity.this)
