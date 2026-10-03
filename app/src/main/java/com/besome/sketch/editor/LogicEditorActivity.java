@@ -2211,6 +2211,67 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     }
 
     @Override
+    private long lastTemplateCheckTime = 0;
+
+    /**
+     * After every drop, checks if a template block was added and offers to expand it.
+     * (Proto: currently only shows the dialog.)
+     */
+    private void checkTemplateOnDrop() {
+        try {
+            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_TEMPLATES)) {
+                return;
+            }
+            long now = System.currentTimeMillis();
+            if (now - lastTemplateCheckTime < 500) return;
+            lastTemplateCheckTime = now;
+
+            if (o == null) return;
+            java.util.List<com.besome.sketch.beans.BlockBean> blocks;
+            try {
+                blocks = o.getBlocks();
+            } catch (Throwable t) {
+                return;
+            }
+            if (blocks == null || blocks.isEmpty()) return;
+
+            final com.besome.sketch.beans.BlockBean templateBlock = findTemplateBlock(blocks);
+            if (templateBlock == null) return;
+
+            final String templateId = mod.jbk.util.BlockTemplatesManager
+                    .extractIdFromOpCode(templateBlock.opCode);
+            final java.util.Map<String, Object> tpl =
+                    mod.jbk.util.BlockTemplatesManager.getById(templateId);
+            if (tpl == null) return;
+
+            Object tname = tpl.get("name");
+            String displayName = (tname instanceof String) ? (String) tname : templateId;
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Развернуть шаблон?")
+                    .setMessage(displayName)
+                    .setPositiveButton("Развернуть", (d, w) -> {
+                        android.widget.Toast.makeText(this, "TODO: expand", android.widget.Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Оставить как есть", (d, w) -> {
+                        android.widget.Toast.makeText(this, "TODO: leave", android.widget.Toast.LENGTH_SHORT).show();
+                    })
+                    .show();
+        } catch (Throwable ignored) {}
+    }
+
+    private com.besome.sketch.beans.BlockBean findTemplateBlock(
+            java.util.List<com.besome.sketch.beans.BlockBean> blocks) {
+        for (com.besome.sketch.beans.BlockBean b : blocks) {
+            if (b != null && b.opCode != null
+                    && b.opCode.startsWith(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
     public boolean onTouch(View v, MotionEvent event) {
         int actionMasked = event.getActionMasked();
         if (event.getPointerId(event.getActionIndex()) > 0) {
@@ -2539,6 +2600,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             h(false);
             isDragged = false;
             checkBlocksAfterChange();
+            checkTemplateOnDrop();
             return true;
         } else if (actionMasked == MotionEvent.ACTION_CANCEL) {
             handler.removeCallbacks(longPressed);
