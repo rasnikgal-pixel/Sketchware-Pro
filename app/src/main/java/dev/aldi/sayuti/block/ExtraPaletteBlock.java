@@ -1256,9 +1256,9 @@ public class ExtraPaletteBlock {
                     Object tdesc = tpl.get("description");
                     if (!(tid instanceof String) || !(tname instanceof String)) continue;
                     String opCode = mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid;
-                    // Show as a single collapsed block. Description goes to typeName (bottom row).
+                    // Show as a single collapsed block: name in title, description in typeName.
                     String typeName = (tdesc instanceof String) ? (String) tdesc : "";
-                    logicEditor.a(" ", " ", typeName, opCode);
+                    logicEditor.a(tname.toString(), " ", typeName, opCode);
                 }
                 return;
 
