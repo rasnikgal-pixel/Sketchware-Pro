@@ -2319,6 +2319,18 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     }
                 }
                 q();
+                // ─── SmartDrop: автоподключение компонента ───
+                final Rs rsForSmartDrop = rs2;
+                rs2.post(() -> {
+                    BlockBean bean = rsForSmartDrop.getBean();
+                    if (bean != null) {
+                        pro.sketchware.smartdrop.SmartDropHelper.get(LogicEditorActivity.this)
+                                .handleDrop(LogicEditorActivity.this, scId, M.getJavaName(), bean, () -> {
+                                    rsForSmartDrop.p().k();
+                                    C();
+                                });
+                    }
+                });
             } else if (logicTopMenu.isDeleteActive) {
                 Rs rs5 = (Rs) v;
                 if (rs5.getBlockType() == 2) {
