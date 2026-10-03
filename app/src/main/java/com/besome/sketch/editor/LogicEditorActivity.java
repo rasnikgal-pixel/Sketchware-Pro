@@ -2749,9 +2749,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
 
             isDragged = true;
-            android.widget.Toast.makeText(this, "DBG blockType=" + ((Rs) currentTouchedView).getBlockType()
-                    + " class=" + currentTouchedView.getClass().getSimpleName(),
-                    android.widget.Toast.LENGTH_LONG).show();
             if (((Rs) currentTouchedView).getBlockType() == 0) {
                 a((Rs) currentTouchedView);
                 f(true);
@@ -2760,7 +2757,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 o.a((Rs) currentTouchedView, 8);
                 o.c((Rs) currentTouchedView);
                 o.a((Rs) currentTouchedView);
-            } else if (((Rs) currentTouchedView).getBlockType() == 2) {
+            } else if (currentTouchedView instanceof a.a.a.Us) {
                 f(false);
                 h(true);
                 dummy.a((Rs) currentTouchedView);
