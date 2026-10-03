@@ -2251,13 +2251,72 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     .setTitle("Развернуть шаблон?")
                     .setMessage(displayName)
                     .setPositiveButton("Развернуть", (d, w) -> {
-                        android.widget.Toast.makeText(this, "Разворот — в разработке", android.widget.Toast.LENGTH_SHORT).show();
+                        expandTemplate(templateBlock, tpl);
                     })
                     .setNegativeButton("Оставить как есть", (d, w) -> {
                         deleteTemplateBlock(templateBlock);
                     })
                     .show();
         } catch (Throwable ignored) {}
+    }
+
+    private void expandTemplate(com.besome.sketch.beans.BlockBean templateBlock,
+                                java.util.Map<String, Object> tpl) {
+        try {
+            // 1. Remove the container template block
+            try { o.a(templateBlock, false); } catch (Throwable ignored) {}
+
+            // 2. Read block definitions
+            Object blocksObj = tpl.get("blocks");
+            if (!(blocksObj instanceof java.util.List)) {
+                android.widget.Toast.makeText(this, "Ошибка: нет списка блоков",
+                        android.widget.Toast.LENGTH_SHORT).show();
+                try { o.b(); C(); } catch (Throwable ignored) {}
+                return;
+            }
+            java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
+
+            int created = 0;
+            for (Object obj : blockDefs) {
+                if (!(obj instanceof java.util.Map)) continue;
+                java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) obj;
+                Object typeObj = bdef.get("type");
+                Object opCodeObj = bdef.get("opCode");
+                if (!(typeObj instanceof String) || !(opCodeObj instanceof String)) continue;
+                String type = (String) typeObj;
+                String opCode = (String) opCodeObj;
+
+                try {
+                    // Create new Rs block
+                    a.a.a.Rs rs = new a.a.a.Rs(this, -1, "", type, opCode);
+                    com.besome.sketch.beans.BlockBean bean = rs.getBean();
+                    if (bean != null) {
+                        bean.opCode = opCode;
+                        bean.type = type;
+                        bean.parameters.clear();
+                        Object paramsObj = bdef.get("parameters");
+                        if (paramsObj instanceof java.util.List) {
+                            for (Object p : (java.util.List<?>) paramsObj) {
+                                bean.parameters.add(String.valueOf(p));
+                            }
+                        }
+                    }
+                    // Add to BlockPane
+                    o.a(rs, 0);
+                    created++;
+                } catch (Throwable inner) {
+                    android.util.Log.e("BlockTemplates", "Failed to create block " + opCode, inner);
+                }
+            }
+
+            try { o.b(); } catch (Throwable ignored) {}
+            try { C(); } catch (Throwable ignored) {}
+            android.widget.Toast.makeText(this, "Развёрнуто блоков: " + created,
+                    android.widget.Toast.LENGTH_SHORT).show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Ошибка разворота: " + t.getMessage(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
     }
 
     private void deleteTemplateBlock(com.besome.sketch.beans.BlockBean templateBlock) {
