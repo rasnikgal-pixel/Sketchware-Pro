@@ -2321,22 +2321,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     }
                 }
                 q();
-                // ─── SmartDrop: автоподключение компонента ───
-                pro.sketchware.smartdrop.DebugLogger.get(this)
-                        .d("SmartDrop", "log_smartdrop_hook_triggered", "blockType=" + rs2.getBlockType());
-                final Rs rsForSmartDrop = rs2;
-                rs2.post(() -> {
-                    pro.sketchware.smartdrop.DebugLogger.get(LogicEditorActivity.this)
-                            .d("SmartDrop", "log_smartdrop_post_entered", "");
-                    BlockBean bean = rsForSmartDrop.getBean();
-                    if (bean != null) {
-                        pro.sketchware.smartdrop.SmartDropHelper.get(LogicEditorActivity.this)
-                                .handleDrop(LogicEditorActivity.this, scId, M.getJavaName(), bean, () -> {
-                                    rsForSmartDrop.p().k();
-                                    C();
-                                });
-                    }
-                });
             } else if (logicTopMenu.isDeleteActive) {
                 Rs rs5 = (Rs) v;
                 if (rs5.getBlockType() == 2) {
@@ -2508,6 +2492,22 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     o.c();
                 } else {
                     o.a(rs13, 0);
+                    // ─── SmartDrop: автоподключение компонента (ветка drop простого Rs) ───
+                    pro.sketchware.smartdrop.DebugLogger.get(this)
+                            .d("SmartDrop", "log_smartdrop_hook_triggered", "blockType=" + rs13.getBlockType());
+                    final Rs rsForSmartDrop = rs13;
+                    rs13.post(() -> {
+                        pro.sketchware.smartdrop.DebugLogger.get(LogicEditorActivity.this)
+                                .d("SmartDrop", "log_smartdrop_post_entered", "");
+                        BlockBean bean = rsForSmartDrop.getBean();
+                        if (bean != null) {
+                            pro.sketchware.smartdrop.SmartDropHelper.get(LogicEditorActivity.this)
+                                    .handleDrop(LogicEditorActivity.this, scId, M.getJavaName(), bean, () -> {
+                                        rsForSmartDrop.p().k();
+                                        C();
+                                    });
+                        }
+                    });
                     int id = Integer.parseInt(rs13.getBean().id);
                     BlockBean blockBean;
                     if (w != null) {
