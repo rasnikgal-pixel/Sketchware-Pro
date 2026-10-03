@@ -117,7 +117,9 @@ public final class BlockTemplatesManager {
         if (!(blocksObj instanceof java.util.List)) return result;
         java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
 
-        long baseId = System.currentTimeMillis();
+        // Use a small, unique base for block IDs — large millis values may
+        // overflow nextBlock (int) or clash with existing IDs.
+        int startId = (int) (System.currentTimeMillis() % 100000) * 100;
         for (int i = 0; i < blockDefs.size(); i++) {
             Object item = blockDefs.get(i);
             if (!(item instanceof java.util.Map)) continue;
@@ -127,7 +129,7 @@ public final class BlockTemplatesManager {
             String opCode = String.valueOf(bdef.get("opCode"));
 
             com.besome.sketch.beans.BlockBean bean = new com.besome.sketch.beans.BlockBean();
-            bean.id = String.valueOf(baseId + i);
+            bean.id = String.valueOf(startId + i);
             bean.opCode = opCode == null ? "" : opCode;
             bean.type = type == null ? " " : type;
             bean.typeName = "";
@@ -145,7 +147,7 @@ public final class BlockTemplatesManager {
                 bean.spec = (String) specObj;
             }
             if (i < blockDefs.size() - 1) {
-                bean.nextBlock = (int) (baseId + i + 1);
+                bean.nextBlock = startId + i + 1;
             } else {
                 bean.nextBlock = -1;
             }
