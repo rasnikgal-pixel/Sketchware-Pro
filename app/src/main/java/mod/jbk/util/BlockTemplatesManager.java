@@ -128,15 +128,21 @@ public final class BlockTemplatesManager {
 
             com.besome.sketch.beans.BlockBean bean = new com.besome.sketch.beans.BlockBean();
             bean.id = String.valueOf(baseId + i);
-            bean.opCode = opCode;
-            bean.type = type;
+            bean.opCode = opCode == null ? "" : opCode;
+            bean.type = type == null ? " " : type;
             bean.typeName = "";
+            bean.spec = " ";
+            bean.color = 0;
             bean.parameters = new java.util.ArrayList<>();
             Object paramsObj = bdef.get("parameters");
             if (paramsObj instanceof java.util.List) {
                 for (Object p : (java.util.List<?>) paramsObj) {
                     bean.parameters.add(String.valueOf(p));
                 }
+            }
+            Object specObj = bdef.get("spec");
+            if (specObj instanceof String && !((String) specObj).isEmpty()) {
+                bean.spec = (String) specObj;
             }
             if (i < blockDefs.size() - 1) {
                 bean.nextBlock = (int) (baseId + i + 1);
