@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common -->
+    <string name="log_app_started">Application started</string>
+    <string name="log_app_stopped">Application stopped</string>
+    <string name="log_logger_initialized">Logger initialized: %s</string>
+    <string name="log_logger_rotate">Log rotation: %s</string>
+
+    <!-- SmartDrop -->
+    <string name="log_smartdrop_hook_triggered">SmartDrop hook triggered: %s</string>
+    <string name="log_smartdrop_post_entered">post() executed, extracting bean</string>
+    <string name="log_smartdrop_opcode">Block opCode: %s</string>
+    <string name="log_smartdrop_no_component_required">Block does not require a component</string>
+    <string name="log_smartdrop_required">Required component: %s</string>
+    <string name="log_smartdrop_found_existing">Existing components found: %d</string>
+    <string name="log_smartdrop_dialog_create_only">Showing dialog: create new component</string>
+    <string name="log_smartdrop_dialog_confirm_one">Showing dialog: confirm attach to %s</string>
+    <string name="log_smartdrop_dialog_choose">Showing dialog: choose from %d components</string>
+    <string name="log_smartdrop_component_created">Component created: %s</string>
+    <string name="log_smartdrop_attached">Block attached to component: %s</string>
+    <string name="log_smartdrop_cancelled">User cancelled attachment</string>
+    <string name="log_smartdrop_exception">SmartDrop exception: %s</string>
+
+    <!-- Log viewer UI -->
+    <string name="log_viewer_title">Debug Log</string>
+    <string name="log_viewer_tab_ru">Russian</string>
+    <string name="log_viewer_tab_en">English</string>
+    <string name="log_viewer_btn_refresh">Refresh</string>
+    <string name="log_viewer_btn_share">Share</string>
+    <string name="log_viewer_btn_clear">Clear</string>
+    <string name="log_viewer_btn_copy">Copy</string>
+    <string name="log_viewer_empty">Log is empty</string>
+    <string name="log_viewer_cleared">Log cleared</string>
+    <string name="log_viewer_copied">Copied to clipboard</string>
+    <string name="log_viewer_loading">Loading...</string>
+
+    <!-- Settings -->
+    <string name="settings_debug_log_title">Debug Log</string>
+    <string name="settings_debug_log_summary">Record all application actions</string>
+    <string name="settings_debug_log_open">Open log</string>
+</resources>

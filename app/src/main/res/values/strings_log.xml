@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Общие -->
+    <string name="log_app_started">Приложение запущено</string>
+    <string name="log_app_stopped">Приложение остановлено</string>
+    <string name="log_logger_initialized">Журнал инициализирован: %s</string>
+    <string name="log_logger_rotate">Ротация журнала: %s</string>
+
+    <!-- SmartDrop -->
+    <string name="log_smartdrop_hook_triggered">Перехват SmartDrop сработал: %s</string>
+    <string name="log_smartdrop_post_entered">post() выполнен, извлекаем bean</string>
+    <string name="log_smartdrop_opcode">opCode блока: %s</string>
+    <string name="log_smartdrop_no_component_required">Блок не требует компонента</string>
+    <string name="log_smartdrop_required">Требуется компонент: %s</string>
+    <string name="log_smartdrop_found_existing">Найдено компонентов: %d</string>
+    <string name="log_smartdrop_dialog_create_only">Показ диалога: создание нового компонента</string>
+    <string name="log_smartdrop_dialog_confirm_one">Показ диалога: подтверждение подключения к %s</string>
+    <string name="log_smartdrop_dialog_choose">Показ диалога: выбор из %d компонентов</string>
+    <string name="log_smartdrop_component_created">Создан компонент: %s</string>
+    <string name="log_smartdrop_attached">Блок подключён к компоненту: %s</string>
+    <string name="log_smartdrop_cancelled">Пользователь отменил подключение</string>
+    <string name="log_smartdrop_exception">Исключение SmartDrop: %s</string>
+
+    <!-- UI просмотра логов -->
+    <string name="log_viewer_title">Журнал отладки</string>
+    <string name="log_viewer_tab_ru">Русский</string>
+    <string name="log_viewer_tab_en">English</string>
+    <string name="log_viewer_btn_refresh">Обновить</string>
+    <string name="log_viewer_btn_share">Поделиться</string>
+    <string name="log_viewer_btn_clear">Очистить</string>
+    <string name="log_viewer_btn_copy">Копировать</string>
+    <string name="log_viewer_empty">Журнал пуст</string>
+    <string name="log_viewer_cleared">Журнал очищен</string>
+    <string name="log_viewer_copied">Скопировано в буфер</string>
+    <string name="log_viewer_loading">Загрузка...</string>
+
+    <!-- Настройки -->
+    <string name="settings_debug_log_title">Журнал отладки</string>
+    <string name="settings_debug_log_summary">Записывать все действия приложения</string>
+    <string name="settings_debug_log_open">Открыть журнал</string>
+</resources>
