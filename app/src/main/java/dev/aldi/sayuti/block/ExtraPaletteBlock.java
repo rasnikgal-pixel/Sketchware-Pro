@@ -1272,6 +1272,12 @@ public class ExtraPaletteBlock {
                                 title, blocks);
                         us.setTag(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid);
 
+                        // Make it draggable: attach the same touch listener used for Rs blocks
+                        us.setClickable(true);
+                        us.setFocusable(true);
+                        try { us.setBlockType(2); } catch (Throwable ignored) {}
+                        us.setOnTouchListener(logicEditor);
+
                         // Add via PaletteBlock's helper.
                         if (logicEditor.m != null) {
                             logicEditor.m.addTemplateView(us);
