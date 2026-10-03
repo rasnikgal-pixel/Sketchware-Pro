@@ -95,8 +95,8 @@ public final class BlockTemplatesManager {
         sb.append("      \"blocks\": [\n");
         sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetTitle\",\"spec\":\"%m.dialog setTitle %s\",\"parameters\":[\"DlgExt\",\"\\\"Выход\\\"\"]},\n");
         sb.append("        {\"type\":\" \",\"opCode\":\"dialogSetMessage\",\"spec\":\"%m.dialog setMessage %s\",\"parameters\":[\"DlgExt\",\"\\\"Вы уверены, что хотите выйти?\\\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogOkButton\",\"spec\":\"%m.dialog OK Button %s Clicked\",\"parameters\":[\"DlgExt\",\"\\\"Выйти\\\"\",\"\"]},\n");
-        sb.append("        {\"type\":\" \",\"opCode\":\"dialogCancelButton\",\"spec\":\"%m.dialog Cancel Button %s Clicked\",\"parameters\":[\"DlgExt\",\"\\\"Остаться\\\"\",\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogOkButton\",\"spec\":\"%m.dialog OK Button %s Clicked\",\"parameters\":[\"DlgExt\",\"\\\"Выйти\\\"\"]},\n");
+        sb.append("        {\"type\":\" \",\"opCode\":\"dialogCancelButton\",\"spec\":\"%m.dialog Cancel Button %s Clicked\",\"parameters\":[\"DlgExt\",\"\\\"Остаться\\\"\"]},\n");
         sb.append("        {\"type\":\" \",\"opCode\":\"dialogShow\",\"spec\":\"%m.dialog show\",\"parameters\":[\"DlgExt\"]}\n");
         sb.append("      ]\n");
         sb.append("    }\n");
