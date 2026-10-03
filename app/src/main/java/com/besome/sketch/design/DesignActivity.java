@@ -519,6 +519,10 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             toViewCodeEditor();
             return true;
         });
+        bottomMenu.add(Menu.NONE, 8, Menu.NONE, "Показать журнал отладки").setOnMenuItemClickListener(item -> {
+            startActivity(new android.content.Intent(this, pro.sketchware.smartdrop.LogViewerActivity.class));
+            return true;
+        });
         bottomPopupMenu.setOnDismissListener(menu -> btnOptions.setChecked(false));
 
         xmlLayoutOrientation = findViewById(R.id.img_orientation);
