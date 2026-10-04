@@ -1192,4 +1192,9 @@ ACTION_VIEW
     <string name="icon_picker_reset">Сбросить к стандартной</string>
     <string name="icon_picker_ok">Выбрать</string>
     <string name="icon_picker_cancel">Отмена</string>
+    <string name="settings_icons_show_title">Показывать иконки экранов</string>
+    <string name="settings_icons_show_summary">Отображать иконки в списке экранов и редакторе</string>
+    <string name="settings_icons_mixed_title">Искать иконки вперемешку</string>
+    <string name="settings_icons_mixed_summary">Искать по всем категориям одновременно</string>
+    <string name="settings_icons_category">Иконки и разделы</string>
 </resources>

@@ -7,6 +7,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 import pro.sketchware.smartdrop.DebugLogger;
 import pro.sketchware.smartdrop.LogViewerActivity;
@@ -434,6 +435,26 @@ public class ConfigActivity extends BaseAppCompatActivity {
                                 }
                             }
                     );
+                    return true;
+                });
+            }
+
+            // Иконки и разделы
+            SwitchPreferenceCompat iconsShow = findPreference("icons-show-enabled");
+            if (iconsShow != null) {
+                SharedPreferences iconPrefs = requireContext().getSharedPreferences("icon_picker_prefs", android.content.Context.MODE_PRIVATE);
+                iconsShow.setChecked(iconPrefs.getBoolean("icons_show_enabled", true));
+                iconsShow.setOnPreferenceChangeListener((pref, v) -> {
+                    iconPrefs.edit().putBoolean("icons_show_enabled", (Boolean) v).apply();
+                    return true;
+                });
+            }
+            SwitchPreferenceCompat iconsMixed = findPreference("icons-mixed-search");
+            if (iconsMixed != null) {
+                SharedPreferences iconPrefs = requireContext().getSharedPreferences("icon_picker_prefs", android.content.Context.MODE_PRIVATE);
+                iconsMixed.setChecked(iconPrefs.getBoolean("mixed_search", false));
+                iconsMixed.setOnPreferenceChangeListener((pref, v) -> {
+                    iconPrefs.edit().putBoolean("mixed_search", (Boolean) v).apply();
                     return true;
                 });
             }
