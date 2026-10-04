@@ -19,6 +19,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -314,5 +315,141 @@ public class SmartDropHelper {
             return true;
         }
         return false;
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // Us-шаблоны: поиск неразрешённых компонентов в наборе блоков
+    // ─────────────────────────────────────────────────────────────
+
+    /**
+     * Обходит блоки и находит те, для которых требуется компонент,
+     * но такого компонента нет в проекте.
+     *
+     * @param blocks   блоки (например, из Us.getData())
+     * @param scId     ID проекта
+     * @param javaName javaName экрана
+     * @return список неразрешённых компонентов (в порядке появления, без дубликатов)
+     */
+    public ArrayList<ComponentBean> getUnresolvedComponents(ArrayList<BlockBean> blocks,
+                                                            String scId,
+                                                            String javaName) {
+        ArrayList<ComponentBean> result = new ArrayList<>();
+        if (blocks == null || blocks.isEmpty()) return result;
+
+        // Собираем существующие имена компонентов по типам
+        // Ключ: "type:name" → true
+        HashSet<String> existingKeys = new HashSet<>();
+        try {
+            ArrayList<ComponentBean> all = jC.a(scId).e(javaName);
+            if (all != null) {
+                for (ComponentBean cb : all) {
+                    existingKeys.add(cb.type + ":" + cb.componentId);
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "getUnresolvedComponents: cannot list components", e);
+        }
+
+        // Смотрим блоки
+        LinkedHashMap<String, ComponentBean> unresolved = new LinkedHashMap<>();
+        for (BlockBean b : blocks) {
+            if (b == null || b.parameters == null || b.parameters.isEmpty()) continue;
+
+            String compName = b.parameters.get(0);
+            if (compName == null || compName.isEmpty()) continue;
+            // Игнорируем выражения-обёртки (@, %, и т.п.)
+            if (compName.charAt(0) == '@' || compName.charAt(0) == '%') continue;
+
+            Integer type = getRequiredComponent(b.opCode);
+            if (type == null) continue;
+
+            String key = type + ":" + compName;
+            if (existingKeys.contains(key)) continue;  // уже есть
+            if (unresolved.containsKey(key)) continue; // уже добавили
+
+            // Создаём шаблон для будущего создания
+            ComponentBean cb = new ComponentBean(type, compName);
+            unresolved.put(key, cb);
+        }
+
+        result.addAll(unresolved.values());
+        return result;
+    }
+
+    /**
+     * Создаёт несколько компонентов за один раз.
+     *
+     * @return количество успешно созданных
+     */
+    public int createComponentsBatch(String scId, String javaName, ArrayList<ComponentBean> beans) {
+        if (beans == null || beans.isEmpty()) return 0;
+        int created = 0;
+        for (ComponentBean cb : beans) {
+            try {
+                jC.a(scId).a(javaName, cb.type, cb.componentId);
+                created++;
+            } catch (Exception e) {
+                Log.e(TAG, "createComponentsBatch failed for " + cb.componentId, e);
+            }
+        }
+        try {
+            jC.a(scId).k();
+        } catch (Exception ignored) {}
+        return created;
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // Us-шаблон: обработка drop сборки
+    // ─────────────────────────────────────────────────────────────
+
+    /**
+     * Вызывается после drop Us-шаблона в workspace.
+     * Находит неразрешённые компоненты в блокировках шаблона и предлагает создать их.
+     *
+     * @param activity   текущая Activity
+     * @param scId       ID проекта
+     * @param javaName   javaName экрана
+     * @param droppedBlocks  блоки, вставленные из Us (ArrayList<BlockBean>)
+     */
+    public void handleUsTemplateDrop(Activity activity,
+                                     String scId,
+                                     String javaName,
+                                     ArrayList<BlockBean> droppedBlocks) {
+        if (activity == null || droppedBlocks == null || droppedBlocks.isEmpty()) return;
+
+        DebugLogger log = DebugLogger.get(activity);
+        log.d(TAG, "log_smartdrop_opcode", "Us template, blocks=" + droppedBlocks.size());
+
+        ArrayList<ComponentBean> unresolved = getUnresolvedComponents(droppedBlocks, scId, javaName);
+        if (unresolved.isEmpty()) {
+            log.d(TAG, "log_smartdrop_no_component_required", "все компоненты разрешены");
+            return;
+        }
+
+        log.i(TAG, "log_smartdrop_required", "не разрешено: " + unresolved.size());
+
+        // Формируем сообщение
+        StringBuilder sb = new StringBuilder();
+        sb.append(activity.getString(pro.sketchware.R.string.smartdrop_us_needed)).append("\n\n");
+        for (ComponentBean cb : unresolved) {
+            String typeName = ComponentBean.getComponentName(activity, cb.type);
+            sb.append("•  ").append(cb.componentId).append("  (").append(typeName).append(")\n");
+        }
+
+        new android.app.AlertDialog.Builder(activity)
+                .setTitle(pro.sketchware.R.string.smartdrop_us_title)
+                .setMessage(sb.toString().trim())
+                .setPositiveButton(pro.sketchware.R.string.smartdrop_us_create_all,
+                        (d, w) -> {
+                            int created = createComponentsBatch(scId, javaName, unresolved);
+                            log.i(TAG, "log_smartdrop_component_created",
+                                    "batch: " + created + " components");
+                            android.widget.Toast.makeText(activity,
+                                    activity.getString(pro.sketchware.R.string.smartdrop_us_created)
+                                            .replace("%d", String.valueOf(created)),
+                                    android.widget.Toast.LENGTH_SHORT).show();
+                        })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
     }
 }

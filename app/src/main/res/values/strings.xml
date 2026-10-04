@@ -1160,4 +1160,8 @@ ACTION_VIEW
     <string name="smartdrop_choose_component">Выберите компонент для замены во всех блоках</string>
     <string name="smartdrop_no_components">В проекте нет компонентов</string>
     <string name="smartdrop_updated_blocks">Обновлено блоков: %d</string>
+    <string name="smartdrop_us_title">Нужны компоненты для сборки</string>
+    <string name="smartdrop_us_needed">Эта сборка использует компоненты, которых нет в проекте:</string>
+    <string name="smartdrop_us_create_all">Создать все</string>
+    <string name="smartdrop_us_created">Создано компонентов: %d</string>
 </resources>
