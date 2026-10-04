@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class TemplateGalleryActivity extends BaseAppCompatActivity {
     private ChipGroup categoryGroup;
     private TemplateAdapter adapter;
     private String selectedCategory = null; // null = "Все"
+    private String searchQuery = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,32 @@ public class TemplateGalleryActivity extends BaseAppCompatActivity {
 
         categoryGroup = findViewById(R.id.category_group);
         buildCategories();
+
+        // Поиск
+        TextInputEditText inputSearch = findViewById(R.id.input_search);
+        inputSearch.addTextChangedListener(new android.text.TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(android.text.Editable s) {
+                searchQuery = s.toString().trim().toLowerCase();
+                // При активном поиске — сбрасываем категорию на "Все"
+                if (!searchQuery.isEmpty() && selectedCategory != null) {
+                    selectedCategory = null;
+                    // Снимаем выделение с чипов
+                    for (int i = 0; i < categoryGroup.getChildCount(); i++) {
+                        android.view.View child = categoryGroup.getChildAt(i);
+                        if (child instanceof Chip) {
+                            ((Chip) child).setChecked(i == 0);
+                        }
+                    }
+                }
+                refreshList();
+            }
+        });
+
         refreshList();
     }
 
@@ -81,7 +109,26 @@ public class TemplateGalleryActivity extends BaseAppCompatActivity {
         List<ScreenTemplate> list = (selectedCategory == null)
                 ? templates.getAll()
                 : templates.getByCategory(selectedCategory);
+
+        // Фильтр по поисковому запросу
+        if (!searchQuery.isEmpty()) {
+            List<ScreenTemplate> filtered = new ArrayList<>();
+            for (ScreenTemplate t : list) {
+                if (matchesSearch(t, searchQuery)) {
+                    filtered.add(t);
+                }
+            }
+            list = filtered;
+        }
+
         adapter.setData(list);
+    }
+
+    private boolean matchesSearch(ScreenTemplate t, String query) {
+        if (t.name != null && t.name.toLowerCase().contains(query)) return true;
+        if (t.description != null && t.description.toLowerCase().contains(query)) return true;
+        if (t.id != null && t.id.toLowerCase().contains(query)) return true;
+        return false;
     }
 
     private void onTemplateSelected(ScreenTemplate t) {
