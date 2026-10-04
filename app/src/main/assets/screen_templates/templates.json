@@ -50,6 +50,56 @@
       "id": "special",
       "name": "Специальные",
       "icon": "ic_mtrl_star"
+    },
+    {
+      "id": "games",
+      "name": "Игры",
+      "icon": "ic_mtrl_star"
+    },
+    {
+      "id": "finance",
+      "name": "Финансы",
+      "icon": "ic_mtrl_list"
+    },
+    {
+      "id": "education",
+      "name": "Образование",
+      "icon": "ic_mtrl_edit"
+    },
+    {
+      "id": "fitness",
+      "name": "Фитнес",
+      "icon": "ic_mtrl_star"
+    },
+    {
+      "id": "travel",
+      "name": "Путешествия",
+      "icon": "ic_mtrl_star"
+    },
+    {
+      "id": "food",
+      "name": "Еда",
+      "icon": "ic_mtrl_list"
+    },
+    {
+      "id": "health",
+      "name": "Здоровье",
+      "icon": "ic_mtrl_star"
+    },
+    {
+      "id": "music",
+      "name": "Музыка",
+      "icon": "ic_mtrl_play"
+    },
+    {
+      "id": "news",
+      "name": "Новости",
+      "icon": "ic_mtrl_list"
+    },
+    {
+      "id": "chat",
+      "name": "Чат",
+      "icon": "ic_mtrl_people"
     }
   ],
   "templates": [
@@ -5307,6 +5357,5841 @@
           "marginRight": 16,
           "marginBottom": 0,
           "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_menu",
+      "category": "games",
+      "name": "Игровое меню",
+      "description": "Кнопки Play/Settings/Exit",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Моя игра",
+          "textSize": 28,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_play",
+          "type": 3,
+          "name": "btn_play",
+          "parent": "root",
+          "index": 1,
+          "text": "▶ Играть",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_sett",
+          "type": 3,
+          "name": "btn_sett",
+          "parent": "root",
+          "index": 2,
+          "text": "Настройки",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_exit",
+          "type": 3,
+          "name": "btn_exit",
+          "parent": "root",
+          "index": 3,
+          "text": "Выход",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_score",
+      "category": "games",
+      "name": "Игровой экран",
+      "description": "Счёт + управление",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Счёт: 0",
+          "textSize": 20,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": 300,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_start",
+          "type": 3,
+          "name": "btn_start",
+          "parent": "root",
+          "index": 2,
+          "text": "Старт",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_over",
+      "category": "games",
+      "name": "Game Over",
+      "description": "Конец + результат",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "GAME OVER",
+          "textSize": 28,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 120,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Счёт: 0",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_retry",
+          "type": 3,
+          "name": "btn_retry",
+          "parent": "root",
+          "index": 2,
+          "text": "Ещё раз",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_leaderboard",
+      "category": "games",
+      "name": "Таблица лидеров",
+      "description": "Список рекордов",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🏆 Лидеры",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_achievements",
+      "category": "games",
+      "name": "Достижения",
+      "description": "Список ачивок",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Достижения",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_shop",
+      "category": "games",
+      "name": "Магазин",
+      "description": "Список покупок",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🛒 Магазин",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_daily",
+      "category": "games",
+      "name": "Ежедневная награда",
+      "description": "Картинка + кнопка",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 120,
+          "height": 120,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Ежедневная награда!",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_claim",
+          "type": 3,
+          "name": "btn_claim",
+          "parent": "root",
+          "index": 2,
+          "text": "Получить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_tutorial",
+      "category": "games",
+      "name": "Туториал",
+      "description": "Картинка + текст + далее",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 200,
+          "height": 200,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Как играть",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Описание правил",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_next",
+          "type": 3,
+          "name": "btn_next",
+          "parent": "root",
+          "index": 3,
+          "text": "Далее",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_settings",
+      "category": "games",
+      "name": "Настройки игры",
+      "description": "Музыка + звук",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Настройки",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Музыка",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "sw2",
+          "type": 13,
+          "name": "sw2",
+          "parent": "root",
+          "index": 2,
+          "text": "Звуки",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        },
+        {
+          "id": "sw3",
+          "type": 13,
+          "name": "sw3",
+          "parent": "root",
+          "index": 3,
+          "text": "Вибрация",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "game_pause",
+      "category": "games",
+      "name": "Пауза",
+      "description": "Меню паузы",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Пауза",
+          "textSize": 28,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 120,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_resume",
+          "type": 3,
+          "name": "btn_resume",
+          "parent": "root",
+          "index": 1,
+          "text": "▶ Продолжить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_menu",
+          "type": 3,
+          "name": "btn_menu",
+          "parent": "root",
+          "index": 2,
+          "text": "Главное меню",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_exit",
+          "type": 3,
+          "name": "btn_exit",
+          "parent": "root",
+          "index": 3,
+          "text": "Выход",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_balance",
+      "category": "finance",
+      "name": "Баланс",
+      "description": "Сумма + кнопки",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Баланс",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "0 ₽",
+          "textSize": 32,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_income",
+          "type": 3,
+          "name": "btn_income",
+          "parent": "root",
+          "index": 2,
+          "text": "Доход",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_expense",
+          "type": 3,
+          "name": "btn_expense",
+          "parent": "root",
+          "index": 3,
+          "text": "Расход",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_transactions",
+      "category": "finance",
+      "name": "Транзакции",
+      "description": "Список операций",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "История",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_budget",
+      "category": "finance",
+      "name": "Бюджет",
+      "description": "Сумма + категории",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Бюджет",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "10000 ₽ / 15000 ₽",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 2,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 3,
+          "width": -1,
+          "height": 300
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_categories",
+      "category": "finance",
+      "name": "Категории",
+      "description": "Список категорий",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Категории",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_chart",
+      "category": "finance",
+      "name": "График",
+      "description": "Диаграмма + период",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Расходы за месяц",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": 300,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_detail",
+          "type": 3,
+          "name": "btn_detail",
+          "parent": "root",
+          "index": 2,
+          "text": "Подробнее",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_goals",
+      "category": "finance",
+      "name": "Цели",
+      "description": "Список целей",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🎯 Мои цели",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_cards",
+      "category": "finance",
+      "name": "Карты",
+      "description": "Список банковских карт",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Мои карты",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        },
+        {
+          "id": "btn_add",
+          "type": 3,
+          "name": "btn_add",
+          "parent": "root",
+          "index": 2,
+          "text": "+ Добавить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_savings",
+      "category": "finance",
+      "name": "Накопления",
+      "description": "Цель + прогресс",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Накопления",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "5000 ₽ из 50000 ₽",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 2,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_add",
+          "type": 3,
+          "name": "btn_add",
+          "parent": "root",
+          "index": 3,
+          "text": "Пополнить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_bills",
+      "category": "finance",
+      "name": "Счета",
+      "description": "Список платежей",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "💳 Счета",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fin_reports",
+      "category": "finance",
+      "name": "Отчёты",
+      "description": "Период + экспорт",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Отчёты",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 1,
+          "hint": "Дата начала",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et2",
+          "type": 5,
+          "name": "et2",
+          "parent": "root",
+          "index": 2,
+          "hint": "Дата конца",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_export",
+          "type": 3,
+          "name": "btn_export",
+          "parent": "root",
+          "index": 3,
+          "text": "Экспорт",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_courses",
+      "category": "education",
+      "name": "Курсы",
+      "description": "Список курсов",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Курсы",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_lesson",
+      "category": "education",
+      "name": "Урок",
+      "description": "Видео + текст + далее",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "wv1",
+          "type": 7,
+          "name": "wv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 250
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Название урока",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Описание урока...",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_next",
+          "type": 3,
+          "name": "btn_next",
+          "parent": "root",
+          "index": 3,
+          "text": "Далее",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_quiz",
+      "category": "education",
+      "name": "Тест",
+      "description": "Вопрос + варианты",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вопрос 1/10",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Какой это язык?",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "cb1",
+          "type": 11,
+          "name": "cb1",
+          "parent": "root",
+          "index": 2,
+          "text": "Вариант A",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16
+        },
+        {
+          "id": "cb2",
+          "type": 11,
+          "name": "cb2",
+          "parent": "root",
+          "index": 3,
+          "text": "Вариант B",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "cb3",
+          "type": 11,
+          "name": "cb3",
+          "parent": "root",
+          "index": 4,
+          "text": "Вариант C",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "btn_ok",
+          "type": 3,
+          "name": "btn_ok",
+          "parent": "root",
+          "index": 5,
+          "text": "Ответить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_results",
+      "category": "education",
+      "name": "Результаты",
+      "description": "Оценка + кнопка",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🎉",
+          "textSize": 48,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 100,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "8/10",
+          "textSize": 32,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv3",
+          "type": 4,
+          "name": "tv3",
+          "parent": "root",
+          "index": 2,
+          "text": "Отличный результат!",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_retry",
+          "type": 3,
+          "name": "btn_retry",
+          "parent": "root",
+          "index": 3,
+          "text": "Пройти снова",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_certificate",
+      "category": "education",
+      "name": "Сертификат",
+      "description": "Картинка + имя + кнопка",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 150,
+          "height": 200,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Сертификат выдан",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Иванов Иван",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_share",
+          "type": 3,
+          "name": "btn_share",
+          "parent": "root",
+          "index": 3,
+          "text": "Поделиться",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_schedule",
+      "category": "education",
+      "name": "Расписание",
+      "description": "Список занятий",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Расписание",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_notes",
+      "category": "education",
+      "name": "Заметки",
+      "description": "Список заметок",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Заметки",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        },
+        {
+          "id": "btn_add",
+          "type": 3,
+          "name": "btn_add",
+          "parent": "root",
+          "index": 2,
+          "text": "+ Добавить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_library",
+      "category": "education",
+      "name": "Библиотека",
+      "description": "Список книг",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск книг",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_teachers",
+      "category": "education",
+      "name": "Преподаватели",
+      "description": "Список учителей",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Преподаватели",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "edu_progress",
+      "category": "education",
+      "name": "Прогресс",
+      "description": "Полоса + статистика",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Мой прогресс",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Пройдено 40%",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 3,
+          "width": -1,
+          "height": 300
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_workout",
+      "category": "fitness",
+      "name": "Тренировка",
+      "description": "Упражнение + таймер",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Отжимания",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 1,
+          "width": 150,
+          "height": 150,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "00:30",
+          "textSize": 32,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_start",
+          "type": 3,
+          "name": "btn_start",
+          "parent": "root",
+          "index": 3,
+          "text": "▶ Старт",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_tracker",
+      "category": "fitness",
+      "name": "Трекер",
+      "description": "Шаги + дистанция",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Сегодня",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "5000",
+          "textSize": 48,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv3",
+          "type": 4,
+          "name": "tv3",
+          "parent": "root",
+          "index": 2,
+          "text": "шагов",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 3,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_calories",
+      "category": "fitness",
+      "name": "Калории",
+      "description": "Сожжено + цель",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🔥 500 ккал",
+          "textSize": 28,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Цель: 2000 ккал",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 2,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_goals",
+      "category": "fitness",
+      "name": "Цели",
+      "description": "Список целей",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🎯 Цели",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_history",
+      "category": "fitness",
+      "name": "История",
+      "description": "Список тренировок",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "История",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_exercises",
+      "category": "fitness",
+      "name": "Упражнения",
+      "description": "Список упражнений",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Упражнения",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_timer",
+      "category": "fitness",
+      "name": "Таймер",
+      "description": "Круглый таймер + кнопки",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "00:00",
+          "textSize": 48,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 100,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_start",
+          "type": 3,
+          "name": "btn_start",
+          "parent": "root",
+          "index": 1,
+          "text": "▶ Старт",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_reset",
+          "type": 3,
+          "name": "btn_reset",
+          "parent": "root",
+          "index": 2,
+          "text": "Сброс",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_stats",
+      "category": "fitness",
+      "name": "Статистика",
+      "description": "График + цифры",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Статистика",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": 250,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Всего: 10000 шагов",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_nutrition",
+      "category": "fitness",
+      "name": "Питание",
+      "description": "Список приёмов пищи",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Питание",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        },
+        {
+          "id": "btn_add",
+          "type": 3,
+          "name": "btn_add",
+          "parent": "root",
+          "index": 2,
+          "text": "+ Добавить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "fit_challenges",
+      "category": "fitness",
+      "name": "Челленджи",
+      "description": "Список задач",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🏆 Челленджи",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_search",
+      "category": "travel",
+      "name": "Поиск",
+      "description": "Откуда/Куда + дата",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Откуда",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et2",
+          "type": 5,
+          "name": "et2",
+          "parent": "root",
+          "index": 1,
+          "hint": "Куда",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et3",
+          "type": 5,
+          "name": "et3",
+          "parent": "root",
+          "index": 2,
+          "hint": "Дата",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_search",
+          "type": 3,
+          "name": "btn_search",
+          "parent": "root",
+          "index": 3,
+          "text": "Найти",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_results",
+      "category": "travel",
+      "name": "Результаты",
+      "description": "Список билетов",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Найдено 5 рейсов",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_booking",
+      "category": "travel",
+      "name": "Бронирование",
+      "description": "Данные пассажира",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Имя",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et2",
+          "type": 5,
+          "name": "et2",
+          "parent": "root",
+          "index": 1,
+          "hint": "Фамилия",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et3",
+          "type": 5,
+          "name": "et3",
+          "parent": "root",
+          "index": 2,
+          "hint": "Паспорт",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et4",
+          "type": 5,
+          "name": "et4",
+          "parent": "root",
+          "index": 3,
+          "hint": "Телефон",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_book",
+          "type": 3,
+          "name": "btn_book",
+          "parent": "root",
+          "index": 4,
+          "text": "Забронировать",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_itinerary",
+      "category": "travel",
+      "name": "Маршрут",
+      "description": "Список пунктов",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Маршрут",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_map",
+      "category": "travel",
+      "name": "Карта",
+      "description": "Заглушка карты",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 17
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_reviews",
+      "category": "travel",
+      "name": "Отзывы",
+      "description": "Список отзывов",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Отзывы",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_gallery",
+      "category": "travel",
+      "name": "Галерея",
+      "description": "Фото места",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_info",
+      "category": "travel",
+      "name": "Информация",
+      "description": "Картинка + описание",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 250,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Название места",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Описание...",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_book",
+          "type": 3,
+          "name": "btn_book",
+          "parent": "root",
+          "index": 3,
+          "text": "Забронировать",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_checkout",
+      "category": "travel",
+      "name": "Оплата",
+      "description": "Способ + карта",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Оплата",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "cb1",
+          "type": 11,
+          "name": "cb1",
+          "parent": "root",
+          "index": 1,
+          "text": "Карта",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16
+        },
+        {
+          "id": "cb2",
+          "type": 11,
+          "name": "cb2",
+          "parent": "root",
+          "index": 2,
+          "text": "Наличные",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "btn_pay",
+          "type": 3,
+          "name": "btn_pay",
+          "parent": "root",
+          "index": 3,
+          "text": "Оплатить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "trav_confirm",
+      "category": "travel",
+      "name": "Подтверждение",
+      "description": "Галочка + билет",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "✅",
+          "textSize": 48,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 100,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Забронировано!",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv3",
+          "type": 4,
+          "name": "tv3",
+          "parent": "root",
+          "index": 2,
+          "text": "Номер заказа: 12345",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_done",
+          "type": 3,
+          "name": "btn_done",
+          "parent": "root",
+          "index": 3,
+          "text": "Готово",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_menu",
+      "category": "food",
+      "name": "Меню",
+      "description": "Список блюд",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск блюд",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_dish",
+      "category": "food",
+      "name": "Блюдо",
+      "description": "Картинка + описание",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 300,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Название блюда",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Описание блюда...",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv3",
+          "type": 4,
+          "name": "tv3",
+          "parent": "root",
+          "index": 3,
+          "text": "500 ₽",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_add",
+          "type": 3,
+          "name": "btn_add",
+          "parent": "root",
+          "index": 4,
+          "text": "+ В корзину",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_cart",
+      "category": "food",
+      "name": "Корзина",
+      "description": "Список + сумма",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 400
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Итого: 0 ₽",
+          "textSize": 16,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_checkout",
+          "type": 3,
+          "name": "btn_checkout",
+          "parent": "root",
+          "index": 2,
+          "text": "Оформить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_order",
+      "category": "food",
+      "name": "Заказ",
+      "description": "Адрес + комментарий",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Адрес",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et2",
+          "type": 5,
+          "name": "et2",
+          "parent": "root",
+          "index": 1,
+          "hint": "Телефон",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et3",
+          "type": 5,
+          "name": "et3",
+          "parent": "root",
+          "index": 2,
+          "hint": "Комментарий",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_order",
+          "type": 3,
+          "name": "btn_order",
+          "parent": "root",
+          "index": 3,
+          "text": "Заказать",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_delivery",
+      "category": "food",
+      "name": "Доставка",
+      "description": "Статус + карта",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Доставка в пути",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Ожидайте ~30 минут",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 2,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_payment",
+      "category": "food",
+      "name": "Оплата",
+      "description": "Способ оплаты",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Оплата",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "cb1",
+          "type": 11,
+          "name": "cb1",
+          "parent": "root",
+          "index": 1,
+          "text": "Карта",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16
+        },
+        {
+          "id": "cb2",
+          "type": 11,
+          "name": "cb2",
+          "parent": "root",
+          "index": 2,
+          "text": "Наличные",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "cb3",
+          "type": 11,
+          "name": "cb3",
+          "parent": "root",
+          "index": 3,
+          "text": "Онлайн",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "btn_pay",
+          "type": 3,
+          "name": "btn_pay",
+          "parent": "root",
+          "index": 4,
+          "text": "Оплатить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_rating",
+      "category": "food",
+      "name": "Оценка",
+      "description": "Звёзды + отзыв",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "⭐⭐⭐⭐⭐",
+          "textSize": 32,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Оцените блюдо",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 2,
+          "hint": "Ваш отзыв",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 3,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_reviews",
+      "category": "food",
+      "name": "Отзывы",
+      "description": "Список отзывов",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Отзывы",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_categories",
+      "category": "food",
+      "name": "Категории",
+      "description": "Список категорий",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "food_search",
+      "category": "food",
+      "name": "Поиск",
+      "description": "Поиск + результат",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Что хотите?",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_symptoms",
+      "category": "health",
+      "name": "Симптомы",
+      "description": "Список симптомов",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Симптомы",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_records",
+      "category": "health",
+      "name": "Записи",
+      "description": "Медкарта",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Медицинская карта",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_meds",
+      "category": "health",
+      "name": "Лекарства",
+      "description": "Список препаратов",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "💊 Лекарства",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        },
+        {
+          "id": "btn_add",
+          "type": 3,
+          "name": "btn_add",
+          "parent": "root",
+          "index": 2,
+          "text": "+ Добавить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_reminders",
+      "category": "health",
+      "name": "Напоминания",
+      "description": "Список напоминаний",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "⏰ Напоминания",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_charts",
+      "category": "health",
+      "name": "Графики",
+      "description": "Диаграмма показателей",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Показатели",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": 300,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_appointments",
+      "category": "health",
+      "name": "Приёмы",
+      "description": "Список записей к врачу",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Приёмы",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        },
+        {
+          "id": "btn_book",
+          "type": 3,
+          "name": "btn_book",
+          "parent": "root",
+          "index": 2,
+          "text": "+ Записаться",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_doctors",
+      "category": "health",
+      "name": "Врачи",
+      "description": "Список врачей",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск врача",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_prescriptions",
+      "category": "health",
+      "name": "Рецепты",
+      "description": "Список рецептов",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Рецепты",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_diary",
+      "category": "health",
+      "name": "Дневник",
+      "description": "Запись самочувствия",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Дневник",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 1,
+          "hint": "Как вы себя чувствуете?",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_save",
+          "type": 3,
+          "name": "btn_save",
+          "parent": "root",
+          "index": 2,
+          "text": "Сохранить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "health_stats",
+      "category": "health",
+      "name": "Статистика",
+      "description": "Цифры + график",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Статистика",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Пульс: 72",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv3",
+          "type": 4,
+          "name": "tv3",
+          "parent": "root",
+          "index": 2,
+          "text": "Давление: 120/80",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 3,
+          "width": -1,
+          "height": 250,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_library",
+      "category": "music",
+      "name": "Медиатека",
+      "description": "Список треков",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_player",
+      "category": "music",
+      "name": "Плеер",
+      "description": "Обложка + управление",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 200,
+          "height": 200,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Название",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Исполнитель",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 4,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 3,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_play",
+          "type": 3,
+          "name": "btn_play",
+          "parent": "root",
+          "index": 4,
+          "text": "▶",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_playlist",
+      "category": "music",
+      "name": "Плейлист",
+      "description": "Список плейлистов",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Плейлисты",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_album",
+      "category": "music",
+      "name": "Альбом",
+      "description": "Обложка + треки",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 200,
+          "height": 200,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Название альбома",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 2,
+          "width": -1,
+          "height": 300
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_artist",
+      "category": "music",
+      "name": "Исполнитель",
+      "description": "Фото + треки",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 150,
+          "height": 150,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Имя исполнителя",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 2,
+          "width": -1,
+          "height": 350
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_search",
+      "category": "music",
+      "name": "Поиск",
+      "description": "Поиск треков",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_equalizer",
+      "category": "music",
+      "name": "Эквалайзер",
+      "description": "Ползунки",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Эквалайзер",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Низкие частоты",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv3",
+          "type": 4,
+          "name": "tv3",
+          "parent": "root",
+          "index": 2,
+          "text": "Высокие частоты",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_reset",
+          "type": 3,
+          "name": "btn_reset",
+          "parent": "root",
+          "index": 3,
+          "text": "Сбросить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_favorites",
+      "category": "music",
+      "name": "Избранное",
+      "description": "Любимые треки",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "❤ Избранное",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_recent",
+      "category": "music",
+      "name": "Недавние",
+      "description": "История прослушивания",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Недавно слушали",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "music_radio",
+      "category": "music",
+      "name": "Радио",
+      "description": "Список станций",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "📻 Радио",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_feed",
+      "category": "news",
+      "name": "Лента",
+      "description": "Список новостей",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_article",
+      "category": "news",
+      "name": "Статья",
+      "description": "Заголовок + текст",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 250,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Заголовок статьи",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Дата: 04.10.2026",
+          "textSize": 12,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv3",
+          "type": 4,
+          "name": "tv3",
+          "parent": "root",
+          "index": 3,
+          "text": "Текст статьи...",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_categories",
+      "category": "news",
+      "name": "Категории",
+      "description": "Список рубрик",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Рубрики",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_search",
+      "category": "news",
+      "name": "Поиск",
+      "description": "Поиск новостей",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_bookmarks",
+      "category": "news",
+      "name": "Закладки",
+      "description": "Сохранённые статьи",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🔖 Закладки",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_comments",
+      "category": "news",
+      "name": "Комментарии",
+      "description": "Список комментариев",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 500
+        },
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 1,
+          "hint": "Комментарий",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 2,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_trending",
+      "category": "news",
+      "name": "Тренды",
+      "description": "Популярные статьи",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🔥 Тренды",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_settings",
+      "category": "news",
+      "name": "Настройки",
+      "description": "Настройки ленты",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Настройки",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Push-уведомления",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "sw2",
+          "type": 13,
+          "name": "sw2",
+          "parent": "root",
+          "index": 2,
+          "text": "Автозагрузка",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        },
+        {
+          "id": "sw3",
+          "type": 13,
+          "name": "sw3",
+          "parent": "root",
+          "index": 3,
+          "text": "Тёмная тема",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_author",
+      "category": "news",
+      "name": "Автор",
+      "description": "Профиль + статьи",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 80,
+          "height": 80,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Имя автора",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 2,
+          "width": -1,
+          "height": 400
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "news_share",
+      "category": "news",
+      "name": "Поделиться",
+      "description": "Кнопки соцсетей",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Поделиться",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_tg",
+          "type": 3,
+          "name": "btn_tg",
+          "parent": "root",
+          "index": 1,
+          "text": "Telegram",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_vk",
+          "type": 3,
+          "name": "btn_vk",
+          "parent": "root",
+          "index": 2,
+          "text": "ВКонтакте",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_wa",
+          "type": 3,
+          "name": "btn_wa",
+          "parent": "root",
+          "index": 3,
+          "text": "WhatsApp",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_list",
+      "category": "chat",
+      "name": "Список чатов",
+      "description": "Диалоги",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_room",
+      "category": "chat",
+      "name": "Чат",
+      "description": "Сообщения + ввод",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 500
+        },
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 1,
+          "hint": "Сообщение",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 2,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_contact",
+      "category": "chat",
+      "name": "Профиль контакта",
+      "description": "Фото + имя + кнопки",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 120,
+          "height": 120,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Имя",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "онлайн",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 4,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_msg",
+          "type": 3,
+          "name": "btn_msg",
+          "parent": "root",
+          "index": 3,
+          "text": "Написать",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_call",
+          "type": 3,
+          "name": "btn_call",
+          "parent": "root",
+          "index": 4,
+          "text": "Позвонить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_group",
+      "category": "chat",
+      "name": "Групповой чат",
+      "description": "Список участников",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Участники",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_profile",
+      "category": "chat",
+      "name": "Мой профиль",
+      "description": "Аватар + настройки",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 100,
+          "height": 100,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Моё имя",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 2,
+          "hint": "Статус",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_save",
+          "type": 3,
+          "name": "btn_save",
+          "parent": "root",
+          "index": 3,
+          "text": "Сохранить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_search",
+      "category": "chat",
+      "name": "Поиск",
+      "description": "Поиск чатов",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_attach",
+      "category": "chat",
+      "name": "Вложение",
+      "description": "Варианты вложений",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Отправить",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_photo",
+          "type": 3,
+          "name": "btn_photo",
+          "parent": "root",
+          "index": 1,
+          "text": "📷 Фото",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_video",
+          "type": 3,
+          "name": "btn_video",
+          "parent": "root",
+          "index": 2,
+          "text": "🎥 Видео",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_file",
+          "type": 3,
+          "name": "btn_file",
+          "parent": "root",
+          "index": 3,
+          "text": "📎 Файл",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_voice",
+      "category": "chat",
+      "name": "Голосовое",
+      "description": "Кнопка записи",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🎤",
+          "textSize": 48,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 120,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Нажмите для записи",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv3",
+          "type": 4,
+          "name": "tv3",
+          "parent": "root",
+          "index": 2,
+          "text": "00:00",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_video",
+      "category": "chat",
+      "name": "Видеозвонок",
+      "description": "Заглушка звонка",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 400,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Имя собеседника",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_end",
+          "type": 3,
+          "name": "btn_end",
+          "parent": "root",
+          "index": 2,
+          "text": "Завершить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "chat_settings",
+      "category": "chat",
+      "name": "Настройки чата",
+      "description": "Уведомления + тема",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Настройки чата",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Уведомления",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "sw2",
+          "type": 13,
+          "name": "sw2",
+          "parent": "root",
+          "index": 2,
+          "text": "Звук",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        },
+        {
+          "id": "sw3",
+          "type": 13,
+          "name": "sw3",
+          "parent": "root",
+          "index": 3,
+          "text": "Вибрация",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
         }
       ],
       "blocks": []
