@@ -34,7 +34,9 @@ public class TemplateParser {
         layout.marginTop = raw.marginTop;
         layout.marginRight = raw.marginRight;
         layout.marginBottom = raw.marginBottom;
-        layout.layoutGravity = raw.layoutGravity;
+        // ВАЖНО: для View внутри LinearLayout нужно layout.gravity, а не layoutGravity
+        // layout.layoutGravity применяется только в RelativeLayout → вызывает ClassCastException
+        layout.gravity = raw.layoutGravity;
 
         // Text — присваиваем из raw, если есть
         TextBean text = v.text;
