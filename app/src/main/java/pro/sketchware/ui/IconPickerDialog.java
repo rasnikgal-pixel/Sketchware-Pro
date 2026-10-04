@@ -166,7 +166,7 @@ public class IconPickerDialog {
         try {
             android.util.TypedValue tv = new android.util.TypedValue();
             if (context.getTheme().resolveAttribute(
-                    com.google.android.material.R.attr.colorPrimary, tv, true)) {
+                    androidx.appcompat.R.attr.colorAccent, tv, true)) {
                 if (tv.type >= android.util.TypedValue.TYPE_FIRST_COLOR_INT
                         && tv.type <= android.util.TypedValue.TYPE_LAST_COLOR_INT) {
                     return tv.data;
@@ -177,7 +177,7 @@ public class IconPickerDialog {
             }
         } catch (Exception ignored) {}
         // Fallback — тёмно-серый (виден на светлой теме)
-        return 0xFF212121;
+        return 0xFF6750A4;  // Material 3 Primary Purple
     }
 
     public void show() {
