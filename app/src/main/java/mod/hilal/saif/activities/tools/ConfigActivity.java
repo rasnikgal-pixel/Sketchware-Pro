@@ -63,6 +63,8 @@ public class ConfigActivity extends BaseAppCompatActivity {
     public static final String SETTING_USE_ASD_HIGHLIGHTER = "use-asd-highlighter";
     public static final String SETTING_CRITICAL_UPDATE_REMINDER = "critical-update-reminder";
     public static final String SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH = "palletteDir";
+    public static final String SETTING_SMARTDROP_UPDATE_ALL_BLOCKS = "smartdrop-update-all-blocks";
+    public static final String SETTING_SMARTDROP_FORCE_REPLACE = "smartdrop-force-replace";
     public static final String SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH = "blockDir";
 
     public static String getBackupPath() {
@@ -90,6 +92,16 @@ public class ConfigActivity extends BaseAppCompatActivity {
 
     public static boolean isSettingEnabled(String keyName) {
         return DataStore.getInstance().getBoolean(keyName, false);
+    }
+
+    /** @return true если SmartDrop должен обновлять все блоки того же типа */
+    public static boolean isSmartDropUpdateAllEnabled() {
+        return DataStore.getInstance().getBoolean(SETTING_SMARTDROP_UPDATE_ALL_BLOCKS, true);
+    }
+
+    /** @return true если SmartDrop заменяет параметры без подтверждения */
+    public static boolean isSmartDropForceReplaceEnabled() {
+        return DataStore.getInstance().getBoolean(SETTING_SMARTDROP_FORCE_REPLACE, true);
     }
 
     public static void setSetting(String key, Object value) {

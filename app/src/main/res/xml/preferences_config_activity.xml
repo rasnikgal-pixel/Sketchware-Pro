@@ -85,4 +85,23 @@
             app:summary="Просмотр, копирование и отправка журнала"
             app:title="Открыть журнал" />
     </PreferenceCategory>
+    <PreferenceCategory app:title="SmartDrop">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:defaultValue="true"
+            app:key="smartdrop-update-all-blocks"
+            app:summary="При подключении блока к компоненту обновлять все блоки того же типа"
+            app:title="Обновлять все блоки типа" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:defaultValue="true"
+            app:key="smartdrop-force-replace"
+            app:summary="Заменять параметры блоков без подтверждения"
+            app:title="Принудительно заменять" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="smartdrop-update-all-now"
+            app:summary="Массово заменить компонент во всех блоках события"
+            app:title="Обновить блоки события вручную" />
+    </PreferenceCategory>
 </PreferenceScreen>

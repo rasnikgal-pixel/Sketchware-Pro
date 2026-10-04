@@ -2466,10 +2466,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                             BlockBean bean = rsForSmartDrop.getBean();
                             if (bean != null) {
                                 pro.sketchware.smartdrop.SmartDropHelper.get(LogicEditorActivity.this)
-                                        .handleDrop(LogicEditorActivity.this, scId, M.getJavaName(), bean, () -> {
-                                            rsForSmartDrop.p().k();
-                                            C();
-                                        });
+                                        .handleDrop(LogicEditorActivity.this, scId, M.getJavaName(),
+                                                s(), o.getBlocks(), bean, () -> {
+                                                    rsForSmartDrop.p().k();
+                                                    C();
+                                                });
                             }
                         });
                     }

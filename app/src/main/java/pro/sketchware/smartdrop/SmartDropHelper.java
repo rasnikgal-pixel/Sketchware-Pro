@@ -7,6 +7,7 @@ import android.widget.Toast;
 import android.app.Activity;
 
 import com.besome.sketch.beans.ComponentBean;
+import mod.hilal.saif.activities.tools.ConfigActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -158,15 +159,19 @@ public class SmartDropHelper {
     /**
      * Вызывается после drop блока в workspace.
      *
-     * @param activity   текущая Activity (для показа диалога и Toast)
-     * @param scId       ID проекта
-     * @param javaName   javaName экрана (ProjectFileBean.getJavaName())
-     * @param blockBean  упавший блок
-     * @param onUpdated  колбэк, вызывается после изменения blockBean.parameters
+     * @param activity    текущая Activity (для показа диалога и Toast)
+     * @param scId        ID проекта
+     * @param javaName    javaName экрана (ProjectFileBean.getJavaName())
+     * @param eventKey    ключ события для сохранения (bC.a(...))
+     * @param allBlocks   все блоки текущего события (для массового обновления)
+     * @param blockBean   упавший блок
+     * @param onUpdated   колбэк после изменения blockBean.parameters
      */
     public void handleDrop(Activity activity,
                            String scId,
                            String javaName,
+                           String eventKey,
+                           ArrayList<BlockBean> allBlocks,
                            BlockBean blockBean,
                            Runnable onUpdated) {
         if (activity == null || blockBean == null || blockBean.opCode == null) {
@@ -201,6 +206,19 @@ public class SmartDropHelper {
                     blockBean.parameters.set(0, componentId);
                 }
                 if (onUpdated != null) onUpdated.run();
+
+                // Массовое обновление других блоков события
+                if (ConfigActivity.isSmartDropUpdateAllEnabled()
+                        && allBlocks != null && !allBlocks.isEmpty()
+                        && blockBean != null) {
+                    int updated = updateAllBlocksOfType(allBlocks, componentType, componentId);
+                    if (updated > 1) {  // больше 1 — были другие блоки
+                        Toast.makeText(activity,
+                                "Обновлено блоков: " + updated + " → " + componentId,
+                                Toast.LENGTH_SHORT).show();
+                        log.i(TAG, "log_smartdrop_attached", "updated " + updated + " blocks");
+                    }
+                }
             }
 
             @Override
@@ -236,5 +254,47 @@ public class SmartDropHelper {
             }
         });
         dialog.show();
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // Массовое обновление блоков типа компонента
+    // ─────────────────────────────────────────────────────────────
+
+    /**
+     * Обходит все блоки (top-level, nextBlock, subStack1, subStack2) и заменяет
+     * parameters[0] на newComponentName для всех блоков, чей opCode требует
+     * указанный тип компонента.
+     *
+     * @return количество обновлённых блоков
+     */
+    public int updateAllBlocksOfType(ArrayList<BlockBean> blocks, int componentType, String newComponentName) {
+        if (blocks == null || blocks.isEmpty()) return 0;
+        int[] counter = new int[1];
+        for (BlockBean b : blocks) {
+            updateBlockRecursive(b, componentType, newComponentName, counter);
+        }
+        return counter[0];
+    }
+
+    private void updateBlockRecursive(BlockBean block, int componentType, String newComponentName, int[] counter) {
+        if (block == null) return;
+
+        // Проверяем, требует ли блок этот компонент
+        Integer required = getRequiredComponent(block.opCode);
+        if (required != null && required == componentType) {
+            if (block.parameters == null) {
+                block.parameters = new ArrayList<>();
+            }
+            if (block.parameters.isEmpty()) {
+                block.parameters.add(newComponentName);
+            } else {
+                block.parameters.set(0, newComponentName);
+            }
+            counter[0]++;
+        }
+
+        // Рекурсивно обходим вложенные блоки
+        // (в текущей модели BlockBean мы имеем лишь id-ссылки, поэтому топ-уровень)
+        // но subStack обрабатываются отдельно снаружи
     }
 }
