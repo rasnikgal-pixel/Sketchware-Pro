@@ -76,8 +76,9 @@ public class TemplatePreviewView extends View {
     }
 
     public void setTemplate(ScreenTemplate t, int index, int total) {
-        android.util.Log.i("TemplatePreviewView", "setTemplate: "
-                + (t != null ? t.id : "null") + ", index=" + index + "/" + total);
+        pro.sketchware.smartdrop.DebugLogger.get(getContext()).i("TemplatePreviewView",
+                "log_template_set",
+                (t != null ? t.id : "null") + ", index=" + index + "/" + total);
         this.template = t;
         this.pageIndex = index;
         this.pageTotal = total;
@@ -91,9 +92,11 @@ public class TemplatePreviewView extends View {
         int h = getHeight();
         if (w == 0 || h == 0) return;
 
-        android.util.Log.i("TemplatePreviewView", "onDraw: w=" + w + ", h=" + h
-                + ", tpl=" + (template != null ? template.id : "null")
-                + ", views=" + (template != null && template.views != null ? template.views.size() : -1));
+        pro.sketchware.smartdrop.DebugLogger.get(getContext()).i("TemplatePreviewView",
+                "log_template_draw",
+                "w=" + w + ", h=" + h
+                        + ", tpl=" + (template != null ? template.id : "null")
+                        + ", views=" + (template != null && template.views != null ? template.views.size() : -1));
 
         // Фон
         paint.setColor(COLOR_BG);
@@ -113,39 +116,35 @@ public class TemplatePreviewView extends View {
     }
 
     private void renderViews(Canvas canvas, List<ScreenTemplate.RawView> views, int w, int h) {
-        float scaleX = w / 360f;   // предполагаем ширину экрана 360dp
-        float scaleY = h / 640f;   // высота 640dp
-
-        float cursorY = dp(8);     // отступ сверху
+        float cursorY = dp(8);
 
         for (ScreenTemplate.RawView v : views) {
-            float marginL = v.marginLeft * scaleX;
-            float marginR = v.marginRight * scaleX;
-            float marginT = v.marginTop * scaleY;
+            float marginL = dp(v.marginLeft);
+            float marginR = dp(v.marginRight);
+            float marginT = dp(v.marginTop);
 
-            float availW = w - marginL - marginR;
             float x = marginL;
             float y = cursorY + marginT;
 
             // Ширина
             float width;
-            if (v.width == -1) width = availW;
-            else if (v.width == -2) width = availW;
-            else width = v.width * scaleX;
+            if (v.width == -1 || v.width == -2) width = w - marginL - marginR;
+            else width = dp(v.width);
 
             // Высота
             float height;
-            if (v.height == -1) height = 60 * scaleY;
-            else if (v.height == -2) height = 32 * scaleY;
-            else height = v.height * scaleY;
+            if (v.height == -1) height = dp(60);
+            else if (v.height == -2) height = dp(32);
+            else height = dp(v.height);
 
-            // Центрирование по горизонтали
+            if (y + height > h) break;
+
             if (v.layoutGravity == 1 || v.layoutGravity == 17) {
                 x = (w - width) / 2f;
             }
 
             drawView(canvas, v.type, x, y, width, height);
-            cursorY = y + height;
+            cursorY = y + height + dp(4);
         }
     }
 
