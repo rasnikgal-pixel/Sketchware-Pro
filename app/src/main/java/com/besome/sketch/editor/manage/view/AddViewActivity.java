@@ -330,6 +330,23 @@ public class AddViewActivity extends BaseAppCompatActivity {
         finish();
     }
 
+    private void showTemplateChoiceDialog() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Создание экрана")
+                .setMessage("Создать пустой экран или использовать шаблон?")
+                .setPositiveButton("Из шаблона", (d, w) -> {
+                    Intent intent = new Intent(this,
+                            pro.sketchware.templates.TemplateGalleryActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_TEMPLATES);
+                })
+                .setNeutralButton("Пустой", (d, w) -> {
+                    selectedTemplateId = null;
+                    handleCreateFile();
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
     private void handleEditModeInitialization() {
         nameValidator = new YB(getApplicationContext(), binding.tiName, getExtendedReservedNames(), new ArrayList<>(), projectFileBean.fileName);
         binding.edName.setText(projectFileBean.fileName);
