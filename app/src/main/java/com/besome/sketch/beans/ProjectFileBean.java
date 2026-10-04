@@ -66,6 +66,8 @@ public class ProjectFileBean extends SelectableBean implements Parcelable {
     @Expose
     public int orientation;
     public String presetName;
+    /** Иконка экрана. Формат: "" (по умолчанию) / "res:id" / "@drawable/name" / путь к файлу. */
+    public String screenIcon = "";
     @Expose
     @Deprecated
     public int theme = THEME_NONE;
@@ -161,6 +163,7 @@ public class ProjectFileBean extends SelectableBean implements Parcelable {
         keyboardSetting = parcel.readInt();
         options = parcel.readInt();
         presetName = parcel.readString();
+        screenIcon = parcel.readString();
     }
 
     public static String getActivityName(String name) {
@@ -271,6 +274,7 @@ public class ProjectFileBean extends SelectableBean implements Parcelable {
         dest.writeInt(keyboardSetting);
         dest.writeInt(options);
         dest.writeString(presetName);
+        dest.writeString(screenIcon);
     }
 
     @IntDef(flag = true,

@@ -53,6 +53,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
     private ProjectFileBean projectFileBean;
     private static final int REQUEST_CODE_TEMPLATES = 600;
     private String selectedTemplateId = null;
+    private String selectedScreenIcon = "";
     private String presetName;
     private ArrayList<FeatureItem> featureItems;
     private FeaturesAdapter featuresAdapter;
@@ -217,9 +218,14 @@ public class AddViewActivity extends BaseAppCompatActivity {
                     initializeItems();  // перерисовать чекбоксы
                 }
 
-                bB.a(getApplicationContext(),
+                // Диалог выбора иконки экрана
+                new pro.sketchware.ui.IconPickerDialog(this, selectedScreenIcon, icon -> {
+                    selectedScreenIcon = icon == null ? "" : icon;
+                }).show();
+
+                android.widget.Toast.makeText(getApplicationContext(),
                         "Шаблон выбран: " + selectedTemplateId,
-                        bB.TOAST_NORMAL).show();
+                        android.widget.Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -329,6 +335,10 @@ public class AddViewActivity extends BaseAppCompatActivity {
     private void handleCreateFile() {
         String fileName = Helper.getText(binding.edName) + getSuffix(binding.viewTypeSelector);
         ProjectFileBean projectFileBean = new ProjectFileBean(ProjectFileBean.PROJECT_FILE_TYPE_ACTIVITY, fileName, getSelectedButtonIndex(binding.screenOrientationSelector), getSelectedButtonIndex(binding.keyboardSettingsSelector), featureToolbar, !featureStatusBar, featureFab, featureDrawer);
+        // Применить выбранную иконку (если есть)
+        if (selectedScreenIcon != null && !selectedScreenIcon.isEmpty()) {
+            projectFileBean.screenIcon = selectedScreenIcon;
+        }
         Intent intent = new Intent();
         intent.putExtra("project_file", projectFileBean);
         if (selectedTemplateId != null) {

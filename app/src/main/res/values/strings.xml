@@ -1188,4 +1188,8 @@ ACTION_VIEW
     <string name="updates_period_3days">Раз в 3 дня</string>
     <string name="updates_period_6days">Раз в 6 дней</string>
     <string name="updates_period_9days">Раз в 9 дней</string>
+    <string name="icon_picker_title">Выберите иконку</string>
+    <string name="icon_picker_reset">Сбросить к стандартной</string>
+    <string name="icon_picker_ok">Выбрать</string>
+    <string name="icon_picker_cancel">Отмена</string>
 </resources>
