@@ -166,7 +166,7 @@ public class IconPickerDialog {
         try {
             android.util.TypedValue tv = new android.util.TypedValue();
             if (context.getTheme().resolveAttribute(
-                    com.google.android.material.R.attr.colorOnSurface, tv, true)) {
+                    com.google.android.material.R.attr.colorPrimary, tv, true)) {
                 if (tv.type >= android.util.TypedValue.TYPE_FIRST_COLOR_INT
                         && tv.type <= android.util.TypedValue.TYPE_LAST_COLOR_INT) {
                     return tv.data;
@@ -235,10 +235,10 @@ public class IconPickerDialog {
         // Сетка иконок
         RecyclerView recycler = new RecyclerView(context);
         LinearLayout.LayoutParams rvLp = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(280));
+                ViewGroup.LayoutParams.MATCH_PARENT, dp(320));
         rvLp.topMargin = dp(8);
         recycler.setLayoutParams(rvLp);
-        recycler.setLayoutManager(new GridLayoutManager(context, 5));
+        recycler.setLayoutManager(new GridLayoutManager(context, 4));
         adapter = new IconAdapter();
         recycler.setAdapter(adapter);
         content.addView(recycler);
@@ -396,11 +396,11 @@ public class IconPickerDialog {
         @Override
         public VH onCreateViewHolder(ViewGroup parent, int viewType) {
             ImageView iv = new ImageView(context);
-            RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(dp(56), dp(56));
+            RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(dp(64), dp(64));
             lp.setMargins(dp(4), dp(4), dp(4), dp(4));
             iv.setLayoutParams(lp);
             iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            iv.setPadding(dp(8), dp(8), dp(8), dp(8));
+            iv.setPadding(dp(6), dp(6), dp(6), dp(6));
             iv.setBackgroundResource(R.drawable.single_choice_background);
             // КРИТИЧНО: явный tint через ImageTintList
             iv.setImageTintList(ColorStateList.valueOf(iconColor));
