@@ -2297,6 +2297,12 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             viewLogicEditor.setScrollEnabled(true);
             O.setDragEnabled(true);
             dummy.setDummyVisibility(View.GONE);
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .d("SmartDrop", "log_smartdrop_opcode", "dummy.getAllow()=" + dummy.getAllow()
+                            + ", deleteActive=" + logicTopMenu.isDeleteActive
+                            + ", v.isRs=" + (v instanceof Rs)
+                            + ", v.blockType=" + (v instanceof Rs ? ((Rs) v).getBlockType() : -1)
+                            + ", currentTouchedView=" + (currentTouchedView != null));
             if (!dummy.getAllow()) {
                 Rs rs2 = (Rs) v;
                 if (rs2.getBlockType() == 0) {
