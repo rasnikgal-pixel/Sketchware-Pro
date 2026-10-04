@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "basic",
+      "name": "Основные",
+      "icon": "ic_mtrl_dashboard"
+    },
+    {
+      "id": "auth",
+      "name": "Вход/Регистрация",
+      "icon": "ic_mtrl_lock"
+    },
+    {
+      "id": "settings",
+      "name": "Настройки",
+      "icon": "ic_mtrl_settings"
+    },
+    {
+      "id": "lists",
+      "name": "Списки",
+      "icon": "ic_mtrl_list"
+    },
+    {
+      "id": "forms",
+      "name": "Формы",
+      "icon": "ic_mtrl_edit"
+    },
+    {
+      "id": "media",
+      "name": "Медиа",
+      "icon": "ic_mtrl_play"
+    },
+    {
+      "id": "social",
+      "name": "Соцсети",
+      "icon": "ic_mtrl_people"
+    },
+    {
+      "id": "ecommerce",
+      "name": "Магазин",
+      "icon": "ic_mtrl_shopping_cart"
+    },
+    {
+      "id": "utility",
+      "name": "Утилиты",
+      "icon": "ic_mtrl_build"
+    },
+    {
+      "id": "special",
+      "name": "Специальные",
+      "icon": "ic_mtrl_star"
+    }
+  ],
+  "templates": [
+    {
+      "id": "splash_simple",
+      "category": "utility",
+      "name": "Splash-экран",
+      "description": "Логотип по центру и индикатор загрузки",
+      "previewIcon": "ic_mtrl_image",
+      "defaultAppIcon": "",
+      "views": [
+        {
+          "id": "imageview1",
+          "type": 6,
+          "name": "imageview1",
+          "parent": "root",
+          "index": 0,
+          "width": -2,
+          "height": -2,
+          "marginTop": 80,
+          "layoutGravity": 1
+        },
+        {
+          "id": "progressbar1",
+          "type": 12,
+          "name": "progressbar1",
+          "parent": "root",
+          "index": 1,
+          "width": -2,
+          "height": -2,
+          "marginTop": 40,
+          "layoutGravity": 1
+        },
+        {
+          "id": "textview1",
+          "type": 4,
+          "name": "textview1",
+          "parent": "root",
+          "index": 2,
+          "width": -2,
+          "height": -2,
+          "marginTop": 24,
+          "layoutGravity": 1,
+          "text": "Загрузка..."
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "login_simple",
+      "category": "auth",
+      "name": "Простой вход",
+      "description": "Заголовок, Email, пароль, кнопка входа",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "views": [
+        {
+          "id": "textview1",
+          "type": 4,
+          "name": "textview1",
+          "parent": "root",
+          "index": 0,
+          "width": -2,
+          "height": -2,
+          "marginTop": 60,
+          "layoutGravity": 1,
+          "text": "Вход в аккаунт",
+          "textSize": 22,
+          "textStyle": 1
+        },
+        {
+          "id": "edittext1",
+          "type": 5,
+          "name": "edittext1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 24,
+          "marginTop": 40,
+          "marginRight": 24,
+          "text": "Email"
+        },
+        {
+          "id": "edittext2",
+          "type": 5,
+          "name": "edittext2",
+          "parent": "root",
+          "index": 2,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 24,
+          "marginTop": 16,
+          "marginRight": 24,
+          "text": "Пароль"
+        },
+        {
+          "id": "button1",
+          "type": 7,
+          "name": "button1",
+          "parent": "root",
+          "index": 3,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 24,
+          "marginTop": 32,
+          "marginRight": 24,
+          "text": "Войти"
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_simple",
+      "category": "settings",
+      "name": "Простые настройки",
+      "description": "Список переключателей",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "views": [
+        {
+          "id": "textview1",
+          "type": 4,
+          "name": "textview1",
+          "parent": "root",
+          "index": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "text": "Настройки",
+          "textSize": 22,
+          "textStyle": 1
+        },
+        {
+          "id": "switch1",
+          "type": 9,
+          "name": "switch1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "text": "Уведомления"
+        },
+        {
+          "id": "switch2",
+          "type": 9,
+          "name": "switch2",
+          "parent": "root",
+          "index": 2,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "text": "Тёмная тема"
+        },
+        {
+          "id": "switch3",
+          "type": 9,
+          "name": "switch3",
+          "parent": "root",
+          "index": 3,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "text": "Автозапуск"
+        }
+      ],
+      "blocks": []
+    }
+  ]
+}

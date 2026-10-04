@@ -38,5 +38,18 @@ public class SketchApplication extends Application {
 
         pro.sketchware.smartdrop.DebugLogger.get(this)
                 .i("App", "log_app_started", "");
+
+        // Загрузка Screen Templates (для проверки)
+        try {
+            pro.sketchware.templates.ScreenTemplates tpl =
+                    pro.sketchware.templates.ScreenTemplates.get(this);
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .i("Templates", "log_app_started",
+                            "categories=" + tpl.getCategories().size()
+                                    + ", templates=" + tpl.getAll().size());
+        } catch (Exception e) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .e("Templates", "log_smartdrop_exception", e);
+        }
     }
 }
