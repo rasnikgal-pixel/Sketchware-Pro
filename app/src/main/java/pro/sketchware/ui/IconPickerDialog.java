@@ -166,7 +166,7 @@ public class IconPickerDialog {
         try {
             android.util.TypedValue tv = new android.util.TypedValue();
             if (context.getTheme().resolveAttribute(
-                    androidx.appcompat.R.attr.colorOnSurface, tv, true)) {
+                    com.google.android.material.R.attr.colorOnSurface, tv, true)) {
                 if (tv.type >= android.util.TypedValue.TYPE_FIRST_COLOR_INT
                         && tv.type <= android.util.TypedValue.TYPE_LAST_COLOR_INT) {
                     return tv.data;
