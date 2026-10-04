@@ -27,6 +27,15 @@ public class ScreenTemplates {
     private final List<ScreenTemplate> templates = new ArrayList<>();
     private final LinkedHashMap<String, Category> categoryById = new LinkedHashMap<>();
 
+    /** Только эти шаблоны показываются в UI (всего 5). */
+    private static final java.util.Set<String> BUNDLED_IDS = new java.util.HashSet<>(java.util.Arrays.asList(
+            "basic_empty",
+            "form_login_style",
+            "util_splash",
+            "auth_login_simple",
+            "auth_login_remember"
+    ));
+
     private ScreenTemplates(Context context) {
         load(context);
     }
@@ -68,12 +77,17 @@ public class ScreenTemplates {
     }
 
     public List<ScreenTemplate> getAll() {
-        return new ArrayList<>(templates);
+        List<ScreenTemplate> result = new ArrayList<>();
+        for (ScreenTemplate t : templates) {
+            if (t.id != null && BUNDLED_IDS.contains(t.id)) result.add(t);
+        }
+        return result;
     }
 
     public List<ScreenTemplate> getByCategory(String categoryId) {
         List<ScreenTemplate> result = new ArrayList<>();
         for (ScreenTemplate t : templates) {
+            if (t.id == null || !BUNDLED_IDS.contains(t.id)) continue;
             if (categoryId == null || categoryId.equals(t.category)) {
                 result.add(t);
             }

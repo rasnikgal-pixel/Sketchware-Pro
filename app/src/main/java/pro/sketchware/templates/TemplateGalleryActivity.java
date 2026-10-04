@@ -85,11 +85,10 @@ public class TemplateGalleryActivity extends BaseAppCompatActivity {
     }
 
     private void buildCategories() {
-        // "Все"
+        // Показываем только один chip "Все" — в UI доступны лишь 5 шаблонов,
+        // остальные скрыты в ScreenTemplates.BUNDLED_IDS.
         addChip(getString(R.string.templates_category_all), null, true);
-        for (ScreenTemplates.Category c : templates.getCategories()) {
-            addChip(c.name, c.id, false);
-        }
+        // Категории намеренно не добавляем: 5 шаблонов помещаются в один список.
     }
 
     private void addChip(String name, String categoryId, boolean selected) {
