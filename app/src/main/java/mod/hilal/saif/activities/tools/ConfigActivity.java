@@ -416,7 +416,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
             Preference updatesCheckNow = findPreference("updates-check-now");
             if (updatesCheckNow != null) {
                 updatesCheckNow.setOnPreferenceClickListener(pref -> {
-                    bB.a(requireContext(), "Проверка обновлений...", bB.TOAST_NORMAL).show();
+                    android.widget.Toast.makeText(requireContext(), "Проверка обновлений...", android.widget.Toast.LENGTH_SHORT).show();
                     new pro.sketchware.updater.UpdateChecker().checkIfNeeded(
                             requireContext(),
                             pro.sketchware.BuildConfig.VERSION_CODE,
@@ -427,10 +427,10 @@ public class ConfigActivity extends BaseAppCompatActivity {
                                         pro.sketchware.updater.UpdateDialog.show(getActivity(), info);
                                 }
                                 @Override public void onUpToDate() {
-                                    bB.a(requireContext(), "Обновлений нет", bB.TOAST_NORMAL).show();
+                                    android.widget.Toast.makeText(requireContext(), "Обновлений нет", android.widget.Toast.LENGTH_SHORT).show();
                                 }
                                 @Override public void onError(String message) {
-                                    bB.b(requireContext(), "Ошибка: " + message, bB.TOAST_NORMAL).show();
+                                    android.widget.Toast.makeText(requireContext(), "Ошибка: " + message, android.widget.Toast.LENGTH_SHORT).show();
                                 }
                             }
                     );
