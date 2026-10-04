@@ -36,35 +36,99 @@ public class IconPickerDialog {
 
     private static final String PREFS = "icon_picker_prefs";
     private static final String KEY_MIXED = "mixed_search";
+    private static final int ICONS_PER_PAGE = 30;
 
     private static final Map<String, List<String>> CATEGORIES = new LinkedHashMap<>();
     static {
-        CATEGORIES.put("Общие", Arrays.asList(
-                "ic_mtrl_home", "ic_mtrl_settings", "ic_mtrl_star", "ic_mtrl_favorite",
-                "ic_mtrl_person", "ic_mtrl_people", "ic_mtrl_search", "ic_mtrl_menu",
-                "ic_mtrl_dashboard", "ic_mtrl_list", "ic_mtrl_build", "ic_mtrl_extension",
-                "ic_mtrl_lightbulb", "ic_mtrl_psychology", "ic_mtrl_code", "ic_mtrl_security"
+        CATEGORIES.put("Основные", Arrays.asList(
+                "ic_mtrl_home", "ic_mtrl_settings", "ic_mtrl_star", "ic_mtrl_done",
+                "ic_mtrl_help", "ic_mtrl_info", "ic_mtrl_search", "ic_mtrl_menu",
+                "ic_mtrl_category", "ic_mtrl_grid", "ic_mtrl_list", "ic_mtrl_checklist",
+                "ic_mtrl_bookmark", "ic_mtrl_label", "ic_mtrl_pin", "ic_mtrl_pin_fill",
+                "ic_mtrl_team", "ic_mtrl_group", "ic_mtrl_component", "ic_mtrl_preview"
         ));
         CATEGORIES.put("Действия", Arrays.asList(
-                "ic_mtrl_add", "ic_mtrl_edit", "ic_mtrl_delete", "ic_mtrl_save",
-                "ic_mtrl_close", "ic_mtrl_check", "ic_mtrl_undo", "ic_mtrl_redo",
-                "ic_mtrl_refresh", "ic_mtrl_share", "ic_mtrl_download", "ic_mtrl_upload"
+                "ic_mtrl_add", "ic_mtrl_add_circle", "ic_mtrl_edit", "ic_mtrl_delete",
+                "ic_mtrl_save", "ic_mtrl_save_as", "ic_mtrl_close", "ic_mtrl_check",
+                "ic_mtrl_undo", "ic_mtrl_redo", "ic_mtrl_refresh", "ic_mtrl_sync",
+                "ic_mtrl_download", "ic_mtrl_upload", "ic_mtrl_export", "ic_mtrl_filter",
+                "ic_mtrl_sort", "ic_mtrl_clear_all", "ic_mtrl_cancel", "ic_mtrl_reset",
+                "ic_mtrl_done", "ic_mtrl_swap_vertical", "ic_mtrl_copy", "ic_mtrl_more_vertical"
         ));
         CATEGORIES.put("Стрелки", Arrays.asList(
-                "ic_mtrl_arrow_left", "ic_mtrl_arrow_right", "ic_mtrl_arrow_up", "ic_mtrl_arrow_down",
-                "ic_mtrl_arrow_drop_down", "ic_mtrl_arrow_drop_up", "ic_mtrl_menu"
+                "ic_mtrl_arrow_left", "ic_mtrl_arrow_right", "ic_mtrl_arrow_right2", "ic_mtrl_arrow_up",
+                "ic_mtrl_arrow_down", "ic_mtrl_chevron_right_24", "ic_mtrl_next", "ic_mtrl_exit",
+                "ic_mtrl_expand", "ic_mtrl_enlarge", "ic_mtrl_pull_down", "ic_mtrl_top",
+                "ic_mtrl_swipe_up", "ic_mtrl_swipe_down", "ic_mtrl_swipe_horizontal", "ic_mtrl_swipe_vertical",
+                "ic_mtrl_move_x", "ic_mtrl_move_y", "ic_mtrl_rotate", "ic_mtrl_rotate_90"
         ));
         CATEGORIES.put("Медиа", Arrays.asList(
-                "ic_mtrl_image", "ic_mtrl_play", "ic_mtrl_pause", "ic_mtrl_stop",
-                "ic_mtrl_volume", "ic_mtrl_video", "ic_mtrl_camera"
+                "ic_mtrl_image", "ic_mtrl_circle_play", "ic_mtrl_circle_pause", "ic_mtrl_stop",
+                "ic_mtrl_volume", "ic_mtrl_video", "ic_mtrl_music", "ic_mtrl_camera",
+                "ic_mtrl_screen", "ic_mtrl_screen_play", "ic_mtrl_style", "ic_mtrl_palette",
+                "ic_mtrl_pick_color", "ic_mtrl_font", "ic_mtrl_formattext", "ic_mtrl_type",
+                "ic_mtrl_speech", "ic_mtrl_tts", "ic_mtrl_stt", "ic_mtrl_youtube"
         ));
         CATEGORIES.put("Связь", Arrays.asList(
-                "ic_mtrl_email", "ic_mtrl_message", "ic_mtrl_wifi", "ic_mtrl_bluetooth",
-                "ic_mtrl_cloud", "ic_mtrl_notifications", "ic_mtrl_sync", "ic_mtrl_rss_feed"
+                "ic_mtrl_bluetooth", "ic_mtrl_bluetooth_connected", "ic_mtrl_wifi",
+                "ic_mtrl_notifications", "ic_mtrl_email_sent", "ic_mtrl_sms_check",
+                "ic_mtrl_chat", "ic_mtrl_web", "ic_mtrl_link", "ic_mtrl_link_check",
+                "ic_mtrl_share_link", "ic_mtrl_signin", "ic_mtrl_login",
+                "ic_mtrl_password", "ic_mtrl_shield_check", "ic_mtrl_shield_lock",
+                "ic_mtrl_verified_user", "ic_mtrl_fingerprint", "ic_mtrl_team",
+                "ic_mtrl_profile"
+        ));
+        CATEGORIES.put("Время", Arrays.asList(
+                "ic_mtrl_calendar", "ic_mtrl_calendar_add", "ic_mtrl_calendary_today",
+                "ic_mtrl_date_changed", "ic_mtrl_time", "ic_mtrl_timer", "ic_mtrl_clock",
+                "ic_mtrl_history", "ic_mtrl_sprint"
+        ));
+        CATEGORIES.put("Место", Arrays.asList(
+                "ic_mtrl_location", "ic_mtrl_location_changed", "ic_mtrl_map", "ic_mtrl_map_ready",
+                "ic_mtrl_pin", "ic_mtrl_pin_fill", "ic_mtrl_loc_click", "ic_mtrl_gps",
+                "ic_mtrl_devices"
+        ));
+        CATEGORIES.put("Данные", Arrays.asList(
+                "ic_mtrl_database_added", "ic_mtrl_database_edit", "ic_mtrl_database_moved",
+                "ic_mtrl_database_off", "ic_mtrl_folder", "ic_mtrl_folder_code",
+                "ic_mtrl_file", "ic_mtrl_file_picked", "ic_mtrl_file_present",
+                "ic_mtrl_storage", "ic_mtrl_cloud", "ic_mtrl_cloud_upload",
+                "ic_mtrl_cloud_download", "ic_mtrl_downloaded", "ic_mtrl_uploaded",
+                "ic_mtrl_downloading", "ic_mtrl_uploading", "ic_mtrl_package"
+        ));
+        CATEGORIES.put("Разработка", Arrays.asList(
+                "ic_mtrl_code", "ic_mtrl_java", "ic_mtrl_kotlin", "ic_mtrl_terminal",
+                "ic_mtrl_bug_report", "ic_mtrl_apk_document", "ic_mtrl_apk_install",
+                "ic_mtrl_firebase", "ic_mtrl_firebase_auth", "ic_mtrl_firebase_cloud",
+                "ic_mtrl_firebase_rtdb", "ic_mtrl_firebase_storage", "ic_mtrl_firebase_google",
+                "ic_mtrl_firebase_sms", "ic_mtrl_firebase_onesignal", "ic_mtrl_firebase_dl",
+                "ic_mtrl_material3", "ic_mtrl_regular_expression", "ic_mtrl_deployed_code",
+                "ic_mtrl_version_control", "ic_mtrl_regex", "ic_mtrl_inject"
+        ));
+        CATEGORIES.put("Интерфейс", Arrays.asList(
+                "ic_mtrl_design", "ic_mtrl_view_horizontal", "ic_mtrl_view_relative",
+                "ic_mtrl_view_vertical", "ic_mtrl_orientation", "ic_mtrl_width", "ic_mtrl_height",
+                "ic_mtrl_margin", "ic_mtrl_padding", "ic_mtrl_weight", "ic_mtrl_drag",
+                "ic_mtrl_touch", "ic_mtrl_touch_long", "ic_mtrl_click", "ic_mtrl_button_click",
+                "ic_mtrl_abc_click", "ic_mtrl_seekbar", "ic_mtrl_progress_bar", "ic_mtrl_spinner",
+                "ic_mtrl_switch", "ic_mtrl_checkbox", "ic_mtrl_radio_btn", "ic_mtrl_dialog",
+                "ic_mtrl_fab", "ic_mtrl_edittext", "ic_mtrl_sidebar", "ic_mtrl_viewpager",
+                "ic_mtrl_scroller", "ic_mtrl_indeterminate", "ic_mtrl_progress",
+                "ic_mtrl_progress_check", "ic_mtrl_prog_max", "ic_mtrl_prog_min", "ic_mtrl_tune"
+        ));
+        CATEGORIES.put("Пользователь", Arrays.asList(
+                "ic_mtrl_user_create", "ic_mtrl_user_delete", "ic_mtrl_user_edit",
+                "ic_mtrl_user_register_complete", "ic_mtrl_user_remove"
         ));
         CATEGORIES.put("Разное", Arrays.asList(
-                "ic_mtrl_calendar", "ic_mtrl_time", "ic_mtrl_timer", "ic_mtrl_location",
-                "ic_mtrl_lock", "ic_mtrl_vpn", "ic_mtrl_bug_report", "ic_mtrl_apk_document"
+                "ic_mtrl_key", "ic_mtrl_keyboard", "ic_mtrl_nfc", "ic_mtrl_sensor",
+                "ic_mtrl_sensors", "ic_mtrl_payment", "ic_mtrl_admob", "ic_mtrl_ad",
+                "ic_mtrl_interests", "ic_mtrl_interface", "ic_mtrl_animation",
+                "ic_mtrl_material3", "ic_mtrl_bulb", "ic_mtrl_lightbulb",
+                "ic_mtrl_numbers", "ic_mtrl_id", "ic_mtrl_verified_user", "ic_mtrl_warning",
+                "ic_mtrl_gpp_bad", "ic_mtrl_run", "ic_mtrl_sprint", "ic_mtrl_lifecycle",
+                "ic_mtrl_square", "ic_mtrl_circle", "ic_mtrl_circle_small",
+                "ic_mtrl_puzzle", "ic_mtrl_block", "ic_mtrl_moreblock", "ic_mtrl_interface"
         ));
     }
 
@@ -81,9 +145,9 @@ public class IconPickerDialog {
     private IconAdapter adapter;
     private TextView pageInfo;
     private Button prevBtn, nextBtn;
+    private TextView selectedCategoryChip;
 
     private final List<String> filteredIcons = new ArrayList<>();
-    private static final int ICONS_PER_PAGE = 30;
     private int currentPage = 0;
 
     public IconPickerDialog(Context context, String currentIcon, Callback callback) {
@@ -123,28 +187,36 @@ public class IconPickerDialog {
         android.widget.HorizontalScrollView catScroll = new android.widget.HorizontalScrollView(context);
         LinearLayout catRow = new LinearLayout(context);
         catRow.setOrientation(LinearLayout.HORIZONTAL);
+        catRow.setId(View.generateViewId());
+        final LinearLayout catRowFinal = catRow;
 
+        final List<TextView> chips = new ArrayList<>();
         for (String cat : CATEGORIES.keySet()) {
             TextView chip = new TextView(context);
             chip.setText(cat);
+            chip.setTag(cat);
             chip.setPadding(dp(12), dp(8), dp(12), dp(8));
             chip.setBackgroundResource(R.drawable.single_choice_background);
             chip.setOnClickListener(v -> {
                 selectedCategory = cat;
                 currentPage = 0;
+                updateChips(chips);
                 refreshIcons();
             });
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             lp.setMargins(dp(4), dp(4), dp(4), dp(4));
             chip.setLayoutParams(lp);
+            chips.add(chip);
             catRow.addView(chip);
         }
+        updateChips(chips);
+
         catScroll.addView(catRow);
         catScroll.setPadding(0, dp(8), 0, 0);
         content.addView(catScroll);
 
-        // Сетка иконок — RecyclerView
+        // Сетка иконок
         RecyclerView recycler = new RecyclerView(context);
         LinearLayout.LayoutParams rvLp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, dp(280));
@@ -201,7 +273,7 @@ public class IconPickerDialog {
         });
         content.addView(listAllCb);
 
-        // Поиск-слушатель
+        // Поиск
         search.addTextChangedListener(new android.text.TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
             @Override public void onTextChanged(CharSequence s, int st, int b, int c) {}
@@ -222,11 +294,18 @@ public class IconPickerDialog {
         refreshIcons();
     }
 
+    private void updateChips(List<TextView> chips) {
+        for (TextView c : chips) {
+            String cat = (String) c.getTag();
+            c.setSelected(cat.equals(selectedCategory));
+            c.setAlpha(cat.equals(selectedCategory) ? 1f : 0.6f);
+        }
+    }
+
     private boolean iconExists(String name) {
         return context.getResources().getIdentifier(name, "drawable", context.getPackageName()) != 0;
     }
 
-    /** Обновляет список иконок согласно фильтрам. */
     private void refreshIcons() {
         filteredIcons.clear();
 
@@ -287,7 +366,6 @@ public class IconPickerDialog {
         return Math.round(v * context.getResources().getDisplayMetrics().density);
     }
 
-    /** Адаптер сетки иконок. */
     private class IconAdapter extends RecyclerView.Adapter<IconAdapter.VH> {
         private final List<String> icons = new ArrayList<>();
 
