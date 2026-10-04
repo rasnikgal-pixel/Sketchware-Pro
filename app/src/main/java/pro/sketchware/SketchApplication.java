@@ -41,13 +41,17 @@ public class SketchApplication extends Application {
 
         // Загрузка Screen Templates (для проверки)
         try {
+            android.util.Log.i("Templates", "before load");
             pro.sketchware.templates.ScreenTemplates tpl =
                     pro.sketchware.templates.ScreenTemplates.get(this);
+            android.util.Log.i("Templates", "loaded: cats=" + tpl.getCategories().size()
+                    + ", tpls=" + tpl.getAll().size());
             pro.sketchware.smartdrop.DebugLogger.get(this)
                     .i("Templates", "log_app_started",
                             "categories=" + tpl.getCategories().size()
                                     + ", templates=" + tpl.getAll().size());
         } catch (Exception e) {
+            android.util.Log.e("Templates", "load failed", e);
             pro.sketchware.smartdrop.DebugLogger.get(this)
                     .e("Templates", "log_smartdrop_exception", e);
         }
