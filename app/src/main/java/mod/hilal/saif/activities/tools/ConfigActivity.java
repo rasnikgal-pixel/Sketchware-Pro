@@ -394,6 +394,50 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 });
             }
 
+            // Настройки обновлений
+            SwitchPreferenceCompat updatesEnabled = findPreference("updates-check-enabled");
+            if (updatesEnabled != null) {
+                updatesEnabled.setChecked(pro.sketchware.updater.UpdateChecker.isEnabled(requireContext()));
+                updatesEnabled.setOnPreferenceChangeListener((pref, v) -> {
+                    pro.sketchware.updater.UpdateChecker.setEnabled(requireContext(), (Boolean) v);
+                    return true;
+                });
+            }
+
+            androidx.preference.ListPreference updatesPeriod = findPreference("updates-check-period");
+            if (updatesPeriod != null) {
+                updatesPeriod.setValue(pro.sketchware.updater.UpdateChecker.getPeriod(requireContext()));
+                updatesPeriod.setOnPreferenceChangeListener((pref, v) -> {
+                    pro.sketchware.updater.UpdateChecker.setPeriod(requireContext(), (String) v);
+                    return true;
+                });
+            }
+
+            Preference updatesCheckNow = findPreference("updates-check-now");
+            if (updatesCheckNow != null) {
+                updatesCheckNow.setOnPreferenceClickListener(pref -> {
+                    bB.a(requireContext(), "Проверка обновлений...", bB.TOAST_NORMAL).show();
+                    new pro.sketchware.updater.UpdateChecker().checkIfNeeded(
+                            requireContext(),
+                            pro.sketchware.BuildConfig.VERSION_CODE,
+                            true,
+                            new pro.sketchware.updater.UpdateChecker.Callback() {
+                                @Override public void onUpdateAvailable(pro.sketchware.updater.UpdateInfo info) {
+                                    if (getActivity() != null)
+                                        pro.sketchware.updater.UpdateDialog.show(getActivity(), info);
+                                }
+                                @Override public void onUpToDate() {
+                                    bB.a(requireContext(), "Обновлений нет", bB.TOAST_NORMAL).show();
+                                }
+                                @Override public void onError(String message) {
+                                    bB.b(requireContext(), "Ошибка: " + message, bB.TOAST_NORMAL).show();
+                                }
+                            }
+                    );
+                    return true;
+                });
+            }
+
             Preference backupFilename = findPreference("backup-filename");
             assert backupFilename != null;
             backupFilename.setOnPreferenceClickListener(preference -> {

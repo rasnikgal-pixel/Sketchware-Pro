@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="updates_period_entries">
+        <item>@string/updates_period_always</item>
+        <item>@string/updates_period_daily</item>
+        <item>@string/updates_period_3days</item>
+        <item>@string/updates_period_6days</item>
+        <item>@string/updates_period_9days</item>
+    </string-array>
+    <string-array name="updates_period_values">
+        <item>always</item>
+        <item>daily</item>
+        <item>3days</item>
+        <item>6days</item>
+        <item>9days</item>
+    </string-array>
+</resources>

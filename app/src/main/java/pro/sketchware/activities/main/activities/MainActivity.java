@@ -165,6 +165,20 @@ public class MainActivity extends BasePermissionAppCompatActivity {
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
 
+        // Проверка обновлений
+        new pro.sketchware.updater.UpdateChecker().checkIfNeeded(
+                this,
+                pro.sketchware.BuildConfig.VERSION_CODE,
+                false,
+                new pro.sketchware.updater.UpdateChecker.Callback() {
+                    @Override public void onUpdateAvailable(pro.sketchware.updater.UpdateInfo info) {
+                        runOnUiThread(() -> pro.sketchware.updater.UpdateDialog.show(MainActivity.this, info));
+                    }
+                    @Override public void onUpToDate() {}
+                    @Override public void onError(String message) {}
+                }
+        );
+
         binding.statusBarOverlapper.setMinimumHeight(UI.getStatusBarHeight(this));
         UI.addSystemWindowInsetToPadding(binding.appbar, true, false, true, false);
 

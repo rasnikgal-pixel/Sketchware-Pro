@@ -104,4 +104,25 @@
             app:summary="Массово заменить компонент во всех блоках события"
             app:title="Обновить блоки события вручную" />
     </PreferenceCategory>
+    <PreferenceCategory app:title="@string/updates_settings_title">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:defaultValue="true"
+            app:key="updates-check-enabled"
+            app:summary="@string/updates_check_enabled_summary"
+            app:title="@string/updates_check_enabled" />
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:defaultValue="daily"
+            app:entries="@array/updates_period_entries"
+            app:entryValues="@array/updates_period_values"
+            app:key="updates-check-period"
+            app:summary="@string/updates_period_summary"
+            app:title="@string/updates_period" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="updates-check-now"
+            app:summary="@string/updates_check_now_summary"
+            app:title="@string/updates_check_now" />
+    </PreferenceCategory>
 </PreferenceScreen>

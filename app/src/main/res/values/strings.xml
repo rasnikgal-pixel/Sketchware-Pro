@@ -1167,4 +1167,25 @@ ACTION_VIEW
     <string name="templates_gallery_title">Шаблоны экранов</string>
     <string name="templates_category_all">Все</string>
     <string name="templates_search_hint">Поиск шаблонов</string>
+    <string name="updates_settings_title">Обновления</string>
+    <string name="updates_check_enabled">Проверять обновления</string>
+    <string name="updates_check_enabled_summary">Проверять наличие новых версий</string>
+    <string name="updates_period">Когда проверять</string>
+    <string name="updates_period_summary">Периодичность автоматической проверки</string>
+    <string name="updates_check_now">Проверить сейчас</string>
+    <string name="updates_check_now_summary">Проверить обновление немедленно</string>
+    <string name="updates_checking">Проверка обновлений...</string>
+    <string name="updates_none">Обновлений нет</string>
+    <string name="updates_error">Не удалось проверить обновления</string>
+    <string name="updates_dialog_title">Доступно обновление</string>
+    <string name="updates_dialog_download">Скачать</string>
+    <string name="updates_dialog_later">Позже</string>
+    <string name="updates_current_version">Установлено: %1$s (%2$d)</string>
+    <string name="updates_new_version">Доступно: %1$s (%2$d)</string>
+    <string name="updates_changelog_title">Что нового:</string>
+    <string name="updates_period_always">При каждом запуске</string>
+    <string name="updates_period_daily">Раз в сутки</string>
+    <string name="updates_period_3days">Раз в 3 дня</string>
+    <string name="updates_period_6days">Раз в 6 дней</string>
+    <string name="updates_period_9days">Раз в 9 дней</string>
 </resources>

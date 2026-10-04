@@ -1,0 +1,166 @@
+package pro.sketchware.updater;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+/**
+ * Проверка обновлений через update.json в GitHub.
+ */
+public class UpdateChecker {
+
+    private static final String TAG = "UpdateChecker";
+    private static final String URL_UPDATE = "https://raw.githubusercontent.com/rasnikgal-pixel/Sketchware-Pro/main/update.json";
+    private static final String PREFS = "update_checker_prefs";
+    private static final String KEY_LAST_CHECK = "last_check_time";
+    private static final String KEY_SKIPPED_VERSION = "skipped_version";
+    private static final String KEY_ENABLED = "check_enabled";
+    private static final String KEY_PERIOD = "check_period";
+
+    /** Периоды проверки. */
+    public static final String PERIOD_ALWAYS = "always";
+    public static final String PERIOD_DAILY = "daily";
+    public static final String PERIOD_3DAYS = "3days";
+    public static final String PERIOD_6DAYS = "6days";
+    public static final String PERIOD_9DAYS = "9days";
+
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
+
+    public interface Callback {
+        void onUpdateAvailable(UpdateInfo info);
+        void onUpToDate();
+        void onError(String message);
+    }
+
+    public static boolean isEnabled(Context ctx) {
+        return prefs(ctx).getBoolean(KEY_ENABLED, true);
+    }
+
+    public static void setEnabled(Context ctx, boolean enabled) {
+        prefs(ctx).edit().putBoolean(KEY_ENABLED, enabled).apply();
+    }
+
+    public static String getPeriod(Context ctx) {
+        return prefs(ctx).getString(KEY_PERIOD, PERIOD_DAILY);
+    }
+
+    public static void setPeriod(Context ctx, String period) {
+        prefs(ctx).edit().putString(KEY_PERIOD, period).apply();
+    }
+
+    public static long getLastCheck(Context ctx) {
+        return prefs(ctx).getLong(KEY_LAST_CHECK, 0);
+    }
+
+    public static int getSkippedVersion(Context ctx) {
+        return prefs(ctx).getInt(KEY_SKIPPED_VERSION, -1);
+    }
+
+    public static void skipVersion(Context ctx, int versionCode) {
+        prefs(ctx).edit().putInt(KEY_SKIPPED_VERSION, versionCode).apply();
+    }
+
+    private static SharedPreferences prefs(Context ctx) {
+        return ctx.getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+    }
+
+    /** Проверить, надо ли запускать проверку сейчас (учитывая период). */
+    public static boolean shouldCheckNow(Context ctx) {
+        if (!isEnabled(ctx)) return false;
+
+        String period = getPeriod(ctx);
+        if (PERIOD_ALWAYS.equals(period)) return true;
+
+        long last = getLastCheck(ctx);
+        long now = System.currentTimeMillis();
+        long diff = now - last;
+
+        long needed;
+        switch (period) {
+            case PERIOD_DAILY: needed = 24L * 60 * 60 * 1000; break;
+            case PERIOD_3DAYS: needed = 3L * 24 * 60 * 60 * 1000; break;
+            case PERIOD_6DAYS: needed = 6L * 24 * 60 * 60 * 1000; break;
+            case PERIOD_9DAYS: needed = 9L * 24 * 60 * 60 * 1000; break;
+            default: needed = 24L * 60 * 60 * 1000;
+        }
+
+        return diff >= needed;
+    }
+
+    /** Фоновая проверка. Учитывает настройки и период. */
+    public void checkIfNeeded(Context ctx, int currentVersionCode, boolean userInitiated, Callback callback) {
+        if (!userInitiated && !shouldCheckNow(ctx)) {
+            Log.d(TAG, "Skip check: disabled or period not reached");
+            return;
+        }
+
+        executor.execute(() -> {
+            try {
+                UpdateInfo info = fetch();
+                prefs(ctx).edit().putLong(KEY_LAST_CHECK, System.currentTimeMillis()).apply();
+
+                mainHandler.post(() -> {
+                    if (info == null) {
+                        callback.onError("Failed to parse update.json");
+                        return;
+                    }
+                    if (!info.isNewerThan(currentVersionCode)) {
+                        callback.onUpToDate();
+                        return;
+                    }
+                    // Если пользователь пропустил эту версию — не показывать (кроме required)
+                    if (!userInitiated
+                            && !info.required
+                            && info.versionCode == getSkippedVersion(ctx)) {
+                        callback.onUpToDate();
+                        return;
+                    }
+                    callback.onUpdateAvailable(info);
+                });
+            } catch (Exception e) {
+                Log.e(TAG, "checkIfNeeded failed", e);
+                mainHandler.post(() -> callback.onError(e.getMessage()));
+            }
+        });
+    }
+
+    /** Загрузить и распарсить update.json. */
+    private UpdateInfo fetch() throws Exception {
+        HttpURLConnection conn = null;
+        try {
+            URL url = new URL(URL_UPDATE);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(10000);
+            conn.setReadTimeout(15000);
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.connect();
+
+            int code = conn.getResponseCode();
+            if (code != 200) {
+                throw new Exception("HTTP " + code);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            try (BufferedReader r = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = r.readLine()) != null) sb.append(line);
+            }
+            return new Gson().fromJson(sb.toString(), UpdateInfo.class);
+        } finally {
+            if (conn != null) conn.disconnect();
+        }
+    }
+}
