@@ -38,6 +38,7 @@
     <string name="settings_debug_log_title">Журнал отладки</string>
     <string name="settings_debug_log_summary">Записывать все действия приложения</string>
     <string name="settings_debug_log_open">Открыть журнал</string>
+    <string name="log_feature_clicked">Клик по фиче: %s</string>
     <string name="log_screen_open">Открыт экран: %s</string>
     <string name="log_screen_close">Закрыт экран: %s</string>
     <string name="log_screen_resume">Экран возобновлён: %s</string>

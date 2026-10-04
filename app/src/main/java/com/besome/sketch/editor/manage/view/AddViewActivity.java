@@ -579,10 +579,17 @@ public class AddViewActivity extends BaseAppCompatActivity {
                 nameTextView = var2.findViewById(R.id.tv_name);
                 featureCheckBox = var2.findViewById(R.id.checkbox);
                 featureCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    pro.sketchware.smartdrop.DebugLogger.get(AddViewActivity.this).i("App", "log_feature_clicked",
+                            "Feature checkbox clicked: isUpdating=" + isUpdatingAdapter
+                                    + ", isChecked=" + isChecked);
                     if (!isUpdatingAdapter) {
-                        layoutPosition = getLayoutPosition();
-                        FeatureItem item = featureItems.get(layoutPosition);
+                        int pos = getAdapterPosition();
+                        if (pos == RecyclerView.NO_POSITION) return;
+                        FeatureItem item = featureItems.get(pos);
                         item.isEnabled = isChecked;
+                        pro.sketchware.smartdrop.DebugLogger.get(AddViewActivity.this).i("App", "log_feature_clicked",
+                                "Feature item #" + pos + " type=" + item.type
+                                        + " -> " + isChecked);
                         if (item.type == FEATURE_TYPE_DRAWER) {
                             if (item.isEnabled) {
                                 enableToolbar();
@@ -592,7 +599,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
                                 disableDrawer();
                             }
                         }
-                        notifyItemChanged(layoutPosition);
+                        notifyItemChanged(pos);
                     }
                 });
             }

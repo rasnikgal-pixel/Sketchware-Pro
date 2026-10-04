@@ -38,6 +38,7 @@
     <string name="settings_debug_log_title">Debug Log</string>
     <string name="settings_debug_log_summary">Record all application actions</string>
     <string name="settings_debug_log_open">Open log</string>
+    <string name="log_feature_clicked">Feature click: %s</string>
     <string name="log_screen_open">Screen opened: %s</string>
     <string name="log_screen_close">Screen closed: %s</string>
     <string name="log_screen_resume">Screen resumed: %s</string>
