@@ -112,6 +112,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
         // Apply custom color theme BEFORE super.onCreate (must call setTheme before setContentView)
         pro.sketchware.utility.theme.ThemeManager.applyCustomTheme(this);
         super.onCreate(savedInstanceState);
+        pro.sketchware.smartdrop.UserActionLogger.screenOpen(this, getClass().getSimpleName());
         e = getApplicationContext();
         taskList = new ArrayList<>();
         lottieDialog = new LoadingDialog(this);
@@ -122,6 +123,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
+        pro.sketchware.smartdrop.UserActionLogger.screenClose(this, getClass().getSimpleName());
         g();
         if (lottieDialog != null && lottieDialog.isShowing()) {
             lottieDialog.cancelAnimation();
@@ -131,6 +133,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
 
     @Override
     public void onPause() {
+        pro.sketchware.smartdrop.UserActionLogger.screenPause(this, getClass().getSimpleName());
         if (lottieDialog != null && lottieDialog.isShowing()) {
             lottieDialog.pauseAnimation();
         }
@@ -140,6 +143,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        pro.sketchware.smartdrop.UserActionLogger.screenResume(this, getClass().getSimpleName());
         if (lottieDialog != null && lottieDialog.isShowing()) {
             lottieDialog.resumeAnimation();
         }

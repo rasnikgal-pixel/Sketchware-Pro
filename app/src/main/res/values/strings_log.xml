@@ -38,4 +38,21 @@
     <string name="settings_debug_log_title">Журнал отладки</string>
     <string name="settings_debug_log_summary">Записывать все действия приложения</string>
     <string name="settings_debug_log_open">Открыть журнал</string>
+    <string name="log_screen_open">Открыт экран: %s</string>
+    <string name="log_screen_close">Закрыт экран: %s</string>
+    <string name="log_screen_resume">Экран возобновлён: %s</string>
+    <string name="log_screen_pause">Экран на паузе: %s</string>
+    <string name="log_action">Действие: %s</string>
+    <string name="log_action_param">Действие: %s</string>
+    <string name="log_click">Клик: %s</string>
+    <string name="log_block_drop">Drop блока: %s</string>
+    <string name="log_block_delete">Удаление блока: %s</string>
+    <string name="log_block_connect">Соединение блоков: %s</string>
+    <string name="log_component_create">Создание компонента: %s</string>
+    <string name="log_component_delete">Удаление компонента: %s</string>
+    <string name="log_build_start">Начало сборки: %s</string>
+    <string name="log_build_success">Сборка успешна: %s</string>
+    <string name="log_build_error_%s">Ошибка сборки: %s</string>
+    <string name="settings_debug_log_verbose_title">Подробный журнал</string>
+    <string name="settings_debug_log_verbose_summary">Записывать каждое действие (быстрее заполняет файл)</string>
 </resources>

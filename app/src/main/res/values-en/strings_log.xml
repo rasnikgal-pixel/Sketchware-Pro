@@ -38,4 +38,21 @@
     <string name="settings_debug_log_title">Debug Log</string>
     <string name="settings_debug_log_summary">Record all application actions</string>
     <string name="settings_debug_log_open">Open log</string>
+    <string name="log_screen_open">Screen opened: %s</string>
+    <string name="log_screen_close">Screen closed: %s</string>
+    <string name="log_screen_resume">Screen resumed: %s</string>
+    <string name="log_screen_pause">Screen paused: %s</string>
+    <string name="log_action">Action: %s</string>
+    <string name="log_action_param">Action: %s</string>
+    <string name="log_click">Click: %s</string>
+    <string name="log_block_drop">Block drop: %s</string>
+    <string name="log_block_delete">Block delete: %s</string>
+    <string name="log_block_connect">Block connection: %s</string>
+    <string name="log_component_create">Component created: %s</string>
+    <string name="log_component_delete">Component deleted: %s</string>
+    <string name="log_build_start">Build started: %s</string>
+    <string name="log_build_success">Build success: %s</string>
+    <string name="log_build_error_%s">Build error: %s</string>
+    <string name="settings_debug_log_verbose_title">Verbose log</string>
+    <string name="settings_debug_log_verbose_summary">Log every action (fills file faster)</string>
 </resources>
