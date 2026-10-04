@@ -27,14 +27,19 @@ public class ScreenTemplates {
     private final List<ScreenTemplate> templates = new ArrayList<>();
     private final LinkedHashMap<String, Category> categoryById = new LinkedHashMap<>();
 
-    /** Только эти шаблоны показываются в UI (всего 5). */
-    private static final java.util.Set<String> BUNDLED_IDS = new java.util.HashSet<>(java.util.Arrays.asList(
-            "basic_empty",
-            "form_login_style",
-            "util_splash",
-            "auth_login_simple",
-            "auth_login_remember"
-    ));
+    /** Кэш "первый шаблон каждой категории" — только их показываем в UI. */
+    private final java.util.Set<String> bundledIds = new java.util.HashSet<>();
+
+    private void computeBundledIds() {
+        bundledIds.clear();
+        java.util.Set<String> seenCategories = new java.util.HashSet<>();
+        for (ScreenTemplate t : templates) {
+            if (t.category == null || t.id == null) continue;
+            if (seenCategories.add(t.category)) {
+                bundledIds.add(t.id);
+            }
+        }
+    }
 
     private ScreenTemplates(Context context) {
         load(context);
@@ -63,6 +68,7 @@ public class ScreenTemplates {
                 }
             }
             Log.i(TAG, "Loaded " + categories.size() + " categories, " + templates.size() + " templates");
+            computeBundledIds();
         } catch (Exception e) {
             Log.e(TAG, "Failed to load " + ASSET_PATH, e);
         }
@@ -79,7 +85,7 @@ public class ScreenTemplates {
     public List<ScreenTemplate> getAll() {
         List<ScreenTemplate> result = new ArrayList<>();
         for (ScreenTemplate t : templates) {
-            if (t.id != null && BUNDLED_IDS.contains(t.id)) result.add(t);
+            if (t.id != null && bundledIds.contains(t.id)) result.add(t);
         }
         return result;
     }
@@ -87,7 +93,7 @@ public class ScreenTemplates {
     public List<ScreenTemplate> getByCategory(String categoryId) {
         List<ScreenTemplate> result = new ArrayList<>();
         for (ScreenTemplate t : templates) {
-            if (t.id == null || !BUNDLED_IDS.contains(t.id)) continue;
+            if (t.id == null || !bundledIds.contains(t.id)) continue;
             if (categoryId == null || categoryId.equals(t.category)) {
                 result.add(t);
             }
