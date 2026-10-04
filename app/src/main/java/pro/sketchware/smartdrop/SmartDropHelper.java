@@ -7,6 +7,8 @@ import android.widget.Toast;
 import android.app.Activity;
 
 import com.besome.sketch.beans.ComponentBean;
+import com.besome.sketch.editor.logic.BlockPane;
+import a.a.a.Rs;
 import mod.hilal.saif.activities.tools.ConfigActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -172,6 +174,7 @@ public class SmartDropHelper {
                            String javaName,
                            String eventKey,
                            ArrayList<BlockBean> allBlocks,
+                           BlockPane blockPane,
                            BlockBean blockBean,
                            Runnable onUpdated) {
         if (activity == null || blockBean == null || blockBean.opCode == null) {
@@ -199,6 +202,7 @@ public class SmartDropHelper {
                 suggestedName, new SmartDropDialog.Callback() {
 
             private void applyName(String componentId) {
+                // Обновляем сам упавший блок
                 if (blockBean.parameters == null || blockBean.parameters.isEmpty()) {
                     blockBean.parameters = new ArrayList<>();
                     blockBean.parameters.add(componentId);
@@ -209,14 +213,30 @@ public class SmartDropHelper {
 
                 // Массовое обновление других блоков события
                 if (ConfigActivity.isSmartDropUpdateAllEnabled()
-                        && allBlocks != null && !allBlocks.isEmpty()
-                        && blockBean != null) {
-                    int updated = updateAllBlocksOfType(allBlocks, componentType, componentId);
-                    if (updated > 1) {  // больше 1 — были другие блоки
+                        && allBlocks != null && !allBlocks.isEmpty()) {
+
+                    ArrayList<BlockBean> updatedBlocks =
+                            updateAllBlocksOfType(allBlocks, componentType, componentId);
+
+                    if (updatedBlocks.size() > 1 && blockPane != null) {
+                        // Перерисовать обновлённые Rs-View
+                        for (BlockBean b : updatedBlocks) {
+                            try {
+                                final int blockId = Integer.parseInt(b.id);
+                                blockPane.post(() -> {
+                                    try {
+                                        Rs rs = blockPane.a(blockId);
+                                        if (rs != null) rs.p().k();
+                                    } catch (Exception ignored) {}
+                                });
+                            } catch (NumberFormatException ignored) {}
+                        }
+
                         Toast.makeText(activity,
-                                "Обновлено блоков: " + updated + " → " + componentId,
+                                "Обновлено блоков: " + updatedBlocks.size() + " → " + componentId,
                                 Toast.LENGTH_SHORT).show();
-                        log.i(TAG, "log_smartdrop_attached", "updated " + updated + " blocks");
+                        log.i(TAG, "log_smartdrop_attached",
+                                "updated " + updatedBlocks.size() + " blocks");
                     }
                 }
             }
@@ -261,25 +281,26 @@ public class SmartDropHelper {
     // ─────────────────────────────────────────────────────────────
 
     /**
-     * Обходит все блоки (top-level, nextBlock, subStack1, subStack2) и заменяет
-     * parameters[0] на newComponentName для всех блоков, чей opCode требует
-     * указанный тип компонента.
+     * Обходит все блоки и заменяет parameters[0] на newComponentName
+     * для блоков, чей opCode требует указанный тип компонента.
      *
-     * @return количество обновлённых блоков
+     * @return список обновлённых блоков
      */
-    public int updateAllBlocksOfType(ArrayList<BlockBean> blocks, int componentType, String newComponentName) {
-        if (blocks == null || blocks.isEmpty()) return 0;
-        int[] counter = new int[1];
+    public ArrayList<BlockBean> updateAllBlocksOfType(ArrayList<BlockBean> blocks,
+                                                      int componentType,
+                                                      String newComponentName) {
+        ArrayList<BlockBean> updated = new ArrayList<>();
+        if (blocks == null || blocks.isEmpty()) return updated;
         for (BlockBean b : blocks) {
-            updateBlockRecursive(b, componentType, newComponentName, counter);
+            if (updateBlock(b, componentType, newComponentName)) {
+                updated.add(b);
+            }
         }
-        return counter[0];
+        return updated;
     }
 
-    private void updateBlockRecursive(BlockBean block, int componentType, String newComponentName, int[] counter) {
-        if (block == null) return;
-
-        // Проверяем, требует ли блок этот компонент
+    private boolean updateBlock(BlockBean block, int componentType, String newComponentName) {
+        if (block == null) return false;
         Integer required = getRequiredComponent(block.opCode);
         if (required != null && required == componentType) {
             if (block.parameters == null) {
@@ -290,11 +311,8 @@ public class SmartDropHelper {
             } else {
                 block.parameters.set(0, newComponentName);
             }
-            counter[0]++;
+            return true;
         }
-
-        // Рекурсивно обходим вложенные блоки
-        // (в текущей модели BlockBean мы имеем лишь id-ссылки, поэтому топ-уровень)
-        // но subStack обрабатываются отдельно снаружи
+        return false;
     }
 }
