@@ -346,7 +346,29 @@ public class ViewSelectorActivity extends BaseAppCompatActivity {
                 }
                 String javaName = projectFileBean.getJavaName();
                 viewHolder.itemBinding.imgEdit.setVisibility(View.VISIBLE);
-                viewHolder.itemBinding.imgView.setImageResource(getViewIcon(projectFileBean.options));
+
+                // Пользовательская иконка экрана (если задана)
+                boolean showIcons = getSharedPreferences("icon_picker_prefs", MODE_PRIVATE)
+                        .getBoolean("icons_show_enabled", true);
+                String screenIcon = projectFileBean.screenIcon;
+                boolean appliedCustom = false;
+                if (showIcons && screenIcon != null && !screenIcon.isEmpty()
+                        && screenIcon.startsWith("@drawable/")) {
+                    String iconName = screenIcon.substring("@drawable/".length());
+                    int resId = getResources().getIdentifier(iconName, "drawable", getPackageName());
+                    if (resId != 0) {
+                        viewHolder.itemBinding.imgView.setImageResource(resId);
+                        viewHolder.itemBinding.imgView.setImageTintList(
+                                android.content.res.ColorStateList.valueOf(
+                                        ThemeUtils.getColor(ViewSelectorActivity.this, R.attr.colorPrimary)));
+                        appliedCustom = true;
+                    }
+                }
+                if (!appliedCustom) {
+                    viewHolder.itemBinding.imgView.setImageResource(getViewIcon(projectFileBean.options));
+                    viewHolder.itemBinding.imgView.setImageTintList(null);
+                }
+
                 viewHolder.itemBinding.tvFilename.setText(xmlName);
                 viewHolder.itemBinding.tvLinkedFilename.setVisibility(View.VISIBLE);
                 viewHolder.itemBinding.tvLinkedFilename.setText(javaName);

@@ -235,7 +235,7 @@ public class IconPickerDialog {
         // Сетка иконок
         RecyclerView recycler = new RecyclerView(context);
         LinearLayout.LayoutParams rvLp = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(320));
+                ViewGroup.LayoutParams.MATCH_PARENT, dp(420));
         rvLp.topMargin = dp(8);
         recycler.setLayoutParams(rvLp);
         recycler.setLayoutManager(new GridLayoutManager(context, 4));
