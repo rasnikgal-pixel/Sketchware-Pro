@@ -1,8 +1,8 @@
 {
-  "versionCode": 151,
-  "versionName": "7.1.1",
+  "versionCode": 150,
+  "versionName": "7.1.0",
   "downloadUrl": "https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/download/7.1.0/app-release.apk",
-  "changelog": "• Тестовое обновление\n• Проверка работы системы обновлений",
+  "changelog": "• Добавлены 200 шаблонов экранов (20 категорий)\n• SmartDrop — автоподключение компонентов при drop блока\n• Поиск по шаблонам\n• Журнал отладки (RU/EN)\n• Система проверки обновлений\n• Улучшена стабильность",
   "required": false,
   "releaseDate": "2026-10-04",
   "minVersion": 0
