@@ -52,7 +52,6 @@
     <string name="log_component_delete">Component deleted: %s</string>
     <string name="log_build_start">Build started: %s</string>
     <string name="log_build_success">Build success: %s</string>
-    <string name="log_build_error_%s">Build error: %s</string>
     <string name="settings_debug_log_verbose_title">Verbose log</string>
     <string name="settings_debug_log_verbose_summary">Log every action (fills file faster)</string>
 </resources>
