@@ -245,23 +245,29 @@ public class TemplatePreviewView extends View {
     }
 
     private void drawPager(Canvas canvas, int w, int h) {
-        // Счётчик "X / N" — по центру
+        // Стрелки и счётчик рисуем внутри области макета:
+        //  - сверху под statusbar+toolbar (insetTop)
+        //  - слева правее drawer (insetLeft)
+        float arrowSize = dp(20);
+        float padding = dp(4);
+        int topBase = insetTop + (int) dp(4);
+        int leftBase = insetLeft + (int) padding;
+
+        // Счётчик "X / N" — по центру верхней области
         String counter = (pageIndex + 1) + " / " + pageTotal;
         textPaint.setColor(COLOR_ARROW);
         textPaint.setTextSize(dp(13));
-        canvas.drawText(counter, w / 2f, dp(20), textPaint);
+        canvas.drawText(counter, (insetLeft + w) / 2f, topBase + dp(14), textPaint);
 
-        // Стрелки ← → (слева и справа)
-        float arrowSize = dp(20);
-        float padding = dp(4);
-
+        // Стрелки ← →
         textPaint.setTextSize(dp(18));
-        // ←
-        prevRect.set(padding, dp(2), padding + arrowSize, dp(2) + arrowSize);
+
+        // ← (слева, правее drawer)
+        prevRect.set(leftBase, topBase, leftBase + arrowSize, topBase + arrowSize);
         canvas.drawText("‹", prevRect.centerX(), prevRect.centerY() + dp(7), textPaint);
 
-        // →
-        nextRect.set(w - padding - arrowSize, dp(2), w - padding, dp(2) + arrowSize);
+        // → (справа, не перекрывается панелями)
+        nextRect.set(w - padding - arrowSize, topBase, w - padding, topBase + arrowSize);
         canvas.drawText("›", nextRect.centerX(), nextRect.centerY() + dp(7), textPaint);
     }
 
