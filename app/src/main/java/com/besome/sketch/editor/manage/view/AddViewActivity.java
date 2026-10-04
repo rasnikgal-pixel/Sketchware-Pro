@@ -379,6 +379,35 @@ public class AddViewActivity extends BaseAppCompatActivity {
         finish();
     }
 
+    private void showTemplatePreview() {
+        if (templatePreview == null) return;
+        if (historyTemplates == null || historyTemplates.isEmpty()) {
+            templatePreview.setVisibility(View.GONE);
+            return;
+        }
+        String id = historyTemplates.get(historyIndex);
+        pro.sketchware.templates.ScreenTemplate tpl =
+                pro.sketchware.templates.ScreenTemplates.get(this).getById(id);
+        if (tpl != null) {
+            templatePreview.setTemplate(tpl, historyIndex, historyTemplates.size());
+            templatePreview.setVisibility(View.VISIBLE);
+        } else {
+            templatePreview.setVisibility(View.GONE);
+        }
+    }
+
+    private void showPrevTemplate() {
+        if (historyTemplates == null || historyTemplates.isEmpty()) return;
+        historyIndex = (historyIndex - 1 + historyTemplates.size()) % historyTemplates.size();
+        showTemplatePreview();
+    }
+
+    private void showNextTemplate() {
+        if (historyTemplates == null || historyTemplates.isEmpty()) return;
+        historyIndex = (historyIndex + 1) % historyTemplates.size();
+        showTemplatePreview();
+    }
+
     private void showTemplateChoiceDialog() {
         new androidx.appcompat.app.AlertDialog.Builder(this)
                 .setTitle("Создание экрана")
