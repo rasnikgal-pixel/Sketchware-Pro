@@ -76,6 +76,8 @@ public class TemplatePreviewView extends View {
     }
 
     public void setTemplate(ScreenTemplate t, int index, int total) {
+        android.util.Log.i("TemplatePreviewView", "setTemplate: "
+                + (t != null ? t.id : "null") + ", index=" + index + "/" + total);
         this.template = t;
         this.pageIndex = index;
         this.pageTotal = total;
@@ -88,6 +90,10 @@ public class TemplatePreviewView extends View {
         int w = getWidth();
         int h = getHeight();
         if (w == 0 || h == 0) return;
+
+        android.util.Log.i("TemplatePreviewView", "onDraw: w=" + w + ", h=" + h
+                + ", tpl=" + (template != null ? template.id : "null")
+                + ", views=" + (template != null && template.views != null ? template.views.size() : -1));
 
         // Фон
         paint.setColor(COLOR_BG);
@@ -214,25 +220,24 @@ public class TemplatePreviewView extends View {
     }
 
     private void drawPager(Canvas canvas, int w, int h) {
-        // Счётчик "X / N"
+        // Счётчик "X / N" — по центру
         String counter = (pageIndex + 1) + " / " + pageTotal;
         textPaint.setColor(COLOR_ARROW);
         textPaint.setTextSize(dp(13));
-        canvas.drawText(counter, w - dp(40), dp(20), textPaint);
+        canvas.drawText(counter, w / 2f, dp(20), textPaint);
 
-        // Стрелки ← →
+        // Стрелки ← → (слева и справа)
         float arrowSize = dp(20);
-        float padding = dp(8);
+        float padding = dp(4);
 
+        textPaint.setTextSize(dp(18));
         // ←
-        prevRect.set(padding, dp(4), padding + arrowSize, dp(4) + arrowSize);
-        textPaint.setTextSize(dp(16));
-        canvas.drawText("‹", prevRect.centerX(), prevRect.centerY() + dp(6), textPaint);
+        prevRect.set(padding, dp(2), padding + arrowSize, dp(2) + arrowSize);
+        canvas.drawText("‹", prevRect.centerX(), prevRect.centerY() + dp(7), textPaint);
 
         // →
-        nextRect.set(w - padding - arrowSize, dp(4), w - padding, dp(4) + arrowSize);
-        textPaint.setTextSize(dp(16));
-        canvas.drawText("›", nextRect.centerX(), nextRect.centerY() + dp(6), textPaint);
+        nextRect.set(w - padding - arrowSize, dp(2), w - padding, dp(2) + arrowSize);
+        canvas.drawText("›", nextRect.centerX(), nextRect.centerY() + dp(7), textPaint);
     }
 
     @Override
