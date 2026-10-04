@@ -9,7 +9,6 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/add_view_menu"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="@string/common_word_create_view" />
 

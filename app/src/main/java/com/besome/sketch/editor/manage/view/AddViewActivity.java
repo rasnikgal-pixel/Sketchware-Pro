@@ -228,6 +228,20 @@ public class AddViewActivity extends BaseAppCompatActivity {
             binding.toolbar.setTitle("Edit " + projectFileBean.fileName);
         }
 
+        // Меню "Шаблоны экранов" в toolbar (только при создании)
+        if (requestCode != REQUEST_CODE_EDIT) {
+            binding.toolbar.inflateMenu(R.menu.add_view_menu);
+            binding.toolbar.setOnMenuItemClickListener(item -> {
+                if (item.getItemId() == R.id.menu_add_view_templates) {
+                    Intent tplIntent = new Intent(this,
+                            pro.sketchware.templates.TemplateGalleryActivity.class);
+                    startActivityForResult(tplIntent, REQUEST_CODE_TEMPLATES);
+                    return true;
+                }
+                return false;
+            });
+        }
+
         featuresAdapter = new FeaturesAdapter();
         binding.featureTypes.setAdapter(featuresAdapter);
 
@@ -317,25 +331,6 @@ public class AddViewActivity extends BaseAppCompatActivity {
         setResult(RESULT_OK, intent);
         bB.a(getApplicationContext(), getString(R.string.design_manager_message_add_complete, new Object[0]), bB.TOAST_NORMAL).show();
         finish();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (requestCode != REQUEST_CODE_EDIT) {
-            getMenuInflater().inflate(R.menu.add_view_menu, menu);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menu_add_view_templates) {
-            Intent intent = new Intent(this,
-                    pro.sketchware.templates.TemplateGalleryActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_TEMPLATES);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void showTemplateChoiceDialog() {
