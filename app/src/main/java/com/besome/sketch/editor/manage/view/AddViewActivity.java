@@ -49,6 +49,8 @@ public class AddViewActivity extends BaseAppCompatActivity {
     private boolean featureStatusBar, featureToolbar, featureFab, featureDrawer;
     private int requestCode;
     private ProjectFileBean projectFileBean;
+    private static final int REQUEST_CODE_TEMPLATES = 600;
+    private String selectedTemplateId = null;
     private String presetName;
     private ArrayList<FeatureItem> featureItems;
     private FeaturesAdapter featuresAdapter;
@@ -194,6 +196,16 @@ public class AddViewActivity extends BaseAppCompatActivity {
             presetName = presetData.presetName;
             initItem(presetData.options);
             initializeItems();
+        } else if (requestCode == REQUEST_CODE_TEMPLATES && resultCode == RESULT_OK) {
+            ProjectFileBean presetData = data.getParcelableExtra("preset_data");
+            if (presetData != null && presetData.presetName != null) {
+                presetName = presetData.presetName;
+                selectedTemplateId = pro.sketchware.templates.TemplateParser
+                        .extractTemplateId(presetName);
+                bB.a(getApplicationContext(),
+                        "Шаблон выбран: " + selectedTemplateId,
+                        bB.TOAST_NORMAL).show();
+            }
         }
     }
 
@@ -237,7 +249,13 @@ public class AddViewActivity extends BaseAppCompatActivity {
             if (REQUEST_CODE_EDIT == requestCode) {
                 handleEditFile();
             } else if (isValid(nameValidator)) {
-                handleCreateFile();
+                // Спросить: пустой экран или из шаблона
+                if (selectedTemplateId != null) {
+                    // уже выбран — просто создаём
+                    handleCreateFile();
+                } else {
+                    showTemplateChoiceDialog();
+                }
             }
         });
 
@@ -251,6 +269,20 @@ public class AddViewActivity extends BaseAppCompatActivity {
         } else {
             handleCreateModeInitialization();
         }
+
+        // Обработчик иконки "Шаблоны экранов" (только при создании)
+        if (binding.imgTemplates != null) {
+            if (requestCode == REQUEST_CODE_EDIT) {
+                binding.imgTemplates.setVisibility(View.GONE);
+            } else {
+                binding.imgTemplates.setOnClickListener(v -> {
+                    Intent intent = new Intent(this,
+                            pro.sketchware.templates.TemplateGalleryActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_TEMPLATES);
+                });
+            }
+        }
+
         initializeItems();
     }
 
@@ -283,7 +315,14 @@ public class AddViewActivity extends BaseAppCompatActivity {
         ProjectFileBean projectFileBean = new ProjectFileBean(ProjectFileBean.PROJECT_FILE_TYPE_ACTIVITY, fileName, getSelectedButtonIndex(binding.screenOrientationSelector), getSelectedButtonIndex(binding.keyboardSettingsSelector), featureToolbar, !featureStatusBar, featureFab, featureDrawer);
         Intent intent = new Intent();
         intent.putExtra("project_file", projectFileBean);
-        if (presetName != null) {
+        if (selectedTemplateId != null) {
+            // Применить шаблон
+            ArrayList<ViewBean> tplViews = pro.sketchware.templates.TemplateParser
+                    .getViewsForTemplate(this, selectedTemplateId);
+            if (tplViews != null) {
+                intent.putExtra("preset_views", tplViews);
+            }
+        } else if (presetName != null) {
             intent.putExtra("preset_views", getPresetData(presetName));
         }
         setResult(RESULT_OK, intent);
