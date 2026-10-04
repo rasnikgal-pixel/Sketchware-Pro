@@ -2,6 +2,7 @@ package pro.sketchware.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ import pro.sketchware.R;
 
 /**
  * Диалог выбора иконки экрана с категориями, поиском, листанием.
- * Несуществующие иконки автоматически скрываются.
+ * Использует setImageTintList для корректного окрашивания VectorDrawable.
  */
 public class IconPickerDialog {
 
@@ -53,7 +54,7 @@ public class IconPickerDialog {
                 "ic_mtrl_undo", "ic_mtrl_redo", "ic_mtrl_refresh", "ic_mtrl_sync",
                 "ic_mtrl_download", "ic_mtrl_upload", "ic_mtrl_export", "ic_mtrl_filter",
                 "ic_mtrl_sort", "ic_mtrl_clear_all", "ic_mtrl_cancel", "ic_mtrl_reset",
-                "ic_mtrl_done", "ic_mtrl_swap_vertical", "ic_mtrl_copy", "ic_mtrl_more_vertical"
+                "ic_mtrl_done", "ic_mtrl_swap_vertical", "ic_mtrl_more_vertical"
         ));
         CATEGORIES.put("Стрелки", Arrays.asList(
                 "ic_mtrl_arrow_left", "ic_mtrl_arrow_right", "ic_mtrl_arrow_right2", "ic_mtrl_arrow_up",
@@ -73,10 +74,9 @@ public class IconPickerDialog {
                 "ic_mtrl_bluetooth", "ic_mtrl_bluetooth_connected", "ic_mtrl_wifi",
                 "ic_mtrl_notifications", "ic_mtrl_email_sent", "ic_mtrl_sms_check",
                 "ic_mtrl_chat", "ic_mtrl_web", "ic_mtrl_link", "ic_mtrl_link_check",
-                "ic_mtrl_share_link", "ic_mtrl_signin", "ic_mtrl_login",
-                "ic_mtrl_password", "ic_mtrl_shield_check", "ic_mtrl_shield_lock",
-                "ic_mtrl_verified_user", "ic_mtrl_fingerprint", "ic_mtrl_team",
-                "ic_mtrl_profile"
+                "ic_mtrl_signin", "ic_mtrl_login", "ic_mtrl_password",
+                "ic_mtrl_shield_check", "ic_mtrl_shield_lock",
+                "ic_mtrl_verified_user", "ic_mtrl_fingerprint", "ic_mtrl_profile"
         ));
         CATEGORIES.put("Время", Arrays.asList(
                 "ic_mtrl_calendar", "ic_mtrl_calendar_add", "ic_mtrl_calendary_today",
@@ -85,16 +85,13 @@ public class IconPickerDialog {
         ));
         CATEGORIES.put("Место", Arrays.asList(
                 "ic_mtrl_location", "ic_mtrl_location_changed", "ic_mtrl_map", "ic_mtrl_map_ready",
-                "ic_mtrl_pin", "ic_mtrl_pin_fill", "ic_mtrl_loc_click", "ic_mtrl_gps",
-                "ic_mtrl_devices"
+                "ic_mtrl_pin", "ic_mtrl_pin_fill", "ic_mtrl_loc_click", "ic_mtrl_devices"
         ));
         CATEGORIES.put("Данные", Arrays.asList(
                 "ic_mtrl_database_added", "ic_mtrl_database_edit", "ic_mtrl_database_moved",
                 "ic_mtrl_database_off", "ic_mtrl_folder", "ic_mtrl_folder_code",
                 "ic_mtrl_file", "ic_mtrl_file_picked", "ic_mtrl_file_present",
-                "ic_mtrl_storage", "ic_mtrl_cloud", "ic_mtrl_cloud_upload",
-                "ic_mtrl_cloud_download", "ic_mtrl_downloaded", "ic_mtrl_uploaded",
-                "ic_mtrl_downloading", "ic_mtrl_uploading", "ic_mtrl_package"
+                "ic_mtrl_package"
         ));
         CATEGORIES.put("Разработка", Arrays.asList(
                 "ic_mtrl_code", "ic_mtrl_java", "ic_mtrl_kotlin", "ic_mtrl_terminal",
@@ -103,7 +100,7 @@ public class IconPickerDialog {
                 "ic_mtrl_firebase_rtdb", "ic_mtrl_firebase_storage", "ic_mtrl_firebase_google",
                 "ic_mtrl_firebase_sms", "ic_mtrl_firebase_onesignal", "ic_mtrl_firebase_dl",
                 "ic_mtrl_material3", "ic_mtrl_regular_expression", "ic_mtrl_deployed_code",
-                "ic_mtrl_version_control", "ic_mtrl_regex", "ic_mtrl_inject"
+                "ic_mtrl_version_control", "ic_mtrl_inject"
         ));
         CATEGORIES.put("Интерфейс", Arrays.asList(
                 "ic_mtrl_design", "ic_mtrl_view_horizontal", "ic_mtrl_view_relative",
@@ -121,14 +118,13 @@ public class IconPickerDialog {
                 "ic_mtrl_user_register_complete", "ic_mtrl_user_remove"
         ));
         CATEGORIES.put("Разное", Arrays.asList(
-                "ic_mtrl_key", "ic_mtrl_keyboard", "ic_mtrl_nfc", "ic_mtrl_sensor",
+                "ic_mtrl_key", "ic_mtrl_keyboard", "ic_mtrl_sensor",
                 "ic_mtrl_sensors", "ic_mtrl_payment", "ic_mtrl_admob", "ic_mtrl_ad",
                 "ic_mtrl_interests", "ic_mtrl_interface", "ic_mtrl_animation",
-                "ic_mtrl_material3", "ic_mtrl_bulb", "ic_mtrl_lightbulb",
-                "ic_mtrl_numbers", "ic_mtrl_id", "ic_mtrl_verified_user", "ic_mtrl_warning",
-                "ic_mtrl_gpp_bad", "ic_mtrl_run", "ic_mtrl_sprint", "ic_mtrl_lifecycle",
+                "ic_mtrl_bulb", "ic_mtrl_numbers", "ic_mtrl_id", "ic_mtrl_warning",
+                "ic_mtrl_gpp_bad", "ic_mtrl_run", "ic_mtrl_lifecycle",
                 "ic_mtrl_square", "ic_mtrl_circle", "ic_mtrl_circle_small",
-                "ic_mtrl_puzzle", "ic_mtrl_block", "ic_mtrl_moreblock", "ic_mtrl_interface"
+                "ic_mtrl_puzzle", "ic_mtrl_block", "ic_mtrl_moreblock"
         ));
     }
 
@@ -145,10 +141,12 @@ public class IconPickerDialog {
     private IconAdapter adapter;
     private TextView pageInfo;
     private Button prevBtn, nextBtn;
-    private TextView selectedCategoryChip;
 
     private final List<String> filteredIcons = new ArrayList<>();
     private int currentPage = 0;
+
+    /** Кэш цвета иконок (colorOnSurface). */
+    private int iconColor = 0;
 
     public IconPickerDialog(Context context, String currentIcon, Callback callback) {
         this.context = context;
@@ -156,10 +154,30 @@ public class IconPickerDialog {
         this.callback = callback;
         this.selectedCategory = CATEGORIES.keySet().iterator().next();
         this.mixedMode = prefs().getBoolean(KEY_MIXED, false);
+        this.iconColor = resolveColorOnSurface();
     }
 
     private SharedPreferences prefs() {
         return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+    }
+
+    /** Получить цвет colorOnSurface из темы. Fallback — белый. */
+    private int resolveColorOnSurface() {
+        try {
+            android.util.TypedValue tv = new android.util.TypedValue();
+            if (context.getTheme().resolveAttribute(
+                    androidx.appcompat.R.attr.colorOnSurface, tv, true)) {
+                if (tv.type >= android.util.TypedValue.TYPE_FIRST_COLOR_INT
+                        && tv.type <= android.util.TypedValue.TYPE_LAST_COLOR_INT) {
+                    return tv.data;
+                }
+                if (tv.resourceId != 0) {
+                    return androidx.core.content.ContextCompat.getColor(context, tv.resourceId);
+                }
+            }
+        } catch (Exception ignored) {}
+        // Fallback — тёмно-серый (виден на светлой теме)
+        return 0xFF212121;
     }
 
     public void show() {
@@ -187,8 +205,6 @@ public class IconPickerDialog {
         android.widget.HorizontalScrollView catScroll = new android.widget.HorizontalScrollView(context);
         LinearLayout catRow = new LinearLayout(context);
         catRow.setOrientation(LinearLayout.HORIZONTAL);
-        catRow.setId(View.generateViewId());
-        final LinearLayout catRowFinal = catRow;
 
         final List<TextView> chips = new ArrayList<>();
         for (String cat : CATEGORIES.keySet()) {
@@ -349,6 +365,8 @@ public class IconPickerDialog {
 
     private void setPreview(String icon) {
         if (previewView == null) return;
+        previewView.setImageTintList(ColorStateList.valueOf(iconColor));
+
         if (icon == null || icon.isEmpty()) {
             previewView.setImageResource(R.drawable.ic_mtrl_image);
             return;
@@ -384,6 +402,8 @@ public class IconPickerDialog {
             iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             iv.setPadding(dp(8), dp(8), dp(8), dp(8));
             iv.setBackgroundResource(R.drawable.single_choice_background);
+            // КРИТИЧНО: явный tint через ImageTintList
+            iv.setImageTintList(ColorStateList.valueOf(iconColor));
             return new VH(iv);
         }
 
