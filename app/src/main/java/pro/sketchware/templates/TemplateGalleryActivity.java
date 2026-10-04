@@ -36,7 +36,7 @@ public class TemplateGalleryActivity extends BaseAppCompatActivity {
     private String selectedCategory = null; // null = "Все"
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_template_gallery);
 
