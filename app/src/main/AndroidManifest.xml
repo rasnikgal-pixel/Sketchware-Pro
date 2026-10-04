@@ -285,6 +285,11 @@
 
         <activity android:name="pro.sketchware.activities.settings.SettingsActivity" />
         <activity
+            android:name="pro.sketchware.templates.TemplateGalleryActivity"
+            android:exported="false"
+            android:label="@string/templates_gallery_title"
+            android:theme="@style/Theme.SketchwarePro" />
+        <activity
             android:name="pro.sketchware.smartdrop.LogViewerActivity"
             android:exported="false"
             android:label="@string/log_viewer_title" />

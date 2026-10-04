@@ -1164,4 +1164,6 @@ ACTION_VIEW
     <string name="smartdrop_us_needed">Эта сборка использует компоненты, которых нет в проекте:</string>
     <string name="smartdrop_us_create_all">Создать все</string>
     <string name="smartdrop_us_created">Создано компонентов: %d</string>
+    <string name="templates_gallery_title">Шаблоны экранов</string>
+    <string name="templates_category_all">Все</string>
 </resources>
