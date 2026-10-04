@@ -46,6 +46,22 @@ public class TemplatePreviewView extends View {
     private RectF prevRect = new RectF();
     private RectF nextRect = new RectF();
 
+    // Отступы под панели (задаются из AddViewActivity):
+    // top    — statusbar + toolbar
+    // left   — drawer
+    // bottom — fab + keyboard
+    private int insetTop = 0;
+    private int insetLeft = 0;
+    private int insetBottom = 0;
+
+    public void setInsets(int topPx, int leftPx, int bottomPx) {
+        if (insetTop == topPx && insetLeft == leftPx && insetBottom == bottomPx) return;
+        this.insetTop = topPx;
+        this.insetLeft = leftPx;
+        this.insetBottom = bottomPx;
+        invalidate();
+    }
+
     private OnPageChangeListener listener;
 
     public TemplatePreviewView(Context context) {
@@ -98,20 +114,30 @@ public class TemplatePreviewView extends View {
                         + ", tpl=" + (template != null ? template.id : "null")
                         + ", views=" + (template != null && template.views != null ? template.views.size() : -1));
 
-        // Фон
+        // Фон — вся область
         paint.setColor(COLOR_BG);
         canvas.drawRect(0, 0, w, h, paint);
 
-        // Если нет шаблона — просто пусто
-        if (template == null || template.views == null || template.views.isEmpty()) {
+        // Область рендера макета: под statusbar/toolbar, над fab/keyboard, справа от drawer
+        int x0 = insetLeft;
+        int y0 = insetTop;
+        int x1 = w;
+        int y1 = h - insetBottom;
+        if (x1 <= x0 || y1 <= y0) {
             drawPager(canvas, w, h);
             return;
         }
 
-        // Рендер ViewBeans
-        renderViews(canvas, template.views, w, h);
+        // Рендер ViewBeans внутри области
+        if (template != null && template.views != null && !template.views.isEmpty()) {
+            canvas.save();
+            canvas.clipRect(x0, y0, x1, y1);
+            canvas.translate(x0, y0);
+            renderViews(canvas, template.views, x1 - x0, y1 - y0);
+            canvas.restore();
+        }
 
-        // Стрелки и счётчик
+        // Стрелки и счётчик — поверх всего
         drawPager(canvas, w, h);
     }
 

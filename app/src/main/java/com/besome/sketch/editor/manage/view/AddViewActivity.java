@@ -109,6 +109,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
                 }
             }
         }
+        updateTemplatePreviewInsets();
     }
 
     private boolean isValid(YB validator) {
@@ -121,6 +122,25 @@ public class AddViewActivity extends BaseAppCompatActivity {
         } else {
             view.animate().translationX((float) view.getMeasuredWidth()).start();
         }
+    }
+
+    /** Пересчитывает отступы для TemplatePreviewView под текущее состояние фич. */
+    private void updateTemplatePreviewInsets() {
+        if (templatePreview == null) return;
+        float density = getResources().getDisplayMetrics().density;
+        // Размеры панелей в dp (совпадают с layout-ом manage_screen_activity_add_temp.xml):
+        // statusbar = 10dp, toolbar = 30dp, drawer = 90dp, fab+keyboard = 83dp
+        int top = 0;
+        if (featureStatusBar) top += (int)(10 * density);
+        if (featureToolbar) top += (int)(30 * density);
+
+        int left = 0;
+        if (featureDrawer) left = (int)(90 * density);
+
+        int bottom = 0;
+        if (featureFab) bottom = (int)(83 * density); // keyboard height (fab лежит над ним)
+
+        templatePreview.setInsets(top, left, bottom);
     }
 
     private void slideOutVertically(View view) {
@@ -192,6 +212,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
         featureItems.add(new FeatureItem(2, R.drawable.ic_drawer_color_48dp, "Панель навигации", featureDrawer));
         featureItems.add(new FeatureItem(3, R.drawable.fab_color, "Плавающая кнопка", featureFab));
         featuresAdapter.notifyDataSetChanged();
+        updateTemplatePreviewInsets();
     }
 
     @Override
