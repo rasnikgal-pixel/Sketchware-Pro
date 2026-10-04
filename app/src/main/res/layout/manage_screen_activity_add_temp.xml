@@ -141,6 +141,12 @@
                                 android:scaleType="fitEnd"
                                 android:src="@drawable/android_keyboard" />
                         </RelativeLayout>
+
+                        <pro.sketchware.templates.TemplatePreviewView
+                            android:id="@+id/template_preview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone" />
                     </RelativeLayout>
 
                 </com.google.android.material.card.MaterialCardView>

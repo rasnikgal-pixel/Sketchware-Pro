@@ -54,6 +54,9 @@ public class AddViewActivity extends BaseAppCompatActivity {
     private static final int REQUEST_CODE_TEMPLATES = 600;
     private String selectedTemplateId = null;
     private String selectedScreenIcon = "";
+    private pro.sketchware.templates.TemplatePreviewView templatePreview;
+    private java.util.List<String> historyTemplates = new java.util.ArrayList<>();
+    private int historyIndex = 0;
     private String presetName;
     private ArrayList<FeatureItem> featureItems;
     private FeaturesAdapter featuresAdapter;
@@ -206,6 +209,12 @@ public class AddViewActivity extends BaseAppCompatActivity {
                 selectedTemplateId = pro.sketchware.templates.TemplateParser
                         .extractTemplateId(presetName);
 
+                // Добавляем в историю шаблонов
+                pro.sketchware.templates.TemplateHistoryHelper.addToHistory(this, selectedTemplateId);
+                historyTemplates = pro.sketchware.templates.TemplateHistoryHelper.getHistory(this);
+                historyIndex = Math.max(0, historyTemplates.indexOf(selectedTemplateId));
+                showTemplatePreview();
+
                 // Применить featureOptions из шаблона
                 pro.sketchware.templates.ScreenTemplate tpl =
                         pro.sketchware.templates.ScreenTemplates.get(this)
@@ -235,6 +244,20 @@ public class AddViewActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ManageScreenActivityAddTempBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Инициализация TemplatePreviewView
+        templatePreview = binding.templatePreview;
+        templatePreview.setOnPageChangeListener(new pro.sketchware.templates.TemplatePreviewView.OnPageChangeListener() {
+            @Override public void onPageChanged(int newIndex, int total) {}
+            @Override public void onPrevClicked() { showPrevTemplate(); }
+            @Override public void onNextClicked() { showNextTemplate(); }
+        });
+        // Загружаем историю шаблонов
+        historyTemplates = pro.sketchware.templates.TemplateHistoryHelper.getHistory(this);
+        if (!historyTemplates.isEmpty()) {
+            historyIndex = 0;
+            showTemplatePreview();
+        }
 
         binding.toolbar.setTitle(R.string.assets_manager_add_new);
         binding.toolbar.setNavigationOnClickListener(v -> finish());
