@@ -29,4 +29,10 @@
         android:title="@string/common_word_blocks_collection"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/menu_smartdrop_update_blocks"
+        android:orderInCategory="200"
+        android:title="@string/smartdrop_menu_update_blocks"
+        app:showAsAction="never" />
+
 </menu>

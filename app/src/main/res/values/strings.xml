@@ -1156,4 +1156,8 @@ ACTION_VIEW
     <string name="smartdrop_btn_connect">Подключить</string>
     <string name="smartdrop_btn_new">Новый</string>
     <string name="smartdrop_btn_create">Создать</string>
+    <string name="smartdrop_menu_update_blocks">Обновить блоки компонента</string>
+    <string name="smartdrop_choose_component">Выберите компонент для замены во всех блоках</string>
+    <string name="smartdrop_no_components">В проекте нет компонентов</string>
+    <string name="smartdrop_updated_blocks">Обновлено блоков: %d</string>
 </resources>

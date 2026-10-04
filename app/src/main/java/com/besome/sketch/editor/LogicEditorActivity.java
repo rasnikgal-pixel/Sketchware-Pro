@@ -103,6 +103,7 @@ import a.a.a.ZB;
 import a.a.a.bC;
 import a.a.a.eC;
 import a.a.a.jC;
+import pro.sketchware.utility.SketchwareUtil;
 import a.a.a.jq;
 import a.a.a.kC;
 import a.a.a.mB;
@@ -2028,6 +2029,82 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         return true;
     }
 
+    /**
+     * SmartDrop: показать диалог выбора компонента и массово обновить все блоки события,
+     * требующие этого типа.
+     */
+    private void showUpdateBlocksDialog() {
+        if (M == null || scId == null || scId.isEmpty()) {
+            SketchwareUtil.toast("Сначала откройте экран");
+            return;
+        }
+
+        ArrayList<ComponentBean> components = jC.a(scId).e(M.getJavaName());
+        if (components == null || components.isEmpty()) {
+            SketchwareUtil.toast("В проекте нет компонентов");
+            return;
+        }
+
+        // Имена компонентов для отображения
+        String[] items = new String[components.size()];
+        for (int i = 0; i < components.size(); i++) {
+            ComponentBean cb = components.get(i);
+            String typeName = ComponentBean.getComponentName(this, cb.type);
+            items[i] = cb.componentId + "  (" + typeName + ")";
+        }
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle("Обновить блоки компонента")
+                .setItems(items, (dialog, which) -> {
+                    ComponentBean selected = components.get(which);
+                    performMassUpdate(selected);
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    private void performMassUpdate(ComponentBean selected) {
+        if (o == null) return;
+        ArrayList<BlockBean> currentBlocks = o.getBlocks();
+        if (currentBlocks == null || currentBlocks.isEmpty()) {
+            SketchwareUtil.toast("Нет блоков в событии");
+            return;
+        }
+
+        pro.sketchware.smartdrop.DebugLogger.get(this)
+                .i("SmartDrop", "log_smartdrop_required", "mass-update to " + selected.componentId);
+
+        ArrayList<BlockBean> updated = pro.sketchware.smartdrop.SmartDropHelper.get(this)
+                .updateAllBlocksOfType(currentBlocks, selected.type, selected.componentId);
+
+        // Перерисовать обновлённые Rs
+        for (BlockBean b : updated) {
+            try {
+                final int blockId = Integer.parseInt(b.id);
+                o.post(() -> {
+                    try {
+                        Rs rs = o.a(blockId);
+                        if (rs != null) rs.p().k();
+                    } catch (Exception ignored) {}
+                });
+            } catch (NumberFormatException ignored) {}
+        }
+
+        if (updated.isEmpty()) {
+            SketchwareUtil.toast("Нет блоков, требующих этот компонент");
+        } else {
+            SketchwareUtil.toast("Обновлено блоков: " + updated.size());
+        }
+
+        // Сохраняем блоки
+        try {
+            jC.a(scId).a(M.getJavaName(), id + "_" + eventName, o.getBlocks());
+        } catch (Exception e) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .e("SmartDrop", "log_smartdrop_exception", e);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
@@ -2035,6 +2112,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         if (itemId == R.id.menu_block_helper) {
             e(false);
             g(!ia);
+        } else if (itemId == R.id.menu_smartdrop_update_blocks) {
+            showUpdateBlocksDialog();
         } else if (itemId == R.id.menu_logic_redo) {
             redo();
         } else if (itemId == R.id.menu_logic_undo) {
