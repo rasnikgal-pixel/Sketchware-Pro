@@ -23,10 +23,8 @@ public class TemplateParser {
         v.type = raw.type;
         v.parent = raw.parent != null ? raw.parent : "root";
         v.index = raw.index;
-        v.preParent = null;
-        v.preParentType = 0;
-        v.preIndex = -1;
-        v.preId = null;
+        // Не устанавливаем preParent/preId — оставляем дефолты ViewBean
+        // чтобы избежать NPE в ViewPane.updateItemView
 
         // Layout
         LayoutBean layout = v.layout;
@@ -38,12 +36,28 @@ public class TemplateParser {
         layout.marginBottom = raw.marginBottom;
         layout.layoutGravity = raw.layoutGravity;
 
-        // Text
+        // Text — присваиваем из raw, если есть
         TextBean text = v.text;
         if (raw.text != null) text.text = raw.text;
         text.textSize = raw.textSize;
         text.textType = raw.textStyle;
         if (raw.hint != null) text.hint = raw.hint;
+
+        // Гарантируем не-null критичные поля (ПОСЛЕ присваивания!)
+        if (v.image.resName == null) {
+            v.image.resName = "default_image";
+            v.image.scaleType = "CENTER";
+        }
+        if (v.inject == null) v.inject = "";
+        if (v.convert == null) v.convert = "";
+        if (v.customView == null) v.customView = "";
+        if (v.indeterminate == null) v.indeterminate = "false";
+        if (v.adSize == null) v.adSize = "";
+        if (v.adUnitId == null) v.adUnitId = "";
+        if (v.text.text == null) v.text.text = "";
+        if (v.text.hint == null) v.text.hint = "";
+        if (v.text.textFont == null) v.text.textFont = "default_font";
+        if (v.text.resTextColor == null) v.text.resTextColor = "";
 
         return v;
     }
