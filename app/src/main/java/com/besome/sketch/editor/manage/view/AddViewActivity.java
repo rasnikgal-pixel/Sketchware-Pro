@@ -380,6 +380,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
     }
 
     private void showTemplatePreview() {
+        android.util.Log.i("AddViewActivity", "showTemplatePreview: history=" + (historyTemplates != null ? historyTemplates.size() : -1) + ", index=" + historyIndex);
         if (templatePreview == null) return;
         if (historyTemplates == null || historyTemplates.isEmpty()) {
             templatePreview.setVisibility(View.GONE);
