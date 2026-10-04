@@ -308,6 +308,10 @@ public class ManageViewActivity extends BaseAppCompatActivity implements OnClick
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.menu_screen_delete) {
             a(!selecting);
+        } else if (menuItem.getItemId() == R.id.menu_screen_templates) {
+            startActivity(new android.content.Intent(this,
+                    pro.sketchware.templates.TemplateGalleryActivity.class));
+            return true;
         }
         return super.onOptionsItemSelected(menuItem);
     }

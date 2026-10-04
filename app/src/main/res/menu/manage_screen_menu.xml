@@ -14,4 +14,11 @@
         android:orderInCategory="1"
         android:title="@string/common_word_delete"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_screen_templates"
+        android:icon="@drawable/ic_mtrl_image"
+        android:orderInCategory="2"
+        android:title="@string/templates_gallery_title"
+        app:showAsAction="never" />
 </menu>
