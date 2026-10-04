@@ -365,6 +365,15 @@ public class ConfigActivity extends BaseAppCompatActivity {
                     return true;
                 });
             }
+            SwitchPreferenceCompat debugLogVerbose = findPreference("debug-log-verbose");
+            if (debugLogVerbose != null) {
+                DebugLogger verboseLogger = DebugLogger.get(requireContext());
+                debugLogVerbose.setChecked(verboseLogger.isVerbose());
+                debugLogVerbose.setOnPreferenceChangeListener((pref, newValue) -> {
+                    DebugLogger.get(requireContext()).setVerbose((Boolean) newValue);
+                    return true;
+                });
+            }
             Preference debugLogOpen = findPreference("debug-log-open");
             if (debugLogOpen != null) {
                 debugLogOpen.setOnPreferenceClickListener(pref -> {

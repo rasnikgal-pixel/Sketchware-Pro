@@ -318,6 +318,9 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
      */
     private void indicateCompileErrorOccurred(String error) {
         new CompileErrorSaver(sc_id).writeLogsToFile(error);
+        // Логируем ошибку сборки в наш журнал
+        pro.sketchware.smartdrop.DebugLogger.get(this)
+                .e("Build", "log_build_error", new Exception(error != null && error.length() > 2000 ? error.substring(0, 2000) : error));
         Snackbar snackbar = Snackbar.make(coordinatorLayout, "Показать журнал компиляции", Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction(Helper.getResString(R.string.common_word_show), v -> {
             if (!mB.a()) {
@@ -1215,6 +1218,10 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     return;
                 }
 
+                if (activity != null) {
+                    pro.sketchware.smartdrop.DebugLogger.get(activity)
+                            .i("Build", "log_build_success", activity.sc_id != null ? activity.sc_id : "");
+                }
                 activity.installBuiltApk();
                 isBuildFinished = true;
             } catch (MissingFileException e) {

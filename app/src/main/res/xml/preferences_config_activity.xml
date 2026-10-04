@@ -74,6 +74,11 @@
             app:key="debug-log-enabled"
             app:summary="Записывать все действия приложения в файл"
             app:title="Журнал отладки" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="debug-log-verbose"
+            app:summary="Записывать каждое действие (быстрее заполняет файл)"
+            app:title="Подробный журнал" />
         <Preference
             app:iconSpaceReserved="false"
             app:key="debug-log-open"

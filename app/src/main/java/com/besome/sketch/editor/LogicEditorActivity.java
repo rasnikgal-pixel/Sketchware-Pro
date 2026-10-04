@@ -2280,8 +2280,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
             return true;
         } else if (actionMasked == MotionEvent.ACTION_UP) {
-            pro.sketchware.smartdrop.DebugLogger.get(this)
-                    .d("SmartDrop", "log_smartdrop_hook_triggered", "ACTION_UP, view=" + v.getClass().getSimpleName());
             currentTouchedView = null;
             handler.removeCallbacks(longPressed);
             if (!isDragged) {
@@ -2297,12 +2295,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             viewLogicEditor.setScrollEnabled(true);
             O.setDragEnabled(true);
             dummy.setDummyVisibility(View.GONE);
-            pro.sketchware.smartdrop.DebugLogger.get(this)
-                    .d("SmartDrop", "log_smartdrop_opcode", "dummy.getAllow()=" + dummy.getAllow()
-                            + ", deleteActive=" + logicTopMenu.isDeleteActive
-                            + ", v.isRs=" + (v instanceof Rs)
-                            + ", v.blockType=" + (v instanceof Rs ? ((Rs) v).getBlockType() : -1)
-                            + ", currentTouchedView=" + (currentTouchedView != null));
             if (!dummy.getAllow()) {
                 Rs rs2 = (Rs) v;
                 if (rs2.getBlockType() == 0) {
@@ -2466,14 +2458,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     int addTargetId = o.getAddTargetId();
                     BlockBean clone3 = addTargetId >= 0 ? o.a(addTargetId).getBean().clone() : null;
                     Rs a4 = a(rs13, this.v[0], this.v[1], false);
-                    // ─── SmartDrop: правильная точка drop ───
-                    pro.sketchware.smartdrop.DebugLogger.get(this)
-                            .d("SmartDrop", "log_smartdrop_hook_triggered", "blockType=1, opCode=" + (a4 != null ? a4.getBean().opCode : "null"));
+                    // ─── SmartDrop: автоподключение компонента ───
                     if (a4 != null) {
+                        pro.sketchware.smartdrop.UserActionLogger.blockDrop(this, a4.getBean().opCode);
                         final Rs rsForSmartDrop = a4;
                         a4.post(() -> {
-                            pro.sketchware.smartdrop.DebugLogger.get(LogicEditorActivity.this)
-                                    .d("SmartDrop", "log_smartdrop_post_entered", "");
                             BlockBean bean = rsForSmartDrop.getBean();
                             if (bean != null) {
                                 pro.sketchware.smartdrop.SmartDropHelper.get(LogicEditorActivity.this)

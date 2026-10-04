@@ -33,6 +33,7 @@ public class DebugLogger {
     private static final String TAG = "DebugLogger";
     private static final String PREFS = "debug_logger_prefs";
     private static final String KEY_ENABLED = "enabled";
+    private static final String KEY_VERBOSE = "verbose";
     private static final long MAX_FILE_SIZE = 1024 * 1024; // 1 MB
 
     private static DebugLogger instance;
@@ -43,6 +44,7 @@ public class DebugLogger {
     private final ExecutorService executor;
     private final SimpleDateFormat dateFormat;
     private volatile boolean enabled;
+    private volatile boolean verbose;
 
     private DebugLogger(Context context) {
         this.appContext = context.getApplicationContext();
@@ -51,6 +53,7 @@ public class DebugLogger {
 
         SharedPreferences prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         this.enabled = prefs.getBoolean(KEY_ENABLED, true);
+        this.verbose = prefs.getBoolean(KEY_VERBOSE, false);
 
         // Открытая папка: /storage/emulated/0/SketchwareProData/logs
         File storage = Environment.getExternalStorageDirectory();
@@ -96,6 +99,16 @@ public class DebugLogger {
                 .edit().putBoolean(KEY_ENABLED, value).apply();
     }
 
+    public boolean isVerbose() {
+        return verbose;
+    }
+
+    public void setVerbose(boolean value) {
+        verbose = value;
+        appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+                .edit().putBoolean(KEY_VERBOSE, value).apply();
+    }
+
     // ─────────────────────────────────────────────────────────────
     // Публичный API
     // ─────────────────────────────────────────────────────────────
@@ -122,6 +135,7 @@ public class DebugLogger {
 
     private void write(String level, String tag, String key, String arg, Throwable ex) {
         if (!enabled) return;
+        if ("DEBUG".equals(level) && !verbose) return;
 
         String ruMsg = resolveString(key, true, arg, ex);
         String enMsg = resolveString(key, false, arg, ex);
