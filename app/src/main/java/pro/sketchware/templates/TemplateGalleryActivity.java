@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import com.besome.sketch.lib.base.BaseAppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +25,7 @@ import pro.sketchware.R;
  * Галерея шаблонов экранов.
  * Возвращает выбранный id шаблона через setResult(RESULT_OK, intent.putExtra("template_id", id)).
  */
-public class TemplateGalleryActivity extends AppCompatActivity {
+public class TemplateGalleryActivity extends BaseAppCompatActivity {
 
     public static final String EXTRA_TEMPLATE_ID = "template_id";
 

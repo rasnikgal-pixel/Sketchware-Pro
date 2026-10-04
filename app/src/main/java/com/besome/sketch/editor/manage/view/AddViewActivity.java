@@ -204,6 +204,19 @@ public class AddViewActivity extends BaseAppCompatActivity {
                 presetName = presetData.presetName;
                 selectedTemplateId = pro.sketchware.templates.TemplateParser
                         .extractTemplateId(presetName);
+
+                // Применить featureOptions из шаблона
+                pro.sketchware.templates.ScreenTemplate tpl =
+                        pro.sketchware.templates.ScreenTemplates.get(this)
+                                .getById(selectedTemplateId);
+                if (tpl != null && tpl.featureOptions != null && !tpl.featureOptions.isEmpty()) {
+                    featureToolbar = tpl.featureOptions.contains("toolbar");
+                    featureStatusBar = tpl.featureOptions.contains("statusbar");
+                    featureFab = tpl.featureOptions.contains("fab");
+                    featureDrawer = tpl.featureOptions.contains("drawer");
+                    initializeItems();  // перерисовать чекбоксы
+                }
+
                 bB.a(getApplicationContext(),
                         "Шаблон выбран: " + selectedTemplateId,
                         bB.TOAST_NORMAL).show();

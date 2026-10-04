@@ -18,6 +18,12 @@ public class ScreenTemplate {
     public ArrayList<RawView> views = new ArrayList<>();
     public ArrayList<RawBlock> blocks = new ArrayList<>();
 
+    /**
+     * Опции экрана: "toolbar", "statusbar", "fab", "drawer".
+     * Если null или пусто — используются стандартные (toolbar + statusbar).
+     */
+    public ArrayList<String> featureOptions = new ArrayList<>();
+
     public ScreenTemplate() {}
 
     @Override

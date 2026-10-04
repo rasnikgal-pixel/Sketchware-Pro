@@ -54,110 +54,1076 @@
   ],
   "templates": [
     {
-      "id": "splash_simple",
-      "category": "utility",
-      "name": "Splash-экран",
-      "description": "Логотип по центру и индикатор загрузки",
+      "id": "basic_empty",
+      "category": "basic",
+      "name": "Пустой экран",
+      "description": "Пустой макет",
       "previewIcon": "ic_mtrl_image",
       "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [],
+      "blocks": []
+    },
+    {
+      "id": "basic_text",
+      "category": "basic",
+      "name": "Только текст",
+      "description": "TextView по центру",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
       "views": [
         {
-          "id": "imageview1",
-          "type": 6,
-          "name": "imageview1",
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
           "parent": "root",
           "index": 0,
+          "text": "Заголовок",
+          "textSize": 20,
+          "textStyle": 1,
           "width": -2,
           "height": -2,
-          "marginTop": 80,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
           "layoutGravity": 1
-        },
-        {
-          "id": "progressbar1",
-          "type": 12,
-          "name": "progressbar1",
-          "parent": "root",
-          "index": 1,
-          "width": -2,
-          "height": -2,
-          "marginTop": 40,
-          "layoutGravity": 1
-        },
-        {
-          "id": "textview1",
-          "type": 4,
-          "name": "textview1",
-          "parent": "root",
-          "index": 2,
-          "width": -2,
-          "height": -2,
-          "marginTop": 24,
-          "layoutGravity": 1,
-          "text": "Загрузка..."
         }
       ],
       "blocks": []
     },
     {
-      "id": "login_simple",
-      "category": "auth",
-      "name": "Простой вход",
-      "description": "Заголовок, Email, пароль, кнопка входа",
-      "previewIcon": "ic_mtrl_lock",
+      "id": "basic_text_left",
+      "category": "basic",
+      "name": "Текст слева",
+      "description": "TextView слева сверху",
+      "previewIcon": "ic_mtrl_edit",
       "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
       "views": [
         {
-          "id": "textview1",
+          "id": "tv1",
           "type": 4,
-          "name": "textview1",
+          "name": "tv1",
           "parent": "root",
           "index": 0,
+          "text": "Заголовок",
+          "textSize": 20,
+          "textStyle": 1,
           "width": -2,
           "height": -2,
-          "marginTop": 60,
-          "layoutGravity": 1,
-          "text": "Вход в аккаунт",
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "basic_title_sub",
+      "category": "basic",
+      "name": "Заголовок + подзаголовок",
+      "description": "2 TextView",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Заголовок",
           "textSize": 22,
-          "textStyle": 1
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
         },
         {
-          "id": "edittext1",
-          "type": 5,
-          "name": "edittext1",
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
           "parent": "root",
           "index": 1,
-          "width": -1,
+          "text": "Описание",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
           "height": -2,
-          "marginLeft": 24,
-          "marginTop": 40,
-          "marginRight": 24,
-          "text": "Email"
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "basic_paragraph",
+      "category": "basic",
+      "name": "Параграф",
+      "description": "Заголовок + длинный текст",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Заголовок",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
         },
         {
-          "id": "edittext2",
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Длинный текст описания для примера параграфа...",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "basic_heading_only",
+      "category": "basic",
+      "name": "Заголовок",
+      "description": "Один заголовок",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Заголовок",
+          "textSize": 28,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "basic_two_buttons",
+      "category": "basic",
+      "name": "2 кнопки",
+      "description": "2 кнопки вертикально",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "btn1",
+          "type": 3,
+          "name": "btn1",
+          "parent": "root",
+          "index": 0,
+          "text": "Кнопка 1",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn2",
+          "type": 3,
+          "name": "btn2",
+          "parent": "root",
+          "index": 1,
+          "text": "Кнопка 2",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "basic_toolbar_only",
+      "category": "basic",
+      "name": "Только панель",
+      "description": "Toolbar + пустой экран",
+      "previewIcon": "ic_mtrl_image",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [],
+      "blocks": []
+    },
+    {
+      "id": "basic_fullscreen",
+      "category": "basic",
+      "name": "Fullscreen",
+      "description": "Без toolbar и status",
+      "previewIcon": "ic_mtrl_image",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [],
+      "blocks": []
+    },
+    {
+      "id": "basic_text_button",
+      "category": "basic",
+      "name": "Текст + кнопка",
+      "description": "TextView + Button",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Текст",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn1",
+          "type": 3,
+          "name": "btn1",
+          "parent": "root",
+          "index": 1,
+          "text": "Действие",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_login_simple",
+      "category": "auth",
+      "name": "Простой вход",
+      "description": "Email + пароль + кнопка",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вход",
+          "textSize": 24,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_email",
           "type": 5,
-          "name": "edittext2",
+          "name": "et_email",
+          "parent": "root",
+          "index": 1,
+          "hint": "Email",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_pass",
+          "type": 5,
+          "name": "et_pass",
           "parent": "root",
           "index": 2,
+          "hint": "Пароль",
+          "textSize": 14,
           "width": -1,
           "height": -2,
-          "marginLeft": 24,
-          "marginTop": 16,
-          "marginRight": 24,
-          "text": "Пароль"
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
         },
         {
-          "id": "button1",
-          "type": 7,
-          "name": "button1",
+          "id": "btn_login",
+          "type": 3,
+          "name": "btn_login",
           "parent": "root",
           "index": 3,
+          "text": "Войти",
+          "textSize": 14,
+          "textStyle": 1,
           "width": -1,
           "height": -2,
-          "marginLeft": 24,
-          "marginTop": 32,
-          "marginRight": 24,
-          "text": "Войти"
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_login_remember",
+      "category": "auth",
+      "name": "Вход с «Запомнить»",
+      "description": "Email + пароль + checkbox",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вход",
+          "textSize": 24,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_email",
+          "type": 5,
+          "name": "et_email",
+          "parent": "root",
+          "index": 1,
+          "hint": "Email",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_pass",
+          "type": 5,
+          "name": "et_pass",
+          "parent": "root",
+          "index": 2,
+          "hint": "Пароль",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "cb_remember",
+          "type": 11,
+          "name": "cb_remember",
+          "parent": "root",
+          "index": 3,
+          "text": "Запомнить меня",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "btn_login",
+          "type": 3,
+          "name": "btn_login",
+          "parent": "root",
+          "index": 4,
+          "text": "Войти",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_register",
+      "category": "auth",
+      "name": "Регистрация",
+      "description": "Email + пароли + кнопка",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Регистрация",
+          "textSize": 24,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_email",
+          "type": 5,
+          "name": "et_email",
+          "parent": "root",
+          "index": 1,
+          "hint": "Email",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_pass",
+          "type": 5,
+          "name": "et_pass",
+          "parent": "root",
+          "index": 2,
+          "hint": "Пароль",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_pass2",
+          "type": 5,
+          "name": "et_pass2",
+          "parent": "root",
+          "index": 3,
+          "hint": "Повтор пароля",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_reg",
+          "type": 3,
+          "name": "btn_reg",
+          "parent": "root",
+          "index": 4,
+          "text": "Зарегистрироваться",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_login_register_link",
+      "category": "auth",
+      "name": "Вход + ссылка",
+      "description": "Кнопка + TextView-ссылка",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вход",
+          "textSize": 24,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_email",
+          "type": 5,
+          "name": "et_email",
+          "parent": "root",
+          "index": 1,
+          "hint": "Email",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_pass",
+          "type": 5,
+          "name": "et_pass",
+          "parent": "root",
+          "index": 2,
+          "hint": "Пароль",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_login",
+          "type": 3,
+          "name": "btn_login",
+          "parent": "root",
+          "index": 3,
+          "text": "Войти",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv_reg",
+          "type": 4,
+          "name": "tv_reg",
+          "parent": "root",
+          "index": 4,
+          "text": "Нет аккаунта? Зарегистрироваться",
+          "textSize": 12,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_forgot_password",
+      "category": "auth",
+      "name": "Забыли пароль",
+      "description": "Email + кнопка восстановления",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Восстановление пароля",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_email",
+          "type": 5,
+          "name": "et_email",
+          "parent": "root",
+          "index": 1,
+          "hint": "Email",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_reset",
+          "type": 3,
+          "name": "btn_reset",
+          "parent": "root",
+          "index": 2,
+          "text": "Восстановить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_otp",
+      "category": "auth",
+      "name": "OTP-код",
+      "description": "Поле для кода + кнопка",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Введите код",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_code",
+          "type": 5,
+          "name": "et_code",
+          "parent": "root",
+          "index": 1,
+          "hint": "Код из SMS",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_ok",
+          "type": 3,
+          "name": "btn_ok",
+          "parent": "root",
+          "index": 2,
+          "text": "Подтвердить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_pin",
+      "category": "auth",
+      "name": "PIN-код",
+      "description": "Поле для PIN + кнопка",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "PIN-код",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_pin",
+          "type": 5,
+          "name": "et_pin",
+          "parent": "root",
+          "index": 1,
+          "hint": "PIN",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_login",
+          "type": 3,
+          "name": "btn_login",
+          "parent": "root",
+          "index": 2,
+          "text": "Войти",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_phone",
+      "category": "auth",
+      "name": "Вход по телефону",
+      "description": "Номер + кнопка",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вход",
+          "textSize": 24,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_phone",
+          "type": 5,
+          "name": "et_phone",
+          "parent": "root",
+          "index": 1,
+          "hint": "Телефон",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_next",
+          "type": 3,
+          "name": "btn_next",
+          "parent": "root",
+          "index": 2,
+          "text": "Далее",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_profile_setup",
+      "category": "auth",
+      "name": "Профиль",
+      "description": "Аватар + имя + кнопка",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv_avatar",
+          "type": 6,
+          "name": "iv_avatar",
+          "parent": "root",
+          "index": 0,
+          "width": 96,
+          "height": 96,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_name",
+          "type": 5,
+          "name": "et_name",
+          "parent": "root",
+          "index": 1,
+          "hint": "Ваше имя",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_save",
+          "type": 3,
+          "name": "btn_save",
+          "parent": "root",
+          "index": 2,
+          "text": "Сохранить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "auth_logout",
+      "category": "auth",
+      "name": "Выход",
+      "description": "Кнопка выхода",
+      "previewIcon": "ic_mtrl_lock",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вы уверены?",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_logout",
+          "type": 3,
+          "name": "btn_logout",
+          "parent": "root",
+          "index": 1,
+          "text": "Выйти",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
         }
       ],
       "blocks": []
@@ -166,62 +1132,4181 @@
       "id": "settings_simple",
       "category": "settings",
       "name": "Простые настройки",
-      "description": "Список переключателей",
+      "description": "3 switch",
       "previewIcon": "ic_mtrl_settings",
       "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
       "views": [
         {
-          "id": "textview1",
+          "id": "tv1",
           "type": 4,
-          "name": "textview1",
+          "name": "tv1",
           "parent": "root",
           "index": 0,
+          "text": "Настройки",
+          "textSize": 22,
+          "textStyle": 1,
           "width": -2,
           "height": -2,
           "marginLeft": 16,
           "marginTop": 24,
-          "text": "Настройки",
-          "textSize": 22,
-          "textStyle": 1
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
         },
         {
-          "id": "switch1",
-          "type": 9,
-          "name": "switch1",
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
           "parent": "root",
           "index": 1,
+          "text": "Уведомления",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "sw2",
+          "type": 13,
+          "name": "sw2",
+          "parent": "root",
+          "index": 2,
+          "text": "Тёмная тема",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        },
+        {
+          "id": "sw3",
+          "type": 13,
+          "name": "sw3",
+          "parent": "root",
+          "index": 3,
+          "text": "Автозапуск",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_account",
+      "category": "settings",
+      "name": "Настройки аккаунта",
+      "description": "Имя + Email + кнопка",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Аккаунт",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_name",
+          "type": 5,
+          "name": "et_name",
+          "parent": "root",
+          "index": 1,
+          "hint": "Имя",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_email",
+          "type": 5,
+          "name": "et_email",
+          "parent": "root",
+          "index": 2,
+          "hint": "Email",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_save",
+          "type": 3,
+          "name": "btn_save",
+          "parent": "root",
+          "index": 3,
+          "text": "Сохранить",
+          "textSize": 14,
+          "textStyle": 1,
           "width": -1,
           "height": -2,
           "marginLeft": 16,
           "marginTop": 24,
           "marginRight": 16,
-          "text": "Уведомления"
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_notif",
+      "category": "settings",
+      "name": "Уведомления",
+      "description": "4 switch",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Уведомления",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
         },
         {
-          "id": "switch2",
-          "type": 9,
-          "name": "switch2",
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Push",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "sw2",
+          "type": 13,
+          "name": "sw2",
           "parent": "root",
           "index": 2,
+          "text": "Email",
+          "textSize": 14,
           "width": -1,
           "height": -2,
           "marginLeft": 16,
-          "marginTop": 16,
-          "marginRight": 16,
-          "text": "Тёмная тема"
+          "marginTop": 12,
+          "marginRight": 16
         },
         {
-          "id": "switch3",
-          "type": 9,
-          "name": "switch3",
+          "id": "sw3",
+          "type": 13,
+          "name": "sw3",
           "parent": "root",
           "index": 3,
+          "text": "SMS",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        },
+        {
+          "id": "sw4",
+          "type": 13,
+          "name": "sw4",
+          "parent": "root",
+          "index": 4,
+          "text": "Вибрация",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_about",
+      "category": "settings",
+      "name": "О приложении",
+      "description": "Лого + текст + кнопка",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 80,
+          "height": 80,
+          "marginLeft": 0,
+          "marginTop": 60,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Моё приложение",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Версия 1.0",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_more",
+          "type": 3,
+          "name": "btn_more",
+          "parent": "root",
+          "index": 3,
+          "text": "Подробнее",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_privacy",
+      "category": "settings",
+      "name": "Приватность",
+      "description": "Список переключателей",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Приватность",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Общий доступ",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "sw2",
+          "type": 13,
+          "name": "sw2",
+          "parent": "root",
+          "index": 2,
+          "text": "Аналитика",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_theme",
+      "category": "settings",
+      "name": "Тема",
+      "description": "3 switch",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Оформление",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Тёмная",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "sw2",
+          "type": 13,
+          "name": "sw2",
+          "parent": "root",
+          "index": 2,
+          "text": "AMOLED",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        },
+        {
+          "id": "sw3",
+          "type": 13,
+          "name": "sw3",
+          "parent": "root",
+          "index": 3,
+          "text": "Авто",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_language",
+      "category": "settings",
+      "name": "Язык",
+      "description": "Switch + кнопка выбора",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Язык",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_lang",
+          "type": 3,
+          "name": "btn_lang",
+          "parent": "root",
+          "index": 1,
+          "text": "Выбрать язык",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_data",
+      "category": "settings",
+      "name": "Данные",
+      "description": "Switch + кнопка очистки",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Данные",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Автосохранение",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "btn_clear",
+          "type": 3,
+          "name": "btn_clear",
+          "parent": "root",
+          "index": 2,
+          "text": "Очистить данные",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_battery",
+      "category": "settings",
+      "name": "Батарея",
+      "description": "Switch + информация",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Батарея",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Экономия",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "Заряд: 100%",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "settings_advanced",
+      "category": "settings",
+      "name": "Дополнительно",
+      "description": "Много switch",
+      "previewIcon": "ic_mtrl_settings",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Дополнительно",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "sw1",
+          "type": 13,
+          "name": "sw1",
+          "parent": "root",
+          "index": 1,
+          "text": "Опция 1",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16
+        },
+        {
+          "id": "sw2",
+          "type": 13,
+          "name": "sw2",
+          "parent": "root",
+          "index": 2,
+          "text": "Опция 2",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        },
+        {
+          "id": "sw3",
+          "type": 13,
+          "name": "sw3",
+          "parent": "root",
+          "index": 3,
+          "text": "Опция 3",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        },
+        {
+          "id": "sw4",
+          "type": 13,
+          "name": "sw4",
+          "parent": "root",
+          "index": 4,
+          "text": "Опция 4",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_simple",
+      "category": "lists",
+      "name": "Простой список",
+      "description": "ListView",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_with_title",
+      "category": "lists",
+      "name": "Список с заголовком",
+      "description": "TextView + ListView",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Список",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_with_fab",
+      "category": "lists",
+      "name": "Список + FAB",
+      "description": "ListView + FAB",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar",
+        "fab"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        },
+        {
+          "id": "fab1",
+          "type": 16,
+          "name": "fab1",
+          "parent": "root",
+          "index": 0,
+          "width": -2,
+          "height": -2
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_with_search",
+      "category": "lists",
+      "name": "Список + поиск",
+      "description": "EditText + ListView",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et_search",
+          "type": 5,
+          "name": "et_search",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск",
+          "textSize": 14,
           "width": -1,
           "height": -2,
           "marginLeft": 16,
           "marginTop": 16,
           "marginRight": 16,
-          "text": "Автозапуск"
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_cards",
+      "category": "lists",
+      "name": "Карточки",
+      "description": "ListView карточек",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_section",
+      "category": "lists",
+      "name": "Разделы",
+      "description": "2 TextView + ListView",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Раздел 1",
+          "textSize": 16,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": 300
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_empty_state",
+      "category": "lists",
+      "name": "Пустой список",
+      "description": "ImageView + TextView",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 80,
+          "height": 80,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Пока ничего нет",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_loading",
+      "category": "lists",
+      "name": "Загрузка списка",
+      "description": "ProgressBar + ListView",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_with_action",
+      "category": "lists",
+      "name": "Список + кнопка",
+      "description": "ListView + Button",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 400
+        },
+        {
+          "id": "btn_add",
+          "type": 3,
+          "name": "btn_add",
+          "parent": "root",
+          "index": 1,
+          "text": "Добавить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "list_tabs",
+      "category": "lists",
+      "name": "Список с табами",
+      "description": "2 TextView + ListView",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вкладка 1  |  Вкладка 2",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_contact",
+      "category": "forms",
+      "name": "Обратная связь",
+      "description": "Имя + Email + Сообщение",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Связаться с нами",
+          "textSize": 22,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "et_name",
+          "type": 5,
+          "name": "et_name",
+          "parent": "root",
+          "index": 1,
+          "hint": "Имя",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_email",
+          "type": 5,
+          "name": "et_email",
+          "parent": "root",
+          "index": 2,
+          "hint": "Email",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_msg",
+          "type": 5,
+          "name": "et_msg",
+          "parent": "root",
+          "index": 3,
+          "hint": "Сообщение",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 4,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_feedback",
+      "category": "forms",
+      "name": "Отзыв",
+      "description": "Текст + рейтинг",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Ваш отзыв",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_feedback",
+          "type": 5,
+          "name": "et_feedback",
+          "parent": "root",
+          "index": 1,
+          "hint": "Отзыв",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 2,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_order",
+      "category": "forms",
+      "name": "Заказ",
+      "description": "Товар + количество + адрес",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Оформление заказа",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_item",
+          "type": 5,
+          "name": "et_item",
+          "parent": "root",
+          "index": 1,
+          "hint": "Товар",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_qty",
+          "type": 5,
+          "name": "et_qty",
+          "parent": "root",
+          "index": 2,
+          "hint": "Количество",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_addr",
+          "type": 5,
+          "name": "et_addr",
+          "parent": "root",
+          "index": 3,
+          "hint": "Адрес",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_order",
+          "type": 3,
+          "name": "btn_order",
+          "parent": "root",
+          "index": 4,
+          "text": "Заказать",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_survey",
+      "category": "forms",
+      "name": "Опрос",
+      "description": "Вопрос + варианты",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вопрос?",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "cb1",
+          "type": 11,
+          "name": "cb1",
+          "parent": "root",
+          "index": 1,
+          "text": "Вариант 1",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16
+        },
+        {
+          "id": "cb2",
+          "type": 11,
+          "name": "cb2",
+          "parent": "root",
+          "index": 2,
+          "text": "Вариант 2",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "cb3",
+          "type": 11,
+          "name": "cb3",
+          "parent": "root",
+          "index": 3,
+          "text": "Вариант 3",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 4,
+          "text": "Ответить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_multistep",
+      "category": "forms",
+      "name": "Многошаговая форма",
+      "description": "Заголовок + поле + кнопка Далее",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Шаг 1 из 3",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Ваше имя",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_name",
+          "type": 5,
+          "name": "et_name",
+          "parent": "root",
+          "index": 2,
+          "hint": "Имя",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_next",
+          "type": 3,
+          "name": "btn_next",
+          "parent": "root",
+          "index": 3,
+          "text": "Далее",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_comment",
+      "category": "forms",
+      "name": "Комментарий",
+      "description": "Поле + кнопка",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et_comment",
+          "type": 5,
+          "name": "et_comment",
+          "parent": "root",
+          "index": 0,
+          "hint": "Оставить комментарий",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 1,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_login_style",
+      "category": "forms",
+      "name": "Форма входа",
+      "description": "2 поля + кнопка",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Логин",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 60,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et2",
+          "type": 5,
+          "name": "et2",
+          "parent": "root",
+          "index": 1,
+          "hint": "Пароль",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_login",
+          "type": 3,
+          "name": "btn_login",
+          "parent": "root",
+          "index": 2,
+          "text": "Войти",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_registration",
+      "category": "forms",
+      "name": "Форма регистрации",
+      "description": "4 поля",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 0,
+          "hint": "Имя",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et2",
+          "type": 5,
+          "name": "et2",
+          "parent": "root",
+          "index": 1,
+          "hint": "Email",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et3",
+          "type": 5,
+          "name": "et3",
+          "parent": "root",
+          "index": 2,
+          "hint": "Пароль",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et4",
+          "type": 5,
+          "name": "et4",
+          "parent": "root",
+          "index": 3,
+          "hint": "Повтор",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_reg",
+          "type": 3,
+          "name": "btn_reg",
+          "parent": "root",
+          "index": 4,
+          "text": "Готово",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_booking",
+      "category": "forms",
+      "name": "Бронирование",
+      "description": "Дата + время + количество",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Бронирование",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_date",
+          "type": 5,
+          "name": "et_date",
+          "parent": "root",
+          "index": 1,
+          "hint": "Дата",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_time",
+          "type": 5,
+          "name": "et_time",
+          "parent": "root",
+          "index": 2,
+          "hint": "Время",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_count",
+          "type": 5,
+          "name": "et_count",
+          "parent": "root",
+          "index": 3,
+          "hint": "Кол-во",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_book",
+          "type": 3,
+          "name": "btn_book",
+          "parent": "root",
+          "index": 4,
+          "text": "Забронировать",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "form_application",
+      "category": "forms",
+      "name": "Заявка",
+      "description": "ФИО + телефон + комментарий",
+      "previewIcon": "ic_mtrl_edit",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et_name",
+          "type": 5,
+          "name": "et_name",
+          "parent": "root",
+          "index": 0,
+          "hint": "ФИО",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_phone",
+          "type": 5,
+          "name": "et_phone",
+          "parent": "root",
+          "index": 1,
+          "hint": "Телефон",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_comment",
+          "type": 5,
+          "name": "et_comment",
+          "parent": "root",
+          "index": 2,
+          "hint": "Комментарий",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 3,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_webview",
+      "category": "media",
+      "name": "WebView",
+      "description": "Полноэкранный WebView",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "wv1",
+          "type": 7,
+          "name": "wv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_webview_toolbar",
+      "category": "media",
+      "name": "WebView с панелью",
+      "description": "Toolbar + WebView",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "wv1",
+          "type": 7,
+          "name": "wv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_video",
+      "category": "media",
+      "name": "Видео",
+      "description": "VideoView",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "wv1",
+          "type": 7,
+          "name": "wv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_image",
+      "category": "media",
+      "name": "Просмотр изображения",
+      "description": "ImageView на весь экран",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 17
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_gallery",
+      "category": "media",
+      "name": "Галерея",
+      "description": "Список изображений",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_image_with_caption",
+      "category": "media",
+      "name": "Картинка + описание",
+      "description": "ImageView + TextView",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 300,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Описание",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_player",
+      "category": "media",
+      "name": "Плеер",
+      "description": "Кнопки + прогресс",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 200,
+          "height": 200,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_play",
+          "type": 3,
+          "name": "btn_play",
+          "parent": "root",
+          "index": 1,
+          "text": "▶ Воспроизвести",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 2,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_image_grid",
+      "category": "media",
+      "name": "Сетка изображений",
+      "description": "Пустой grid (заготовка)",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_audio",
+      "category": "media",
+      "name": "Аудио",
+      "description": "Название + прогресс + кнопки",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Название трека",
+          "textSize": 16,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_pause",
+          "type": 3,
+          "name": "btn_pause",
+          "parent": "root",
+          "index": 2,
+          "text": "Пауза",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "media_photo_view",
+      "category": "media",
+      "name": "Фото-просмотр",
+      "description": "ImageView + кнопки",
+      "previewIcon": "ic_mtrl_play",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 0,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_share",
+          "type": 3,
+          "name": "btn_share",
+          "parent": "root",
+          "index": 1,
+          "text": "Поделиться",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_profile",
+      "category": "social",
+      "name": "Профиль",
+      "description": "Аватар + имя + инфо",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 100,
+          "height": 100,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Имя Фамилия",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "@username",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 4,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_follow",
+          "type": 3,
+          "name": "btn_follow",
+          "parent": "root",
+          "index": 3,
+          "text": "Подписаться",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_feed",
+      "category": "social",
+      "name": "Лента",
+      "description": "Список постов",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_chat",
+      "category": "social",
+      "name": "Чат",
+      "description": "Список сообщений + поле",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 500
+        },
+        {
+          "id": "et_msg",
+          "type": 5,
+          "name": "et_msg",
+          "parent": "root",
+          "index": 1,
+          "hint": "Сообщение",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_send",
+          "type": 3,
+          "name": "btn_send",
+          "parent": "root",
+          "index": 2,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_comments",
+      "category": "social",
+      "name": "Комментарии",
+      "description": "Список комментариев",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_users",
+      "category": "social",
+      "name": "Пользователи",
+      "description": "Список пользователей",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_post_create",
+      "category": "social",
+      "name": "Новый пост",
+      "description": "Текст + кнопка",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et_post",
+          "type": 5,
+          "name": "et_post",
+          "parent": "root",
+          "index": 0,
+          "hint": "Что нового?",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_publish",
+          "type": 3,
+          "name": "btn_publish",
+          "parent": "root",
+          "index": 1,
+          "text": "Опубликовать",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_post_detail",
+      "category": "social",
+      "name": "Пост",
+      "description": "Автор + текст + лайк",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Автор",
+          "textSize": 16,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Текст поста...",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_like",
+          "type": 3,
+          "name": "btn_like",
+          "parent": "root",
+          "index": 2,
+          "text": "❤ Лайк",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_story",
+      "category": "social",
+      "name": "Сторис",
+      "description": "ImageView на весь экран",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 17
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_notifications",
+      "category": "social",
+      "name": "Уведомления",
+      "description": "Список",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "social_followers",
+      "category": "social",
+      "name": "Подписчики",
+      "description": "Список",
+      "previewIcon": "ic_mtrl_people",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_product_list",
+      "category": "ecommerce",
+      "name": "Список товаров",
+      "description": "GridView/ListView",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_product_detail",
+      "category": "ecommerce",
+      "name": "Товар",
+      "description": "Картинка + название + цена + кнопка",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 300,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Название товара",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 2,
+          "text": "1000 ₽",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_buy",
+          "type": 3,
+          "name": "btn_buy",
+          "parent": "root",
+          "index": 3,
+          "text": "Купить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_cart",
+      "category": "ecommerce",
+      "name": "Корзина",
+      "description": "Список + сумма + кнопка",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 400
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Итого: 0 ₽",
+          "textSize": 16,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_checkout",
+          "type": 3,
+          "name": "btn_checkout",
+          "parent": "root",
+          "index": 2,
+          "text": "Оформить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_checkout",
+      "category": "ecommerce",
+      "name": "Оформление",
+      "description": "Адрес + оплата + кнопка",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Оформление",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_addr",
+          "type": 5,
+          "name": "et_addr",
+          "parent": "root",
+          "index": 1,
+          "hint": "Адрес",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et_phone",
+          "type": 5,
+          "name": "et_phone",
+          "parent": "root",
+          "index": 2,
+          "hint": "Телефон",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 12,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_pay",
+          "type": 3,
+          "name": "btn_pay",
+          "parent": "root",
+          "index": 3,
+          "text": "Оплатить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_success",
+      "category": "ecommerce",
+      "name": "Заказ оформлен",
+      "description": "Галочка + текст + кнопка",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 100,
+          "height": 100,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Заказ оформлен!",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_home",
+          "type": 3,
+          "name": "btn_home",
+          "parent": "root",
+          "index": 2,
+          "text": "На главную",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_categories",
+      "category": "ecommerce",
+      "name": "Категории",
+      "description": "Список категорий",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_search",
+      "category": "ecommerce",
+      "name": "Поиск товаров",
+      "description": "Поиск + список",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et_search",
+          "type": 5,
+          "name": "et_search",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_favorites",
+      "category": "ecommerce",
+      "name": "Избранное",
+      "description": "Список избранных",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_payment",
+      "category": "ecommerce",
+      "name": "Оплата",
+      "description": "Методы оплаты",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Способ оплаты",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "cb1",
+          "type": 11,
+          "name": "cb1",
+          "parent": "root",
+          "index": 1,
+          "text": "Карта",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16
+        },
+        {
+          "id": "cb2",
+          "type": 11,
+          "name": "cb2",
+          "parent": "root",
+          "index": 2,
+          "text": "Наличные",
+          "textSize": 14,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8
+        },
+        {
+          "id": "btn_pay",
+          "type": 3,
+          "name": "btn_pay",
+          "parent": "root",
+          "index": 3,
+          "text": "Оплатить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "ecom_reviews",
+      "category": "ecommerce",
+      "name": "Отзывы",
+      "description": "Список отзывов",
+      "previewIcon": "ic_mtrl_list",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_splash",
+      "category": "utility",
+      "name": "Splash",
+      "description": "Лого + прогресс",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 120,
+          "height": 120,
+          "marginLeft": 0,
+          "marginTop": 120,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 2,
+          "text": "Загрузка...",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_splash_full",
+      "category": "utility",
+      "name": "Splash fullscreen",
+      "description": "Fullscreen splash",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1,
+          "marginLeft": 0,
+          "marginTop": 0,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 17
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_onboarding",
+      "category": "utility",
+      "name": "Onboarding",
+      "description": "Слайды",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 200,
+          "height": 200,
+          "marginLeft": 0,
+          "marginTop": 100,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Заголовок",
+          "textSize": 20,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 40,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_next",
+          "type": 3,
+          "name": "btn_next",
+          "parent": "root",
+          "index": 2,
+          "text": "Далее",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 40,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_permission",
+      "category": "utility",
+      "name": "Разрешение",
+      "description": "Картинка + текст + 2 кнопки",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 80,
+          "height": 80,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Разрешить доступ?",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_yes",
+          "type": 3,
+          "name": "btn_yes",
+          "parent": "root",
+          "index": 2,
+          "text": "Разрешить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_no",
+          "type": 3,
+          "name": "btn_no",
+          "parent": "root",
+          "index": 3,
+          "text": "Отказать",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_error",
+      "category": "utility",
+      "name": "Ошибка",
+      "description": "Иконка + текст",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 80,
+          "height": 80,
+          "marginLeft": 0,
+          "marginTop": 120,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Что-то пошло не так",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_retry",
+          "type": 3,
+          "name": "btn_retry",
+          "parent": "root",
+          "index": 2,
+          "text": "Повторить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_loading",
+      "category": "utility",
+      "name": "Загрузка",
+      "description": "Progress + текст",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "pb1",
+          "type": 8,
+          "name": "pb1",
+          "parent": "root",
+          "index": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Загрузка данных...",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_no_internet",
+      "category": "utility",
+      "name": "Нет интернета",
+      "description": "Иконка + текст + кнопка",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 80,
+          "height": 80,
+          "marginLeft": 0,
+          "marginTop": 100,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Нет подключения",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_retry",
+          "type": 3,
+          "name": "btn_retry",
+          "parent": "root",
+          "index": 2,
+          "text": "Повторить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_update",
+      "category": "utility",
+      "name": "Обновление",
+      "description": "Иконка + текст + кнопка",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 80,
+          "height": 80,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Доступно обновление",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_update",
+          "type": 3,
+          "name": "btn_update",
+          "parent": "root",
+          "index": 2,
+          "text": "Обновить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_maintenance",
+      "category": "utility",
+      "name": "Техработы",
+      "description": "Иконка + текст",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 100,
+          "height": 100,
+          "marginLeft": 0,
+          "marginTop": 100,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Технические работы",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "util_empty_state",
+      "category": "utility",
+      "name": "Пустое состояние",
+      "description": "Иконка + текст + кнопка",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "iv1",
+          "type": 6,
+          "name": "iv1",
+          "parent": "root",
+          "index": 0,
+          "width": 100,
+          "height": 100,
+          "marginLeft": 0,
+          "marginTop": 100,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "Ничего нет",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_add",
+          "type": 3,
+          "name": "btn_add",
+          "parent": "root",
+          "index": 2,
+          "text": "Добавить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_tabs",
+      "category": "special",
+      "name": "Tabs",
+      "description": "2 вкладки",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Вкладка 1   |   Вкладка 2",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_bottom_nav",
+      "category": "special",
+      "name": "Bottom Nav",
+      "description": "Нижняя навигация",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 500
+        },
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 1,
+          "text": "🏠   ❤   👤",
+          "textSize": 20,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_nav_drawer",
+      "category": "special",
+      "name": "Navigation Drawer",
+      "description": "Боковое меню",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar",
+        "drawer"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Контент с drawer",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_search",
+      "category": "special",
+      "name": "Поиск",
+      "description": "Поиск + результат",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "et_search",
+          "type": 5,
+          "name": "et_search",
+          "parent": "root",
+          "index": 0,
+          "hint": "Поиск",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 1,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_map",
+      "category": "special",
+      "name": "Карта",
+      "description": "Заглушка под карту",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "🗺 Карта",
+          "textSize": 20,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 120,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_calendar",
+      "category": "special",
+      "name": "Календарь",
+      "description": "Список дат",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": -1
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_chat_bubble",
+      "category": "special",
+      "name": "Чат-пузыри",
+      "description": "RecyclerView + edit",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "lv1",
+          "type": 9,
+          "name": "lv1",
+          "parent": "root",
+          "index": 0,
+          "width": -1,
+          "height": 450
+        },
+        {
+          "id": "et_msg",
+          "type": 5,
+          "name": "et_msg",
+          "parent": "root",
+          "index": 1,
+          "hint": "Сообщение",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 8,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_wizard",
+      "category": "special",
+      "name": "Мастер",
+      "description": "Шаги 1-2-3",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Шаг 1",
+          "textSize": 14,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Введите данные",
+          "textSize": 18,
+          "textStyle": 1,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "et1",
+          "type": 5,
+          "name": "et1",
+          "parent": "root",
+          "index": 2,
+          "hint": "Поле",
+          "textSize": 14,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 16,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        },
+        {
+          "id": "btn_next",
+          "type": 3,
+          "name": "btn_next",
+          "parent": "root",
+          "index": 3,
+          "text": "Далее",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_rating",
+      "category": "special",
+      "name": "Оценка",
+      "description": "Звёзды + кнопка",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "⭐⭐⭐⭐⭐",
+          "textSize": 32,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 100,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "tv2",
+          "type": 4,
+          "name": "tv2",
+          "parent": "root",
+          "index": 1,
+          "text": "Оцените приложение",
+          "textSize": 16,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 16,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_rate",
+          "type": 3,
+          "name": "btn_rate",
+          "parent": "root",
+          "index": 2,
+          "text": "Отправить",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
+        }
+      ],
+      "blocks": []
+    },
+    {
+      "id": "special_share",
+      "category": "special",
+      "name": "Поделиться",
+      "description": "Текст + кнопка",
+      "previewIcon": "ic_mtrl_star",
+      "defaultAppIcon": "",
+      "featureOptions": [
+        "toolbar",
+        "statusbar"
+      ],
+      "views": [
+        {
+          "id": "tv1",
+          "type": 4,
+          "name": "tv1",
+          "parent": "root",
+          "index": 0,
+          "text": "Поделитесь с друзьями",
+          "textSize": 18,
+          "textStyle": 0,
+          "width": -2,
+          "height": -2,
+          "marginLeft": 0,
+          "marginTop": 80,
+          "marginRight": 0,
+          "marginBottom": 0,
+          "layoutGravity": 1
+        },
+        {
+          "id": "btn_share",
+          "type": 3,
+          "name": "btn_share",
+          "parent": "root",
+          "index": 1,
+          "text": "Поделиться",
+          "textSize": 14,
+          "textStyle": 1,
+          "width": -1,
+          "height": -2,
+          "marginLeft": 16,
+          "marginTop": 24,
+          "marginRight": 16,
+          "marginBottom": 0,
+          "layoutGravity": 0
         }
       ],
       "blocks": []
