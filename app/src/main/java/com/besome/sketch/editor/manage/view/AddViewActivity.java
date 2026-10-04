@@ -197,6 +197,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        android.util.Log.i("AddViewActivity", "onActivityResult: req=" + requestCode + ", res=" + resultCode);
         if (requestCode == 276 && resultCode == RESULT_OK) {
             ProjectFileBean presetData = data.getParcelableExtra("preset_data");
             presetName = presetData.presetName;
@@ -210,6 +211,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
                         .extractTemplateId(presetName);
 
                 // Добавляем в историю шаблонов
+                android.util.Log.i("AddViewActivity", "Добавляем в историю: " + selectedTemplateId);
                 pro.sketchware.templates.TemplateHistoryHelper.addToHistory(this, selectedTemplateId);
                 historyTemplates = pro.sketchware.templates.TemplateHistoryHelper.getHistory(this);
                 historyIndex = Math.max(0, historyTemplates.indexOf(selectedTemplateId));
@@ -254,6 +256,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
         });
         // Загружаем историю шаблонов
         historyTemplates = pro.sketchware.templates.TemplateHistoryHelper.getHistory(this);
+        android.util.Log.i("AddViewActivity", "onCreate: history=" + historyTemplates.size());
         if (!historyTemplates.isEmpty()) {
             historyIndex = 0;
             showTemplatePreview();
