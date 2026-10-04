@@ -22,6 +22,7 @@ public class TemplateParser {
         v.name = raw.name != null ? raw.name : raw.id;
         v.type = raw.type;
         v.parent = raw.parent != null ? raw.parent : "root";
+        v.parentType = ViewBean.VIEW_TYPE_LAYOUT_LINEAR;  // ← ВАЖНО для updateLayout
         v.index = raw.index;
         // Не устанавливаем preParent/preId — оставляем дефолты ViewBean
         // чтобы избежать NPE в ViewPane.updateItemView
@@ -34,9 +35,8 @@ public class TemplateParser {
         layout.marginTop = raw.marginTop;
         layout.marginRight = raw.marginRight;
         layout.marginBottom = raw.marginBottom;
-        // ВАЖНО: для View внутри LinearLayout нужно layout.gravity, а не layoutGravity
-        // layout.layoutGravity применяется только в RelativeLayout → вызывает ClassCastException
-        layout.gravity = raw.layoutGravity;
+        layout.layoutGravity = raw.layoutGravity;
+        layout.gravity = raw.layoutGravity;  // + для TextView.setGravity
 
         // Text — присваиваем из raw, если есть
         TextBean text = v.text;
