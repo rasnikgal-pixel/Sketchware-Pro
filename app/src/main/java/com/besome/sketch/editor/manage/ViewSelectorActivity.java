@@ -272,6 +272,16 @@ public class ViewSelectorActivity extends BaseAppCompatActivity {
     }
 
     private ArrayList<ViewBean> a(String presetName, int requestCode) {
+        // Наш шаблон из ScreenTemplates?
+        if (pro.sketchware.templates.TemplateParser.isOurTemplate(presetName)) {
+            String templateId = pro.sketchware.templates.TemplateParser.extractTemplateId(presetName);
+            ArrayList<ViewBean> result = pro.sketchware.templates.TemplateParser
+                    .getViewsForTemplate(getApplicationContext(), templateId);
+            if (result != null) {
+                return result;
+            }
+        }
+        // Иначе — стандартная логика
         ArrayList<ViewBean> views = new ArrayList<>();
         return switch (requestCode) {
             case 276 -> rq.f(presetName);
@@ -422,9 +432,9 @@ public class ViewSelectorActivity extends BaseAppCompatActivity {
                     if (!mB.a()) {
                         selectedItem = getLayoutPosition();
                         int requestCode = a(jC.b(sc_id).b().get(getLayoutPosition()));
-                        Intent intent = new Intent(getApplicationContext(), PresetSettingActivity.class);
-                        intent.putExtra("request_code", requestCode);
-                        intent.putExtra("edit_mode", true);
+                        // Открываем нашу галерею шаблонов
+                        Intent intent = new Intent(getApplicationContext(),
+                                pro.sketchware.templates.TemplateGalleryActivity.class);
                         startActivityForResult(intent, requestCode);
                     }
                 });

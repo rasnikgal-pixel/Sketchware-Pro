@@ -158,6 +158,15 @@ public class AddViewActivity extends BaseAppCompatActivity {
     }
 
     private ArrayList<ViewBean> getPresetData(String presetName) {
+        // Наш шаблон?
+        if (pro.sketchware.templates.TemplateParser.isOurTemplate(presetName)) {
+            String templateId = pro.sketchware.templates.TemplateParser.extractTemplateId(presetName);
+            ArrayList<ViewBean> result = pro.sketchware.templates.TemplateParser
+                    .getViewsForTemplate(getApplicationContext(), templateId);
+            if (result != null) {
+                return result;
+            }
+        }
         return rq.f(presetName);
     }
 

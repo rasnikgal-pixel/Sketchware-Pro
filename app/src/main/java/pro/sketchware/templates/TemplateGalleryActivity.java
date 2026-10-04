@@ -85,7 +85,12 @@ public class TemplateGalleryActivity extends AppCompatActivity {
     }
 
     private void onTemplateSelected(ScreenTemplate t) {
-        setResult(RESULT_OK, new android.content.Intent().putExtra(EXTRA_TEMPLATE_ID, t.id));
+        // Формируем ProjectFileBean с префиксом "template:"
+        com.besome.sketch.beans.ProjectFileBean pfb = new com.besome.sketch.beans.ProjectFileBean(
+                com.besome.sketch.beans.ProjectFileBean.PROJECT_FILE_TYPE_ACTIVITY,
+                null,
+                "template:" + t.id);
+        setResult(RESULT_OK, new android.content.Intent().putExtra("preset_data", pfb));
         finish();
     }
 
