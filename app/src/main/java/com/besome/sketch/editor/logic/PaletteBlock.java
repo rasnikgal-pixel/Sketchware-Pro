@@ -281,6 +281,11 @@ public class PaletteBlock extends LinearLayout {
         addHeaderToUi(title, color);
     }
 
+    /** Adds a template (Us) view directly to the palette. */
+    public void addTemplateView(android.view.View templateView) {
+        binding.blockBuilder.addView(templateView);
+    }
+
     public void addDeprecatedBlock(String message, String type, String opCode) {
         if (message != null && !message.isEmpty()) {
             a(message, getColor(context, isDarkThemeEnabled(context) ? R.attr.colorSurfaceContainerHigh : R.attr.colorSurfaceInverse));

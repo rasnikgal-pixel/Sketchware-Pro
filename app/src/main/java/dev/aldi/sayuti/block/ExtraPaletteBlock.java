@@ -1241,6 +1241,58 @@ public class ExtraPaletteBlock {
                 }
                 return;
 
+            case 200:
+                // Block templates (ready-made chains)
+                java.util.List<java.util.Map<String, Object>> templates =
+                        mod.jbk.util.BlockTemplatesManager.getAll();
+                if (templates.isEmpty()) {
+                    logicEditor.a("Сборки пусты.\n\nДобавьте шаблоны в файл:\n/sdcard/.sketchware/block_templates.json", getTitleBgColor());
+                    return;
+                }
+                logicEditor.a("Сборки", getTitleBgColor());
+                for (java.util.Map<String, Object> tpl : templates) {
+                    Object tid = tpl.get("id");
+                    Object tname = tpl.get("name");
+                    Object tdesc = tpl.get("description");
+                    if (!(tid instanceof String) || !(tname instanceof String)) continue;
+
+                    try {
+                        java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks =
+                                mod.jbk.util.BlockTemplatesManager.toBlockBeans(tpl);
+                        if (blocks.isEmpty()) continue;
+
+                        com.besome.sketch.beans.BlockBean first = blocks.get(0);
+                        String title = tname.toString();
+
+                        // Build a Us (collection view) from the first block's meta.
+                        a.a.a.Us us = new a.a.a.Us(logicEditor,
+                                first.type == null ? " " : first.type,
+                                first.typeName == null ? "" : first.typeName,
+                                first.opCode == null ? "" : first.opCode,
+                                title, blocks);
+                        us.setTag(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid);
+
+                        // Make text visible on the light background of the template card
+                        try {
+                            us.tvSpec.setTextColor(0xff000000);
+                        } catch (Throwable ignored) {}
+
+                        // Make it draggable: attach the same touch listener used for Rs blocks
+                        us.setClickable(true);
+                        us.setFocusable(true);
+                        try { us.setBlockType(2); } catch (Throwable ignored) {}
+                        us.setOnTouchListener(logicEditor);
+
+                        // Add via PaletteBlock's helper.
+                        if (logicEditor.m != null) {
+                            logicEditor.m.addTemplateView(us);
+                        }
+                    } catch (Throwable t) {
+                        SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
+                    }
+                }
+                return;
+
             default:
                 int paletteIndex = -1, paletteBlocks = 0;
                 ArrayList<HashMap<String, Object>> extraBlockData = ExtraBlockFile.getExtraBlockData();

@@ -1973,6 +1973,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         logicTopMenu = findViewById(R.id.top_menu);
         O = findViewById(R.id.right_drawer);
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
+        mod.jbk.util.BlockTemplatesManager.setContext(getApplicationContext());
         extraPaletteBlock = new ExtraPaletteBlock(this, isViewBindingEnabled);
         // Pass project id to PaletteBlock so it can store per-project scroll positions
         if (m != null) {
@@ -2287,6 +2288,179 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         } catch (Throwable t) {
             android.widget.Toast.makeText(this, "Ошибка удаления: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
         }
+    }
+
+    private long lastTemplateCheckTime = 0;
+
+    /**
+     * After every drop, checks if a template block was added and offers to expand it.
+     * (Proto: currently only shows the dialog.)
+     */
+    private void checkTemplateOnDrop() {
+        try {
+            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_TEMPLATES)) {
+                return;
+            }
+            long now = System.currentTimeMillis();
+            if (now - lastTemplateCheckTime < 500) return;
+            lastTemplateCheckTime = now;
+
+            if (o == null) return;
+            java.util.List<com.besome.sketch.beans.BlockBean> blocks;
+            try {
+                blocks = o.getBlocks();
+            } catch (Throwable t) {
+                return;
+            }
+            if (blocks == null || blocks.isEmpty()) return;
+
+            final com.besome.sketch.beans.BlockBean templateBlock = findTemplateBlock(blocks);
+            if (templateBlock == null) return;
+
+            final String templateId = mod.jbk.util.BlockTemplatesManager
+                    .extractIdFromOpCode(templateBlock.opCode);
+            final java.util.Map<String, Object> tpl =
+                    mod.jbk.util.BlockTemplatesManager.getById(templateId);
+            if (tpl == null) return;
+
+            Object tname = tpl.get("name");
+            String displayName = (tname instanceof String) ? (String) tname : templateId;
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Развернуть шаблон?")
+                    .setMessage(displayName)
+                    .setPositiveButton("Развернуть", (d, w) -> {
+                        expandTemplate(templateBlock, tpl);
+                    })
+                    .setNegativeButton("Оставить как есть", (d, w) -> {
+                        deleteTemplateBlock(templateBlock);
+                    })
+                    .show();
+        } catch (Throwable ignored) {}
+    }
+
+    private void expandTemplate(com.besome.sketch.beans.BlockBean templateBlock,
+                                java.util.Map<String, Object> tpl) {
+        try {
+            int[] oLoc = new int[2];
+            try { o.getLocationOnScreen(oLoc); } catch (Throwable ignored) {}
+            int baseX = oLoc[0] + 60;
+            int baseY = oLoc[1] + 140;
+            int y = baseY;
+
+            try { o.a(templateBlock, false); } catch (Throwable ignored) {}
+
+            Object blocksObj = tpl.get("blocks");
+            if (!(blocksObj instanceof java.util.List)) {
+                android.widget.Toast.makeText(this, "Ошибка: нет списка блоков",
+                        android.widget.Toast.LENGTH_SHORT).show();
+                try { o.b(); C(); } catch (Throwable ignored) {}
+                return;
+            }
+            java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
+
+            java.util.List<a.a.a.Rs> addedRs = new java.util.ArrayList<>();
+            int created = 0;
+
+            for (Object obj : blockDefs) {
+                if (!(obj instanceof java.util.Map)) continue;
+                java.util.Map<?, ?> bdef = (java.util.Map<?, ?>) obj;
+                Object typeObj = bdef.get("type");
+                Object opCodeObj = bdef.get("opCode");
+                if (!(typeObj instanceof String) || !(opCodeObj instanceof String)) continue;
+                String type = (String) typeObj;
+                String opCode = (String) opCodeObj;
+
+                try {
+                    a.a.a.Rs rs = new a.a.a.Rs(this, -1, "", type, opCode);
+                    com.besome.sketch.beans.BlockBean bean = rs.getBean();
+                    if (bean != null) {
+                        bean.opCode = opCode;
+                        bean.type = type;
+                        bean.parameters.clear();
+                        Object paramsObj = bdef.get("parameters");
+                        if (paramsObj instanceof java.util.List) {
+                            for (Object p : (java.util.List<?>) paramsObj) {
+                                bean.parameters.add(String.valueOf(p));
+                            }
+                        }
+                    }
+
+                    a.a.a.Rs added = a(rs, baseX, y, false);
+                    if (added != null) {
+                        addedRs.add(added);
+                        try {
+                            android.util.Log.d("BlockTemplates",
+                                    "added id=" + added.getBean().id
+                                            + " opCode=" + added.getBean().opCode
+                                            + " nextBlock=" + added.getBean().nextBlock);
+                        } catch (Throwable ignored) {}
+                    }
+                    y += 60;
+                    created++;
+                } catch (Throwable inner) {
+                    android.util.Log.e("BlockTemplates", "Failed to create block " + opCode, inner);
+                }
+            }
+
+            // Chain blocks via nextBlock
+            for (int i = 0; i < addedRs.size() - 1; i++) {
+                try {
+                    com.besome.sketch.beans.BlockBean curr = addedRs.get(i).getBean();
+                    com.besome.sketch.beans.BlockBean next = addedRs.get(i + 1).getBean();
+                    if (curr.id != null && next.id != null) {
+                        curr.nextBlock = Integer.parseInt(next.id);
+                    }
+                } catch (Throwable ignored) {}
+            }
+
+            // Attach first block to root (onBackPressed)
+            try {
+                java.util.List<com.besome.sketch.beans.BlockBean> allBlocks = o.getBlocks();
+                com.besome.sketch.beans.BlockBean root = null;
+                for (com.besome.sketch.beans.BlockBean b : allBlocks) {
+                    if ("onBackPressed".equals(b.opCode)) { root = b; break; }
+                }
+                if (root == null && !allBlocks.isEmpty()) root = allBlocks.get(0);
+                if (root != null && !addedRs.isEmpty()) {
+                    String firstId = addedRs.get(0).getBean().id;
+                    if (firstId != null) {
+                        root.nextBlock = Integer.parseInt(firstId);
+                    }
+                }
+            } catch (Throwable ignored) {}
+
+            try { o.b(); } catch (Throwable ignored) {}
+            try { C(); } catch (Throwable ignored) {}
+            android.widget.Toast.makeText(this, "Развёрнуто блоков: " + created,
+                    android.widget.Toast.LENGTH_SHORT).show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Ошибка разворота: " + t.getMessage(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void deleteTemplateBlock(com.besome.sketch.beans.BlockBean templateBlock) {
+        try {
+            o.a(templateBlock, false);
+            try { o.b(); } catch (Throwable ignored) {}
+            try { C(); } catch (Throwable ignored) {}
+            android.widget.Toast.makeText(this, "Шаблон отменён", android.widget.Toast.LENGTH_SHORT).show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private com.besome.sketch.beans.BlockBean findTemplateBlock(
+            java.util.List<com.besome.sketch.beans.BlockBean> blocks) {
+        for (com.besome.sketch.beans.BlockBean b : blocks) {
+            if (b != null && b.opCode != null
+                    && b.opCode.startsWith(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX)) {
+                return b;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -2639,6 +2813,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             h(false);
             isDragged = false;
             checkBlocksAfterChange();
+            checkTemplateOnDrop();
             return true;
         } else if (actionMasked == MotionEvent.ACTION_CANCEL) {
             handler.removeCallbacks(longPressed);
@@ -2682,7 +2857,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 o.a((Rs) currentTouchedView, 8);
                 o.c((Rs) currentTouchedView);
                 o.a((Rs) currentTouchedView);
-            } else if (((Rs) currentTouchedView).getBlockType() == 2) {
+            } else if (currentTouchedView instanceof a.a.a.Us) {
                 f(false);
                 h(true);
                 dummy.a((Rs) currentTouchedView);

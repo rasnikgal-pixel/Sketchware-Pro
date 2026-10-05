@@ -29,6 +29,7 @@ public class PaletteSelector extends RecyclerView {
     private final Context context;
 
     private final String[] MainCategoriesNames = {
+            "Сборки",
             "Избранное",
             Helper.getResString(R.string.block_category_var),
             Helper.getResString(R.string.block_category_list),
@@ -43,6 +44,7 @@ public class PaletteSelector extends RecyclerView {
     };
 
     private final int[] MainCategoriesColors = {
+            mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_COLOR,
             0xffd4af37,
             0xffee7d16, 0xffcc5b22, 0xffe1a92a,
             0xff5cb722, 0xff23b9a9, 0xffa1887f,
@@ -51,6 +53,7 @@ public class PaletteSelector extends RecyclerView {
     };
 
     private final int[] MainCategoriesIds = {
+            mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID,
             mod.jbk.util.FavoriteBlocksManager.FAVORITE_PALETTE_ID,
             0, 1, 2, 3, 4, 5, 6, 7, -1, 8
     };
@@ -76,7 +79,14 @@ public class PaletteSelector extends RecyclerView {
     private void initializePalettes() {
         allPalettes = new ArrayList<>();
 
+        boolean hideTemplates = !mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_TEMPLATES);
+
         for (int i = 0; i < MainCategoriesNames.length; i++) {
+            if (hideTemplates
+                    && MainCategoriesIds[i] == mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID) {
+                continue;
+            }
             allPalettes.add(new paletteSelectorRecord(MainCategoriesIds[i], MainCategoriesNames[i], MainCategoriesColors[i]));
         }
 
