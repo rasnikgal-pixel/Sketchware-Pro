@@ -176,7 +176,17 @@ public final class BlockTemplatesManager {
 
         // Automatic chaining: link top-level sibling blocks via nextBlock
         // (do not touch subStack1/subStack2 — they were set above).
-        {
+        boolean hasExplicitNext = false;
+        for (Object item : blockDefs) {
+            if (item instanceof java.util.Map) {
+                Object nb = ((java.util.Map<?, ?>) item).get("nextBlock");
+                if (nb instanceof java.util.Map) {
+                    hasExplicitNext = true;
+                    break;
+                }
+            }
+        }
+        if (!hasExplicitNext) {
             Integer prevId = null;
             for (Object item : blockDefs) {
                 if (!(item instanceof java.util.Map)) continue;
@@ -245,6 +255,10 @@ public final class BlockTemplatesManager {
         Object sub2 = bdef.get("subStack2");
         if (sub2 instanceof java.util.Map) {
             collectBlocksRecursive(sub2, idMap, out, nextId, pendingLinks);
+        }
+        Object nextB = bdef.get("nextBlock");
+        if (nextB instanceof java.util.Map) {
+            collectBlocksRecursive(nextB, idMap, out, nextId, pendingLinks);
         }
         // nextBlock в JSON-описании обычно не используется: связи "по цепочке" 
         // задаются автоматически через subStack-структуру, но можно указать явно.
