@@ -73,7 +73,7 @@ public class MainDrawer extends NavigationView {
                 url = R.string.link_russian_4pda;
             } else if (id == R.id.social_russian_help) {
                 url = R.string.link_russian_help;
-
+            }
 
             if (url != -1) {
                 openUrl(getContext().getString(url));
