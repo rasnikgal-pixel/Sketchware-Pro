@@ -118,7 +118,7 @@
             app:title="@string/updates_check_enabled" />
         <ListPreference
             app:iconSpaceReserved="false"
-            app:defaultValue="daily"
+            app:defaultValue="always"
             app:entries="@array/updates_period_entries"
             app:entryValues="@array/updates_period_values"
             app:key="updates-check-period"

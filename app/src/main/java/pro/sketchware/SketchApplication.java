@@ -39,6 +39,9 @@ public class SketchApplication extends Application {
         pro.sketchware.smartdrop.DebugLogger.get(this)
                 .i("App", "log_app_started", "");
 
+        // Одноразовая миграция дефолтов UpdateChecker (period -> always)
+        pro.sketchware.updater.UpdateChecker.migrateDefaultsIfNeeded(this);
+
         // Загрузка Screen Templates (для проверки)
         try {
             android.util.Log.i("Templates", "before load");

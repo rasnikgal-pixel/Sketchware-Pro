@@ -66,4 +66,5 @@
     <string name="log_updater_check_failed">Проверка обновлений не удалась: %s</string>
     <string name="log_updater_fallback_used">Использован fallback-источник: %s</string>
     <string name="log_updater_source_failed">Источник обновлений недоступен: %s</string>
+    <string name="log_updater_migrated">Настройки обновлений мигрированы: период = %s</string>
 </resources>

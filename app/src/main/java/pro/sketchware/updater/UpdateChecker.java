@@ -33,6 +33,7 @@ public class UpdateChecker {
     private static final String KEY_SKIPPED_VERSION = "skipped_version";
     private static final String KEY_ENABLED = "check_enabled";
     private static final String KEY_PERIOD = "check_period";
+    private static final String KEY_MIGRATED = "migrated_period_v2";
 
     /** Периоды проверки. */
     public static final String PERIOD_ALWAYS = "always";
@@ -80,6 +81,23 @@ public class UpdateChecker {
 
     private static SharedPreferences prefs(Context ctx) {
         return ctx.getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+    }
+
+    /**
+     * Одноразовая миграция дефолтов.
+     * Раньше XML default был "daily", из-за чего PreferenceManager записывал
+     * daily в prefs при первом заходе в настройки. Теперь мы форсируем
+     * PERIOD_ALWAYS однократно при первом запуске новой версии.
+     */
+    public static void migrateDefaultsIfNeeded(Context ctx) {
+        SharedPreferences p = prefs(ctx);
+        if (!p.getBoolean(KEY_MIGRATED, false)) {
+            p.edit()
+                    .putString(KEY_PERIOD, PERIOD_ALWAYS)
+                    .putBoolean(KEY_MIGRATED, true)
+                    .apply();
+            DebugLogger.get(ctx).i("Updater", "log_updater_migrated", PERIOD_ALWAYS);
+        }
     }
 
     /** Проверить, надо ли запускать проверку сейчас (учитывая период). */

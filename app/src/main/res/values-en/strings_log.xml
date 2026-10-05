@@ -66,4 +66,5 @@
     <string name="log_updater_check_failed">Update check failed: %s</string>
     <string name="log_updater_fallback_used">Fallback source used: %s</string>
     <string name="log_updater_source_failed">Update source unreachable: %s</string>
+    <string name="log_updater_migrated">Update settings migrated: period = %s</string>
 </resources>
