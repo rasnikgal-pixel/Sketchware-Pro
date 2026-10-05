@@ -35,6 +35,13 @@ public final class BlockTemplatesManager {
     private static final String FILE_PATH = FileUtil.getExternalStorageDir()
             + "/.sketchware/block_templates.json";
 
+    /** Отдельный файл для пользовательских сборок. */
+    private static final String CUSTOM_FILE_PATH = FileUtil.getExternalStorageDir()
+            + "/.sketchware/custom_block_templates.json";
+
+    /** Префикс id для пользовательских сборок. */
+    public static final String CUSTOM_ID_PREFIX = "custom_";
+
     private BlockTemplatesManager() {}
 
     /** Returns all templates (seeds defaults on first run). */
@@ -68,10 +75,14 @@ public final class BlockTemplatesManager {
         }
     }
 
-    /** Finds a template by id. Returns null if not found. */
+    /** Finds a template by id (ищет и в builtin, и в custom). Returns null if not found. */
     public static Map<String, Object> getById(String id) {
         if (id == null) return null;
         for (Map<String, Object> t : getAll()) {
+            Object tid = t.get("id");
+            if (id.equals(tid)) return t;
+        }
+        for (Map<String, Object> t : getCustom()) {
             Object tid = t.get("id");
             if (id.equals(tid)) return t;
         }
@@ -238,4 +249,170 @@ public final class BlockTemplatesManager {
         // nextBlock в JSON-описании обычно не используется: связи "по цепочке" 
         // задаются автоматически через subStack-структуру, но можно указать явно.
     }
+
+
+    /** Возвращает только встроенные сборки. */
+    public static List<Map<String, Object>> getBuiltin() {
+        return getAll();
+    }
+
+    /** Возвращает только пользовательские сборки. */
+    public static List<Map<String, Object>> getCustom() {
+        try {
+            if (!FileUtil.isExistFile(CUSTOM_FILE_PATH)) {
+                return new ArrayList<>();
+            }
+            String json = FileUtil.readFile(CUSTOM_FILE_PATH);
+            if (json == null || json.trim().isEmpty()) return new ArrayList<>();
+            Map<String, Object> root = new Gson().fromJson(json,
+                    new TypeToken<Map<String, Object>>() {}.getType());
+            if (root == null) return new ArrayList<>();
+            Object templatesObj = root.get("templates");
+            if (!(templatesObj instanceof List)) return new ArrayList<>();
+            List<Map<String, Object>> result = new ArrayList<>();
+            for (Object item : (List<?>) templatesObj) {
+                if (item instanceof Map) {
+                    @SuppressWarnings("unchecked")
+                    Map<String, Object> m = (Map<String, Object>) item;
+                    result.add(m);
+                }
+            }
+            return result;
+        } catch (Throwable t) {
+            return new ArrayList<>();
+        }
+    }
+
+    /** Объединённый список: встроенные + пользовательские. */
+    public static List<Map<String, Object>> getAllCombined() {
+        List<Map<String, Object>> result = new ArrayList<>();
+        result.addAll(getBuiltin());
+        result.addAll(getCustom());
+        return result;
+    }
+
+    /** Проверяет, что id принадлежит пользовательской сборке. */
+    public static boolean isCustom(String id) {
+        if (id == null) return false;
+        if (!id.startsWith(CUSTOM_ID_PREFIX)) return false;
+        for (Map<String, Object> t : getCustom()) {
+            Object tid = t.get("id");
+            if (id.equals(tid)) return true;
+        }
+        return false;
+    }
+
+    /** Генерирует уникальный id для пользовательской сборки. */
+    public static String generateId(String name) {
+        String base = CUSTOM_ID_PREFIX + System.currentTimeMillis();
+        int suffix = 0;
+        String candidate = base;
+        while (getById(candidate) != null) {
+            suffix++;
+            candidate = base + "_" + suffix;
+        }
+        return candidate;
+    }
+
+    /** Сохраняет или обновляет пользовательскую сборку. */
+    public static boolean saveCustomTemplate(String id, String name, String description, Object blocksTree) {
+        if (id == null || name == null) return false;
+        if (!id.startsWith(CUSTOM_ID_PREFIX)) {
+            id = CUSTOM_ID_PREFIX + id;
+        }
+        List<Map<String, Object>> custom = getCustom();
+        for (int i = custom.size() - 1; i >= 0; i--) {
+            Object tid = custom.get(i).get("id");
+            if (id.equals(tid)) {
+                custom.remove(i);
+            }
+        }
+        Map<String, Object> entry = new LinkedHashMap<>();
+        entry.put("id", id);
+        entry.put("name", name);
+        entry.put("description", description == null ? "" : description);
+        entry.put("isCustom", true);
+        entry.put("blocks", blocksTree);
+        custom.add(entry);
+        return writeCustomFile(custom);
+    }
+
+    /** Удаляет пользовательскую сборку. */
+    public static boolean deleteCustomTemplate(String id) {
+        if (id == null) return false;
+        List<Map<String, Object>> custom = getCustom();
+        boolean removed = false;
+        for (int i = custom.size() - 1; i >= 0; i--) {
+            Object tid = custom.get(i).get("id");
+            if (id.equals(tid)) {
+                custom.remove(i);
+                removed = true;
+            }
+        }
+        if (!removed) return false;
+        return writeCustomFile(custom);
+    }
+
+    /** Обновляет имя и/или описание пользовательской сборки. */
+    public static boolean updateCustomTemplate(String id, String newName, String newDescription) {
+        if (id == null) return false;
+        List<Map<String, Object>> custom = getCustom();
+        boolean found = false;
+        for (Map<String, Object> t : custom) {
+            Object tid = t.get("id");
+            if (id.equals(tid)) {
+                if (newName != null && !newName.trim().isEmpty()) {
+                    t.put("name", newName);
+                }
+                if (newDescription != null) {
+                    t.put("description", newDescription);
+                }
+                found = true;
+                break;
+            }
+        }
+        if (!found) return false;
+        return writeCustomFile(custom);
+    }
+
+    /** Сырой JSON пользовательских сборок (для экспорта). */
+    public static String getCustomRawJson() {
+        try {
+            if (!FileUtil.isExistFile(CUSTOM_FILE_PATH)) {
+                return "{"templates":[]}";
+            }
+            String json = FileUtil.readFile(CUSTOM_FILE_PATH);
+            if (json == null || json.trim().isEmpty()) {
+                return "{"templates":[]}";
+            }
+            return json;
+        } catch (Throwable t) {
+            return "{"templates":[]}";
+        }
+    }
+
+    /** Записывает сырой JSON (для импорта). */
+    public static boolean setCustomRawJson(String json) {
+        if (json == null) return false;
+        try {
+            FileUtil.writeFile(CUSTOM_FILE_PATH, json);
+            return true;
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
+    /** Внутренний метод: пишет список в файл. */
+    private static boolean writeCustomFile(List<Map<String, Object>> custom) {
+        try {
+            Map<String, Object> root = new LinkedHashMap<>();
+            root.put("templates", custom);
+            String json = new Gson().toJson(root);
+            FileUtil.writeFile(CUSTOM_FILE_PATH, json);
+            return true;
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
 }
