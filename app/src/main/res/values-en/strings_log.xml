@@ -55,4 +55,13 @@
     <string name="log_build_success">Build success: %s</string>
     <string name="settings_debug_log_verbose_title">Verbose log</string>
     <string name="settings_debug_log_verbose_summary">Log every action (fills file faster)</string>
+    <!-- Update Checker -->
+    <string name="log_updater_check_started">Update check: current version %s</string>
+    <string name="log_updater_http_error">HTTP error: %s</string>
+    <string name="log_updater_parse_error">Failed to parse update.json: %s</string>
+    <string name="log_updater_available">Update available: %s</string>
+    <string name="log_updater_up_to_date">No updates (current %s)</string>
+    <string name="log_updater_skipped">Version %s skipped by user</string>
+    <string name="log_updater_skipped_period">Skip check: disabled or period not reached</string>
+    <string name="log_updater_check_failed">Update check failed: %s</string>
 </resources>

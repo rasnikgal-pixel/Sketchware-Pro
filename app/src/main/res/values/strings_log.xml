@@ -55,4 +55,13 @@
     <string name="log_build_success">Сборка успешна: %s</string>
     <string name="settings_debug_log_verbose_title">Подробный журнал</string>
     <string name="settings_debug_log_verbose_summary">Записывать каждое действие (быстрее заполняет файл)</string>
+    <!-- Update Checker -->
+    <string name="log_updater_check_started">Проверка обновлений: текущая версия %s</string>
+    <string name="log_updater_http_error">Ошибка HTTP: %s</string>
+    <string name="log_updater_parse_error">Не удалось разобрать update.json: %s</string>
+    <string name="log_updater_available">Доступно обновление: %s</string>
+    <string name="log_updater_up_to_date">Обновлений нет (текущая %s)</string>
+    <string name="log_updater_skipped">Версия %s пропущена пользователем</string>
+    <string name="log_updater_skipped_period">Пропуск проверки: отключено или период не наступил</string>
+    <string name="log_updater_check_failed">Проверка обновлений не удалась: %s</string>
 </resources>

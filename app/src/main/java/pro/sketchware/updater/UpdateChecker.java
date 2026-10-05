@@ -4,9 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import com.google.gson.Gson;
+import pro.sketchware.smartdrop.DebugLogger;
+import pro.sketchware.BuildConfig;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,7 +21,6 @@ import java.util.concurrent.Executors;
  */
 public class UpdateChecker {
 
-    private static final String TAG = "UpdateChecker";
     private static final String URL_UPDATE = "https://raw.githubusercontent.com/rasnikgal-pixel/Sketchware-Pro/main/update.json";
     private static final String PREFS = "update_checker_prefs";
     private static final String KEY_LAST_CHECK = "last_check_time";
@@ -102,10 +102,11 @@ public class UpdateChecker {
     /** Фоновая проверка. Учитывает настройки и период. */
     public void checkIfNeeded(Context ctx, int currentVersionCode, boolean userInitiated, Callback callback) {
         if (!userInitiated && !shouldCheckNow(ctx)) {
-            Log.d(TAG, "Skip check: disabled or period not reached");
+            DebugLogger.get(ctx).i("Updater", "log_updater_skipped_period", "");
             return;
         }
 
+        DebugLogger.get(ctx).i("Updater", "log_updater_check_started", String.valueOf(currentVersionCode));
         executor.execute(() -> {
             try {
                 UpdateInfo info = fetch();
@@ -113,13 +114,17 @@ public class UpdateChecker {
 
                 mainHandler.post(() -> {
                     if (info == null) {
+                        DebugLogger.get(ctx).w("Updater", "log_updater_parse_error", "null info");
                         callback.onError("Failed to parse update.json");
                         return;
                     }
                     if (!info.isNewerThan(currentVersionCode)) {
+                        DebugLogger.get(ctx).i("Updater", "log_updater_up_to_date",
+                                BuildConfig.VERSION_NAME);
                         callback.onUpToDate();
                         return;
                     }
+                    DebugLogger.get(ctx).i("Updater", "log_updater_available", info.toString());
                     // Если пользователь пропустил эту версию — не показывать (кроме required)
                     if (!userInitiated
                             && !info.required
@@ -130,7 +135,7 @@ public class UpdateChecker {
                     callback.onUpdateAvailable(info);
                 });
             } catch (Exception e) {
-                Log.e(TAG, "checkIfNeeded failed", e);
+                DebugLogger.get(ctx).e("Updater", "log_updater_check_failed", e);
                 mainHandler.post(() -> callback.onError(e.getMessage()));
             }
         });
