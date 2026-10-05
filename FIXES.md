@@ -290,6 +290,78 @@
 
 ---
 
+## 📅 Обновление от 2026-10-05
+
+### 📦 Сборки блоков (новое!)
+
+Категория **«Сборки»** в самом верху палитры блоков — **над «Избранное»**.
+
+**Что это:** готовые цепочки блоков, которые перетаскиваются **одним блоком** и **разворачиваются** в полноценную структуру с вложенными блоками.
+
+**10 готовых сборок:**
+
+| # | Название | Что делает |
+|---|----------|-----------|
+| 1 | 📦 Диалог OK | setTitle + setMessage + OK + show |
+| 2 | 📦 Диалог подтверждения | OK + Cancel |
+| 3 | 📦 Диалог с 3 кнопками | OK + Cancel + Neutral |
+| 4 | 📦 Диалог с dismiss | setTitle + setMessage + dismiss + show |
+| 5 | 📦 Диалог выхода из приложения | OK Button → finishActivity внутри |
+| 6 | 📦 Прогресс-диалог | Create + setTitle + setMessage + show |
+| 7 | 📦 Закрыть прогресс-диалог | dismiss |
+| 8 | 📦 Завершить Activity | finishActivity |
+| 9 | 📦 Завершить приложение | finishAffinity |
+| 10 | 📦 Всплывающее сообщение (Toast) | customToast |
+
+**Особенности:**
+- Вложенные блоки работают через `subStack1` / `subStack2` (например, `finishActivity` внутри `OK Button Clicked`).
+- Автоматическая связка `nextBlock` для цепочек на верхнем уровне.
+- JSON-файл `block_templates.json` в `assets/` + возможность редактировать вручную в `/sdcard/.sketchware/`.
+- Тумблер «Сборки блоков» в настройках.
+- Класс `BlockTemplatesManager` в `mod/jbk/util/`.
+
+**Файлы:**
+- `mod/jbk/util/BlockTemplatesManager.java` (новый, 241 строка)
+- `app/src/main/assets/block_templates.json` (новый)
+- `com/besome/sketch/editor/LogicEditorActivity.java` (drop + expand)
+- `com/besome/sketch/editor/logic/PaletteSelector.java` (id 200)
+- `dev/aldi/sayuti/block/ExtraPaletteBlock.java` (рендер категории)
+
+---
+
+### 🔧 Шаблоны экранов — фильтр «по 1 на категорию»
+
+**Было:** 200 шаблонов — неудобно в UI.
+**Стало:** в галерее **по 1 шаблону** из каждой из 20 категорий — всего **20 штук**.
+
+- Вычисляется автоматически в `ScreenTemplates.computeBundledIds()`.
+- Категории в галерее скрыты — один список «Все».
+- Остальные 180 шаблонов остаются в `assets/screen_templates/templates.json` (на будущее).
+
+---
+
+### 🎯 Чекбоксы в AddView — видимые + реагируют на превью
+
+**Проблема 1:** в тёмных темах чекбоксы были «пустыми квадратами» — Material3 Dark не давал `colorControlActivated`.
+**Фикс:** в `m3_schemes.xml` добавлены `colorControlActivated`, `colorControlNormal`, `colorControlHighlight` во все 5 кастомных тёмных тем.
+
+**Проблема 2:** превью-карточка не реагировала на переключение чекбоксов.
+**Фикс:** `TemplatePreviewView` перемещён **под** панели (`preview_statusbar`, `preview_toolbar`, `preview_drawer`, `preview_fab`) в RelativeLayout.
+
+**Проблема 3:** стрелки `‹ ›` прятались за toolbar/drawer.
+**Фикс:** `drawPager` учитывает `insetTop` (под statusbar+toolbar) и `insetLeft` (правее drawer).
+
+**Результат:** панели в превью **видны** и **реагируют на чекбоксы**, макет шаблона рисуется **между** панелями.
+
+---
+
+### 🐛 Дополнительно
+
+- **Диалог «Пустой / Из шаблона»** — при создании экрана выбор из 5 шаблонов.
+- **Логирование фич в AddView** через `DebugLogger` (тег `App`, ключ `log_feature_clicked`).
+
+---
+
 ## 📋 Сводная таблица всех фич и фиксов
 
 | # | Фикс/Фича | PR |
