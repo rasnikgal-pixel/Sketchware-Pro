@@ -53,7 +53,7 @@ public class UpdateChecker {
     }
 
     public static String getPeriod(Context ctx) {
-        return prefs(ctx).getString(KEY_PERIOD, PERIOD_DAILY);
+        return prefs(ctx).getString(KEY_PERIOD, PERIOD_ALWAYS);
     }
 
     public static void setPeriod(Context ctx, String period) {

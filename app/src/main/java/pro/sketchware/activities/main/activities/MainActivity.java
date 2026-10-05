@@ -174,8 +174,18 @@ public class MainActivity extends BasePermissionAppCompatActivity {
                     @Override public void onUpdateAvailable(pro.sketchware.updater.UpdateInfo info) {
                         runOnUiThread(() -> pro.sketchware.updater.UpdateDialog.show(MainActivity.this, info));
                     }
-                    @Override public void onUpToDate() {}
-                    @Override public void onError(String message) {}
+                    @Override public void onUpToDate() {
+                        runOnUiThread(() -> android.widget.Toast.makeText(
+                                MainActivity.this,
+                                "Обновлений нет",
+                                android.widget.Toast.LENGTH_SHORT).show());
+                    }
+                    @Override public void onError(String message) {
+                        runOnUiThread(() -> android.widget.Toast.makeText(
+                                MainActivity.this,
+                                "Не удалось проверить обновления",
+                                android.widget.Toast.LENGTH_SHORT).show());
+                    }
                 }
         );
 
