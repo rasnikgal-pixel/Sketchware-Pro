@@ -1,14 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Убрано: пункт "О команде"
+         Чтобы вернуть — раскомментировать блок ниже
     <item
         android:id="@+id/about_team"
         android:icon="@drawable/ic_mtrl_team"
         android:title="О команде" />
+    -->
+    
 
+    <!-- Убрано: пункт "Список изменений"
+         Чтобы вернуть — раскомментировать блок ниже
     <item
         android:id="@+id/changelog"
         android:icon="@drawable/ic_mtrl_update"
         android:title="@string/about_changelog_title" />
+    -->
 
     <item
         android:id="@+id/program_info"
@@ -24,32 +31,8 @@
         android:id="@+id/app_settings"
         android:icon="@drawable/ic_mtrl_settings"
         android:title="@string/common_word_settings" />
-    <item android:title="@string/common_word_apps">
-        <menu>
-            <item
-                android:id="@+id/app_sw_assist"
-                android:icon="@drawable/swassist_logo"
-                android:title="@string/common_word_swassist" />
-        </menu>
-    </item>
-
     <item android:title="@string/common_word_related_links">
         <menu>
-            <item
-                android:id="@+id/social_discord"
-                android:icon="@drawable/ic_discord"
-                android:title="@string/title_discord_community" />
-
-            <item
-                android:id="@+id/social_telegram"
-                android:icon="@drawable/ic_telegram"
-                android:title="@string/title_telegram_community" />
-
-            <item
-                android:id="@+id/social_github"
-                android:icon="@drawable/ic_github"
-                android:title="@string/common_word_github" />
-
             <item
                 android:id="@+id/social_russian_4pda"
                 android:icon="@drawable/ic_sketchware_24"
@@ -59,6 +42,11 @@
                 android:id="@+id/social_russian_help"
                 android:icon="@drawable/ic_sketchware_24"
                 android:title="Справка" />
+
+            <item
+                android:id="@+id/social_github"
+                android:icon="@drawable/ic_github"
+                android:title="Исходный код" />
         </menu>
     </item>
 
