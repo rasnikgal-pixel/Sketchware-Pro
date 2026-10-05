@@ -379,16 +379,22 @@ public final class BlockTemplatesManager {
     public static String getCustomRawJson() {
         try {
             if (!FileUtil.isExistFile(CUSTOM_FILE_PATH)) {
-                return "{"templates":[]}";
+                return emptyTemplatesJson();
             }
             String json = FileUtil.readFile(CUSTOM_FILE_PATH);
             if (json == null || json.trim().isEmpty()) {
-                return "{"templates":[]}";
+                return emptyTemplatesJson();
             }
             return json;
         } catch (Throwable t) {
-            return "{"templates":[]}";
+            return emptyTemplatesJson();
         }
+    }
+
+    private static String emptyTemplatesJson() {
+        Map<String, Object> root = new LinkedHashMap<>();
+        root.put("templates", new ArrayList<>());
+        return new Gson().toJson(root);
     }
 
     /** Записывает сырой JSON (для импорта). */
