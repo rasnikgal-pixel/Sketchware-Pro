@@ -426,7 +426,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
     private void showNoticeNeedStorageAccess() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
         dialog.setTitle(Helper.getResString(R.string.common_message_permission_title_storage));
-        dialog.setIcon(R.drawable.color_about_96);
+        dialog.setIcon(R.drawable.ic_mtrl_settings);
         dialog.setMessage(Helper.getResString(R.string.common_message_permission_need_load_project));
         dialog.setPositiveButton(Helper.getResString(R.string.common_word_ok), (v, which) -> {
             v.dismiss();

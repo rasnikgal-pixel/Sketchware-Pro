@@ -248,7 +248,6 @@ public class OldResourceIdMapper {
             case 2131165449 -> R.drawable.collage_48;
             case 2131165450 -> R.drawable.collage_96;
             case 2131165451 -> R.drawable.collect_48;
-            case 2131165452 -> R.drawable.color_about_96;
             case 2131165453 -> R.drawable.color_ad_free_96;
             case 2131165454 -> R.drawable.color_ban_96;
             case 2131165455 -> R.drawable.color_cancel_96;
