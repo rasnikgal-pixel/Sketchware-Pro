@@ -6,29 +6,38 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.besome.sketch.lib.base.BaseAppCompatActivity;
 import com.besome.sketch.lib.ui.PropertyOneLineItem;
 import com.besome.sketch.lib.ui.PropertyTwoLineItem;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
 import a.a.a.GB;
 import a.a.a.bB;
 import a.a.a.mB;
 import a.a.a.wB;
 import mod.hey.studios.util.Helper;
+import pro.sketchware.BuildConfig;
 import pro.sketchware.R;
 import pro.sketchware.databinding.ProgramInfoBinding;
+import pro.sketchware.updater.UpdateChecker;
+import pro.sketchware.updater.UpdateDialog;
+import pro.sketchware.updater.UpdateInfo;
 
 public class ProgramInfoActivity extends BaseAppCompatActivity {
 
-    private static final int ITEM_SYSTEM_INFORMATION = 1;
+    private static final int ITEM_CHANGELOG = 2;
+    private static final int ITEM_4PDA = 3;
     private static final int ITEM_DOCS_LOG = 4;
-    private static final int ITEM_SOCIAL_NETWORK = 5;
-    private static final int ITEM_DISCORD = 6;
-    private static final int ITEM_TELEGRAM = 8;
+    private static final int ITEM_GITHUB = 7;
+    private static final int ITEM_SYSTEM_INFORMATION = 1;
     private static final int ITEM_OPEN_SOURCE_LICENSES = 15;
-    private static final int ITEM_SUGGEST_IDEAS = 17;
 
     private ProgramInfoBinding binding;
 
@@ -99,6 +108,60 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
         dialog.show();
     }
 
+    private void showChangelogDialog() {
+        String text;
+        try {
+            InputStream is = getAssets().open("changelog.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            reader.close();
+            text = sb.toString();
+        } catch (Exception e) {
+            text = "Не удалось загрузить список изменений.";
+        }
+
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
+        dialog.setTitle("Что нового");
+        dialog.setMessage(text);
+        dialog.setPositiveButton(Helper.getResString(R.string.common_word_ok), null);
+        dialog.show();
+    }
+
+    private void checkUpdatesNow() {
+        Toast.makeText(this, "Проверка обновлений...", Toast.LENGTH_SHORT).show();
+        new UpdateChecker().checkIfNeeded(
+                this,
+                BuildConfig.VERSION_CODE,
+                true,
+                new UpdateChecker.Callback() {
+                    @Override
+                    public void onUpdateAvailable(UpdateInfo info) {
+                        runOnUiThread(() -> UpdateDialog.show(ProgramInfoActivity.this, info));
+                    }
+
+                    @Override
+                    public void onUpToDate() {
+                        runOnUiThread(() -> Toast.makeText(
+                                ProgramInfoActivity.this,
+                                "Обновлений нет",
+                                Toast.LENGTH_SHORT).show());
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        runOnUiThread(() -> Toast.makeText(
+                                ProgramInfoActivity.this,
+                                "Не удалось проверить обновления",
+                                Toast.LENGTH_SHORT).show());
+                    }
+                }
+        );
+    }
+
     private void handleItem(View v) {
         if (!mB.a()) {
             int key;
@@ -119,10 +182,11 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
             if (v instanceof PropertyTwoLineItem) {
                 key = ((PropertyTwoLineItem) v).getKey();
                 switch (key) {
-                    case ITEM_DOCS_LOG -> openUrl(Helper.getResString(R.string.link_docs_url));
-                    case ITEM_SUGGEST_IDEAS ->
-                            openUrl(Helper.getResString(R.string.link_ideas_url));
-                    }
+                    case ITEM_CHANGELOG -> showChangelogDialog();
+                    case ITEM_4PDA -> openUrl(Helper.getResString(R.string.link_russian_4pda));
+                    case ITEM_DOCS_LOG -> openUrl(Helper.getResString(R.string.link_russian_help));
+                    case ITEM_GITHUB -> openUrl(Helper.getResString(R.string.link_github_url));
+                }
             }
         }
     }
@@ -137,14 +201,12 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
         binding.toolbar.setNavigationOnClickListener(Helper.getBackPressedClickListener(this));
         binding.appVersion.setText(GB.e(getApplicationContext()));
         binding.btnReset.setOnClickListener(this::resetDialog);
-        binding.btnUpgrade.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Helper.getResString(R.string.link_github_release)));
-            startActivity(intent);
-        });
+        binding.btnUpgrade.setOnClickListener(v -> checkUpdatesNow());
 
-        addTwoLineItem(ITEM_DOCS_LOG, R.string.program_information_title_docs, R.string.link_docs_url);
-        addTwoLineItem(ITEM_SUGGEST_IDEAS, R.string.program_information_title_suggest_ideas, R.string.link_ideas_url);
-        addSingleLineItem(ITEM_SOCIAL_NETWORK, R.string.title_community);
+        addTwoLineItem(ITEM_CHANGELOG, "Что нового", "Список изменений в этой версии");
+        addTwoLineItem(ITEM_4PDA, "Sketchware Pro 4PDA", Helper.getResString(R.string.link_russian_4pda));
+        addTwoLineItem(ITEM_DOCS_LOG, "Документация", Helper.getResString(R.string.link_russian_help));
+        addTwoLineItem(ITEM_GITHUB, "Исходный код", Helper.getResString(R.string.link_github_url));
         addSingleLineItem(ITEM_SYSTEM_INFORMATION, R.string.program_information_title_system_information);
         addSingleLineItem(ITEM_OPEN_SOURCE_LICENSES, R.string.program_information_title_open_source_license, true);
     }
