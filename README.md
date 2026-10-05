@@ -2,10 +2,31 @@
 
 [![Latest Release](https://img.shields.io/github/v/release/rasnikgal-pixel/Sketchware-Pro?label=Релиз&style=flat-square)](https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/latest)
 [![4PDA](https://img.shields.io/badge/4PDA-Обсуждение-blue?style=flat-square)](https://4pda.to/forum/index.php?showtopic=1126677)
+[![Android CI](https://github.com/rasnikgal-pixel/Sketchware-Pro/actions/workflows/android.yml/badge.svg)](https://github.com/rasnikgal-pixel/Sketchware-Pro/actions/workflows/android.yml)
 
 Этот репозиторий — **форк** проекта **Sketchware Pro**, в который добавлена **полная русская локализация** интерфейса. Оригинальный проект создан для того, чтобы возродить визуальную среду разработки Android-приложений после того, как оригинальный Sketchware перестал обновляться.
 
 **Скачать готовый APK:** [Страница релизов](https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/latest)
+
+---
+
+## 📥 Установка
+
+### Первая установка
+
+1. Скачайте APK со [страницы релизов](https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/latest) — файл **`app-release.apk`**.
+2. Откройте файл, разрешите установку из неизвестных источников (Android сам предложит).
+3. Дождитесь завершения установки.
+
+### Обновление с предыдущей версии
+
+Устанавливается **поверх** — данные проектов и настройки сохраняются. Не нужно удалять старую версию.
+
+Если Android отказывается устанавливать поверх (например, из-за разной подписи), сделайте **резервную копию проектов** через Настройки → Экспорт настроек или копирование `/storage/emulated/0/.sketchware/data/`, затем удалите старую версию и установите новую.
+
+### Проверка обновлений внутри приложения
+
+Приложение умеет само проверять новые версии — см. следующий раздел.
 
 ---
 
@@ -65,6 +86,98 @@
 
 ---
 
+## 🔄 Проверка обновлений
+
+Приложение загружает файл [`update.json`](update.json) из репозитория и сравнивает `versionCode` с установленной версией.
+
+### Как это работает
+
+- **При запуске** приложение проверяет `update.json`.
+- Если найдена более новая версия — открывается диалог с кнопками **«Позже»** и **«Скачать»**.
+- **«Позже»** запоминает версию — она не будет напоминать повторно (кроме случая `required: true`).
+- **«Скачать»** открывает страницу релиза в браузере.
+
+### Источники
+
+1. **Основной:** `raw.githubusercontent.com/rasnikgal-pixel/Sketchware-Pro/main/update.json`
+2. **Резервный (fallback):** `cdn.jsdelivr.net/gh/rasnikgal-pixel/Sketchware-Pro@main/update.json`
+
+Если основной источник недоступен, приложение автоматически переключается на fallback.
+
+### Настройки
+
+В **Настройках → Проверка обновлений** можно:
+
+- Включить/отключить автоматическую проверку (по умолчанию — **включена**).
+- Выбрать периодичность: *При запуске* (по умолчанию), *Раз в сутки*, *Раз в 3/6/9 дней*.
+- Нажать **«Проверить сейчас»** — мгновенная проверка.
+
+### Формат update.json
+
+Основные поля:
+
+- `versionCode` — целое, сравнивается с установленной версией.
+- `versionName` — отображается в диалоге.
+- `downloadUrl` — прямая ссылка на APK в GitHub Release.
+- `changelog` — текст с переносами `\n`.
+- `required` — если `true`, пользователь не может отложить.
+- `releaseDate` — дата релиза (UTC).
+- `minVersion` — если установленная версия ниже, апдейт становится обязательным.
+- `channel` — `stable` или `beta` (на будущее).
+- `apkSize` — размер APK в байтах.
+- `sha256` — SHA-256 хеш APK (lowercase hex).
+
+Поля `versionCode`, `versionName`, `releaseDate`, `apkSize`, `sha256`, `downloadUrl` **обновляются автоматически** в CI после релиза. `changelog` пишется вручную.
+
+---
+
+
+---
+
+## 🔢 Схема версий
+
+Формат: `versionCode` — целое, монотонно растёт; `versionName` — семантический `MAJOR.MINOR.PATCH`.
+
+| Изменение | versionCode | versionName | Пример |
+| :--- | :--- | :--- | :--- |
+| **Patch** (мелкий фикс) | +1 | `X.Y.Z+1` | 150 → 151, `7.1.0` → `7.1.1` |
+| **Minor** (новая фича) | +10 | `X.Y+1.0` | 150 → 160, `7.1.0` → `7.2.0` |
+| **Major** (крупное) | +100 | `X+1.0.0` | 150 → 250, `7.1.0` → `8.0.0` |
+
+### При выпуске новой версии надо
+
+1. Обновить `versionCode` и `versionName` в `app/build.gradle`.
+2. Обновить `versionCode` / `versionName` / `changelog` в `update.json` вручную.
+3. Обновить `tag_name` в `.github/workflows/android.yml` (сейчас `7.1.0`).
+4. Обновить `RELEASE_TAG` в job `updateUpdateJson` в том же workflow.
+5. Закоммитить и запушить в `main` — CI соберёт APK, обновит Release, пересчитает `sha256` / `apkSize` / `releaseDate` в `update.json`.
+
+---
+
+## 📂 Структура проекта
+
+Ключевые файлы этого форка (что добавлено к оригиналу):
+
+- `update.json` — метаданные обновлений (читает UpdateChecker)
+- `FIXES.md` — подробный changelog фич форка
+- `README.md` — этот файл
+- `.github/workflows/android.yml` — CI: сборка, Telegram, Release, update.json
+- `.github/workflows/update_update_json.py` — скрипт авто-обновления update.json
+
+Пакет updater (`app/src/main/java/pro/sketchware/updater/`):
+
+- `UpdateInfo.java` — модель update.json
+- `UpdateChecker.java` — загрузка, сравнение версий, fallback на jsDelivr
+- `UpdateDialog.java` — диалог «Доступно обновление»
+
+Прочее:
+
+- `app/src/main/java/pro/sketchware/smartdrop/DebugLogger.java` — журнал отладки (RU/EN)
+- `app/src/main/res/values/strings_log.xml` — строки журнала (RU)
+- `app/src/main/res/values-en/strings_log.xml` — строки журнала (EN)
+
+---
+
 ## 🛠️ Сборка из исходного кода
 
 Если вы хотите собрать приложение самостоятельно, вам потребуется **Gradle** и **Android SDK**.
@@ -100,12 +213,27 @@
 
 ## 🤝 Участие в разработке
 
-Если вы нашли ошибку перевода или хотите предложить улучшение, вы можете:
+### Сообщить об ошибке / предложить идею
 
-1.  Создать **Issue** в этом репозитории.
-2.  Написать в тему на **4PDA**: [Обсуждение локализации](https://4pda.to/forum/index.php?showtopic=1126677).
+1.  Создайте **Issue** в этом репозитории. Если это баг — приложите лог из **Настройки → Журнал отладки**.
+2.  Или напишите в тему на **4PDA**: [Обсуждение локализации](https://4pda.to/forum/index.php?showtopic=1126677).
 
-Оригинальный проект Sketchware Pro также открыт для вкладов. Если ваше изменение касается не только перевода, лучше предложить его в основной репозиторий.
+### Pull Request
+
+Приветствуем PR'ы. Чтобы изменения было легко ревьюить:
+
+1.  **Одна фича / фикс — один коммит** с осмысленным сообщением.
+2.  **Не ломайте существующий функционал.** Перед PR убедитесь, что CI зелёный.
+3.  **Логирование** — только через `DebugLogger`, не `android.util.Log`. Строки — в `strings_log.xml` (RU + EN).
+4.  **Строки интерфейса** — через `strings.xml` (RU + EN), без хардкода в Java.
+5.  **Обновление версии** — если PR добавляет фичи, следуйте разделу [«Схема версий»](#-схема-версий).
+
+### Правила работы с форком
+
+- Ветка по умолчанию: **`main`**. Работаем напрямую или через feature-ветки.
+- **Один bump версии = один отдельный коммит** (versionCode + versionName + update.json + тег релиза).
+- **Не трогать** автоматические коммиты бота (`chore(updater): auto-update update.json`).
+- Если изменение касается ядра Sketchware Pro (не перевода) — лучше предложить в [основной репозиторий](https://github.com/Sketchware-Pro/Sketchware-Pro).
 
 ---
 
