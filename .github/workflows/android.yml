@@ -115,6 +115,56 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fail_on_unmatched_files: false
 
+  updateUpdateJson:
+    if: ${{ !startsWith(github.ref, 'refs/heads/wip/') }}
+    name: Update update.json
+    runs-on: ubuntu-latest
+    needs: [build, uploadToRelease]
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download APK artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: apk-release-${{ needs.build.outputs.short_sha }}
+          path: ./apk
+
+      - name: Rename APK
+        run: |
+          mv ./apk/app-release-${{ needs.build.outputs.short_sha }}.apk ./apk/app-release.apk
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+
+      - name: Update update.json
+        env:
+          RELEASE_TAG: '7.1.0'
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python .github/workflows/update_update_json.py ./apk/app-release.apk
+
+      - name: Show diff
+        run: git diff update.json || true
+
+      - name: Commit and push
+        run: |
+          git config --global user.name "rasnikgal-pixel"
+          git config --global user.email "rasnikgal-pixel@users.noreply.github.com"
+          git add update.json
+          if git diff --cached --quiet; then
+            echo "No changes in update.json — skip commit"
+          else
+            git commit -m "chore(updater): auto-update update.json [skip ci]"
+            git push origin main
+          fi
+
   aggregateAndSend:
     if: ${{ !startsWith(github.ref, 'refs/heads/wip/') }}
     name: Send APKs to Telegram

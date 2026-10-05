@@ -13,6 +13,14 @@ public class UpdateInfo {
     public String releaseDate;
     public int minVersion;
 
+    // ─── Опциональные поля (могут отсутствовать в update.json) ───
+    /** Канал: "stable" или "beta". null = stable. */
+    public String channel;
+    /** Размер APK в байтах (0 = неизвестно). */
+    public long apkSize;
+    /** SHA-256 APK (hex, lowercase). null = не проверять. */
+    public String sha256;
+
     public UpdateInfo() {}
 
     /** @return true, если это обновление (новая версия больше текущей). */
