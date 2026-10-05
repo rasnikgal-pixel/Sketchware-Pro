@@ -21,7 +21,13 @@ import java.util.concurrent.Executors;
  */
 public class UpdateChecker {
 
-    private static final String URL_UPDATE = "https://raw.githubusercontent.com/rasnikgal-pixel/Sketchware-Pro/main/update.json";
+    /** Основной источник (raw.githubusercontent.com). */
+    private static final String URL_PRIMARY =
+            "https://raw.githubusercontent.com/rasnikgal-pixel/Sketchware-Pro/main/update.json";
+    /** Fallback (jsDelivr CDN) — используется если основной недоступен. */
+    private static final String URL_FALLBACK =
+            "https://cdn.jsdelivr.net/gh/rasnikgal-pixel/Sketchware-Pro@main/update.json";
+    private static final String[] URLS = { URL_PRIMARY, URL_FALLBACK };
     private static final String PREFS = "update_checker_prefs";
     private static final String KEY_LAST_CHECK = "last_check_time";
     private static final String KEY_SKIPPED_VERSION = "skipped_version";
@@ -109,7 +115,7 @@ public class UpdateChecker {
         DebugLogger.get(ctx).i("Updater", "log_updater_check_started", String.valueOf(currentVersionCode));
         executor.execute(() -> {
             try {
-                UpdateInfo info = fetch();
+                UpdateInfo info = fetch(ctx);
                 prefs(ctx).edit().putLong(KEY_LAST_CHECK, System.currentTimeMillis()).apply();
 
                 mainHandler.post(() -> {
@@ -125,6 +131,12 @@ public class UpdateChecker {
                         return;
                     }
                     DebugLogger.get(ctx).i("Updater", "log_updater_available", info.toString());
+
+                    // Если текущая версия ниже minVersion — обновление обязательно
+                    if (info.isBelowMin(currentVersionCode)) {
+                        info.required = true;
+                    }
+
                     // Если пользователь пропустил эту версию — не показывать (кроме required)
                     if (!userInitiated
                             && !info.required
@@ -141,12 +153,35 @@ public class UpdateChecker {
         });
     }
 
-    /** Загрузить и распарсить update.json. */
-    private UpdateInfo fetch() throws Exception {
+    /** Загрузить и распарсить update.json. Пробует основной URL, затем fallback. */
+    private UpdateInfo fetch(Context ctx) throws Exception {
+        Exception lastError = null;
+        for (int i = 0; i < URLS.length; i++) {
+            String url = URLS[i];
+            try {
+                UpdateInfo info = fetchFrom(url);
+                if (info != null) {
+                    if (i > 0) {
+                        DebugLogger.get(ctx).i("Updater", "log_updater_fallback_used", url);
+                    }
+                    return info;
+                }
+            } catch (Exception e) {
+                lastError = e;
+                DebugLogger.get(ctx).w("Updater", "log_updater_source_failed",
+                        "[" + i + "] " + url + " -> " + e.getMessage());
+            }
+        }
+        if (lastError != null) throw lastError;
+        throw new Exception("All update URLs failed");
+    }
+
+    /** Одна попытка загрузки по конкретному URL. */
+    private UpdateInfo fetchFrom(String url) throws Exception {
         HttpURLConnection conn = null;
         try {
-            URL url = new URL(URL_UPDATE);
-            conn = (HttpURLConnection) url.openConnection();
+            URL u = new URL(url);
+            conn = (HttpURLConnection) u.openConnection();
             conn.setConnectTimeout(10000);
             conn.setReadTimeout(15000);
             conn.setRequestMethod("GET");
@@ -155,7 +190,7 @@ public class UpdateChecker {
 
             int code = conn.getResponseCode();
             if (code != 200) {
-                throw new Exception("HTTP " + code);
+                throw new Exception("HTTP " + code + " for " + url);
             }
 
             StringBuilder sb = new StringBuilder();

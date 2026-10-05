@@ -64,4 +64,6 @@
     <string name="log_updater_skipped">Version %s skipped by user</string>
     <string name="log_updater_skipped_period">Skip check: disabled or period not reached</string>
     <string name="log_updater_check_failed">Update check failed: %s</string>
+    <string name="log_updater_fallback_used">Fallback source used: %s</string>
+    <string name="log_updater_source_failed">Update source unreachable: %s</string>
 </resources>

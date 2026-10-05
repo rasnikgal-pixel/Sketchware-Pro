@@ -64,4 +64,6 @@
     <string name="log_updater_skipped">Версия %s пропущена пользователем</string>
     <string name="log_updater_skipped_period">Пропуск проверки: отключено или период не наступил</string>
     <string name="log_updater_check_failed">Проверка обновлений не удалась: %s</string>
+    <string name="log_updater_fallback_used">Использован fallback-источник: %s</string>
+    <string name="log_updater_source_failed">Источник обновлений недоступен: %s</string>
 </resources>
