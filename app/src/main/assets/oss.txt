@@ -1,57 +1,57 @@
-Copyright ⓒ Sketchware. All Rights Reserved.
+Авторские права ⓒ Sketchware. Все права защищены.
 
-This application uses Open Source Software (OSS). You can find the source code of these open source projects, along with applicable license information below.
-We are deeply grateful to these developers for their work and contributions.
+Это приложение использует программное обеспечение с открытым исходным кодом (OSS). Ниже вы можете найти исходный код этих проектов с открытым исходным кодом, а также соответствующую информацию о лицензиях.
+Мы глубоко благодарны этим разработчикам за их работу и вклад.
 
 * Scratch
 
-	This software is based on part of Scratch (scratch.mit.edu)
-	https://opensource.org/licenses/MIT
+        Это программное обеспечение основано на части Scratch (scratch.mit.edu)
+        https://opensource.org/licenses/MIT
 
 * Spring Framework
 
-	https://spring.io
-	Copyright (c) 2013-2014 Pivotal Software, Inc
+        https://spring.io
+        Copyright (c) 2013-2014 Pivotal Software, Inc
 
 * Android Open Source Project
 
-	https://source.android.com
-	Apache-2.0 License
+        https://source.android.com
+        Apache-2.0 License
 
 * Android Jetpack
 
-	https://android.googlesource.com/platform/frameworks/support
-	Apache-2.0 License
+        https://android.googlesource.com/platform/frameworks/support
+        Apache-2.0 License
 
 * Material Components for Android
 
-	https://github.com/material-components/material-components-android
-	Apache-2.0 License
+        https://github.com/material-components/material-components-android
+        Apache-2.0 License
 
 * The Bouncy Castle
 
-	https://www.bouncycastle.org
-	Copyright (c) 2000-2012 The Legion Of The Bouncy Castle
+        https://www.bouncycastle.org
+        Copyright (c) 2000-2012 The Legion Of The Bouncy Castle
 
 * Gson
 
-	https://github.com/google/gson
-	Apache-2.0 License
+        https://github.com/google/gson
+        Apache-2.0 License
 
 * Jackson-annotations
 
-	https://github.com/FasterXML/jackson-annotations
-	Apache-2.0 License
+        https://github.com/FasterXML/jackson-annotations
+        Apache-2.0 License
 
 * Jackson-core
 
- 	https://github.com/FasterXML/jackson-core
- 	Apache-2.0 License
+        https://github.com/FasterXML/jackson-core
+        Apache-2.0 License
 
 * kellinwood zip-signer
 
-	http://code.google.com/p/zip-signer
-	Apache-2.0 License
+        http://code.google.com/p/zip-signer
+        Apache-2.0 License
 
 * Lottie
 
@@ -59,96 +59,98 @@ We are deeply grateful to these developers for their work and contributions.
     Apache-2.0 License
 
 * icons8
-	http://icons8.com
+        http://icons8.com
 
 * Cute Blue Teddy Bear Clipart
-	clipartfox.com
-	by mr jorge cruz from cary
+        clipartfox.com
+        by mr jorge cruz from cary
 
 
-Libraries added with Sketchware Pro
+Библиотеки, добавленные вместе с Sketchware Pro
 
 * R8
 
-	https://r8.googlesource.com
-	Its own license, read the full text further below
-	No changes made to v8.9.35
+        https://r8.googlesource.com
+        Собственная лицензия, полный текст читайте ниже
+        Изменения в v8.9.35 не вносились
 
 * hdodenhof/CircleImageView
 
-	https://github.com/hdodenhof/CircleImageView
-	Apache-2.0 License
-	No changes made to v3.1.0
+        https://github.com/hdodenhof/CircleImageView
+        Apache-2.0 License
+        Изменения в v3.1.0 не вносились
 
 * Rosemoe/sora-editor
 
-	https://github.com/Rosemoe/sora-editor
-	GNU Lesser General Public License v2.1
-	No changes made to v0.23.5
+        https://github.com/Rosemoe/sora-editor
+        GNU Lesser General Public License v2.1
+        Изменения в v0.23.5 не вносились
 
 * PranavPurwar/FilePicker
 
-	https://github.com/PranavPurwar/FilePicker
-	MIT License
-	No changes made to v1.0.0 (revision b977843db348f6e19ad4746fe69ef3207a6ef867)
+        https://github.com/PranavPurwar/FilePicker
+        MIT License
+        Изменения в v1.0.0 (ревизия b977843db348f6e19ad4746fe69ef3207a6ef867) не вносились
 
 * Cosmic-IDE/DependencyResolver
 
     https://github.com/Cosmic-IDE/DependencyResolver
     GNU General Public License v3.0
-    No changes made to v1.1.1 (revision 290880eb6cec27dadbab8ab8257f9f688daf45b3)
+    Изменения в v1.1.1 (ревизия 290880eb6cec27dadbab8ab8257f9f688daf45b3) не вносились
 
 * Cosmic-IDE/kotlinc-android
 
     https://github.com/Cosmic-IDE/kotlinc-android
     Apache 2.0 License
-    v2.0.0 modified to work on Android
-    No changes made to v2.0.0 (revision f49c67a8c011f5b2b2bec1e2975415cd73392d3b)
+    v2.0.0 модифицирована для работы на Android
+    Изменения в v2.0.0 (ревизия f49c67a8c011f5b2b2bec1e2975415cd73392d3b) не вносились
 
 * Iyxan23/zipalign-java
 
     https://github.com/Iyxan23/zipalign-java
     MIT License
-    No changes made to v1.0 (revision 942d4351a1b0a42a09a5137b6054e1b6d193fc60)
+    Изменения в v1.0 (ревизия 942d4351a1b0a42a09a5137b6054e1b6d193fc60) не вносились
 
 * bundletool
 
-	https://github.com/google/bundletool
-	Apache-2.0 License
-	No changes made to v1.18.1
+        https://github.com/google/bundletool
+        Apache-2.0 License
+        Изменения в v1.18.1 не вносились
 
 * OkHttp
 
-	https://github.com/square/okhttp/tree/okhttp_4.12.x
-	Apache-2.0 License
-	No changes made to v4.12.0
+        https://github.com/square/okhttp/tree/okhttp_4.12.x
+        Apache-2.0 License
+        Изменения в v4.12.0 не вносились
 
-	* Okio
+        * Okio
 
-		https://github.com/square/okio
-		Apache-2.0 License
-		No changes made to v3.12.0
+                https://github.com/square/okio
+                Apache-2.0 License
+                Изменения в v3.12.0 не вносились
 
 * Eclipse Java Compiler
 
-	https://www.eclipse.org
-	Eclipse Public License Version 1.0
-	No changes to v3.26.0
+        https://www.eclipse.org
+        Eclipse Public License Version 1.0
+        Изменения в v3.26.0 не вносились
 
 * libsu:core
 
     https://github.com/topjohnwu/libsu
     Apache-2.0 License
-    No changes made to v5.0.4
+    Изменения в v5.0.4 не вносились
 
 * aapt2 buildscripts
 
     https://github.com/lzhiyong/android-sdk-tools
     Apache-2.0 License
-    No changes made to v33.0.3
+    Изменения в v33.0.3 не вносились
 
 
-Full license texts
+Полные тексты лицензий
+
+Ниже приведены оригинальные тексты лицензий на английском языке.
 
 * Eclipse Public License Version 1.0
 
