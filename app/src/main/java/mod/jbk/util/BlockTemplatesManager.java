@@ -597,4 +597,18 @@ public final class BlockTemplatesManager {
     }
 
 
+
+    /** Возвращает JSON-обёртку {"templates":[<одна сборка>]} для экспорта/шаринга одной сборки. */
+    public static String getTemplateJson(String id) {
+        if (id == null) return "{\"templates\":[]}";
+        Map<String, Object> tpl = getById(id);
+        if (tpl == null) return "{\"templates\":[]}";
+        List<Map<String, Object>> list = new ArrayList<>();
+        list.add(tpl);
+        Map<String, Object> root = new LinkedHashMap<>();
+        root.put("templates", list);
+        return new Gson().toJson(root);
+    }
+
+
 }

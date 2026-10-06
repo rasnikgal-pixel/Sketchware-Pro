@@ -183,6 +183,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     // Лаунчеры для экспорта/импорта конструктора
     private androidx.activity.result.ActivityResultLauncher<String> exportTemplatesLauncher;
+    private String pendingExportJson;
     private androidx.activity.result.ActivityResultLauncher<String[]> importTemplatesLauncher;
     private boolean G, isDragged, W, X, da, ea, ha, ia;
     private ArrayList<BlockBean> savedBlockBean = new ArrayList<>();
@@ -1988,7 +1989,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 uri -> {
                     if (uri == null) return;
                     try {
-                        String json = mod.jbk.util.BlockTemplatesManager.getCustomRawJson();
+                        String json = pendingExportJson != null
+                                ? pendingExportJson
+                                : mod.jbk.util.BlockTemplatesManager.getCustomRawJson();
                         java.io.OutputStream os = getContentResolver().openOutputStream(uri);
                         if (os != null) {
                             os.write(json.getBytes("UTF-8"));
@@ -2152,6 +2155,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         } else if (itemId == R.id.menu_logic_undo) {
             undo();
         } else if (itemId == R.id.menu_export_templates) {
+            pendingExportJson = mod.jbk.util.BlockTemplatesManager.getCustomRawJson();
             exportTemplatesLauncher.launch("my_blocks_" + System.currentTimeMillis() + ".json");
         } else if (itemId == R.id.menu_import_templates) {
             importTemplatesLauncher.launch(new String[]{"application/json"});
@@ -3239,6 +3243,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 .setItems(new String[] {
                         "Переименовать",
                         "Изменить описание",
+                        "Поделиться",
+                        "Сохранить в файл",
                         "Удалить",
                         "Удалить все сборки"
                 }, (d, which) -> {
@@ -3247,12 +3253,77 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     } else if (which == 1) {
                         showEditDescriptionDialog(id, tpl);
                     } else if (which == 2) {
-                        showDeleteTemplateDialog(id, displayName);
+                        shareSingleTemplate(id);
                     } else if (which == 3) {
+                        saveSingleTemplateToFile(id);
+                    } else if (which == 4) {
+                        showDeleteTemplateDialog(id, displayName);
+                    } else if (which == 5) {
                         showDeleteAllTemplatesDialog();
                     }
                 })
                 .show();
+    }
+
+    /** Заменяет небезопасные символы в имени файла, обрезает до 40 символов. */
+    private String sanitizeFileName(String name) {
+        if (name == null || name.trim().isEmpty()) return "template";
+        String s = name.trim();
+        s = s.replaceAll("[\\\\/:*?\"<>|]", "");
+        s = s.replace(" ", "_");
+        if (s.length() > 40) s = s.substring(0, 40);
+        if (s.isEmpty()) s = "template";
+        return s;
+    }
+
+    /** Шаринг одной сборки через системный Intent.ACTION_SEND. */
+    private void shareSingleTemplate(String id) {
+        try {
+            java.util.Map<String, Object> tpl = mod.jbk.util.BlockTemplatesManager.getById(id);
+            if (tpl == null) {
+                android.widget.Toast.makeText(this, "Сборка не найдена",
+                        android.widget.Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Object tname = tpl.get("name");
+            String displayName = tname instanceof String ? (String) tname : id;
+
+            String json = mod.jbk.util.BlockTemplatesManager.getTemplateJson(id);
+            java.io.File sharedDir = new java.io.File("/sdcard/.sketchware/shared");
+            if (!sharedDir.exists()) sharedDir.mkdirs();
+            String fileName = "template_" + sanitizeFileName(displayName) + ".json";
+            java.io.File out = new java.io.File(sharedDir, fileName);
+            java.io.FileOutputStream fos = new java.io.FileOutputStream(out);
+            fos.write(json.getBytes("UTF-8"));
+            fos.close();
+
+            android.net.Uri uri = androidx.core.content.FileProvider.getUriForFile(
+                    this, getPackageName() + ".provider", out);
+
+            android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_SEND);
+            intent.setType("application/json");
+            intent.putExtra(android.content.Intent.EXTRA_STREAM, uri);
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Сборка: " + displayName);
+            intent.addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(android.content.Intent.createChooser(intent, "Поделиться сборкой"));
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** Сохранение одной сборки в файл через системный CreateDocument. */
+    private void saveSingleTemplateToFile(String id) {
+        java.util.Map<String, Object> tpl = mod.jbk.util.BlockTemplatesManager.getById(id);
+        if (tpl == null) {
+            android.widget.Toast.makeText(this, "Сборка не найдена",
+                    android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Object tname = tpl.get("name");
+        String displayName = tname instanceof String ? (String) tname : id;
+        pendingExportJson = mod.jbk.util.BlockTemplatesManager.getTemplateJson(id);
+        exportTemplatesLauncher.launch("template_" + sanitizeFileName(displayName) + ".json");
     }
 
     private void showRenameTemplateDialog(String id, java.util.Map<String, Object> tpl) {
