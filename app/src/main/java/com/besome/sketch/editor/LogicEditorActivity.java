@@ -3368,19 +3368,116 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 return;
             }
 
-            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            mod.jbk.util.BlockTemplatesManager.ImportResult preview =
+                    mod.jbk.util.BlockTemplatesManager.previewImport(json);
+
+            int totalInFile = preview.addedNames.size() + preview.replacedNames.size();
+            if (totalInFile == 0) {
+                android.widget.Toast.makeText(this, "В файле нет сборок", android.widget.Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            String message = "В файле найдено сборок: " + totalInFile
+                    + "\nНовых: " + preview.addedNames.size()
+                    + "\nСовпадающих по id: " + preview.replacedNames.size()
+                    + "\n\nВыберите действие:";
+
+            new MaterialAlertDialogBuilder(this)
                     .setTitle("Импорт конструктора")
-                    .setMessage("Заменить все пользовательские сборки содержимым файла?")
-                    .setPositiveButton("Заменить", (d, w) -> {
-                        mod.jbk.util.BlockTemplatesManager.setCustomRawJson(json);
-                        refreshTemplatesPalette();
-                        android.widget.Toast.makeText(this, "Импортировано", android.widget.Toast.LENGTH_SHORT).show();
-                    })
+                    .setMessage(message)
+                    .setPositiveButton("Добавить", (d, w) -> showImportConfirmMerge(json, preview))
+                    .setNeutralButton("Заменить", (d, w) -> showImportConfirmReplace(json, preview))
                     .setNegativeButton("Отмена", null)
                     .show();
         } catch (Throwable t) {
             android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
         }
+    }
+
+    private String formatNameList(java.util.List<String> names) {
+        if (names == null || names.isEmpty()) return "—";
+        StringBuilder sb = new StringBuilder();
+        int limit = Math.min(5, names.size());
+        for (int i = 0; i < limit; i++) {
+            if (i > 0) sb.append(", ");
+            sb.append(names.get(i));
+        }
+        if (names.size() > 5) {
+            sb.append(" …и ещё ").append(names.size() - 5);
+        }
+        return sb.toString();
+    }
+
+    private void showImportConfirmMerge(String json, mod.jbk.util.BlockTemplatesManager.ImportResult preview) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Будет добавлено новых: ").append(preview.addedNames.size()).append("\n");
+        if (!preview.addedNames.isEmpty()) {
+            sb.append("  ").append(formatNameList(preview.addedNames)).append("\n");
+        }
+        sb.append("\nБудет заменено существующих: ").append(preview.replacedNames.size()).append("\n");
+        if (!preview.replacedNames.isEmpty()) {
+            sb.append("  ").append(formatNameList(preview.replacedNames)).append("\n");
+        }
+        sb.append("\nВсего ваших сборок сейчас: ").append(preview.existingCount);
+        sb.append("\n\nПродолжить?");
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Подтверждение")
+                .setMessage(sb.toString())
+                .setPositiveButton("Продолжить", (d, w) -> {
+                    mod.jbk.util.BlockTemplatesManager.ImportResult r =
+                            mod.jbk.util.BlockTemplatesManager.mergeCustomRawJson(json);
+                    refreshTemplatesPalette();
+                    showImportReport("Слияние", r, false);
+                })
+                .setNegativeButton("Отмена", null)
+                .show();
+    }
+
+    private void showImportConfirmReplace(String json, mod.jbk.util.BlockTemplatesManager.ImportResult preview) {
+        int removed = preview.existingCount;
+        int loaded = preview.addedNames.size() + preview.replacedNames.size();
+
+        String message = "Все ваши текущие сборки (" + removed + " шт.) будут удалены.\n"
+                + "Останутся только " + loaded + " сборок(и) из файла.\n\n"
+                + "Продолжить?";
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Подтверждение")
+                .setMessage(message)
+                .setPositiveButton("Продолжить", (d, w) -> {
+                    mod.jbk.util.BlockTemplatesManager.ImportResult r =
+                            mod.jbk.util.BlockTemplatesManager.replaceCustomRawJson(json);
+                    refreshTemplatesPalette();
+                    showImportReport("Замена", r, true);
+                })
+                .setNegativeButton("Отмена", null)
+                .show();
+    }
+
+    private void showImportReport(String action, mod.jbk.util.BlockTemplatesManager.ImportResult r, boolean wasReplace) {
+        StringBuilder sb = new StringBuilder();
+        if (wasReplace) {
+            sb.append("Удалено предыдущих: ").append(r.removedCount).append("\n");
+            sb.append("Загружено из файла: ").append(r.loadedNames.size()).append("\n");
+            if (!r.loadedNames.isEmpty()) {
+                sb.append("  ").append(formatNameList(r.loadedNames)).append("\n");
+            }
+        } else {
+            sb.append("Добавлено (").append(r.addedNames.size()).append("): ")
+                    .append(formatNameList(r.addedNames)).append("\n");
+            sb.append("\nЗаменено (").append(r.replacedNames.size()).append("): ")
+                    .append(formatNameList(r.replacedNames)).append("\n");
+        }
+        if (r.skippedCount > 0) {
+            sb.append("\nПропущено (битых записей): ").append(r.skippedCount);
+        }
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Импорт завершён")
+                .setMessage(sb.toString())
+                .setPositiveButton("ОК", null)
+                .show();
     }
 
 }

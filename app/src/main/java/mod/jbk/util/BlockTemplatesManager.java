@@ -455,4 +455,127 @@ public final class BlockTemplatesManager {
         }
     }
 
+
+    // ============ Импорт / слияние / замена ============
+
+    /** Результат импорта: какие сборки добавлены/заменены/пропущены. */
+    public static final class ImportResult {
+        public final java.util.List<String> addedNames = new ArrayList<>();
+        public final java.util.List<String> replacedNames = new ArrayList<>();
+        public final java.util.List<String> loadedNames = new ArrayList<>();
+        public int skippedCount = 0;
+        public int removedCount = 0;
+        public int existingCount = 0;
+    }
+
+    /** Разбирает входящий JSON, возвращает список валидных шаблонов. */
+    @SuppressWarnings("unchecked")
+    private static List<Map<String, Object>> parseIncomingTemplates(String json) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        if (json == null || json.trim().isEmpty()) return result;
+        try {
+            Map<String, Object> root = new Gson().fromJson(json, Map.class);
+            if (root == null) return result;
+            Object templatesObj = root.get("templates");
+            if (templatesObj instanceof List) {
+                for (Object item : (List<?>) templatesObj) {
+                    if (item instanceof Map) {
+                        Map<String, Object> t = (Map<String, Object>) item;
+                        Object id = t.get("id");
+                        Object blocks = t.get("blocks");
+                        if (id == null || blocks == null) continue;
+                        result.add(t);
+                    }
+                }
+            } else if (templatesObj instanceof Map) {
+                Map<String, Object> t = (Map<String, Object>) templatesObj;
+                Object id = t.get("id");
+                Object blocks = t.get("blocks");
+                if (id != null && blocks != null) result.add(t);
+            }
+        } catch (Throwable ignored) {
+        }
+        return result;
+    }
+
+    /** Предпросмотр слияния: что добавится, что заменится, что пропустится. */
+    public static ImportResult previewImport(String json) {
+        ImportResult r = new ImportResult();
+        List<Map<String, Object>> current = getCustom();
+        r.existingCount = current.size();
+        List<Map<String, Object>> incoming = parseIncomingTemplates(json);
+        for (Map<String, Object> t : incoming) {
+            String id = String.valueOf(t.get("id"));
+            String name = t.get("name") == null ? id : String.valueOf(t.get("name"));
+            boolean exists = false;
+            for (Map<String, Object> c : current) {
+                if (id.equals(String.valueOf(c.get("id")))) { exists = true; break; }
+            }
+            if (exists) r.replacedNames.add(name);
+            else r.addedNames.add(name);
+        }
+        return r;
+    }
+
+    /** Слияние: новые добавляются, совпадающие по id — заменяются. */
+    public static ImportResult mergeCustomRawJson(String json) {
+        ImportResult r = new ImportResult();
+        List<Map<String, Object>> current = getCustom();
+        r.existingCount = current.size();
+        List<Map<String, Object>> incoming = parseIncomingTemplates(json);
+        int totalInFile = 0;
+        try {
+            Map<String, Object> root = new Gson().fromJson(json, Map.class);
+            if (root != null) {
+                Object to = root.get("templates");
+                if (to instanceof List) totalInFile = ((List<?>) to).size();
+                else if (to instanceof Map) totalInFile = 1;
+            }
+        } catch (Throwable ignored) {}
+        r.skippedCount = Math.max(0, totalInFile - incoming.size());
+
+        for (Map<String, Object> t : incoming) {
+            String id = String.valueOf(t.get("id"));
+            String name = t.get("name") == null ? id : String.valueOf(t.get("name"));
+            int found = -1;
+            for (int i = 0; i < current.size(); i++) {
+                if (id.equals(String.valueOf(current.get(i).get("id")))) { found = i; break; }
+            }
+            if (found >= 0) {
+                current.set(found, t);
+                r.replacedNames.add(name);
+            } else {
+                current.add(t);
+                r.addedNames.add(name);
+            }
+        }
+        writeCustomFile(current);
+        return r;
+    }
+
+    /** Замена: все текущие удаляются, пишутся только из файла. */
+    public static ImportResult replaceCustomRawJson(String json) {
+        ImportResult r = new ImportResult();
+        r.removedCount = getCustom().size();
+        List<Map<String, Object>> incoming = parseIncomingTemplates(json);
+        int totalInFile = 0;
+        try {
+            Map<String, Object> root = new Gson().fromJson(json, Map.class);
+            if (root != null) {
+                Object to = root.get("templates");
+                if (to instanceof List) totalInFile = ((List<?>) to).size();
+                else if (to instanceof Map) totalInFile = 1;
+            }
+        } catch (Throwable ignored) {}
+        r.skippedCount = Math.max(0, totalInFile - incoming.size());
+
+        for (Map<String, Object> t : incoming) {
+            String name = t.get("name") == null ? String.valueOf(t.get("id")) : String.valueOf(t.get("name"));
+            r.loadedNames.add(name);
+        }
+        writeCustomFile(incoming);
+        return r;
+    }
+
+
 }
