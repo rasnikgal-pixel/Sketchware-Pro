@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "templates": [
     {
       "id": "dialog_ok",
@@ -1085,37 +1085,54 @@
       ]
     },
     {
-      "id": "test_toast",
-      "name": "🧪 Тест Toast",
-      "description": "Тестовая сборка: простой Toast с текстом-заглушкой.",
-      "blocks": [
-        {
-          "type": " ",
-          "opCode": "doToast",
-          "parameters": [
-            "\"Текст сообщения\""
-          ]
-        }
-      ]
-    },
-    {
       "id": "test_if_internet",
-      "name": "🧪 Тест IF (проверка интернета)",
-      "description": "Тестовая сборка: if-контейнер с вложенным Toast. Проверка формата вложенных блоков.",
+      "name": "🧪 Тест IF (нет интернета)",
+      "description": "Проверка: if с выражением isConnected. Если интернета нет — Toast «Интернета нет».",
       "blocks": [
         {
           "type": "c",
           "opCode": "if",
           "spec": "if %b then",
           "parameters": [
-            "isConnected"
+            "SketchwareUtil.isConnected(getApplicationContext())"
           ],
           "subStack1": {
             "type": " ",
             "opCode": "doToast",
             "spec": "Toast %s",
             "parameters": [
-              "\"Нет подключения\""
+              "\"Интернета нет\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "test_if_else_internet",
+      "name": "🧪 Тест IF-ELSE (интернет)",
+      "description": "Проверка: ifElse с выражением isConnected. Показывает Toast в каждой ветке.",
+      "blocks": [
+        {
+          "type": "e",
+          "opCode": "ifElse",
+          "spec": "if %b then",
+          "parameters": [
+            "SketchwareUtil.isConnected(getApplicationContext())"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Интернет есть\""
+            ]
+          },
+          "subStack2": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Интернета нет\""
             ]
           }
         }
