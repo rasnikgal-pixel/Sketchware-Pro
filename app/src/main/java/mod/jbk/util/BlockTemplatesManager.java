@@ -133,8 +133,18 @@ public final class BlockTemplatesManager {
         if (template == null) return result;
 
         Object blocksObj = template.get("blocks");
-        if (!(blocksObj instanceof java.util.List)) return result;
-        java.util.List<?> blockDefs = (java.util.List<?>) blocksObj;
+        java.util.List<?> blockDefs;
+        if (blocksObj instanceof java.util.List) {
+            blockDefs = (java.util.List<?>) blocksObj;
+        } else if (blocksObj instanceof java.util.Map) {
+            // Пользовательский шаблон: blocks — одиночный объект с вложенными nextBlock/subStack.
+            // Оборачиваем в одноэлементный список — дальше collectBlocksRecursive рекурсивно обойдёт всё.
+            java.util.List<Object> one = new java.util.ArrayList<>();
+            one.add(blocksObj);
+            blockDefs = one;
+        } else {
+            return result;
+        }
 
         // Собираем все блоки рекурсивно (с subStack1/subStack2) в один плоский список,
         // но с правильными связями nextBlock/subStack1/subStack2 между ними.
