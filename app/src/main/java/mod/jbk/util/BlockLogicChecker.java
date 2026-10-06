@@ -32,16 +32,58 @@ public final class BlockLogicChecker {
 
     private BlockLogicChecker() {}
 
+    /** Severity level of a detected issue. */
+    public enum Severity {
+        /** Critical: project likely will not compile or will hang. */
+        CRITICAL,
+        /** Warning: may work incorrectly, review recommended. */
+        WARNING
+    }
+
     /** A single problem found by the checker. */
     public static class Issue {
         public final String opCode;
         public final String message;
         public final List<String> duplicateBlockIds;
+        /** Severity of the issue. Defaults to WARNING for backward compatibility. */
+        public final Severity severity;
+        /** Id of the offending block (may be null if not applicable). */
+        public final String blockId;
+        /** Name of the event where the issue was found (may be null). */
+        public final String eventName;
+        /** Human-readable location, e.g. Russian text. */
+        public final String humanLocation;
 
+        /** Backward-compatible constructor: severity defaults to WARNING. */
         public Issue(String opCode, String message, List<String> duplicateBlockIds) {
+            this(opCode, message, duplicateBlockIds, Severity.WARNING, null, null, null);
+        }
+
+        /** Full constructor. */
+        public Issue(String opCode, String message, List<String> duplicateBlockIds,
+                     Severity severity, String blockId, String eventName, String humanLocation) {
             this.opCode = opCode;
             this.message = message;
-            this.duplicateBlockIds = duplicateBlockIds;
+            this.duplicateBlockIds = duplicateBlockIds == null ? new ArrayList<>() : duplicateBlockIds;
+            this.severity = severity == null ? Severity.WARNING : severity;
+            this.blockId = blockId;
+            this.eventName = eventName;
+            this.humanLocation = humanLocation;
+        }
+
+        /** Emoji prefix for UI: red for critical, yellow for warning. */
+        public String emoji() {
+            return severity == Severity.CRITICAL ? "\uD83D\uDD34" : "\uD83D\uDFE1";
+        }
+
+        /** Human-readable line for dialogs and journals. */
+        public String toDisplayString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(emoji()).append(" ").append(message);
+            if (humanLocation != null && !humanLocation.isEmpty()) {
+                sb.append(" (").append(humanLocation).append(")");
+            }
+            return sb.toString();
         }
     }
 
@@ -61,7 +103,13 @@ public final class BlockLogicChecker {
             List<String> ids = e.getValue();
             if (ids.size() > 1) {
                 List<String> duplicatesToDelete = new ArrayList<>(ids.subList(1, ids.size()));
-                issues.add(new Issue(e.getKey(), "Дубликат: " + e.getKey() + " × " + ids.size(), duplicatesToDelete));
+                issues.add(new Issue(e.getKey(),
+                        "Дубликат: " + e.getKey() + " × " + ids.size(),
+                        duplicatesToDelete,
+                        Severity.WARNING,
+                        ids.isEmpty() ? null : ids.get(0),
+                        null,
+                        "Дубликат блока"));
             }
         }
 
@@ -112,19 +160,31 @@ public final class BlockLogicChecker {
         if (hasSetTitle && !hasShow) {
             issues.add(new Issue("dialogSetTitle",
                     "dialogSetTitle без dialogShow — диалог не будет показан",
-                    new ArrayList<>()));
+                    new ArrayList<>(),
+                    Severity.WARNING,
+                    null,
+                    null,
+                    "dialogSetTitle вне dialogShow"));
         }
         if (hasSetMessage && !hasShow) {
             issues.add(new Issue("dialogSetMessage",
                     "dialogSetMessage без dialogShow — диалог не будет показан",
-                    new ArrayList<>()));
+                    new ArrayList<>(),
+                    Severity.WARNING,
+                    null,
+                    null,
+                    "dialogSetMessage вне dialogShow"));
         }
 
         // Rule: dialogDismiss without dialogShow
         if (hasDismiss && !hasShow) {
             issues.add(new Issue("dialogDismiss",
                     "dialogDismiss без dialogShow — диалог не показан, dismiss бесполезен",
-                    new ArrayList<>()));
+                    new ArrayList<>(),
+                    Severity.WARNING,
+                    null,
+                    null,
+                    "dialogDismiss без показа"));
         }
 
         // Rule: dialogDismiss placed before dialogShow
@@ -132,7 +192,11 @@ public final class BlockLogicChecker {
                 && firstDismissIndex < firstShowIndex) {
             issues.add(new Issue("dialogDismiss",
                     "dialogDismiss стоит до dialogShow — dismiss сработает раньше показа",
-                    dismissIdsBeforeShow));
+                    dismissIdsBeforeShow,
+                    Severity.WARNING,
+                    dismissIdsBeforeShow.isEmpty() ? null : dismissIdsBeforeShow.get(0),
+                    null,
+                    "Порядок блоков диалога"));
         }
     }
 
