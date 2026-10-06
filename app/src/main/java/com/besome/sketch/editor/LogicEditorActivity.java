@@ -2505,6 +2505,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        // FIX: глобальная защита от NPE в onTouch
+        try {
         int actionMasked = event.getActionMasked();
         if (event.getPointerId(event.getActionIndex()) > 0) {
             return true;
@@ -2889,6 +2891,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             return false;
         } else {
             return true;
+        }
+        } catch (Throwable _t) {
+            pro.sketchware.smartdrop.DebugLogger.get(getApplicationContext())
+                    .d("LogicEditorActivity", "onTouch_error", String.valueOf(_t.getMessage()));
+            return false;
         }
     }
 
