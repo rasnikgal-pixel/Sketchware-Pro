@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "templates": [
     {
       "id": "dialog_ok",
@@ -1095,6 +1095,29 @@
           "parameters": [
             "\"Текст сообщения\""
           ]
+        }
+      ]
+    },
+    {
+      "id": "test_if_internet",
+      "name": "🧪 Тест IF (проверка интернета)",
+      "description": "Тестовая сборка: if-контейнер с вложенным Toast. Проверка формата вложенных блоков.",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "if",
+          "spec": "if %b then",
+          "parameters": [
+            "isConnected"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Нет подключения\""
+            ]
+          }
         }
       ]
     }
