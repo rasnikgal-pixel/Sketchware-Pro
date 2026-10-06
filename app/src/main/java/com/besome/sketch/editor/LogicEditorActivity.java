@@ -2552,6 +2552,21 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         lastTapTime = now;
                         lastTappedRs = rs;
                         a(rs, event.getX(), event.getY());
+                    } else if (rs.getBlockType() == 2) {
+                        Object tag = rs.getTag();
+                        if (tag instanceof String && ((String) tag).startsWith(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + mod.jbk.util.BlockTemplatesManager.CUSTOM_ID_PREFIX)) {
+                            long now = System.currentTimeMillis();
+                            if (now - lastTapTime < 350 && lastTappedRs == rs) {
+                                lastTapTime = 0;
+                                lastTappedRs = null;
+                                String fullTag = (String) tag;
+                                String id = fullTag.substring(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX.length());
+                                showCustomTemplateActions(id);
+                                return false;
+                            }
+                            lastTapTime = now;
+                            lastTappedRs = rs;
+                        }
                     }
                 }
                 checkBlocksAfterChange();
@@ -3166,4 +3181,134 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         }
     }
 
+
+
+    /**
+     * Меню управления пользовательской сборкой (по двойному тапу в палитре).
+     */
+    private void showCustomTemplateActions(String id) {
+        final java.util.Map<String, Object> tpl =
+                mod.jbk.util.BlockTemplatesManager.getById(id);
+        if (tpl == null) {
+            android.widget.Toast.makeText(this, "Сборка не найдена",
+                    android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Object tname = tpl.get("name");
+        String displayName = tname instanceof String ? (String) tname : id;
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle(displayName)
+                .setItems(new String[] {
+                        "Переименовать",
+                        "Изменить описание",
+                        "Удалить",
+                        "Удалить все сборки"
+                }, (d, which) -> {
+                    if (which == 0) {
+                        showRenameTemplateDialog(id, tpl);
+                    } else if (which == 1) {
+                        showEditDescriptionDialog(id, tpl);
+                    } else if (which == 2) {
+                        showDeleteTemplateDialog(id, displayName);
+                    } else if (which == 3) {
+                        showDeleteAllTemplatesDialog();
+                    }
+                })
+                .show();
+    }
+
+    private void showRenameTemplateDialog(String id, java.util.Map<String, Object> tpl) {
+        com.google.android.material.textfield.TextInputLayout layout =
+                new com.google.android.material.textfield.TextInputLayout(this);
+        layout.setHint("Новое название");
+        com.google.android.material.textfield.TextInputEditText input =
+                new com.google.android.material.textfield.TextInputEditText(this);
+        Object oldName = tpl.get("name");
+        if (oldName instanceof String) input.setText((String) oldName);
+        layout.addView(input);
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle("Переименовать сборку")
+                .setView(layout)
+                .setPositiveButton("Сохранить", (d, w) -> {
+                    String newName = input.getText() == null ? "" : input.getText().toString().trim();
+                    if (newName.isEmpty()) {
+                        android.widget.Toast.makeText(this, "Введите название",
+                                android.widget.Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    mod.jbk.util.BlockTemplatesManager.updateCustomTemplate(id, newName, null);
+                    refreshTemplatesPalette();
+                    android.widget.Toast.makeText(this, "Переименовано",
+                            android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Отмена", null)
+                .show();
+    }
+
+    private void showEditDescriptionDialog(String id, java.util.Map<String, Object> tpl) {
+        com.google.android.material.textfield.TextInputLayout layout =
+                new com.google.android.material.textfield.TextInputLayout(this);
+        layout.setHint("Новое описание");
+        com.google.android.material.textfield.TextInputEditText input =
+                new com.google.android.material.textfield.TextInputEditText(this);
+        Object oldDesc = tpl.get("description");
+        if (oldDesc instanceof String) input.setText((String) oldDesc);
+        layout.addView(input);
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle("Изменить описание")
+                .setView(layout)
+                .setPositiveButton("Сохранить", (d, w) -> {
+                    String newDesc = input.getText() == null ? "" : input.getText().toString().trim();
+                    mod.jbk.util.BlockTemplatesManager.updateCustomTemplate(id, null, newDesc);
+                    refreshTemplatesPalette();
+                    android.widget.Toast.makeText(this, "Описание обновлено",
+                            android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Отмена", null)
+                .show();
+    }
+
+    private void showDeleteTemplateDialog(String id, String displayName) {
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle("Удалить сборку?")
+                .setMessage(displayName)
+                .setPositiveButton("Удалить", (d, w) -> {
+                    mod.jbk.util.BlockTemplatesManager.deleteCustomTemplate(id);
+                    refreshTemplatesPalette();
+                    android.widget.Toast.makeText(this, "Сборка удалена",
+                            android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Отмена", null)
+                .show();
+    }
+
+    /** Перерисовывает палитру конструктора. */
+    private void refreshTemplatesPalette() {
+        try {
+            if (extraPaletteBlock != null) {
+                extraPaletteBlock.setBlock(
+                        mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID,
+                        mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_COLOR);
+            }
+        } catch (Throwable ignored) {}
+    }
+
+
+    /** Подтверждение удаления всех пользовательских сборок. */
+    private void showDeleteAllTemplatesDialog() {
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle("Удалить все сборки?")
+                .setMessage("Все пользовательские сборки будут удалены. Готовые наборы останутся.")
+                .setPositiveButton("Удалить все", (d, w) -> {
+                    mod.jbk.util.BlockTemplatesManager.deleteAllCustom();
+                    refreshTemplatesPalette();
+                    android.widget.Toast.makeText(this, "Все сборки удалены",
+                            android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Отмена", null)
+                .show();
+    }
 }

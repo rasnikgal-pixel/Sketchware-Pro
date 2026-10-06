@@ -432,6 +432,16 @@ public final class BlockTemplatesManager {
         }
     }
 
+    /** Удаляет все пользовательские сборки. */
+    public static boolean deleteAllCustom() {
+        try {
+            FileUtil.writeFile(CUSTOM_FILE_PATH, "{\"templates\":[]}");
+            return true;
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
     /** Внутренний метод: пишет список в файл. */
     private static boolean writeCustomFile(List<Map<String, Object>> custom) {
         try {
