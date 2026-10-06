@@ -46,7 +46,16 @@ public final class BlockTemplatesManager {
 
     /** Returns all templates (seeds defaults on first run). */
     public static List<Map<String, Object>> getAll() {
-        if (!FileUtil.isExistFile(FILE_PATH)) {
+        // Обновляем файл, если его нет или версия в assets новее
+        boolean needSeed = !FileUtil.isExistFile(FILE_PATH);
+        if (!needSeed) {
+            int assetVer = getAssetVersion();
+            int fileVer = getFileVersion();
+            if (assetVer > fileVer) {
+                needSeed = true;
+            }
+        }
+        if (needSeed) {
             seedDefaults();
         }
         try {
@@ -93,6 +102,45 @@ public final class BlockTemplatesManager {
     public static String extractIdFromOpCode(String opCode) {
         if (opCode == null || !opCode.startsWith(TEMPLATE_OPCODE_PREFIX)) return null;
         return opCode.substring(TEMPLATE_OPCODE_PREFIX.length());
+    }
+
+    /** Читает версию из assets/block_templates.json. */
+    private static int getAssetVersion() {
+        try {
+            android.content.Context ctx = getAppContext();
+            if (ctx == null) return 0;
+            java.io.InputStream is = ctx.getAssets().open("block_templates.json");
+            java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+            byte[] buf = new byte[8192];
+            int n;
+            while ((n = is.read(buf)) > 0) baos.write(buf, 0, n);
+            is.close();
+            String json = baos.toString("UTF-8");
+            Map<String, Object> root = new Gson().fromJson(json,
+                    new TypeToken<Map<String, Object>>() {}.getType());
+            if (root == null) return 0;
+            Object v = root.get("version");
+            if (v instanceof Number) return ((Number) v).intValue();
+            return 0;
+        } catch (Throwable t) {
+            return 0;
+        }
+    }
+
+    /** Читает версию из файла на /sdcard/. */
+    private static int getFileVersion() {
+        try {
+            String json = FileUtil.readFile(FILE_PATH);
+            if (json == null || json.trim().isEmpty()) return 0;
+            Map<String, Object> root = new Gson().fromJson(json,
+                    new TypeToken<Map<String, Object>>() {}.getType());
+            if (root == null) return 0;
+            Object v = root.get("version");
+            if (v instanceof Number) return ((Number) v).intValue();
+            return 0;
+        } catch (Throwable t) {
+            return 0;
+        }
     }
 
     private static void seedDefaults() {
