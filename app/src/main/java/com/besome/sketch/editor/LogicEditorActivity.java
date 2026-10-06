@@ -3149,6 +3149,13 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         android.widget.Toast.makeText(this,
                                 ok ? "Сборка сохранена" : "Ошибка сохранения",
                                 android.widget.Toast.LENGTH_SHORT).show();
+                        if (ok && extraPaletteBlock != null) {
+                            try {
+                                extraPaletteBlock.setBlock(
+                                        mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID,
+                                        mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_COLOR);
+                            } catch (Throwable ignored) {}
+                        }
                     })
                     .setNegativeButton("Отмена", null)
                     .show();
