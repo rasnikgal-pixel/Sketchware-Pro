@@ -578,4 +578,23 @@ public final class BlockTemplatesManager {
     }
 
 
+
+    /** Ищет пользовательскую сборку по имени (без учёта регистра).
+     *  Если excludeId != null — пропускает сборку с этим id (для переименования). */
+    public static Map<String, Object> findByName(String name, String excludeId) {
+        if (name == null) return null;
+        String needle = name.trim();
+        if (needle.isEmpty()) return null;
+        for (Map<String, Object> t : getAllUserTemplates()) {
+            Object tid = t.get("id");
+            if (excludeId != null && excludeId.equals(tid)) continue;
+            Object tname = t.get("name");
+            if (tname instanceof String && ((String) tname).trim().equalsIgnoreCase(needle)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+
 }

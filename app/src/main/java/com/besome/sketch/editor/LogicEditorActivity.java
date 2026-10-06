@@ -3190,6 +3190,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                                     android.widget.Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        if (mod.jbk.util.BlockTemplatesManager.findByName(name, null) != null) {
+                            android.widget.Toast.makeText(this, "Сборка с таким именем уже есть",
+                                    android.widget.Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         String id = mod.jbk.util.BlockTemplatesManager.generateId(name);
                         boolean ok = mod.jbk.util.BlockTemplatesManager
                                 .saveCustomTemplate(id, name, desc, tree);
@@ -3267,6 +3272,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     String newName = input.getText() == null ? "" : input.getText().toString().trim();
                     if (newName.isEmpty()) {
                         android.widget.Toast.makeText(this, "Введите название",
+                                android.widget.Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (mod.jbk.util.BlockTemplatesManager.findByName(newName, id) != null) {
+                        android.widget.Toast.makeText(this, "Сборка с таким именем уже есть",
                                 android.widget.Toast.LENGTH_SHORT).show();
                         return;
                     }
