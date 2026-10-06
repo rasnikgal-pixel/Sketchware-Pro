@@ -176,6 +176,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private int minDist, S, x, y;
     private int T = -30;
     private View currentTouchedView;
+
+    // Для обработки двойного тапа на блоке холста
+    private long lastTapTime = 0;
+    private Rs lastTappedRs = null;
     private boolean G, isDragged, W, X, da, ea, ha, ia;
     private ArrayList<BlockBean> savedBlockBean = new ArrayList<>();
     private final Runnable longPressed = this::r;
@@ -2538,6 +2542,15 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             if (!isDragged) {
                 if (v instanceof Rs rs) {
                     if (rs.getBlockType() == 0) {
+                        long now = System.currentTimeMillis();
+                        if (now - lastTapTime < 350 && lastTappedRs == rs) {
+                            lastTapTime = 0;
+                            lastTappedRs = null;
+                            showBlockContextMenu(rs);
+                            return false;
+                        }
+                        lastTapTime = now;
+                        lastTappedRs = rs;
                         a(rs, event.getX(), event.getY());
                     }
                 }
@@ -3067,4 +3080,83 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
         }
     }
+
+
+    /**
+     * Показывает контекстное меню для блока на холсте (по двойному тапу).
+     */
+    private void showBlockContextMenu(Rs rs) {
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle("Действие с блоком")
+                .setItems(new String[] { "➕ Добавить свою сборку" }, (d, which) -> {
+                    if (which == 0) {
+                        showSaveAsTemplateDialog(rs);
+                    }
+                })
+                .show();
+    }
+
+    /**
+     * Диалог сохранения выделенной цепочки блоков как сборки.
+     */
+    private void showSaveAsTemplateDialog(Rs rs) {
+        try {
+            java.util.Map<String, Object> tree =
+                    mod.jbk.util.BlockChainSerializer.serialize(rs.getBean(), o.getBlocks());
+            if (tree == null) {
+                android.widget.Toast.makeText(this, "Не удалось прочитать блок",
+                        android.widget.Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            android.widget.LinearLayout layout = new android.widget.LinearLayout(this);
+            layout.setOrientation(android.widget.LinearLayout.VERTICAL);
+            int pad = (int) (16 * getResources().getDisplayMetrics().density);
+            layout.setPadding(pad, pad, pad, pad);
+
+            com.google.android.material.textfield.TextInputLayout nameLayout =
+                    new com.google.android.material.textfield.TextInputLayout(this);
+            nameLayout.setHint("Название сборки");
+            com.google.android.material.textfield.TextInputEditText nameInput =
+                    new com.google.android.material.textfield.TextInputEditText(this);
+            nameLayout.addView(nameInput);
+            layout.addView(nameLayout);
+
+            com.google.android.material.textfield.TextInputLayout descLayout =
+                    new com.google.android.material.textfield.TextInputLayout(this);
+            descLayout.setHint("Описание (необязательно)");
+            com.google.android.material.textfield.TextInputEditText descInput =
+                    new com.google.android.material.textfield.TextInputEditText(this);
+            descLayout.addView(descInput);
+            layout.addView(descLayout);
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Сохранить как сборку")
+                    .setView(layout)
+                    .setPositiveButton("Сохранить", (d, w) -> {
+                        String name = nameInput.getText() == null
+                                ? "" : nameInput.getText().toString().trim();
+                        String desc = descInput.getText() == null
+                                ? "" : descInput.getText().toString().trim();
+                        if (name.isEmpty()) {
+                            android.widget.Toast.makeText(this, "Введите название",
+                                    android.widget.Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        String id = mod.jbk.util.BlockTemplatesManager.generateId(name);
+                        boolean ok = mod.jbk.util.BlockTemplatesManager
+                                .saveCustomTemplate(id, name, desc, tree);
+                        android.widget.Toast.makeText(this,
+                                ok ? "Сборка сохранена" : "Ошибка сохранения",
+                                android.widget.Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Отмена", null)
+                    .show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this,
+                    "Ошибка: " + t.getMessage(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
