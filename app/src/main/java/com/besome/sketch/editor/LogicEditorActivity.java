@@ -2263,7 +2263,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             if (blocks == null || blocks.isEmpty()) return;
 
             java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues =
-                    mod.jbk.util.BlockLogicChecker.check(blocks);
+                    mod.jbk.util.ProjectLogicChecker.check(blocks, this, scId, M == null ? null : M.getJavaName());
             if (issues.isEmpty()) {
                 lastBlockIssueHash = "";
                 return;
