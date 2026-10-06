@@ -273,21 +273,15 @@ public final class BlockTemplatesManager {
     /** Возвращает только пользовательские сборки. */
     public static List<Map<String, Object>> getCustom() {
         try {
-            pro.sketchware.smartdrop.DebugLogger.d("getCustom", "path=" + CUSTOM_FILE_PATH);
-            boolean exists = FileUtil.isExistFile(CUSTOM_FILE_PATH);
-            pro.sketchware.smartdrop.DebugLogger.d("getCustom", "exists=" + exists);
-            if (!exists) {
+            if (!FileUtil.isExistFile(CUSTOM_FILE_PATH)) {
                 return new ArrayList<>();
             }
             String json = FileUtil.readFile(CUSTOM_FILE_PATH);
-            pro.sketchware.smartdrop.DebugLogger.d("getCustom", "json_len=" + (json == null ? "null" : json.length()));
             if (json == null || json.trim().isEmpty()) return new ArrayList<>();
             Map<String, Object> root = new Gson().fromJson(json,
                     new TypeToken<Map<String, Object>>() {}.getType());
-            pro.sketchware.smartdrop.DebugLogger.d("getCustom", "root=" + (root == null ? "null" : "ok"));
             if (root == null) return new ArrayList<>();
             Object templatesObj = root.get("templates");
-            pro.sketchware.smartdrop.DebugLogger.d("getCustom", "templates_obj=" + (templatesObj == null ? "null" : templatesObj.getClass().getName()));
             if (!(templatesObj instanceof List)) return new ArrayList<>();
             List<Map<String, Object>> result = new ArrayList<>();
             for (Object item : (List<?>) templatesObj) {
