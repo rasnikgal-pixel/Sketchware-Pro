@@ -116,7 +116,135 @@ public final class BlockLogicChecker {
         // 2. Presence / order checks
         checkPresenceAndOrder(blocks, issues);
 
+        // 3. Structural checks on individual blocks
+        checkEmptyConditions(blocks, issues);
+        checkTrivialConditions(blocks, issues);
+        checkUnreachableBlocks(blocks, issues);
+
         return issues;
+    }
+
+    /**
+     * Rule: blocks that are not connected to any event root.
+     * We build a graph via nextBlock / subStack1 / subStack2, collect all ids
+     * reachable from any root (block nobody points to), and flag the rest.
+     */
+    private static void checkUnreachableBlocks(List<BlockBean> blocks, List<Issue> issues) {
+        if (blocks == null || blocks.size() < 2) return;
+        Map<String, BlockBean> byId = new HashMap<>();
+        for (BlockBean b : blocks) {
+            if (b != null && b.id != null) byId.put(b.id, b);
+        }
+        if (byId.isEmpty()) return;
+        Set<String> pointedTo = new HashSet<>();
+        for (BlockBean b : blocks) {
+            if (b == null) continue;
+            if (b.nextBlock > 0) {
+                BlockBean n = byId.get(String.valueOf(b.nextBlock));
+                if (n == null) {
+                    for (BlockBean cand : blocks) {
+                        if (cand != null && cand.id != null && cand.id.equals(String.valueOf(b.nextBlock))) {
+                            pointedTo.add(cand.id);
+                            break;
+                        }
+                    }
+                } else {
+                    pointedTo.add(n.id);
+                }
+            }
+            if (b.subStack1 > 0) pointedTo.add(String.valueOf(b.subStack1));
+            if (b.subStack2 > 0) pointedTo.add(String.valueOf(b.subStack2));
+        }
+        java.util.Deque<String> stack = new java.util.ArrayDeque<>();
+        Set<String> visited = new HashSet<>();
+        for (String id : byId.keySet()) {
+            if (!pointedTo.contains(id)) stack.push(id);
+        }
+        if (stack.isEmpty()) {
+            for (String id : byId.keySet()) stack.push(id);
+        }
+        while (!stack.isEmpty()) {
+            String id = stack.pop();
+            if (!visited.add(id)) continue;
+            BlockBean b = byId.get(id);
+            if (b == null) continue;
+            if (b.nextBlock > 0) stack.push(String.valueOf(b.nextBlock));
+            if (b.subStack1 > 0) stack.push(String.valueOf(b.subStack1));
+            if (b.subStack2 > 0) stack.push(String.valueOf(b.subStack2));
+            if (b.parameters != null) {
+                for (String p : b.parameters) {
+                    if (p == null) continue;
+                    String t = p.trim();
+                    if (t.startsWith("@") && t.length() > 1) stack.push(t.substring(1));
+                }
+            }
+        }
+        for (BlockBean b : blocks) {
+            if (b == null || b.id == null) continue;
+            if (visited.contains(b.id)) continue;
+            issues.add(new Issue(
+                    b.opCode,
+                    "Блок " + b.opCode + " не подключён к событию (висит отдельно)",
+                    new ArrayList<>(),
+                    Severity.WARNING,
+                    b.id,
+                    null,
+                    "Недостижимый блок"));
+        }
+    }
+
+    /**
+     * Rule: if / ifElse / while with a trivial constant condition (true/false).
+     * Works but is almost always a mistake — code becomes dead or always-on.
+     */
+    private static void checkTrivialConditions(List<BlockBean> blocks, List<Issue> issues) {
+        for (BlockBean b : blocks) {
+            if (b == null || b.opCode == null) continue;
+            String op = b.opCode;
+            boolean isConditional = "if".equals(op) || "ifElse".equals(op) || "while".equals(op);
+            if (!isConditional) continue;
+            if (b.parameters == null || b.parameters.isEmpty()) continue;
+            String condition = b.parameters.get(0);
+            if (condition == null) continue;
+            String c = condition.trim();
+            if ("true".equals(c) || "false".equals(c)) {
+                issues.add(new Issue(
+                        op,
+                        "Тривиальное условие " + c + " в блоке " + op + " — всегда " + c,
+                        new ArrayList<>(),
+                        Severity.WARNING,
+                        b.id,
+                        null,
+                        "Условие " + c + " в " + op));
+            }
+        }
+    }
+
+    /**
+     * Rule: if / ifElse / while with empty or missing condition parameter.
+     * This is the leading cause of Sketchware hanging when dragging such a block.
+     */
+    private static void checkEmptyConditions(List<BlockBean> blocks, List<Issue> issues) {
+        for (BlockBean b : blocks) {
+            if (b == null || b.opCode == null) continue;
+            String op = b.opCode;
+            boolean isConditional = "if".equals(op) || "ifElse".equals(op) || "while".equals(op);
+            if (!isConditional) continue;
+            String condition = null;
+            if (b.parameters != null && !b.parameters.isEmpty()) {
+                condition = b.parameters.get(0);
+            }
+            if (condition == null || condition.trim().isEmpty()) {
+                issues.add(new Issue(
+                        op,
+                        "Пустое условие в блоке " + op + " — может привести к зависанию",
+                        new ArrayList<>(),
+                        Severity.CRITICAL,
+                        b.id,
+                        null,
+                        "Пустое условие в " + op));
+            }
+        }
     }
 
     private static void checkPresenceAndOrder(List<BlockBean> blocks, List<Issue> issues) {
