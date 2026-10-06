@@ -1243,13 +1243,18 @@ public class ExtraPaletteBlock {
 
             case 200:
                 // Block templates (ready-made chains)
-                java.util.List<java.util.Map<String, Object>> templates =
-                        mod.jbk.util.BlockTemplatesManager.getAll();
-                if (templates.isEmpty()) {
+                java.util.List<java.util.Map<String, Object>> builtin =
+                        mod.jbk.util.BlockTemplatesManager.getBuiltin();
+                java.util.List<java.util.Map<String, Object>> custom =
+                        mod.jbk.util.BlockTemplatesManager.getCustom();
+                java.util.List<java.util.Map<String, Object>> templates = builtin;
+                if (builtin.isEmpty() && custom.isEmpty()) {
                     logicEditor.a("Сборки пусты.\n\nДобавьте шаблоны в файл:\n/sdcard/.sketchware/block_templates.json", getTitleBgColor());
                     return;
                 }
-                logicEditor.a("Сборки", getTitleBgColor());
+                if (!builtin.isEmpty()) {
+                    logicEditor.a("Готовые наборы", getTitleBgColor());
+                }
                 for (java.util.Map<String, Object> tpl : templates) {
                     Object tid = tpl.get("id");
                     Object tname = tpl.get("name");
@@ -1289,6 +1294,39 @@ public class ExtraPaletteBlock {
                         }
                     } catch (Throwable t) {
                         SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
+                    }
+                }
+                if (!custom.isEmpty()) {
+                    logicEditor.a("Мои наборы", getTitleBgColor());
+                    for (java.util.Map<String, Object> tpl : custom) {
+                        Object tid = tpl.get("id");
+                        Object tname = tpl.get("name");
+                        if (!(tid instanceof String) || !(tname instanceof String)) continue;
+                        try {
+                            java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks =
+                                    mod.jbk.util.BlockTemplatesManager.toBlockBeans(tpl);
+                            if (blocks.isEmpty()) continue;
+                            com.besome.sketch.beans.BlockBean first = blocks.get(0);
+                            String title = tname.toString();
+                            a.a.a.Us us = new a.a.a.Us(logicEditor,
+                                    first.type == null ? " " : first.type,
+                                    first.typeName == null ? "" : first.typeName,
+                                    first.opCode == null ? "" : first.opCode,
+                                    title, blocks);
+                            us.setTag(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid);
+                            try {
+                                us.tvSpec.setTextColor(0xff000000);
+                            } catch (Throwable ignored) {}
+                            us.setClickable(true);
+                            us.setFocusable(true);
+                            try { us.setBlockType(2); } catch (Throwable ignored) {}
+                            us.setOnTouchListener(logicEditor);
+                            if (logicEditor.m != null) {
+                                logicEditor.m.addTemplateView(us);
+                            }
+                        } catch (Throwable t) {
+                            SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
+                        }
                     }
                 }
                 return;
