@@ -337,4 +337,7 @@
     <string name="common_word_upload">Загрузить</string>
     <string name="common_word_variable">Переменная</string>
     <string name="common_word_watch">Смотреть</string>
+
+    <string name="menu_export_templates">Экспорт конструктора</string>
+    <string name="menu_import_templates">Импорт конструктора</string>
 </resources>

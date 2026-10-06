@@ -180,6 +180,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     // Для обработки двойного тапа на блоке холста
     private long lastTapTime = 0;
     private Rs lastTappedRs = null;
+
+    // Лаунчеры для экспорта/импорта конструктора
+    private androidx.activity.result.ActivityResultLauncher<String> exportTemplatesLauncher;
+    private androidx.activity.result.ActivityResultLauncher<String[]> importTemplatesLauncher;
     private boolean G, isDragged, W, X, da, ea, ha, ia;
     private ArrayList<BlockBean> savedBlockBean = new ArrayList<>();
     private final Runnable longPressed = this::r;
@@ -1978,6 +1982,30 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         O = findViewById(R.id.right_drawer);
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
         mod.jbk.util.BlockTemplatesManager.setContext(getApplicationContext());
+
+        exportTemplatesLauncher = registerForActivityResult(
+                new androidx.activity.result.contract.ActivityResultContracts.CreateDocument("application/json"),
+                uri -> {
+                    if (uri == null) return;
+                    try {
+                        String json = mod.jbk.util.BlockTemplatesManager.getCustomRawJson();
+                        java.io.OutputStream os = getContentResolver().openOutputStream(uri);
+                        if (os != null) {
+                            os.write(json.getBytes("UTF-8"));
+                            os.close();
+                        }
+                        android.widget.Toast.makeText(this, "Экспортировано", android.widget.Toast.LENGTH_SHORT).show();
+                    } catch (Throwable t) {
+                        android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        importTemplatesLauncher = registerForActivityResult(
+                new androidx.activity.result.contract.ActivityResultContracts.OpenDocument(),
+                uri -> {
+                    if (uri == null) return;
+                    handleImportTemplates(uri);
+                });
         extraPaletteBlock = new ExtraPaletteBlock(this, isViewBindingEnabled);
         // Pass project id to PaletteBlock so it can store per-project scroll positions
         if (m != null) {
@@ -2123,6 +2151,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             redo();
         } else if (itemId == R.id.menu_logic_undo) {
             undo();
+        } else if (itemId == R.id.menu_export_templates) {
+            exportTemplatesLauncher.launch("my_blocks_" + System.currentTimeMillis() + ".json");
+        } else if (itemId == R.id.menu_import_templates) {
+            importTemplatesLauncher.launch(new String[]{"application/json"});
         } else if (itemId == R.id.menu_logic_showsource) {
             showSourceCode();
         }
@@ -3311,4 +3343,44 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 .setNegativeButton("Отмена", null)
                 .show();
     }
+
+
+    /** Обработка импорта файла конструктора. */
+    private void handleImportTemplates(android.net.Uri uri) {
+        try {
+            java.io.InputStream is = getContentResolver().openInputStream(uri);
+            if (is == null) {
+                android.widget.Toast.makeText(this, "Не удалось открыть файл", android.widget.Toast.LENGTH_SHORT).show();
+                return;
+            }
+            java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+            byte[] buf = new byte[8192];
+            int n;
+            while ((n = is.read(buf)) > 0) baos.write(buf, 0, n);
+            is.close();
+            String json = baos.toString("UTF-8");
+
+            try {
+                Object parsed = new com.google.gson.Gson().fromJson(json, java.util.Map.class);
+                if (!(parsed instanceof java.util.Map)) throw new RuntimeException("not a map");
+            } catch (Throwable t) {
+                android.widget.Toast.makeText(this, "Неверный формат JSON", android.widget.Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Импорт конструктора")
+                    .setMessage("Заменить все пользовательские сборки содержимым файла?")
+                    .setPositiveButton("Заменить", (d, w) -> {
+                        mod.jbk.util.BlockTemplatesManager.setCustomRawJson(json);
+                        refreshTemplatesPalette();
+                        android.widget.Toast.makeText(this, "Импортировано", android.widget.Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Отмена", null)
+                    .show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

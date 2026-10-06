@@ -35,4 +35,16 @@
         android:title="@string/smartdrop_menu_update_blocks"
         app:showAsAction="never" />
 
+
+    <item
+        android:id="@+id/menu_export_templates"
+        android:orderInCategory="200"
+        android:title="@string/menu_export_templates"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_import_templates"
+        android:orderInCategory="200"
+        android:title="@string/menu_import_templates"
+        app:showAsAction="never" />
 </menu>
