@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "templates": [
     {
       "id": "dialog_ok",
@@ -41,7 +41,8 @@
             "dialog1"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_confirm",
@@ -92,7 +93,8 @@
             "dialog1"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_3buttons",
@@ -152,7 +154,8 @@
             "dialog1"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_dismiss",
@@ -193,7 +196,8 @@
             "dialog1"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_exit_app",
@@ -258,7 +262,8 @@
             "dialog1"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "progressdialog_simple",
@@ -300,7 +305,8 @@
             "PDlg"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "progressdialog_dismiss",
@@ -315,7 +321,8 @@
             "PDlg"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "finish_activity",
@@ -328,7 +335,8 @@
           "spec": "Finish Activity",
           "parameters": []
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "finish_affinity",
@@ -341,7 +349,8 @@
           "spec": "Finish Affinity",
           "parameters": []
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "custom_toast",
@@ -361,7 +370,8 @@
             "BOTTOM"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_info",
@@ -403,7 +413,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_error",
@@ -445,7 +456,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_warning",
@@ -487,7 +499,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_success",
@@ -529,7 +542,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_question",
@@ -580,7 +594,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_delete_confirm",
@@ -631,7 +646,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_save_changes",
@@ -691,7 +707,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_restart_app",
@@ -756,7 +773,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_exit_no_save",
@@ -821,7 +839,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_update_available",
@@ -872,7 +891,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_permission_needed",
@@ -923,7 +943,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_rate_app",
@@ -983,7 +1004,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_no_internet",
@@ -1034,7 +1056,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_loading",
@@ -1067,7 +1090,8 @@
             }
           }
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
       "id": "dialog_close",
@@ -1082,35 +1106,285 @@
             "dialog1"
           ]
         }
-      ]
+      ],
+      "category": "dialog"
     },
     {
-      "id": "test_if_internet",
-      "name": "🧪 Тест IF (нет интернета)",
-      "description": "Проверка: if с выражением isConnected. Если интернета нет — Toast «Интернета нет».",
+      "id": "ui_show_keyboard_toast",
+      "category": "ui",
+      "name": "🎨 Показать клавиатуру + Toast",
+      "description": "Показывает клавиатуру и выводит Toast. Замените текст Toast на свой.",
       "blocks": [
         {
-          "type": "c",
-          "opCode": "if",
-          "spec": "if %b then",
-          "parameters": [
-            "SketchwareUtil.isConnected(getApplicationContext())"
-          ],
-          "subStack1": {
+          "type": " ",
+          "opCode": "showKeyboard",
+          "spec": "Show keyboard",
+          "parameters": [],
+          "nextBlock": {
             "type": " ",
             "opCode": "doToast",
             "spec": "Toast %s",
             "parameters": [
-              "\"Интернета нет\""
+              "\"Клавиатура показана\""
             ]
           }
         }
       ]
     },
     {
-      "id": "test_if_else_internet",
-      "name": "🧪 Тест IF-ELSE (интернет)",
-      "description": "Проверка: ifElse с выражением isConnected. Показывает Toast в каждой ветке.",
+      "id": "ui_hide_keyboard_toast",
+      "category": "ui",
+      "name": "🎨 Скрыть клавиатуру + Toast",
+      "description": "Скрывает клавиатуру и выводит Toast.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "hideKeyboard",
+          "spec": "Hide keyboard",
+          "parameters": [],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Клавиатура скрыта\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ui_light_statusbar",
+      "category": "ui",
+      "name": "🎨 Светлый статусбар + Toast",
+      "description": "Устанавливает светлый статусбар (тёмные иконки). Работает на API 23+.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "LightStatusBar",
+          "spec": "LightStatusBar",
+          "parameters": [],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Светлая тема\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ui_change_statusbar_color",
+      "category": "ui",
+      "name": "🎨 Изменить цвет статусбара",
+      "description": "Меняет цвет статусбара. Замените HEX-цвет на свой.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "changeStatebarColour",
+          "spec": "changeStatebarColour %m.color",
+          "parameters": [
+            "\"#2196F3\""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ui_set_title_toast",
+      "category": "ui",
+      "name": "🎨 Заголовок + Toast",
+      "description": "Устанавливает заголовок Activity и показывает Toast. Замените оба текста.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "setTitle",
+          "spec": "setTitle %s",
+          "parameters": [
+            "\"Новый заголовок\""
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Заголовок установлен\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ui_request_focus",
+      "category": "ui",
+      "name": "🎨 Запросить фокус на View",
+      "description": "Запрашивает фокус на EditText и показывает клавиатуру.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "requestFocus",
+          "spec": "%m.view request focus",
+          "parameters": [
+            "editText1"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "showKeyboard",
+            "spec": "Show keyboard",
+            "parameters": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "ui_set_visible",
+      "category": "ui",
+      "name": "🎨 Показать/скрыть View",
+      "description": "Устанавливает видимость View. По умолчанию VISIBLE — замените на GONE или INVISIBLE.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "setVisible",
+          "spec": "%m.view setVisible %m.visible",
+          "parameters": [
+            "view1",
+            "VISIBLE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ui_set_alpha",
+      "category": "ui",
+      "name": "🎨 Установить прозрачность View",
+      "description": "Устанавливает прозрачность View (0-255). По умолчанию 50.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "setAlpha",
+          "spec": "%m.view setAlpha %d",
+          "parameters": [
+            "view1",
+            "50"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nav_start_chooser",
+      "category": "nav",
+      "name": "🚀 Запустить Activity с выбором",
+      "description": "Открывает системный диалог выбора приложения для действия Intent. Настройте Intent.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "startActivityWithChooser",
+          "spec": "startActivity with chooser %m.intent title %s",
+          "parameters": [
+            "intent1",
+            "\"Выберите приложение\""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nav_start_service",
+      "category": "nav",
+      "name": "🚀 Запустить сервис",
+      "description": "Запускает сервис. Требует созданный сервис с указанным именем.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "startService",
+          "spec": "start service %m.service",
+          "parameters": [
+            "MyService"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nav_stop_service",
+      "category": "nav",
+      "name": "🚀 Остановить сервис",
+      "description": "Останавливает сервис.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "stopService",
+          "spec": "stop service %m.service",
+          "parameters": [
+            "MyService"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nav_send_broadcast",
+      "category": "nav",
+      "name": "🚀 Отправить broadcast + Toast",
+      "description": "Отправляет broadcast с указанным Intent и показывает Toast.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "sendBroadcast",
+          "spec": "sendBroadcast %m.intent",
+          "parameters": [
+            "intent1"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Broadcast отправлен\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "nav_finish_toast",
+      "category": "nav",
+      "name": "🚀 Завершить Activity + Toast",
+      "description": "Показывает Toast и завершает текущую Activity.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "doToast",
+          "spec": "Toast %s",
+          "parameters": [
+            "\"Выход...\""
+          ],
+          "nextBlock": {
+            "type": "f",
+            "opCode": "finishActivity",
+            "spec": "Finish Activity",
+            "parameters": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "nav_finish_affinity",
+      "category": "nav",
+      "name": "🚀 Закрыть приложение полностью",
+      "description": "Полностью закрывает приложение (finishAffinity).",
+      "blocks": [
+        {
+          "type": "f",
+          "opCode": "finishAffinity",
+          "spec": "Finish Affinity",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "id": "logic_if_internet",
+      "category": "logic",
+      "name": "🔀 Проверка интернета (if-else)",
+      "description": "Проверяет интернет. Если есть — Toast «Интернет есть», если нет — Toast «Интернета нет».\n⚠️ Требует разрешение ACCESS_NETWORK_STATE в проекте.\nЗамените тексты Toast на свои.",
       "blocks": [
         {
           "type": "e",
@@ -1135,6 +1409,827 @@
               "\"Интернета нет\""
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "logic_if_empty_edittext",
+      "category": "logic",
+      "name": "🔀 Проверка пустого EditText",
+      "description": "Если поле EditText пустое — Toast «Введите текст». Замените имя EditText и тексты.",
+      "blocks": [
+        {
+          "type": "e",
+          "opCode": "ifElse",
+          "spec": "if %b then",
+          "parameters": [
+            "editText1.getText().toString().trim().isEmpty()"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Введите текст\""
+            ]
+          },
+          "subStack2": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Текст введён\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_if_toast",
+      "category": "logic",
+      "name": "🔀 If → Toast (пустое условие)",
+      "description": "Структура: if [условие] then { Toast }. Замените условие в ромбике (isConnected, isEmpty, переменная и т.д.).",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "if",
+          "spec": "if %b then",
+          "parameters": [
+            ""
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Условие истинно\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_if_else_toast",
+      "category": "logic",
+      "name": "🔀 If-else → Toast (пустое условие)",
+      "description": "Структура: if [условие] then { Toast } else { Toast }. Замените условие.",
+      "blocks": [
+        {
+          "type": "e",
+          "opCode": "ifElse",
+          "spec": "if %b then",
+          "parameters": [
+            ""
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Да\""
+            ]
+          },
+          "subStack2": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Нет\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_if_checkbox",
+      "category": "logic",
+      "name": "🔀 Проверка CheckBox",
+      "description": "Если CheckBox включён — Toast «Включено», если выключен — Toast «Выключено».",
+      "blocks": [
+        {
+          "type": "e",
+          "opCode": "ifElse",
+          "spec": "if %b then",
+          "parameters": [
+            "checkBox1.isChecked()"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Включено\""
+            ]
+          },
+          "subStack2": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Выключено\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_if_true",
+      "category": "logic",
+      "name": "🔀 Проверка true (демо)",
+      "description": "Демонстрация: if true then { Toast }. Всегда выполняет ветку true.",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "if",
+          "spec": "if %b then",
+          "parameters": [
+            "true"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Всегда показывается\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_if_false",
+      "category": "logic",
+      "name": "🔀 Проверка false (демо)",
+      "description": "Демонстрация: if false then { Toast }. Никогда не выполняет ветку.",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "if",
+          "spec": "if %b then",
+          "parameters": [
+            "false"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Не покажется\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_repeat5",
+      "category": "logic",
+      "name": "🔀 Повторить 5 раз + Toast",
+      "description": "Повторяет блок 5 раз. Внутри — Toast «Итерация». Замените число и содержимое.",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "repeat",
+          "spec": "repeat %d",
+          "parameters": [
+            "5"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Итерация\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_repeat10",
+      "category": "logic",
+      "name": "🔀 Повторить 10 раз + Toast",
+      "description": "Повторяет блок 10 раз. Внутри — Toast.",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "repeat",
+          "spec": "repeat %d",
+          "parameters": [
+            "10"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Итерация\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_while_true",
+      "category": "logic",
+      "name": "🔀 Пока true + Toast",
+      "description": "Цикл while с условием true. ⚠️ Осторожно: бесконечный цикл! Замените условие.",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "whileLoop",
+          "spec": "while %b",
+          "parameters": [
+            "true"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Крутится\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_forever",
+      "category": "logic",
+      "name": "🔀 Вечный цикл + Toast",
+      "description": "Бесконечный цикл. ⚠️ Может зависнуть! Используйте с осторожностью.",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "forever",
+          "spec": "forever",
+          "parameters": [],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Тик\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_switch_num",
+      "category": "logic",
+      "name": "🔀 Switch по числу",
+      "description": "Конструкция switch-case по числу. Замените case-значения и действия.",
+      "blocks": [
+        {
+          "type": "c",
+          "opCode": "switchNum",
+          "spec": "switch %d",
+          "parameters": [
+            "myNumber"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Один\""
+            ]
+          },
+          "subStack2": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Два\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic_try_catch",
+      "category": "logic",
+      "name": "🔀 Try-Catch + Toast",
+      "description": "Конструкция try-catch. В try — Toast. В catch добавьте обработку ошибки.",
+      "blocks": [
+        {
+          "type": "e",
+          "opCode": "tryCatch",
+          "spec": "try",
+          "parameters": [],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Попытка\""
+            ]
+          },
+          "subStack2": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Ошибка\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "list_add_string",
+      "category": "lists",
+      "name": "📋 Добавить в ListString + Toast",
+      "description": "Добавляет строку в ListString и показывает Toast. Замените имя списка и текст.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "addListStr",
+          "spec": "add %s to %m.listStr",
+          "parameters": [
+            "\"Новый элемент\"",
+            "myList"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Добавлено\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "list_add_number",
+      "category": "lists",
+      "name": "📋 Добавить в ListNumber + Toast",
+      "description": "Добавляет число в ListNumber и показывает Toast.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "addListInt",
+          "spec": "add %d to %m.listInt",
+          "parameters": [
+            "1",
+            "myListNum"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Добавлено\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "list_clear",
+      "category": "lists",
+      "name": "📋 Очистить список",
+      "description": "Полностью очищает список. Замените имя списка.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "clearList",
+          "spec": "clear %m.list",
+          "parameters": [
+            "myList"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "list_reverse",
+      "category": "lists",
+      "name": "📋 Реверс списка",
+      "description": "Разворачивает список в обратном порядке.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "reverseList",
+          "spec": "reverse %m.list",
+          "parameters": [
+            "myList"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "list_shuffle",
+      "category": "lists",
+      "name": "📋 Перемешать список",
+      "description": "Перемешивает список в случайном порядке.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "shuffleList",
+          "spec": "shuffle %m.list",
+          "parameters": [
+            "myList"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "list_sort_number",
+      "category": "lists",
+      "name": "📋 Сортировать список чисел",
+      "description": "Сортирует ListNumber по возрастанию.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "sortListnum",
+          "spec": "sort %m.listInt",
+          "parameters": [
+            "myListNum"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "list_sort_string",
+      "category": "lists",
+      "name": "📋 Сортировать строки",
+      "description": "Сортирует ListString по алфавиту.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "sortList",
+          "spec": "sort %m.listStr",
+          "parameters": [
+            "myList"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "list_insert_string",
+      "category": "lists",
+      "name": "📋 Вставить в ListString",
+      "description": "Вставляет элемент на указанную позицию.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "insertListStr",
+          "spec": "insert %s at %d to %m.listStr",
+          "parameters": [
+            "\"Элемент\"",
+            "0",
+            "myList"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "list_set_at",
+      "category": "lists",
+      "name": "📋 Заменить элемент по индексу",
+      "description": "Заменяет элемент по позиции в ListString.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "setAtPosListstr",
+          "spec": "set %s at %d of %m.listStr",
+          "parameters": [
+            "\"Новое\"",
+            "0",
+            "myList"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "list_delete_at",
+      "category": "lists",
+      "name": "📋 Удалить элемент по индексу",
+      "description": "Удаляет элемент из списка по позиции.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "deleteList",
+          "spec": "delete at %d of %m.list",
+          "parameters": [
+            "0",
+            "myList"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var_set_string",
+      "category": "vars",
+      "name": "💾 Установить String + Toast",
+      "description": "Устанавливает значение String-переменной и показывает Toast.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "setVarString",
+          "spec": "set %m.varStr to %s",
+          "parameters": [
+            "myString",
+            "\"Значение\""
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Установлено\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "var_set_number",
+      "category": "vars",
+      "name": "💾 Установить Number + Toast",
+      "description": "Устанавливает значение Number-переменной.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "setVarInt",
+          "spec": "set %m.varInt to %d",
+          "parameters": [
+            "myNumber",
+            "100"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Установлено\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "var_increase",
+      "category": "vars",
+      "name": "💾 Увеличить на 1 + Toast",
+      "description": "Увеличивает Number-переменную на 1 и показывает Toast.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "increaseInt",
+          "spec": "%m.varInt increase 1",
+          "parameters": [
+            "myNumber"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"+1\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "var_decrease",
+      "category": "vars",
+      "name": "💾 Уменьшить на 1 + Toast",
+      "description": "Уменьшает Number-переменную на 1.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "decreaseInt",
+          "spec": "%m.varInt decrease 1",
+          "parameters": [
+            "myNumber"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"-1\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "var_set_boolean",
+      "category": "vars",
+      "name": "💾 Установить Boolean + Toast",
+      "description": "Устанавливает Boolean-переменную.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "setVarBoolean",
+          "spec": "set %m.varBool to %b",
+          "parameters": [
+            "myBool",
+            "true"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Boolean установлен\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "var_create_map",
+      "category": "vars",
+      "name": "💾 Создать новый Map + Toast",
+      "description": "Создаёт новый Map. Замените имя.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "mapCreateNew",
+          "spec": "%m.varMap create new map",
+          "parameters": [
+            "myMap"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Map создан\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "var_map_put_string",
+      "category": "vars",
+      "name": "💾 Map: положить строку",
+      "description": "Кладёт строковое значение в Map.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "mapPut",
+          "spec": "%m.varMap put key %s value %s",
+          "parameters": [
+            "myMap",
+            "\"ключ\"",
+            "\"значение\""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var_map_put_number",
+      "category": "vars",
+      "name": "💾 Map: положить число",
+      "description": "Кладёт число в Map.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "hashmapPutNumber",
+          "spec": "%m.varMap put key %s value int %d",
+          "parameters": [
+            "myMap",
+            "\"ключ\"",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file_write",
+      "category": "files",
+      "name": "📁 Записать текст в файл",
+      "description": "Записывает текст в файл. Замените путь и текст.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "fileutilwrite",
+          "spec": "write %s to file %s",
+          "parameters": [
+            "\"Текст\"",
+            "\"/sdcard/file.txt\""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file_read",
+      "category": "files",
+      "name": "📁 Прочитать файл + Toast",
+      "description": "Читает файл и показывает содержимое в Toast. Замените путь и имя переменной.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "fileutilread",
+          "spec": "read file %s to %m.varStr",
+          "parameters": [
+            "\"/sdcard/file.txt\"",
+            "myContent"
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "myContent"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "file_delete",
+      "category": "files",
+      "name": "📁 Удалить файл + Toast",
+      "description": "Удаляет файл по пути.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "fileutildelete",
+          "spec": "delete file %s",
+          "parameters": [
+            "\"/sdcard/file.txt\""
+          ],
+          "nextBlock": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Удалено\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "file_makedir",
+      "category": "files",
+      "name": "📁 Создать папку",
+      "description": "Создаёт папку по указанному пути.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "fileutilmakedir",
+          "spec": "make dir %s",
+          "parameters": [
+            "\"/sdcard/MyFolder\""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file_exists",
+      "category": "files",
+      "name": "📁 Проверка существования файла",
+      "description": "Если файл существует — Toast «Есть», иначе — Toast «Нет».",
+      "blocks": [
+        {
+          "type": "e",
+          "opCode": "ifElse",
+          "spec": "if %b then",
+          "parameters": [
+            "FileUtil.isExistFile(\"/sdcard/file.txt\")"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Файл есть\""
+            ]
+          },
+          "subStack2": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Файла нет\""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "file_list_dir",
+      "category": "files",
+      "name": "📁 Список файлов в папке",
+      "description": "Получает список файлов из папки в ListString. Замените путь и имя списка.",
+      "blocks": [
+        {
+          "type": " ",
+          "opCode": "fileutillistdir",
+          "spec": "file list in path %s to %m.listStr",
+          "parameters": [
+            "\"/sdcard\"",
+            "myFiles"
+          ]
         }
       ]
     }

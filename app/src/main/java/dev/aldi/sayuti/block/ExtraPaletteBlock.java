@@ -1242,59 +1242,49 @@ public class ExtraPaletteBlock {
                 return;
 
             case 200:
-                // Block templates (ready-made chains)
-                java.util.List<java.util.Map<String, Object>> builtin =
-                        mod.jbk.util.BlockTemplatesManager.getBuiltin();
+                // Block templates — категоризованные встроенные сборки
                 java.util.List<java.util.Map<String, Object>> custom =
                         mod.jbk.util.BlockTemplatesManager.getCustom();
-                java.util.List<java.util.Map<String, Object>> templates = builtin;
-                if (builtin.isEmpty() && custom.isEmpty()) {
+                String[] cats = mod.jbk.util.BlockTemplatesManager.getCategoryOrder();
+                boolean anyBuiltin = false;
+                for (String cat : cats) {
+                    java.util.List<java.util.Map<String, Object>> catList =
+                            mod.jbk.util.BlockTemplatesManager.getBuiltinByCategory(cat);
+                    if (catList.isEmpty()) continue;
+                    anyBuiltin = true;
+                    logicEditor.a(mod.jbk.util.BlockTemplatesManager.getCategoryTitle(cat), getTitleBgColor());
+                    for (java.util.Map<String, Object> tpl : catList) {
+                        Object tid = tpl.get("id");
+                        Object tname = tpl.get("name");
+                        if (!(tid instanceof String) || !(tname instanceof String)) continue;
+                        try {
+                            java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks =
+                                    mod.jbk.util.BlockTemplatesManager.toBlockBeans(tpl);
+                            if (blocks.isEmpty()) continue;
+                            com.besome.sketch.beans.BlockBean first = blocks.get(0);
+                            String title = tname.toString();
+                            a.a.a.Us us = new a.a.a.Us(logicEditor,
+                                    first.type == null ? " " : first.type,
+                                    first.typeName == null ? "" : first.typeName,
+                                    first.opCode == null ? "" : first.opCode,
+                                    title, blocks);
+                            us.setTag(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid);
+                            try { us.tvSpec.setTextColor(0xff000000); } catch (Throwable ignored) {}
+                            us.setClickable(true);
+                            us.setFocusable(true);
+                            try { us.setBlockType(2); } catch (Throwable ignored) {}
+                            us.setOnTouchListener(logicEditor);
+                            if (logicEditor.m != null) {
+                                logicEditor.m.addTemplateView(us);
+                            }
+                        } catch (Throwable t) {
+                            SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
+                        }
+                    }
+                }
+                if (!anyBuiltin && custom.isEmpty()) {
                     logicEditor.a("Сборки пусты.\n\nДобавьте шаблоны в файл:\n/sdcard/.sketchware/block_templates.json", getTitleBgColor());
                     return;
-                }
-                if (!builtin.isEmpty()) {
-                    logicEditor.a("Готовые наборы", getTitleBgColor());
-                }
-                for (java.util.Map<String, Object> tpl : templates) {
-                    Object tid = tpl.get("id");
-                    Object tname = tpl.get("name");
-                    Object tdesc = tpl.get("description");
-                    if (!(tid instanceof String) || !(tname instanceof String)) continue;
-
-                    try {
-                        java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks =
-                                mod.jbk.util.BlockTemplatesManager.toBlockBeans(tpl);
-                        if (blocks.isEmpty()) continue;
-
-                        com.besome.sketch.beans.BlockBean first = blocks.get(0);
-                        String title = tname.toString();
-
-                        // Build a Us (collection view) from the first block's meta.
-                        a.a.a.Us us = new a.a.a.Us(logicEditor,
-                                first.type == null ? " " : first.type,
-                                first.typeName == null ? "" : first.typeName,
-                                first.opCode == null ? "" : first.opCode,
-                                title, blocks);
-                        us.setTag(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid);
-
-                        // Make text visible on the light background of the template card
-                        try {
-                            us.tvSpec.setTextColor(0xff000000);
-                        } catch (Throwable ignored) {}
-
-                        // Make it draggable: attach the same touch listener used for Rs blocks
-                        us.setClickable(true);
-                        us.setFocusable(true);
-                        try { us.setBlockType(2); } catch (Throwable ignored) {}
-                        us.setOnTouchListener(logicEditor);
-
-                        // Add via PaletteBlock's helper.
-                        if (logicEditor.m != null) {
-                            logicEditor.m.addTemplateView(us);
-                        }
-                    } catch (Throwable t) {
-                        SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
-                    }
                 }
                 logicEditor.a("Мои наборы (" + custom.size() + ")", getTitleBgColor());
                 if (!custom.isEmpty()) {
@@ -1314,9 +1304,7 @@ public class ExtraPaletteBlock {
                                     first.opCode == null ? "" : first.opCode,
                                     title, blocks);
                             us.setTag(mod.jbk.util.BlockTemplatesManager.TEMPLATE_OPCODE_PREFIX + tid);
-                            try {
-                                us.tvSpec.setTextColor(0xff000000);
-                            } catch (Throwable ignored) {}
+                            try { us.tvSpec.setTextColor(0xff000000); } catch (Throwable ignored) {}
                             us.setClickable(true);
                             us.setFocusable(true);
                             try { us.setBlockType(2); } catch (Throwable ignored) {}
@@ -1330,7 +1318,6 @@ public class ExtraPaletteBlock {
                     }
                 }
                 return;
-
             default:
                 int paletteIndex = -1, paletteBlocks = 0;
                 ArrayList<HashMap<String, Object>> extraBlockData = ExtraBlockFile.getExtraBlockData();

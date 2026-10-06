@@ -328,6 +328,37 @@ public final class BlockTemplatesManager {
         return getAll();
     }
 
+    /** Возвращает встроенные сборки определённой категории. */
+    public static List<Map<String, Object>> getBuiltinByCategory(String category) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        if (category == null) return result;
+        for (Map<String, Object> t : getAll()) {
+            Object c = t.get("category");
+            if (category.equals(c)) result.add(t);
+        }
+        return result;
+    }
+
+    /** Список известных категорий встроенных сборок (в нужном порядке). */
+    public static String[] getCategoryOrder() {
+        return new String[] { "dialog", "ui", "nav", "logic", "lists", "vars", "files" };
+    }
+
+    /** Человекочитаемое название категории. */
+    public static String getCategoryTitle(String category) {
+        if (category == null) return "";
+        switch (category) {
+            case "dialog": return "📦 Диалоги";
+            case "ui": return "🎨 Интерфейс";
+            case "nav": return "🚀 Навигация";
+            case "logic": return "🔀 Логика";
+            case "lists": return "📋 Списки";
+            case "vars": return "💾 Переменные";
+            case "files": return "📁 Файлы";
+            default: return category;
+        }
+    }
+
     /** Возвращает только пользовательские сборки. */
     public static List<Map<String, Object>> getCustom() {
         try {
