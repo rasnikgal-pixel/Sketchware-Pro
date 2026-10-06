@@ -611,4 +611,26 @@ public final class BlockTemplatesManager {
     }
 
 
+
+    /** Возвращает ВСЕ пользовательские сборки (и обычные, и объединённые) — для поиска по имени. */
+    @SuppressWarnings("unchecked")
+    public static List<Map<String, Object>> getAllUserTemplates() {
+        List<Map<String, Object>> result = new ArrayList<>();
+        if (!FileUtil.isExistFile(CUSTOM_FILE_PATH)) return result;
+        try {
+            String json = FileUtil.readFile(CUSTOM_FILE_PATH);
+            if (json == null || json.trim().isEmpty()) return result;
+            Map<String, Object> root = new Gson().fromJson(json, Map.class);
+            if (root == null) return result;
+            Object templatesObj = root.get("templates");
+            if (!(templatesObj instanceof List)) return result;
+            for (Object item : (List<?>) templatesObj) {
+                if (item instanceof Map) result.add((Map<String, Object>) item);
+            }
+        } catch (Throwable ignored) {
+        }
+        return result;
+    }
+
+
 }
