@@ -1108,6 +1108,38 @@
         }
       ],
       "category": "dialog"
+    },
+    {
+      "id": "logic_if_internet",
+      "category": "logic",
+      "name": "🔀 Проверка интернета (if-else)",
+      "description": "Проверяет интернет. Если есть — Toast «Интернет есть», если нет — Toast «Интернета нет».\n⚠️ Требует разрешение ACCESS_NETWORK_STATE в проекте.\nЗамените тексты Toast на свои.",
+      "blocks": [
+        {
+          "type": "e",
+          "opCode": "ifElse",
+          "spec": "if %b then",
+          "parameters": [
+            "SketchwareUtil.isConnected(getApplicationContext())"
+          ],
+          "subStack1": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Интернет есть\""
+            ]
+          },
+          "subStack2": {
+            "type": " ",
+            "opCode": "doToast",
+            "spec": "Toast %s",
+            "parameters": [
+              "\"Интернета нет\""
+            ]
+          }
+        }
+      ]
     }
   ]
 }
