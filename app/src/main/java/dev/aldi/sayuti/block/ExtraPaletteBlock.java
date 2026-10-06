@@ -1296,8 +1296,8 @@ public class ExtraPaletteBlock {
                         SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
                     }
                 }
+                logicEditor.a("Мои наборы (" + custom.size() + ")", getTitleBgColor());
                 if (!custom.isEmpty()) {
-                    logicEditor.a("Мои наборы", getTitleBgColor());
                     for (java.util.Map<String, Object> tpl : custom) {
                         Object tid = tpl.get("id");
                         Object tname = tpl.get("name");
