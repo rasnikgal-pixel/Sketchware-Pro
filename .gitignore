@@ -70,3 +70,4 @@ release/
 __pycache__/
 *.py[cod]
 .patch/
+javac.*.args
