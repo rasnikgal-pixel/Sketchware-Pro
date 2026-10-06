@@ -1305,7 +1305,6 @@ public class ExtraPaletteBlock {
                         try {
                             java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks =
                                     mod.jbk.util.BlockTemplatesManager.toBlockBeans(tpl);
-                            logicEditor.a("[dbg] " + tname + " blocks=" + blocks.size(), getTitleBgColor());
                             if (blocks.isEmpty()) continue;
                             com.besome.sketch.beans.BlockBean first = blocks.get(0);
                             String title = tname.toString();
