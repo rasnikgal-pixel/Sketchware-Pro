@@ -95,6 +95,14 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     private String a;
     private LinearLayout aa;
     private String b;
+
+    /** Двойной тап по виджету: время и позиция предыдущего тапа. */
+    private long lastTapTime = 0L;
+    private float lastTapX = 0f;
+    private float lastTapY = 0f;
+    /** Окно двойного тапа (мс) и допуск позиции (px). */
+    private static final long DOUBLE_TAP_TIMEOUT_MS = 300L;
+    private static final float DOUBLE_TAP_SLOP_PX = 40f;
     private int screenType;
     private boolean da = true;
     private int[] countItems = new int[20];
@@ -343,7 +351,26 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
             }
         } else if (!isDragged) {
             if (currentTouchedView instanceof ItemView sy) {
-                a(sy, true);
+                long now = System.currentTimeMillis();
+                float tapX = motionEvent.getRawX();
+                float tapY = motionEvent.getRawY();
+                boolean isDoubleTap = (now - lastTapTime < DOUBLE_TAP_TIMEOUT_MS)
+                        && (Math.abs(tapX - lastTapX) < DOUBLE_TAP_SLOP_PX)
+                        && (Math.abs(tapY - lastTapY) < DOUBLE_TAP_SLOP_PX);
+                if (isDoubleTap) {
+                    // Двойной тап — открыть полные свойства (как "Показать все")
+                    try {
+                        if (propertyClickListener != null && sy.getBean() != null) {
+                            propertyClickListener.a(b, sy.getBean());
+                        }
+                    } catch (Throwable ignored) {}
+                    lastTapTime = 0L;
+                } else {
+                    a(sy, true);
+                    lastTapTime = now;
+                    lastTapX = tapX;
+                    lastTapY = tapY;
+                }
             }
             if (draggingListener != null) {
                 draggingListener.d();
