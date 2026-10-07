@@ -82,10 +82,6 @@ public class ViewEditorFragment extends qA {
         viewProperty.setOnEventClickListener(eventBean -> toLogicEditorActivity(eventBean.targetId, eventBean.eventName, eventBean.eventName));
         viewProperty.setOnPropertyTargetChangeListener(viewEditor::updateSelection);
         viewEditor.setOnWidgetDoubleTapListener(viewBean -> {
-            try {
-                pro.sketchware.smartdrop.DebugLogger.get(requireContext())
-                        .d("ViewEditorFragment", "double_tap_open", "id=" + (viewBean != null ? viewBean.id : "null"));
-            } catch (Throwable ignored) {}
             if (viewBean != null) {
                 openPropertyActivity(viewBean);
             }
@@ -106,10 +102,6 @@ public class ViewEditorFragment extends qA {
 
             @Override
             public void a(boolean var1, String viewId) {
-                try {
-                    pro.sketchware.smartdrop.DebugLogger.get(requireContext())
-                            .d("ViewEditorFragment", "listener_called", "var1=" + var1 + " viewId=" + viewId);
-                } catch (Throwable ignored) {}
                 if (!viewId.isEmpty()) {
                     a();
                     viewProperty.a(viewId);
@@ -190,24 +182,12 @@ public class ViewEditorFragment extends qA {
     }
 
     public void a(boolean var1) {
-        try {
-            pro.sketchware.smartdrop.DebugLogger.get(requireContext())
-                    .d("ViewEditorFragment", "animate", "var1=" + var1 + " isVisible=" + isPropertyViewVisible);
-        } catch (Throwable ignored) {}
         startAnimation();
         if (!isPropertyViewVisible || !var1) {
             cancelAnimations();
             if (var1) {
-                try {
-                    pro.sketchware.smartdrop.DebugLogger.get(requireContext())
-                            .d("ViewEditorFragment", "anim_start", "show");
-                } catch (Throwable ignored) {}
                 showPropertyViewAnimator.start();
             } else if (isPropertyViewVisible) {
-                try {
-                    pro.sketchware.smartdrop.DebugLogger.get(requireContext())
-                            .d("ViewEditorFragment", "anim_start", "hide");
-                } catch (Throwable ignored) {}
                 hidePropertyViewAnimator.start();
             }
 

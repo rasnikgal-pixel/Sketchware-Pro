@@ -369,33 +369,16 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 boolean isDoubleTap = (now - lastTapTime < DOUBLE_TAP_TIMEOUT_MS)
                         && (Math.abs(tapX - lastTapX) < DOUBLE_TAP_SLOP_PX)
                         && (Math.abs(tapY - lastTapY) < DOUBLE_TAP_SLOP_PX);
-                try {
-                    pro.sketchware.smartdrop.DebugLogger.get(getContext())
-                            .d("ViewEditor", "tap_check",
-                                    "isDouble=" + isDoubleTap
-                                    + " dt=" + (now - lastTapTime)
-                                    + " dx=" + Math.abs(tapX - lastTapX)
-                                    + " dy=" + Math.abs(tapY - lastTapY)
-                                    + " listener=" + (propertyClickListener != null)
-                                    + " bean=" + (sy.getBean() != null));
-                } catch (Throwable ignored) {}
                 if (isDoubleTap) {
                     try {
                         if (sy.getBean() != null) {
-                            pro.sketchware.smartdrop.DebugLogger.get(getContext())
-                                    .d("ViewEditor", "double_tap_fire", "id=" + sy.getBean().id);
                             if (doubleTapListener != null) {
                                 doubleTapListener.onWidgetDoubleTap(sy.getBean());
                             } else if (propertyClickListener != null) {
                                 propertyClickListener.a(b, sy.getBean());
                             }
                         }
-                    } catch (Throwable t) {
-                        try {
-                            pro.sketchware.smartdrop.DebugLogger.get(getContext())
-                                    .d("ViewEditor", "double_tap_error", String.valueOf(t));
-                        } catch (Throwable ignored) {}
-                    }
+                    } catch (Throwable ignored) {}
                     lastTapTime = 0L;
                 } else {
                     a(sy, true);
@@ -1112,22 +1095,8 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
         selectedItem = syVar;
         selectedItem.setSelection(true);
-        try {
-            com.besome.sketch.beans.ViewBean _vb = selectedItem.getBean();
-            pro.sketchware.smartdrop.DebugLogger.get(getContext())
-                    .d("ViewEditor", "widget_selected", "z=" + z + " id=" + (_vb != null ? _vb.id : "null"));
-        } catch (Throwable ignored) {}
         if (widgetSelectedListener != null) {
-            try {
-                pro.sketchware.smartdrop.DebugLogger.get(getContext())
-                        .d("ViewEditor", "listener_call", "before a()");
-            } catch (Throwable ignored) {}
             widgetSelectedListener.a(z, selectedItem.getBean().id);
-        } else {
-            try {
-                pro.sketchware.smartdrop.DebugLogger.get(getContext())
-                        .d("ViewEditor", "listener_null", "widgetSelectedListener is null");
-            } catch (Throwable ignored) {}
         }
     }
 
