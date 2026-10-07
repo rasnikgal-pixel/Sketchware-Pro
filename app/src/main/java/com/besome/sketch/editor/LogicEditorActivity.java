@@ -3029,6 +3029,18 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                                                     rsForSmartDrop.p().k();
                                                     C();
                                                 });
+                                // WidgetAutoCreator: если блок требует виджет, которого нет — предложить создать
+                                try {
+                                    pro.sketchware.smartdrop.WidgetAutoCreator.checkAndSuggest(
+                                            LogicEditorActivity.this,
+                                            scId,
+                                            M != null ? M.getXmlName() : null,
+                                            bean,
+                                            () -> {
+                                                rsForSmartDrop.p().k();
+                                                C();
+                                            });
+                                } catch (Throwable ignored) {}
                             }
                         });
                     }
