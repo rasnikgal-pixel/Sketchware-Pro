@@ -130,6 +130,8 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 settings = getGson().fromJson(FileUtil.readFile(SETTINGS_FILE.getAbsolutePath()), Helper.TYPE_MAP);
 
                 if (settings != null) {
+                    // Миграция: добавляем недостающие ключи со значениями по умолчанию
+                    migrateMissingDefaults(settings);
                     return settings;
                 }
 
@@ -171,6 +173,42 @@ public class ConfigActivity extends BaseAppCompatActivity {
             settings.put(key, getDefaultValue(key));
         }
         FileUtil.writeFile(SETTINGS_FILE.getAbsolutePath(), getGson().toJson(settings));
+    }
+
+    /**
+     * Миграция настроек: добавляет недостающие ключи со значениями по умолчанию.
+     * Нужно при добавлении новых настроек — у старых пользователей файл уже есть,
+     * но нового ключа в нём нет. Сохраняем файл, только если что-то добавили.
+     */
+    private static void migrateMissingDefaults(HashMap<String, Object> settings) {
+        List<String> keys = Arrays.asList(
+                SETTING_ALWAYS_SHOW_BLOCKS,
+                SETTING_BACKUP_DIRECTORY,
+                SETTING_ROOT_AUTO_INSTALL_PROJECTS,
+                SETTING_ROOT_AUTO_OPEN_AFTER_INSTALLING,
+                SETTING_SHOW_BUILT_IN_BLOCKS,
+                SETTING_SHOW_EVERY_SINGLE_BLOCK,
+                SETTING_USE_NEW_VERSION_CONTROL,
+                SETTING_USE_ASD_HIGHLIGHTER,
+                SETTING_SHOW_HEADERS_WHEN_SEARCHING_BLOCKS,
+                SETTING_BLOCK_LOGIC_CHECK,
+                SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD,
+                SETTING_BLOCK_TEMPLATES,
+                SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH,
+                SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH);
+
+        boolean changed = false;
+        for (String key : keys) {
+            if (!settings.containsKey(key)) {
+                settings.put(key, getDefaultValue(key));
+                changed = true;
+            }
+        }
+        if (changed) {
+            try {
+                FileUtil.writeFile(SETTINGS_FILE.getAbsolutePath(), getGson().toJson(settings));
+            } catch (Throwable ignored) {}
+        }
     }
 
     public static Object getDefaultValue(String key) {
