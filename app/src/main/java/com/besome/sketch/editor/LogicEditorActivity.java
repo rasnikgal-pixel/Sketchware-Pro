@@ -156,6 +156,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     public String scId = "";
     public String id = "";
     public String eventName = "";
+
+    /** Saved original foregrounds of blocks that were highlighted as issues. */
+    private final java.util.Map<String, android.graphics.drawable.Drawable> savedBlockForegrounds =
+            new java.util.HashMap<>();
     private Vibrator vibrator;
     private LinearLayout J, K;
     private FloatingActionButton openBlocksMenuButton;
@@ -2202,9 +2206,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 return;
             }
 
+            clearBlockHighlights();
             java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues =
                     mod.jbk.util.ProjectLogicChecker.check(blocks, this, scId, M.getJavaName());
-
             if (issues == null || issues.isEmpty()) {
                 new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                         .setTitle("Проверка логики блоков")
@@ -2213,6 +2217,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         .show();
                 return;
             }
+            applyBlockHighlights(issues);
 
             // Отдельно критические и предупреждения
             java.util.List<mod.jbk.util.BlockLogicChecker.Issue> critical = new java.util.ArrayList<>();
@@ -2300,6 +2305,15 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         super.onResume();
         if (!super.isStoragePermissionGranted()) {
             finish();
+            return;
+        }
+        // If the user disabled logic check in settings, remove all highlights.
+        try {
+            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK)) {
+                clearBlockHighlights();
+            }
+        } catch (Throwable ignored) {
         }
     }
 
@@ -2326,6 +2340,70 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private String lastBlockIssueHash = "";
 
     /**
+     * Removes highlights from all blocks that were previously highlighted.
+     * Safe to call multiple times.
+     */
+    private void clearBlockHighlights() {
+        try {
+            if (savedBlockForegrounds.isEmpty()) return;
+            if (o == null) {
+                savedBlockForegrounds.clear();
+                return;
+            }
+            for (java.util.Map.Entry<String, android.graphics.drawable.Drawable> e : savedBlockForegrounds.entrySet()) {
+                try {
+                    int bid = Integer.parseInt(e.getKey());
+                    a.a.a.Rs rs = o.a(bid);
+                    if (rs != null) {
+                        rs.setForeground(e.getValue());
+                    }
+                } catch (Throwable ignored) {
+                }
+            }
+        } catch (Throwable ignored) {
+        } finally {
+            try { savedBlockForegrounds.clear(); } catch (Throwable ignored) {}
+        }
+    }
+
+    /**
+     * Puts a colored outline around blocks that have issues.
+     * Red for CRITICAL, yellow for WARNING. Safe to call repeatedly; call
+     * clearBlockHighlights() first to reset previous highlights.
+     */
+    private void applyBlockHighlights(java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues) {
+        try {
+            if (issues == null || issues.isEmpty()) return;
+            if (o == null) return;
+            float density = getResources().getDisplayMetrics().density;
+            int strokePx = Math.max(2, (int) (2 * density));
+            for (mod.jbk.util.BlockLogicChecker.Issue issue : issues) {
+                if (issue == null) continue;
+                String blockId = issue.blockId;
+                if (blockId == null || blockId.isEmpty()) continue;
+                if (savedBlockForegrounds.containsKey(blockId)) continue;
+                try {
+                    int bid = Integer.parseInt(blockId);
+                    a.a.a.Rs rs = o.a(bid);
+                    if (rs == null) continue;
+                    int color = issue.severity == mod.jbk.util.BlockLogicChecker.Severity.CRITICAL
+                            ? 0xFFE53935 : 0xFFFFB300;
+                    android.graphics.drawable.GradientDrawable outline =
+                            new android.graphics.drawable.GradientDrawable();
+                    outline.setShape(android.graphics.drawable.GradientDrawable.RECTANGLE);
+                    outline.setColor(0x00000000);
+                    outline.setStroke(strokePx, color);
+                    outline.setCornerRadius(6 * density);
+                    savedBlockForegrounds.put(blockId, rs.getForeground());
+                    rs.setForeground(outline);
+                } catch (Throwable ignored) {
+                }
+            }
+        } catch (Throwable ignored) {
+        }
+    }
+
+    /**
      * Checks the current event's blocks for logic issues (duplicates, etc.)
      * and shows a warning dialog if any are found. Called after every drop.
      * Respects the "Проверка логики блоков" toggle in app settings.
@@ -2349,12 +2427,14 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
             if (blocks == null || blocks.isEmpty()) return;
 
+            clearBlockHighlights();
             java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues =
                     mod.jbk.util.ProjectLogicChecker.check(blocks, this, scId, M == null ? null : M.getJavaName());
             if (issues.isEmpty()) {
                 lastBlockIssueHash = "";
                 return;
             }
+            applyBlockHighlights(issues);
 
             StringBuilder hashBuilder = new StringBuilder();
             for (mod.jbk.util.BlockLogicChecker.Issue i : issues) hashBuilder.append(i.message).append(";");
