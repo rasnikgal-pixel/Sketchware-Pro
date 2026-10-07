@@ -2181,8 +2181,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     }
 
     /**
-     * Manual trigger for logic check: available from the overflow menu.
-     * Respects the SETTING_BLOCK_LOGIC_CHECK toggle — if disabled, shows a toast and exits.
+     * Manual trigger for logic check: available from the check button next to the search field.
+     * Always works - does not depend on the SETTING_BLOCK_LOGIC_CHECK toggle.
+     * That toggle only affects the automatic check after dropping blocks.
      * Always shows fresh results (no throttle, no dedup by hash).
      */
     private void checkLogicManually() {
