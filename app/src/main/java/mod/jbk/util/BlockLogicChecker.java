@@ -120,8 +120,61 @@ public final class BlockLogicChecker {
         checkEmptyConditions(blocks, issues);
         checkTrivialConditions(blocks, issues);
         checkUnreachableBlocks(blocks, issues);
+        checkEmptyRequiredParams(blocks, issues);
 
         return issues;
+    }
+
+    /**
+     * opCodes whose first parameter must not be empty.
+     * The list is deliberately conservative — only well-known opCodes
+     * where an empty first argument is almost always a mistake.
+     */
+    private static final java.util.Set<String> REQUIRED_FIRST_PARAM_OPCODES = new java.util.HashSet<>(java.util.Arrays.asList(
+            // Messages / texts
+            "toast", "dialogSetTitle", "dialogSetMessage", "progressdialogSetTitle",
+            "progressdialogSetMessage", "setText", "setHint", "dialogSetButton",
+            // View / component references
+            "setEnabled", "setVisible", "setImage",
+            "dialogShow", "dialogDismiss",
+            "progressdialogShow", "progressdialogDismiss",
+            "timerCancel", "timerSet", "vibratorStart", "vibratorCancel",
+            // Variables / lists
+            "setVar", "getVar", "changeVar",
+            "addList", "setList", "insertList", "getList", "removeList", "clearList"
+    ));
+
+    /**
+     * Rule: a block whose first parameter must not be empty has an empty first param.
+     * This catches blocks like toast(""), setText(""), dialogSetTitle(""), etc.
+     */
+    private static void checkEmptyRequiredParams(List<BlockBean> blocks, List<Issue> issues) {
+        for (BlockBean b : blocks) {
+            if (b == null || b.opCode == null) continue;
+            if (!REQUIRED_FIRST_PARAM_OPCODES.contains(b.opCode)) continue;
+            if (b.parameters == null || b.parameters.isEmpty()) {
+                issues.add(new Issue(
+                        b.opCode,
+                        "Пустой обязательный параметр в блоке " + b.opCode,
+                        new ArrayList<>(),
+                        Severity.CRITICAL,
+                        b.id,
+                        null,
+                        "Пустой параметр в " + b.opCode));
+                continue;
+            }
+            String first = b.parameters.get(0);
+            if (first == null || first.trim().isEmpty()) {
+                issues.add(new Issue(
+                        b.opCode,
+                        "Пустой обязательный параметр в блоке " + b.opCode,
+                        new ArrayList<>(),
+                        Severity.CRITICAL,
+                        b.id,
+                        null,
+                        "Пустой параметр в " + b.opCode));
+            }
+        }
     }
 
     /**
