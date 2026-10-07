@@ -179,17 +179,18 @@ public final class BlockLogicChecker {
      * where an empty first argument is almost always a mistake.
      */
     private static final java.util.Set<String> REQUIRED_FIRST_PARAM_OPCODES = new java.util.HashSet<>(java.util.Arrays.asList(
-            // Messages / texts
-            "toast", "dialogSetTitle", "dialogSetMessage", "progressdialogSetTitle",
-            "progressdialogSetMessage", "setText", "setHint", "dialogSetButton",
-            // View / component references
-            "setEnabled", "setVisible", "setImage",
-            "dialogShow", "dialogDismiss",
-            "progressdialogShow", "progressdialogDismiss",
-            "timerCancel", "timerSet", "vibratorStart", "vibratorCancel",
-            // Variables / lists
-            "setVar", "getVar", "changeVar",
-            "addList", "setList", "insertList", "getList", "removeList", "clearList"
+            // Messages / texts (first param: view/dialog name or message text)
+            "doToast",
+            "dialogSetTitle", "dialogSetMessage",
+            "dialogShow",
+            "dialogOkButton", "dialogCancelButton", "dialogNeutralButton",
+            "setText", "setHint",
+            // View references (first param: view name)
+            "setEnable", "setVisible", "setImage",
+            // Components
+            "timerCancel",
+            // Variables
+            "increaseInt", "decreaseInt"
     ));
 
     /**
