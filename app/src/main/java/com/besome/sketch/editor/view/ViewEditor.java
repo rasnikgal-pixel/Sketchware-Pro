@@ -1053,8 +1053,22 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
         selectedItem = syVar;
         selectedItem.setSelection(true);
+        try {
+            com.besome.sketch.beans.ViewBean _vb = selectedItem.getBean();
+            pro.sketchware.smartdrop.DebugLogger.get(getContext())
+                    .d("ViewEditor", "widget_selected", "z=" + z + " id=" + (_vb != null ? _vb.id : "null"));
+        } catch (Throwable ignored) {}
         if (widgetSelectedListener != null) {
+            try {
+                pro.sketchware.smartdrop.DebugLogger.get(getContext())
+                        .d("ViewEditor", "listener_call", "before a()");
+            } catch (Throwable ignored) {}
             widgetSelectedListener.a(z, selectedItem.getBean().id);
+        } else {
+            try {
+                pro.sketchware.smartdrop.DebugLogger.get(getContext())
+                        .d("ViewEditor", "listener_null", "widgetSelectedListener is null");
+            } catch (Throwable ignored) {}
         }
     }
 
