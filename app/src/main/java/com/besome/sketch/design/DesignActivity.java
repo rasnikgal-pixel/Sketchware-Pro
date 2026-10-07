@@ -1337,6 +1337,16 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 if (activity != null) {
                     pro.sketchware.smartdrop.DebugLogger.get(activity)
                             .i("Build", "log_build_success", activity.sc_id != null ? activity.sc_id : "");
+
+                    // Автобэкап проекта (если включён тумблер в настройках)
+                    try {
+                        String backupScId = activity.sc_id;
+                        String backupProjectName = yB.c(lC.b(backupScId), "my_ws_name");
+                        if (backupProjectName != null && !backupProjectName.isEmpty()) {
+                            pro.sketchware.smartdrop.AutoBackupManager.runBackup(
+                                    activity, backupScId, backupProjectName);
+                        }
+                    } catch (Throwable ignored) {}
                 }
                 activity.installBuiltApk();
                 isBuildFinished = true;
