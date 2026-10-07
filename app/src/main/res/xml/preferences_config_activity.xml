@@ -66,6 +66,55 @@
         app:key="block-templates"
         app:summary="Показывать раздел «Сборки» в палитре блоков — готовые наборы блоков."
         app:title="Сборки блоков" />
+    <PreferenceCategory app:title="Экспорт переносимой папки (.skproj)">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="skproj-include-components"
+            app:defaultValue="true"
+            app:summary="Включить компоненты (Dialog, Timer, Firebase и др.)."
+            app:title="Включать компоненты" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="skproj-include-variables"
+            app:defaultValue="true"
+            app:summary="Включить переменные и списки проекта."
+            app:title="Включать переменные и списки" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="skproj-include-resources"
+            app:defaultValue="true"
+            app:summary="Включить ресурсы (картинки, звуки, шрифты)."
+            app:title="Включать ресурсы" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="skproj-include-custom-blocks"
+            app:defaultValue="true"
+            app:summary="Включить custom blocks, используемые в проекте."
+            app:title="Включать custom blocks" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="skproj-include-local-libs"
+            app:defaultValue="false"
+            app:summary="Включить local libraries (JAR/AAR). Увеличит размер."
+            app:title="Включать local libraries" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="skproj-include-apk"
+            app:defaultValue="false"
+            app:summary="Включить скомпилированный APK (если есть)."
+            app:title="Включать APK" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="skproj-format-zip"
+            app:defaultValue="true"
+            app:summary="Экспортировать в один .skproj.zip. Выключено — в папку .skproj/."
+            app:title="Формат: zip-архив" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="skproj-output-dir"
+            app:summary="Директория для экспортированных проектов."
+            app:title="Папка экспорта" />
+    </PreferenceCategory>
     <PreferenceCategory app:title="Автобэкап проектов">
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"

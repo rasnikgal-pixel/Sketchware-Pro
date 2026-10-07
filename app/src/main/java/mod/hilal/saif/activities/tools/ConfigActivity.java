@@ -71,6 +71,15 @@ public class ConfigActivity extends BaseAppCompatActivity {
     public static final String SETTING_SMARTDROP_UPDATE_ALL_BLOCKS = "smartdrop-update-all-blocks";
     public static final String SETTING_SMARTDROP_FORCE_REPLACE = "smartdrop-force-replace";
     public static final String SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH = "blockDir";
+    // SkProj export settings
+    public static final String SETTING_SKPROJ_INCLUDE_COMPONENTS = "skproj-include-components";
+    public static final String SETTING_SKPROJ_INCLUDE_VARIABLES = "skproj-include-variables";
+    public static final String SETTING_SKPROJ_INCLUDE_RESOURCES = "skproj-include-resources";
+    public static final String SETTING_SKPROJ_INCLUDE_LOCAL_LIBS = "skproj-include-local-libs";
+    public static final String SETTING_SKPROJ_INCLUDE_APK = "skproj-include-apk";
+    public static final String SETTING_SKPROJ_INCLUDE_CUSTOM_BLOCKS = "skproj-include-custom-blocks";
+    public static final String SETTING_SKPROJ_FORMAT_ZIP = "skproj-format-zip";
+    public static final String SETTING_SKPROJ_OUTPUT_DIR = "skproj-output-dir";
 
     public static String getBackupPath() {
         return DataStore.getInstance().getString(SETTING_BACKUP_DIRECTORY, "/.sketchware/backups/");
@@ -97,6 +106,40 @@ public class ConfigActivity extends BaseAppCompatActivity {
 
     public static boolean isSettingEnabled(String keyName) {
         return DataStore.getInstance().getBoolean(keyName, false);
+    }
+
+    // === SkProj export helpers ===
+
+    public static boolean isSkprojIncludeComponents() {
+        return DataStore.getInstance().getBoolean(SETTING_SKPROJ_INCLUDE_COMPONENTS, true);
+    }
+
+    public static boolean isSkprojIncludeVariables() {
+        return DataStore.getInstance().getBoolean(SETTING_SKPROJ_INCLUDE_VARIABLES, true);
+    }
+
+    public static boolean isSkprojIncludeResources() {
+        return DataStore.getInstance().getBoolean(SETTING_SKPROJ_INCLUDE_RESOURCES, true);
+    }
+
+    public static boolean isSkprojIncludeLocalLibs() {
+        return DataStore.getInstance().getBoolean(SETTING_SKPROJ_INCLUDE_LOCAL_LIBS, false);
+    }
+
+    public static boolean isSkprojIncludeApk() {
+        return DataStore.getInstance().getBoolean(SETTING_SKPROJ_INCLUDE_APK, false);
+    }
+
+    public static boolean isSkprojIncludeCustomBlocks() {
+        return DataStore.getInstance().getBoolean(SETTING_SKPROJ_INCLUDE_CUSTOM_BLOCKS, true);
+    }
+
+    public static boolean isSkprojFormatZip() {
+        return DataStore.getInstance().getBoolean(SETTING_SKPROJ_FORMAT_ZIP, true);
+    }
+
+    public static String getSkprojOutputDir() {
+        return DataStore.getInstance().getString(SETTING_SKPROJ_OUTPUT_DIR, "/.sketchware/backups/exports/");
     }
 
     /** @return true, если автобэкап после успешной сборки включён */
@@ -183,6 +226,14 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD,
                 SETTING_AUTO_BACKUP_ENABLED,
                 SETTING_AUTO_BACKUP_KEEP_COUNT,
+                SETTING_SKPROJ_INCLUDE_COMPONENTS,
+                SETTING_SKPROJ_INCLUDE_VARIABLES,
+                SETTING_SKPROJ_INCLUDE_RESOURCES,
+                SETTING_SKPROJ_INCLUDE_LOCAL_LIBS,
+                SETTING_SKPROJ_INCLUDE_APK,
+                SETTING_SKPROJ_INCLUDE_CUSTOM_BLOCKS,
+                SETTING_SKPROJ_FORMAT_ZIP,
+                SETTING_SKPROJ_OUTPUT_DIR,
                 SETTING_BLOCK_TEMPLATES,
                 SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH,
                 SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH);
@@ -236,6 +287,14 @@ public class ConfigActivity extends BaseAppCompatActivity {
             case SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD -> true;
             case SETTING_AUTO_BACKUP_ENABLED -> true;
             case SETTING_AUTO_BACKUP_KEEP_COUNT -> "5";
+            case SETTING_SKPROJ_INCLUDE_COMPONENTS -> true;
+            case SETTING_SKPROJ_INCLUDE_VARIABLES -> true;
+            case SETTING_SKPROJ_INCLUDE_RESOURCES -> true;
+            case SETTING_SKPROJ_INCLUDE_LOCAL_LIBS -> false;
+            case SETTING_SKPROJ_INCLUDE_APK -> false;
+            case SETTING_SKPROJ_INCLUDE_CUSTOM_BLOCKS -> true;
+            case SETTING_SKPROJ_FORMAT_ZIP -> true;
+            case SETTING_SKPROJ_OUTPUT_DIR -> "/.sketchware/backups/exports/";
             case SETTING_BLOCK_TEMPLATES -> true;
             case SETTING_ALWAYS_SHOW_BLOCKS,
                  SETTING_ROOT_AUTO_INSTALL_PROJECTS, SETTING_SHOW_BUILT_IN_BLOCKS,
