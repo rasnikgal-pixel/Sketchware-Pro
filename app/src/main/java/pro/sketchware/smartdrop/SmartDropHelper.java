@@ -203,13 +203,46 @@ public class SmartDropHelper {
                 suggestedName, new SmartDropDialog.Callback() {
 
             private void applyName(String componentId) {
-                // Обновляем сам упавший блок
+                // 1. Обновляем сам упавший блок (модель BlockBean)
                 if (blockBean.parameters == null || blockBean.parameters.isEmpty()) {
                     blockBean.parameters = new ArrayList<>();
                     blockBean.parameters.add(componentId);
                 } else {
                     blockBean.parameters.set(0, componentId);
                 }
+
+                // 2. Обновляем Rs на холсте через Ss.setArgValue
+                // (иначе getBean() возвращает копию, и изменения не видны в UI)
+                if (blockPane != null && blockBean.id != null) {
+                    try {
+                        int bid = Integer.parseInt(blockBean.id);
+                        ArrayList<BlockBean> all = blockPane.getBlocks();
+                        if (all != null) {
+                            for (BlockBean b : all) {
+                                if (b != null && blockBean.id.equals(b.id)) {
+                                    if (b.parameters == null || b.parameters.isEmpty()) {
+                                        b.parameters = new ArrayList<>();
+                                        b.parameters.add(componentId);
+                                    } else {
+                                        b.parameters.set(0, componentId);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        Rs rs = blockPane.a(bid);
+                        if (rs != null && rs.V != null) {
+                            for (android.view.View v : rs.V) {
+                                if (v instanceof a.a.a.Ss) {
+                                    ((a.a.a.Ss) v).setArgValue(componentId);
+                                    break;
+                                }
+                            }
+                            rs.k();
+                        }
+                    } catch (Throwable ignored) {}
+                }
+
                 if (onUpdated != null) onUpdated.run();
 
                 // Массовое обновление других блоков события
