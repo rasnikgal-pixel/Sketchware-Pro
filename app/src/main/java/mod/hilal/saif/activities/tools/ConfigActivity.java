@@ -61,6 +61,8 @@ public class ConfigActivity extends BaseAppCompatActivity {
     public static final String SETTING_SHOW_HEADERS_WHEN_SEARCHING_BLOCKS = "show-headers-when-searching-blocks";
     public static final String SETTING_BLOCK_LOGIC_CHECK = "block-logic-check";
     public static final String SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD = "block-logic-check-before-build";
+    public static final String SETTING_AUTO_BACKUP_ENABLED = "auto-backup-enabled";
+    public static final String SETTING_AUTO_BACKUP_KEEP_COUNT = "auto-backup-keep-count";
     public static final String SETTING_BLOCK_TEMPLATES = "block-templates";
     public static final String SETTING_USE_NEW_VERSION_CONTROL = "use-new-version-control";
     public static final String SETTING_USE_ASD_HIGHLIGHTER = "use-asd-highlighter";
@@ -95,6 +97,20 @@ public class ConfigActivity extends BaseAppCompatActivity {
 
     public static boolean isSettingEnabled(String keyName) {
         return DataStore.getInstance().getBoolean(keyName, false);
+    }
+
+    /** @return true, если автобэкап после успешной сборки включён */
+    public static boolean isAutoBackupEnabled() {
+        return DataStore.getInstance().getBoolean(SETTING_AUTO_BACKUP_ENABLED, true);
+    }
+
+    /** @return сколько последних бэкапов хранить (0 — без ограничений) */
+    public static int getAutoBackupKeepCount() {
+        try {
+            return Integer.parseInt(DataStore.getInstance().getString(SETTING_AUTO_BACKUP_KEEP_COUNT, "5"));
+        } catch (Throwable ignored) {
+            return 5;
+        }
     }
 
     /** @return true если SmartDrop должен обновлять все блоки того же типа */
@@ -165,6 +181,8 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 SETTING_SHOW_HEADERS_WHEN_SEARCHING_BLOCKS,
                 SETTING_BLOCK_LOGIC_CHECK,
                 SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD,
+                SETTING_AUTO_BACKUP_ENABLED,
+                SETTING_AUTO_BACKUP_KEEP_COUNT,
                 SETTING_BLOCK_TEMPLATES,
                 SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH,
                 SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH);
@@ -216,6 +234,8 @@ public class ConfigActivity extends BaseAppCompatActivity {
             case SETTING_SHOW_HEADERS_WHEN_SEARCHING_BLOCKS -> true;
             case SETTING_BLOCK_LOGIC_CHECK -> true;
             case SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD -> true;
+            case SETTING_AUTO_BACKUP_ENABLED -> true;
+            case SETTING_AUTO_BACKUP_KEEP_COUNT -> "5";
             case SETTING_BLOCK_TEMPLATES -> true;
             case SETTING_ALWAYS_SHOW_BLOCKS,
                  SETTING_ROOT_AUTO_INSTALL_PROJECTS, SETTING_SHOW_BUILT_IN_BLOCKS,

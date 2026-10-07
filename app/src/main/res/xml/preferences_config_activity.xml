@@ -66,6 +66,36 @@
         app:key="block-templates"
         app:summary="Показывать раздел «Сборки» в палитре блоков — готовые наборы блоков."
         app:title="Сборки блоков" />
+    <PreferenceCategory app:title="Автобэкап проектов">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="auto-backup-enabled"
+            app:summary="Автоматически создавать резервную копию проекта после успешной сборки APK."
+            app:title="Автобэкап после сборки" />
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="auto-backup-keep-count"
+            app:defaultValue="5"
+            app:entries="@array/auto_backup_keep_entries"
+            app:entryValues="@array/auto_backup_keep_values"
+            app:summary="Старые бэкапы сверх лимита удаляются автоматически."
+            app:title="Хранить бэкапов" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Автобэкап проектов">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="auto-backup-enabled"
+            app:summary="Автоматически создавать резервную копию проекта после успешной сборки APK."
+            app:title="Автобэкап после сборки" />
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="auto-backup-keep-count"
+            app:defaultValue="5"
+            app:entries="@array/auto_backup_keep_entries"
+            app:entryValues="@array/auto_backup_keep_values"
+            app:summary="Старые бэкапы сверх лимита удаляются автоматически."
+            app:title="Хранить бэкапов" />
+    </PreferenceCategory>
     <PreferenceCategory app:title="Резервное копирование настроек">
         <Preference
             app:iconSpaceReserved="false"
