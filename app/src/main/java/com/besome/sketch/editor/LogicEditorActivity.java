@@ -2066,9 +2066,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         getMenuInflater().inflate(R.menu.logic_menu, menu);
         menu.findItem(R.id.menu_logic_redo).setEnabled(M != null && bC.d(scId).g(s()));
         menu.findItem(R.id.menu_logic_undo).setEnabled(M != null && bC.d(scId).h(s()));
-        menu.findItem(R.id.menu_logic_check_logic).setEnabled(
-                mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
-                        mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK));
         return true;
     }
 
@@ -2182,11 +2179,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
      */
     private void checkLogicManually() {
         try {
-            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
-                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK)) {
-                SketchwareUtil.toast(getString(pro.sketchware.R.string.logic_check_disabled));
-                return;
-            }
             if (o == null || M == null) {
                 SketchwareUtil.toast("Сначала откройте событие");
                 return;
@@ -2305,15 +2297,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         super.onResume();
         if (!super.isStoragePermissionGranted()) {
             finish();
-            return;
-        }
-        // If the user disabled logic check in settings, remove all highlights.
-        try {
-            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
-                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK)) {
-                clearBlockHighlights();
-            }
-        } catch (Throwable ignored) {
         }
     }
 
