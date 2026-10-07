@@ -86,6 +86,18 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     private boolean useVibrate;
     private cy widgetSelectedListener;
     private Iw propertyClickListener;
+
+    /** Слушатель двойного тапа по виджету (открывает полные свойства). */
+    public interface OnWidgetDoubleTapListener {
+        void onWidgetDoubleTap(com.besome.sketch.beans.ViewBean bean);
+    }
+
+    private OnWidgetDoubleTapListener doubleTapListener;
+
+    /** Установить слушатель двойного тапа по виджету. */
+    public void setOnWidgetDoubleTapListener(OnWidgetDoubleTapListener l) {
+        this.doubleTapListener = l;
+    }
     private DraggingListener draggingListener;
     private ay historyChangeListener;
     private ProjectFileBean projectFileBean;
@@ -369,10 +381,14 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 } catch (Throwable ignored) {}
                 if (isDoubleTap) {
                     try {
-                        if (propertyClickListener != null && sy.getBean() != null) {
+                        if (sy.getBean() != null) {
                             pro.sketchware.smartdrop.DebugLogger.get(getContext())
                                     .d("ViewEditor", "double_tap_fire", "id=" + sy.getBean().id);
-                            propertyClickListener.a(b, sy.getBean());
+                            if (doubleTapListener != null) {
+                                doubleTapListener.onWidgetDoubleTap(sy.getBean());
+                            } else if (propertyClickListener != null) {
+                                propertyClickListener.a(b, sy.getBean());
+                            }
                         }
                     } catch (Throwable t) {
                         try {
