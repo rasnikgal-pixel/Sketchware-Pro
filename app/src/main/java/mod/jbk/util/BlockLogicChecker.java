@@ -206,7 +206,7 @@ public final class BlockLogicChecker {
                         b.opCode,
                         "Пустой обязательный параметр в блоке " + b.opCode,
                         new ArrayList<>(),
-                        Severity.CRITICAL,
+                        Severity.WARNING,
                         b.id,
                         null,
                         "Пустой параметр в " + b.opCode));
@@ -218,7 +218,7 @@ public final class BlockLogicChecker {
                         b.opCode,
                         "Пустой обязательный параметр в блоке " + b.opCode,
                         new ArrayList<>(),
-                        Severity.CRITICAL,
+                        Severity.WARNING,
                         b.id,
                         null,
                         "Пустой параметр в " + b.opCode));
