@@ -9,7 +9,10 @@ import com.besome.sketch.beans.ViewBean;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.os.Environment;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ import a.a.a.jC;
 import a.a.a.lC;
 import a.a.a.yB;
 import mod.hilal.saif.activities.tools.ConfigActivity;
+import mod.hey.studios.project.custom_blocks.CustomBlocksManager;
 
 /**
  * Экспорт проекта Sketchware в переносимую папку формата .skproj.
@@ -39,6 +43,10 @@ import mod.hilal.saif.activities.tools.ConfigActivity;
  *   more_blocks/     — MoreBlocks по экранам
  *   variables/       — переменные по экранам
  *   lists/           — списки по экранам
+ *   resources/       — ресурсы (icons, images, sounds, fonts)
+ *   custom_blocks.json — custom blocks проекта
+ *   local_libs/      — локальные библиотеки (по опции)
+ *   apk/             — собранный APK (по опции)
  * </pre>
  */
 public class SkProjExporter {
@@ -92,6 +100,10 @@ public class SkProjExporter {
             exportMoreBlocks(workDir);
             exportVariables(workDir);
             exportLists(workDir);
+            exportResources(workDir);
+            exportCustomBlocks(workDir);
+            exportLocalLibs(workDir);
+            exportApk(workDir);
 
             // Если нужен zip — упаковываем
             if (ConfigActivity.isSkprojFormatZip()) {
@@ -407,6 +419,103 @@ public class SkProjExporter {
             }
         }
         return a;
+    }
+
+    /** Подпапки ресурсов проекта (см. BackupFactory.resSubfolders). */
+    private static final String[] RES_SUBFOLDERS = {"fonts", "icons", "images", "sounds"};
+
+    /** Копирует ресурсы проекта в resources/<subfolder>/. */
+    private void exportResources(File dir) throws Exception {
+        if (!ConfigActivity.isSkprojIncludeResources()) return;
+
+        File resRoot = new File(dir, "resources");
+        resRoot.mkdirs();
+
+        for (String sub : RES_SUBFOLDERS) {
+            File srcDir = new File(Environment.getExternalStorageDirectory(),
+                    ".sketchware/resources/" + sub + "/" + scId);
+            if (!srcDir.exists() || !srcDir.isDirectory()) continue;
+
+            File dstDir = new File(resRoot, sub);
+            dstDir.mkdirs();
+            copyFolder(srcDir, dstDir);
+        }
+    }
+
+    /** Сохраняет информацию о custom blocks, используемых в проекте. */
+    private void exportCustomBlocks(File dir) throws Exception {
+        if (!ConfigActivity.isSkprojIncludeCustomBlocks()) return;
+        try {
+            CustomBlocksManager cbm = new CustomBlocksManager(context, scId);
+            ArrayList<BlockBean> used = cbm.getUsedBlocks();
+            if (used == null || used.isEmpty()) return;
+
+            JSONArray arr = new JSONArray();
+            for (BlockBean b : used) {
+                if (b == null || b.opCode == null) continue;
+                JSONObject o = new JSONObject();
+                o.put("opCode", b.opCode);
+                try {
+                    mod.hey.studios.editor.manage.block.ExtraBlockInfo info = cbm.getExtraBlockInfo(b.opCode);
+                    if (info != null) o.put("name", info.getName());
+                } catch (Throwable ignored) {}
+                arr.put(o);
+            }
+
+            JSONObject root = new JSONObject();
+            root.put("customBlocks", arr);
+            writeFile(new File(dir, "custom_blocks.json"), root.toString(2));
+        } catch (Throwable ignored) {}
+    }
+
+    /** Копирует local libraries (если опция включена). */
+    private void exportLocalLibs(File dir) throws Exception {
+        if (!ConfigActivity.isSkprojIncludeLocalLibs()) return;
+        File srcDir = new File(Environment.getExternalStorageDirectory(), ".sketchware/libs/local_libs");
+        if (!srcDir.exists() || !srcDir.isDirectory()) return;
+        File dstDir = new File(dir, "local_libs");
+        dstDir.mkdirs();
+        copyFolder(srcDir, dstDir);
+    }
+
+    /** Копирует собранный APK, если он есть и опция включена. */
+    private void exportApk(File dir) throws Exception {
+        if (!ConfigActivity.isSkprojIncludeApk()) return;
+        try {
+            File binDir = new File(Environment.getExternalStorageDirectory(),
+                    ".sketchware/mysc/" + scId + "/bin");
+            if (!binDir.exists() || !binDir.isDirectory()) return;
+            File[] files = binDir.listFiles();
+            if (files == null) return;
+            for (File f : files) {
+                if (f != null && f.isFile() && f.getName().endsWith(".apk")) {
+                    File apkDir = new File(dir, "apk");
+                    apkDir.mkdirs();
+                    copyFolder(f, new File(apkDir, f.getName()));
+                }
+            }
+        } catch (Throwable ignored) {}
+    }
+
+    /** Рекурсивное копирование файла или папки. */
+    private void copyFolder(File src, File dst) {
+        if (src == null || dst == null || !src.exists()) return;
+        if (src.isDirectory()) {
+            dst.mkdirs();
+            File[] children = src.listFiles();
+            if (children == null) return;
+            for (File c : children) {
+                if (c == null) continue;
+                copyFolder(c, new File(dst, c.getName()));
+            }
+        } else {
+            try (FileInputStream in = new FileInputStream(src);
+                 FileOutputStream out = new FileOutputStream(dst)) {
+                byte[] buf = new byte[8192];
+                int n;
+                while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+            } catch (Throwable ignored) {}
+        }
     }
 
     /** Записывает содержимое в файл (UTF-8). */
