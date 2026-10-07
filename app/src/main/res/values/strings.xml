@@ -585,6 +585,8 @@ ex)\"users/username\""</string>
     <string name="logic_editor_more_block_title_add_variable_type">Добавить тип переменной</string>
     <string name="logic_editor_more_block_title_name_of_block">Имя блока</string>
     <string name="logic_editor_option_menu_title_copy_blocks">Копировать блоки</string>
+    <string name="menu_logic_check_logic">Проверить логику</string>
+    <string name="logic_check_disabled">Проверка логики отключена в настройках приложения</string>
     <string name="logic_editor_option_menu_title_paste_blocks">Вставить скопированные блоки</string>
     <string name="logic_editor_panel_button_add_component">Добавить компонент</string>
     <string name="logic_editor_panel_button_add_list">Добавить список</string>

@@ -2062,6 +2062,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         getMenuInflater().inflate(R.menu.logic_menu, menu);
         menu.findItem(R.id.menu_logic_redo).setEnabled(M != null && bC.d(scId).g(s()));
         menu.findItem(R.id.menu_logic_undo).setEnabled(M != null && bC.d(scId).h(s()));
+        menu.findItem(R.id.menu_logic_check_logic).setEnabled(
+                mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                        mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK));
         return true;
     }
 
@@ -2145,7 +2148,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
 
-        if (itemId == R.id.menu_block_helper) {
+        if (itemId == R.id.menu_logic_check_logic) {
+            checkLogicManually();
+        } else if (itemId == R.id.menu_block_helper) {
             e(false);
             g(!ia);
         } else if (itemId == R.id.menu_smartdrop_update_blocks) {
@@ -2164,6 +2169,88 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         }
 
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    /**
+     * Manual trigger for logic check: available from the overflow menu.
+     * Respects the SETTING_BLOCK_LOGIC_CHECK toggle — if disabled, shows a toast and exits.
+     * Always shows fresh results (no throttle, no dedup by hash).
+     */
+    private void checkLogicManually() {
+        try {
+            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK)) {
+                SketchwareUtil.toast(getString(pro.sketchware.R.string.logic_check_disabled));
+                return;
+            }
+            if (o == null || M == null) {
+                SketchwareUtil.toast("Сначала откройте событие");
+                return;
+            }
+            java.util.List<com.besome.sketch.beans.BlockBean> blocks;
+            try {
+                blocks = o.getBlocks();
+            } catch (Throwable t) {
+                blocks = null;
+            }
+            if (blocks == null || blocks.isEmpty()) {
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                        .setTitle("Проверка логики блоков")
+                        .setMessage("В этом событии нет блоков.")
+                        .setPositiveButton("Закрыть", null)
+                        .show();
+                return;
+            }
+
+            java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues =
+                    mod.jbk.util.ProjectLogicChecker.check(blocks, this, scId, M.getJavaName());
+
+            if (issues == null || issues.isEmpty()) {
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                        .setTitle("Проверка логики блоков")
+                        .setMessage("\u2713 Проблем не найдено")
+                        .setPositiveButton("Закрыть", null)
+                        .show();
+                return;
+            }
+
+            // Отдельно критические и предупреждения
+            java.util.List<mod.jbk.util.BlockLogicChecker.Issue> critical = new java.util.ArrayList<>();
+            java.util.List<mod.jbk.util.BlockLogicChecker.Issue> warning = new java.util.ArrayList<>();
+            for (mod.jbk.util.BlockLogicChecker.Issue i : issues) {
+                if (i.severity == mod.jbk.util.BlockLogicChecker.Severity.CRITICAL) critical.add(i);
+                else warning.add(i);
+            }
+
+            StringBuilder msg = new StringBuilder();
+            msg.append("Найдено проблем: ").append(issues.size()).append("\n");
+            msg.append("Критических: ").append(critical.size()).append(", предупреждений: ").append(warning.size()).append("\n\n");
+            if (!critical.isEmpty()) {
+                msg.append("\uD83D\uDD34 Критические:\n");
+                for (mod.jbk.util.BlockLogicChecker.Issue i : critical) {
+                    msg.append("• ").append(i.message);
+                    if (i.humanLocation != null && !i.humanLocation.isEmpty()) msg.append(" (").append(i.humanLocation).append(")");
+                    msg.append("\n");
+                }
+                msg.append("\n");
+            }
+            if (!warning.isEmpty()) {
+                msg.append("\uD83D\uDFE1 Предупреждения:\n");
+                for (mod.jbk.util.BlockLogicChecker.Issue i : warning) {
+                    msg.append("• ").append(i.message);
+                    if (i.humanLocation != null && !i.humanLocation.isEmpty()) msg.append(" (").append(i.humanLocation).append(")");
+                    msg.append("\n");
+                }
+            }
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Проверка логики блоков")
+                    .setMessage(msg.toString())
+                    .setPositiveButton("Закрыть", null)
+                    .show();
+        } catch (Throwable t) {
+            // silent — nothing should crash the editor
+        }
     }
 
     @Override
