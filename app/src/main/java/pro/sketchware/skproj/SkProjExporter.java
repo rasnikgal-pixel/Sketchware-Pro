@@ -35,6 +35,8 @@ import mod.hilal.saif.activities.tools.ConfigActivity;
  *   project.json     — данные проекта
  *   screens/         — экраны (ViewBeans)
  *   logic/           — события (BlockBeans)
+ *   components/      — компоненты (Dialog, Timer, ...) по экранам
+ *   more_blocks/     — MoreBlocks по экранам
  * </pre>
  */
 public class SkProjExporter {
@@ -84,6 +86,8 @@ public class SkProjExporter {
             exportProject(workDir, metadata);
             exportScreens(workDir);
             exportLogic(workDir);
+            exportComponents(workDir);
+            exportMoreBlocks(workDir);
 
             // Если нужен zip — упаковываем
             if (ConfigActivity.isSkprojFormatZip()) {
@@ -262,6 +266,82 @@ public class SkProjExporter {
             o.put("parameters", p);
         }
         return o;
+    }
+
+    /** Сохраняет компоненты экранов (Dialog, Timer, ...) в components/<javaName>.json. */
+    private void exportComponents(File dir) throws Exception {
+        File compDir = new File(dir, "components");
+        compDir.mkdirs();
+
+        ArrayList<ProjectFileBean> files = jC.b(scId).b();
+        if (files == null) return;
+
+        for (ProjectFileBean pfb : files) {
+            if (pfb == null) continue;
+            String javaName = pfb.getJavaName();
+            if (javaName == null || javaName.isEmpty()) continue;
+
+            ArrayList<com.besome.sketch.beans.ComponentBean> comps;
+            try { comps = jC.a(scId).e(javaName); } catch (Throwable t) { continue; }
+            if (comps == null || comps.isEmpty()) continue;
+
+            JSONArray arr = new JSONArray();
+            for (com.besome.sketch.beans.ComponentBean c : comps) {
+                if (c == null) continue;
+                try { arr.put(componentBeanToJson(c)); } catch (Throwable ignored) {}
+            }
+
+            JSONObject root = new JSONObject();
+            root.put("javaName", javaName);
+            root.put("components", arr);
+
+            writeFile(new File(compDir, javaName + ".json"), root.toString(2));
+        }
+    }
+
+    /** ComponentBean → JSON. */
+    private JSONObject componentBeanToJson(com.besome.sketch.beans.ComponentBean c) throws Exception {
+        JSONObject o = new JSONObject();
+        o.put("type", c.type);
+        o.put("componentId", c.componentId);
+        o.put("param1", c.param1);
+        o.put("param2", c.param2);
+        o.put("param3", c.param3);
+        return o;
+    }
+
+    /** Сохраняет MoreBlocks в more_blocks/<javaName>.json. */
+    private void exportMoreBlocks(File dir) throws Exception {
+        File mbDir = new File(dir, "more_blocks");
+        mbDir.mkdirs();
+
+        ArrayList<ProjectFileBean> files = jC.b(scId).b();
+        if (files == null) return;
+
+        for (ProjectFileBean pfb : files) {
+            if (pfb == null) continue;
+            String javaName = pfb.getJavaName();
+            if (javaName == null || javaName.isEmpty()) continue;
+
+            ArrayList<android.util.Pair<String, String>> mb;
+            try { mb = jC.a(scId).i(javaName); } catch (Throwable t) { continue; }
+            if (mb == null || mb.isEmpty()) continue;
+
+            JSONArray arr = new JSONArray();
+            for (android.util.Pair<String, String> p : mb) {
+                if (p == null) continue;
+                JSONObject o = new JSONObject();
+                o.put("first", p.first);
+                o.put("second", p.second);
+                arr.put(o);
+            }
+
+            JSONObject root = new JSONObject();
+            root.put("javaName", javaName);
+            root.put("moreBlocks", arr);
+
+            writeFile(new File(mbDir, javaName + ".json"), root.toString(2));
+        }
     }
 
     /** Записывает содержимое в файл (UTF-8). */
