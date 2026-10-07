@@ -2058,6 +2058,12 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             });
         }
 
+        // Button next to the search field: run logic check manually.
+        android.view.View blockSearchCheckBtn = findViewById(R.id.block_search_check_logic);
+        if (blockSearchCheckBtn != null) {
+            blockSearchCheckBtn.setOnClickListener(v -> checkLogicManually());
+        }
+
         svgUtils = new SvgUtils(this);
     }
 
@@ -2149,9 +2155,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
 
-        if (itemId == R.id.menu_logic_check_logic) {
-            checkLogicManually();
-        } else if (itemId == R.id.menu_block_helper) {
+        if (itemId == R.id.menu_block_helper) {
             e(false);
             g(!ia);
         } else if (itemId == R.id.menu_smartdrop_update_blocks) {

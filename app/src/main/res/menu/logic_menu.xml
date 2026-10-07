@@ -36,11 +36,6 @@
         app:showAsAction="never" />
 
 
-    <item
-        android:id="@+id/menu_logic_check_logic"
-        android:orderInCategory="150"
-        android:title="@string/menu_logic_check_logic"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_export_templates"
