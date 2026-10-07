@@ -2063,6 +2063,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         if (blockSearchCheckBtn != null) {
             blockSearchCheckBtn.setOnClickListener(v -> checkLogicManually());
         }
+        android.view.View blockSearchCheckScreenBtn = findViewById(R.id.block_search_check_screen);
+        if (blockSearchCheckScreenBtn != null) {
+            blockSearchCheckScreenBtn.setOnClickListener(v -> checkWholeScreen());
+        }
 
         svgUtils = new SvgUtils(this);
     }
@@ -2251,6 +2255,86 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     .show();
         } catch (Throwable t) {
             // silent — nothing should crash the editor
+        }
+    }
+
+    /**
+     * Checks ALL events of the current screen and shows a combined report.
+     * Uses eC.b(javaName) which returns Map<eventKey, List<BlockBean>>.
+     * Always works — does not depend on the auto-check toggle.
+     */
+    private void checkWholeScreen() {
+        try {
+            if (M == null || scId == null || scId.isEmpty()) {
+                SketchwareUtil.toast("Сначала откройте экран");
+                return;
+            }
+            String javaName = M.getJavaName();
+            java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> allEvents;
+            try {
+                allEvents = jC.a(scId).b(javaName);
+            } catch (Throwable t) {
+                allEvents = null;
+            }
+            if (allEvents == null || allEvents.isEmpty()) {
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                        .setTitle("Проверка всего экрана")
+                        .setMessage("На этом экране нет событий.")
+                        .setPositiveButton("Закрыть", null)
+                        .show();
+                return;
+            }
+
+            java.util.LinkedHashMap<String, java.util.List<mod.jbk.util.BlockLogicChecker.Issue>> byEvent =
+                    new java.util.LinkedHashMap<>();
+            int totalIssues = 0;
+            for (java.util.Map.Entry<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> e : allEvents.entrySet()) {
+                String eventKey = e.getKey();
+                java.util.List<com.besome.sketch.beans.BlockBean> blocks = e.getValue();
+                if (blocks == null || blocks.isEmpty()) continue;
+                java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues;
+                try {
+                    issues = mod.jbk.util.ProjectLogicChecker.check(blocks, this, scId, javaName);
+                } catch (Throwable t) {
+                    issues = null;
+                }
+                if (issues != null && !issues.isEmpty()) {
+                    byEvent.put(eventKey, issues);
+                    totalIssues += issues.size();
+                }
+            }
+
+            if (byEvent.isEmpty()) {
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                        .setTitle("Проверка всего экрана")
+                        .setMessage("\u2713 Проблем не найдено\n\nПроверено событий: " + allEvents.size())
+                        .setPositiveButton("Закрыть", null)
+                        .show();
+                return;
+            }
+
+            StringBuilder msg = new StringBuilder();
+            msg.append("Проверено событий: ").append(allEvents.size()).append("\n");
+            msg.append("Найдено проблем: ").append(totalIssues).append(" в ").append(byEvent.size()).append(" событиях\n\n");
+            for (java.util.Map.Entry<String, java.util.List<mod.jbk.util.BlockLogicChecker.Issue>> e : byEvent.entrySet()) {
+                msg.append("\uD83D\uDCCB ").append(e.getKey()).append("\n");
+                for (mod.jbk.util.BlockLogicChecker.Issue i : e.getValue()) {
+                    msg.append("  ").append(i.emoji()).append(" ").append(i.message);
+                    if (i.humanLocation != null && !i.humanLocation.isEmpty()) {
+                        msg.append(" (").append(i.humanLocation).append(")");
+                    }
+                    msg.append("\n");
+                }
+                msg.append("\n");
+            }
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Проверка всего экрана")
+                    .setMessage(msg.toString())
+                    .setPositiveButton("Закрыть", null)
+                    .show();
+        } catch (Throwable t) {
+            // silent
         }
     }
 

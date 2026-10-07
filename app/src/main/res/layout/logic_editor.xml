@@ -85,6 +85,14 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageButton
+                    android:id="@+id/block_search_check_screen"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/logic_check_screen_desc"
+                    android:src="@drawable/ic_mtrl_checklist" />
+
+                <ImageButton
                     android:id="@+id/block_search_check_logic"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
