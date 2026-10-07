@@ -121,8 +121,56 @@ public final class BlockLogicChecker {
         checkTrivialConditions(blocks, issues);
         checkUnreachableBlocks(blocks, issues);
         checkEmptyRequiredParams(blocks, issues);
+        checkForeverWithoutBreak(blocks, issues);
 
         return issues;
+    }
+
+    /**
+     * Rule: a forever loop with no break in its body.
+     * May be intentional (services), but usually a mistake.
+     * We flag it as WARNING, not CRITICAL.
+     */
+    private static void checkForeverWithoutBreak(List<BlockBean> blocks, List<Issue> issues) {
+        Map<Integer, BlockBean> byIntId = new HashMap<>();
+        for (BlockBean b : blocks) {
+            if (b == null || b.id == null) continue;
+            try {
+                byIntId.put(Integer.parseInt(b.id), b);
+            } catch (NumberFormatException ignored) {
+            }
+        }
+        if (byIntId.isEmpty()) return;
+        for (BlockBean b : blocks) {
+            if (b == null || b.opCode == null) continue;
+            if (!"forever".equals(b.opCode)) continue;
+            if (b.subStack1 <= 0) continue;
+            if (!containsBreak(b.subStack1, byIntId, new HashSet<>())) {
+                issues.add(new Issue(
+                        "forever",
+                        "Бесконечный цикл forever без break — нет выхода",
+                        new ArrayList<>(),
+                        Severity.WARNING,
+                        b.id,
+                        null,
+                        "Цикл без выхода"));
+            }
+        }
+    }
+
+    /**
+     * Recursively walks the block tree starting at the given int id
+     * and returns true if a break is found along the way.
+     */
+    private static boolean containsBreak(int startId, Map<Integer, BlockBean> byId, Set<Integer> visited) {
+        if (!visited.add(startId)) return false;
+        BlockBean b = byId.get(startId);
+        if (b == null || b.opCode == null) return false;
+        if ("break".equals(b.opCode)) return true;
+        if (b.subStack1 > 0 && containsBreak(b.subStack1, byId, visited)) return true;
+        if (b.subStack2 > 0 && containsBreak(b.subStack2, byId, visited)) return true;
+        if (b.nextBlock > 0 && containsBreak(b.nextBlock, byId, visited)) return true;
+        return false;
     }
 
     /**
