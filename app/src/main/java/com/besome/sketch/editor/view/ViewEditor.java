@@ -357,13 +357,29 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 boolean isDoubleTap = (now - lastTapTime < DOUBLE_TAP_TIMEOUT_MS)
                         && (Math.abs(tapX - lastTapX) < DOUBLE_TAP_SLOP_PX)
                         && (Math.abs(tapY - lastTapY) < DOUBLE_TAP_SLOP_PX);
+                try {
+                    pro.sketchware.smartdrop.DebugLogger.get(getContext())
+                            .d("ViewEditor", "tap_check",
+                                    "isDouble=" + isDoubleTap
+                                    + " dt=" + (now - lastTapTime)
+                                    + " dx=" + Math.abs(tapX - lastTapX)
+                                    + " dy=" + Math.abs(tapY - lastTapY)
+                                    + " listener=" + (propertyClickListener != null)
+                                    + " bean=" + (sy.getBean() != null));
+                } catch (Throwable ignored) {}
                 if (isDoubleTap) {
-                    // Двойной тап — открыть полные свойства (как "Показать все")
                     try {
                         if (propertyClickListener != null && sy.getBean() != null) {
+                            pro.sketchware.smartdrop.DebugLogger.get(getContext())
+                                    .d("ViewEditor", "double_tap_fire", "id=" + sy.getBean().id);
                             propertyClickListener.a(b, sy.getBean());
                         }
-                    } catch (Throwable ignored) {}
+                    } catch (Throwable t) {
+                        try {
+                            pro.sketchware.smartdrop.DebugLogger.get(getContext())
+                                    .d("ViewEditor", "double_tap_error", String.valueOf(t));
+                        } catch (Throwable ignored) {}
+                    }
                     lastTapTime = 0L;
                 } else {
                     a(sy, true);
