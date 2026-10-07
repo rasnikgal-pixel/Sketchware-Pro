@@ -476,9 +476,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 return;
             }
 
-            BuildTask buildTask = new BuildTask(this);
-            currentBuildTask = buildTask;
-            buildTask.execute();
+            // Проверка логики перед сборкой (если тумблер включён)
+            checkLogicBeforeBuild();
         });
 
         btnOptions = findViewById(R.id.btn_options);
@@ -591,6 +590,123 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             registerReceiver(buildCancelReceiver, filter);
         }
 
+    }
+
+    /**
+     * Запускает сборку APK. Вынесено из btnRun для переиспользования.
+     */
+    private void startBuildTask() {
+        BuildTask buildTask = new BuildTask(this);
+        currentBuildTask = buildTask;
+        buildTask.execute();
+    }
+
+    /**
+     * Проверяет логику всех экранов проекта перед сборкой.
+     * Работает только если тумблер "Проверка логики перед сборкой" включён.
+     * Показывает диалог со всеми найденными проблемами (CRITICAL + WARNING).
+     * Кнопка "Отмена" — отменяет сборку. Кнопка "Собрать всё равно" — продолжает.
+     */
+    private void checkLogicBeforeBuild() {
+        try {
+            // Тумблер выключен → сразу сборка
+            if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD)) {
+                startBuildTask();
+                return;
+            }
+
+            // Обходим Activity-экраны проекта
+            java.util.ArrayList<ProjectFileBean> activities = jC.b(sc_id).b();
+            if (activities == null || activities.isEmpty()) {
+                startBuildTask();
+                return;
+            }
+
+            // Собираем issues по всем событиям всех экранов
+            java.util.LinkedHashMap<String, java.util.List<mod.jbk.util.BlockLogicChecker.Issue>> byEventKey = new java.util.LinkedHashMap<>();
+            int totalCritical = 0;
+            int totalWarning = 0;
+
+            for (ProjectFileBean pfb : activities) {
+                String javaName = pfb.getJavaName();
+                if (javaName == null || javaName.isEmpty()) continue;
+                java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> allEvents;
+                try {
+                    allEvents = jC.a(sc_id).b(javaName);
+                } catch (Throwable t) {
+                    continue;
+                }
+                if (allEvents == null || allEvents.isEmpty()) continue;
+                for (java.util.Map.Entry<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> e : allEvents.entrySet()) {
+                    java.util.List<com.besome.sketch.beans.BlockBean> blocks = e.getValue();
+                    if (blocks == null || blocks.isEmpty()) continue;
+                    java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issues;
+                    try {
+                        issues = mod.jbk.util.ProjectLogicChecker.check(blocks, this, sc_id, javaName);
+                    } catch (Throwable t) {
+                        issues = null;
+                    }
+                    if (issues == null || issues.isEmpty()) continue;
+                    String key = javaName + " / " + e.getKey();
+                    byEventKey.put(key, issues);
+                    for (mod.jbk.util.BlockLogicChecker.Issue i : issues) {
+                        if (i.severity == mod.jbk.util.BlockLogicChecker.Severity.CRITICAL) totalCritical++;
+                        else totalWarning++;
+                    }
+                }
+            }
+
+            // Нет проблем — сразу сборка
+            if (totalCritical == 0 && totalWarning == 0) {
+                startBuildTask();
+                return;
+            }
+
+            // Записываем в журнал
+            try {
+                java.util.List<String> flat = new java.util.ArrayList<>();
+                flat.add("beforeBuild: " + byEventKey.size() + " events, " + totalCritical + " critical, " + totalWarning + " warnings");
+                mod.jbk.util.BlockLogicJournal.record(sc_id, "beforeBuild", flat);
+            } catch (Throwable ignored) {}
+
+            // Формируем сообщение
+            StringBuilder msg = new StringBuilder();
+            msg.append("\uD83D\uDD34 Критических: ").append(totalCritical)
+               .append(", \uD83D\uDFE1 Предупреждений: ").append(totalWarning).append("\n\n");
+            int shown = 0;
+            for (java.util.Map.Entry<String, java.util.List<mod.jbk.util.BlockLogicChecker.Issue>> e : byEventKey.entrySet()) {
+                if (shown >= 15) {
+                    msg.append("... и ещё ").append(byEventKey.size() - shown).append(" событий\n");
+                    break;
+                }
+                shown++;
+                msg.append("\uD83D\uDCCB ").append(e.getKey()).append("\n");
+                for (mod.jbk.util.BlockLogicChecker.Issue i : e.getValue()) {
+                    msg.append("  ").append(i.emoji()).append(" ").append(i.message);
+                    if (i.humanLocation != null && !i.humanLocation.isEmpty()) {
+                        msg.append(" (").append(i.humanLocation).append(")");
+                    }
+                    msg.append("\n");
+                }
+                msg.append("\n");
+            }
+
+            String title = totalCritical > 0
+                    ? "\u26A0\uFE0F Критические проблемы в логике проекта"
+                    : "Предупреждения в логике проекта";
+
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle(title)
+                    .setMessage(msg.toString())
+                    .setPositiveButton("Собрать всё равно", (d, w) -> startBuildTask())
+                    .setNegativeButton("Отмена", null)
+                    .show();
+
+        } catch (Throwable t) {
+            // При любой ошибке — собираем без проверки
+            startBuildTask();
+        }
     }
 
     private boolean isDebugApkExists() {
