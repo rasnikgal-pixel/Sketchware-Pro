@@ -58,6 +58,11 @@
         app:title="Проверка логики блоков" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
+        app:key="block-logic-check-before-build"
+        app:summary="Перед сборкой APK проверять логику всех экранов и предлагать исправить найденные проблемы."
+        app:title="Проверка логики перед сборкой" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
         app:key="block-templates"
         app:summary="Показывать раздел «Сборки» в палитре блоков — готовые наборы блоков."
         app:title="Сборки блоков" />
