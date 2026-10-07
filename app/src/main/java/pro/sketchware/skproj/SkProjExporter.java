@@ -37,6 +37,8 @@ import mod.hilal.saif.activities.tools.ConfigActivity;
  *   logic/           — события (BlockBeans)
  *   components/      — компоненты (Dialog, Timer, ...) по экранам
  *   more_blocks/     — MoreBlocks по экранам
+ *   variables/       — переменные по экранам
+ *   lists/           — списки по экранам
  * </pre>
  */
 public class SkProjExporter {
@@ -88,6 +90,8 @@ public class SkProjExporter {
             exportLogic(workDir);
             exportComponents(workDir);
             exportMoreBlocks(workDir);
+            exportVariables(workDir);
+            exportLists(workDir);
 
             // Если нужен zip — упаковываем
             if (ConfigActivity.isSkprojFormatZip()) {
@@ -342,6 +346,67 @@ public class SkProjExporter {
 
             writeFile(new File(mbDir, javaName + ".json"), root.toString(2));
         }
+    }
+
+    /** Сохраняет переменные экранов в variables/<javaName>.json. */
+    private void exportVariables(File dir) throws Exception {
+        File vDir = new File(dir, "variables");
+        vDir.mkdirs();
+
+        ArrayList<ProjectFileBean> files = jC.b(scId).b();
+        if (files == null) return;
+
+        for (ProjectFileBean pfb : files) {
+            if (pfb == null) continue;
+            String javaName = pfb.getJavaName();
+            if (javaName == null || javaName.isEmpty()) continue;
+
+            JSONObject root = new JSONObject();
+            root.put("javaName", javaName);
+            try { root.put("boolean", arr(jC.a(scId).e(javaName, 0))); } catch (Throwable ignored) {}
+            try { root.put("number", arr(jC.a(scId).e(javaName, 1))); } catch (Throwable ignored) {}
+            try { root.put("string", arr(jC.a(scId).e(javaName, 2))); } catch (Throwable ignored) {}
+            try { root.put("map", arr(jC.a(scId).e(javaName, 3))); } catch (Throwable ignored) {}
+            try { root.put("custom", arr(jC.a(scId).e(javaName, 5))); } catch (Throwable ignored) {}
+            try { root.put("custom2", arr(jC.a(scId).e(javaName, 6))); } catch (Throwable ignored) {}
+
+            writeFile(new File(vDir, javaName + ".json"), root.toString(2));
+        }
+    }
+
+    /** Сохраняет списки экранов в lists/<javaName>.json. */
+    private void exportLists(File dir) throws Exception {
+        File lDir = new File(dir, "lists");
+        lDir.mkdirs();
+
+        ArrayList<ProjectFileBean> files = jC.b(scId).b();
+        if (files == null) return;
+
+        for (ProjectFileBean pfb : files) {
+            if (pfb == null) continue;
+            String javaName = pfb.getJavaName();
+            if (javaName == null || javaName.isEmpty()) continue;
+
+            JSONObject root = new JSONObject();
+            root.put("javaName", javaName);
+            try { root.put("listInt", arr(jC.a(scId).d(javaName, 1))); } catch (Throwable ignored) {}
+            try { root.put("listStr", arr(jC.a(scId).d(javaName, 2))); } catch (Throwable ignored) {}
+            try { root.put("listMap", arr(jC.a(scId).d(javaName, 3))); } catch (Throwable ignored) {}
+            try { root.put("listCustom", arr(jC.a(scId).d(javaName, 4))); } catch (Throwable ignored) {}
+
+            writeFile(new File(lDir, javaName + ".json"), root.toString(2));
+        }
+    }
+
+    /** ArrayList<String> → JSONArray. */
+    private JSONArray arr(ArrayList<String> list) {
+        JSONArray a = new JSONArray();
+        if (list != null) {
+            for (String s : list) {
+                if (s != null) a.put(s);
+            }
+        }
+        return a;
     }
 
     /** Записывает содержимое в файл (UTF-8). */
