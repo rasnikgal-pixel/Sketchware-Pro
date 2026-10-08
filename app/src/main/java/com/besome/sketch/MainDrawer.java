@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.besome.sketch.help.ProgramInfoActivity;
 import com.besome.sketch.tools.NewKeyStoreActivity;
+import com.besome.sketch.tools.ToolsActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import a.a.a.mB;
@@ -89,6 +90,10 @@ public class MainDrawer extends NavigationView {
             activity.startActivity(intent);
         } else if (id == R.id.create_release_keystore) {
             Intent intent = new Intent(activity, NewKeyStoreActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            activity.startActivity(intent);
+        } else if (id == R.id.item_tools) {
+            Intent intent = new Intent(activity, ToolsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             activity.startActivity(intent);
         }

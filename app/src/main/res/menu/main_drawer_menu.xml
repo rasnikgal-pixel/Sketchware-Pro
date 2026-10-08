@@ -28,6 +28,11 @@
         android:title="@string/common_word_create_keystore" />
 
     <item
+        android:id="@+id/item_tools"
+        android:icon="@drawable/ic_mtrl_box"
+        android:title="Инструменты" />
+
+    <item
         android:id="@+id/app_settings"
         android:icon="@drawable/ic_mtrl_settings"
         android:title="@string/common_word_settings" />
