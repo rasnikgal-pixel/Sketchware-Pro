@@ -157,10 +157,10 @@ public class ToolsActivity extends BaseAppCompatActivity {
 
             TextView title = new TextView(ToolsActivity.this);
             title.setTextSize(16);
-            title.setTextColor(0xFF000000);
+            title.setTextColor(resolveThemeColor(com.google.android.material.R.attr.colorOnSurface));
             TextView subtitle = new TextView(ToolsActivity.this);
             subtitle.setTextSize(13);
-            subtitle.setTextColor(0xFF666666);
+            subtitle.setTextColor(resolveThemeColor(com.google.android.material.R.attr.colorOnSurfaceVariant));
             subtitle.setPadding(0, dp(4), 0, 0);
 
             texts.addView(title);
@@ -197,6 +197,18 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 this.subtitle = subtitle;
             }
         }
+    }
+
+    /** Возвращает цвет из атрибута текущей темы. */
+    private int resolveThemeColor(int attr) {
+        android.util.TypedValue tv = new android.util.TypedValue();
+        if (getTheme().resolveAttribute(attr, tv, true)) {
+            if (tv.type >= android.util.TypedValue.TYPE_FIRST_COLOR_INT
+                    && tv.type <= android.util.TypedValue.TYPE_LAST_COLOR_INT) {
+                return tv.data;
+            }
+        }
+        return 0xFF000000;
     }
 
     private int dp(int value) {
