@@ -80,6 +80,9 @@
             android:name="com.besome.sketch.tools.ToolsActivity"
             android:configChanges="orientation|screenSize" />
         <activity
+            android:name="com.besome.sketch.help.HelpActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
             android:name="com.besome.sketch.export.ExportProjectActivity"
             android:configChanges="orientation|screenSize" />
         <activity

@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.besome.sketch.help.ProgramInfoActivity;
 import com.besome.sketch.tools.NewKeyStoreActivity;
 import com.besome.sketch.tools.ToolsActivity;
+import com.besome.sketch.help.HelpActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import a.a.a.mB;
@@ -67,13 +68,11 @@ public class MainDrawer extends NavigationView {
 
     private void initializeSocialLinks(@IdRes int id) {
         if (!mB.a()) {
-            @StringRes int url = -1;
             if (id == R.id.social_russian_help) {
-                url = R.string.link_russian_help;
-            }
-
-            if (url != -1) {
-                openUrl(getContext().getString(url));
+                Activity activity = unwrap(getContext());
+                Intent intent = new Intent(activity, HelpActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                activity.startActivity(intent);
             }
         }
     }
