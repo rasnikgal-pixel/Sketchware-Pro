@@ -199,6 +199,13 @@
             app:summary="@string/updates_check_now_summary"
             app:title="@string/updates_check_now" />
     </PreferenceCategory>
+    <PreferenceCategory app:title="Помощь">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="open-help"
+            app:summary="Открыть справку Sketchware Pro"
+            app:title="Справка" />
+    </PreferenceCategory>
     <PreferenceCategory app:title="@string/settings_icons_category">
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"

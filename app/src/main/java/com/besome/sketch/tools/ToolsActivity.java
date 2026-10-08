@@ -1,6 +1,8 @@
 package com.besome.sketch.tools;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,9 +54,23 @@ public class ToolsActivity extends BaseAppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, 101, Menu.NONE, "Справка")
+                .setIcon(R.drawable.ic_mtrl_help)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
+            return true;
+        }
+        if (item.getItemId() == 101) {
+            com.besome.sketch.help.HelpOpener.open(
+                    this,
+                    "category-interfeys-prilozheniya");
             return true;
         }
         return super.onOptionsItemSelected(item);

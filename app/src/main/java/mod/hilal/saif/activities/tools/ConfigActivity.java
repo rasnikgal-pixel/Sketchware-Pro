@@ -433,6 +433,16 @@ public class ConfigActivity extends BaseAppCompatActivity {
             dataStore = DataStore.getInstance();
             getPreferenceManager().setPreferenceDataStore(dataStore);
             setPreferencesFromResource(R.xml.preferences_config_activity, rootKey);
+            Preference helpPref = findPreference("open-help");
+            if (helpPref != null) {
+                helpPref.setOnPreferenceClickListener(preference -> {
+                    com.besome.sketch.help.HelpOpener.open(
+                            ConfigActivity.this,
+                            "block-nastroyki-prilozheniya-vnutrennie-parametry");
+                    return true;
+                });
+            }
+
             Preference backupDir = findPreference("backup-dir");
             assert backupDir != null;
             backupDir.setOnPreferenceClickListener(preference -> {
