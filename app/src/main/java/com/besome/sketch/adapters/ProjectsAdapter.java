@@ -300,6 +300,32 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
             });
         });
 
+        binding.shareSkproj.setOnClickListener(v -> {
+            projectOptionsBSD.dismiss();
+            String shareScId = yB.c(projectMap, "sc_id");
+            SkProjExportTask.run(activity, shareScId, new SkProjExportTask.Callback() {
+                @Override
+                public void onSuccess(File outFile) {
+                    try {
+                        String providerPath = activity.getPackageName() + ".provider";
+                        Uri uri = FileProvider.getUriForFile(activity, providerPath, outFile);
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("application/octet-stream");
+                        intent.putExtra(Intent.EXTRA_STREAM, uri);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        activity.startActivity(Intent.createChooser(intent, "Поделиться проектом"));
+                    } catch (Throwable t) {
+                        SketchwareUtil.toastError("Не удалось отправить: " + t.getMessage());
+                    }
+                }
+
+                @Override
+                public void onError(String message) {
+                    SketchwareUtil.toastError("Ошибка: " + message);
+                }
+            });
+        });
+
         binding.pinProject.setOnClickListener(v -> {
             changePinState(projectMap);
             projectOptionsBSD.dismiss();
