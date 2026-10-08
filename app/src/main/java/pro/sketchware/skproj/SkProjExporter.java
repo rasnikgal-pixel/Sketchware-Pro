@@ -28,6 +28,10 @@ import a.a.a.lC;
 import a.a.a.yB;
 import mod.hilal.saif.activities.tools.ConfigActivity;
 import mod.hey.studios.project.custom_blocks.CustomBlocksManager;
+import mod.hey.studios.build.BuildSettings;
+import com.besome.sketch.beans.ProjectLibraryBean;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 /**
  * Экспорт проекта Sketchware в переносимую папку формата .skproj.
@@ -43,6 +47,9 @@ import mod.hey.studios.project.custom_blocks.CustomBlocksManager;
  *   more_blocks/     — MoreBlocks по экранам
  *   variables/       — переменные по экранам
  *   lists/           — списки по экранам
+ *   config/          — открытые файлы (project_config, proguard, stringfog)
+ *   build_settings.json — настройки сборки
+ *   libraries.json   — библиотеки проекта
  *   resources/       — ресурсы (icons, images, sounds, fonts)
  *   custom_blocks.json — custom blocks проекта
  *   local_libs/      — локальные библиотеки (по опции)
@@ -104,6 +111,9 @@ public class SkProjExporter {
             exportCustomBlocks(workDir);
             exportLocalLibs(workDir);
             exportApk(workDir);
+            exportConfig(workDir);
+            exportBuildSettings(workDir);
+            exportLibraries(workDir);
 
             // Если нужен zip — упаковываем
             if (ConfigActivity.isSkprojFormatZip()) {
@@ -516,6 +526,82 @@ public class SkProjExporter {
                 while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
             } catch (Throwable ignored) {}
         }
+    }
+
+    /** Копирует открытые файлы проекта (project_config, proguard, stringfog, permission). */
+    private void exportConfig(File dir) throws Exception {
+        File cfgDir = new File(dir, "config");
+        cfgDir.mkdirs();
+
+        File dataDir = new File(Environment.getExternalStorageDirectory(),
+                ".sketchware/data/" + scId);
+        if (!dataDir.exists()) return;
+
+        copyIfExists(new File(dataDir, "project_config"), new File(cfgDir, "project_config.json"));
+        copyIfExists(new File(dataDir, "proguard"), new File(cfgDir, "proguard.json"));
+        copyIfExists(new File(dataDir, "proguard-rules.pro"), new File(cfgDir, "proguard-rules.pro"));
+        copyIfExists(new File(dataDir, "stringfog"), new File(cfgDir, "stringfog.json"));
+        copyIfExists(new File(dataDir, "permission"), new File(cfgDir, "permission.txt"));
+    }
+
+    /** Копирует файл, если он существует и не пуст. */
+    private void copyIfExists(File src, File dst) {
+        if (src == null || dst == null) return;
+        if (!src.exists() || !src.isFile()) return;
+        if (src.length() == 0) return;
+        copyFolder(src, dst);
+    }
+
+    /** Сохраняет настройки сборки (BuildSettings) в build_settings.json. */
+    private void exportBuildSettings(File dir) throws Exception {
+        try {
+            BuildSettings bs = new BuildSettings(scId);
+            JSONObject root = new JSONObject();
+            root.put("min_sdk", bs.getValue(BuildSettings.SETTING_MINIMUM_SDK_VERSION, ""));
+            root.put("target_sdk", bs.getValue(BuildSettings.SETTING_TARGET_SDK_VERSION, ""));
+            root.put("android_jar", bs.getValue(BuildSettings.SETTING_ANDROID_JAR_PATH, ""));
+            root.put("classpath", bs.getValue(BuildSettings.SETTING_CLASSPATH, ""));
+            root.put("dexer", bs.getValue(BuildSettings.SETTING_DEXER, BuildSettings.SETTING_DEXER_DX));
+            root.put("java_ver", bs.getValue(BuildSettings.SETTING_JAVA_VERSION, BuildSettings.SETTING_JAVA_VERSION_1_7));
+            root.put("no_http_legacy", bs.getValue(BuildSettings.SETTING_NO_HTTP_LEGACY, ""));
+            root.put("no_warn", bs.getValue(BuildSettings.SETTING_NO_WARNINGS, ""));
+            root.put("enable_logcat", bs.getValue(BuildSettings.SETTING_ENABLE_LOGCAT, ""));
+            writeFile(new File(dir, "build_settings.json"), root.toString(2));
+        } catch (Throwable ignored) {}
+    }
+
+    /** Сохраняет библиотеки проекта (iC) в libraries.json. */
+    private void exportLibraries(File dir) throws Exception {
+        try {
+            a.a.a.iC libs = jC.c(scId);
+            if (libs == null) return;
+
+            JSONArray arr = new JSONArray();
+            addLibrary(arr, libs.b());
+            addLibrary(arr, libs.c());
+            addLibrary(arr, libs.d());
+            addLibrary(arr, libs.e());
+
+            JSONObject root = new JSONObject();
+            root.put("libraries", arr);
+            writeFile(new File(dir, "libraries.json"), root.toString(2));
+        } catch (Throwable ignored) {}
+    }
+
+    /** ProjectLibraryBean → JSONArray (если не null). */
+    private void addLibrary(JSONArray arr, ProjectLibraryBean lib) {
+        if (lib == null) return;
+        try {
+            JSONObject o = new JSONObject();
+            o.put("libType", lib.libType);
+            o.put("useYn", lib.useYn);
+            o.put("appId", lib.appId);
+            o.put("data", lib.data);
+            o.put("reserved1", lib.reserved1);
+            o.put("reserved2", lib.reserved2);
+            o.put("reserved3", lib.reserved3);
+            arr.put(o);
+        } catch (Throwable ignored) {}
     }
 
     /** Записывает содержимое в файл (UTF-8). */
