@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/design_menu_help"
+        android:icon="@drawable/ic_mtrl_help"
+        android:orderInCategory="90"
+        android:title="Справка"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/design_option_menu_search"
         android:icon="@drawable/ic_mtrl_search"
         android:orderInCategory="100"

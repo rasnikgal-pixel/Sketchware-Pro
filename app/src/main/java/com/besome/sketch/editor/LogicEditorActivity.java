@@ -2175,6 +2175,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             importTemplatesLauncher.launch(new String[]{"application/json"});
         } else if (itemId == R.id.menu_logic_showsource) {
             showSourceCode();
+        } else if (itemId == R.id.menu_logic_help) {
+            com.besome.sketch.help.HelpOpener.open(this, "category-logika-sobytiya");
         }
 
         return super.onOptionsItemSelected(menuItem);
