@@ -47,6 +47,7 @@ import mod.hey.studios.util.Helper;
 import mod.tyron.backup.SingleCopyTask;
 import pro.sketchware.R;
 import pro.sketchware.activities.main.fragments.projects.ProjectsFragment;
+import com.besome.sketch.help.HelpActivity;
 import com.besome.sketch.help.HelpFragment;
 import pro.sketchware.databinding.MainBinding;
 import pro.sketchware.utility.DataResetter;
@@ -277,7 +278,8 @@ public class MainActivity extends BasePermissionAppCompatActivity {
                 navigateToProjectsFragment();
                 return true;
             } else if (id == R.id.item_help) {
-                navigateToHelpFragment();
+                com.besome.sketch.help.HelpActivity.openPage(
+                        pro.sketchware.activities.main.activities.MainActivity.this, null);
                 return true;
             }
             return false;
@@ -291,7 +293,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
             if (current instanceof ProjectsFragment) {
                 navigateToProjectsFragment();
             } else if (current instanceof HelpFragment) {
-                navigateToHelpFragment();
+                // игнорируем — старый HelpFragment больше не используется
             }
 
             return;

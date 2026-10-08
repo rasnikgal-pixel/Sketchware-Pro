@@ -16,12 +16,54 @@ import androidx.fragment.app.Fragment;
 import pro.sketchware.R;
 
 /**
- * Фрагмент «Справка» — встроенный WebView с офлайн-документацией.
- * Документация в assets/help/index.html.
+ * Фрагмент «Справка» — WebView с онлайн-документацией.
+ *
+ * URL: https://rasnikgal-pixel.github.io/sketchware-help/?page=<page>
+ *
+ * Anchor → page берётся из assets/anchors.json.
  */
 public class HelpFragment extends Fragment {
 
+    private static final String BASE_URL = "https://rasnikgal-pixel.github.io/sketchware-help/";
+    private static final String DEFAULT_PAGE = "page_1.html";
+    private static final String ARG_PAGE = "page";
+    private static final String ARG_ANCHOR = "anchor";
+
     private WebView webView;
+
+    /** Создаёт фрагмент, открывающий конкретную страницу. */
+    public static HelpFragment newInstance(String page, String anchor) {
+        HelpFragment f = new HelpFragment();
+        Bundle b = new Bundle();
+        if (page != null) b.putString(ARG_PAGE, page);
+        if (anchor != null) b.putString(ARG_ANCHOR, anchor);
+        f.setArguments(b);
+        return f;
+    }
+
+    /** Создаёт фрагмент, открывающий страницу по anchor (ищет в anchors.json). */
+    public static HelpFragment newInstanceByAnchor(String anchor) {
+        String page = lookupPage(anchor);
+        return newInstance(page, null);
+    }
+
+    /** Ищет страницу по anchor в assets/anchors.json. */
+    public static String lookupPage(String anchor) {
+        if (anchor == null || anchor.isEmpty()) return DEFAULT_PAGE;
+        try {
+            android.content.Context ctx = pro.sketchware.SketchApplication.getContext();
+            java.io.InputStream is = ctx.getAssets().open("anchors.json");
+            java.io.BufferedReader br = new java.io.BufferedReader(
+                    new java.io.InputStreamReader(is, "UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) sb.append(line);
+            br.close();
+            org.json.JSONObject obj = new org.json.JSONObject(sb.toString());
+            if (obj.has(anchor)) return obj.getString(anchor);
+        } catch (Throwable ignored) {}
+        return DEFAULT_PAGE;
+    }
 
     @Nullable
     @Override
@@ -30,6 +72,14 @@ public class HelpFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_help, container, false);
         webView = root.findViewById(R.id.help_webview);
+        View fab = root.findViewById(R.id.help_fab);
+        if (fab != null) {
+            fab.setOnClickListener(v -> {
+                if (webView != null) {
+                    webView.loadUrl(BASE_URL + "?page=" + DEFAULT_PAGE);
+                }
+            });
+        }
         setupWebView();
         return root;
     }
@@ -46,10 +96,21 @@ public class HelpFragment extends Fragment {
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
 
-        // Ссылки — внутри WebView (не открывать внешний браузер)
         webView.setWebViewClient(new WebViewClient());
 
-        webView.loadUrl("file:///android_asset/help/index.html");
+        String page = DEFAULT_PAGE;
+        String anchor = null;
+        Bundle args = getArguments();
+        if (args != null) {
+            if (args.containsKey(ARG_PAGE)) {
+                page = args.getString(ARG_PAGE);
+            } else if (args.containsKey(ARG_ANCHOR)) {
+                page = lookupPage(args.getString(ARG_ANCHOR));
+            }
+        }
+        if (page == null || page.isEmpty()) page = DEFAULT_PAGE;
+
+        webView.loadUrl(BASE_URL + "?page=" + page);
     }
 
     @Override
