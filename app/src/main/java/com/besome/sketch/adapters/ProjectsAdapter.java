@@ -34,6 +34,8 @@ import a.a.a.yB;
 import mod.hey.studios.project.ProjectSettingsDialog;
 import mod.hey.studios.project.backup.BackupRestoreManager;
 import mod.hey.studios.util.Helper;
+import pro.sketchware.skproj.SkProjExportTask;
+import pro.sketchware.utility.SketchwareUtil;
 import pro.sketchware.R;
 import pro.sketchware.activities.main.fragments.projects.ProjectsFragment;
 import pro.sketchware.databinding.BottomSheetProjectOptionsBinding;
@@ -280,6 +282,22 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         binding.projectBackup.setOnClickListener(v -> {
             backupProject(projectMap);
             projectOptionsBSD.dismiss();
+        });
+
+        binding.exportSkproj.setOnClickListener(v -> {
+            projectOptionsBSD.dismiss();
+            String skprojScId = yB.c(projectMap, "sc_id");
+            SkProjExportTask.run(activity, skprojScId, new SkProjExportTask.Callback() {
+                @Override
+                public void onSuccess(File outFile) {
+                    SkProjExportTask.showResultDialog(activity, outFile);
+                }
+
+                @Override
+                public void onError(String message) {
+                    SketchwareUtil.toastError("Ошибка экспорта: " + message);
+                }
+            });
         });
 
         binding.pinProject.setOnClickListener(v -> {
