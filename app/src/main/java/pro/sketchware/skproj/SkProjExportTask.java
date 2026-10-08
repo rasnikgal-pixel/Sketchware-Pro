@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 
+import androidx.core.content.FileProvider;
+
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.File;
@@ -89,8 +91,10 @@ public final class SkProjExportTask {
     private static void openFolder(Activity activity, File folder) {
         if (activity == null || folder == null) return;
         try {
+            // Android 11+ не даёт открыть папку через ACTION_VIEW.
+            // Показываем путь и пытаемся открыть через стандартный file:// (может сработать на некоторых устройствах).
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.fromFile(folder), "resource/folder");
+            intent.setDataAndType(Uri.parse("file://" + folder.getAbsolutePath()), "resource/folder");
             activity.startActivity(intent);
         } catch (Throwable t) {
             Toast.makeText(activity, "Папка: " + folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
@@ -100,12 +104,15 @@ public final class SkProjExportTask {
     private static void shareFile(Activity activity, File file) {
         if (activity == null || file == null) return;
         try {
+            Uri uri = FileProvider.getUriForFile(activity,
+                    activity.getPackageName() + ".provider", file);
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("application/octet-stream");
-            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             activity.startActivity(Intent.createChooser(intent, "Поделиться .skproj"));
         } catch (Throwable t) {
-            Toast.makeText(activity, "Не удалось отправить", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Не удалось отправить: " + t.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }
