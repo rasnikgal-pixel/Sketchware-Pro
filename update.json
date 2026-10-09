@@ -1,12 +1,12 @@
 {
   "versionCode": 163,
   "versionName": "7.3.0",
-  "downloadUrl": "https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/download/7.3.0/app-release.apk",
+  "downloadUrl": "https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/download/7.2.1/app-release.apk",
   "changelog": "📚 ИНТЕГРАЦИЯ СПРАВКИ С ПРИЛОЖЕНИЕМ\\n\\nТеперь во многих местах приложения есть кнопка «?», которая открывает\\nсоответствующий раздел справки прямо в приложении.\\n\\n🎯 ГДЕ ДОБАВЛЕНЫ КНОПКИ «?»:\\n\\n• Редактор свойств виджета — для каждого виджета своя страница:\\n  Button, TextView, EditText, ImageView, LinearLayout, RelativeLayout,\\n  ScrollView (H/V), WebView, ProgressBar, ListView, Spinner, CheckBox,\\n  Switch, SeekBar, CalendarView, AdView, MapView.\\n\\n• Дизайнер, События, Компонент — в шапке проекта.\\n• Редактор логики — учитывает текущее событие (onCreate).\\n• Инструменты — отдельная кнопка «?».\\n• Настройки приложения — пункт «Справка» в конце списка.\\n\\n📖 ЯКОРЯ СПРАВКИ\\n\\n• 217 якорей для всех разделов онлайн-справки.\\n• Универсальная система: якорь → страница справки.\\n• Добавлены новые разделы (будут пополняться).\\n\\n🛠 ТЕХНИЧЕСКИЕ ИЗМЕНЕНИЯ\\n\\n• Класс WidgetHelpMapper — сопоставление типов виджетов с якорями.\\n• Полный переход на новую систему якорей (block-*).\\n• assets/anchors.json обновлён из structure.json ManuList.\\n",
   "required": false,
   "releaseDate": "2026-10-09",
   "minVersion": 0,
   "channel": "stable",
-  "apkSize": 139581951,
-  "sha256": "d6132f87f75c3f8629e996be166cdfb61a42740b3199bffdc1b32d5655e7b543"
+  "apkSize": 139605789,
+  "sha256": "dab1e2df5bfe05cc34d483cbc9f7b5c7c9c2b9195e7ad165486397dc779e6135"
 }
