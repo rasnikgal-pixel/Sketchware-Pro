@@ -137,6 +137,9 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
     /** Снимок счётчика изменений настроек дизайнера — для детекта, надо ли пересоздать палитру. */
     private long lastSeenDesignerSettingsCounter = -1L;
+
+    /** Флаг: пользователь изменял проект (перемещал виджеты, правил свойства) — для диалога сохранения. */
+    public boolean hasUnsavedChanges = false;
     private CoordinatorLayout coordinatorLayout;
     private DrawerLayout drawer;
     private yq q;
@@ -413,16 +416,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 currentTabNumber--;
                 viewPager.setCurrentItem(currentTabNumber);
             } else {
-                boolean hasChanges = hasAnyUnsavedData();
-                String diag = "c.g=" + jC.c(sc_id).g()
-                        + " b.g=" + jC.b(sc_id).g()
-                        + " d.q=" + jC.d(sc_id).q()
-                        + " a.d=" + jC.a(sc_id).d()
-                        + " a.c=" + jC.a(sc_id).c();
-                android.widget.Toast.makeText(this,
-                        diag,
-                        android.widget.Toast.LENGTH_LONG).show();
-                if (!hasChanges) {
+                if (!hasAnyUnsavedData() && !hasUnsavedChanges) {
                     k();
                     finish();
                 } else {

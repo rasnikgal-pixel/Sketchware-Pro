@@ -143,6 +143,11 @@ public class ViewEditorFragment extends qA {
             public void d() {
                 isDragging = false;
                 ((DesignActivity) requireActivity()).setTouchEventEnabled(true);
+
+                // Пользователь только что уронил виджет — значит, проект изменён.
+                try {
+                    ((DesignActivity) requireActivity()).hasUnsavedChanges = true;
+                } catch (Throwable ignored) {}
             }
         });
         viewEditor.setOnHistoryChangeListener(this::invalidateOptionsMenu);
