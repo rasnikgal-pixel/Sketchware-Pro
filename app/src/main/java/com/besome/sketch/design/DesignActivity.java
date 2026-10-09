@@ -410,7 +410,13 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 currentTabNumber--;
                 viewPager.setCurrentItem(currentTabNumber);
             } else {
-                showSaveBeforeQuittingDialog();
+                // Если изменений в проекте нет — закрываем без диалога.
+                if (!hasAnyUnsavedData()) {
+                    k();
+                    finish();
+                } else {
+                    showSaveBeforeQuittingDialog();
+                }
             }
         }
     }
