@@ -134,6 +134,9 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
     private boolean B;
     private int currentTabNumber;
     private CustomViewPager viewPager;
+
+    /** Снимок счётчика изменений настроек дизайнера — для детекта, надо ли пересоздать палитру. */
+    private long lastSeenDesignerSettingsCounter = -1L;
     private CoordinatorLayout coordinatorLayout;
     private DrawerLayout drawer;
     private yq q;
@@ -815,6 +818,23 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
         long freeMegabytes = GB.c();
         if (freeMegabytes < 100L && freeMegabytes > 0L) {
             warnAboutInsufficientStorageSpace();
+        }
+
+        // Если пользователь изменил настройки дизайнера — пересоздаём палитру,
+        // чтобы применились новые размеры иконок, текста, подписи и т.д.
+        long currentCounter = pro.sketchware.settings.DesignerSettingsStore.getChangeCounter(this);
+        if (lastSeenDesignerSettingsCounter == -1L) {
+            // Первый запуск — просто запоминаем
+            lastSeenDesignerSettingsCounter = currentCounter;
+        } else if (currentCounter != lastSeenDesignerSettingsCounter) {
+            lastSeenDesignerSettingsCounter = currentCounter;
+            if (viewTabAdapter != null) {
+                try {
+                    viewTabAdapter.e();
+                } catch (Throwable t) {
+                    // Игнорируем
+                }
+            }
         }
     }
 

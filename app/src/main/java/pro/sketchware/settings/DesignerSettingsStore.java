@@ -49,7 +49,22 @@ public final class DesignerSettingsStore {
 
     private static final String KEY_MIGRATED_V1 = "migrated_v1";
 
+    private static final String KEY_CHANGE_COUNTER = "change_counter";
+
+    private static final String KEY_CHANGE_COUNTER = "change_counter";
+
     private DesignerSettingsStore() {}
+
+    /** Счётчик изменений — увеличивается при каждом setX. Используется для детекта изменений. */
+    public static long getChangeCounter(Context ctx) {
+        return prefs(ctx).getLong(KEY_CHANGE_COUNTER, 0L);
+    }
+
+    private static void bumpCounter(Context ctx) {
+        prefs(ctx).edit()
+                .putLong(KEY_CHANGE_COUNTER, getChangeCounter(ctx) + 1)
+                .apply();
+    }
 
     /** Однократная миграция при первом запуске после релиза с новыми дефолтами. */
     public static void migrateIfNeeded(Context ctx) {
@@ -125,53 +140,66 @@ public final class DesignerSettingsStore {
 
     public static void setAccordion(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_ACCORDION, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setTabsStartState(Context ctx, String v) {
         prefs(ctx).edit().putString(KEY_TABS_START, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setShowCount(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_SHOW_COUNT, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setAnimation(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_ANIMATION, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setIconSize(Context ctx, String v) {
         prefs(ctx).edit().putString(KEY_ICON_SIZE, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setTextSize(Context ctx, String v) {
         prefs(ctx).edit().putString(KEY_TEXT_SIZE, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setPaletteWidth(Context ctx, String v) {
         prefs(ctx).edit().putString(KEY_PALETTE_WIDTH, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setShowLabels(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_SHOW_LABELS, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setDoubleTapAction(Context ctx, String v) {
         prefs(ctx).edit().putString(KEY_DOUBLE_TAP, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setLongTapAction(Context ctx, String v) {
         prefs(ctx).edit().putString(KEY_LONG_TAP, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setTooltips(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_TOOLTIPS, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setShowCollapseAll(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_SHOW_COLLAPSE_ALL, v).apply();
+        bumpCounter(ctx);
     }
 
     public static void setShowSearch(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_SHOW_SEARCH, v).apply();
+        bumpCounter(ctx);
     }
 }
