@@ -46,4 +46,10 @@ public final class WidgetTabsSettings {
         "Google",
         "Дата и время"
     };
+
+    /** Категории, которые нельзя скрыть полностью (только свернуть). */
+    public static final String[] ALWAYS_VISIBLE = {
+        "Макеты",
+        "Виджеты"
+    };
 }

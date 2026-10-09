@@ -178,6 +178,9 @@ public class PaletteWidget extends LinearLayout {
         titleWidgets = findViewById(R.id.tv_widget);
         titleLayouts.setText(Helper.getResString(R.string.view_panel_title_layouts));
         titleWidgets.setText(Helper.getResString(R.string.view_panel_title_widgets));
+        // Скрываем встроенные заголовки — теперь их роль выполняют категории ("Макеты" и "Виджеты").
+        titleLayouts.setVisibility(View.GONE);
+        titleWidgets.setVisibility(View.GONE);
         scrollView = findViewById(R.id.scv);
         cardView = findViewById(R.id.cardView);
     }

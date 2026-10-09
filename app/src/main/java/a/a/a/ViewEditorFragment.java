@@ -229,6 +229,7 @@ public class ViewEditorFragment extends qA {
     public void e() {
         viewEditor.removeWidgetsAndLayouts();
         viewEditor.setPaletteLayoutVisible(View.VISIBLE);
+        viewEditor.paletteWidget.extraTitle("Макеты", 0);
         viewEditor.addWidgetLayout(PaletteWidget.a.a, "");
         viewEditor.addWidgetLayout(PaletteWidget.a.b, "");
         viewEditor.addWidget(PaletteWidget.b.b, "", "TextView", "TextView");
@@ -247,6 +248,7 @@ public class ViewEditorFragment extends qA {
         viewEditor.extraWidgetLayout("", "SwipeRefreshLayout");
         widgetsCreatorManager.addWidgetsByTitle("AndroidX");
 
+        viewEditor.paletteWidget.extraTitle("Виджеты", 1);
         viewEditor.addWidget(PaletteWidget.b.c, "", "EditText", "Edit Text");
         viewEditor.extraWidget("", "AutoCompleteTextView", "AutoCompleteTextView");
         viewEditor.extraWidget("", "MultiAutoCompleteTextView", "MultiAutoCompleteTextView");
