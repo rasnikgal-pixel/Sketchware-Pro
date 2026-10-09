@@ -820,19 +820,21 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             warnAboutInsufficientStorageSpace();
         }
 
-        // Если пользователь изменил настройки дизайнера — пересоздаём палитру,
-        // чтобы применились новые размеры иконок, текста, подписи и т.д.
+        // Если пользователь изменил настройки дизайнера — пересоздаём палитру.
         long currentCounter = pro.sketchware.settings.DesignerSettingsStore.getChangeCounter(this);
+        android.widget.Toast.makeText(this,
+                "onResume: counter=" + currentCounter + " last=" + lastSeenDesignerSettingsCounter,
+                android.widget.Toast.LENGTH_SHORT).show();
         if (lastSeenDesignerSettingsCounter == -1L) {
-            // Первый запуск — просто запоминаем
             lastSeenDesignerSettingsCounter = currentCounter;
         } else if (currentCounter != lastSeenDesignerSettingsCounter) {
             lastSeenDesignerSettingsCounter = currentCounter;
             if (viewTabAdapter != null) {
                 try {
                     viewTabAdapter.e();
+                    android.widget.Toast.makeText(this, "Палитра пересоздана", android.widget.Toast.LENGTH_SHORT).show();
                 } catch (Throwable t) {
-                    // Игнорируем
+                    android.widget.Toast.makeText(this, "Ошибка e(): " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
                 }
             }
         }
