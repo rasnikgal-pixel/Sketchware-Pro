@@ -429,7 +429,7 @@ public class PaletteWidget extends LinearLayout {
 
     public void setLayoutVisible(int visibility) {
         layoutContainer.setVisibility(visibility);
-        titleLayouts.setVisibility(visibility);
+        // titleLayouts всегда скрыт — его роль выполняет категория "Макеты".
     }
 
     public void setScrollEnabled(boolean scrollEnabled) {
@@ -442,7 +442,7 @@ public class PaletteWidget extends LinearLayout {
 
     public void setWidgetVisible(int visibility) {
         widgetsContainer.setVisibility(visibility);
-        titleWidgets.setVisibility(visibility);
+        // titleWidgets всегда скрыт — его роль выполняет категория "Виджеты".
     }
 
     public enum a {
