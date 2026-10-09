@@ -88,6 +88,13 @@ public class BaseWidget extends LinearLayout {
             String textSize = pro.sketchware.settings.DesignerSettingsStore.getTextSize(ctx);
             boolean showLabels = pro.sketchware.settings.DesignerSettingsStore.isShowLabels(ctx);
 
+            // ДИАГНОСТИКА — покажем, что читается
+            try {
+                android.widget.Toast.makeText(ctx,
+                        "BW: icon=" + iconSize + " text=" + textSize + " labels=" + showLabels,
+                        android.widget.Toast.LENGTH_SHORT).show();
+            } catch (Throwable ignored) {}
+
             // Иконка
             int dp;
             switch (iconSize) {
