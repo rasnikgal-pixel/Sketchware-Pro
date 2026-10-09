@@ -109,6 +109,7 @@ public class AppSettings extends BaseAppCompatActivity {
 
         generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings_applications, "Настройки приложения", "Изменить общие настройки приложения", new ActivityLauncher(ConfigActivity.class)), true);
         generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_palette, Helper.getResString(R.string.settings_appearance), Helper.getResString(R.string.settings_appearance_description), openSettingsActivity(SettingsActivity.SETTINGS_APPEARANCE_FRAGMENT)), true);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_edit, "Настройки дизайнера", "Размер иконок, ширина палитры, поведение вкладок", new ActivityLauncher(pro.sketchware.settings.DesignerSettingsActivity.class)), true);
         generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_folder, "Открыть рабочую директорию", "Открыть директорию Sketchware Pro и редактировать файлы", v -> openWorkingDirectory()), true);
         generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_apk_document, "Подписать APK тестовым ключом", "Подписать существующий APK тестовым ключом и схемами подписи до V4", v -> signApkFileDialog()), true);
         generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings, Helper.getResString(R.string.main_drawer_title_system_settings), "Автосохранение и вибрации", new ActivityLauncher(SystemSettingActivity.class)), false);
