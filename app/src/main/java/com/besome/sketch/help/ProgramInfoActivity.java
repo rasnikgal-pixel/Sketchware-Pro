@@ -109,7 +109,54 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
     }
 
     private void showChangelogDialog() {
-        String text;
+        // Сначала пробуем загрузить changelog с GitHub (update.json).
+        // Если сеть недоступна — fallback на локальный assets/changelog.txt.
+        Toast.makeText(this, "Загрузка...", Toast.LENGTH_SHORT).show();
+
+        new Thread(() -> {
+            String remoteText = null;
+            try {
+                java.net.URL u = new java.net.URL(
+                    "https://raw.githubusercontent.com/rasnikgal-pixel/Sketchware-Pro/main/update.json"
+                );
+                java.net.HttpURLConnection c = (java.net.HttpURLConnection) u.openConnection();
+                c.setConnectTimeout(5000);
+                c.setReadTimeout(7000);
+                c.setRequestMethod("GET");
+                c.connect();
+                if (c.getResponseCode() == 200) {
+                    StringBuilder sb = new StringBuilder();
+                    try (BufferedReader r = new BufferedReader(
+                            new InputStreamReader(c.getInputStream(), StandardCharsets.UTF_8))) {
+                        String line;
+                        while ((line = r.readLine()) != null) sb.append(line);
+                    }
+                    org.json.JSONObject obj = new org.json.JSONObject(sb.toString());
+                    if (obj.has("changelog")) {
+                        remoteText = obj.getString("changelog");
+                    }
+                }
+                c.disconnect();
+            } catch (Throwable ignored) { /* fallback ниже */ }
+
+            final String text;
+            if (remoteText != null && !remoteText.isEmpty()) {
+                text = remoteText;
+            } else {
+                text = readLocalChangelog();
+            }
+
+            runOnUiThread(() -> {
+                MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
+                dialog.setTitle("Что нового");
+                dialog.setMessage(text);
+                dialog.setPositiveButton(Helper.getResString(R.string.common_word_ok), null);
+                dialog.show();
+            });
+        }).start();
+    }
+
+    private String readLocalChangelog() {
         try {
             InputStream is = getAssets().open("changelog.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
@@ -119,16 +166,10 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
                 sb.append(line).append("\n");
             }
             reader.close();
-            text = sb.toString();
+            return sb.toString();
         } catch (Exception e) {
-            text = "Не удалось загрузить список изменений.";
+            return "Не удалось загрузить список изменений.";
         }
-
-        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-        dialog.setTitle("Что нового");
-        dialog.setMessage(text);
-        dialog.setPositiveButton(Helper.getResString(R.string.common_word_ok), null);
-        dialog.show();
     }
 
     private void checkUpdatesNow() {
