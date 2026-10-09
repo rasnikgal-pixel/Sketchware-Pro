@@ -187,20 +187,53 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         favoritePalette.setSelected(false);
         favoritePalette.animate().scaleX(0.9f).scaleY(0.9f).alpha(0.6f).start();
 
-        basicPalette.setOnClickListener(v -> {
+        // Обработчики с поддержкой двойного тапа:
+        //  - одиночный тап — переключение палитры (с задержкой 300 мс)
+        //  - двойной тап  — открытие настроек дизайнера
+        final android.os.Handler tapHandler =
+                new android.os.Handler(android.os.Looper.getMainLooper());
+        final long[] lastBasicTap = {0L};
+        final long[] lastFavTap = {0L};
+
+        final Runnable basicAction = () -> {
             showPaletteWidget();
             basicPalette.animate().scaleX(1).scaleY(1).alpha(1).start();
             favoritePalette.animate().scaleX(0.9f).scaleY(0.9f).alpha(0.6f).start();
             basicPalette.setSelected(true);
             favoritePalette.setSelected(false);
-        });
+        };
 
-        favoritePalette.setOnClickListener(v -> {
+        final Runnable favoriteAction = () -> {
             showPaletteFavorite();
             basicPalette.animate().scaleX(0.9f).scaleY(0.9f).alpha(0.6f).start();
             favoritePalette.animate().scaleX(1).scaleY(1).alpha(1).start();
             basicPalette.setSelected(false);
             favoritePalette.setSelected(true);
+        };
+
+        basicPalette.setOnClickListener(v -> {
+            long now = System.currentTimeMillis();
+            if (now - lastBasicTap[0] < 300L) {
+                // двойной тап → настройки дизайнера
+                tapHandler.removeCallbacks(basicAction);
+                lastBasicTap[0] = 0L;
+                openDesignerSettings();
+            } else {
+                lastBasicTap[0] = now;
+                tapHandler.postDelayed(basicAction, 300L);
+            }
+        });
+
+        favoritePalette.setOnClickListener(v -> {
+            long now = System.currentTimeMillis();
+            if (now - lastFavTap[0] < 300L) {
+                tapHandler.removeCallbacks(favoriteAction);
+                lastFavTap[0] = 0L;
+                openDesignerSettings();
+            } else {
+                lastFavTap[0] = now;
+                tapHandler.postDelayed(favoriteAction, 300L);
+            }
         });
 
         paletteGroup.addView(basicPalette);
@@ -209,6 +242,19 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
 
     public ProjectFileBean getProjectFile() {
         return projectFileBean;
+    }
+
+    /** Открыть экран настроек дизайнера. */
+    private void openDesignerSettings() {
+        try {
+            android.content.Intent intent = new android.content.Intent(
+                    getContext(),
+                    pro.sketchware.settings.DesignerSettingsActivity.class);
+            intent.setFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            getContext().startActivity(intent);
+        } catch (Throwable t) {
+            // Игнорируем — не критично
+        }
     }
 
     public void h() {

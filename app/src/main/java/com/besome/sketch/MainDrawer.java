@@ -95,11 +95,7 @@ public class MainDrawer extends NavigationView {
             Intent intent = new Intent(activity, ToolsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             activity.startActivity(intent);
-        } else if (id == R.id.designer_settings) {
-            Intent intent = new Intent(activity, pro.sketchware.settings.DesignerSettingsActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            activity.startActivity(intent);
-        }
+
     }
 
     private void openUrl(String url) {

@@ -33,11 +33,6 @@
         android:title="Инструменты" />
 
     <item
-        android:id="@+id/designer_settings"
-        android:icon="@drawable/ic_mtrl_edit"
-        android:title="Настройки дизайнера" />
-
-    <item
         android:id="@+id/app_settings"
         android:icon="@drawable/ic_mtrl_settings"
         android:title="@string/common_word_settings" />
