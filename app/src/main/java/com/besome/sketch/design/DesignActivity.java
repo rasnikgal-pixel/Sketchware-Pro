@@ -1126,6 +1126,14 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
     }
 
     /**
+     * Opens {@link pro.sketchware.settings.DesignerSettingsActivity}.
+     */
+    void toDesignerSettings() {
+        startActivity(new android.content.Intent(this,
+                pro.sketchware.settings.DesignerSettingsActivity.class));
+    }
+
+    /**
      * Opens {@link ManageLibraryActivity}.
      */
     void toLibraryManager() {

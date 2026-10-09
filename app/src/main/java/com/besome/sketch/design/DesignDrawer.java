@@ -75,6 +75,8 @@ public class DesignDrawer extends LinearLayout {
             designActivity.toLogReader();
         } else if (id == R.id.item_collection_manager) {
             designActivity.toCollectionManager();
+        } else if (id == R.id.item_designer_settings) {
+            designActivity.toDesignerSettings();
         } else {
             throw new IllegalArgumentException("Invalid item id: " + id);
         }
@@ -117,6 +119,11 @@ public class DesignDrawer extends LinearLayout {
 
         addDrawerSubheaderItem(R.string.design_drawer_menu_title, content);
         addDrawerItem(R.id.item_library_manager, R.drawable.ic_mtrl_category, R.string.design_drawer_menu_title_library, R.string.design_drawer_menu_description_library, content);
+        // Настройки дизайнера — прямо в Drawer, быстрый доступ
+        DrawerItem designerSettingsItem = new DrawerItem(getContext());
+        designerSettingsItem.setContent(R.drawable.ic_mtrl_edit, "Настройки дизайнера", "Размер иконок, ширина палитры, поведение вкладок");
+        designerSettingsItem.setOnClickListener(R.id.item_designer_settings, drawerItemClickListener);
+        content.addView(designerSettingsItem);
         addDrawerItem(R.id.item_view_manager, R.drawable.ic_mtrl_devices, R.string.design_drawer_menu_title_view, R.string.design_drawer_menu_description_view, content);
         addDrawerItem(R.id.item_image_manager, R.drawable.ic_mtrl_image, R.string.design_drawer_menu_title_image, R.string.design_drawer_menu_description_image, content);
         addDrawerItem(R.id.item_sound_manager, R.drawable.ic_mtrl_music, R.string.design_drawer_menu_title_sound, R.string.design_drawer_menu_description_sound, content);
