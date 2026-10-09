@@ -70,20 +70,71 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
                 v -> DesignerSettingsStore.setTabsStartState(this, v));
     }
 
-    // Заглушки для остальных секций — заполним в следующем шаге
     private void buildAppearanceSection() {
         addHeader("Внешний вид палитры");
-        addPlaceholder();
+
+        addChoice("Размер иконок",
+                "Размер иконок виджетов в палитре",
+                DesignerSettingsStore.getIconSize(this),
+                new String[]{"compact", "normal", "large"},
+                new String[]{"Компактный", "Обычный", "Крупный"},
+                v -> DesignerSettingsStore.setIconSize(this, v));
+
+        addChoice("Размер текста",
+                "Размер текста палитры",
+                DesignerSettingsStore.getTextSize(this),
+                new String[]{"small", "normal", "large"},
+                new String[]{"Мелкий", "Обычный", "Крупный"},
+                v -> DesignerSettingsStore.setTextSize(this, v));
+
+        addChoice("Ширина палитры",
+                "Ширина боковой палитры виджетов",
+                DesignerSettingsStore.getPaletteWidth(this),
+                new String[]{"narrow", "normal", "wide"},
+                new String[]{"Узкая", "Обычная", "Широкая"},
+                v -> DesignerSettingsStore.setPaletteWidth(this, v));
+
+        addSwitch("Показывать подписи",
+                "Подписи под иконками виджетов",
+                DesignerSettingsStore.isShowLabels(this),
+                v -> DesignerSettingsStore.setShowLabels(this, v));
     }
 
     private void buildWidgetBehaviorSection() {
         addHeader("Поведение виджетов");
-        addPlaceholder();
+
+        addChoice("Двойной тап по виджету",
+                "Что делать при двойном тапе на виджете",
+                DesignerSettingsStore.getDoubleTapAction(this),
+                new String[]{"properties", "menu", "none"},
+                new String[]{"Открыть свойства", "Открыть меню", "Ничего"},
+                v -> DesignerSettingsStore.setDoubleTapAction(this, v));
+
+        addChoice("Долгий тап по виджету",
+                "Что делать при долгом тапе на виджете",
+                DesignerSettingsStore.getLongTapAction(this),
+                new String[]{"menu", "properties", "none"},
+                new String[]{"Открыть меню", "Открыть свойства", "Ничего"},
+                v -> DesignerSettingsStore.setLongTapAction(this, v));
+
+        addSwitch("Показывать тултипы",
+                "Всплывающие описания при долгом тапе",
+                DesignerSettingsStore.isTooltips(this),
+                v -> DesignerSettingsStore.setTooltips(this, v));
     }
 
     private void buildQuickActionsSection() {
         addHeader("Быстрые действия");
-        addPlaceholder();
+
+        addSwitch("Кнопка «Свернуть всё»",
+                "Показывать кнопку сворачивания всех категорий в шапке палитры",
+                DesignerSettingsStore.isShowCollapseAll(this),
+                v -> DesignerSettingsStore.setShowCollapseAll(this, v));
+
+        addSwitch("Строка поиска",
+                "Поиск виджетов по названию над палитрой",
+                DesignerSettingsStore.isShowSearch(this),
+                v -> DesignerSettingsStore.setShowSearch(this, v));
     }
 
     // ─────────────────────────────────────────────────────────────
