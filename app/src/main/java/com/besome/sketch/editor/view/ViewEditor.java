@@ -658,8 +658,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     }
 
     public void removeWidgetsAndLayouts() {
-        paletteWidget.removeWidgetLayouts();
-        paletteWidget.removeWidgets();
+        paletteWidget.reset();
     }
 
     public ItemView e(ViewBean viewBean) {

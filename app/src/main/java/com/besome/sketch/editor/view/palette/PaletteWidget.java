@@ -157,6 +157,17 @@ public class PaletteWidget extends LinearLayout {
 
     public void removeWidgetLayouts() {
         layoutContainer.removeAllViews();
+        // Очищаем карты от категорий, которые жили в layoutContainer.
+        java.util.List<String> toRemove = new java.util.ArrayList<>();
+        for (java.util.Map.Entry<String, LinearLayout> e : categoryContainers.entrySet()) {
+            if (e.getValue().getParent() == null) {
+                toRemove.add(e.getKey());
+            }
+        }
+        for (String k : toRemove) {
+            categoryContainers.remove(k);
+            categoryWidgetsContainers.remove(k);
+        }
     }
 
     private void initialize(Context context) {
@@ -173,6 +184,17 @@ public class PaletteWidget extends LinearLayout {
 
     public void removeWidgets() {
         widgetsContainer.removeAllViews();
+        // Очищаем карты от категорий, которые жили в widgetsContainer.
+        java.util.List<String> toRemove = new java.util.ArrayList<>();
+        for (java.util.Map.Entry<String, LinearLayout> e : categoryContainers.entrySet()) {
+            if (e.getValue().getParent() == null) {
+                toRemove.add(e.getKey());
+            }
+        }
+        for (String k : toRemove) {
+            categoryContainers.remove(k);
+            categoryWidgetsContainers.remove(k);
+        }
     }
 
     public void extraTitle(String title, int targetType) {
@@ -326,6 +348,16 @@ public class PaletteWidget extends LinearLayout {
     private LinearLayout pickTarget(LinearLayout fallback) {
         LinearLayout t = getCurrentWidgetsTarget();
         return (t != null) ? t : fallback;
+    }
+
+    /** Полный сброс состояния: контейнеры, карты, текущая категория. */
+    public void reset() {
+        layoutContainer.removeAllViews();
+        widgetsContainer.removeAllViews();
+        categoryContainers.clear();
+        categoryWidgetsContainers.clear();
+        currentCategoryName = null;
+        currentWidgetsContainer = null;
     }
 
     public View extraWidget(String tag, String title, String name) {
