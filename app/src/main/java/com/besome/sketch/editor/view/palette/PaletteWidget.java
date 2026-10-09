@@ -236,11 +236,33 @@ public class PaletteWidget extends LinearLayout {
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             category.addView(widgetsBox);
 
-            // Клик по заголовку — toggle свёрнутости.
+            // Клик по заголовку:
+            //  - одиночный тап → toggle свёрнутости (с задержкой 300 мс)
+            //  - двойной тап  → открыть диалог настроек категории
+            //  - долгий тап   → тоже диалог (как fallback, на случай если пользователь не тапает дважды)
             final String catName = title;
-            titleView.setOnClickListener(v -> toggleCategory(catName));
-            // Долгий тап — открыть диалог настроек.
+            final long[] lastTapTime = {0L};
+            final android.os.Handler tapHandler =
+                    new android.os.Handler(android.os.Looper.getMainLooper());
+            final Runnable singleTapAction = () -> toggleCategory(catName);
+
+            titleView.setOnClickListener(v -> {
+                long now = System.currentTimeMillis();
+                if (now - lastTapTime[0] < 300L) {
+                    // Двойной тап — отменяем одиночное действие и открываем диалог
+                    tapHandler.removeCallbacks(singleTapAction);
+                    lastTapTime[0] = 0L;
+                    showCategorySettingsDialog(catName);
+                } else {
+                    // Возможно, одиночный — ждём 300 мс
+                    lastTapTime[0] = now;
+                    tapHandler.postDelayed(singleTapAction, 300L);
+                }
+            });
+
+            // Долгий тап — тоже диалог (сохраняем для совместимости)
             titleView.setOnLongClickListener(v -> {
+                tapHandler.removeCallbacks(singleTapAction);
                 showCategorySettingsDialog(catName);
                 return true;
             });
