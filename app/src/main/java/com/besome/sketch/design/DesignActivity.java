@@ -843,6 +843,13 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 }
             }
         }
+
+        // Применяем ширину палитры (при каждом возврате и при первом запуске)
+        try {
+            if (viewTabAdapter != null && viewTabAdapter.viewEditor != null) {
+                viewTabAdapter.viewEditor.applyPaletteWidth();
+            }
+        } catch (Throwable ignored) {}
     }
 
     @Override

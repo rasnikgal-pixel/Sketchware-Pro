@@ -257,6 +257,35 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
     }
 
+    /** Применить настройку ширины палитры к layout_palette. */
+    public void applyPaletteWidth() {
+        try {
+            android.view.View layoutPalette = findViewById(R.id.layout_palette);
+            if (layoutPalette == null) return;
+
+            String width = pro.sketchware.settings.DesignerSettingsStore
+                    .getPaletteWidth(getContext());
+
+            int dp;
+            switch (width) {
+                case "narrow": dp = 90;  break;
+                case "wide":   dp = 180; break;
+                case "normal":
+                default:        dp = 120; break;
+            }
+            int px = Math.round(dp * getResources().getDisplayMetrics().density);
+
+            android.view.ViewGroup.LayoutParams lp = layoutPalette.getLayoutParams();
+            if (lp != null) {
+                lp.width = px;
+                layoutPalette.setLayoutParams(lp);
+                layoutPalette.requestLayout();
+            }
+        } catch (Throwable t) {
+            // Игнорируем
+        }
+    }
+
     public void h() {
         viewPane.setResourceManager(jC.d(a));
     }
