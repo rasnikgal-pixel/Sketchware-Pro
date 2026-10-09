@@ -110,15 +110,15 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
         addChoice("Двойной тап по виджету",
                 "Что делать при двойном тапе на виджете",
                 DesignerSettingsStore.getDoubleTapAction(this),
-                new String[]{"properties", "menu", "none"},
-                new String[]{"Открыть свойства", "Открыть меню", "Ничего"},
+                new String[]{"properties", "none"},
+                new String[]{"Открыть свойства", "Ничего"},
                 v -> DesignerSettingsStore.setDoubleTapAction(this, v));
 
         addChoice("Долгий тап по виджету",
                 "Что делать при долгом тапе на виджете",
                 DesignerSettingsStore.getLongTapAction(this),
-                new String[]{"menu", "properties", "none"},
-                new String[]{"Открыть меню", "Открыть свойства", "Ничего"},
+                new String[]{"properties", "none"},
+                new String[]{"Открыть свойства", "Ничего"},
                 v -> DesignerSettingsStore.setLongTapAction(this, v));
 
         addSwitch("Показывать тултипы",

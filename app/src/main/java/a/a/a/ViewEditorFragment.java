@@ -82,8 +82,19 @@ public class ViewEditorFragment extends qA {
         viewProperty.setOnEventClickListener(eventBean -> toLogicEditorActivity(eventBean.targetId, eventBean.eventName, eventBean.eventName));
         viewProperty.setOnPropertyTargetChangeListener(viewEditor::updateSelection);
         viewEditor.setOnWidgetDoubleTapListener(viewBean -> {
-            if (viewBean != null) {
-                openPropertyActivity(viewBean);
+            if (viewBean == null) return;
+
+            String action = pro.sketchware.settings.DesignerSettingsStore
+                    .getDoubleTapAction(requireContext());
+
+            switch (action) {
+                case "none":
+                    // Ничего не делать
+                    break;
+                case "properties":
+                default:
+                    openPropertyActivity(viewBean);
+                    break;
             }
         });
 
