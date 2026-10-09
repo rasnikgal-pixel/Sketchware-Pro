@@ -70,7 +70,7 @@ public class ToolsActivity extends BaseAppCompatActivity {
         if (item.getItemId() == 101) {
             com.besome.sketch.help.HelpOpener.open(
                     this,
-                    "category-interfeys-prilozheniya");
+                    "block-interfeys-prilozheniya");
             return true;
         }
         return super.onOptionsItemSelected(item);

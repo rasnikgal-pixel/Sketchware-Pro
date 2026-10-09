@@ -750,13 +750,13 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             String helpAnchor;
             switch (currentTabNumber) {
                 case 1:
-                    helpAnchor = "category-logika-sobytiya";
+                    helpAnchor = "block-logika-sobytiya";
                     break;
                 case 2:
-                    helpAnchor = "category-komponenty";
+                    helpAnchor = "block-komponenty";
                     break;
                 default:
-                    helpAnchor = "category-dizayner-view";
+                    helpAnchor = "block-dizayner-view";
                     break;
             }
             com.besome.sketch.help.HelpOpener.open(this, helpAnchor);

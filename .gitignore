@@ -71,3 +71,7 @@ __pycache__/
 *.py[cod]
 .patch/
 javac.*.args
+/tmp/
+*.bak
+*.bak2
+/docs/

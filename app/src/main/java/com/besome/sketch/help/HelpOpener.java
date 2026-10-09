@@ -7,7 +7,7 @@ import android.content.Context;
  * Единая точка открытия справки во всём приложении.
  *
  * Применение:
- *   HelpOpener.open(this, "category-dizayner-view");
+ *   HelpOpener.open(this, "block-dizayner-view");
  *
  * Если anchor не найден в anchors.json — откроется главная справки.
  */
