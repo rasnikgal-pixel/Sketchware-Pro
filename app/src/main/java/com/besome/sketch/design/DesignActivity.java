@@ -414,8 +414,13 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 viewPager.setCurrentItem(currentTabNumber);
             } else {
                 boolean hasChanges = hasAnyUnsavedData();
+                String diag = "c.g=" + jC.c(sc_id).g()
+                        + " b.g=" + jC.b(sc_id).g()
+                        + " d.q=" + jC.d(sc_id).q()
+                        + " a.d=" + jC.a(sc_id).d()
+                        + " a.c=" + jC.a(sc_id).c();
                 android.widget.Toast.makeText(this,
-                        "hasAnyUnsavedData() = " + hasChanges,
+                        diag,
                         android.widget.Toast.LENGTH_LONG).show();
                 if (!hasChanges) {
                     k();
