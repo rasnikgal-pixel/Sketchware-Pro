@@ -410,8 +410,11 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 currentTabNumber--;
                 viewPager.setCurrentItem(currentTabNumber);
             } else {
-                // Если изменений в проекте нет — закрываем без диалога.
-                if (!hasAnyUnsavedData()) {
+                boolean hasChanges = hasAnyUnsavedData();
+                android.widget.Toast.makeText(this,
+                        "hasAnyUnsavedData() = " + hasChanges,
+                        android.widget.Toast.LENGTH_LONG).show();
+                if (!hasChanges) {
                     k();
                     finish();
                 } else {
