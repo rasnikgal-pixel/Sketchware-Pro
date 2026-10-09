@@ -66,6 +66,8 @@ public class ManageSoundActivity extends BaseAppCompatActivity implements ViewPa
         binding = ManageSoundBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.toolbar);
+
         binding.toolbar.setNavigationOnClickListener(v -> {
             if (!mB.a()) {
                 onBackPressed();
@@ -77,6 +79,21 @@ public class ManageSoundActivity extends BaseAppCompatActivity implements ViewPa
         binding.viewPager.setOffscreenPageLimit(TAB_COUNT);
         binding.viewPager.addOnPageChangeListener(this);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.help_only_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@androidx.annotation.NonNull android.view.MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_generic_help) {
+            com.besome.sketch.help.HelpOpener.open(this, "block-menedzher-zvukov");
+            return true;
+        }
+        return super.onOptionsItemSelected(menuItem);
     }
 
     @Override

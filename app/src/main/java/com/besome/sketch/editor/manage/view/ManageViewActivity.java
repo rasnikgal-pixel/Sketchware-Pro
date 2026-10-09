@@ -312,6 +312,9 @@ public class ManageViewActivity extends BaseAppCompatActivity implements OnClick
             startActivity(new android.content.Intent(this,
                     pro.sketchware.templates.TemplateGalleryActivity.class));
             return true;
+        } else if (menuItem.getItemId() == R.id.menu_screen_help) {
+            com.besome.sketch.help.HelpOpener.open(this, "block-menedzher-predostavleniy");
+            return true;
         }
         return super.onOptionsItemSelected(menuItem);
     }

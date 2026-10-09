@@ -316,6 +316,23 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
         setContentView(R.layout.manage_library);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.help_only_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@androidx.annotation.NonNull android.view.MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_generic_help) {
+            com.besome.sketch.help.HelpOpener.open(this, "block-menedzher-bibliotek");
+            return true;
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+    // ---help-insert-end---
+
         getSupportActionBar().setTitle(Helper.getResString(R.string.design_actionbar_title_library));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);

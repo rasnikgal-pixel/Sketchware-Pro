@@ -30,6 +30,21 @@ public class ManageFontActivity extends BaseAppCompatActivity {
     private String sc_id;
 
     @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.help_only_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@androidx.annotation.NonNull android.view.MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_generic_help) {
+            com.besome.sketch.help.HelpOpener.open(this, "block-menedzher-shriftov");
+            return true;
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
     public void onBackPressed() {
         if (projectFontsFragment.isSelecting) {
             projectFontsFragment.setSelectingMode(false);
@@ -52,6 +67,8 @@ public class ManageFontActivity extends BaseAppCompatActivity {
 
         binding = ManageFontBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbar);
 
         if (!isStoragePermissionGranted()) {
             finish();

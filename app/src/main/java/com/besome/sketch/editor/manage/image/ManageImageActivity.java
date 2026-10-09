@@ -80,6 +80,23 @@ public class ManageImageActivity extends BaseAppCompatActivity implements ViewPa
         }
 
         setSupportActionBar(binding.topAppBar);
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.help_only_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@androidx.annotation.NonNull android.view.MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_generic_help) {
+            com.besome.sketch.help.HelpOpener.open(this, "block-menedzher-izobrazheniy");
+            return true;
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+    // ---help-insert-end---
+
         binding.topAppBar.setTitle(R.string.design_actionbar_title_manager_image);
         binding.topAppBar.setNavigationOnClickListener(v -> {
             if (!mB.a()) {
