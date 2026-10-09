@@ -59,6 +59,15 @@ public class PaletteWidget extends LinearLayout {
     private TextView titleWidgets;
     private CustomScrollView scrollView;
 
+    // Карта: имя категории → контейнер виджетов этой категории.
+    private final java.util.Map<String, LinearLayout> categoryWidgetsContainers = new java.util.HashMap<>();
+    // Карта: имя категории → подконтейнер (заголовок + виджеты).
+    private final java.util.Map<String, LinearLayout> categoryContainers = new java.util.HashMap<>();
+
+    // Текущая категория (к которой добавлять виджеты). null = до первого extraTitle.
+    private String currentCategoryName = null;
+    private LinearLayout currentWidgetsContainer = null;
+
     public PaletteWidget(Context context) {
         super(context);
         initialize(context);
@@ -70,7 +79,7 @@ public class PaletteWidget extends LinearLayout {
     }
 
     public void addCustomWidgets(View view) {
-        layoutContainer.addView(view);
+        pickTarget(layoutContainer).addView(view);
     }
 
     public View customWidget(HashMap<String, Object> map) {
@@ -89,9 +98,9 @@ public class PaletteWidget extends LinearLayout {
             iconBase.setText(title);
             iconBase.setName(name);
             if (map.get("Class").toString().equals("AndroidX")) {
-                layoutContainer.addView(iconBase);
+                pickTarget(layoutContainer).addView(iconBase);
             } else {
-                widgetsContainer.addView(iconBase);
+                pickTarget(widgetsContainer).addView(iconBase);
             }
             return iconBase;
         }
@@ -109,7 +118,7 @@ public class PaletteWidget extends LinearLayout {
             layout.setTag(tag);
         }
 
-        layoutContainer.addView(layout);
+        pickTarget(layoutContainer).addView(layout);
         return layout;
     }
 
@@ -142,7 +151,7 @@ public class PaletteWidget extends LinearLayout {
 
         iconBase.setText(text);
         iconBase.setName(resourceName);
-        widgetsContainer.addView(iconBase);
+        pickTarget(widgetsContainer).addView(iconBase);
         return iconBase;
     }
 
@@ -169,14 +178,154 @@ public class PaletteWidget extends LinearLayout {
     public void extraTitle(String title, int targetType) {
         LinearLayout target = targetType == 0 ? layoutContainer : widgetsContainer;
 
-        TextView titleView = new TextView(getContext());
-        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(dpToPx(4), dpToPx(4), dpToPx(4), dpToPx(4));
-        titleView.setLayoutParams(layoutParams);
-        titleView.setText(title);
-        titleView.setTextSize(12);
-        titleView.setTextColor(MaterialColors.getColor(titleView, R.attr.colorPrimary));
-        target.addView(titleView);
+        // Если у категории уже есть подконтейнер — переиспользуем (защита от дублей).
+        LinearLayout category = categoryContainers.get(title);
+        LinearLayout widgetsBox;
+        TextView titleView;
+
+        if (category == null) {
+            category = new LinearLayout(getContext());
+            category.setOrientation(LinearLayout.VERTICAL);
+            category.setLayoutParams(new LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            titleView = new TextView(getContext());
+            LayoutParams lp = new LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(dpToPx(4), dpToPx(4), dpToPx(4), dpToPx(4));
+            titleView.setLayoutParams(lp);
+            titleView.setText(title);
+            titleView.setTextSize(12);
+            titleView.setTextColor(MaterialColors.getColor(titleView, R.attr.colorPrimary));
+            category.addView(titleView);
+
+            widgetsBox = new LinearLayout(getContext());
+            widgetsBox.setOrientation(LinearLayout.VERTICAL);
+            widgetsBox.setLayoutParams(new LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            category.addView(widgetsBox);
+
+            // Клик по заголовку — toggle свёрнутости.
+            final String catName = title;
+            titleView.setOnClickListener(v -> toggleCategory(catName));
+            // Долгий тап — открыть диалог настроек.
+            titleView.setOnLongClickListener(v -> {
+                showCategorySettingsDialog(catName);
+                return true;
+            });
+
+            target.addView(category);
+
+            categoryContainers.put(title, category);
+            categoryWidgetsContainers.put(title, widgetsBox);
+        } else {
+            widgetsBox = categoryWidgetsContainers.get(title);
+            titleView = (TextView) category.getChildAt(0);
+        }
+
+        currentCategoryName = title;
+        currentWidgetsContainer = widgetsBox;
+
+        // Применяем сохранённое состояние.
+        applyCategoryState(title);
+    }
+
+    /** Применить сохранённое состояние категории. */
+    public void applyCategoryState(String name) {
+        LinearLayout category = categoryContainers.get(name);
+        LinearLayout widgetsBox = categoryWidgetsContainers.get(name);
+        if (category == null || widgetsBox == null) return;
+
+        int state = pro.sketchware.palette.WidgetTabsSettings.getState(getContext(), name);
+        TextView titleView = (TextView) category.getChildAt(0);
+
+        switch (state) {
+            case pro.sketchware.palette.WidgetTabsSettings.STATE_HIDDEN:
+                category.setVisibility(View.GONE);
+                break;
+            case pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED:
+                category.setVisibility(View.VISIBLE);
+                widgetsBox.setVisibility(View.GONE);
+                titleView.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.arrow_down_float, 0);
+                break;
+            case pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED:
+            default:
+                category.setVisibility(View.VISIBLE);
+                widgetsBox.setVisibility(View.VISIBLE);
+                titleView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                break;
+        }
+    }
+
+    /** Развернуть/свернуть категорию (по клику на заголовок). */
+    public void toggleCategory(String name) {
+        LinearLayout category = categoryContainers.get(name);
+        LinearLayout widgetsBox = categoryWidgetsContainers.get(name);
+        if (category == null || widgetsBox == null) return;
+
+        int current = pro.sketchware.palette.WidgetTabsSettings.getState(getContext(), name);
+        int next;
+
+        if (current == pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED) {
+            next = pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED;
+        } else if (current == pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED) {
+            // Если развёрнута — сворачиваем. Если была скрыта — не трогаем.
+            next = pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED;
+        } else {
+            // Скрыта — не переключаем по клику, только через долгий тап.
+            return;
+        }
+
+        pro.sketchware.palette.WidgetTabsSettings.setState(getContext(), name, next);
+        applyCategoryState(name);
+    }
+
+    /** Диалог настройки категории (3 опции). */
+    public void showCategorySettingsDialog(String name) {
+        android.content.Context ctx = getContext();
+        final String[] options = {
+                "Показать развёрнутой",
+                "Показать свёрнутой",
+                "Скрыть из списка"
+        };
+        int cur = pro.sketchware.palette.WidgetTabsSettings.getState(ctx, name);
+        int checked = (cur == pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED) ? 1
+                    : (cur == pro.sketchware.palette.WidgetTabsSettings.STATE_HIDDEN) ? 2
+                    : 0;
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(ctx)
+                .setTitle("Категория: " + name)
+                .setSingleChoiceItems(options, checked, (dialog, which) -> {
+                    int newState = (which == 0) ? pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED
+                                : (which == 1) ? pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED
+                                : pro.sketchware.palette.WidgetTabsSettings.STATE_HIDDEN;
+                    pro.sketchware.palette.WidgetTabsSettings.setState(ctx, name, newState);
+                    applyCategoryState(name);
+                    dialog.dismiss();
+                })
+                .setNegativeButton(Helper.getResString(R.string.common_word_cancel), null)
+                .show();
+    }
+
+    /** Применить состояния ко всем категориям. */
+    public void applyAllCategoryStates() {
+        for (String name : categoryContainers.keySet()) {
+            applyCategoryState(name);
+        }
+    }
+
+    /** Текущий подконтейнер для добавления виджетов (или null). */
+    private LinearLayout getCurrentWidgetsTarget() {
+        return currentWidgetsContainer;
+    }
+
+    /** Целевой контейнер: подконтейнер текущей категории или fallback. */
+    private LinearLayout pickTarget(LinearLayout fallback) {
+        LinearLayout t = getCurrentWidgetsTarget();
+        return (t != null) ? t : fallback;
     }
 
     public View extraWidget(String tag, String title, String name) {
@@ -214,7 +363,7 @@ public class PaletteWidget extends LinearLayout {
 
         iconBase.setText(title);
         iconBase.setName(name);
-        widgetsContainer.addView(iconBase);
+        pickTarget(widgetsContainer).addView(iconBase);
         return iconBase;
     }
 
@@ -236,7 +385,7 @@ public class PaletteWidget extends LinearLayout {
             iconBase.setTag(tag);
         }
 
-        layoutContainer.addView(iconBase);
+        pickTarget(layoutContainer).addView(iconBase);
         return iconBase;
     }
 
