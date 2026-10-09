@@ -2176,12 +2176,15 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         } else if (itemId == R.id.menu_logic_showsource) {
             showSourceCode();
         } else if (itemId == R.id.menu_logic_help) {
-            android.widget.Toast.makeText(this, "eventName=[" + eventName + "]", android.widget.Toast.LENGTH_LONG).show();
             String anchor = "block-logika-sobytiya";
             if (eventName != null && !eventName.isEmpty()) {
-                if ("onCreate".equals(eventName)) {
+                // В Sketchware "onCreate" в палитре событий — это eventName="initializeLogic"
+                if ("initializeLogic".equals(eventName) || "onCreate".equals(eventName)) {
                     anchor = "block-sobytie-oncreate";
                 }
+                // Позже: тут можно добавлять другие события:
+                // else if ("onClick".equals(eventName)) anchor = "block-sobytie-onclick";
+                // else if ("onTextChanged".equals(eventName)) anchor = "block-sobytie-ontextchanged";
             }
             com.besome.sketch.help.HelpOpener.open(this, anchor);
         }
