@@ -2176,7 +2176,16 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         } else if (itemId == R.id.menu_logic_showsource) {
             showSourceCode();
         } else if (itemId == R.id.menu_logic_help) {
-            com.besome.sketch.help.HelpOpener.open(this, "block-logika-sobytiya");
+            String anchor = "block-logika-sobytiya";
+            if (eventName != null && !eventName.isEmpty()) {
+                if ("onCreate".equals(eventName)) {
+                    anchor = "block-sobytie-oncreate";
+                }
+                // Позже: тут можно добавлять другие события:
+                // else if ("onClick".equals(eventName)) anchor = "block-sobytie-onclick";
+                // else if ("onTextChanged".equals(eventName)) anchor = "block-sobytie-ontextchanged";
+            }
+            com.besome.sketch.help.HelpOpener.open(this, anchor);
         }
 
         return super.onOptionsItemSelected(menuItem);
