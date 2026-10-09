@@ -27,6 +27,7 @@ public class BaseWidget extends LinearLayout {
         setGravity(Gravity.CENTER);
 
         initialize();
+        applyDesignerSettings();
     }
 
     private void initialize() {
@@ -61,6 +62,62 @@ public class BaseWidget extends LinearLayout {
 
     public void setWidgetNameTextSize(float sizeSp) {
         binding.tvWidget.setTextSize(sizeSp);
+    }
+
+    /** Размер иконки (dp). */
+    public void setWidgetIconSize(int dp) {
+        android.view.ViewGroup.LayoutParams lp = binding.imgWidget.getLayoutParams();
+        lp.width = dpToPx(dp);
+        lp.height = dpToPx(dp);
+        binding.imgWidget.setLayoutParams(lp);
+    }
+
+    /** Показывать ли подписи. */
+    public void setWidgetLabelsVisible(boolean visible) {
+        binding.tvWidget.setVisibility(visible ? VISIBLE : GONE);
+    }
+
+    /**
+     * Применить текущие настройки Дизайнера (размер иконок, текста, подписи).
+     * Вызывается автоматически из конструктора.
+     */
+    public void applyDesignerSettings() {
+        try {
+            android.content.Context ctx = getContext();
+            String iconSize = pro.sketchware.settings.DesignerSettingsStore.getIconSize(ctx);
+            String textSize = pro.sketchware.settings.DesignerSettingsStore.getTextSize(ctx);
+            boolean showLabels = pro.sketchware.settings.DesignerSettingsStore.isShowLabels(ctx);
+
+            // Иконка
+            int dp;
+            switch (iconSize) {
+                case "compact": dp = 11; break;
+                case "large":   dp = 18; break;
+                case "normal":
+                default:        dp = 14; break;
+            }
+            setWidgetIconSize(dp);
+
+            // Текст
+            float sp;
+            switch (textSize) {
+                case "small":  sp = 10f; break;
+                case "large":  sp = 13f; break;
+                case "normal":
+                default:       sp = 11f; break;
+            }
+            setWidgetNameTextSize(sp);
+
+            // Подписи
+            setWidgetLabelsVisible(showLabels);
+        } catch (Throwable t) {
+            // Не критично — если настройки недоступны, оставляем дефолты
+        }
+    }
+
+    /** Пересчитать dp в px. */
+    private int dpToPx(int dp) {
+        return Math.round(dp * getResources().getDisplayMetrics().density);
     }
 
     public enum a {
