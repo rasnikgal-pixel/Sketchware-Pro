@@ -221,6 +221,9 @@ public class PaletteWidget extends LinearLayout {
             titleView.setText(title);
             titleView.setTextSize(12);
             titleView.setTextColor(MaterialColors.getColor(titleView, R.attr.colorPrimary));
+            titleView.setClickable(true);
+            titleView.setFocusable(true);
+            titleView.setLongClickable(true);
             category.addView(titleView);
 
             widgetsBox = new LinearLayout(getContext());
