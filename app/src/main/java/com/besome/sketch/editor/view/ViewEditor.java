@@ -266,6 +266,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
             String width = pro.sketchware.settings.DesignerSettingsStore
                     .getPaletteWidth(getContext());
 
+            android.widget.Toast.makeText(getContext(),
+                    "applyPaletteWidth: " + width,
+                    android.widget.Toast.LENGTH_SHORT).show();
+
             int dp;
             switch (width) {
                 case "narrow": dp = 90;  break;
