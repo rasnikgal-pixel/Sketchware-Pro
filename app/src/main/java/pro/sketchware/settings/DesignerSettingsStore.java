@@ -51,7 +51,6 @@ public final class DesignerSettingsStore {
 
     private static final String KEY_CHANGE_COUNTER = "change_counter";
 
-    private static final String KEY_CHANGE_COUNTER = "change_counter";
 
     private DesignerSettingsStore() {}
 
