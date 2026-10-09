@@ -747,7 +747,19 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.design_menu_help) {
-            com.besome.sketch.help.HelpOpener.open(this, "category-dizayner-view");
+            String helpAnchor;
+            switch (currentTabNumber) {
+                case 1:
+                    helpAnchor = "category-logika-sobytiya";
+                    break;
+                case 2:
+                    helpAnchor = "category-komponenty";
+                    break;
+                default:
+                    helpAnchor = "category-dizayner-view";
+                    break;
+            }
+            com.besome.sketch.help.HelpOpener.open(this, helpAnchor);
         } else if (itemId == R.id.design_actionbar_titleopen_drawer) {
             if (!drawer.isDrawerOpen(GravityCompat.END)) {
                 drawer.openDrawer(GravityCompat.END);
