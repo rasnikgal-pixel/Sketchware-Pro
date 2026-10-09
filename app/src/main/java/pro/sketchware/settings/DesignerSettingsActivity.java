@@ -28,6 +28,10 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Однократная миграция дефолтов (аккордеон=true, стартовое=first_expanded).
+        DesignerSettingsStore.migrateIfNeeded(this);
+
         setContentView(R.layout.activity_designer_settings);
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);

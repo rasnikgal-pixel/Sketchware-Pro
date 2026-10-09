@@ -47,7 +47,21 @@ public final class DesignerSettingsStore {
     /** Показывать строку поиска над палитрой. */
     private static final String KEY_SHOW_SEARCH = "show_search";
 
+    private static final String KEY_MIGRATED_V1 = "migrated_v1";
+
     private DesignerSettingsStore() {}
+
+    /** Однократная миграция при первом запуске после релиза с новыми дефолтами. */
+    public static void migrateIfNeeded(Context ctx) {
+        SharedPreferences p = prefs(ctx);
+        if (!p.getBoolean(KEY_MIGRATED_V1, false)) {
+            p.edit()
+                    .putBoolean(KEY_ACCORDION, true)
+                    .putString(KEY_TABS_START, "first_expanded")
+                    .putBoolean(KEY_MIGRATED_V1, true)
+                    .apply();
+        }
+    }
 
     private static SharedPreferences prefs(Context ctx) {
         return ctx.getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -56,11 +70,11 @@ public final class DesignerSettingsStore {
     // ─── Геттеры ────────────────────────────────────────────────
 
     public static boolean isAccordion(Context ctx) {
-        return prefs(ctx).getBoolean(KEY_ACCORDION, false);
+        return prefs(ctx).getBoolean(KEY_ACCORDION, true);
     }
 
     public static String getTabsStartState(Context ctx) {
-        return prefs(ctx).getString(KEY_TABS_START, "expanded");
+        return prefs(ctx).getString(KEY_TABS_START, "first_expanded");
     }
 
     public static boolean isShowCount(Context ctx) {
