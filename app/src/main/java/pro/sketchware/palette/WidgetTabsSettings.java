@@ -33,7 +33,22 @@ public final class WidgetTabsSettings {
 
     public static void setState(Context ctx, String categoryName, int state) {
         if (categoryName == null || categoryName.isEmpty()) return;
+        prefs(ctx).edit()
+                .putInt(KEY_PREFIX + categoryName, state)
+                .putBoolean("explicit_" + categoryName, true)
+                .apply();
+    }
+
+    /** Установить состояние БЕЗ пометки «пользователь настроил вручную». */
+    public static void setStateQuiet(Context ctx, String categoryName, int state) {
+        if (categoryName == null || categoryName.isEmpty()) return;
         prefs(ctx).edit().putInt(KEY_PREFIX + categoryName, state).apply();
+    }
+
+    /** Была ли категория явно настроена пользователем. */
+    public static boolean isExplicit(Context ctx, String categoryName) {
+        if (categoryName == null || categoryName.isEmpty()) return false;
+        return prefs(ctx).getBoolean("explicit_" + categoryName, false);
     }
 
     /** Список категорий, которые можно настраивать. */

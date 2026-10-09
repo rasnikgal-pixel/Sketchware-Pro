@@ -298,6 +298,7 @@ public class ViewEditorFragment extends qA {
         viewEditor.addWidget(PaletteWidget.b.k, "", "CalendarView", "CalendarView");
         widgetsCreatorManager.addWidgetsByTitle("Дата и время");
         widgetsCreatorManager.addExtraClasses();
+        viewEditor.paletteWidget.post(() -> viewEditor.paletteWidget.applyAllCategoryStates());
     }
 
     private void startAnimation() {

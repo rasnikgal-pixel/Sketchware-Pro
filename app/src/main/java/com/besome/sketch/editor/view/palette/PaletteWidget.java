@@ -270,9 +270,19 @@ public class PaletteWidget extends LinearLayout {
         int state = pro.sketchware.palette.WidgetTabsSettings.getState(getContext(), name);
         TextView titleView = (TextView) category.getChildAt(0);
 
+        // Проверяем — включена ли анимация
+        boolean animate = pro.sketchware.settings.DesignerSettingsStore.isAnimation(getContext());
+
         switch (state) {
             case pro.sketchware.palette.WidgetTabsSettings.STATE_HIDDEN:
-                category.setVisibility(View.GONE);
+                if (animate) {
+                    category.animate().alpha(0f).setDuration(150).withEndAction(() -> {
+                        category.setVisibility(View.GONE);
+                        category.setAlpha(1f);
+                    }).start();
+                } else {
+                    category.setVisibility(View.GONE);
+                }
                 break;
             case pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED:
                 category.setVisibility(View.VISIBLE);
@@ -285,6 +295,27 @@ public class PaletteWidget extends LinearLayout {
                 widgetsBox.setVisibility(View.VISIBLE);
                 titleView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 break;
+        }
+
+        updateTitleWithCount(name);
+    }
+
+    /** Обновить заголовок категории — добавить счётчик виджетов, если включено. */
+    private void updateTitleWithCount(String name) {
+        LinearLayout category = categoryContainers.get(name);
+        LinearLayout widgetsBox = categoryWidgetsContainers.get(name);
+        if (category == null || widgetsBox == null) return;
+
+        TextView titleView = (TextView) category.getChildAt(0);
+        String base = titleView.getText().toString();
+        // Убираем старый счётчик, если был
+        base = base.replaceAll(" \\(\\d+\\)$", "");
+
+        if (pro.sketchware.settings.DesignerSettingsStore.isShowCount(getContext())) {
+            int count = widgetsBox.getChildCount();
+            titleView.setText(base + " (" + count + ")");
+        } else {
+            titleView.setText(base);
         }
     }
 
@@ -309,6 +340,20 @@ public class PaletteWidget extends LinearLayout {
 
         pro.sketchware.palette.WidgetTabsSettings.setState(getContext(), name, next);
         applyCategoryState(name);
+
+        // Аккордеон: если разворачиваем эту категорию — сворачиваем остальные.
+        if (next == pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED
+                && pro.sketchware.settings.DesignerSettingsStore.isAccordion(getContext())) {
+            for (String otherName : categoryContainers.keySet()) {
+                if (otherName.equals(name)) continue;
+                int otherState = pro.sketchware.palette.WidgetTabsSettings.getState(getContext(), otherName);
+                if (otherState == pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED) {
+                    pro.sketchware.palette.WidgetTabsSettings.setState(getContext(), otherName,
+                            pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED);
+                    applyCategoryState(otherName);
+                }
+            }
+        }
     }
 
     /** Диалог настройки категории (3 опции). */
@@ -340,7 +385,28 @@ public class PaletteWidget extends LinearLayout {
 
     /** Применить состояния ко всем категориям. */
     public void applyAllCategoryStates() {
+        String startState = pro.sketchware.settings.DesignerSettingsStore
+                .getTabsStartState(getContext());
+
+        boolean firstDone = false;
         for (String name : categoryContainers.keySet()) {
+            // Если категория ещё НЕ настраивалась пользователем — применяем стартовое состояние.
+            if (!pro.sketchware.palette.WidgetTabsSettings.isExplicit(getContext(), name)) {
+                if ("collapsed".equals(startState)) {
+                    pro.sketchware.palette.WidgetTabsSettings.setStateQuiet(getContext(), name,
+                            pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED);
+                } else if ("first_expanded".equals(startState)) {
+                    if (!firstDone) {
+                        pro.sketchware.palette.WidgetTabsSettings.setStateQuiet(getContext(), name,
+                                pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED);
+                        firstDone = true;
+                    } else {
+                        pro.sketchware.palette.WidgetTabsSettings.setStateQuiet(getContext(), name,
+                                pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED);
+                    }
+                }
+                // "expanded" — оставляем по умолчанию (уже expanded)
+            }
             applyCategoryState(name);
         }
     }
