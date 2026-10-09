@@ -97,7 +97,7 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
         tv.setPadding(dp(16), dp(16), dp(16), dp(6));
         tv.setAllCaps(false);
         tv.setTextColor(com.google.android.material.color.MaterialColors.getColor(
-                tv, com.google.android.material.R.attr.colorPrimary));
+                tv, pro.sketchware.R.attr.colorPrimary));
         container.addView(tv);
     }
 
