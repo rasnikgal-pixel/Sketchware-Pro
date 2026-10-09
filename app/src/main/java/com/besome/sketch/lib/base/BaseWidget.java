@@ -66,10 +66,16 @@ public class BaseWidget extends LinearLayout {
 
     /** Размер иконки (dp). */
     public void setWidgetIconSize(int dp) {
+        int px = dpToPx(dp);
         android.view.ViewGroup.LayoutParams lp = binding.imgWidget.getLayoutParams();
-        lp.width = dpToPx(dp);
-        lp.height = dpToPx(dp);
+        if (lp == null) {
+            lp = new android.view.ViewGroup.LayoutParams(px, px);
+        } else {
+            lp.width = px;
+            lp.height = px;
+        }
         binding.imgWidget.setLayoutParams(lp);
+        binding.imgWidget.requestLayout();
     }
 
     /** Показывать ли подписи. */

@@ -28,7 +28,7 @@ public class IconBase extends BaseWidget {
     }
 
     public void setText(String widgetName) {
-        setWidgetNameTextSize(11);
+        // Размер текста применяется в applyDesignerSettings() — не перезаписываем.
         setWidgetName(widgetName);
     }
 }
