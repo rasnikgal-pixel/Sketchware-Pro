@@ -109,7 +109,7 @@ jobs:
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: 7.2.1
+          tag_name: 7.3.0
           name: "Русская локализация Sketchware Pro 7.2.1"
           files: ./apk/app-release.apk
           token: ${{ secrets.GITHUB_TOKEN }}
