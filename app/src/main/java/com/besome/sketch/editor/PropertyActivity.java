@@ -211,6 +211,15 @@ public class PropertyActivity extends BaseAppCompatActivity implements Kw {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_property_help) {
+            String anchor = com.besome.sketch.help.WidgetHelpMapper.getAnchor(viewBean.type);
+            if (anchor != null) {
+                com.besome.sketch.help.HelpOpener.open(this, anchor);
+            } else {
+                android.widget.Toast.makeText(this, "Справка для этого виджета пока недоступна", android.widget.Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
         if (menuItem.getItemId() == R.id.menu_add_image_res) {
             p();
         }
