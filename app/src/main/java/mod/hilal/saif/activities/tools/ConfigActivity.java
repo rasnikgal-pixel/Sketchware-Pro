@@ -437,7 +437,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
             if (helpPref != null) {
                 helpPref.setOnPreferenceClickListener(preference -> {
                     com.besome.sketch.help.HelpOpener.open(
-                            ConfigActivity.this,
+                            requireActivity(),
                             "block-nastroyki-prilozheniya-vnutrennie-parametry");
                     return true;
                 });
