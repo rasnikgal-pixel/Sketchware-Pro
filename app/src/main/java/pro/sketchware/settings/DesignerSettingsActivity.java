@@ -1,5 +1,7 @@
 package pro.sketchware.settings;
 
+
+import mod.hey.studios.util.Helper;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,136 +52,136 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
     // Секция 1: Поведение вкладок
     // ─────────────────────────────────────────────────────────────
     private void buildTabsSection() {
-        addHeader("Поведение вкладок");
+        addHeader(Helper.getResString(R.string.auto_designer_settings_activity_001));
 
-        addSwitch("Аккордеон",
-                "Открытие одной категории сворачивает все остальные",
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_002),
+                Helper.getResString(R.string.auto_designer_settings_activity_003),
                 DesignerSettingsStore.isAccordion(this),
                 v -> DesignerSettingsStore.setAccordion(this, v));
 
-        addSwitch("Анимация",
-                "Плавное сворачивание / разворачивание категорий",
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_004),
+                Helper.getResString(R.string.auto_designer_settings_activity_005),
                 DesignerSettingsStore.isAnimation(this),
                 v -> DesignerSettingsStore.setAnimation(this, v));
 
-        addSwitch("Показывать счётчик виджетов",
-                "В заголовке категории показывать количество виджетов (например, «Виджеты (12)»)",
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_006),
+                Helper.getResString(R.string.auto_designer_settings_activity_007),
                 DesignerSettingsStore.isShowCount(this),
                 v -> DesignerSettingsStore.setShowCount(this, v));
 
-        addChoice("Стартовое состояние категорий",
-                "Какие категории показывать развёрнутыми при входе в Дизайнер",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_008),
+                Helper.getResString(R.string.auto_designer_settings_activity_009),
                 DesignerSettingsStore.getTabsStartState(this),
                 new String[]{"expanded", "collapsed", "first_expanded"},
-                new String[]{"Все развёрнуты", "Все свёрнуты", "Первая развёрнута"},
+                new String[]{Helper.getResString(R.string.auto_designer_settings_activity_010), Helper.getResString(R.string.auto_designer_settings_activity_011), Helper.getResString(R.string.auto_designer_settings_activity_012)},
                 v -> DesignerSettingsStore.setTabsStartState(this, v));
     }
 
     private void buildAppearanceSection() {
-        addHeader("Внешний вид палитры");
+        addHeader(Helper.getResString(R.string.auto_designer_settings_activity_013));
 
-        addChoice("Размер иконок",
-                "Размер иконок виджетов в палитре",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_014),
+                Helper.getResString(R.string.auto_designer_settings_activity_015),
                 DesignerSettingsStore.getIconSize(this),
                 new String[]{"compact", "normal", "large"},
-                new String[]{"Компактный", "Обычный", "Крупный"},
+                new String[]{Helper.getResString(R.string.auto_designer_settings_activity_016), Helper.getResString(R.string.auto_designer_settings_activity_017), Helper.getResString(R.string.auto_designer_settings_activity_018)},
                 v -> DesignerSettingsStore.setIconSize(this, v));
 
-        addChoice("Размер текста",
-                "Размер текста палитры",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_019),
+                Helper.getResString(R.string.auto_designer_settings_activity_020),
                 DesignerSettingsStore.getTextSize(this),
                 new String[]{"small", "normal", "large"},
-                new String[]{"Мелкий", "Обычный", "Крупный"},
+                new String[]{Helper.getResString(R.string.auto_designer_settings_activity_021), Helper.getResString(R.string.auto_designer_settings_activity_022), Helper.getResString(R.string.auto_designer_settings_activity_023)},
                 v -> DesignerSettingsStore.setTextSize(this, v));
 
-        addChoice("Ширина палитры",
-                "Ширина боковой палитры виджетов",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_024),
+                Helper.getResString(R.string.auto_designer_settings_activity_025),
                 DesignerSettingsStore.getPaletteWidth(this),
                 new String[]{"narrow", "normal", "wide"},
-                new String[]{"Узкая", "Обычная", "Широкая"},
+                new String[]{Helper.getResString(R.string.auto_designer_settings_activity_026), Helper.getResString(R.string.auto_designer_settings_activity_027), Helper.getResString(R.string.auto_designer_settings_activity_028)},
                 v -> DesignerSettingsStore.setPaletteWidth(this, v));
 
-        addSwitch("Показывать подписи",
-                "Подписи под иконками виджетов",
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_029),
+                Helper.getResString(R.string.auto_designer_settings_activity_030),
                 DesignerSettingsStore.isShowLabels(this),
                 v -> DesignerSettingsStore.setShowLabels(this, v));
     }
 
     private void buildWidgetBehaviorSection() {
-        addHeader("Поведение виджетов");
+        addHeader(Helper.getResString(R.string.auto_designer_settings_activity_031));
 
-        addChoice("Двойной тап по виджету",
-                "Что делать при двойном тапе на виджете",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_032),
+                Helper.getResString(R.string.auto_designer_settings_activity_033),
                 DesignerSettingsStore.getDoubleTapAction(this),
                 new String[]{"properties", "none"},
-                new String[]{"Открыть свойства", "Ничего"},
+                new String[]{Helper.getResString(R.string.auto_designer_settings_activity_034), Helper.getResString(R.string.auto_designer_settings_activity_035)},
                 v -> DesignerSettingsStore.setDoubleTapAction(this, v));
 
-        addChoice("Долгий тап по виджету",
-                "Что делать при долгом тапе на виджете",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_036),
+                Helper.getResString(R.string.auto_designer_settings_activity_037),
                 DesignerSettingsStore.getLongTapAction(this),
                 new String[]{"properties", "none"},
-                new String[]{"Открыть свойства", "Ничего"},
+                new String[]{Helper.getResString(R.string.auto_designer_settings_activity_038), Helper.getResString(R.string.auto_designer_settings_activity_039)},
                 v -> DesignerSettingsStore.setLongTapAction(this, v));
 
-        addSwitch("Показывать тултипы",
-                "Всплывающие описания при долгом тапе",
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_040),
+                Helper.getResString(R.string.auto_designer_settings_activity_041),
                 DesignerSettingsStore.isTooltips(this),
                 v -> DesignerSettingsStore.setTooltips(this, v));
     }
 
     private void buildPaletteGesturesSection() {
-        addHeader("Жесты в палитре");
+        addHeader(Helper.getResString(R.string.auto_designer_settings_activity_042));
 
         String[] ids = {
                 "nothing", "drag", "add_center", "add_corner",
                 "tooltip", "designer_settings", "help", "info"
         };
         String[] labels = {
-                "Ничего",
-                "Начать перетаскивание",
-                "Добавить в центр холста",
-                "Добавить в левый верхний угол",
-                "Показать тултип",
-                "Открыть настройки дизайнера",
-                "Открыть справку по виджету",
-                "Показать информацию о виджете"
+                Helper.getResString(R.string.auto_designer_settings_activity_043),
+                Helper.getResString(R.string.auto_designer_settings_activity_044),
+                Helper.getResString(R.string.auto_designer_settings_activity_045),
+                Helper.getResString(R.string.auto_designer_settings_activity_046),
+                Helper.getResString(R.string.auto_designer_settings_activity_047),
+                Helper.getResString(R.string.auto_designer_settings_activity_048),
+                Helper.getResString(R.string.auto_designer_settings_activity_049),
+                Helper.getResString(R.string.auto_designer_settings_activity_050)
         };
 
-        addChoice("Одинарный тап по иконке",
-                "Что делать при обычном тапе на иконку виджета в палитре",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_051),
+                Helper.getResString(R.string.auto_designer_settings_activity_052),
                 DesignerSettingsStore.getPaletteSingleTapAction(this),
                 ids, labels,
                 v -> DesignerSettingsStore.setPaletteSingleTapAction(this, v));
 
-        addChoice("Двойной тап по иконке",
-                "Что делать при двойном тапе на иконку виджета в палитре",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_053),
+                Helper.getResString(R.string.auto_designer_settings_activity_054),
                 DesignerSettingsStore.getPaletteDoubleTapAction(this),
                 ids, labels,
                 v -> DesignerSettingsStore.setPaletteDoubleTapAction(this, v));
 
-        addChoice("Долгий тап по иконке",
-                "Что делать при удержании иконки виджета в палитре",
+        addChoice(Helper.getResString(R.string.auto_designer_settings_activity_055),
+                Helper.getResString(R.string.auto_designer_settings_activity_056),
                 DesignerSettingsStore.getPaletteLongTapAction(this),
                 ids, labels,
                 v -> DesignerSettingsStore.setPaletteLongTapAction(this, v));
     }
 
     private void buildQuickActionsSection() {
-        addHeader("Быстрые действия");
+        addHeader(Helper.getResString(R.string.auto_designer_settings_activity_057));
 
-        addSwitch("Кнопка «Свернуть всё»",
-                "Показывать кнопку сворачивания всех категорий в шапке палитры",
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_058),
+                Helper.getResString(R.string.auto_designer_settings_activity_059),
                 DesignerSettingsStore.isShowCollapseAll(this),
                 v -> DesignerSettingsStore.setShowCollapseAll(this, v));
 
-        addSwitch("Строка поиска",
-                "Поиск виджетов по названию над палитрой",
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_060),
+                Helper.getResString(R.string.auto_designer_settings_activity_061),
                 DesignerSettingsStore.isShowSearch(this),
                 v -> DesignerSettingsStore.setShowSearch(this, v));
 
-        addSwitch("Старый диалог сохранения",
-                "Показывать диалог сохранения ВСЕГДА при выходе из проекта. Если выключено — только при наличии изменений.",
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_062),
+                Helper.getResString(R.string.auto_designer_settings_activity_063),
                 DesignerSettingsStore.isUseLegacySaveDialog(this),
                 v -> DesignerSettingsStore.setUseLegacySaveDialog(this, v));
     }
@@ -201,7 +203,7 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
 
     private void addPlaceholder() {
         TextView tv = new TextView(this);
-        tv.setText("(в разработке)");
+        tv.setText(Helper.getResString(R.string.auto_designer_settings_activity_064));
         tv.setTextSize(12);
         tv.setPadding(dp(16), dp(8), dp(16), dp(8));
         tv.setAlpha(0.5f);
@@ -295,7 +297,7 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
                         tvValue.setText(labels[which]);
                         dialog.dismiss();
                     })
-                    .setNegativeButton("Отмена", null)
+                    .setNegativeButton(Helper.getResString(R.string.auto_designer_settings_activity_065), null)
                     .show();
         });
 
