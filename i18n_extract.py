@@ -52,6 +52,18 @@ def find_ui_strings(source):
         results.append((m.start(), m.end(), text))
     return results
 
+def ensure_R_import(source):
+    """Добавляет 'import pro.sketchware.R;' если его нет."""
+    if 'import pro.sketchware.R;' in source:
+        return source
+    # Ищем строку package ...;
+    m = re.search(r'^\s*package\s+[\w\.]+\s*;\s*\n', source, re.MULTILINE)
+    if not m:
+        return source
+    insert_pos = m.end()
+    return source[:insert_pos] + '\nimport pro.sketchware.R;\n' + source[insert_pos:]
+
+
 def ensure_string_in_xml(xml_path, key, value, add_todo=None):
     """Добавляет <string name="key">value</string> перед </resources>."""
     txt = open(xml_path, encoding='utf-8').read()
@@ -105,6 +117,7 @@ def process(java_path, dry=False):
         replacement = f'getString(R.string.{key})'
         new_source = new_source[:s] + replacement + new_source[e:]
 
+    new_source = ensure_R_import(new_source)
     open(java_path, 'w', encoding='utf-8').write(new_source)
     print(f'=== {java_path}: вынесено {len(hits)} строк ===')
     for key, text in reversed(changes):
