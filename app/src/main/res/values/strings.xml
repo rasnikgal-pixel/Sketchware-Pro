@@ -2320,7 +2320,7 @@ ACTION_VIEW
     <string name="auto_layout_arrays_editor_add_001">Заголовок массива (опционально)</string>
     <string name="auto_layout_arrays_editor_add_attr_002">Введите значение элемента</string>
     <string name="auto_layout_arrays_editor_add_attr_001">Введите имя элемента</string>
-    <string name="auto_layout_block_customview_spec_001">%m.view изменить цвет фона %m.color</string>
+    <string name="auto_layout_block_customview_spec_001">\%m.view изменить цвет фона \%m.color</string>
     <string name="auto_layout_bottom_sheet_project_options_004">Изменить настройки проекта</string>
     <string name="auto_layout_bottom_sheet_project_options_003">Экспорт/Подпись</string>
     <string name="auto_layout_bottom_sheet_project_options_002">Поделиться проектом</string>
@@ -2397,7 +2397,7 @@ ACTION_VIEW
     <string name="auto_layout_project_config_layout_005">Включить логи debug logcat, доступные в Logcat Reader. Не включено в экспортированных AAB/APK.</string>
     <string name="auto_layout_project_config_layout_004">Не включать http-legacy-28.dex</string>
     <string name="auto_layout_project_config_layout_003">Скрыть предупреждения в журнале ошибок</string>
-    <string name="auto_layout_project_config_layout_002">Classpath (разделённые :')</string>
+    <string name="auto_layout_project_config_layout_002">Classpath (разделённые двоеточием)</string>
     <string name="auto_layout_project_config_layout_001">Свой android.jar</string>
     <string name="auto_layout_property_popup_input_indent_002">Отступ со всех сторон</string>
     <string name="auto_layout_property_popup_input_indent_001">Введите значение отступа</string>

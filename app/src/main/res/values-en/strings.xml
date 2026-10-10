@@ -2320,7 +2320,7 @@ ACTION_VIEW
     <string name="auto_layout_arrays_editor_add_001">[TODO] Заголовок массива (опционально)</string>
     <string name="auto_layout_arrays_editor_add_attr_002">[TODO] Введите значение элемента</string>
     <string name="auto_layout_arrays_editor_add_attr_001">[TODO] Введите имя элемента</string>
-    <string name="auto_layout_block_customview_spec_001">[TODO] %m.view изменить цвет фона %m.color</string>
+    <string name="auto_layout_block_customview_spec_001">[TODO] \%m.view изменить цвет фона \%m.color</string>
     <string name="auto_layout_bottom_sheet_project_options_004">[TODO] Изменить настройки проекта</string>
     <string name="auto_layout_bottom_sheet_project_options_003">[TODO] Экспорт/Подпись</string>
     <string name="auto_layout_bottom_sheet_project_options_002">[TODO] Поделиться проектом</string>
@@ -2397,7 +2397,7 @@ ACTION_VIEW
     <string name="auto_layout_project_config_layout_005">[TODO] Включить логи debug logcat, доступные в Logcat Reader. Не включено в экспортированных AAB/APK.</string>
     <string name="auto_layout_project_config_layout_004">[TODO] Не включать http-legacy-28.dex</string>
     <string name="auto_layout_project_config_layout_003">[TODO] Скрыть предупреждения в журнале ошибок</string>
-    <string name="auto_layout_project_config_layout_002">[TODO] Classpath (разделённые :')</string>
+    <string name="auto_layout_project_config_layout_002">[TODO] Classpath (colon-separated)</string>
     <string name="auto_layout_project_config_layout_001">[TODO] Свой android.jar</string>
     <string name="auto_layout_property_popup_input_indent_002">[TODO] Отступ со всех сторон</string>
     <string name="auto_layout_property_popup_input_indent_001">[TODO] Введите значение отступа</string>

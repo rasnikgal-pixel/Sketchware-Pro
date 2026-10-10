@@ -17,7 +17,15 @@ def ensure_string_in_xml(xml_path, key, value):
     txt = open(xml_path, encoding='utf-8').read()
     if f'name="{key}"' in txt:
         return False
-    escaped = escape(value)
+    # Экранируем апострофы
+    escaped = escape(value).replace(chr(39), chr(92) + chr(39))
+    # Экранируем проценты, если это не позиционный формат-спецификатор (%1, %2, %s)
+    if re.search(r'%[^0-9s]', escaped) or re.search(r'%[0-9]', escaped):
+        pass  # уже есть формат-спецификаторы
+    else:
+        escaped = escaped.replace('%', chr(92) + '%')
+    # Экранируем проценты, не являющиеся частью формат-строк
+    escaped = re.sub(r'%(?![0-9])', chr(92) + '%', escaped)
     add = f'    <string name="{key}">{escaped}</string>\n'
     txt = txt.replace('</resources>', add + '</resources>')
     open(xml_path, 'w', encoding='utf-8').write(txt)
