@@ -845,10 +845,11 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             }
         }
 
-        // Применяем ширину палитры (при каждом возврате и при первом запуске)
+        // Применяем ширину палитры и видимость поля поиска (при каждом возврате и при первом запуске)
         try {
             if (viewTabAdapter != null && viewTabAdapter.viewEditor != null) {
                 viewTabAdapter.viewEditor.applyPaletteWidth();
+                viewTabAdapter.viewEditor.applySearchVisibility();
             }
         } catch (Throwable ignored) {}
     }
