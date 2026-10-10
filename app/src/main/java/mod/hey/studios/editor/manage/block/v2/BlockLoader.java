@@ -1,5 +1,7 @@
 package mod.hey.studios.editor.manage.block.v2;
 
+
+import mod.hey.studios.util.Helper;
 import static com.google.android.material.color.MaterialColors.harmonizeWithPrimary;
 
 import android.content.Context;
@@ -102,7 +104,7 @@ public class BlockLoader {
                 info.setName((String) name);
             } else {
                 info.setName("");
-                SketchwareUtil.toastError("Недопустимая запись имени в пользовательском блоке #" + (i + 1));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_block_loader_001, (i + 1)));
                 continue;
             }
 
@@ -139,7 +141,7 @@ public class BlockLoader {
                         int harmonizedColor = harmonizeWithPrimary(context, Color.parseColor((String) color));
                         info.setColor(harmonizedColor);
                     } catch (IllegalArgumentException e) {
-                        SketchwareUtil.toastError("Недопустимый цвет в пользовательском блоке #" + (i + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_block_loader_002, (i + 1)));
                         continue;
                     }
                 }
@@ -166,22 +168,22 @@ public class BlockLoader {
                                             try {
                                                 info.setPaletteColor((Integer) paletteColor);
                                             } catch (IllegalArgumentException e) {
-                                                SketchwareUtil.toastError("Недопустимый цвет в палитре пользовательского блока #" + (j + 1));
+                                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_block_loader_003, (j + 1)));
                                             }
                                         } else {
-                                            SketchwareUtil.toastError("Недопустимый тип значения цвета в палитре пользовательского блока #" + (j + 1));
+                                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_block_loader_004, (j + 1)));
                                         }
                                     }
                                 } else {
-                                    SketchwareUtil.toastError("Недопустимый тип значения индекса палитры в палитре пользовательского блока #" + (j + 1));
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_block_loader_005, (j + 1)));
                                 }
                             }
                         } catch (NumberFormatException e) {
-                            SketchwareUtil.toastError("Недопустимый номер палитры в пользовательском блоке #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_block_loader_006, (i + 1)));
                             continue;
                         }
                     } else {
-                        SketchwareUtil.toastError("Недопустимый тип значения номера палитры в пользовательском блоке #" + (i + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_block_loader_007, (i + 1)));
                         continue;
                     }
                 }

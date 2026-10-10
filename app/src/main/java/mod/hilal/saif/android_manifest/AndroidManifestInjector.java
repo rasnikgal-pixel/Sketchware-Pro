@@ -1,5 +1,7 @@
 package mod.hilal.saif.android_manifest;
 
+
+import pro.sketchware.R;
 import static pro.sketchware.utility.GsonUtils.getGson;
 
 import android.os.Environment;
@@ -93,10 +95,10 @@ public class AndroidManifestInjector {
                         nx.addChildNode(usesPermissionTag);
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимое значение инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_001, (i + 1)));
                 }
             } else {
-                SketchwareUtil.toastError("Недопустимое имя инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_002, (i + 1)));
             }
         }
     }
@@ -119,7 +121,7 @@ public class AndroidManifestInjector {
                     return true;
                 }
             } else {
-                SketchwareUtil.toastError("Недопустимое имя инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_003, (i + 1)));
             }
         }
 
@@ -159,11 +161,11 @@ public class AndroidManifestInjector {
                             return true;
                         }
                     } else {
-                        SketchwareUtil.toastError("Недопустимое значение инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_004, (i + 1)));
                     }
                 }
             } else {
-                SketchwareUtil.toastError("Недопустимое имя инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_005, (i + 1)));
             }
         }
 
@@ -276,11 +278,11 @@ public class AndroidManifestInjector {
                             themeInjected = true;
                         }
                     } else {
-                        SketchwareUtil.toastError("Недопустимое значение инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_006, (i + 1)));
                     }
                 }
             } else {
-                SketchwareUtil.toastError("Недопустимое имя инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_007, (i + 1)));
             }
         }
 
@@ -304,11 +306,11 @@ public class AndroidManifestInjector {
                     if (value instanceof String) {
                         nx.addAttributeValue((String) value);
                     } else {
-                        SketchwareUtil.toastError("Недопустимое значение инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_008, (i + 1)));
                     }
                 }
             } else {
-                SketchwareUtil.toastError("Недопустимое имя инъекции атрибута AndroidManifest в атрибуте #" + (i + 1));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_android_manifest_injector_009, (i + 1)));
             }
         }
     }

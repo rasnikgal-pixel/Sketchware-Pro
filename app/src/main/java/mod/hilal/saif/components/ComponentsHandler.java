@@ -68,15 +68,15 @@ public class ComponentsHandler {
                             try {
                                 return Integer.parseInt((String) id);
                             } catch (NumberFormatException e) {
-                                SketchwareUtil.toastError("Недопустимая запись ID в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_001, (i + 1)), Toast.LENGTH_LONG);
                                 break;
                             }
                         } else {
-                            SketchwareUtil.toastError("Недопустимая запись ID в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_002, (i + 1)), Toast.LENGTH_LONG);
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись имени типа в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_003, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -110,15 +110,15 @@ public class ComponentsHandler {
                             if (componentTypeName instanceof String) {
                                 return (String) componentTypeName;
                             } else {
-                                SketchwareUtil.toastError("Недопустимая запись имени типа в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_004, (i + 1)), Toast.LENGTH_LONG);
                                 break;
                             }
                         }
                     } catch (NumberFormatException e) {
-                        SketchwareUtil.toastError("Недопустимая запись ID в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_005, (i + 1)), Toast.LENGTH_LONG);
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись ID в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_006, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -152,15 +152,15 @@ public class ComponentsHandler {
                             if (componentName instanceof String) {
                                 return (String) componentName;
                             } else {
-                                SketchwareUtil.toastError("Недопустимая запись имени для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_007, (i + 1)), Toast.LENGTH_LONG);
                                 break;
                             }
                         }
                     } catch (NumberFormatException e) {
-                        SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_008, (i + 1)), Toast.LENGTH_LONG);
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_009, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -194,16 +194,16 @@ public class ComponentsHandler {
                                 try {
                                     return OldResourceIdMapper.getDrawableFromOldResourceId(Integer.parseInt((String) iconObject));
                                 } catch (NumberFormatException e) {
-                                    SketchwareUtil.toastError("Недопустимая запись иконки для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_010, (i + 1)), Toast.LENGTH_LONG);
                                     break;
                                 }
                             }
                         }
                     } catch (NumberFormatException e) {
-                        SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_011, (i + 1)), Toast.LENGTH_LONG);
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_012, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -248,15 +248,15 @@ public class ComponentsHandler {
                             if (componentDescription instanceof String) {
                                 return (String) component.get("description");
                             } else {
-                                SketchwareUtil.toastError("Недопустимая запись описания для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_013, (i + 1)), Toast.LENGTH_LONG);
                                 break;
                             }
                         }
                     } catch (NumberFormatException e) {
-                        SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_014, (i + 1)), Toast.LENGTH_LONG);
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_015, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -286,15 +286,15 @@ public class ComponentsHandler {
                                 if (componentUrl instanceof String) {
                                     return (String) componentUrl;
                                 } else {
-                                    SketchwareUtil.toastError("Недопустимая запись URL для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_016, (i + 1)), Toast.LENGTH_LONG);
                                     break;
                                 }
                             }
                         } catch (NumberFormatException e) {
-                            SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_017, (i + 1)), Toast.LENGTH_LONG);
                         }
                     } else {
-                        SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_018, (i + 1)), Toast.LENGTH_LONG);
                     }
                 } else {
                     SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -328,15 +328,15 @@ public class ComponentsHandler {
                             if (componentBuildClass instanceof String) {
                                 return (String) componentBuildClass;
                             } else {
-                                SketchwareUtil.toastError("Недопустимая запись класса сборки для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_019, (i + 1)), Toast.LENGTH_LONG);
                                 break;
                             }
                         }
                     } catch (NumberFormatException e) {
-                        SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_020, (i + 1)), Toast.LENGTH_LONG);
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_021, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -366,10 +366,10 @@ public class ComponentsHandler {
                     try {
                         list.add(new ComponentBean(Integer.parseInt((String) componentId)));
                     } catch (NumberFormatException e) {
-                        SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_022, (i + 1)), Toast.LENGTH_LONG);
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_023, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -401,15 +401,15 @@ public class ComponentsHandler {
                             if (componentTypeName instanceof String) {
                                 return (String) componentTypeName;
                             } else {
-                                SketchwareUtil.toastError("Недопустимая запись имени типа для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_024, (i + 1)), Toast.LENGTH_LONG);
                                 break;
                             }
                         }
                     } catch (NumberFormatException e) {
-                        SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_025, (i + 1)), Toast.LENGTH_LONG);
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись ID для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_026, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -436,11 +436,11 @@ public class ComponentsHandler {
                         if (varName instanceof String componentVarName) {
                             return componentVarName;
                         } else {
-                            SketchwareUtil.toastError("Недопустимая запись имени переменной в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_027, (i + 1)), Toast.LENGTH_LONG);
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись имени типа в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_028, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -472,12 +472,12 @@ public class ComponentsHandler {
                         if (componentClass instanceof String) {
                             return (String) componentClass;
                         } else {
-                            SketchwareUtil.toastError("Недопустимая запись класса для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_029, (i + 1)), Toast.LENGTH_LONG);
                             break;
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись имени типа для пользовательского компонента #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_030, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -517,11 +517,11 @@ public class ComponentsHandler {
                                                 replace("$NAME", varName.toUpperCase());
                             }
                         } else {
-                            SketchwareUtil.toastError("Недопустимая запись дополнительной переменной в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_031, (i + 1)), Toast.LENGTH_LONG);
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись имени типа в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_032, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -560,7 +560,7 @@ public class ComponentsHandler {
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись имени типа в пользовательском компоненте #" + (i + 1));
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_033, (i + 1)));
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);
@@ -588,12 +588,12 @@ public class ComponentsHandler {
                             String[] componentImportsArray = componentImportsString.split("\n");
                             arrayList.addAll(Arrays.asList(componentImportsArray));
                         } else {
-                            SketchwareUtil.toastError("Недопустимая запись импортов в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_034, (i + 1)), Toast.LENGTH_LONG);
                             break;
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись имени типа в пользовательском компоненте #" + (i + 1), Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_components_handler_035, (i + 1)), Toast.LENGTH_LONG);
                 }
             } else {
                 SketchwareUtil.toastError("Invalid (null) Custom Component at position " + i);

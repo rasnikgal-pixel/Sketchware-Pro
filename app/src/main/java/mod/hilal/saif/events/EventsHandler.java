@@ -69,11 +69,11 @@ public class EventsHandler {
                         if (name instanceof String) {
                             array.add((String) name);
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_001, (i + 1)));
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Найден недопустимый тип данных переменной в пользовательском событии #" + (i + 1));
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_002, (i + 1)));
                 }
             } else {
                 SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -113,11 +113,11 @@ public class EventsHandler {
                         if (name instanceof String) {
                             list.add((String) name);
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_003, (i + 1)));
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Найден недопустимый тип данных переменной в пользовательском событии #" + (i + 1));
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_004, (i + 1)));
                 }
             } else {
                 SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -154,11 +154,11 @@ public class EventsHandler {
                                 list.add((String) listener);
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных события в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_005, (i + 1)));
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Найден недопустимый тип данных переменной в пользовательском событии #" + (i + 1));
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_006, (i + 1)));
                 }
             } else {
                 SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -200,11 +200,11 @@ public class EventsHandler {
                                 if (eventName instanceof String) {
                                     list.add((String) eventName);
                                 } else {
-                                    SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_007, (i + 1)));
                                 }
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных события в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_008, (i + 1)));
                         }
                     } else {
                         SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -239,15 +239,15 @@ public class EventsHandler {
                                     try {
                                         yield OldResourceIdMapper.getDrawableFromOldResourceId(Integer.parseInt((String) icon));
                                     } catch (NumberFormatException e) {
-                                        SketchwareUtil.toastError("Найден недопустимый тип данных иконки в пользовательском событии #" + (i + 1));
+                                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_009, (i + 1)));
                                         yield R.drawable.android_icon;
                                     }
                                 } else {
-                                    SketchwareUtil.toastError("Найден недопустимый тип данных иконки в пользовательском событии #" + (i + 1));
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_010, (i + 1)));
                                 }
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_011, (i + 1)));
                         }
                     } else {
                         SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -288,11 +288,11 @@ public class EventsHandler {
                                 if (description instanceof String) {
                                     yield (String) description;
                                 } else {
-                                    SketchwareUtil.toastError("Найден недопустимый тип данных описания в пользовательском событии #" + (i + 1));
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_012, (i + 1)));
                                 }
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_013, (i + 1)));
                         }
                     } else {
                         SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -366,11 +366,11 @@ public class EventsHandler {
                                             .replace("$NAME", targetId.toUpperCase());
                                     yield String.format(formattedCode, param);
                                 } else {
-                                    SketchwareUtil.toastError("Найден недопустимый тип данных кода в пользовательском событии #" + (i + 1));
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_014, (i + 1)));
                                 }
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_015, (i + 1)));
                         }
                     } else {
                         SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -402,11 +402,11 @@ public class EventsHandler {
                                 if (parameters instanceof String) {
                                     yield (String) parameters;
                                 } else {
-                                    SketchwareUtil.toastError("Найден недопустимый тип данных параметров в пользовательском событии #" + (i + 1));
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_016, (i + 1)));
                                 }
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_017, (i + 1)));
                         }
                     } else {
                         SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -444,11 +444,11 @@ public class EventsHandler {
                                 if (headerSpec instanceof String) {
                                     yield ((String) headerSpec).replace("###", name);
                                 } else {
-                                    SketchwareUtil.toastError("Найден недопустимый тип данных заголовка в пользовательском событии #" + (i + 1));
+                                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_018, (i + 1)));
                                 }
                             }
                         } else {
-                            SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_019, (i + 1)));
                         }
                     } else {
                         SketchwareUtil.toastError("Found invalid (null) Custom Event at position " + i);
@@ -491,11 +491,11 @@ public class EventsHandler {
                                         .replace("$NAME", var.toUpperCase());
                                 yield String.format(formattedCode, param);
                             } else {
-                                SketchwareUtil.toastError("Найден недопустимый тип данных кода в пользовательском событии #" + (i + 1));
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_020, (i + 1)));
                             }
                         }
                     } else {
-                        SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_021, (i + 1)));
                     }
                 }
 
@@ -526,11 +526,11 @@ public class EventsHandler {
                             list.addAll(new ArrayList<>(Arrays.asList(((String) imports).split("\n"))));
                         }
                     } else {
-                        SketchwareUtil.toastError("Найден недопустимый тип данных импорта в пользовательском событии #" + (i + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_022, (i + 1)));
                     }
                 }
             } else {
-                SketchwareUtil.toastError("Найден недопустимый тип данных имени в пользовательском событии #" + (i + 1));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_events_handler_023, (i + 1)));
             }
         }
     }
