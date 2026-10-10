@@ -1,7 +1,5 @@
 package pro.sketchware.blocks;
 
-
-import pro.sketchware.R;
 import android.util.Pair;
 
 import com.besome.sketch.editor.LogicEditorActivity;
@@ -147,7 +145,7 @@ public class ExtraBlocks {
 
     public void eventBlocks() {
         if (eventName.equals("onCreateOptionsMenu")) {
-            logicEditor.a(getString(R.string.auto_extra_blocks_001), 0xff555555);
+            logicEditor.a("Элемент меню", 0xff555555);
             logicEditor.a(" ", "menuItemSetVisible");
             logicEditor.a(" ", "menuItemSetEnabled");
             logicEditor.a("v", "menuFindItem");
@@ -156,7 +154,7 @@ public class ExtraBlocks {
 
     public void fileBlocks() {
         if (isCustomVarUsed("File")) {
-            logicEditor.a(getString(R.string.auto_extra_blocks_002), 0xff555555);
+            logicEditor.a("Файловые блоки", 0xff555555);
             logicEditor.a("b", "fileCanExecute");
             logicEditor.a("b", "fileCanRead");
             logicEditor.a("b", "fileCanWrite");

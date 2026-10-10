@@ -1,7 +1,5 @@
 package pro.sketchware.activities.resourceseditor.components.adapters;
 
-
-import pro.sketchware.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +74,7 @@ public class StylesAdapter extends RecyclerView.Adapter<StylesAdapter.StyleViewH
         public void bind(StyleModel style) {
             binding.title.setText(style.getStyleName());
             if (style.getParent().isEmpty()) {
-                binding.sub.setText(getString(R.string.auto_styles_adapter_001));
+                binding.sub.setText("Нет родителя");
             } else {
                 binding.sub.setText(style.getParent());
             }

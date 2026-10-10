@@ -40,8 +40,8 @@ public class CollectErrorActivity extends BaseAppCompatActivity {
                             "Do you want to report this error log so that we can fix it? " +
                             "No personal information will be included.")
                     .setPositiveButton("Copy", null)
-                    .setNegativeButton(getString(R.string.auto_collect_error_activity_001), (dialogInterface, which) -> finish())
-                    .setNeutralButton(getString(R.string.auto_collect_error_activity_002), null) // null to set proper onClick listeners later without dismissing the AlertDialog
+                    .setNegativeButton("Отмена", (dialogInterface, which) -> finish())
+                    .setNeutralButton("Показать ошибку", null) // null to set proper onClick listeners later without dismissing the AlertDialog
                     .setCancelable(false)
                     .show();
 

@@ -347,7 +347,7 @@ public class IconCreatorActivity extends BaseAppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data == null) {
-            SketchwareUtil.toastError(getString(R.string.auto_icon_creator_activity_001));
+            SketchwareUtil.toastError("Получены недопустимые данные");
             return;
         }
         Uri uri = data.getData();

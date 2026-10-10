@@ -117,7 +117,7 @@ public class PaletteBlock extends LinearLayout {
                     ? android.R.drawable.btn_star_big_on
                     : android.R.drawable.btn_star_big_off);
             android.widget.Toast.makeText(context,
-                    newState ? getString(R.string.auto_palette_block_001) : getString(R.string.auto_palette_block_002),
+                    newState ? "Добавлено в избранное" : "Убрано из избранного",
                     android.widget.Toast.LENGTH_SHORT).show();
         });
 

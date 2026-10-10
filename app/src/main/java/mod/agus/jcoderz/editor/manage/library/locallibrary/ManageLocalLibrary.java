@@ -1,7 +1,5 @@
 package mod.agus.jcoderz.editor.manage.library.locallibrary;
 
-
-import pro.sketchware.R;
 import android.os.Environment;
 import android.widget.Toast;
 
@@ -44,7 +42,7 @@ public class ManageLocalLibrary {
                 // fall-through to shared error handler
             }
 
-            SketchwareUtil.toastError(getString(R.string.auto_manage_local_library_001));
+            SketchwareUtil.toastError("Найдена недопустимая конфигурация локальной библиотеки! Временно не используется");
         }
         list = new ArrayList<>();
     }

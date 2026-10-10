@@ -85,7 +85,7 @@ public class AsdDialog extends Dialog implements DialogInterface.OnDismissListen
                     code = Lx.j(code, true);
                 } catch (Exception e) {
                     failed = true;
-                    SketchwareUtil.toastError(getString(R.string.auto_asd_dialog_001));
+                    SketchwareUtil.toastError("В коде неправильно вложены скобки");
                 }
                 if (!failed) {
                     binding.editor.setText(code);

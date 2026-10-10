@@ -203,7 +203,7 @@ public class ResourcesEditorActivity extends BaseAppCompatActivity {
         builder = new MaterialAlertDialogBuilder(this);
         builder.setTitle(Helper.getResString(R.string.resources_manager_xml_load_failed_title))
                 .setMessage(String.format(Helper.getResString(R.string.resources_manager_xml_load_failed_message), title))
-                .setPositiveButton(getString(R.string.auto_resources_editor_activity_001), (dialog, which) -> goToCodeEditor(title, contentPath))
+                .setPositiveButton("Открыть редактор кода", (dialog, which) -> goToCodeEditor(title, contentPath))
                 .setNegativeButton(Helper.getResString(R.string.common_word_exit), (dialogInterface, i) -> finish())
                 .setCancelable(false)
                 .create()
@@ -398,7 +398,7 @@ public class ResourcesEditorActivity extends BaseAppCompatActivity {
         themesEditor.saveThemesFile();
         arraysEditor.saveArraysFile();
         updateProjectMetadata();
-        SketchwareUtil.toast(getString(R.string.auto_resources_editor_activity_002));
+        SketchwareUtil.toast("Сохранение завершено");
     }
 
     private void updateProjectMetadata() {
@@ -547,7 +547,7 @@ public class ResourcesEditorActivity extends BaseAppCompatActivity {
             if (newVariant.startsWith(variantFullNameStarts)) {
                 initializeBackgroundTask(newVariant.replace("values", ""));
             } else {
-                SketchwareUtil.toastError(getString(R.string.auto_resources_editor_activity_003));
+                SketchwareUtil.toastError("Недопустимый ввод варианта");
             }
         } else {
             initializeBackgroundTask(variants.get(selectedChoice.get()).replace("values", ""));

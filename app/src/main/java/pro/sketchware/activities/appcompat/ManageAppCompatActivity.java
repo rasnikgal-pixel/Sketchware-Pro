@@ -252,7 +252,7 @@ public class ManageAppCompatActivity extends BaseAppCompatActivity {
 
     private void dialog(String type, int position) {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-        dialog.setTitle(type.equals("create") ? getString(R.string.auto_manage_app_compat_activity_001) : getString(R.string.auto_manage_app_compat_activity_002));
+        dialog.setTitle(type.equals("create") ? "Добавить атрибут" : "Изменить атрибут");
         CustomDialogAttributeBinding attributeBinding =
                 CustomDialogAttributeBinding.inflate(getLayoutInflater());
         dialog.setView(attributeBinding.getRoot());
@@ -281,7 +281,7 @@ public class ManageAppCompatActivity extends BaseAppCompatActivity {
                         map.put("value", newValue);
                         if (type.equals("create")) {
                             activityInjections.add(map);
-                            SketchwareUtil.toast(getString(R.string.auto_manage_app_compat_activity_003));
+                            SketchwareUtil.toast("Добавлено");
                         } else if (type.equals("edit")) {
                             if (position != -1) {
                                 activityInjections.remove(position);

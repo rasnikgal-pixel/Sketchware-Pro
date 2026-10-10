@@ -34,7 +34,7 @@ public class TemplateGalleryActivity extends BaseAppCompatActivity {
     private RecyclerView recyclerView;
     private ChipGroup categoryGroup;
     private TemplateAdapter adapter;
-    private String selectedCategory = null; // null = getString(R.string.auto_template_gallery_activity_001)
+    private String selectedCategory = null; // null = "Все"
     private String searchQuery = "";
 
     @Override

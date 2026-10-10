@@ -1,7 +1,5 @@
 package pro.sketchware.menu;
 
-
-import pro.sketchware.R;
 import android.net.Uri;
 import android.util.Pair;
 
@@ -192,15 +190,15 @@ public class DefaultExtraMenuBean {
                 menus.addAll(Arrays.asList(uq.PROGRESS_STYLE));
             }
             case "cv_theme" -> {
-                title = getString(R.string.auto_default_extra_menu_bean_001);
+                title = "Тема";
                 menus.addAll(Arrays.asList(uq.CODEVIEW_THEME));
             }
             case "cv_language" -> {
-                title = getString(R.string.auto_default_extra_menu_bean_002);
+                title = "Язык";
                 menus.addAll(Arrays.asList(uq.CODEVIEW_LANGUAGE));
             }
             case "import" -> {
-                title = getString(R.string.auto_default_extra_menu_bean_003);
+                title = "Язык";
                 menus.addAll(Arrays.asList(uq.IMPORT_CLASS_PATH));
             }
             //end

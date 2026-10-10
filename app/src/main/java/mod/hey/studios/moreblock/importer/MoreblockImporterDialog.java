@@ -36,7 +36,7 @@ public class MoreblockImporterDialog extends MaterialAlertDialogBuilder {
         moreBlockCollectionList = new ArrayList<>(beanList);
         adapter = new MoreBlockAdapter(moreBlockCollectionList);
 
-        setTitle(getString(R.string.auto_moreblock_importer_dialog_001));
+        setTitle("Выберите More Block");
         setIcon(R.drawable.more_block_96dp);
 
         binding.searchInput.addTextChangedListener(new TextWatcher() {
@@ -62,7 +62,7 @@ public class MoreblockImporterDialog extends MaterialAlertDialogBuilder {
             MoreBlockCollectionBean selectedBean = adapter.getSelectedItem();
 
             if (selectedBean == null) {
-                SketchwareUtil.toastError(getString(R.string.auto_moreblock_importer_dialog_002));
+                SketchwareUtil.toastError("Выберите More Block");
             } else {
                 callback.onSelected(selectedBean);
                 v.dismiss();

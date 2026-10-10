@@ -1,7 +1,5 @@
 package mod.hilal.saif.activities.tools;
 
-
-import pro.sketchware.R;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -55,9 +53,9 @@ public class IconSelectorDialog {
         }
 
         builder = new MaterialAlertDialogBuilder(activity)
-                .setTitle(getString(R.string.auto_icon_selector_dialog_001))
+                .setTitle("Выберите иконку")
                 .setView(dialogBinding.getRoot())
-                .setNegativeButton(getString(R.string.auto_icon_selector_dialog_002), (dialog, which) -> dialog.dismiss())
+                .setNegativeButton("Отмена", (dialog, which) -> dialog.dismiss())
                 .create();
         builder.show();
     }

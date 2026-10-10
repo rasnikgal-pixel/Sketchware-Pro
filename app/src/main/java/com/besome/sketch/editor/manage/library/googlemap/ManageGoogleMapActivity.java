@@ -118,7 +118,7 @@ public class ManageGoogleMapActivity extends BaseAppCompatActivity implements Vi
             googleMapLibraryBean = savedInstanceState.getParcelable("google_map");
         }
 
-        getSupportActionBar().setTitle(getString(R.string.auto_manage_google_map_activity_001));
+        getSupportActionBar().setTitle("Настройки GoogleMap");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());

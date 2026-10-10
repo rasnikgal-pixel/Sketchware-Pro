@@ -137,14 +137,14 @@ public class ManagePermissionActivity extends BaseAppCompatActivity {
 
     private void showResetDialog() {
         new MaterialAlertDialogBuilder(this)
-                .setTitle(getString(R.string.auto_manage_permission_activity_001))
-                .setMessage(getString(R.string.auto_manage_permission_activity_002))
+                .setTitle("Сбросить разрешения")
+                .setMessage("Вы уверены, что хотите сбросить все разрешения?")
                 .setPositiveButton("Reset", (dialog, which) -> {
                     FileUtil.writeFile(new FilePathUtil().getPathPermission(numProj), "[]");
                     frc = new FileResConfig(numProj);
                     loadAndSortData();
                 })
-                .setNegativeButton(getString(R.string.auto_manage_permission_activity_003), null)
+                .setNegativeButton("Отмена", null)
                 .show();
     }
 

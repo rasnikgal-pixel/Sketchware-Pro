@@ -313,7 +313,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
                         intent.setType("application/octet-stream");
                         intent.putExtra(Intent.EXTRA_STREAM, uri);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        activity.startActivity(Intent.createChooser(intent, getString(R.string.auto_projects_adapter_001)));
+                        activity.startActivity(Intent.createChooser(intent, "Поделиться проектом"));
                     } catch (Throwable t) {
                         SketchwareUtil.toastError("Не удалось отправить: " + t.getMessage());
                     }
@@ -357,10 +357,10 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
 
         if (isPinned(projectMap)) {
             binding.pinIcon.setImageResource(R.drawable.ic_mtrl_unpin);
-            binding.pinText.setText(getString(R.string.auto_projects_adapter_002));
+            binding.pinText.setText("Открепить проект");
         } else {
             binding.pinIcon.setImageResource(R.drawable.ic_mtrl_pin);
-            binding.pinText.setText(getString(R.string.auto_projects_adapter_003));
+            binding.pinText.setText("Закрепить проект");
         }
 
         projectOptionsBSD.show();

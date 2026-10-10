@@ -1,7 +1,5 @@
 package pro.sketchware.smartdrop;
 
-
-import pro.sketchware.R;
 import android.app.Activity;
 
 import com.besome.sketch.beans.BlockBean;
@@ -64,7 +62,7 @@ public final class WidgetAutoCreator {
             String n = ViewBean.getViewTypeName(viewType);
             if (n != null && !n.isEmpty()) return n;
         } catch (Throwable ignored) {}
-        return getString(R.string.auto_widget_auto_creator_001);
+        return "виджет";
     }
 
     /** XML-тег для типа (WebView, TextView, ...). */
@@ -175,7 +173,7 @@ public final class WidgetAutoCreator {
                     .setMessage("Для этого блока нужен " + typeName + ".\n\n"
                             + "На экране нет " + typeName + ". Создать его "
                             + "автоматически с именем \"" + suggestedName + "\"?")
-                    .setPositiveButton(getString(R.string.auto_widget_auto_creator_002), (d, w) -> {
+                    .setPositiveButton("Создать", (d, w) -> {
                         boolean ok = createWidget(scId, xmlName, viewType, suggestedName);
                         if (ok) {
                             SketchwareUtil.toast("Создан " + suggestedName);
@@ -184,7 +182,7 @@ public final class WidgetAutoCreator {
                             SketchwareUtil.toastError("Не удалось создать " + typeName);
                         }
                     })
-                    .setNegativeButton(getString(R.string.auto_widget_auto_creator_003), null)
+                    .setNegativeButton("Отмена", null)
                     .show();
         } catch (Throwable ignored) {}
     }

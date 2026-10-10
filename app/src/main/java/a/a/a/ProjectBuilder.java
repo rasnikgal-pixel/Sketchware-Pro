@@ -1,7 +1,5 @@
 package a.a.a;
 
-
-import pro.sketchware.R;
 import static android.system.OsConstants.S_IRUSR;
 import static android.system.OsConstants.S_IWUSR;
 import static android.system.OsConstants.S_IXUSR;
@@ -217,7 +215,7 @@ public class ProjectBuilder {
     }
 
     public String getDxRunningText() {
-        return (isD8Enabled() ? "D8" : "Dx") + getString(R.string.auto_project_builder_001);
+        return (isD8Enabled() ? "D8" : "Dx") + " выполняется...";
     }
 
     /**
