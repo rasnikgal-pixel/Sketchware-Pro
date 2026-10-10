@@ -41,6 +41,14 @@ public final class DesignerSettingsStore {
     /** Показывать тултипы при долгом тапе. */
     private static final String KEY_TOOLTIPS = "tooltips";
 
+    // ─── Жесты в палитре ────────────────────────────────────────
+    /** Одинарный тап по иконке палитры. */
+    private static final String KEY_PALETTE_SINGLE_TAP = "palette_single_tap_action";
+    /** Двойной тап по иконке палитры. */
+    private static final String KEY_PALETTE_DOUBLE_TAP = "palette_double_tap_action";
+    /** Долгий тап по иконке палитры. */
+    private static final String KEY_PALETTE_LONG_TAP = "palette_long_tap_action";
+
     // ─── Быстрые действия ───────────────────────────────────────
     /** Показывать кнопку "Свернуть все" в шапке палитры. */
     private static final String KEY_SHOW_COLLAPSE_ALL = "show_collapse_all";
@@ -129,6 +137,18 @@ public final class DesignerSettingsStore {
         return prefs(ctx).getBoolean(KEY_TOOLTIPS, true);
     }
 
+    public static String getPaletteSingleTapAction(Context ctx) {
+        return prefs(ctx).getString(KEY_PALETTE_SINGLE_TAP, "add_center");
+    }
+
+    public static String getPaletteDoubleTapAction(Context ctx) {
+        return prefs(ctx).getString(KEY_PALETTE_DOUBLE_TAP, "help");
+    }
+
+    public static String getPaletteLongTapAction(Context ctx) {
+        return prefs(ctx).getString(KEY_PALETTE_LONG_TAP, "drag");
+    }
+
     public static boolean isShowCollapseAll(Context ctx) {
         return prefs(ctx).getBoolean(KEY_SHOW_COLLAPSE_ALL, true);
     }
@@ -211,6 +231,21 @@ public final class DesignerSettingsStore {
 
     public static void setUseLegacySaveDialog(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_USE_LEGACY_SAVE_DIALOG, v).apply();
+        bumpCounter(ctx);
+    }
+
+    public static void setPaletteSingleTapAction(Context ctx, String v) {
+        prefs(ctx).edit().putString(KEY_PALETTE_SINGLE_TAP, v).apply();
+        bumpCounter(ctx);
+    }
+
+    public static void setPaletteDoubleTapAction(Context ctx, String v) {
+        prefs(ctx).edit().putString(KEY_PALETTE_DOUBLE_TAP, v).apply();
+        bumpCounter(ctx);
+    }
+
+    public static void setPaletteLongTapAction(Context ctx, String v) {
+        prefs(ctx).edit().putString(KEY_PALETTE_LONG_TAP, v).apply();
         bumpCounter(ctx);
     }
 }

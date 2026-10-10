@@ -781,6 +781,13 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
 
     private void e() {
         if (currentTouchedView == null) return;
+        if (isViewAnIconBase(currentTouchedView)
+                && pro.sketchware.settings.DesignerSettingsStore.isTooltips(getContext())) {
+            String tip = getWidgetDisplayName(currentTouchedView);
+            if (tip != null && !tip.isEmpty()) {
+                android.widget.Toast.makeText(getContext(), tip, android.widget.Toast.LENGTH_SHORT).show();
+            }
+        }
         if (isViewAnIconBase(currentTouchedView)) {
             boolean isAppCompatEnabled = jC.c(a).c().isEnabled();
             if (currentTouchedView instanceof uy collectionWidget) {
@@ -876,6 +883,19 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
         dummyView.setAllow(false);
         viewPane.resetView(true);
+    }
+
+    /** Имя виджета для тултипа при долгом тапе в палитре. */
+    private String getWidgetDisplayName(View view) {
+        if (view instanceof IconBase iconBase) {
+            String name = iconBase.getName();
+            if (name != null && !name.isEmpty()) return name;
+        }
+        View tv = view.findViewById(pro.sketchware.R.id.tv_widget);
+        if (tv instanceof android.widget.TextView textView) {
+            return textView.getText().toString();
+        }
+        return null;
     }
 
     public ItemView b(ViewBean viewBean, boolean z) {
