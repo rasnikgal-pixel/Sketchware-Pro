@@ -435,7 +435,7 @@ public class BlocksManager extends BaseAppCompatActivity {
     private void showPaletteDialog(boolean isEditing, Integer oldPosition, String oldName, String oldColor, Integer insertAtPosition) {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
         dialog.setIcon(R.drawable.icon_style_white_96);
-        dialog.setTitle(!isEditing ? Helper.getResString(R.string.auto_blocks_manager_007) : Helper.getResString(R.string.auto_blocks_manager_008));
+        dialog.setTitle(!(CharSequence) (isEditing ? Helper.getResString(R.string.auto_blocks_manager_007) : Helper.getResString(R.string.auto_blocks_manager_008)));
 
         dialogBinding = DialogPaletteBinding.inflate(getLayoutInflater());
 

@@ -1418,7 +1418,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 crashlytics.log("Loading font preview");
                 crashlytics.recordException(e);
                 typeface = Typeface.DEFAULT;
-                preview.setText("Не удалось загрузить шрифт");
+                preview.setText(Helper.getResString(R.string.auto_logic_editor_activity_001));
             }
         }
 
@@ -1611,7 +1611,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         }
 
         dialog.setView(customView);
-        dialog.setNeutralButton("Редактор кода", (v, which) -> {
+        dialog.setNeutralButton(Helper.getResString(R.string.auto_logic_editor_activity_002), (v, which) -> {
             AsdDialog editor = new AsdDialog(this);
             editor.setContent(ss.getArgValue().toString());
             editor.show();
@@ -2007,7 +2007,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                             os.write(json.getBytes("UTF-8"));
                             os.close();
                         }
-                        android.widget.Toast.makeText(this, "Экспортировано", android.widget.Toast.LENGTH_SHORT).show();
+                        android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_003), android.widget.Toast.LENGTH_SHORT).show();
                     } catch (Throwable t) {
                         android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
                     }
@@ -2091,13 +2091,13 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
      */
     private void showUpdateBlocksDialog() {
         if (M == null || scId == null || scId.isEmpty()) {
-            SketchwareUtil.toast("Сначала откройте экран");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_logic_editor_activity_004));
             return;
         }
 
         ArrayList<ComponentBean> components = jC.a(scId).e(M.getJavaName());
         if (components == null || components.isEmpty()) {
-            SketchwareUtil.toast("В проекте нет компонентов");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_logic_editor_activity_005));
             return;
         }
 
@@ -2110,7 +2110,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         }
 
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                .setTitle("Обновить блоки компонента")
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_006))
                 .setItems(items, (dialog, which) -> {
                     ComponentBean selected = components.get(which);
                     performMassUpdate(selected);
@@ -2123,7 +2123,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         if (o == null) return;
         ArrayList<BlockBean> currentBlocks = o.getBlocks();
         if (currentBlocks == null || currentBlocks.isEmpty()) {
-            SketchwareUtil.toast("Нет блоков в событии");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_logic_editor_activity_007));
             return;
         }
 
@@ -2147,7 +2147,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         }
 
         if (updated.isEmpty()) {
-            SketchwareUtil.toast("Нет блоков, требующих этот компонент");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_logic_editor_activity_008));
         } else {
             SketchwareUtil.toast("Обновлено блоков: " + updated.size());
         }
@@ -2207,7 +2207,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private void checkLogicManually() {
         try {
             if (o == null || M == null) {
-                SketchwareUtil.toast("Сначала откройте событие");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_logic_editor_activity_009));
                 return;
             }
             java.util.List<com.besome.sketch.beans.BlockBean> blocks;
@@ -2218,9 +2218,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
             if (blocks == null || blocks.isEmpty()) {
                 new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                        .setTitle("Проверка логики блоков")
-                        .setMessage("В этом событии нет блоков.")
-                        .setPositiveButton("Закрыть", null)
+                        .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_010))
+                        .setMessage(Helper.getResString(R.string.auto_logic_editor_activity_011))
+                        .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_012), null)
                         .show();
                 return;
             }
@@ -2230,9 +2230,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     mod.jbk.util.ProjectLogicChecker.check(blocks, this, scId, M.getJavaName());
             if (issues == null || issues.isEmpty()) {
                 new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                        .setTitle("Проверка логики блоков")
-                        .setMessage("\u2713 Проблем не найдено")
-                        .setPositiveButton("Закрыть", null)
+                        .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_013))
+                        .setMessage(Helper.getResString(R.string.auto_logic_editor_activity_014))
+                        .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_015), null)
                         .show();
                 return;
             }
@@ -2247,10 +2247,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
 
             StringBuilder msg = new StringBuilder();
-            msg.append("Найдено проблем: ").append(issues.size()).append("\n");
-            msg.append("Критических: ").append(critical.size()).append(", предупреждений: ").append(warning.size()).append("\n\n");
+            msg.append(Helper.getResString(R.string.auto_logic_editor_activity_016)).append(issues.size()).append("\n");
+            msg.append(Helper.getResString(R.string.auto_logic_editor_activity_017)).append(critical.size()).append(Helper.getResString(R.string.auto_logic_editor_activity_018)).append(warning.size()).append("\n\n");
             if (!critical.isEmpty()) {
-                msg.append("\uD83D\uDD34 Критические:\n");
+                msg.append(Helper.getResString(R.string.auto_logic_editor_activity_019));
                 for (mod.jbk.util.BlockLogicChecker.Issue i : critical) {
                     msg.append("• ").append(i.message);
                     if (i.humanLocation != null && !i.humanLocation.isEmpty()) msg.append(" (").append(i.humanLocation).append(")");
@@ -2259,7 +2259,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 msg.append("\n");
             }
             if (!warning.isEmpty()) {
-                msg.append("\uD83D\uDFE1 Предупреждения:\n");
+                msg.append(Helper.getResString(R.string.auto_logic_editor_activity_020));
                 for (mod.jbk.util.BlockLogicChecker.Issue i : warning) {
                     msg.append("• ").append(i.message);
                     if (i.humanLocation != null && !i.humanLocation.isEmpty()) msg.append(" (").append(i.humanLocation).append(")");
@@ -2268,9 +2268,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
 
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("Проверка логики блоков")
+                    .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_021))
                     .setMessage(msg.toString())
-                    .setPositiveButton("Закрыть", null)
+                    .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_022), null)
                     .show();
         } catch (Throwable t) {
             // silent — nothing should crash the editor
@@ -2285,7 +2285,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private void checkWholeScreen() {
         try {
             if (M == null || scId == null || scId.isEmpty()) {
-                SketchwareUtil.toast("Сначала откройте экран");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_logic_editor_activity_023));
                 return;
             }
             String javaName = M.getJavaName();
@@ -2297,9 +2297,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
             if (allEvents == null || allEvents.isEmpty()) {
                 new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                        .setTitle("Проверка всего экрана")
-                        .setMessage("На этом экране нет событий.")
-                        .setPositiveButton("Закрыть", null)
+                        .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_024))
+                        .setMessage(Helper.getResString(R.string.auto_logic_editor_activity_025))
+                        .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_026), null)
                         .show();
                 return;
             }
@@ -2325,16 +2325,16 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
             if (byEvent.isEmpty()) {
                 new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                        .setTitle("Проверка всего экрана")
+                        .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_027))
                         .setMessage("\u2713 Проблем не найдено\n\nПроверено событий: " + allEvents.size())
-                        .setPositiveButton("Закрыть", null)
+                        .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_028), null)
                         .show();
                 return;
             }
 
             StringBuilder msg = new StringBuilder();
-            msg.append("Проверено событий: ").append(allEvents.size()).append("\n");
-            msg.append("Найдено проблем: ").append(totalIssues).append(" в ").append(byEvent.size()).append(" событиях\n\n");
+            msg.append(Helper.getResString(R.string.auto_logic_editor_activity_029)).append(allEvents.size()).append("\n");
+            msg.append(Helper.getResString(R.string.auto_logic_editor_activity_030)).append(totalIssues).append(Helper.getResString(R.string.auto_logic_editor_activity_031)).append(byEvent.size()).append(Helper.getResString(R.string.auto_logic_editor_activity_032));
             for (java.util.Map.Entry<String, java.util.List<mod.jbk.util.BlockLogicChecker.Issue>> e : byEvent.entrySet()) {
                 msg.append("\uD83D\uDCCB ").append(e.getKey()).append("\n");
                 for (mod.jbk.util.BlockLogicChecker.Issue i : e.getValue()) {
@@ -2348,9 +2348,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             }
 
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("Проверка всего экрана")
+                    .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_033))
                     .setMessage(msg.toString())
-                    .setPositiveButton("Закрыть", null)
+                    .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_034), null)
                     .show();
         } catch (Throwable t) {
             // silent
@@ -2538,17 +2538,17 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 mod.jbk.util.BlockLogicJournal.record(scId, id, messages);
             } catch (Throwable ignored) {}
 
-            StringBuilder msg = new StringBuilder("В событии \"").append(id)
-                    .append("\" обнаружены проблемы:\n\n");
+            StringBuilder msg = new StringBuilder(Helper.getResString(R.string.auto_logic_editor_activity_035)).append(id)
+                    .append(Helper.getResString(R.string.auto_logic_editor_activity_036));
             for (String s : messages) msg.append("• ").append(s).append("\n");
-            msg.append("\nУдалить лишние блоки?");
+            msg.append(Helper.getResString(R.string.auto_logic_editor_activity_037));
 
             final java.util.List<mod.jbk.util.BlockLogicChecker.Issue> issuesFinal = issues;
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("Проверка логики блоков")
+                    .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_038))
                     .setMessage(msg.toString())
-                    .setPositiveButton("Удалить", (d, w) -> deleteDuplicates(issuesFinal))
-                    .setNegativeButton("Оставить", null)
+                    .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_039), (d, w) -> deleteDuplicates(issuesFinal))
+                    .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_040), null)
                     .show();
         } catch (Throwable ignored) {}
     }
@@ -2625,12 +2625,12 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             String displayName = (tname instanceof String) ? (String) tname : templateId;
 
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("Развернуть шаблон?")
+                    .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_041))
                     .setMessage(displayName)
-                    .setPositiveButton("Развернуть", (d, w) -> {
+                    .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_042), (d, w) -> {
                         expandTemplate(templateBlock, tpl);
                     })
-                    .setNegativeButton("Оставить как есть", (d, w) -> {
+                    .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_043), (d, w) -> {
                         deleteTemplateBlock(templateBlock);
                     })
                     .show();
@@ -2650,7 +2650,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
             Object blocksObj = tpl.get("blocks");
             if (!(blocksObj instanceof java.util.List)) {
-                android.widget.Toast.makeText(this, "Ошибка: нет списка блоков",
+                android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_044),
                         android.widget.Toast.LENGTH_SHORT).show();
                 try { o.b(); C(); } catch (Throwable ignored) {}
                 return;
@@ -2743,7 +2743,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             o.a(templateBlock, false);
             try { o.b(); } catch (Throwable ignored) {}
             try { C(); } catch (Throwable ignored) {}
-            android.widget.Toast.makeText(this, "Шаблон отменён", android.widget.Toast.LENGTH_SHORT).show();
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_045), android.widget.Toast.LENGTH_SHORT).show();
         } catch (Throwable t) {
             android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
         }
@@ -3414,8 +3414,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
      */
     private void showBlockContextMenu(Rs rs) {
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                .setTitle("Действие с блоком")
-                .setItems(new String[] { "➕ Добавить свою сборку" }, (d, which) -> {
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_046))
+                .setItems(new String[] { Helper.getResString(R.string.auto_logic_editor_activity_047) }, (d, which) -> {
                     if (which == 0) {
                         showSaveAsTemplateDialog(rs);
                     }
@@ -3431,7 +3431,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             java.util.Map<String, Object> tree =
                     mod.jbk.util.BlockChainSerializer.serialize(rs.getBean(), o.getBlocks());
             if (tree == null) {
-                android.widget.Toast.makeText(this, "Не удалось прочитать блок",
+                android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_048),
                         android.widget.Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -3443,7 +3443,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
             com.google.android.material.textfield.TextInputLayout nameLayout =
                     new com.google.android.material.textfield.TextInputLayout(this);
-            nameLayout.setHint("Название сборки");
+            nameLayout.setHint(Helper.getResString(R.string.auto_logic_editor_activity_049));
             com.google.android.material.textfield.TextInputEditText nameInput =
                     new com.google.android.material.textfield.TextInputEditText(this);
             nameLayout.addView(nameInput);
@@ -3451,27 +3451,27 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
             com.google.android.material.textfield.TextInputLayout descLayout =
                     new com.google.android.material.textfield.TextInputLayout(this);
-            descLayout.setHint("Описание (необязательно)");
+            descLayout.setHint(Helper.getResString(R.string.auto_logic_editor_activity_050));
             com.google.android.material.textfield.TextInputEditText descInput =
                     new com.google.android.material.textfield.TextInputEditText(this);
             descLayout.addView(descInput);
             layout.addView(descLayout);
 
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("Сохранить как сборку")
+                    .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_051))
                     .setView(layout)
-                    .setPositiveButton("Сохранить", (d, w) -> {
+                    .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_052), (d, w) -> {
                         String name = nameInput.getText() == null
                                 ? "" : nameInput.getText().toString().trim();
                         String desc = descInput.getText() == null
                                 ? "" : descInput.getText().toString().trim();
                         if (name.isEmpty()) {
-                            android.widget.Toast.makeText(this, "Введите название",
+                            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_053),
                                     android.widget.Toast.LENGTH_SHORT).show();
                             return;
                         }
                         if (mod.jbk.util.BlockTemplatesManager.findByName(name, null) != null) {
-                            android.widget.Toast.makeText(this, "Сборка с таким именем уже есть",
+                            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_054),
                                     android.widget.Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -3479,7 +3479,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         boolean ok = mod.jbk.util.BlockTemplatesManager
                                 .saveCustomTemplate(id, name, desc, tree);
                         android.widget.Toast.makeText(this,
-                                ok ? "Сборка сохранена" : "Ошибка сохранения",
+                                (CharSequence) (ok ? Helper.getResString(R.string.auto_logic_editor_activity_055) : Helper.getResString(R.string.auto_logic_editor_activity_056)),
                                 android.widget.Toast.LENGTH_SHORT).show();
                         if (ok && extraPaletteBlock != null) {
                             try {
@@ -3489,7 +3489,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                             } catch (Throwable ignored) {}
                         }
                     })
-                    .setNegativeButton("Отмена", null)
+                    .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_057), null)
                     .show();
         } catch (Throwable t) {
             android.widget.Toast.makeText(this,
@@ -3507,7 +3507,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         final java.util.Map<String, Object> tpl =
                 mod.jbk.util.BlockTemplatesManager.getById(id);
         if (tpl == null) {
-            android.widget.Toast.makeText(this, "Сборка не найдена",
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_058),
                     android.widget.Toast.LENGTH_SHORT).show();
             return;
         }
@@ -3517,12 +3517,12 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                 .setTitle(displayName)
                 .setItems(new String[] {
-                        "Переименовать",
-                        "Изменить описание",
-                        "Поделиться",
-                        "Сохранить в файл",
-                        "Удалить",
-                        "Удалить все сборки"
+                        Helper.getResString(R.string.auto_logic_editor_activity_059),
+                        Helper.getResString(R.string.auto_logic_editor_activity_060),
+                        Helper.getResString(R.string.auto_logic_editor_activity_061),
+                        Helper.getResString(R.string.auto_logic_editor_activity_062),
+                        Helper.getResString(R.string.auto_logic_editor_activity_063),
+                        Helper.getResString(R.string.auto_logic_editor_activity_064)
                 }, (d, which) -> {
                     if (which == 0) {
                         showRenameTemplateDialog(id, tpl);
@@ -3557,7 +3557,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         try {
             java.util.Map<String, Object> tpl = mod.jbk.util.BlockTemplatesManager.getById(id);
             if (tpl == null) {
-                android.widget.Toast.makeText(this, "Сборка не найдена",
+                android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_065),
                         android.widget.Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -3581,7 +3581,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             intent.putExtra(android.content.Intent.EXTRA_STREAM, uri);
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Сборка: " + displayName);
             intent.addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivity(android.content.Intent.createChooser(intent, "Поделиться сборкой"));
+            startActivity(android.content.Intent.createChooser(intent, Helper.getResString(R.string.auto_logic_editor_activity_066)));
         } catch (Throwable t) {
             android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(),
                     android.widget.Toast.LENGTH_LONG).show();
@@ -3592,7 +3592,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private void saveSingleTemplateToFile(String id) {
         java.util.Map<String, Object> tpl = mod.jbk.util.BlockTemplatesManager.getById(id);
         if (tpl == null) {
-            android.widget.Toast.makeText(this, "Сборка не найдена",
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_067),
                     android.widget.Toast.LENGTH_SHORT).show();
             return;
         }
@@ -3605,7 +3605,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private void showRenameTemplateDialog(String id, java.util.Map<String, Object> tpl) {
         com.google.android.material.textfield.TextInputLayout layout =
                 new com.google.android.material.textfield.TextInputLayout(this);
-        layout.setHint("Новое название");
+        layout.setHint(Helper.getResString(R.string.auto_logic_editor_activity_068));
         com.google.android.material.textfield.TextInputEditText input =
                 new com.google.android.material.textfield.TextInputEditText(this);
         Object oldName = tpl.get("name");
@@ -3613,33 +3613,33 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         layout.addView(input);
 
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                .setTitle("Переименовать сборку")
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_069))
                 .setView(layout)
-                .setPositiveButton("Сохранить", (d, w) -> {
+                .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_070), (d, w) -> {
                     String newName = input.getText() == null ? "" : input.getText().toString().trim();
                     if (newName.isEmpty()) {
-                        android.widget.Toast.makeText(this, "Введите название",
+                        android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_071),
                                 android.widget.Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (mod.jbk.util.BlockTemplatesManager.findByName(newName, id) != null) {
-                        android.widget.Toast.makeText(this, "Сборка с таким именем уже есть",
+                        android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_072),
                                 android.widget.Toast.LENGTH_SHORT).show();
                         return;
                     }
                     mod.jbk.util.BlockTemplatesManager.updateCustomTemplate(id, newName, null);
                     refreshTemplatesPalette();
-                    android.widget.Toast.makeText(this, "Переименовано",
+                    android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_073),
                             android.widget.Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_074), null)
                 .show();
     }
 
     private void showEditDescriptionDialog(String id, java.util.Map<String, Object> tpl) {
         com.google.android.material.textfield.TextInputLayout layout =
                 new com.google.android.material.textfield.TextInputLayout(this);
-        layout.setHint("Новое описание");
+        layout.setHint(Helper.getResString(R.string.auto_logic_editor_activity_075));
         com.google.android.material.textfield.TextInputEditText input =
                 new com.google.android.material.textfield.TextInputEditText(this);
         Object oldDesc = tpl.get("description");
@@ -3647,30 +3647,30 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         layout.addView(input);
 
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                .setTitle("Изменить описание")
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_076))
                 .setView(layout)
-                .setPositiveButton("Сохранить", (d, w) -> {
+                .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_077), (d, w) -> {
                     String newDesc = input.getText() == null ? "" : input.getText().toString().trim();
                     mod.jbk.util.BlockTemplatesManager.updateCustomTemplate(id, null, newDesc);
                     refreshTemplatesPalette();
-                    android.widget.Toast.makeText(this, "Описание обновлено",
+                    android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_078),
                             android.widget.Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_079), null)
                 .show();
     }
 
     private void showDeleteTemplateDialog(String id, String displayName) {
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                .setTitle("Удалить сборку?")
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_080))
                 .setMessage(displayName)
-                .setPositiveButton("Удалить", (d, w) -> {
+                .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_081), (d, w) -> {
                     mod.jbk.util.BlockTemplatesManager.deleteCustomTemplate(id);
                     refreshTemplatesPalette();
-                    android.widget.Toast.makeText(this, "Сборка удалена",
+                    android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_082),
                             android.widget.Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_083), null)
                 .show();
     }
 
@@ -3689,15 +3689,15 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     /** Подтверждение удаления всех пользовательских сборок. */
     private void showDeleteAllTemplatesDialog() {
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                .setTitle("Удалить все сборки?")
-                .setMessage("Все пользовательские сборки будут удалены. Готовые наборы останутся.")
-                .setPositiveButton("Удалить все", (d, w) -> {
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_084))
+                .setMessage(Helper.getResString(R.string.auto_logic_editor_activity_085))
+                .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_086), (d, w) -> {
                     mod.jbk.util.BlockTemplatesManager.deleteAllCustom();
                     refreshTemplatesPalette();
-                    android.widget.Toast.makeText(this, "Все сборки удалены",
+                    android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_087),
                             android.widget.Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_088), null)
                 .show();
     }
 
@@ -3707,7 +3707,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         try {
             java.io.InputStream is = getContentResolver().openInputStream(uri);
             if (is == null) {
-                android.widget.Toast.makeText(this, "Не удалось открыть файл", android.widget.Toast.LENGTH_SHORT).show();
+                android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_089), android.widget.Toast.LENGTH_SHORT).show();
                 return;
             }
             java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
@@ -3721,7 +3721,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 Object parsed = new com.google.gson.Gson().fromJson(json, java.util.Map.class);
                 if (!(parsed instanceof java.util.Map)) throw new RuntimeException("not a map");
             } catch (Throwable t) {
-                android.widget.Toast.makeText(this, "Неверный формат JSON", android.widget.Toast.LENGTH_SHORT).show();
+                android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_090), android.widget.Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -3730,21 +3730,21 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
             int totalInFile = preview.addedNames.size() + preview.replacedNames.size();
             if (totalInFile == 0) {
-                android.widget.Toast.makeText(this, "В файле нет сборок", android.widget.Toast.LENGTH_LONG).show();
+                android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_091), android.widget.Toast.LENGTH_LONG).show();
                 return;
             }
 
             String message = "В файле найдено сборок: " + totalInFile
                     + "\nНовых: " + preview.addedNames.size()
                     + "\nСовпадающих по id: " + preview.replacedNames.size()
-                    + "\n\nВыберите действие:";
+                    + Helper.getResString(R.string.auto_logic_editor_activity_092);
 
             new MaterialAlertDialogBuilder(this)
-                    .setTitle("Импорт конструктора")
+                    .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_093))
                     .setMessage(message)
-                    .setPositiveButton("Добавить", (d, w) -> showImportConfirmMerge(json, preview))
-                    .setNeutralButton("Заменить", (d, w) -> showImportConfirmReplace(json, preview))
-                    .setNegativeButton("Отмена", null)
+                    .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_094), (d, w) -> showImportConfirmMerge(json, preview))
+                    .setNeutralButton(Helper.getResString(R.string.auto_logic_editor_activity_095), (d, w) -> showImportConfirmReplace(json, preview))
+                    .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_096), null)
                     .show();
         } catch (Throwable t) {
             android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
@@ -3760,34 +3760,34 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             sb.append(names.get(i));
         }
         if (names.size() > 5) {
-            sb.append(" …и ещё ").append(names.size() - 5);
+            sb.append(Helper.getResString(R.string.auto_logic_editor_activity_097)).append(names.size() - 5);
         }
         return sb.toString();
     }
 
     private void showImportConfirmMerge(String json, mod.jbk.util.BlockTemplatesManager.ImportResult preview) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Будет добавлено новых: ").append(preview.addedNames.size()).append("\n");
+        sb.append(Helper.getResString(R.string.auto_logic_editor_activity_098)).append(preview.addedNames.size()).append("\n");
         if (!preview.addedNames.isEmpty()) {
             sb.append("  ").append(formatNameList(preview.addedNames)).append("\n");
         }
-        sb.append("\nБудет заменено существующих: ").append(preview.replacedNames.size()).append("\n");
+        sb.append(Helper.getResString(R.string.auto_logic_editor_activity_099)).append(preview.replacedNames.size()).append("\n");
         if (!preview.replacedNames.isEmpty()) {
             sb.append("  ").append(formatNameList(preview.replacedNames)).append("\n");
         }
-        sb.append("\nВсего ваших сборок сейчас: ").append(preview.existingCount);
-        sb.append("\n\nПродолжить?");
+        sb.append(Helper.getResString(R.string.auto_logic_editor_activity_100)).append(preview.existingCount);
+        sb.append(Helper.getResString(R.string.auto_logic_editor_activity_101));
 
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Подтверждение")
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_102))
                 .setMessage(sb.toString())
-                .setPositiveButton("Продолжить", (d, w) -> {
+                .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_103), (d, w) -> {
                     mod.jbk.util.BlockTemplatesManager.ImportResult r =
                             mod.jbk.util.BlockTemplatesManager.mergeCustomRawJson(json);
                     refreshTemplatesPalette();
-                    showImportReport("Слияние", r, false);
+                    showImportReport(Helper.getResString(R.string.auto_logic_editor_activity_104), r, false);
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_105), null)
                 .show();
     }
 
@@ -3797,43 +3797,43 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
         String message = "Все ваши текущие сборки (" + removed + " шт.) будут удалены.\n"
                 + "Останутся только " + loaded + " сборок(и) из файла.\n\n"
-                + "Продолжить?";
+                + Helper.getResString(R.string.auto_logic_editor_activity_106);
 
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Подтверждение")
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_107))
                 .setMessage(message)
-                .setPositiveButton("Продолжить", (d, w) -> {
+                .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_108), (d, w) -> {
                     mod.jbk.util.BlockTemplatesManager.ImportResult r =
                             mod.jbk.util.BlockTemplatesManager.replaceCustomRawJson(json);
                     refreshTemplatesPalette();
-                    showImportReport("Замена", r, true);
+                    showImportReport(Helper.getResString(R.string.auto_logic_editor_activity_109), r, true);
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_110), null)
                 .show();
     }
 
     private void showImportReport(String action, mod.jbk.util.BlockTemplatesManager.ImportResult r, boolean wasReplace) {
         StringBuilder sb = new StringBuilder();
         if (wasReplace) {
-            sb.append("Удалено предыдущих: ").append(r.removedCount).append("\n");
-            sb.append("Загружено из файла: ").append(r.loadedNames.size()).append("\n");
+            sb.append(Helper.getResString(R.string.auto_logic_editor_activity_111)).append(r.removedCount).append("\n");
+            sb.append(Helper.getResString(R.string.auto_logic_editor_activity_112)).append(r.loadedNames.size()).append("\n");
             if (!r.loadedNames.isEmpty()) {
                 sb.append("  ").append(formatNameList(r.loadedNames)).append("\n");
             }
         } else {
-            sb.append("Добавлено (").append(r.addedNames.size()).append("): ")
+            sb.append(Helper.getResString(R.string.auto_logic_editor_activity_113)).append(r.addedNames.size()).append("): ")
                     .append(formatNameList(r.addedNames)).append("\n");
-            sb.append("\nЗаменено (").append(r.replacedNames.size()).append("): ")
+            sb.append(Helper.getResString(R.string.auto_logic_editor_activity_114)).append(r.replacedNames.size()).append("): ")
                     .append(formatNameList(r.replacedNames)).append("\n");
         }
         if (r.skippedCount > 0) {
-            sb.append("\nПропущено (битых записей): ").append(r.skippedCount);
+            sb.append(Helper.getResString(R.string.auto_logic_editor_activity_115)).append(r.skippedCount);
         }
 
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Импорт завершён")
+                .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_116))
                 .setMessage(sb.toString())
-                .setPositiveButton("ОК", null)
+                .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_117), null)
                 .show();
     }
 

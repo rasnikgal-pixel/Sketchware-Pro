@@ -228,7 +228,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                     }
                 });
         dialog.show();
-        binding.title.setText(!edit ? Helper.getResString(R.string.auto_manage_x_m_l_command_activity_003) : Helper.getResString(R.string.auto_manage_x_m_l_command_activity_004));
+        binding.title.setText(!(CharSequence) (edit ? Helper.getResString(R.string.auto_manage_x_m_l_command_activity_003) : Helper.getResString(R.string.auto_manage_x_m_l_command_activity_004)));
 
         if (edit) {
             var command = commands.get(position);

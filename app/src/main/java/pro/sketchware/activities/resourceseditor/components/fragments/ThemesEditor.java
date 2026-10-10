@@ -259,7 +259,7 @@ public class ThemesEditor extends Fragment {
             binding.attrValue.setText(theme.getAttribute(attr));
         }
 
-        dialog.setTitle((CharSequence) (isEditing ? Helper.getResString(R.string.auto_themes_editor_008) : Helper.getResString(R.string.auto_themes_editor_009)));
+        dialog.setTitle((CharSequence) ((CharSequence) (isEditing ? Helper.getResString(R.string.auto_themes_editor_008) : Helper.getResString(R.string.auto_themes_editor_009))));
 
         dialog.setPositiveButton(Helper.getResString(R.string.common_word_save), (d, which) -> {
             String attribute = Objects.requireNonNull(binding.attrName.getText()).toString();

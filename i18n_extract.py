@@ -43,8 +43,10 @@ def find_ui_strings(source):
         stripped = line.lstrip()
         if stripped.startswith('//') or stripped.startswith('*') or stripped.startswith('/*'):
             continue
-        # Проверяем, что следующая непустая часть после закрывающей кавычки — это
-        # , ) ; + — то есть в контексте вызова метода
+        # Проверяем контекст: пропускаем case "..." (метки switch)
+        before_short = source[max(0, m.start()-30):m.start()]
+        if re.search(r'\bcase\s*$', before_short):
+            continue
         after = source[m.end():m.end()+40]
         # Если идёт конкатенация — пропускаем
         if re.match(r'\s*\+', after):
