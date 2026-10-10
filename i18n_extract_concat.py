@@ -99,7 +99,7 @@ def find_concat_strings(source):
                     if depth == 0:
                         break
                     depth -= 1
-                elif c == ';' and depth == 0:
+                elif (c == ';' or c == ',') and depth == 0:
                     break
                 elif c == '\n' and depth == 0:
                     break
