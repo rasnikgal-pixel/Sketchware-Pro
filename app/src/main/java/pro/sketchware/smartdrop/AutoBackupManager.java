@@ -58,7 +58,7 @@ public final class AutoBackupManager {
 
             // Лог + Toast
             logOk(context, scId, outFile.getAbsolutePath());
-            showToastSafe(context, "Автобэкап: " + outFile.getName());
+            showToastSafe(context, Helper.getResString(R.string.auto_concat_auto_backup_manager_001, outFile.getName()));
 
         } catch (Throwable t) {
             logError(context, scId, String.valueOf(t));

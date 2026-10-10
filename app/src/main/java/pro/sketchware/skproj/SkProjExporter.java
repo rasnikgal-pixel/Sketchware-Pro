@@ -89,7 +89,7 @@ public class SkProjExporter {
             File baseDir = new File(android.os.Environment.getExternalStorageDirectory(),
                     ConfigActivity.getSkprojOutputDir());
             if (!baseDir.exists() && !baseDir.mkdirs()) {
-                error = "Не удалось создать папку экспорта: " + baseDir;
+                error = Helper.getResString(R.string.auto_concat_sk_proj_exporter_001, baseDir);
                 return null;
             }
 
@@ -97,7 +97,7 @@ public class SkProjExporter {
             String ts = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US).format(new Date());
             File workDir = new File(baseDir, projectName + "_" + ts + ".skproj");
             if (!workDir.mkdirs()) {
-                error = "Не удалось создать рабочую папку: " + workDir;
+                error = Helper.getResString(R.string.auto_concat_sk_proj_exporter_002, workDir);
                 return null;
             }
 

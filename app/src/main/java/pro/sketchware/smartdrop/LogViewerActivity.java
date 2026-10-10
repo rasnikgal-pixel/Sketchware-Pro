@@ -1,5 +1,7 @@
 package pro.sketchware.smartdrop;
 
+
+import mod.hey.studios.util.Helper;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -87,7 +89,7 @@ public class LogViewerActivity extends BaseAppCompatActivity {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(Intent.createChooser(intent, getString(R.string.log_viewer_btn_share)));
             } catch (Exception e) {
-                Toast.makeText(this, "Ошибка: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, Helper.getResString(R.string.auto_concat_log_viewer_activity_001, e.getMessage()), Toast.LENGTH_LONG).show();
             }
         });
 

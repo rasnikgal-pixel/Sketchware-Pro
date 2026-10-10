@@ -270,7 +270,7 @@ public class SmartDropHelper {
                         }
 
                         Toast.makeText(activity,
-                                "Обновлено блоков: " + updatedBlocks.size() + " → " + componentId,
+                                Helper.getResString(R.string.auto_concat_smart_drop_helper_001, updatedBlocks.size(), componentId),
                                 Toast.LENGTH_SHORT).show();
                         log.i(TAG, "log_smartdrop_attached",
                                 "updated " + updatedBlocks.size() + " blocks");
@@ -462,7 +462,7 @@ public class SmartDropHelper {
             return;
         }
 
-        log.i(TAG, "log_smartdrop_required", "не разрешено: " + unresolved.size());
+        log.i(TAG, "log_smartdrop_required", Helper.getResString(R.string.auto_concat_smart_drop_helper_002, unresolved.size()));
 
         // Формируем сообщение
         StringBuilder sb = new StringBuilder();

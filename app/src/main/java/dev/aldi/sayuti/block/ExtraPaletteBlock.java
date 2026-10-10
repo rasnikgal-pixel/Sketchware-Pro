@@ -198,7 +198,7 @@ public class ExtraPaletteBlock {
             if (split.length > 1) {
                 logicEditor.a(split[1], "v", split[0], "getVar").setTag(customVariables.get(i));
             } else {
-                SketchwareUtil.toastError("Найдены недопустимые данные пользовательской переменной #" + (i + 1) + ": \"" + customVariables.get(i) + "\"");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_001, (i + 1), customVariables.get(i)));
             }
         }
 
@@ -219,7 +219,7 @@ public class ExtraPaletteBlock {
                 };
                 logicEditor.a(variableName, type, variableType, "getVar").setTag(variable);
             } else {
-                logicEditor.a("Неверно: " + variable, getColor(logicEditor, R.attr.colorError));
+                logicEditor.a(Helper.getResString(R.string.auto_concat_extra_palette_block_002, variable), getColor(logicEditor, R.attr.colorError));
             }
         }
         BlocksHandler.primaryBlocksA(
@@ -380,7 +380,7 @@ public class ExtraPaletteBlock {
                     if (variableName != null) {
                         logicEditor.a(variableName, "l", "List", "getVar").setTag(name);
                     } else {
-                        logicEditor.a("Неверно: " + name, getColor(logicEditor, R.attr.colorError));
+                        logicEditor.a(Helper.getResString(R.string.auto_concat_extra_palette_block_003, name), getColor(logicEditor, R.attr.colorError));
                     }
                 }
             }
@@ -1280,7 +1280,7 @@ public class ExtraPaletteBlock {
                                 logicEditor.m.addTemplateView(us);
                             }
                         } catch (Throwable t) {
-                            SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_004, t.getMessage()));
                         }
                     }
                 }
@@ -1288,7 +1288,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(Helper.getResString(R.string.auto_extra_palette_block_067), getTitleBgColor());
                     return;
                 }
-                logicEditor.a("Мои наборы (" + custom.size() + ")", getTitleBgColor());
+                logicEditor.a(Helper.getResString(R.string.auto_concat_extra_palette_block_005, custom.size()), getTitleBgColor());
                 if (!custom.isEmpty()) {
                     for (java.util.Map<String, Object> tpl : custom) {
                         Object tid = tpl.get("id");
@@ -1315,7 +1315,7 @@ public class ExtraPaletteBlock {
                                 logicEditor.m.addTemplateView(us);
                             }
                         } catch (Throwable t) {
-                            SketchwareUtil.toastError("Ошибка шаблона: " + t.getMessage());
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_006, t.getMessage()));
                         }
                     }
                 }
@@ -1341,7 +1341,7 @@ public class ExtraPaletteBlock {
                                     if (spec instanceof String specString) {
                                         logicEditor.a(specString, getTitleBgColor());
                                     } else {
-                                        SketchwareUtil.toastError("Пользовательский блок #" + paletteBlocks +
+                                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_007, paletteBlocks)
                                                 " of current palette has an invalid spec data type");
                                     }
                                 } else {
@@ -1356,17 +1356,17 @@ public class ExtraPaletteBlock {
                                             logicEditor.a("", typeString, "", nameString);
                                         }
                                     } else {
-                                        SketchwareUtil.toastError("Пользовательский блок #" + paletteBlocks +
+                                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_008, paletteBlocks)
                                                 " of current palette has an invalid name data type");
                                     }
                                 }
                             } else {
-                                SketchwareUtil.toastError("Пользовательский блок #" + paletteBlocks +
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_009, paletteBlocks)
                                         " of current palette has an invalid block type data type");
                             }
                         }
                     } else {
-                        SketchwareUtil.toastError("Пользовательский блок #" + paletteBlocks +
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_010, paletteBlocks)
                                 " of current palette has an invalid block palette data type");
                     }
                 }

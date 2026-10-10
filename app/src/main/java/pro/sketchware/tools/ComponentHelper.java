@@ -1,5 +1,8 @@
 package pro.sketchware.tools;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -19,7 +22,7 @@ public class ComponentHelper implements TextWatcher {
         String charSequence2 = s.toString();
         for (EditText editText : mEditArray) {
             editText.setText(charSequence2);
-            mTypeClass.setText("Компонент." + charSequence2);
+            mTypeClass.setText(Helper.getResString(R.string.auto_concat_component_helper_001, charSequence2));
         }
     }
 

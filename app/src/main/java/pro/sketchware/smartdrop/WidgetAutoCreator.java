@@ -172,17 +172,17 @@ public final class WidgetAutoCreator {
             String suggestedName = generateWidgetName(scId, xmlName, viewType);
 
             new MaterialAlertDialogBuilder(activity)
-                    .setTitle("Создать " + typeName + "?")
-                    .setMessage("Для этого блока нужен " + typeName + ".\n\n"
-                            + "На экране нет " + typeName + ". Создать его "
-                            + "автоматически с именем \"" + suggestedName + "\"?")
+                    .setTitle(Helper.getResString(R.string.auto_concat_widget_auto_creator_001, typeName))
+                    .setMessage(Helper.getResString(R.string.auto_concat_widget_auto_creator_002, typeName)
+                            + Helper.getResString(R.string.auto_concat_widget_auto_creator_003, typeName)
+                            + Helper.getResString(R.string.auto_concat_widget_auto_creator_004, suggestedName))
                     .setPositiveButton(Helper.getResString(R.string.auto_widget_auto_creator_002), (d, w) -> {
                         boolean ok = createWidget(scId, xmlName, viewType, suggestedName);
                         if (ok) {
-                            SketchwareUtil.toast("Создан " + suggestedName);
+                            SketchwareUtil.toast(Helper.getResString(R.string.auto_concat_widget_auto_creator_005, suggestedName));
                             if (onCreated != null) onCreated.run();
                         } else {
-                            SketchwareUtil.toastError("Не удалось создать " + typeName);
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_widget_auto_creator_006, typeName));
                         }
                     })
                     .setNegativeButton(Helper.getResString(R.string.auto_widget_auto_creator_003), null)

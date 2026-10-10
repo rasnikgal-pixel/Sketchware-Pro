@@ -72,9 +72,9 @@ public class ProjectPreviewActivity extends BaseAppCompatActivity {
 
         addChip(project.getCategory());
 
-        binding.downloads.setText("Загрузок:" + project.getDownloads());
-        binding.filesize.setText("Размер:" + project.getProjectSize());
-        binding.timestamp.setText("Выпущено:" + DateFormat.getDateInstance().format(new Date(Long.parseLong(project.getPublishedTimestamp()))));
+        binding.downloads.setText(Helper.getResString(R.string.auto_concat_project_preview_activity_001, project.getDownloads()));
+        binding.filesize.setText(Helper.getResString(R.string.auto_concat_project_preview_activity_002, project.getProjectSize()));
+        binding.timestamp.setText(Helper.getResString(R.string.auto_concat_project_preview_activity_003, DateFormat.getDateInstance().format(new Date(Long.parseLong(project.getPublishedTimestamp())))));
         binding.btnComments.setOnClickListener(v -> openCommentsSheet());
         binding.btnDownload.setOnClickListener(v -> SketchwareUtil.toastError(Helper.getResString(R.string.auto_project_preview_activity_001)));
         binding.btnOpenIn.setOnClickListener(v -> openProject());

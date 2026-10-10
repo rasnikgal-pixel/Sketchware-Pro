@@ -75,9 +75,9 @@ public final class SkProjExportTask {
             String sizeStr = String.format(java.util.Locale.US, Helper.getResString(R.string.auto_sk_proj_export_task_004), size / 1048576.0);
             String parent = outFile.getParent();
 
-            String message = "Файл: " + name + "\n"
-                    + "Размер: " + sizeStr + "\n"
-                    + "Путь: " + parent;
+            String message = Helper.getResString(R.string.auto_concat_sk_proj_export_task_001, name)
+                    + Helper.getResString(R.string.auto_concat_sk_proj_export_task_002, sizeStr)
+                    + Helper.getResString(R.string.auto_concat_sk_proj_export_task_003, parent);
 
             new MaterialAlertDialogBuilder(activity)
                     .setTitle(Helper.getResString(R.string.auto_sk_proj_export_task_005))
@@ -87,7 +87,7 @@ public final class SkProjExportTask {
                     .setNegativeButton(Helper.getResString(R.string.auto_sk_proj_export_task_008), null)
                     .show();
         } catch (Throwable t) {
-            Toast.makeText(activity, "Экспорт выполнен: " + outFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, Helper.getResString(R.string.auto_concat_sk_proj_export_task_004, outFile.getAbsolutePath()), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -100,7 +100,7 @@ public final class SkProjExportTask {
             intent.setDataAndType(Uri.parse("file://" + folder.getAbsolutePath()), "resource/folder");
             activity.startActivity(intent);
         } catch (Throwable t) {
-            Toast.makeText(activity, "Папка: " + folder.getAbsolutePath(), Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, Helper.getResString(R.string.auto_concat_sk_proj_export_task_005, folder.getAbsolutePath()), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -115,7 +115,7 @@ public final class SkProjExportTask {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             activity.startActivity(Intent.createChooser(intent, Helper.getResString(R.string.auto_sk_proj_export_task_009)));
         } catch (Throwable t) {
-            Toast.makeText(activity, "Не удалось отправить: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, Helper.getResString(R.string.auto_concat_sk_proj_export_task_006, t.getMessage()), Toast.LENGTH_SHORT).show();
         }
     }
 }
