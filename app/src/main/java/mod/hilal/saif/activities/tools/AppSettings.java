@@ -93,26 +93,26 @@ public class AppSettings extends BaseAppCompatActivity {
         var preferences = new ArrayList<LibraryCategoryView>();
 
         LibraryCategoryView managersCategory = new LibraryCategoryView(this);
-        managersCategory.setTitle("Менеджеры");
+        managersCategory.setTitle(Helper.getResString(R.string.app_settings_cat_managers));
         preferences.add(managersCategory);
 
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_block, "Менеджер блоков", "Управляйте своими блоками для использования в редакторе логики", new ActivityLauncher(BlocksManager.class)), true);
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_pull_down, "Менеджер меню выбора блоков", "Управляйте своими меню выбора блоков", openSettingsActivity(SettingsActivity.BLOCK_SELECTOR_MANAGER_FRAGMENT)), true);
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_component, "Менеджер компонентов", "Управляйте своими компонентами", new ActivityLauncher(ManageCustomComponentActivity.class)), true);
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_list, "Менеджер событий", "Управляйте своими событиями", openSettingsActivity(SettingsActivity.EVENTS_MANAGER_FRAGMENT)), true);
-        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_box, "Менеджер локальных библиотек", "Управляйте и скачивайте локальные библиотеки", new ActivityLauncher(ManageLocalLibraryActivity.class, new Pair<>("sc_id", "system"))), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_block, Helper.getResString(R.string.app_settings_blocks_manager_title), Helper.getResString(R.string.app_settings_blocks_manager_desc), new ActivityLauncher(BlocksManager.class)), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_pull_down, Helper.getResString(R.string.app_settings_block_selector_manager_title), Helper.getResString(R.string.app_settings_block_selector_manager_desc), openSettingsActivity(SettingsActivity.BLOCK_SELECTOR_MANAGER_FRAGMENT)), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_component, Helper.getResString(R.string.app_settings_components_manager_title), Helper.getResString(R.string.app_settings_components_manager_desc), new ActivityLauncher(ManageCustomComponentActivity.class)), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_list, Helper.getResString(R.string.app_settings_events_manager_title), Helper.getResString(R.string.app_settings_events_manager_desc), openSettingsActivity(SettingsActivity.EVENTS_MANAGER_FRAGMENT)), true);
+        managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_box, Helper.getResString(R.string.app_settings_local_libraries_title), Helper.getResString(R.string.app_settings_local_libraries_desc), new ActivityLauncher(ManageLocalLibraryActivity.class, new Pair<>("sc_id", "system"))), true);
         managersCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_article, Helper.getResString(R.string.design_drawer_menu_title_logcat_reader), Helper.getResString(R.string.design_drawer_menu_subtitle_logcat_reader), new ActivityLauncher(LogReaderActivity.class)), false);
 
         LibraryCategoryView generalCategory = new LibraryCategoryView(this);
-        generalCategory.setTitle("Общие");
+        generalCategory.setTitle(Helper.getResString(R.string.app_settings_cat_general));
         preferences.add(generalCategory);
 
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings_applications, "Настройки приложения", "Изменить общие настройки приложения", new ActivityLauncher(ConfigActivity.class)), true);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings_applications, Helper.getResString(R.string.app_settings_app_settings_title), Helper.getResString(R.string.app_settings_app_settings_desc), new ActivityLauncher(ConfigActivity.class)), true);
         generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_palette, Helper.getResString(R.string.settings_appearance), Helper.getResString(R.string.settings_appearance_description), openSettingsActivity(SettingsActivity.SETTINGS_APPEARANCE_FRAGMENT)), true);
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_edit, "Настройки дизайнера", "Размер иконок, ширина палитры, поведение вкладок", new ActivityLauncher(pro.sketchware.settings.DesignerSettingsActivity.class)), true);
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_folder, "Открыть рабочую директорию", "Открыть директорию Sketchware Pro и редактировать файлы", v -> openWorkingDirectory()), true);
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_apk_document, "Подписать APK тестовым ключом", "Подписать существующий APK тестовым ключом и схемами подписи до V4", v -> signApkFileDialog()), true);
-        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings, Helper.getResString(R.string.main_drawer_title_system_settings), "Автосохранение и вибрации", new ActivityLauncher(SystemSettingActivity.class)), false);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_edit, Helper.getResString(R.string.app_settings_designer_settings_title), Helper.getResString(R.string.app_settings_designer_settings_desc), new ActivityLauncher(pro.sketchware.settings.DesignerSettingsActivity.class)), true);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_folder, Helper.getResString(R.string.app_settings_open_working_dir_title), Helper.getResString(R.string.app_settings_open_working_dir_desc), v -> openWorkingDirectory()), true);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_apk_document, Helper.getResString(R.string.app_settings_sign_apk_title), Helper.getResString(R.string.app_settings_sign_apk_desc), v -> signApkFileDialog()), true);
+        generalCategory.addLibraryItem(createPreference(R.drawable.ic_mtrl_settings, Helper.getResString(R.string.main_drawer_title_system_settings), Helper.getResString(R.string.app_settings_system_settings_desc), new ActivityLauncher(SystemSettingActivity.class)), false);
 
         preferences.forEach(content::addView);
     }
@@ -139,7 +139,7 @@ public class AppSettings extends BaseAppCompatActivity {
         FilePickerOptions options = new FilePickerOptions();
         options.setSelectionMode(SelectionMode.BOTH);
         options.setMultipleSelection(true);
-        options.setTitle("Выберите элемент для изменения");
+        options.setTitle(Helper.getResString(R.string.app_settings_file_picker_title));
         options.setInitialDirectory(getFilesDir().getParentFile().getAbsolutePath());
 
         FilePickerCallback callback = new FilePickerCallback() {
@@ -148,11 +148,11 @@ public class AppSettings extends BaseAppCompatActivity {
                 boolean isDirectory = files.get(0).isDirectory();
                 if (files.size() > 1 || isDirectory) {
                     new MaterialAlertDialogBuilder(AppSettings.this)
-                            .setTitle("Выберите действие")
+                            .setTitle(R.string.app_settings_action_choose)
                             .setSingleChoiceItems(new String[]{"Delete"}, -1, (actionDialog, which) -> {
                                 new MaterialAlertDialogBuilder(AppSettings.this)
                                         .setTitle("Delete " + (isDirectory ? "folder" : "file") + "?")
-                                        .setMessage("Вы уверены, что хотите удалить этот" + (isDirectory ? "folder" : "file") + " permanently? This cannot be undone.")
+                                        .setMessage(getString(R.string.app_settings_delete_confirm, isDirectory ? "folder" : "file"))
                                         .setPositiveButton(R.string.common_word_delete, (deleteConfirmationDialog, pressedButton) -> {
                                             for (File file : files) {
                                                 FileUtil.deleteFile(file.getAbsolutePath());
@@ -166,7 +166,7 @@ public class AppSettings extends BaseAppCompatActivity {
                             .show();
                 } else {
                     new MaterialAlertDialogBuilder(AppSettings.this)
-                            .setTitle("Выберите действие")
+                            .setTitle(R.string.app_settings_action_choose)
                             .setSingleChoiceItems(new String[]{"Edit", "Delete"}, -1, (actionDialog, which) -> {
                                 switch (which) {
                                     case 0 -> {
@@ -177,8 +177,8 @@ public class AppSettings extends BaseAppCompatActivity {
                                         startActivity(intent);
                                     }
                                     case 1 -> new MaterialAlertDialogBuilder(AppSettings.this)
-                                            .setTitle("Удалить файл?")
-                                            .setMessage("Вы уверены, что хотите удалить этот файл навсегда? Это нельзя отменить.")
+                                            .setTitle(R.string.app_settings_delete_file_title)
+                                            .setMessage(R.string.app_settings_delete_confirm)
                                             .setPositiveButton(R.string.common_word_delete, (deleteDialog, pressedButton) ->
                                                     FileUtil.deleteFile(files.get(0).getAbsolutePath()))
                                             .setNegativeButton(R.string.common_word_cancel, null)
@@ -197,7 +197,7 @@ public class AppSettings extends BaseAppCompatActivity {
     private void signApkFileDialog() {
         boolean[] isAPKSelected = {false};
         MaterialAlertDialogBuilder apkPathDialog = new MaterialAlertDialogBuilder(this);
-        apkPathDialog.setTitle("Подписать APK тестовым ключом");
+        apkPathDialog.setTitle(R.string.app_settings_sign_apk_dialog_title);
 
         DialogSelectApkToSignBinding binding = DialogSelectApkToSignBinding.inflate(getLayoutInflater());
         View testkey_root = binding.getRoot();
@@ -217,9 +217,9 @@ public class AppSettings extends BaseAppCompatActivity {
             dialog.show(getSupportFragmentManager(), "file_picker");
         });
 
-        apkPathDialog.setPositiveButton("Продолжить", (v, which) -> {
+        apkPathDialog.setPositiveButton(R.string.app_settings_btn_continue, (v, which) -> {
             if (!isAPKSelected[0]) {
-                SketchwareUtil.toast("Выберите APK-файл для подписи", Toast.LENGTH_SHORT);
+                SketchwareUtil.toast(Helper.getResString(R.string.app_settings_toast_select_apk), Toast.LENGTH_SHORT);
                 shakeView(binding.selectFile);
                 return;
             }
@@ -231,11 +231,11 @@ public class AppSettings extends BaseAppCompatActivity {
             if (new File(output_apk_path).exists()) {
                 MaterialAlertDialogBuilder confirmOverwrite = new MaterialAlertDialogBuilder(this);
                 confirmOverwrite.setIcon(R.drawable.color_save_as_new_96);
-                confirmOverwrite.setTitle("Файл существует");
+                confirmOverwrite.setTitle(R.string.app_settings_file_exists_title);
                 confirmOverwrite.setMessage("APK с именем" + output_apk_file_name + " already exists at /sketchware/signed_apk/.  Overwrite it?");
 
                 confirmOverwrite.setNegativeButton(Helper.getResString(R.string.common_word_cancel), null);
-                confirmOverwrite.setPositiveButton("Перезаписать", (view, which1) -> {
+                confirmOverwrite.setPositiveButton(R.string.app_settings_btn_overwrite, (view, which1) -> {
                     v.dismiss();
                     signApkFileWithDialog(input_apk_path, output_apk_path, true,
                             null, null, null, null);
@@ -264,7 +264,7 @@ public class AppSettings extends BaseAppCompatActivity {
         scroll_view.addView(tv_log);
         layout_quiz.addView(scroll_view);
 
-        tv_progress.setText("Подписание APK...");
+        tv_progress.setText(R.string.app_settings_signing_progress);
 
         AlertDialog building_dialog = new MaterialAlertDialogBuilder(this)
                 .setView(building_root)
@@ -289,11 +289,11 @@ public class AppSettings extends BaseAppCompatActivity {
                 runOnUiThread(() -> {
                     if (ApkSigner.LogCallback.errorCount.get() == 0) {
                         building_dialog.dismiss();
-                        SketchwareUtil.toast("Подписанный APK успешно сохранён в: /Internal storage/sketchware/signed_apk/"
-                                        + Uri.fromFile(new File(outputApkPath)).getLastPathSegment(),
+                        SketchwareUtil.toast(getString(R.string.app_settings_sign_success,
+                                        Uri.fromFile(new File(outputApkPath)).getLastPathSegment()),
                                 Toast.LENGTH_LONG);
                     } else {
-                        tv_progress.setText("Произошла ошибка. Проверьте журнал для подробностей.");
+                        tv_progress.setText(R.string.app_settings_sign_error);
                     }
                 });
             }

@@ -213,9 +213,9 @@ public class SettingsAppearanceFragment extends qA {
             ThemeManager.setTheme(requireContext(), themeId);
             setupColorThemes(); // redraw all color theme cards with new selection
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Тема сохранена")
-                    .setMessage("Чтобы применить тему, приложение нужно перезапустить.\n\nПерезапустить сейчас?")
-                    .setPositiveButton("Перезапустить", (d, w) -> {
+                    .setTitle(getString(R.string.auto_settings_appearance_fragment_001))
+                    .setMessage(getString(R.string.auto_settings_appearance_fragment_002))
+                    .setPositiveButton(getString(R.string.auto_settings_appearance_fragment_003), (d, w) -> {
                         android.content.Context ctx = requireContext().getApplicationContext();
                         android.content.Intent intent = ctx.getPackageManager()
                                 .getLaunchIntentForPackage(ctx.getPackageName());
@@ -228,7 +228,7 @@ public class SettingsAppearanceFragment extends qA {
                         android.os.Process.killProcess(android.os.Process.myPid());
                         System.exit(0);
                     })
-                    .setNegativeButton("Позже", null)
+                    .setNegativeButton(getString(R.string.auto_settings_appearance_fragment_004), null)
                     .show();
         });
 
