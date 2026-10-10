@@ -315,12 +315,12 @@ public final class BlockLogicChecker {
             if ("true".equals(c) || "false".equals(c)) {
                 issues.add(new Issue(
                         op,
-                        "Тривиальное условие " + c + " в блоке " + op + " — всегда " + c,
+                        Helper.getResString(R.string.auto_block_logic_checker_trivial, c, op, c),
                         new ArrayList<>(),
                         Severity.WARNING,
                         b.id,
                         null,
-                        "Условие " + c + " в " + op));
+                        Helper.getResString(R.string.auto_block_logic_checker_condition, c, op)));
             }
         }
     }

@@ -74,7 +74,7 @@ public final class ProjectLogicChecker {
             String typeName = cb.type > 0 ? String.valueOf(cb.type) : "?";
             issues.add(new BlockLogicChecker.Issue(
                     null,
-                    "Несуществующий компонент: " + compId + " (тип " + typeName + ")",
+                    Helper.getResString(R.string.auto_project_logic_checker_component_missing, compId, typeName),
                     new ArrayList<>(),
                     BlockLogicChecker.Severity.CRITICAL,
                     null,

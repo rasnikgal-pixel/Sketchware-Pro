@@ -2471,4 +2471,7 @@ ACTION_VIEW
     <string name="auto_src_code_editor_009">В коде неправильно вложены скобки</string>
     <string name="auto_src_code_editor_010">Не удалось отформатировать XML-файл</string>
     <string name="auto_src_code_editor_011">Форматировать можно только Java- и XML-файлы</string>
+    <string name="auto_block_logic_checker_trivial">Тривиальное условие %1$s в блоке %2$s — всегда %3$s</string>
+    <string name="auto_block_logic_checker_condition">Условие %1$s в %2$s</string>
+    <string name="auto_project_logic_checker_component_missing">Несуществующий компонент: %1$s (тип %2$s)</string>
 </resources>
