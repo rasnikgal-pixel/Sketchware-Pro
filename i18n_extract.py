@@ -52,16 +52,20 @@ def find_ui_strings(source):
         results.append((m.start(), m.end(), text))
     return results
 
-def ensure_R_import(source):
-    """Добавляет 'import pro.sketchware.R;' если его нет."""
-    if 'import pro.sketchware.R;' in source:
-        return source
-    # Ищем строку package ...;
+def ensure_Helper_import(source):
+    """Добавляет import Helper и import R, если их нет."""
     m = re.search(r'^\s*package\s+[\w\.]+\s*;\s*\n', source, re.MULTILINE)
     if not m:
         return source
     insert_pos = m.end()
-    return source[:insert_pos] + '\nimport pro.sketchware.R;\n' + source[insert_pos:]
+    adds = ''
+    if 'import mod.hey.studios.util.Helper;' not in source:
+        adds += 'import mod.hey.studios.util.Helper;\n'
+    if 'import pro.sketchware.R;' not in source:
+        adds += 'import pro.sketchware.R;\n'
+    if adds:
+        return source[:insert_pos] + '\n' + adds + source[insert_pos:]
+    return source
 
 
 def ensure_string_in_xml(xml_path, key, value, add_todo=None):
@@ -114,10 +118,10 @@ def process(java_path, dry=False):
     for idx, (s, e, text) in enumerate(reversed(hits), 1):
         real_idx = len(hits) - idx + 1
         key = f'auto_{slug}_{real_idx:03d}'
-        replacement = f'getString(R.string.{key})'
+        replacement = f'Helper.getResString(R.string.{key})'
         new_source = new_source[:s] + replacement + new_source[e:]
 
-    new_source = ensure_R_import(new_source)
+    new_source = ensure_Helper_import(new_source)
     open(java_path, 'w', encoding='utf-8').write(new_source)
     print(f'=== {java_path}: вынесено {len(hits)} строк ===')
     for key, text in reversed(changes):
