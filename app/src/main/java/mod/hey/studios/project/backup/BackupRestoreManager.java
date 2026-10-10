@@ -135,7 +135,7 @@ public class BackupRestoreManager {
         FilePickerOptions options = new FilePickerOptions();
         options.setMultipleSelection(true);
         options.setExtensions(new String[]{BackupFactory.EXTENSION});
-        options.setTitle("Выберите резервные копии для восстановления (" + BackupFactory.EXTENSION + ")");
+        options.setTitle(Helper.getResString(R.string.auto_concat_backup_restore_manager_001, BackupFactory.EXTENSION));
 
         FilePickerCallback callback = new FilePickerCallback() {
             @Override

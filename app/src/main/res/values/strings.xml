@@ -2242,4 +2242,26 @@ ACTION_VIEW
     <string name="auto_concat_add_view_activity_002">Шаблон выбран: %1$s</string>
     <string name="auto_concat_add_view_activity_001">Добавляем в историю: %1$s</string>
     <string name="auto_concat_manage_nativelibs_activity_001">Не удалось импортировать библиотеку! [%1$s]</string>
+    <string name="auto_concat_show_block_collection_activity_001">Изображение сохранено в /Internal storage/sketchware/saved_block/%1$s.png!</string>
+    <string name="auto_concat_show_more_block_collection_activity_001">Изображение сохранено в /Internal storage/sketchware/saved_block/%1$s.png!</string>
+    <string name="auto_concat_property_attributes_item_002">Вы уверены, что хотите удалить%1$s?</string>
+    <string name="auto_concat_property_attributes_item_001">Вы уверены, что хотите удалить%1$s?</string>
+    <string name="auto_concat_property_input_item_001">Вы уверены, что хотите удалить%1$s?</string>
+    <string name="auto_concat_property_indent_item_001">осталось:%1$s, top: %2$s, right: %3$s, bottom: %4$s</string>
+    <string name="auto_concat_collect_error_activity_001">Почему-то не удалось получить информацию о пакете. Трассировка стека:\n%1$s</string>
+    <string name="auto_concat_library_downloader_dialog_fragment_002">Ошибка dex-компиляции:%1$s</string>
+    <string name="auto_concat_library_downloader_dialog_fragment_001">Неверная область видимости:%1$s</string>
+    <string name="auto_concat_palette_selector_001">Не удалось прочитать цвет палитры пользовательского блока #%1$s</string>
+    <string name="auto_concat_manage_local_library_007">Недопустимый путь к каталогу res/ у включённой локальной библиотеки #%1$s</string>
+    <string name="auto_concat_manage_local_library_006">Недопустимый путь к ProGuard у включённой локальной библиотеки #%1$s</string>
+    <string name="auto_concat_manage_local_library_005">Недопустимое имя пакета включённой локальной библиотеки #%1$s</string>
+    <string name="auto_concat_manage_local_library_004">Недопустимый путь к JAR у включённой локальной библиотеки #%1$s-&gt;%2$s</string>
+    <string name="auto_concat_manage_local_library_003">Недопустимый путь к JAR у включённой локальной библиотеки #%1$s-&gt;%2$s</string>
+    <string name="auto_concat_manage_local_library_002">Недопустимый путь к DEX у включённой локальной библиотеки #%1$s</string>
+    <string name="auto_concat_manage_local_library_001">Недопустимый путь к assets у включённой локальной библиотеки #%1$s</string>
+    <string name="auto_concat_backup_restore_manager_001">Выберите резервные копии для восстановления (%1$s)</string>
+    <string name="auto_concat_config_activity_004">Ошибка: %1$s</string>
+    <string name="auto_concat_config_activity_003">Ошибка импорта: %1$s</string>
+    <string name="auto_concat_config_activity_002">Ошибка экспорта: %1$s</string>
+    <string name="auto_concat_config_activity_001">Настройки сохранены в %1$s</string>
 </resources>

@@ -60,7 +60,7 @@ public class CollectErrorActivity extends BaseAppCompatActivity {
                     info = getPackageManager().getPackageInfo(getPackageName(), 0);
                 } catch (PackageManager.NameNotFoundException e) {
                     messageView.setTextIsSelectable(true);
-                    messageView.setText("Почему-то не удалось получить информацию о пакете. Трассировка стека:\n" + Log.getStackTraceString(e));
+                    messageView.setText(Helper.getResString(R.string.auto_concat_collect_error_activity_001, Log.getStackTraceString(e)));
                     return;
                 }
 

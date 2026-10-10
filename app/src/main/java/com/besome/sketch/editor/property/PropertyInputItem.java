@@ -958,7 +958,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                         var builder =
                                 new MaterialAlertDialogBuilder(getContext())
                                         .setTitle(R.string.common_word_delete)
-                                        .setMessage("Вы уверены, что хотите удалить" + attr + "?")
+                                        .setMessage(Helper.getResString(R.string.auto_concat_property_input_item_001, attr))
                                         .setPositiveButton(
                                                 R.string.common_word_yes,
                                                 (d, w) -> {

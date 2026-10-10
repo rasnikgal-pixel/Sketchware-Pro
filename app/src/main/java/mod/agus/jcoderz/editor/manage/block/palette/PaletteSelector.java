@@ -1,5 +1,8 @@
 package mod.agus.jcoderz.editor.manage.block.palette;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.graphics.Color;
 
 import org.json.JSONArray;
@@ -30,7 +33,7 @@ public class PaletteSelector {
                     try {
                         color = Color.parseColor(item.get("color").toString());
                     } catch (IllegalArgumentException e) {
-                        SketchwareUtil.toastError("Не удалось прочитать цвет палитры пользовательского блока #" + (i + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_palette_selector_001, (i + 1)));
                         color = 0xff8a55d7;
                     }
 

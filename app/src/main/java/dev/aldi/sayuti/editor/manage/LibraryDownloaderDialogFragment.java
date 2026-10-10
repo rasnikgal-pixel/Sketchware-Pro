@@ -238,7 +238,7 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
                 public void onInvalidScope(@NonNull Artifact dep, @NonNull String scope) {
                     handler.post(() -> {
                         DependencyDownloadItem item = findOrCreateDependencyItem(dep);
-                        item.setError("Неверная область видимости:" + scope);
+                        item.setError(Helper.getResString(R.string.auto_concat_library_downloader_dialog_fragment_001, scope));
                         dependencyAdapter.updateDependency(item);
                     });
                 }
@@ -297,7 +297,7 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
                 public void dexingFailed(@NonNull Artifact dependency, @NonNull Exception e) {
                     handler.post(() -> {
                         DependencyDownloadItem item = findOrCreateDependencyItem(dependency);
-                        item.setError("Ошибка dex-компиляции:" + e.getMessage());
+                        item.setError(Helper.getResString(R.string.auto_concat_library_downloader_dialog_fragment_002, e.getMessage()));
                         dependencyAdapter.updateDependency(item);
                         setDownloadState(false);
                         SketchwareUtil.showAnErrorOccurredDialog(getActivity(),

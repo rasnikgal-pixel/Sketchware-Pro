@@ -134,7 +134,7 @@ public class PropertyIndentItem extends RelativeLayout implements View.OnClickLi
         k = top;
         l = right;
         m = bottom;
-        tvValue.setText("осталось:" + j + ", top: " + k + ", right: " + l + ", bottom: " + m);
+        tvValue.setText(Helper.getResString(R.string.auto_concat_property_indent_item_001, j, k, l, m));
     }
 
     private void showDialog() {

@@ -376,9 +376,9 @@ public class ConfigActivity extends BaseAppCompatActivity {
                     java.io.File dest = new java.io.File(selectedDir, "settings_backup_" + ts + ".json");
                     try {
                         pro.sketchware.utility.FileUtil.copyFile(SETTINGS_FILE.getAbsolutePath(), dest.getAbsolutePath());
-                        android.widget.Toast.makeText(requireContext(), "Настройки сохранены в " + dest.getAbsolutePath(), android.widget.Toast.LENGTH_LONG).show();
+                        android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_concat_config_activity_001, dest.getAbsolutePath()), android.widget.Toast.LENGTH_LONG).show();
                     } catch (Throwable t) {
-                        android.widget.Toast.makeText(requireContext(), "Ошибка экспорта: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                        android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_concat_config_activity_002, t.getMessage()), android.widget.Toast.LENGTH_LONG).show();
                     }
                 }
             };
@@ -418,7 +418,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                                 .setNegativeButton(Helper.getResString(R.string.auto_config_activity_010), null)
                                 .show();
                     } catch (Throwable t) {
-                        android.widget.Toast.makeText(requireContext(), "Ошибка импорта: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                        android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_concat_config_activity_003, t.getMessage()), android.widget.Toast.LENGTH_LONG).show();
                     }
                 }
             };
@@ -564,7 +564,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                                     android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_config_activity_015), android.widget.Toast.LENGTH_SHORT).show();
                                 }
                                 @Override public void onError(String message) {
-                                    android.widget.Toast.makeText(requireContext(), "Ошибка: " + message, android.widget.Toast.LENGTH_SHORT).show();
+                                    android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_concat_config_activity_004, message), android.widget.Toast.LENGTH_SHORT).show();
                                 }
                             }
                     );

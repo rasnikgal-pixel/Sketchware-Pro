@@ -191,7 +191,7 @@ public class ShowBlockCollectionActivity extends BaseAppCompatActivity implement
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == 12) {
             if (ImageFactory.saveBitmap(binding.editor.getChildAt(0), blockName).exists()) {
-                SketchwareUtil.toast("Изображение сохранено в /Internal storage/sketchware/saved_block/" + blockName + ".png!");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_concat_show_block_collection_activity_001, blockName));
             } else {
                 SketchwareUtil.toastError(Helper.getResString(R.string.auto_show_block_collection_activity_002));
             }

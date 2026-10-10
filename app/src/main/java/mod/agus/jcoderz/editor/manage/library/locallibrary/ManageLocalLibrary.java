@@ -61,7 +61,7 @@ public class ManageLocalLibrary {
                 if (assetsPath instanceof String) {
                     assets.add((String) assetsPath);
                 } else {
-                    SketchwareUtil.toastError("Недопустимый путь к assets у включённой локальной библиотеки #" + i, Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_manage_local_library_001, i), Toast.LENGTH_LONG);
                 }
             }
         }
@@ -79,7 +79,7 @@ public class ManageLocalLibrary {
             if (dexPath instanceof String) {
                 dexes.add((String) dexPath);
             } else {
-                SketchwareUtil.toastError("Недопустимый путь к DEX у включённой локальной библиотеки #" + i, Toast.LENGTH_LONG);
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_manage_local_library_002, i), Toast.LENGTH_LONG);
             }
         }
 
@@ -182,7 +182,7 @@ public class ManageLocalLibrary {
             if (jarPath instanceof String) {
                 jars.add(new File((String) jarPath));
             } else {
-                SketchwareUtil.toastError("Недопустимый путь к JAR у включённой локальной библиотеки #" + i + "->" + localLibrary.get("name"), Toast.LENGTH_LONG);
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_manage_local_library_003, i, localLibrary.get("name")), Toast.LENGTH_LONG);
             }
         }
 
@@ -200,7 +200,7 @@ public class ManageLocalLibrary {
                 classpath.append(":");
                 classpath.append((String) jarPath);
             } else {
-                SketchwareUtil.toastError("Недопустимый путь к JAR у включённой локальной библиотеки #" + i + "->" + localLibrary.get("name"), Toast.LENGTH_LONG);
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_manage_local_library_004, i, localLibrary.get("name")), Toast.LENGTH_LONG);
             }
         }
 
@@ -256,7 +256,7 @@ public class ManageLocalLibrary {
                 if (packageName instanceof String) {
                     packageNames.add((String) packageName);
                 } else {
-                    SketchwareUtil.toastError("Недопустимое имя пакета включённой локальной библиотеки #" + i, Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_manage_local_library_005, i), Toast.LENGTH_LONG);
                 }
             }
         }
@@ -288,7 +288,7 @@ public class ManageLocalLibrary {
                 if (proguardRulesPath instanceof String) {
                     proguardRules.add((String) proguardRulesPath);
                 } else {
-                    SketchwareUtil.toastError("Недопустимый путь к ProGuard у включённой локальной библиотеки #" + i, Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_manage_local_library_006, i), Toast.LENGTH_LONG);
                 }
             }
         }
@@ -307,7 +307,7 @@ public class ManageLocalLibrary {
                 if (resPath instanceof String) {
                     localLibraryRes.add((String) resPath);
                 } else {
-                    SketchwareUtil.toastError("Недопустимый путь к каталогу res/ у включённой локальной библиотеки #" + i, Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_manage_local_library_007, i), Toast.LENGTH_LONG);
                 }
             }
         }
