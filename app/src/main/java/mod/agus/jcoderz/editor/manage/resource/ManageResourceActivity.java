@@ -194,7 +194,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
 
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
-                .setTitle(isFolder ? Helper.getResString(R.string.auto_manage_resource_activity_001) : Helper.getResString(R.string.auto_manage_resource_activity_002))
+                .setTitle((CharSequence) (isFolder ? Helper.getResString(R.string.auto_manage_resource_activity_001) : Helper.getResString(R.string.auto_manage_resource_activity_002)))
                 .setMessage("Введите имя для нового" + (isFolder ? "folder" : "file"))
                 .setNegativeButton(Helper.getResString(R.string.auto_manage_resource_activity_003), (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton(Helper.getResString(R.string.auto_manage_resource_activity_004), null)
