@@ -920,6 +920,17 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         viewPane.resetView(true);
     }
 
+    /** Сбросить состояние тапов палитры. Вызывается при возврате в экран дизайнера. */
+    public void resetPaletteTapState() {
+        lastPaletteTapTime = 0L;
+        if (pendingPaletteSingleTap != null) {
+            handler.removeCallbacks(pendingPaletteSingleTap);
+            pendingPaletteSingleTap = null;
+        }
+        currentTouchedView = null;
+        isDragged = false;
+    }
+
     /** Имя виджета для тултипа при долгом тапе в палитре. */
     private String getWidgetDisplayName(View view) {
         if (view instanceof IconBase iconBase) {

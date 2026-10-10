@@ -552,4 +552,12 @@ public class ViewEditorFragment extends qA {
             viewProperty.d();
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (viewEditor != null) {
+            viewEditor.resetPaletteTapState();
+        }
+    }
 }
