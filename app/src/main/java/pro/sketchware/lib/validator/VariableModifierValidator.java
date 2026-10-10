@@ -39,12 +39,12 @@ public class VariableModifierValidator extends MB {
 
         for (String word : words) {
             if (!PATTERN_MODIFIER.matcher(word).matches()) {
-                b.setError("Неверный модификатор:" + word);
+                b.setError(Helper.getResString(R.string.auto_variable_modifier_invalid, word));
                 d = false;
                 return;
             }
             if (!usedModifiers.add(word)) {
-                b.setError("Дублирующийся модификатор:" + word);
+                b.setError(Helper.getResString(R.string.auto_variable_modifier_duplicate, word));
                 d = false;
                 return;
             }

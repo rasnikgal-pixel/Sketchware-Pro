@@ -177,7 +177,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                         FileUtil.copyDirectory(file, new File(current_path, file.getName()));
                         refresh();
                     } catch (IOException e) {
-                        SketchwareUtil.toastError("Не удалось импортировать файл! [" + e.getMessage() + "]");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_assets_import_failed, e.getMessage()));
                     }
                 }
             }

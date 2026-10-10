@@ -2517,4 +2517,9 @@ ACTION_VIEW
     <string name="auto_ipd_cat_ui">[TODO] Interface</string>
     <string name="auto_ipd_cat_user">[TODO] User</string>
     <string name="auto_ipd_cat_misc">[TODO] Misc</string>
+    <string name="auto_manage_resource_import_failed">[TODO] Failed to import resource! [%1$s]</string>
+    <string name="auto_manage_assets_import_failed">[TODO] Failed to import file! [%1$s]</string>
+    <string name="auto_variable_modifier_invalid">[TODO] Invalid modifier: %1$s</string>
+    <string name="auto_variable_modifier_duplicate">[TODO] Duplicate modifier: %1$s</string>
+    <string name="auto_sketchware_util_failed_to_get">[TODO] Failed to get %1$s</string>
 </resources>

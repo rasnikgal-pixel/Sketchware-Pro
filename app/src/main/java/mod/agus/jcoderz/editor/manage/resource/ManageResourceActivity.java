@@ -266,7 +266,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                     try {
                         FileUtil.copyDirectory(file, new File(temp + File.separator + file.getName()));
                     } catch (IOException e) {
-                        SketchwareUtil.toastError("Не удалось импортировать ресурс! [" + e.getMessage() + "]");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_resource_import_failed, e.getMessage()));
                     }
                 }
                 handleAdapter(temp);

@@ -2517,4 +2517,9 @@ ACTION_VIEW
     <string name="auto_ipd_cat_ui">Интерфейс</string>
     <string name="auto_ipd_cat_user">Пользователь</string>
     <string name="auto_ipd_cat_misc">Разное</string>
+    <string name="auto_manage_resource_import_failed">Не удалось импортировать ресурс! [%1$s]</string>
+    <string name="auto_manage_assets_import_failed">Не удалось импортировать файл! [%1$s]</string>
+    <string name="auto_variable_modifier_invalid">Неверный модификатор: %1$s</string>
+    <string name="auto_variable_modifier_duplicate">Дублирующийся модификатор: %1$s</string>
+    <string name="auto_sketchware_util_failed_to_get">Не удалось получить %1$s</string>
 </resources>
