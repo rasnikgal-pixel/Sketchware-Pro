@@ -295,7 +295,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
 
                 @Override
                 public void onError(String message) {
-                    SketchwareUtil.toastError("Ошибка экспорта: " + message);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_projects_adapter_001, message));
                 }
             });
         });
@@ -315,13 +315,13 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         activity.startActivity(Intent.createChooser(intent, Helper.getResString(R.string.auto_projects_adapter_001)));
                     } catch (Throwable t) {
-                        SketchwareUtil.toastError("Не удалось отправить: " + t.getMessage());
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_projects_adapter_002, t.getMessage()));
                     }
                 }
 
                 @Override
                 public void onError(String message) {
-                    SketchwareUtil.toastError("Ошибка: " + message);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_projects_adapter_003, message));
                 }
             });
         });

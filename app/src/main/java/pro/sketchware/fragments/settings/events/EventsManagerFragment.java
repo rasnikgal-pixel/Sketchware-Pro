@@ -54,7 +54,7 @@ public class EventsManagerFragment extends qA {
                 }
             }
         }
-        return "Событий: " + eventAmount;
+        return Helper.getResString(R.string.auto_concat_events_manager_fragment_001, eventAmount);
     }
 
     @Override

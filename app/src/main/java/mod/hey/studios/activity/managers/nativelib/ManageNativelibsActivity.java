@@ -243,7 +243,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                     try {
                         FileUtil.copyDirectory(file, new File(nativeLibrariesPath + File.separator + Uri.fromFile(file).getLastPathSegment()));
                     } catch (IOException e) {
-                        SketchwareUtil.toastError("Не удалось импортировать библиотеку! [" + e.getMessage() + "]");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_manage_nativelibs_activity_001, e.getMessage()));
                     }
                 }
 

@@ -2009,7 +2009,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         }
                         android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_003), android.widget.Toast.LENGTH_SHORT).show();
                     } catch (Throwable t) {
-                        android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+                        android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_concat_logic_editor_activity_001, t.getMessage()), android.widget.Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -2149,7 +2149,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         if (updated.isEmpty()) {
             SketchwareUtil.toast(Helper.getResString(R.string.auto_logic_editor_activity_008));
         } else {
-            SketchwareUtil.toast("Обновлено блоков: " + updated.size());
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_concat_logic_editor_activity_002, updated.size()));
         }
 
         // Сохраняем блоки
@@ -2326,7 +2326,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             if (byEvent.isEmpty()) {
                 new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                         .setTitle(Helper.getResString(R.string.auto_logic_editor_activity_027))
-                        .setMessage("\u2713 Проблем не найдено\n\nПроверено событий: " + allEvents.size())
+                        .setMessage(Helper.getResString(R.string.auto_concat_logic_editor_activity_003, allEvents.size()))
                         .setPositiveButton(Helper.getResString(R.string.auto_logic_editor_activity_028), null)
                         .show();
                 return;
@@ -2581,9 +2581,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             try { o.b(); } catch (Throwable ignored) {}
             try { C(); } catch (Throwable ignored) {}
             lastBlockIssueHash = "";
-            android.widget.Toast.makeText(this, "Удалено: " + toDelete.size(), android.widget.Toast.LENGTH_SHORT).show();
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_concat_logic_editor_activity_004, toDelete.size()), android.widget.Toast.LENGTH_SHORT).show();
         } catch (Throwable t) {
-            android.widget.Toast.makeText(this, "Ошибка удаления: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_concat_logic_editor_activity_005, t.getMessage()), android.widget.Toast.LENGTH_LONG).show();
         }
     }
 
@@ -2730,10 +2730,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
             try { o.b(); } catch (Throwable ignored) {}
             try { C(); } catch (Throwable ignored) {}
-            android.widget.Toast.makeText(this, "Развёрнуто блоков: " + created,
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_concat_logic_editor_activity_006, created),
                     android.widget.Toast.LENGTH_SHORT).show();
         } catch (Throwable t) {
-            android.widget.Toast.makeText(this, "Ошибка разворота: " + t.getMessage(),
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_concat_logic_editor_activity_007, t.getMessage()),
                     android.widget.Toast.LENGTH_LONG).show();
         }
     }
@@ -2745,7 +2745,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             try { C(); } catch (Throwable ignored) {}
             android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_logic_editor_activity_045), android.widget.Toast.LENGTH_SHORT).show();
         } catch (Throwable t) {
-            android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_concat_logic_editor_activity_008, t.getMessage()), android.widget.Toast.LENGTH_LONG).show();
         }
     }
 
@@ -3493,7 +3493,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     .show();
         } catch (Throwable t) {
             android.widget.Toast.makeText(this,
-                    "Ошибка: " + t.getMessage(),
+                    Helper.getResString(R.string.auto_concat_logic_editor_activity_009, t.getMessage()),
                     android.widget.Toast.LENGTH_LONG).show();
         }
     }
@@ -3579,11 +3579,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_SEND);
             intent.setType("application/json");
             intent.putExtra(android.content.Intent.EXTRA_STREAM, uri);
-            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Сборка: " + displayName);
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, Helper.getResString(R.string.auto_concat_logic_editor_activity_010, displayName));
             intent.addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(android.content.Intent.createChooser(intent, Helper.getResString(R.string.auto_logic_editor_activity_066)));
         } catch (Throwable t) {
-            android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(),
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_concat_logic_editor_activity_011, t.getMessage()),
                     android.widget.Toast.LENGTH_LONG).show();
         }
     }
@@ -3734,9 +3734,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 return;
             }
 
-            String message = "В файле найдено сборок: " + totalInFile
-                    + "\nНовых: " + preview.addedNames.size()
-                    + "\nСовпадающих по id: " + preview.replacedNames.size()
+            String message = Helper.getResString(R.string.auto_concat_logic_editor_activity_012, totalInFile)
+                    + Helper.getResString(R.string.auto_concat_logic_editor_activity_013, preview.addedNames.size())
+                    + Helper.getResString(R.string.auto_concat_logic_editor_activity_014, preview.replacedNames.size())
                     + Helper.getResString(R.string.auto_logic_editor_activity_092);
 
             new MaterialAlertDialogBuilder(this)
@@ -3747,7 +3747,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     .setNegativeButton(Helper.getResString(R.string.auto_logic_editor_activity_096), null)
                     .show();
         } catch (Throwable t) {
-            android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.auto_concat_logic_editor_activity_015, t.getMessage()), android.widget.Toast.LENGTH_LONG).show();
         }
     }
 
@@ -3795,8 +3795,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         int removed = preview.existingCount;
         int loaded = preview.addedNames.size() + preview.replacedNames.size();
 
-        String message = "Все ваши текущие сборки (" + removed + " шт.) будут удалены.\n"
-                + "Останутся только " + loaded + " сборок(и) из файла.\n\n"
+        String message = Helper.getResString(R.string.auto_concat_logic_editor_activity_016, removed)
+                + Helper.getResString(R.string.auto_concat_logic_editor_activity_017, loaded)
                 + Helper.getResString(R.string.auto_logic_editor_activity_106);
 
         new MaterialAlertDialogBuilder(this)

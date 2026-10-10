@@ -384,7 +384,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                                 }
                             }
                         } else {
-                            String sharedErrorMessage = "Не удалось установить пакет, код ошибки: " + result.getCode() + ". ";
+                            String sharedErrorMessage = Helper.getResString(R.string.auto_concat_design_activity_001, result.getCode());
                             SketchwareUtil.toastError(sharedErrorMessage + "Logs are available in /Internal storage/.sketchware/debug.txt", Toast.LENGTH_LONG);
                             LogUtil.e("DesignActivity", sharedErrorMessage + "stdout: " + stdout + ", stderr: " + stderr);
                         }

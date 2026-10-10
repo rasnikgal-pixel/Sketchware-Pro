@@ -185,7 +185,7 @@ public class ThemesEditor extends Fragment {
         });
         dialog.setNeutralButton(Helper.getResString(R.string.common_word_delete), (d, which) -> new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.common_word_warning)
-                .setMessage("Вы уверены, что хотите удалить" + theme.getStyleName() + "?")
+                .setMessage(Helper.getResString(R.string.auto_concat_themes_editor_001, theme.getStyleName()))
                 .setPositiveButton(R.string.common_word_yes, (d2, w) -> {
                     themesList.remove(position);
                     notesMap.remove(position);
@@ -222,7 +222,7 @@ public class ThemesEditor extends Fragment {
                     public void onItemLongClick(LinkedHashMap<String, String> attributes, String attr) {
                         new MaterialAlertDialogBuilder(requireContext())
                                 .setTitle(R.string.common_word_warning)
-                                .setMessage("Вы уверены, что хотите удалить" + attr + "?")
+                                .setMessage(Helper.getResString(R.string.auto_concat_themes_editor_002, attr))
                                 .setPositiveButton(R.string.common_word_yes, (d, w) -> {
                                     attributes.remove(attr);
                                     theme.setAttributes(attributes);

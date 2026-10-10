@@ -232,7 +232,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
                         .extractTemplateId(presetName);
 
                 // Добавляем в историю шаблонов
-                android.util.Log.i("AddViewActivity", "Добавляем в историю: " + selectedTemplateId);
+                android.util.Log.i("AddViewActivity", Helper.getResString(R.string.auto_concat_add_view_activity_001, selectedTemplateId));
                 pro.sketchware.templates.TemplateHistoryHelper.addToHistory(this, selectedTemplateId);
                 historyTemplates = pro.sketchware.templates.TemplateHistoryHelper.getHistory(this);
                 historyIndex = Math.max(0, historyTemplates.indexOf(selectedTemplateId));
@@ -256,7 +256,7 @@ public class AddViewActivity extends BaseAppCompatActivity {
                 }).show();
 
                 android.widget.Toast.makeText(getApplicationContext(),
-                        "Шаблон выбран: " + selectedTemplateId,
+                        Helper.getResString(R.string.auto_concat_add_view_activity_002, selectedTemplateId),
                         android.widget.Toast.LENGTH_SHORT).show();
             }
         }

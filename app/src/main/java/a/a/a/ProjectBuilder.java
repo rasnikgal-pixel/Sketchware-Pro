@@ -713,10 +713,10 @@ public class ProjectBuilder {
                         }
                     }
                 } else {
-                    SketchwareUtil.toastError("Недопустимый путь к DEX-файлу у включённой локальной библиотеки #" + i1, Toast.LENGTH_LONG);
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_project_builder_001, i1), Toast.LENGTH_LONG);
                 }
             } else {
-                SketchwareUtil.toastError("Недопустимое имя включённой локальной библиотеки #" + i1, Toast.LENGTH_LONG);
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_project_builder_002, i1), Toast.LENGTH_LONG);
             }
         }
 

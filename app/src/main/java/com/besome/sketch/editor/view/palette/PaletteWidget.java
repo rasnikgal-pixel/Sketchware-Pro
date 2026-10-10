@@ -392,7 +392,7 @@ public class PaletteWidget extends LinearLayout {
                     : 0;
 
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(ctx)
-                .setTitle("Категория: " + name)
+                .setTitle(Helper.getResString(R.string.auto_concat_palette_widget_001, name))
                 .setSingleChoiceItems(options, checked, (dialog, which) -> {
                     int newState = (which == 0) ? pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED
                                 : (which == 1) ? pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED

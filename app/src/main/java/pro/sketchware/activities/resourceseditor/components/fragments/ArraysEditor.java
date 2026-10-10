@@ -220,7 +220,7 @@ public class ArraysEditor extends Fragment {
         });
         dialog.setNeutralButton(Helper.getResString(R.string.common_word_delete), (d, which) -> new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.common_word_warning)
-                .setMessage("Вы уверены, что хотите удалить" + array.getArrayName() + "?")
+                .setMessage(Helper.getResString(R.string.auto_concat_arrays_editor_001, array.getArrayName()))
                 .setPositiveButton(R.string.common_word_yes, (d2, w) -> {
                     arraysList.remove(position);
                     notesMap.remove(position);
@@ -257,7 +257,7 @@ public class ArraysEditor extends Fragment {
                     public void onItemLongClick(LinkedHashMap<String, String> attributes, String attr) {
                         new MaterialAlertDialogBuilder(requireContext())
                                 .setTitle(R.string.common_word_warning)
-                                .setMessage("Вы уверены, что хотите удалить" + attr + "?")
+                                .setMessage(Helper.getResString(R.string.auto_concat_arrays_editor_002, attr))
                                 .setPositiveButton(R.string.common_word_yes, (d, w) -> {
                                     attributes.remove(attr);
                                     array.setAttributes(attributes);
