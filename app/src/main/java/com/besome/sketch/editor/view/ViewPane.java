@@ -192,7 +192,7 @@ public class ViewPane extends RelativeLayout {
             if (preView != null) preView.setTag(viewBean.id);
             viewBean.preId = "";
         }
-        if (viewBean.id.charAt(0) == '_') {
+        if (viewBean.id != null && !viewBean.id.isEmpty() && viewBean.id.charAt(0) == '_') {
             findViewWithTag = findViewWithTag(viewBean.id);
         } else {
             findViewWithTag = rootLayout.findViewWithTag(viewBean.id);
@@ -203,7 +203,7 @@ public class ViewPane extends RelativeLayout {
 
     public ItemView d(ViewBean viewBean) {
         View findViewWithTag = rootLayout.findViewWithTag(viewBean.id);
-        if (viewBean.id.charAt(0) == '_') {
+        if (viewBean.id != null && !viewBean.id.isEmpty() && viewBean.id.charAt(0) == '_') {
             findViewWithTag = findViewWithTag(viewBean.id);
         }
         String str = viewBean.preParent;
@@ -373,7 +373,7 @@ public class ViewPane extends RelativeLayout {
             ImageBean imageBean;
             String str;
             var injectHandler = new InjectAttributeHandler(viewBean);
-            if (viewBean.id.charAt(0) == '_') {
+            if (viewBean.id != null && !viewBean.id.isEmpty() && viewBean.id.charAt(0) == '_') {
                 LayoutParams layoutParams = new LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -566,31 +566,40 @@ public class ViewPane extends RelativeLayout {
                 updateEditText((EditText) view, viewBean);
             }
             if (classInfo.a("ImageView")) {
-                if (resourcesManager.h(viewBean.image.resName) == ProjectResourceBean.PROJECT_RES_TYPE_RESOURCE) {
-                    ((ImageView) view).setImageResource(getContext().getResources().getIdentifier(viewBean.image.resName, "drawable", getContext().getPackageName()));
-                } else if (viewBean.image.resName.equals("default_image")) {
+                String resName = viewBean.image != null ? viewBean.image.resName : null;
+                if (resName == null || resName.isEmpty()) {
+                    // Нет ссылки на ресурс — оставляем как есть
+                } else if (resourcesManager.h(resName) == ProjectResourceBean.PROJECT_RES_TYPE_RESOURCE) {
+                    ((ImageView) view).setImageResource(getContext().getResources().getIdentifier(resName, "drawable", getContext().getPackageName()));
+                } else if (resName.equals("default_image")) {
                     ((ImageView) view).setImageResource(R.drawable.default_image);
                 } else {
                     try {
-                        String imagelocation = resourcesManager.f(viewBean.image.resName);
+                        String imagelocation = resourcesManager.f(resName);
+                        if (imagelocation == null || imagelocation.isEmpty()) {
+                            // Ресурс удалён — ничего не делаем
+                        } else {
                         File file = new File(imagelocation);
                         if (file.exists() && file.length() > 0) {
                             int round3 = Math.round(getResources().getDisplayMetrics().density / 2.0f);
                             if (imagelocation.endsWith(".xml")) {
                                 FilePathUtil fpu = new FilePathUtil();
-                                svgUtils.loadScaledSvgIntoImageView((ImageView) view, fpu.getSvgFullPath(sc_id, viewBean.image.resName), round3);
+                                svgUtils.loadScaledSvgIntoImageView((ImageView) view, fpu.getSvgFullPath(sc_id, resName), round3);
                             } else {
                                 Bitmap decodeFile3 = BitmapFactory.decodeFile(imagelocation);
                                 ((ImageView) view).setImageBitmap(Bitmap.createScaledBitmap(decodeFile3, decodeFile3.getWidth() * round3, decodeFile3.getHeight() * round3, true));
                             }
                         } else {
                             VectorDrawableLoader vectorDrawableLoader = new VectorDrawableLoader();
-                            vectorDrawableLoader.setImageVectorFromFile((ImageView) view, vectorDrawableLoader.getVectorFullPath(DesignActivity.sc_id, viewBean.image.resName));
+                            vectorDrawableLoader.setImageVectorFromFile((ImageView) view, vectorDrawableLoader.getVectorFullPath(DesignActivity.sc_id, resName));
                         }
-                    } catch (Exception unused2) {
+                    }
+                } catch (Exception unused2) {
                         crashlytics.recordException(unused2);
-                        FileUtil.deleteFile(new VectorDrawableLoader().getVectorFullPath(DesignActivity.sc_id, viewBean.image.resName));
-                        viewBean.image.resName = "default_image";
+                        FileUtil.deleteFile(new VectorDrawableLoader().getVectorFullPath(DesignActivity.sc_id, resName));
+                        if (viewBean.image != null) {
+                            viewBean.image.resName = "default_image";
+                        }
                         ((ImageView) view).setImageResource(R.drawable.default_image);
                     }
                 }
