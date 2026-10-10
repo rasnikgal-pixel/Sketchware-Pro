@@ -2539,7 +2539,7 @@ ACTION_VIEW
     <string name="auto_blocks_empty_bin">Вы уверены, что хотите очистить корзину? Blocks inside will be deleted PERMANENTLY, you CANNOT recover them!</string>
     <string name="auto_view_editor_widget_info">Имя: %1$s\nТип: %2$s\nКонвертация: %3$s\nID превью: %4$s</string>
     <string name="auto_main_activity_permission_intro">Начиная с Android 11, Sketchware Pro требуется новое разрешение, чтобы избежать</string>
-    <string name="auto_main_activity_permission_rest">taking ages to build projects. Don't worry, we can't do more to storage than with current granted permissions.</string>
+    <string name="auto_main_activity_permission_rest">taking ages to build projects. Don\'t worry, we can\'t do more to storage than with current granted permissions.</string>
     <string name="auto_config_activity_backup_naming">Это определяет, как именуются файлы резервных копий SWB.
 Available variables:
  - $projectName - Project name
@@ -2548,8 +2548,8 @@ Available variables:
  - $pkgName - App package name
  - $timeInMs - Time during backup in milliseconds
 
-Additionally, you can format your own time like this using Java's date formatter syntax:
-$time(yyyy-MM-dd'T'HHmmss)
+Additionally, you can format your own time like this using Java\'s date formatter syntax:
+$time(yyyy-MM-dd\'T\'HHmmss)
 </string>
     <string name="auto_manage_local_library_in_use">Эта библиотека "%1$s" already used in your project, removing it may break your project\rDo you want to continue removing it?</string>
     <string name="auto_sketchware_util_parse_failed">Не удалось разобрать %1$s from file %2$s. Fix by renaming old file to %3$s.bak? If not, no %4$s will be used.</string>
