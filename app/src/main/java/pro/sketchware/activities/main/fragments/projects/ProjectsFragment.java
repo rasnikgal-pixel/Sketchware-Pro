@@ -1,5 +1,7 @@
 package pro.sketchware.activities.main.fragments.projects;
 
+
+import mod.hey.studios.util.Helper;
 import pro.sketchware.R;
 
 import android.app.Activity;
@@ -292,7 +294,7 @@ public class ProjectsFragment extends DA {
         }
 
         dialog.setView(dialogBinding.getRoot());
-        dialog.setPositiveButton("Сохранить", (v, which) -> {
+        dialog.setPositiveButton(Helper.getResString(R.string.auto_projects_fragment_001), (v, which) -> {
             int sortValue = 0;
             if (sortByName.isChecked()) {
                 sortValue |= ProjectComparator.SORT_BY_NAME;
@@ -310,7 +312,7 @@ public class ProjectsFragment extends DA {
             v.dismiss();
             refreshProjectsList();
         });
-        dialog.setNegativeButton("Отмена", null);
+        dialog.setNegativeButton(Helper.getResString(R.string.auto_projects_fragment_002), null);
         dialog.show();
     }
 

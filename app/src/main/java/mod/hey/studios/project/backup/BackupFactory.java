@@ -1,5 +1,7 @@
 package mod.hey.studios.project.backup;
 
+
+import pro.sketchware.R;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
@@ -300,7 +302,7 @@ public class BackupFactory {
                 finalFileName = finalFileName.replaceFirst(Pattern.quote(Objects.requireNonNull(matcher.group(0))), getFormattedDateFrom(matcher.group(1)));
             }
         } catch (Exception ignored) {
-            SketchwareUtil.toastError("Не удалось прочитать пользовательское имя файла для резервной копии. Используется значение по умолчанию");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_backup_factory_001));
             // Example name: InternalDemo v1.0 (com.jbk.internal.demo, 1) 2021-12-31T125827
             finalFileName = projectNameOnly + " v" + versionName + " (" + pkgName + ", " + versionCode + ") " + getFormattedDateFrom("yyyy-M-dd'T'HHmmss");
         }

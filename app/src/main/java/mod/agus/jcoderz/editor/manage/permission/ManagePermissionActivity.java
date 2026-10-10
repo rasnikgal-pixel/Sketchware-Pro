@@ -1,5 +1,7 @@
 package mod.agus.jcoderz.editor.manage.permission;
 
+
+import mod.hey.studios.util.Helper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -137,14 +139,14 @@ public class ManagePermissionActivity extends BaseAppCompatActivity {
 
     private void showResetDialog() {
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Сбросить разрешения")
-                .setMessage("Вы уверены, что хотите сбросить все разрешения?")
+                .setTitle(Helper.getResString(R.string.auto_manage_permission_activity_001))
+                .setMessage(Helper.getResString(R.string.auto_manage_permission_activity_002))
                 .setPositiveButton("Reset", (dialog, which) -> {
                     FileUtil.writeFile(new FilePathUtil().getPathPermission(numProj), "[]");
                     frc = new FileResConfig(numProj);
                     loadAndSortData();
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_manage_permission_activity_003), null)
                 .show();
     }
 

@@ -1,5 +1,8 @@
 package mod.hey.studios.compiler.kotlin;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import java.io.File;
 
 import a.a.a.ProjectBuilder;
@@ -12,7 +15,7 @@ import pro.sketchware.utility.FileUtil;
 public class KotlinCompilerBridge {
     public static void compileKotlinCodeIfPossible(BuildProgressReceiver receiver, ProjectBuilder builder) throws Throwable {
         if (KotlinCompilerUtil.areAnyKtFilesPresent(builder)) {
-            receiver.onProgress("Компиляция Kotlin...", 12);
+            receiver.onProgress(Helper.getResString(R.string.auto_kotlin_compiler_bridge_001), 12);
             new KotlinCompiler(builder).compile();
         }
     }

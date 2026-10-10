@@ -1,5 +1,8 @@
 package pro.sketchware.skproj;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.content.Context;
 
 import com.besome.sketch.beans.BlockBean;
@@ -75,7 +78,7 @@ public class SkProjExporter {
         try {
             HashMap<String, Object> metadata = lC.b(scId);
             if (metadata == null) {
-                error = "Не удалось прочитать метаданные проекта";
+                error = Helper.getResString(R.string.auto_sk_proj_exporter_001);
                 return null;
             }
 

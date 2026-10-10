@@ -1,5 +1,8 @@
 package pro.sketchware.activities.preview;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.os.Bundle;
 
 import com.besome.sketch.beans.ViewBean;
@@ -30,7 +33,7 @@ public class LayoutPreviewActivity extends BaseAppCompatActivity {
         setContentView(binding.getRoot());
         var toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Предпросмотр макета");
+        getSupportActionBar().setTitle(Helper.getResString(R.string.auto_layout_preview_activity_001));
         getSupportActionBar().setSubtitle(getIntent().getStringExtra("title"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -60,7 +63,7 @@ public class LayoutPreviewActivity extends BaseAppCompatActivity {
                 SketchwareUtil.toastError(e.toString());
             }
         } else {
-            SketchwareUtil.toastError("содержимое отсутствует");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_layout_preview_activity_002));
         }
     }
 

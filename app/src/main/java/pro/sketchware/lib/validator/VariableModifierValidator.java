@@ -1,5 +1,8 @@
 package pro.sketchware.lib.validator;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.content.Context;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,7 +30,7 @@ public class VariableModifierValidator extends MB {
         String reconsInput = String.join(" ", words);
 
         if (!input.equals(reconsInput)) {
-            b.setError("Дополнительные пробелы между словами или в конце не допускаются.");
+            b.setError(Helper.getResString(R.string.auto_variable_modifier_validator_001));
             d = false;
             return;
         }
@@ -47,7 +50,7 @@ public class VariableModifierValidator extends MB {
             }
             if (isAccessModifier(word)) {
                 if (hasAccessModifier) {
-                    b.setError("Модификатор доступа может устанавливать только один из public / protected / private");
+                    b.setError(Helper.getResString(R.string.auto_variable_modifier_validator_002));
                     d = false;
                     return;
                 }

@@ -1,5 +1,7 @@
 package mod.hey.studios.project.stringfog;
 
+
+import pro.sketchware.R;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -60,7 +62,7 @@ public class StringfogHandler {
      */
     public void start(BuildProgressReceiver progressReceiver, ProjectBuilder builder) {
         if (isStringfogEnabled()) {
-            progressReceiver.onProgress("Выполняется StringFog...", 14);
+            progressReceiver.onProgress(Helper.getResString(R.string.auto_stringfog_handler_001), 14);
             builder.runStringfog();
         }
     }

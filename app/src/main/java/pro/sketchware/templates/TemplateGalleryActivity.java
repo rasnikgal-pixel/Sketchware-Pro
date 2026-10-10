@@ -1,5 +1,7 @@
 package pro.sketchware.templates;
 
+
+import mod.hey.studios.util.Helper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +36,7 @@ public class TemplateGalleryActivity extends BaseAppCompatActivity {
     private RecyclerView recyclerView;
     private ChipGroup categoryGroup;
     private TemplateAdapter adapter;
-    private String selectedCategory = null; // null = "Все"
+    private String selectedCategory = null; // null = Helper.getResString(R.string.auto_template_gallery_activity_001)
     private String searchQuery = "";
 
     @Override

@@ -258,8 +258,8 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
     private void initializeAppBundleExportViews() {
         export_aab_button.setOnClickListener(view -> {
             MaterialAlertDialogBuilder confirmationDialog = new MaterialAlertDialogBuilder(this);
-            confirmationDialog.setTitle("Важное примечание");
-            confirmationDialog.setMessage("Сгенерированный файл .aab должен быть подписан.\nСкопируйте ваш keystore в /Internal storage/sketchware/keystore/release_key.jks и введите пароль от псевдонима.");
+            confirmationDialog.setTitle(Helper.getResString(R.string.auto_export_project_activity_001));
+            confirmationDialog.setMessage(Helper.getResString(R.string.auto_export_project_activity_002));
             confirmationDialog.setIcon(R.drawable.ic_mtrl_info);
 
             confirmationDialog.setPositiveButton("Understood", (v, which) -> {
@@ -325,7 +325,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
 
         sign_apk_button.setOnClickListener(view -> {
             MaterialAlertDialogBuilder confirmationDialog = new MaterialAlertDialogBuilder(this);
-            confirmationDialog.setTitle("Важное примечание");
+            confirmationDialog.setTitle(Helper.getResString(R.string.auto_export_project_activity_003));
             confirmationDialog.setMessage("""
                     To sign an APK, you need a keystore. Use your already created one, and copy it to \
                     /Internal storage/sketchware/keystore/release_key.jks and enter the alias's password.
