@@ -175,13 +175,13 @@ public class MainActivity extends BasePermissionAppCompatActivity {
                     @Override public void onUpToDate() {
                         runOnUiThread(() -> android.widget.Toast.makeText(
                                 MainActivity.this,
-                                "Обновлений нет",
+                                Helper.getResString(R.string.auto_main_activity_001),
                                 android.widget.Toast.LENGTH_SHORT).show());
                     }
                     @Override public void onError(String message) {
                         runOnUiThread(() -> android.widget.Toast.makeText(
                                 MainActivity.this,
-                                "Не удалось проверить обновления",
+                                Helper.getResString(R.string.auto_main_activity_002),
                                 android.widget.Toast.LENGTH_SHORT).show());
                     }
                 }
@@ -255,7 +255,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
                                         .setTitle(R.string.common_word_warning)
                                         .setMessage(BackupRestoreManager.getRestoreIntegratedLocalLibrariesMessage(false, -1, -1, null))
                                         .setPositiveButton("Copy", (dialog, which) -> manager.doRestore(path, true))
-                                        .setNegativeButton("Не копировать", (dialog, which) -> manager.doRestore(path, false))
+                                        .setNegativeButton(Helper.getResString(R.string.auto_main_activity_003), (dialog, which) -> manager.doRestore(path, false))
                                         .setNeutralButton(R.string.common_word_cancel, null)
                                         .show();
                             } else {
@@ -404,14 +404,14 @@ public class MainActivity extends BasePermissionAppCompatActivity {
             if (!optOutFile.exists() && !granted) {
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
                 dialog.setIcon(R.drawable.ic_expire_48dp);
-                dialog.setTitle("Доступ к хранилищу в Android 11");
+                dialog.setTitle(Helper.getResString(R.string.auto_main_activity_004));
                 dialog.setMessage("Начиная с Android 11, Sketchware Pro требуется новое разрешение, чтобы избежать" + "taking ages to build projects. Don't worry, we can't do more to storage than " + "with current granted permissions.");
                 dialog.setPositiveButton(Helper.getResString(R.string.common_word_settings), (v, which) -> {
                     FileUtil.requestAllFilesAccessPermission(this);
                     v.dismiss();
                 });
                 dialog.setNegativeButton("Skip", null);
-                dialog.setNeutralButton("Больше не показывать", (v, which) -> {
+                dialog.setNeutralButton(Helper.getResString(R.string.auto_main_activity_005), (v, which) -> {
                     try {
                         if (!optOutFile.createNewFile())
                             throw new IOException("Failed to create file " + optOutFile);

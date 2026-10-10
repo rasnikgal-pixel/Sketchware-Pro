@@ -67,7 +67,7 @@ public class BackupRestoreManager {
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(act);
         dialog.setIcon(R.drawable.ic_backup);
-        dialog.setTitle("Параметры резервного копирования");
+        dialog.setTitle(Helper.getResString(R.string.auto_backup_restore_manager_001));
 
         LinearLayout checkboxContainer = new LinearLayout(act);
         checkboxContainer.setOrientation(LinearLayout.VERTICAL);
@@ -99,7 +99,7 @@ public class BackupRestoreManager {
 
         CheckBox includeLocalLibraries = new CheckBox(act);
         includeLocalLibraries.setTag(localLibrariesTag);
-        includeLocalLibraries.setText("Включить используемые локальные библиотеки");
+        includeLocalLibraries.setText(Helper.getResString(R.string.auto_backup_restore_manager_002));
         includeLocalLibraries.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -108,7 +108,7 @@ public class BackupRestoreManager {
 
         CheckBox includeUsedCustomBlocks = new CheckBox(act);
         includeUsedCustomBlocks.setTag(customBlocksTag);
-        includeUsedCustomBlocks.setText("Включить используемые пользовательские блоки");
+        includeUsedCustomBlocks.setText(Helper.getResString(R.string.auto_backup_restore_manager_003));
         includeUsedCustomBlocks.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -116,7 +116,7 @@ public class BackupRestoreManager {
         checkboxContainer.addView(includeUsedCustomBlocks);
 
         dialog.setView(checkboxContainer);
-        dialog.setPositiveButton("Создать резервную копию", (v, which) -> {
+        dialog.setPositiveButton(Helper.getResString(R.string.auto_backup_restore_manager_004), (v, which) -> {
             v.dismiss();
             doBackup(sc_id, project_name);
         });
@@ -151,7 +151,7 @@ public class BackupRestoreManager {
                                 .setMessage(getRestoreIntegratedLocalLibrariesMessage(restoringMultipleBackups, i, files.size(),
                                         FileUtil.getFileNameNoExtension(backupFilePath)))
                                 .setPositiveButton("Copy", (dialog, which) -> doRestore(backupFilePath, true))
-                                .setNegativeButton("Не копировать", (dialog, which) -> doRestore(backupFilePath, false))
+                                .setNegativeButton(Helper.getResString(R.string.auto_backup_restore_manager_005), (dialog, which) -> doRestore(backupFilePath, false))
                                 .setNeutralButton(R.string.common_word_cancel, null)
                                 .show();
 
@@ -188,9 +188,9 @@ public class BackupRestoreManager {
         @Override
         protected void onPreExecute() {
             ProgressMsgBoxBinding loadingDialogBinding = ProgressMsgBoxBinding.inflate(LayoutInflater.from(activityWeakReference.get()));
-            loadingDialogBinding.tvProgress.setText("Создание резервной копии...");
+            loadingDialogBinding.tvProgress.setText(Helper.getResString(R.string.auto_backup_restore_manager_006));
             dlg = new MaterialAlertDialogBuilder(activityWeakReference.get())
-                    .setTitle("Пожалуйста, подождите")
+                    .setTitle(Helper.getResString(R.string.auto_backup_restore_manager_007))
                     .setCancelable(false)
                     .setView(loadingDialogBinding.getRoot())
                     .create();
@@ -240,9 +240,9 @@ public class BackupRestoreManager {
         @Override
         protected void onPreExecute() {
             ProgressMsgBoxBinding loadingDialogBinding = ProgressMsgBoxBinding.inflate(LayoutInflater.from(activityWeakReference.get()));
-            loadingDialogBinding.tvProgress.setText("Восстановление...");
+            loadingDialogBinding.tvProgress.setText(Helper.getResString(R.string.auto_backup_restore_manager_008));
             dlg = new MaterialAlertDialogBuilder(activityWeakReference.get())
-                    .setTitle("Пожалуйста, подождите")
+                    .setTitle(Helper.getResString(R.string.auto_backup_restore_manager_009))
                     .setCancelable(false)
                     .setView(loadingDialogBinding.getRoot())
                     .create();
@@ -272,9 +272,9 @@ public class BackupRestoreManager {
                 SketchwareUtil.toastError("Couldn't restore: " + bm.error, Toast.LENGTH_LONG);
             } else if (projectsFragment != null) {
                 projectsFragment.refreshProjectsList();
-                SketchwareUtil.toast("Успешно восстановлено");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_backup_restore_manager_010));
             } else {
-                SketchwareUtil.toast("Успешно восстановлено. Обновите, чтобы увидеть проект", Toast.LENGTH_LONG);
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_backup_restore_manager_011), Toast.LENGTH_LONG);
             }
         }
     }

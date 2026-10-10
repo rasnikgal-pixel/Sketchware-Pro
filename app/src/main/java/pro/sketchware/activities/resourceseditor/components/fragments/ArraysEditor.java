@@ -130,12 +130,12 @@ public class ArraysEditor extends Fragment {
     public void showAddArrayDialog() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
         ArraysEditorAddBinding binding = ArraysEditorAddBinding.inflate(getLayoutInflater());
-        dialog.setTitle("Создать новый массив");
+        dialog.setTitle(Helper.getResString(R.string.auto_arrays_editor_001));
 
         binding.arrayType.setOnClickListener(view -> {
             String[] arrayTypes = {"STRING", "INTEGER", "OBJECT"};
             new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Выберите тип массива")
+                    .setTitle(Helper.getResString(R.string.auto_arrays_editor_002))
                     .setSingleChoiceItems(arrayTypes, -1, (dialogInterface, which) -> {
                         binding.arrayType.setText(arrayTypes[which]);
                         dialogInterface.dismiss();
@@ -143,18 +143,18 @@ public class ArraysEditor extends Fragment {
                     .show();
         });
 
-        dialog.setPositiveButton("Создать", (d, which) -> {
+        dialog.setPositiveButton(Helper.getResString(R.string.auto_arrays_editor_003), (d, which) -> {
             String arrayName = Objects.requireNonNull(binding.arrayName.getText()).toString();
             String arrayTypeString = Objects.requireNonNull(binding.arrayType.getText()).toString();
             String header = Objects.requireNonNull(binding.arrayHeaderInput.getText()).toString();
 
             if (arrayName.isEmpty()) {
-                SketchwareUtil.toastError("Имя массива не введено");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_arrays_editor_004));
                 return;
             }
 
             if (arrayTypeString.isEmpty()) {
-                SketchwareUtil.toastError("Тип массива не выбран");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_arrays_editor_005));
                 return;
             }
 
@@ -189,7 +189,7 @@ public class ArraysEditor extends Fragment {
         binding.arrayType.setOnClickListener(view -> {
             String[] arrayTypes = {"STRING", "INTEGER", "OBJECT"};
             new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Выберите тип массива")
+                    .setTitle(Helper.getResString(R.string.auto_arrays_editor_006))
                     .setSingleChoiceItems(arrayTypes, -1, (dialogInterface, which) -> {
                         binding.arrayType.setText(arrayTypes[which]);
                         dialogInterface.dismiss();
@@ -197,14 +197,14 @@ public class ArraysEditor extends Fragment {
                     .show();
         });
 
-        dialog.setTitle("Редактировать массив");
+        dialog.setTitle(Helper.getResString(R.string.auto_arrays_editor_007));
         dialog.setPositiveButton("Edit", (d, which) -> {
             String arrayName = Objects.requireNonNull(binding.arrayName.getText()).toString();
             String arrayType = Objects.requireNonNull(binding.arrayType.getText()).toString();
             String header = Objects.requireNonNull(binding.arrayHeaderInput.getText()).toString();
 
             if (arrayName.isEmpty()) {
-                SketchwareUtil.toastError("Имя массива не введено");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_arrays_editor_008));
                 return;
             }
 
@@ -229,7 +229,7 @@ public class ArraysEditor extends Fragment {
                     updateNoContentLayout();
                     hasUnsavedChanges = true;
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_arrays_editor_009), null)
                 .show());
         dialog.setNegativeButton(getString(R.string.cancel), null);
         dialog.setView(binding.getRoot());
@@ -264,7 +264,7 @@ public class ArraysEditor extends Fragment {
                                     attributesAdapter.submitList(new ArrayList<>(attributes.keySet()));
                                     hasUnsavedChanges = true;
                                 })
-                                .setNegativeButton("Отмена", null)
+                                .setNegativeButton(Helper.getResString(R.string.auto_arrays_editor_010), null)
                                 .create()
                                 .show();
                     }
@@ -310,7 +310,7 @@ public class ArraysEditor extends Fragment {
             String value = Objects.requireNonNull(binding.itemValue.getText()).toString();
 
             if (attribute.isEmpty() || value.isEmpty()) {
-                SketchwareUtil.toastError("Заполните все поля");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_arrays_editor_011));
                 return;
             }
 

@@ -92,11 +92,11 @@ public class LogicClickListener implements View.OnClickListener {
 
     private void addCustomVariable() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(logicEditor);
-        dialog.setTitle("Добавить новую пользовательскую переменную");
+        dialog.setTitle(Helper.getResString(R.string.auto_logic_click_listener_001));
 
         AddCustomVariableBinding binding = AddCustomVariableBinding.inflate(logicEditor.getLayoutInflater());
 
-        binding.modifierLayout.setHelperText("Введите модификатор, например private, public, public static, или пусто (package private).");
+        binding.modifierLayout.setHelperText(Helper.getResString(R.string.auto_logic_click_listener_002));
 
         VariableModifierValidator modifiersValidator = new VariableModifierValidator(getContext(), binding.modifierLayout);
         binding.modifier.addTextChangedListener(modifiersValidator);
@@ -128,7 +128,7 @@ public class LogicClickListener implements View.OnClickListener {
             } else {
                 binding.typeLayout.requestFocus();
                 if (variableType.isEmpty()) {
-                    binding.typeLayout.setError("Тип не может быть пустым");
+                    binding.typeLayout.setError(Helper.getResString(R.string.auto_logic_click_listener_003));
                     binding.typeLayout.setErrorEnabled(true);
                 }
                 return;
@@ -140,7 +140,7 @@ public class LogicClickListener implements View.OnClickListener {
             } else {
                 binding.nameLayout.requestFocus();
                 if (variableName.isEmpty()) {
-                    binding.nameLayout.setError("Имя не может быть пустым");
+                    binding.nameLayout.setError(Helper.getResString(R.string.auto_logic_click_listener_004));
                     binding.nameLayout.setErrorEnabled(true);
                 }
                 return;
@@ -220,7 +220,7 @@ public class LogicClickListener implements View.OnClickListener {
 
     private void addCustomList() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(logicEditor);
-        dialog.setTitle("Добавить новый пользовательский список");
+        dialog.setTitle(Helper.getResString(R.string.auto_logic_click_listener_005));
 
         AddCustomListBinding listBinding = AddCustomListBinding.inflate(logicEditor.getLayoutInflater());
 
@@ -239,7 +239,7 @@ public class LogicClickListener implements View.OnClickListener {
                 listBinding.typeLayout.setErrorEnabled(false);
             } else {
                 if (validName) listBinding.typeLayout.requestFocus();
-                listBinding.typeLayout.setError("Тип не может быть пустым");
+                listBinding.typeLayout.setError(Helper.getResString(R.string.auto_logic_click_listener_006));
                 listBinding.typeLayout.setErrorEnabled(true);
             }
 
@@ -250,7 +250,7 @@ public class LogicClickListener implements View.OnClickListener {
                     listBinding.nameLayout.setErrorEnabled(false);
                 } else {
                     listBinding.nameLayout.requestFocus();
-                    listBinding.nameLayout.setError("Имя не может быть пустым");
+                    listBinding.nameLayout.setError(Helper.getResString(R.string.auto_logic_click_listener_007));
                     listBinding.nameLayout.setErrorEnabled(true);
                 }
             }

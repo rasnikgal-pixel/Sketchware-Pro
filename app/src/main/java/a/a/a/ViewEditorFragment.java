@@ -245,7 +245,7 @@ public class ViewEditorFragment extends qA {
     public void e() {
         viewEditor.removeWidgetsAndLayouts();
         viewEditor.setPaletteLayoutVisible(View.VISIBLE);
-        viewEditor.paletteWidget.extraTitle("Макеты", 0);
+        viewEditor.paletteWidget.extraTitle(Helper.getResString(R.string.auto_view_editor_fragment_001), 0);
         viewEditor.addWidgetLayout(PaletteWidget.a.a, "");
         viewEditor.addWidgetLayout(PaletteWidget.a.b, "");
         viewEditor.addWidget(PaletteWidget.b.b, "", "TextView", "TextView");
@@ -253,7 +253,7 @@ public class ViewEditorFragment extends qA {
         viewEditor.addWidgetLayout(PaletteWidget.a.d, "");
         viewEditor.extraWidgetLayout("", "RadioGroup");
         viewEditor.extraWidgetLayout("", "RelativeLayout");
-        widgetsCreatorManager.addWidgetsByTitle("Макеты");
+        widgetsCreatorManager.addWidgetsByTitle(Helper.getResString(R.string.auto_view_editor_fragment_002));
 
         viewEditor.paletteWidget.extraTitle("AndroidX", 0);
         viewEditor.extraWidgetLayout("", "TabLayout");
@@ -264,7 +264,7 @@ public class ViewEditorFragment extends qA {
         viewEditor.extraWidgetLayout("", "SwipeRefreshLayout");
         widgetsCreatorManager.addWidgetsByTitle("AndroidX");
 
-        viewEditor.paletteWidget.extraTitle("Виджеты", 1);
+        viewEditor.paletteWidget.extraTitle(Helper.getResString(R.string.auto_view_editor_fragment_003), 1);
         viewEditor.addWidget(PaletteWidget.b.c, "", "EditText", "Edit Text");
         viewEditor.extraWidget("", "AutoCompleteTextView", "AutoCompleteTextView");
         viewEditor.extraWidget("", "MultiAutoCompleteTextView", "MultiAutoCompleteTextView");
@@ -281,23 +281,23 @@ public class ViewEditorFragment extends qA {
         viewEditor.extraWidget("", "SearchView", "SearchView");
         viewEditor.extraWidget("", "VideoView", "VideoView");
         viewEditor.addWidget(PaletteWidget.b.h, "", "WebView", "WebView");
-        widgetsCreatorManager.addWidgetsByTitle("Виджеты");
+        widgetsCreatorManager.addWidgetsByTitle(Helper.getResString(R.string.auto_view_editor_fragment_004));
 
-        viewEditor.paletteWidget.extraTitle("Списки", 1);
+        viewEditor.paletteWidget.extraTitle(Helper.getResString(R.string.auto_view_editor_fragment_005), 1);
         viewEditor.addWidget(PaletteWidget.b.e, "", "ListView", "ListView");
         viewEditor.extraWidget("", "GridView", "GridView");
         viewEditor.extraWidget("", "RecyclerView", "RecyclerView");
         viewEditor.addWidget(PaletteWidget.b.f, "", "Spinner", "Spinner");
         viewEditor.extraWidget("", "ViewPager", "ViewPager");
-        widgetsCreatorManager.addWidgetsByTitle("Списки");
+        widgetsCreatorManager.addWidgetsByTitle(Helper.getResString(R.string.auto_view_editor_fragment_006));
 
-        viewEditor.paletteWidget.extraTitle("Библиотеки", 1);
+        viewEditor.paletteWidget.extraTitle(Helper.getResString(R.string.auto_view_editor_fragment_007), 1);
         viewEditor.extraWidget("", "WaveSideBar", "WaveSideBar");
         viewEditor.extraWidget("", "PatternLockView", "PatternLockView");
         viewEditor.extraWidget("", "CodeView", "CodeView");
         viewEditor.extraWidget("", "LottieAnimation", "LottieAnimation");
         viewEditor.extraWidget("", "OTPView", "OTPView");
-        widgetsCreatorManager.addWidgetsByTitle("Библиотеки");
+        widgetsCreatorManager.addWidgetsByTitle(Helper.getResString(R.string.auto_view_editor_fragment_008));
 
         viewEditor.paletteWidget.extraTitle("Google", 1);
         viewEditor.addWidget(PaletteWidget.b.l, "", "AdView", "AdView");
@@ -306,13 +306,13 @@ public class ViewEditorFragment extends qA {
         viewEditor.extraWidget("", "YoutubePlayer", "YoutubePlayer");
         widgetsCreatorManager.addWidgetsByTitle("Google");
 
-        viewEditor.paletteWidget.extraTitle("Дата и время", 1);
+        viewEditor.paletteWidget.extraTitle(Helper.getResString(R.string.auto_view_editor_fragment_009), 1);
         viewEditor.extraWidget("", "AnalogClock", "AnalogClock");
         viewEditor.extraWidget("", "DigitalClock", "DigitalClock");
         viewEditor.extraWidget("", "TimePicker", "TimePicker");
         viewEditor.extraWidget("", "DatePicker", "DatePicker");
         viewEditor.addWidget(PaletteWidget.b.k, "", "CalendarView", "CalendarView");
-        widgetsCreatorManager.addWidgetsByTitle("Дата и время");
+        widgetsCreatorManager.addWidgetsByTitle(Helper.getResString(R.string.auto_view_editor_fragment_010));
         widgetsCreatorManager.addExtraClasses();
         viewEditor.paletteWidget.post(() -> viewEditor.paletteWidget.applyAllCategoryStates());
     }

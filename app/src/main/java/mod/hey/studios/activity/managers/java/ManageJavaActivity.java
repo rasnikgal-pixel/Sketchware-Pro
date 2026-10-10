@@ -182,9 +182,9 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
                 .setTitle(R.string.assets_manager_add_new)
-                .setMessage("Расширение файла будет добавлено автоматически в зависимости от выбранного типа файла")
-                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Создать", null)
+                .setMessage(Helper.getResString(R.string.auto_manage_java_activity_001))
+                .setNegativeButton(Helper.getResString(R.string.auto_manage_java_activity_002), (dialogInterface, i) -> dialogInterface.dismiss())
+                .setPositiveButton(Helper.getResString(R.string.auto_manage_java_activity_003), null)
                 .create();
 
         dialog.setOnShowListener(dialogInterface -> {
@@ -195,7 +195,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
             positiveButton.setOnClickListener(view -> {
                 String name = Helper.getText(inputText);
                 if (name.isEmpty()) {
-                    SketchwareUtil.toastError("Недопустимое имя файла");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_java_activity_004));
                     return;
                 }
 
@@ -222,7 +222,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                     extension = "";
                     newFileContent = "";
                 } else {
-                    SketchwareUtil.toast("Выберите тип файла");
+                    SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_java_activity_005));
                     return;
                 }
                 String targetPath = new File(current_path, name + extension).getAbsolutePath();
@@ -265,7 +265,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
         FilePickerOptions options = new FilePickerOptions();
         options.setMultipleSelection(true);
         options.setExtensions(new String[]{"java", "kt"});
-        options.setTitle("Выберите файл(ы) Java/Kotlin");
+        options.setTitle(Helper.getResString(R.string.auto_manage_java_activity_006));
 
         FilePickerCallback callback = new FilePickerCallback() {
             @Override
@@ -292,13 +292,13 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
         var inputText = dialogBinding.inputText;
         var renameOccurrencesCheckBox = dialogBinding.renameOccurrencesCheckBox;
 
-        var dialog = new MaterialAlertDialogBuilder(this).setTitle("Rename " + filesAdapter.getFileName(position)).setView(dialogBinding.getRoot()).setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss()).setPositiveButton("Rename", (dialogInterface, i) -> {
+        var dialog = new MaterialAlertDialogBuilder(this).setTitle("Rename " + filesAdapter.getFileName(position)).setView(dialogBinding.getRoot()).setNegativeButton(Helper.getResString(R.string.auto_manage_java_activity_007), (dialogInterface, i) -> dialogInterface.dismiss()).setPositiveButton("Rename", (dialogInterface, i) -> {
             if (!Helper.getText(inputText).isEmpty()) {
                 if (!filesAdapter.isFolder(position)) {
                     if (frc.getJavaManifestList().contains(filesAdapter.getFullName(position))) {
                         frc.getJavaManifestList().remove(filesAdapter.getFullName(position));
                         FileUtil.writeFile(fpu.getManifestJava(sc_id), new Gson().toJson(frc.listJavaManifest));
-                        SketchwareUtil.toast("Примечание: активность удалена из манифеста");
+                        SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_java_activity_008));
                     }
 
                     if (renameOccurrencesCheckBox.isChecked()) {
@@ -309,7 +309,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
 
                 FileUtil.renameFile(filesAdapter.getItem(position), new File(current_path, Helper.getText(inputText)).getAbsolutePath());
                 refresh();
-                SketchwareUtil.toast("Успешно переименовано");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_java_activity_009));
             }
             dialogInterface.dismiss();
         }).create();
@@ -340,7 +340,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
 
             FileUtil.deleteFile(filesAdapter.getItem(position));
             refresh();
-            SketchwareUtil.toast("Успешно удалено");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_java_activity_010));
         }).setNegativeButton(R.string.common_word_cancel, null).create().show();
     }
 
@@ -518,7 +518,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                             FileUtil.writeFile(fpu.getManifestJava(sc_id), new Gson().toJson(frc.listJavaManifest));
                             SketchwareUtil.toast("Successfully removed Activity " + getFileNameWoExt(position) + " from AndroidManifest");
                         } else {
-                            SketchwareUtil.toast("Активность не определена в AndroidManifest.");
+                            SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_java_activity_011));
                         }
                     }
                     case "Add as Service to manifest" -> {
@@ -531,7 +531,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
                             FileUtil.writeFile(fpu.getManifestService(sc_id), new Gson().toJson(frc.listServiceManifest));
                             SketchwareUtil.toast("Successfully removed Service " + getFileNameWoExt(position) + " from AndroidManifest");
                         } else {
-                            SketchwareUtil.toast("Служба не определена в AndroidManifest.");
+                            SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_java_activity_012));
                         }
                     }
                     case "Edit" -> goEditFile(position);

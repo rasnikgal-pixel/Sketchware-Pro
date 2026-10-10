@@ -1,5 +1,7 @@
 package com.besome.sketch.tools;
 
+
+import mod.hey.studios.util.Helper;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +44,7 @@ public class ToolsActivity extends BaseAppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Инструменты");
+            getSupportActionBar().setTitle(Helper.getResString(R.string.auto_tools_activity_001));
         }
 
         toolsList = findViewById(R.id.tools_list);
@@ -55,7 +57,7 @@ public class ToolsActivity extends BaseAppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, 101, Menu.NONE, "Справка")
+        menu.add(Menu.NONE, 101, Menu.NONE, Helper.getResString(R.string.auto_tools_activity_002))
                 .setIcon(R.drawable.ic_mtrl_help)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
@@ -80,20 +82,20 @@ public class ToolsActivity extends BaseAppCompatActivity {
     private List<ToolItem> buildTools() {
         List<ToolItem> items = new ArrayList<>();
         items.add(new ToolItem(
-                "\uD83D\uDCE6 Экспорт проекта (.skproj)",
-                "Сохранить проект в переносимую папку",
+                Helper.getResString(R.string.auto_tools_activity_003),
+                Helper.getResString(R.string.auto_tools_activity_004),
                 R.drawable.ic_mtrl_save,
                 this::onExportSkproj
         ));
         items.add(new ToolItem(
-                "\uD83D\uDCBE Резервные копии",
-                "Просмотр и управление .swb бэкапами",
+                Helper.getResString(R.string.auto_tools_activity_005),
+                Helper.getResString(R.string.auto_tools_activity_006),
                 R.drawable.ic_mtrl_history,
                 this::onBackups
         ));
         items.add(new ToolItem(
-                "\uD83D\uDCE5 Импорт проекта (.skproj)",
-                "Загрузить проект из файла",
+                Helper.getResString(R.string.auto_tools_activity_007),
+                Helper.getResString(R.string.auto_tools_activity_008),
                 R.drawable.ic_mtrl_download,
                 this::onImportSkproj
         ));
@@ -102,24 +104,24 @@ public class ToolsActivity extends BaseAppCompatActivity {
 
     private void onExportSkproj() {
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Экспорт .skproj")
-                .setMessage("Инструмент в разработке.\n\nФункция выбора проекта появится в следующей версии.")
+                .setTitle(Helper.getResString(R.string.auto_tools_activity_009))
+                .setMessage(Helper.getResString(R.string.auto_tools_activity_010))
                 .setPositiveButton("OK", null)
                 .show();
     }
 
     private void onBackups() {
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Резервные копии")
-                .setMessage("Управление .swb бэкапами.\n\nПоявится в следующей версии.")
+                .setTitle(Helper.getResString(R.string.auto_tools_activity_011))
+                .setMessage(Helper.getResString(R.string.auto_tools_activity_012))
                 .setPositiveButton("OK", null)
                 .show();
     }
 
     private void onImportSkproj() {
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Импорт .skproj")
-                .setMessage("Инструмент в разработке.\n\nПоявится в следующей версии.")
+                .setTitle(Helper.getResString(R.string.auto_tools_activity_013))
+                .setMessage(Helper.getResString(R.string.auto_tools_activity_014))
                 .setPositiveButton("OK", null)
                 .show();
     }

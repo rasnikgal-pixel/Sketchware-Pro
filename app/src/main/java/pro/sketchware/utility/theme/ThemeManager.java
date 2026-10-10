@@ -1,5 +1,8 @@
 package pro.sketchware.utility.theme;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -20,14 +23,14 @@ public class ThemeManager {
     public static final int THEME_GOLD = 14;
 
     private static final String[] THEME_NAMES = {
-            "Стандартная (Light/Dark)",
-            "Светлая",
-            "Тёмная",
-            "Фиолетовая тёмная",
-            "Чёрная (AMOLED)",
-            "Синяя",
-            "Зелёная",
-            "Золотая"
+            Helper.getResString(R.string.auto_theme_manager_001),
+            Helper.getResString(R.string.auto_theme_manager_002),
+            Helper.getResString(R.string.auto_theme_manager_003),
+            Helper.getResString(R.string.auto_theme_manager_004),
+            Helper.getResString(R.string.auto_theme_manager_005),
+            Helper.getResString(R.string.auto_theme_manager_006),
+            Helper.getResString(R.string.auto_theme_manager_007),
+            Helper.getResString(R.string.auto_theme_manager_008)
     };
 
     private static final int[] THEME_IDS = {

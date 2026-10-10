@@ -137,11 +137,11 @@ public class ExcludeBuiltInLibrariesActivity extends BaseAppCompatActivity {
     }
 
     public static String getItemTitle() {
-        return "Исключить встроенные библиотеки";
+        return Helper.getResString(R.string.auto_exclude_built_in_libraries_activity_001);
     }
 
     public static String getDefaultItemDescription() {
-        return "Использовать свои версии библиотек";
+        return Helper.getResString(R.string.auto_exclude_built_in_libraries_activity_002);
     }
 
     public static String getSelectedLibrariesItemDescription() {
@@ -168,7 +168,7 @@ public class ExcludeBuiltInLibrariesActivity extends BaseAppCompatActivity {
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Исключить встроенные библиотеки");
+        getSupportActionBar().setTitle(Helper.getResString(R.string.auto_exclude_built_in_libraries_activity_003));
         binding.toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
         binding.tvEnable.setText(Helper.getResString(R.string.design_library_settings_title_enabled));
@@ -275,7 +275,7 @@ public class ExcludeBuiltInLibrariesActivity extends BaseAppCompatActivity {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
         dialog.setIcon(R.drawable.rollback_96);
         dialog.setTitle(Helper.getResString(R.string.common_word_reset));
-        dialog.setMessage("Сбросить исключённые встроенные библиотеки? Это действие нельзя отменить.");
+        dialog.setMessage(Helper.getResString(R.string.auto_exclude_built_in_libraries_activity_004));
         dialog.setPositiveButton(Helper.getResString(R.string.common_word_reset), (v, which) -> {
             saveConfig(sc_id, false, Collections.emptyList());
             binding.libSwitch.setChecked(false);
@@ -291,7 +291,7 @@ public class ExcludeBuiltInLibrariesActivity extends BaseAppCompatActivity {
         DialogSelectLibrariesBinding binding = DialogSelectLibrariesBinding.inflate(getLayoutInflater());
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-        dialog.setTitle("Выберите встроенные библиотеки");
+        dialog.setTitle(Helper.getResString(R.string.auto_exclude_built_in_libraries_activity_005));
 
         // magic to initialize scrollbars even without android:scrollbars defined in XML
         // https://stackoverflow.com/a/48698300/10929762

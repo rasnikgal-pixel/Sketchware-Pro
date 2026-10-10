@@ -156,10 +156,10 @@ public class ColorsEditor extends Fragment {
             dialogBinding.colorPreview.setBackgroundColor(PropertiesUtil.parseColor(colorsEditorManager.getColorValue(activity.getApplicationContext(), colorModel.getColorValue(), 3, isNightVariant)));
             dialogBinding.importantNote.setVisibility(defaultColors.containsKey(colorModel.getColorName()) ? View.VISIBLE : View.GONE);
 
-            dialog.setTitle("Редактировать цвет");
+            dialog.setTitle(Helper.getResString(R.string.auto_colors_editor_001));
 
         } else {
-            dialog.setTitle("Создать новый цвет");
+            dialog.setTitle(Helper.getResString(R.string.auto_colors_editor_002));
             dialogBinding.colorPreview.setBackgroundColor(0xFFFFFF);
         }
 
@@ -181,7 +181,7 @@ public class ColorsEditor extends Fragment {
             public void afterTextChanged(Editable s) {
                 String value = s.toString();
                 if (value.startsWith("#") && !PropertiesUtil.isHexColor(value)) {
-                    dialogBinding.colorValueInputLayout.setError("Неверный HEX-цвет");
+                    dialogBinding.colorValueInputLayout.setError(Helper.getResString(R.string.auto_colors_editor_003));
                     return;
                 }
                 dialogBinding.colorValueInput.setError(null);
@@ -205,18 +205,18 @@ public class ColorsEditor extends Fragment {
             }
         });
 
-        dialog.setPositiveButton("Сохранить", (v1, which) -> {
+        dialog.setPositiveButton(Helper.getResString(R.string.auto_colors_editor_004), (v1, which) -> {
             String key = Objects.requireNonNull(dialogBinding.colorKeyInput.getText()).toString();
             String value = Objects.requireNonNull(dialogBinding.colorValueInput.getText()).toString();
 
             if (key.isEmpty() || value.isEmpty()) {
-                SketchwareUtil.toastError("Заполните все поля", Toast.LENGTH_SHORT);
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_colors_editor_005), Toast.LENGTH_SHORT);
                 return;
             }
 
             if (value.startsWith("#")) {
                 if (!PropertiesUtil.isHexColor(value)) {
-                    SketchwareUtil.toastError("Введите корректный HEX-код цвета");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_colors_editor_006));
                     return;
                 }
             }
@@ -259,7 +259,7 @@ public class ColorsEditor extends Fragment {
         });
 
         if (colorModel != null && !defaultColors.containsKey(colorModel.getColorName())) {
-            dialog.setNeutralButton("Удалить", (v1, which) -> {
+            dialog.setNeutralButton(Helper.getResString(R.string.auto_colors_editor_007), (v1, which) -> {
                 colorList.remove(position);
                 adapter.notifyItemRemoved(position);
                 adapter.notifyItemRangeChanged(position, colorList.size());

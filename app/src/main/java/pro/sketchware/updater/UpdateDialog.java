@@ -1,5 +1,8 @@
 package pro.sketchware.updater;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,29 +22,29 @@ public class UpdateDialog {
         if (activity == null || activity.isFinishing() || info == null) return;
 
         StringBuilder msg = new StringBuilder();
-        msg.append("Установлено: ").append(BuildConfig.VERSION_NAME)
+        msg.append(Helper.getResString(R.string.auto_update_dialog_001)).append(BuildConfig.VERSION_NAME)
                 .append(" (").append(BuildConfig.VERSION_CODE).append(")\n");
-        msg.append("Доступно: ").append(info.versionName)
+        msg.append(Helper.getResString(R.string.auto_update_dialog_002)).append(info.versionName)
                 .append(" (").append(info.versionCode).append(")\n\n");
 
         if (info.changelog != null && !info.changelog.isEmpty()) {
-            msg.append("Что нового:\n");
+            msg.append(Helper.getResString(R.string.auto_update_dialog_003));
             msg.append(info.changelog);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity)
-                .setTitle("Доступно обновление")
+                .setTitle(Helper.getResString(R.string.auto_update_dialog_004))
                 .setMessage(msg.toString())
                 .setCancelable(!info.required);
 
         // Кнопка "Скачать"
-        builder.setPositiveButton("Скачать", (d, w) -> {
+        builder.setPositiveButton(Helper.getResString(R.string.auto_update_dialog_005), (d, w) -> {
             openDownload(activity, info.downloadUrl);
         });
 
         // Если не обязательно — кнопка "Позже"
         if (!info.required) {
-            builder.setNegativeButton("Позже", (d, w) -> {
+            builder.setNegativeButton(Helper.getResString(R.string.auto_update_dialog_006), (d, w) -> {
                 // Запомним, что пользователь пропустил эту версию
                 UpdateChecker.skipVersion(activity, info.versionCode);
                 d.dismiss();

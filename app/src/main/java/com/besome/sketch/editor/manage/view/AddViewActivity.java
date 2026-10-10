@@ -207,10 +207,10 @@ public class AddViewActivity extends BaseAppCompatActivity {
 
     private void initializeItems() {
         featureItems = new ArrayList<>();
-        featureItems.add(new FeatureItem(0, R.drawable.ic_statusbar_color_48dp, "Строка состояния", featureStatusBar));
-        featureItems.add(new FeatureItem(1, R.drawable.ic_toolbar_color_48dp, "Панель инструментов", featureToolbar));
-        featureItems.add(new FeatureItem(2, R.drawable.ic_drawer_color_48dp, "Панель навигации", featureDrawer));
-        featureItems.add(new FeatureItem(3, R.drawable.fab_color, "Плавающая кнопка", featureFab));
+        featureItems.add(new FeatureItem(0, R.drawable.ic_statusbar_color_48dp, Helper.getResString(R.string.auto_add_view_activity_001), featureStatusBar));
+        featureItems.add(new FeatureItem(1, R.drawable.ic_toolbar_color_48dp, Helper.getResString(R.string.auto_add_view_activity_002), featureToolbar));
+        featureItems.add(new FeatureItem(2, R.drawable.ic_drawer_color_48dp, Helper.getResString(R.string.auto_add_view_activity_003), featureDrawer));
+        featureItems.add(new FeatureItem(3, R.drawable.fab_color, Helper.getResString(R.string.auto_add_view_activity_004), featureFab));
         featuresAdapter.notifyDataSetChanged();
         updateTemplatePreviewInsets();
     }
@@ -435,14 +435,14 @@ public class AddViewActivity extends BaseAppCompatActivity {
 
     private void showTemplateChoiceDialog() {
         new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("Создание экрана")
-                .setMessage("Создать пустой экран или использовать шаблон?")
-                .setPositiveButton("Из шаблона", (d, w) -> {
+                .setTitle(Helper.getResString(R.string.auto_add_view_activity_005))
+                .setMessage(Helper.getResString(R.string.auto_add_view_activity_006))
+                .setPositiveButton(Helper.getResString(R.string.auto_add_view_activity_007), (d, w) -> {
                     Intent intent = new Intent(this,
                             pro.sketchware.templates.TemplateGalleryActivity.class);
                     startActivityForResult(intent, REQUEST_CODE_TEMPLATES);
                 })
-                .setNeutralButton("Пустой", (d, w) -> {
+                .setNeutralButton(Helper.getResString(R.string.auto_add_view_activity_008), (d, w) -> {
                     selectedTemplateId = null;
                     handleCreateFile();
                 })

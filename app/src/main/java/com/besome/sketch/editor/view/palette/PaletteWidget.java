@@ -178,7 +178,7 @@ public class PaletteWidget extends LinearLayout {
         titleWidgets = findViewById(R.id.tv_widget);
         titleLayouts.setText(Helper.getResString(R.string.view_panel_title_layouts));
         titleWidgets.setText(Helper.getResString(R.string.view_panel_title_widgets));
-        // Скрываем встроенные заголовки — теперь их роль выполняют категории ("Макеты" и "Виджеты").
+        // Скрываем встроенные заголовки — теперь их роль выполняют категории ("Макеты" и Helper.getResString(R.string.auto_palette_widget_001)).
         titleLayouts.setVisibility(View.GONE);
         titleWidgets.setVisibility(View.GONE);
         scrollView = findViewById(R.id.scv);
@@ -382,9 +382,9 @@ public class PaletteWidget extends LinearLayout {
     public void showCategorySettingsDialog(String name) {
         android.content.Context ctx = getContext();
         final String[] options = {
-                "Показать развёрнутой",
-                "Показать свёрнутой",
-                "Скрыть из списка"
+                Helper.getResString(R.string.auto_palette_widget_002),
+                Helper.getResString(R.string.auto_palette_widget_003),
+                Helper.getResString(R.string.auto_palette_widget_004)
         };
         int cur = pro.sketchware.palette.WidgetTabsSettings.getState(ctx, name);
         int checked = (cur == pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED) ? 1

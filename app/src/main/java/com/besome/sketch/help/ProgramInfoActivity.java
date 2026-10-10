@@ -111,7 +111,7 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
     private void showChangelogDialog() {
         // Сначала пробуем загрузить changelog с GitHub (update.json).
         // Если сеть недоступна — fallback на локальный assets/changelog.txt.
-        Toast.makeText(this, "Загрузка...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, Helper.getResString(R.string.auto_program_info_activity_001), Toast.LENGTH_SHORT).show();
 
         new Thread(() -> {
             String remoteText = null;
@@ -148,7 +148,7 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
 
             runOnUiThread(() -> {
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-                dialog.setTitle("Что нового");
+                dialog.setTitle(Helper.getResString(R.string.auto_program_info_activity_002));
                 dialog.setMessage(text);
                 dialog.setPositiveButton(Helper.getResString(R.string.common_word_ok), null);
                 dialog.show();
@@ -168,12 +168,12 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
             reader.close();
             return sb.toString();
         } catch (Exception e) {
-            return "Не удалось загрузить список изменений.";
+            return Helper.getResString(R.string.auto_program_info_activity_003);
         }
     }
 
     private void checkUpdatesNow() {
-        Toast.makeText(this, "Проверка обновлений...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, Helper.getResString(R.string.auto_program_info_activity_004), Toast.LENGTH_SHORT).show();
         new UpdateChecker().checkIfNeeded(
                 this,
                 BuildConfig.VERSION_CODE,
@@ -188,7 +188,7 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
                     public void onUpToDate() {
                         runOnUiThread(() -> Toast.makeText(
                                 ProgramInfoActivity.this,
-                                "Обновлений нет",
+                                Helper.getResString(R.string.auto_program_info_activity_005),
                                 Toast.LENGTH_SHORT).show());
                     }
 
@@ -196,7 +196,7 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
                     public void onError(String message) {
                         runOnUiThread(() -> Toast.makeText(
                                 ProgramInfoActivity.this,
-                                "Не удалось проверить обновления",
+                                Helper.getResString(R.string.auto_program_info_activity_006),
                                 Toast.LENGTH_SHORT).show());
                     }
                 }
@@ -244,10 +244,10 @@ public class ProgramInfoActivity extends BaseAppCompatActivity {
         binding.btnReset.setOnClickListener(this::resetDialog);
         binding.btnUpgrade.setOnClickListener(v -> checkUpdatesNow());
 
-        addTwoLineItem(ITEM_CHANGELOG, "Что нового", "Список изменений в этой версии");
+        addTwoLineItem(ITEM_CHANGELOG, Helper.getResString(R.string.auto_program_info_activity_007), Helper.getResString(R.string.auto_program_info_activity_008));
         addTwoLineItem(ITEM_4PDA, "Sketchware Pro 4PDA", Helper.getResString(R.string.link_russian_4pda));
-        addTwoLineItem(ITEM_DOCS_LOG, "Документация", Helper.getResString(R.string.link_russian_help));
-        addTwoLineItem(ITEM_GITHUB, "Исходный код", Helper.getResString(R.string.link_github_url));
+        addTwoLineItem(ITEM_DOCS_LOG, Helper.getResString(R.string.auto_program_info_activity_009), Helper.getResString(R.string.link_russian_help));
+        addTwoLineItem(ITEM_GITHUB, Helper.getResString(R.string.auto_program_info_activity_010), Helper.getResString(R.string.link_github_url));
         addSingleLineItem(ITEM_SYSTEM_INFORMATION, R.string.program_information_title_system_information);
         addSingleLineItem(ITEM_OPEN_SOURCE_LICENSES, R.string.program_information_title_open_source_license, true);
     }

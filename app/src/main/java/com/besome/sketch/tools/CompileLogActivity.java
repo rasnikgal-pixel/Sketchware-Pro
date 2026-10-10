@@ -1,5 +1,7 @@
 package com.besome.sketch.tools;
 
+
+import pro.sketchware.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -51,9 +53,9 @@ public class CompileLogActivity extends BaseAppCompatActivity {
         binding.topAppBar.setNavigationOnClickListener(Helper.getBackPressedClickListener(this));
 
         if (getIntent().getBooleanExtra("showingLastError", false)) {
-            binding.topAppBar.setTitle("Последний журнал компиляции");
+            binding.topAppBar.setTitle(Helper.getResString(R.string.auto_compile_log_activity_001));
         } else {
-            binding.topAppBar.setTitle("Журнал компиляции");
+            binding.topAppBar.setTitle(Helper.getResString(R.string.auto_compile_log_activity_002));
         }
 
         String sc_id = getIntent().getStringExtra("sc_id");
@@ -68,9 +70,9 @@ public class CompileLogActivity extends BaseAppCompatActivity {
             binding.clearButton.setOnClickListener(v -> {
                 if (compileErrorSaver.logFileExists()) {
                     compileErrorSaver.deleteSavedLogs();
-                    SketchwareUtil.toast("Журнал компиляции очищен.");
+                    SketchwareUtil.toast(Helper.getResString(R.string.auto_compile_log_activity_003));
                 } else {
-                    SketchwareUtil.toast("Журнал компиляции не найден.");
+                    SketchwareUtil.toast(Helper.getResString(R.string.auto_compile_log_activity_004));
                 }
 
                 setErrorText();
@@ -189,9 +191,9 @@ public class CompileLogActivity extends BaseAppCompatActivity {
                 Gravity.CENTER));
 
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Выберите размер шрифта")
+                .setTitle(Helper.getResString(R.string.auto_compile_log_activity_005))
                 .setView(layout)
-                .setPositiveButton("Сохранить", (dialog, which) -> {
+                .setPositiveButton(Helper.getResString(R.string.auto_compile_log_activity_006), (dialog, which) -> {
                     logViewerPreferences.edit().putInt(PREFERENCE_FONT_SIZE, picker.getValue()).apply();
 
                     binding.tvCompileLog.setTextSize((float) picker.getValue());

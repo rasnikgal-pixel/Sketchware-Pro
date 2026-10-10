@@ -76,7 +76,7 @@ public class GetKeyStoreCredentialsDialog {
                     ));
                 }
             } else {
-                SketchwareUtil.toastError("Хранилище ключей не найдено");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_get_key_store_credentials_dialog_001));
             }
         } else if (mode == SigningMode.TESTKEY) {
             dialogInterface.dismiss();
@@ -91,21 +91,21 @@ public class GetKeyStoreCredentialsDialog {
         boolean isValid = true;
 
         if (TextUtils.isEmpty(binding.etAlias.getText())) {
-            binding.tilAlias.setError("Псевдоним не может быть пустым");
+            binding.tilAlias.setError(Helper.getResString(R.string.auto_get_key_store_credentials_dialog_002));
             isValid = false;
         } else {
             binding.tilAlias.setError(null);
         }
 
         if (TextUtils.isEmpty(binding.etPassword.getText())) {
-            binding.tilPassword.setError("Пароль не может быть пустым");
+            binding.tilPassword.setError(Helper.getResString(R.string.auto_get_key_store_credentials_dialog_003));
             isValid = false;
         } else {
             binding.tilPassword.setError(null);
         }
 
         if (TextUtils.isEmpty(binding.etSigningAlgorithm.getText())) {
-            binding.tilSigningAlgorithm.setError("Алгоритм не может быть пустым");
+            binding.tilSigningAlgorithm.setError(Helper.getResString(R.string.auto_get_key_store_credentials_dialog_004));
             isValid = false;
         } else {
             binding.tilSigningAlgorithm.setError(null);

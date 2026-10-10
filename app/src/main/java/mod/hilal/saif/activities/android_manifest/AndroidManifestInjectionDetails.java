@@ -100,16 +100,16 @@ public class AndroidManifestInjectionDetails extends BaseAppCompatActivity {
 
     private void setToolbar() {
         String str = switch (type) {
-            case "all" -> "Атрибуты для всех Activity";
-            case "application" -> "Атрибуты приложения";
-            case "permission" -> "Разрешения приложения";
+            case "all" -> Helper.getResString(R.string.auto_android_manifest_injection_details_001);
+            case "application" -> Helper.getResString(R.string.auto_android_manifest_injection_details_002);
+            case "permission" -> Helper.getResString(R.string.auto_android_manifest_injection_details_003);
             default -> activityName;
         };
         binding.toolbar.setTitle(str);
 
         binding.toolbar.setNavigationOnClickListener(Helper.getBackPressedClickListener(this));
 
-        if (!str.equals("Атрибуты для всех Activity") && !str.equals("Атрибуты приложения") && !str.equals("Разрешения приложения")) {
+        if (!str.equals(Helper.getResString(R.string.auto_android_manifest_injection_details_004)) && !str.equals(Helper.getResString(R.string.auto_android_manifest_injection_details_005)) && !str.equals(Helper.getResString(R.string.auto_android_manifest_injection_details_006))) {
             binding.toolbar.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.asd_components) {
                     Intent intent = new Intent(this, SrcCodeEditor.class);
@@ -129,7 +129,7 @@ public class AndroidManifestInjectionDetails extends BaseAppCompatActivity {
 
     private void showDial(int pos) {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-        dialog.setTitle("Редактировать значение");
+        dialog.setTitle(Helper.getResString(R.string.auto_android_manifest_injection_details_007));
         DialogCreateNewFileLayoutBinding attributeBinding = DialogCreateNewFileLayoutBinding.inflate(getLayoutInflater());
         attributeBinding.chipGroupTypes.setVisibility(View.GONE);
         dialog.setView(attributeBinding.getRoot());
@@ -146,13 +146,13 @@ public class AndroidManifestInjectionDetails extends BaseAppCompatActivity {
 
     private void showAddDial() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-        dialog.setTitle(type.equals("permission") ? "Добавить разрешение" : "Добавить атрибут");
+        dialog.setTitle(type.equals("permission") ? Helper.getResString(R.string.auto_android_manifest_injection_details_008) : Helper.getResString(R.string.auto_android_manifest_injection_details_009));
         CustomDialogAttributeBinding attributeBinding = CustomDialogAttributeBinding.inflate(getLayoutInflater());
         dialog.setView(attributeBinding.getRoot());
         if (type.equals("permission")) {
             attributeBinding.inputRes.setText("android");
             attributeBinding.inputAttr.setText("name");
-            attributeBinding.inputLayoutValue.setHint("разрешение");
+            attributeBinding.inputLayoutValue.setHint(Helper.getResString(R.string.auto_android_manifest_injection_details_010));
         }
         dialog.setPositiveButton(R.string.common_word_save, (dialog1, which) -> {
             String fstr = Helper.getText(attributeBinding.inputRes).trim() + ":" + Helper.getText(attributeBinding.inputAttr).trim() + "=\"" + Helper.getText(attributeBinding.inputValue).trim() + "\"";
@@ -239,8 +239,8 @@ public class AndroidManifestInjectionDetails extends BaseAppCompatActivity {
             attributeView.setOnClickListener(v -> showDial(position));
             attributeView.setOnLongClickListener(v -> {
                 new MaterialAlertDialogBuilder(AndroidManifestInjectionDetails.this)
-                        .setTitle("Удалить этот атрибут?")
-                        .setMessage("Это действие нельзя отменить.")
+                        .setTitle(Helper.getResString(R.string.auto_android_manifest_injection_details_011))
+                        .setMessage(Helper.getResString(R.string.auto_android_manifest_injection_details_012))
                         .setPositiveButton(R.string.common_word_delete, (dialog, which) -> {
                             listMap.remove(position);
                             applyChange();

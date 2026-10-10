@@ -129,7 +129,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
         menu.add("Font size")
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add("Перенос строк")
+        menu.add(Helper.getResString(R.string.auto_code_editor_layout_001))
                 .setCheckable(true)
                 .setChecked(word_wrap)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
@@ -144,7 +144,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                 .setChecked(dark_theme)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add("Форматировать")
+        menu.add(Helper.getResString(R.string.auto_code_editor_layout_002))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
         menu.add("Exit confirmation")
@@ -164,7 +164,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                     numPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
                     builder.setView(numPicker)
-                            .setTitle("Выберите размер шрифта")
+                            .setTitle(Helper.getResString(R.string.auto_code_editor_layout_003))
                             .setPositiveButton(R.string.common_word_save, (dialog, which) -> {
                                 setTextSize(numPicker.getValue());
                                 dialog.dismiss();
@@ -173,7 +173,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                             .show();
                     break;
 
-                case "Перенос строк":
+                case Helper.getResString(R.string.auto_code_editor_layout_004):
                     item.setChecked(!item.isChecked());
                     setWordWrap(item.isChecked());
                     break;
@@ -191,7 +191,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                     startHighlighting(type);
                     break;
 
-                case "Форматировать":
+                case Helper.getResString(R.string.auto_code_editor_layout_005):
                     StringBuilder string = new StringBuilder();
                     String[] lines = getText().split("\n");
 
@@ -207,7 +207,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                     try {
                         prettifiedString = Lx.j(Lx.j(prettifiedString, false), false);
                     } catch (Exception e) {
-                        SketchwareUtil.toastError("Ошибка: в коде неправильно вложены скобки");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_code_editor_layout_006));
                         break;
                     }
 

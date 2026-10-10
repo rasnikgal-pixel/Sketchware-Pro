@@ -1,5 +1,8 @@
 package mod.jbk.build;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -580,7 +583,7 @@ public class BuiltInLibraries {
 
         if (ProjectBuilder.hasFileChanged(baseAssetsPath + dexsArchiveName, dexsArchivePath)) {
             for (BuildProgressReceiver receiver : progressReceivers) {
-                receiver.onProgress("Распаковка DEX-файлов встроенных библиотек...", 4);
+                receiver.onProgress(Helper.getResString(R.string.auto_built_in_libraries_001), 4);
             }
             /* Delete the directory */
             fileUtil.b(dexsDirectoryPath);
@@ -591,7 +594,7 @@ public class BuiltInLibraries {
         }
         if (ProjectBuilder.hasFileChanged(baseAssetsPath + libsArchiveName, libsArchivePath)) {
             for (BuildProgressReceiver receiver : progressReceivers) {
-                receiver.onProgress("Распаковка ресурсов встроенных библиотек...", 5);
+                receiver.onProgress(Helper.getResString(R.string.auto_built_in_libraries_002), 5);
             }
             /* Delete the directory */
             fileUtil.b(libsDirectoryPath);
@@ -603,7 +606,7 @@ public class BuiltInLibraries {
         maybeExtractCoreLambdaStubsJar();
         if (ProjectBuilder.hasFileChanged(baseAssetsPath + testkeyArchiveName, testkeyArchivePath)) {
             for (BuildProgressReceiver receiver : progressReceivers) {
-                receiver.onProgress("Распаковка встроенных ключей подписи...", 6);
+                receiver.onProgress(Helper.getResString(R.string.auto_built_in_libraries_003), 6);
             }
             /* Delete the directory */
             fileUtil.b(testkeyDirectoryPath);
@@ -619,7 +622,7 @@ public class BuiltInLibraries {
         String androidJarPath = new File(EXTRACTED_COMPILE_ASSETS_PATH, androidJarArchiveName).getAbsolutePath();
         if (ProjectBuilder.hasFileChanged("libs" + File.separator + androidJarArchiveName, androidJarPath)) {
             for (BuildProgressReceiver receiver : receivers) {
-                receiver.onProgress("Распаковка встроенного android.jar...", 7);
+                receiver.onProgress(Helper.getResString(R.string.auto_built_in_libraries_004), 7);
             }
             /* Delete android.jar */
             new oB().c(EXTRACTED_COMPILE_ASSETS_PATH.getAbsolutePath() + File.separator + "android.jar");

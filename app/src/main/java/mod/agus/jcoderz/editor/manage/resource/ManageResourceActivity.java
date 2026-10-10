@@ -194,10 +194,10 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
 
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
-                .setTitle(isFolder ? "Создать новый каталог" : "Создать новый файл")
+                .setTitle((CharSequence) (isFolder ? Helper.getResString(R.string.auto_manage_resource_activity_001) : Helper.getResString(R.string.auto_manage_resource_activity_002)))
                 .setMessage("Введите имя для нового" + (isFolder ? "folder" : "file"))
-                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Создать", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_manage_resource_activity_003), (dialogInterface, i) -> dialogInterface.dismiss())
+                .setPositiveButton(Helper.getResString(R.string.auto_manage_resource_activity_004), null)
                 .create();
 
         dialogBinding.chipGroupTypes.setVisibility(View.GONE);
@@ -222,7 +222,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                 }
 
                 if (FileUtil.isExistFile(path)) {
-                    SketchwareUtil.toastError("Файл уже существует");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_resource_activity_005));
                     return;
                 }
                 if (isFolder) {
@@ -231,7 +231,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                     FileUtil.writeFile(path, "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                 }
                 handleAdapter(temp);
-                SketchwareUtil.toast("Файл успешно создан");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_resource_activity_006));
                 dialog.dismiss();
             });
 
@@ -253,13 +253,13 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
         FilePickerOptions options = new FilePickerOptions();
         options.setSelectionMode(SelectionMode.BOTH);
         options.setMultipleSelection(true);
-        options.setTitle("Выберите файлы ресурсов");
+        options.setTitle(Helper.getResString(R.string.auto_manage_resource_activity_007));
 
         FilePickerCallback callback = new FilePickerCallback() {
             @Override
             public void onFilesSelected(@NotNull List<? extends File> files) {
                 if (files.isEmpty()) {
-                    SketchwareUtil.toastError("Файлы не выбраны");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_resource_activity_008));
                     return;
                 }
                 for (File file : files) {
@@ -285,13 +285,13 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.assets_manager_rename)
                 .setView(dialogBinding.getRoot())
-                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton(Helper.getResString(R.string.auto_manage_resource_activity_009), (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Rename", (dialogInterface, i) -> {
                     if (!Helper.getText(inputText).isEmpty()) {
                         if (FileUtil.renameFile(path, path.substring(0, path.lastIndexOf("/")) + "/" + Helper.getText(inputText))) {
-                            SketchwareUtil.toast("Успешно переименовано");
+                            SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_resource_activity_010));
                         } else {
-                            SketchwareUtil.toastError("Не удалось переименовать");
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_resource_activity_011));
                         }
                         handleAdapter(temp);
                         handleFab();
@@ -341,7 +341,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
             }
             startActivity(intent);
         } else {
-            SketchwareUtil.toast("Редактировать можно только XML-файлы");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_resource_activity_012));
         }
     }
 
@@ -354,7 +354,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
             intent.putExtra("xml", "");
             startActivity(intent);
         } else {
-            SketchwareUtil.toast("Редактировать можно только XML-файлы");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_resource_activity_013));
         }
     }
 
@@ -409,7 +409,7 @@ public class ManageResourceActivity extends BaseAppCompatActivity {
                                 intent.setDataAndType(Uri.fromFile(new File(frc.listFileResource.get(position))), "text/plain");
                                 startActivity(intent);
                             } else {
-                                SketchwareUtil.toast("Редактировать можно только XML-файлы");
+                                SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_resource_activity_014));
                             }
                         }
                         case "Edit" -> goEdit2(position);

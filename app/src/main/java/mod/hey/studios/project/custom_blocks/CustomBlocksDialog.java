@@ -95,7 +95,7 @@ public class CustomBlocksDialog {
                         }
 
                         if (selectedBeans.isEmpty()) {
-                            SketchwareUtil.toastError("Выберите хотя бы один блок для импорта.");
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_custom_blocks_dialog_001));
                             return;
                         }
 
@@ -106,7 +106,7 @@ public class CustomBlocksDialog {
 
             } else {
                 context.runOnUiThread(() -> {
-                    dialogBinding.subtitle.setText("Вы не использовали пользовательские блоки в этом проекте");
+                    dialogBinding.subtitle.setText(Helper.getResString(R.string.auto_custom_blocks_dialog_002));
                     dialogBinding.progressIndicator.setVisibility(View.GONE);
                 });
             }
@@ -137,9 +137,9 @@ public class CustomBlocksDialog {
         AtomicInteger selectedPalette = new AtomicInteger(paletteList.size() - 1);
 
         new MaterialAlertDialogBuilder(context)
-                .setTitle("Импортировать пользовательские блоки в")
+                .setTitle(Helper.getResString(R.string.auto_custom_blocks_dialog_003))
                 .setSingleChoiceItems(paletteNames.toArray(new String[0]), selectedPalette.get(), (dialog, which) -> selectedPalette.set(which))
-                .setNegativeButton("Создать новую палитру", (dialog, which) -> {
+                .setNegativeButton(Helper.getResString(R.string.auto_custom_blocks_dialog_004), (dialog, which) -> {
                     showCreatePaletteDialog(context, paletteList, paletteDir, customBlocksManager, list, blocksList, allBlocksList, blocksDir);
                     dialog.dismiss();
                 })
@@ -148,7 +148,7 @@ public class CustomBlocksDialog {
                     allBlocksList.addAll(blocksList);
                     FileUtil.writeFile(blocksDir, new Gson().toJson(allBlocksList));
                     BlockLoader.refresh();
-                    SketchwareUtil.toast("Блоки импортированы!");
+                    SketchwareUtil.toast(Helper.getResString(R.string.auto_custom_blocks_dialog_005));
                 })
                 .show();
     }
@@ -183,7 +183,7 @@ public class CustomBlocksDialog {
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
         dialog.setIcon(R.drawable.icon_style_white_96);
-        dialog.setTitle("Создать новую палитру");
+        dialog.setTitle(Helper.getResString(R.string.auto_custom_blocks_dialog_006));
 
         DialogPaletteBinding binding = DialogPaletteBinding.inflate(((Activity) context).getLayoutInflater());
 
@@ -219,7 +219,7 @@ public class CustomBlocksDialog {
             allBlocksList.addAll(blocksList);
             FileUtil.writeFile(blocksDir, new Gson().toJson(allBlocksList));
             BlockLoader.refresh();
-            SketchwareUtil.toast("Блоки импортированы!");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_custom_blocks_dialog_007));
             dialogInterface.dismiss();
         });
         dialog.setNegativeButton(Helper.getResString(R.string.common_word_cancel), null);
@@ -233,19 +233,19 @@ public class CustomBlocksDialog {
 
     private boolean validateInput(DialogPaletteBinding binding, String name, String color) {
         if (name.isEmpty()) {
-            binding.name.setError("Имя не может быть пустым");
+            binding.name.setError(Helper.getResString(R.string.auto_custom_blocks_dialog_008));
             binding.name.requestFocus();
             return false;
         }
         if (color.isEmpty()) {
-            binding.color.setError("Цвет не может быть пустым");
+            binding.color.setError(Helper.getResString(R.string.auto_custom_blocks_dialog_009));
             binding.color.requestFocus();
             return false;
         }
         try {
             Color.parseColor(color);
         } catch (IllegalArgumentException e) {
-            binding.color.setError("Неверный шестнадцатеричный цвет");
+            binding.color.setError(Helper.getResString(R.string.auto_custom_blocks_dialog_010));
             binding.color.requestFocus();
             return false;
         }
@@ -372,9 +372,9 @@ public class CustomBlocksDialog {
                         binding.checkBox.setChecked(reversedState);
                         block.isSelected = reversedState;
                     } else if (blockInfo.equals("Missing")) {
-                        SketchwareUtil.toastError("Этот блок отсутствует");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_custom_blocks_dialog_011));
                     } else {
-                        SketchwareUtil.toastError("Этот блок уже есть в вашей коллекции");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_custom_blocks_dialog_012));
                     }
                 });
             }

@@ -1,5 +1,7 @@
 package mod.hilal.saif.blocks;
 
+
+import mod.hey.studios.util.Helper;
 import androidx.annotation.ColorInt;
 
 import com.besome.sketch.editor.LogicEditorActivity;
@@ -2675,7 +2677,7 @@ public class BlocksHandler {
             boolean isIntUsed,
             boolean isStrUsed,
             boolean isMapUsed) {
-        logicEditorActivity.a("Блоки", getTitleBgColor(logicEditorActivity));
+        logicEditorActivity.a(Helper.getResString(R.string.auto_blocks_handler_001), getTitleBgColor(logicEditorActivity));
         if (showAll() || isBoolUsed) {
             logicEditorActivity.a(" ", "setVarBoolean");
         }
@@ -2689,7 +2691,7 @@ public class BlocksHandler {
         }
         if (showAll() || isMapUsed) {
             logicEditorActivity.a(" ", "mapCreateNew");
-            logicEditorActivity.a("Map: запись", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a(Helper.getResString(R.string.auto_blocks_handler_002), getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a(" ", "mapPut");
         }
         if (showBuiltIn() && (showAll() || isMapUsed)) {
@@ -2701,7 +2703,7 @@ public class BlocksHandler {
             logicEditorActivity.a(" ", "hashmapPutListmap");
         }
         if (showAll() || isMapUsed) {
-            logicEditorActivity.a("Map: чтение", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a(Helper.getResString(R.string.auto_blocks_handler_003), getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("s", "mapGet");
         }
         if (showBuiltIn() && (showAll() || isMapUsed)) {
@@ -2712,7 +2714,7 @@ public class BlocksHandler {
             logicEditorActivity.a("", "l", "List Map", "hashmapGetListmap");
         }
         if (showAll() || isMapUsed) {
-            logicEditorActivity.a("Map: общее", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a(Helper.getResString(R.string.auto_blocks_handler_004), getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("b", "mapIsEmpty");
             logicEditorActivity.a("b", "mapContainKey");
             logicEditorActivity.a("b", "mapContainValue");
@@ -2732,7 +2734,7 @@ public class BlocksHandler {
         boolean inOnBindCustomViewEvent = eventName.equals("onBindCustomView");
         boolean inOnFilesPickedEvent = eventName.equals("onFilesPicked");
         if (showAll() || isListNumUsed) {
-            logicEditorActivity.a("Список чисел", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a(Helper.getResString(R.string.auto_blocks_handler_005), getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("b", "containListInt");
             logicEditorActivity.a("d", "getAtListInt");
             logicEditorActivity.a("d", "indexListInt");
@@ -2746,7 +2748,7 @@ public class BlocksHandler {
             logicEditorActivity.a(" ", "sortListnum");
         }
         if (showAll() || isListStrUsed || inOnFilesPickedEvent) {
-            logicEditorActivity.a("Список строк", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a(Helper.getResString(R.string.auto_blocks_handler_006), getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("b", "containListStr");
             logicEditorActivity.a("d", "indexListStr");
             logicEditorActivity.a("s", "getAtListStr");
@@ -2760,7 +2762,7 @@ public class BlocksHandler {
             logicEditorActivity.a(" ", "sortList");
         }
         if (showAll() || isListMapUsed || inOnBindCustomViewEvent) {
-            logicEditorActivity.a("Список Map", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a(Helper.getResString(R.string.auto_blocks_handler_007), getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a("b", "containListMap");
             logicEditorActivity.a("s", "getAtListMap");
             if (showBuiltIn()) {
@@ -2784,7 +2786,7 @@ public class BlocksHandler {
                 || isListNumUsed
                 || inOnBindCustomViewEvent
                 || inOnFilesPickedEvent) {
-            logicEditorActivity.a("Общие", getTitleBgColor(logicEditorActivity));
+            logicEditorActivity.a(Helper.getResString(R.string.auto_blocks_handler_008), getTitleBgColor(logicEditorActivity));
             logicEditorActivity.a(" ", "listAddAll");
             logicEditorActivity.a("d", "lengthList");
             logicEditorActivity.a(" ", "deleteList");

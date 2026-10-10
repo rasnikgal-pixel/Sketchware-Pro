@@ -1,5 +1,8 @@
 package pro.sketchware.skproj;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,12 +35,12 @@ public final class SkProjExportTask {
      */
     public static void run(Activity activity, String scId, Callback callback) {
         if (activity == null || scId == null) {
-            if (callback != null) callback.onError("Некорректные параметры");
+            if (callback != null) callback.onError(Helper.getResString(R.string.auto_sk_proj_export_task_001));
             return;
         }
 
         final ProgressDialog dlg = new ProgressDialog(activity);
-        dlg.setMessage("Экспорт проекта...");
+        dlg.setMessage(Helper.getResString(R.string.auto_sk_proj_export_task_002));
         dlg.setCancelable(false);
         dlg.show();
 
@@ -58,7 +61,7 @@ public final class SkProjExportTask {
                 try { dlg.dismiss(); } catch (Throwable ignored) {}
                 if (callback == null) return;
                 if (fOut != null) callback.onSuccess(fOut);
-                else callback.onError(fErr != null ? fErr : "Неизвестная ошибка");
+                else callback.onError(fErr != null ? fErr : Helper.getResString(R.string.auto_sk_proj_export_task_003));
             });
         }, "SkProjExportThread").start();
     }
@@ -69,7 +72,7 @@ public final class SkProjExportTask {
         try {
             String name = outFile.getName();
             long size = outFile.length();
-            String sizeStr = String.format(java.util.Locale.US, "%.2f МБ", size / 1048576.0);
+            String sizeStr = String.format(java.util.Locale.US, Helper.getResString(R.string.auto_sk_proj_export_task_004), size / 1048576.0);
             String parent = outFile.getParent();
 
             String message = "Файл: " + name + "\n"
@@ -77,11 +80,11 @@ public final class SkProjExportTask {
                     + "Путь: " + parent;
 
             new MaterialAlertDialogBuilder(activity)
-                    .setTitle("\u2705 Экспорт завершён")
+                    .setTitle(Helper.getResString(R.string.auto_sk_proj_export_task_005))
                     .setMessage(message)
-                    .setPositiveButton("Открыть папку", (d, w) -> openFolder(activity, outFile.getParentFile()))
-                    .setNeutralButton("Поделиться", (d, w) -> shareFile(activity, outFile))
-                    .setNegativeButton("Закрыть", null)
+                    .setPositiveButton(Helper.getResString(R.string.auto_sk_proj_export_task_006), (d, w) -> openFolder(activity, outFile.getParentFile()))
+                    .setNeutralButton(Helper.getResString(R.string.auto_sk_proj_export_task_007), (d, w) -> shareFile(activity, outFile))
+                    .setNegativeButton(Helper.getResString(R.string.auto_sk_proj_export_task_008), null)
                     .show();
         } catch (Throwable t) {
             Toast.makeText(activity, "Экспорт выполнен: " + outFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
@@ -110,7 +113,7 @@ public final class SkProjExportTask {
             intent.setType("application/octet-stream");
             intent.putExtra(Intent.EXTRA_STREAM, uri);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            activity.startActivity(Intent.createChooser(intent, "Поделиться .skproj"));
+            activity.startActivity(Intent.createChooser(intent, Helper.getResString(R.string.auto_sk_proj_export_task_009)));
         } catch (Throwable t) {
             Toast.makeText(activity, "Не удалось отправить: " + t.getMessage(), Toast.LENGTH_SHORT).show();
         }

@@ -101,7 +101,7 @@ public class ViewCodeEditorActivity extends BaseAppCompatActivity {
         projectLibrary = jC.c(sc_id).c();
         getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setTitle("XML-редактор");
+        getSupportActionBar().setTitle(Helper.getResString(R.string.auto_view_code_editor_activity_001));
         getSupportActionBar().setSubtitle(title);
         binding.toolbar.setNavigationOnClickListener(v -> {
             if (onBackPressedCallback.isEnabled()) {
@@ -144,10 +144,10 @@ public class ViewCodeEditorActivity extends BaseAppCompatActivity {
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         if (projectFile.fileType == ProjectFileBean.PROJECT_FILE_TYPE_ACTIVITY
                 && projectLibrary.isEnabled()) {
-            menu.add(Menu.NONE, 3, Menu.NONE, "Изменить AppCompat");
+            menu.add(Menu.NONE, 3, Menu.NONE, Helper.getResString(R.string.auto_view_code_editor_activity_002));
         }
-        menu.add(Menu.NONE, 4, Menu.NONE, "Перезагрузить цветовые схемы");
-        menu.add(Menu.NONE, 5, Menu.NONE, "Предпросмотр макета");
+        menu.add(Menu.NONE, 4, Menu.NONE, Helper.getResString(R.string.auto_view_code_editor_activity_003));
+        menu.add(Menu.NONE, 5, Menu.NONE, Helper.getResString(R.string.auto_view_code_editor_activity_004));
         return true;
     }
 
@@ -237,7 +237,7 @@ public class ViewCodeEditorActivity extends BaseAppCompatActivity {
                 }
                 SketchwareUtil.toast("Saved");
             } else {
-                SketchwareUtil.toast("Нет изменений для сохранения");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_view_code_editor_activity_005));
             }
         } catch (Exception e) {
             SketchwareUtil.toastError(e.toString());

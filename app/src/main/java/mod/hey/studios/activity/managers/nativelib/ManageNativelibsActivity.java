@@ -104,9 +104,9 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
     private void handleFab() {
         if (isInMainDirectory()) {
-            binding.showOptionsButton.setText("Новый каталог");
+            binding.showOptionsButton.setText(Helper.getResString(R.string.auto_manage_nativelibs_activity_001));
         } else {
-            binding.showOptionsButton.setText("Импортировать библиотеку");
+            binding.showOptionsButton.setText(Helper.getResString(R.string.auto_manage_nativelibs_activity_002));
         }
     }
 
@@ -169,14 +169,14 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
-                .setTitle("Создать новый каталог")
-                .setMessage("Введите имя нового каталога")
-                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Создать", null)
+                .setTitle(Helper.getResString(R.string.auto_manage_nativelibs_activity_003))
+                .setMessage(Helper.getResString(R.string.auto_manage_nativelibs_activity_004))
+                .setNegativeButton(Helper.getResString(R.string.auto_manage_nativelibs_activity_005), (dialogInterface, i) -> dialogInterface.dismiss())
+                .setPositiveButton(Helper.getResString(R.string.auto_manage_nativelibs_activity_006), null)
                 .create();
 
         dialogBinding.chipGroupTypes.setVisibility(View.GONE);
-        textInputLayout.setHint("Имя каталога");
+        textInputLayout.setHint(Helper.getResString(R.string.auto_manage_nativelibs_activity_007));
 
         inputText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -200,7 +200,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                 String name = Helper.getText(inputText);
 
                 if (name.isEmpty()) {
-                    textInputLayout.setError("Неверное имя каталога");
+                    textInputLayout.setError(Helper.getResString(R.string.auto_manage_nativelibs_activity_008));
                     return;
                 }
                 textInputLayout.setError(null);
@@ -208,14 +208,14 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
                 String path = fpu.getPathNativelibs(numProj) + "/" + name;
 
                 if (FileUtil.isExistFile(path)) {
-                    textInputLayout.setError("Каталог уже существует");
+                    textInputLayout.setError(Helper.getResString(R.string.auto_manage_nativelibs_activity_009));
                     return;
                 }
                 textInputLayout.setError(null);
 
                 FileUtil.makeDir(path);
                 handleAdapter(nativeLibrariesPath);
-                SketchwareUtil.toast("Каталог успешно создан");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_nativelibs_activity_010));
 
                 dialog.dismiss();
             });
@@ -233,7 +233,7 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
 
     private void setupDialog() {
         FilePickerOptions options = new FilePickerOptions();
-        options.setTitle("Импортировать нативные библиотеки");
+        options.setTitle(Helper.getResString(R.string.auto_manage_nativelibs_activity_011));
         options.setMultipleSelection(true);
         options.setExtensions(new String[]{"so"});
         FilePickerCallback callback = new FilePickerCallback() {
@@ -262,19 +262,19 @@ public class ManageNativelibsActivity extends BaseAppCompatActivity implements V
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.assets_manager_rename)
                 .setView(dialogBinding.getRoot())
-                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton(Helper.getResString(R.string.auto_manage_nativelibs_activity_012), (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Rename", (dialogInterface, i) -> {
                     String newName = Helper.getText(inputText);
                     if (!newName.isEmpty()) {
                         if (FileUtil.renameFile(path, path.substring(0, path.lastIndexOf(File.separator)) + File.separator + newName)) {
-                            SketchwareUtil.toast("Успешно переименовано");
+                            SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_nativelibs_activity_013));
                         } else {
-                            SketchwareUtil.toastError("Не удалось переименовать");
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_nativelibs_activity_014));
                         }
                         handleAdapter(nativeLibrariesPath);
                         handleFab();
                     } else {
-                        SketchwareUtil.toast("Ничего не изменилось");
+                        SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_nativelibs_activity_015));
                     }
                     dialogInterface.dismiss();
                 })

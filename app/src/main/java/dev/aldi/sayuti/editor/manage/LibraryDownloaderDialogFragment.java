@@ -133,14 +133,14 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
     private void initDownloadFlow() {
         dependencyName = Helper.getText(binding.dependencyInput);
         if (dependencyName.isEmpty()) {
-            binding.dependencyInputLayout.setError("Пожалуйста, введите зависимость");
+            binding.dependencyInputLayout.setError(Helper.getResString(R.string.auto_library_downloader_dialog_fragment_001));
             binding.dependencyInputLayout.setErrorEnabled(true);
             return;
         }
 
         var parts = dependencyName.split(":");
         if (parts.length != 3) {
-            binding.dependencyInputLayout.setError("Неверный формат зависимости");
+            binding.dependencyInputLayout.setError(Helper.getResString(R.string.auto_library_downloader_dialog_fragment_002));
             binding.dependencyInputLayout.setErrorEnabled(true);
             return;
         }
@@ -159,10 +159,10 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
         }
 
         new MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Подтвердите загрузку")
+                .setTitle(Helper.getResString(R.string.auto_library_downloader_dialog_fragment_003))
                 .setMessage(message)
                 .setPositiveButton("Download", (dialog, which) -> startDownloadProcess(group, artifact, version))
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_library_downloader_dialog_fragment_004), null)
                 .show();
     }
 
@@ -220,7 +220,7 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
                 public void onVersionNotFound(@NonNull Artifact dep) {
                     handler.post(() -> {
                         DependencyDownloadItem item = findOrCreateDependencyItem(dep);
-                        item.setError("Версия недоступна");
+                        item.setError(Helper.getResString(R.string.auto_library_downloader_dialog_fragment_005));
                         dependencyAdapter.updateDependency(item);
                     });
                 }
@@ -229,7 +229,7 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
                 public void onDependenciesNotFound(@NonNull Artifact dep) {
                     handler.post(() -> {
                         DependencyDownloadItem item = findOrCreateDependencyItem(dep);
-                        item.setError("Зависимости не найдены");
+                        item.setError(Helper.getResString(R.string.auto_library_downloader_dialog_fragment_006));
                         dependencyAdapter.updateDependency(item);
                     });
                 }
@@ -247,7 +247,7 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
                 public void invalidPackaging(@NonNull Artifact dep) {
                     handler.post(() -> {
                         DependencyDownloadItem item = findOrCreateDependencyItem(dep);
-                        item.setError("Неверная упаковка");
+                        item.setError(Helper.getResString(R.string.auto_library_downloader_dialog_fragment_007));
                         dependencyAdapter.updateDependency(item);
                     });
                 }
@@ -308,7 +308,7 @@ public class LibraryDownloaderDialogFragment extends BottomSheetDialogFragment {
                 @Override
                 public void onTaskCompleted(@NonNull List<String> dependencies) {
                     handler.post(() -> {
-                        SketchwareUtil.toast("Библиотека успешно скачана");
+                        SketchwareUtil.toast(Helper.getResString(R.string.auto_library_downloader_dialog_fragment_008));
                         if (!notAssociatedWithProject) {
                             var fileContent = FileUtil.readFile(localLibFile);
                             var enabledLibs = gson.fromJson(fileContent, Helper.TYPE_MAP_LIST);

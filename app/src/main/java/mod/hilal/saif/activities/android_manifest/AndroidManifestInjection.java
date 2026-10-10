@@ -103,7 +103,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
         basicCategoryView.setTitle(null);
         options.add(basicCategoryView);
 
-        basicCategoryView.addLibraryItem(createOption("Приложение", "Свойства приложения по умолчанию", R.drawable.ic_mtrl_settings_applications, v -> {
+        basicCategoryView.addLibraryItem(createOption(Helper.getResString(R.string.auto_android_manifest_injection_001), Helper.getResString(R.string.auto_android_manifest_injection_002), R.drawable.ic_mtrl_settings_applications, v -> {
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), AndroidManifestInjectionDetails.class);
             intent.putExtra("sc_id", sc_id);
@@ -111,7 +111,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
             intent.putExtra("type", "application");
             startActivity(intent);
         }), true);
-        basicCategoryView.addLibraryItem(createOption("Разрешения", "Добавить свои разрешения приложению", R.drawable.ic_mtrl_shield_check, v -> {
+        basicCategoryView.addLibraryItem(createOption(Helper.getResString(R.string.auto_android_manifest_injection_003), Helper.getResString(R.string.auto_android_manifest_injection_004), R.drawable.ic_mtrl_shield_check, v -> {
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), AndroidManifestInjectionDetails.class);
             intent.putExtra("sc_id", sc_id);
@@ -119,8 +119,8 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
             intent.putExtra("type", "permission");
             startActivity(intent);
         }), true);
-        basicCategoryView.addLibraryItem(createOption("Activity запуска", "Изменить Activity запуска", R.drawable.ic_mtrl_login, v -> showLauncherActDialog(AndroidManifestInjector.getLauncherActivity(sc_id))), true);
-        basicCategoryView.addLibraryItem(createOption("Все Activity", "Добавить атрибуты для всех Activity", R.drawable.ic_mtrl_frame_source, v -> {
+        basicCategoryView.addLibraryItem(createOption(Helper.getResString(R.string.auto_android_manifest_injection_005), Helper.getResString(R.string.auto_android_manifest_injection_006), R.drawable.ic_mtrl_login, v -> showLauncherActDialog(AndroidManifestInjector.getLauncherActivity(sc_id))), true);
+        basicCategoryView.addLibraryItem(createOption(Helper.getResString(R.string.auto_android_manifest_injection_007), Helper.getResString(R.string.auto_android_manifest_injection_008), R.drawable.ic_mtrl_frame_source, v -> {
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), AndroidManifestInjectionDetails.class);
             intent.putExtra("sc_id", sc_id);
@@ -128,7 +128,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
             intent.putExtra("type", "all");
             startActivity(intent);
         }), true);
-        basicCategoryView.addLibraryItem(createOption("Компоненты приложения", "Добавить доп. компоненты", R.drawable.ic_mtrl_component, v -> showAppComponentDialog()), false);
+        basicCategoryView.addLibraryItem(createOption(Helper.getResString(R.string.auto_android_manifest_injection_009), Helper.getResString(R.string.auto_android_manifest_injection_010), R.drawable.ic_mtrl_component, v -> showAppComponentDialog()), false);
 
         options.forEach(binding.cards::addView);
     }
@@ -170,7 +170,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
                 SketchwareUtil.toast("Saved");
                 v.dismiss();
             } else {
-                activity_name_input.setError("Введите имя activity");
+                activity_name_input.setError(Helper.getResString(R.string.auto_android_manifest_injection_011));
             }
         });
         dialog.setNegativeButton(Helper.getResString(R.string.common_word_cancel), null);
@@ -191,10 +191,10 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
         dialog.setPositiveButton(Helper.getResString(R.string.common_word_save), (v, which) -> {
             if (!Helper.getText(activity_name_input).trim().isEmpty()) {
                 addNewActivity(Helper.getText(activity_name_input));
-                SketchwareUtil.toast("Добавлена новая активность");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_android_manifest_injection_012));
                 v.dismiss();
             } else {
-                activity_name_input.setError("Введите имя activity");
+                activity_name_input.setError(Helper.getResString(R.string.auto_android_manifest_injection_013));
             }
         });
         dialog.setNegativeButton(Helper.getResString(R.string.common_word_cancel), null);
@@ -293,7 +293,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
         FileUtil.writeFile(path, getGson().toJson(data));
         refreshList();
         removeComponents(activity_name);
-        SketchwareUtil.toast("Активность удалена");
+        SketchwareUtil.toast(Helper.getResString(R.string.auto_android_manifest_injection_014));
     }
 
     private void removeComponents(String str) {
@@ -347,7 +347,7 @@ public class AndroidManifestInjection extends BaseAppCompatActivity {
                 if (isFinishing()) return;
                 h();
                 var intent = new Intent(this, CodeViewerActivity.class);
-                intent.putExtra("code", !source.isEmpty() ? source : "Не удалось сгенерировать исходный код.");
+                intent.putExtra("code", !source.isEmpty() ? source : Helper.getResString(R.string.auto_android_manifest_injection_015));
                 intent.putExtra("sc_id", sc_id);
                 intent.putExtra("scheme", CodeViewerActivity.SCHEME_XML);
                 startActivity(intent);

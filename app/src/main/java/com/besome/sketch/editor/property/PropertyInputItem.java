@@ -297,9 +297,9 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                             binding.tiInput.setError(null);
                         } else {
                             if (key.equals("property_scale_x") || key.equals("property_scale_y")) {
-                                binding.tiInput.setError("Значение должно быть 0.1 или больше");
+                                binding.tiInput.setError(Helper.getResString(R.string.auto_property_input_item_001));
                             } else {
-                                binding.tiInput.setError("Значение должно быть 0 или больше");
+                                binding.tiInput.setError(Helper.getResString(R.string.auto_property_input_item_002));
                             }
                         }
                     } else if (key.equals("property_progress") && bean != null) {
@@ -319,7 +319,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                         }
                     }
                 } catch (NumberFormatException e) {
-                    binding.tiInput.setError("Неверное значение");
+                    binding.tiInput.setError(Helper.getResString(R.string.auto_property_input_item_003));
                 }
             }
         });
@@ -349,7 +349,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
         });
 
         dialog.setNegativeButton(Helper.getResString(R.string.common_word_reset), null);
-        dialog.setNeutralButton("Свой", null);
+        dialog.setNeutralButton(Helper.getResString(R.string.auto_property_input_item_004), null);
 
         AlertDialog alertDialog = dialog.create();
 
@@ -387,7 +387,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                 } else {
                     binding.sliderSection.setVisibility(View.VISIBLE);
                     binding.tiInput.setVisibility(View.GONE);
-                    customButton.setText("Свой");
+                    customButton.setText(Helper.getResString(R.string.auto_property_input_item_005));
                 }
             });
 
@@ -1028,7 +1028,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
             @Override
             public void onItemLongClick(LinkedHashMap<String, String> attributes, String attr) {
                 new MaterialAlertDialogBuilder(getContext())
-                        .setTitle("Удалить ярлык")
+                        .setTitle(Helper.getResString(R.string.auto_property_input_item_006))
                         .setMessage("Delete " + attr + "?")
                         .setPositiveButton("Delete", (d, w) -> {
                             manager.removeShortcut(attr);
@@ -1036,7 +1036,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
                             adapter.submitList(new ArrayList<>(attributes.keySet()));
                             adapter.notifyDataSetChanged();
                         })
-                        .setNegativeButton("Отмена", null)
+                        .setNegativeButton(Helper.getResString(R.string.auto_property_input_item_007), null)
                         .show();
             }
         });
@@ -1051,12 +1051,12 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
 
     private void showAddShortcutDialog(AttributeShortcutsManager manager, AttributesAdapter adapter) {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext());
-        builder.setTitle("Добавить ярлык");
+        builder.setTitle(Helper.getResString(R.string.auto_property_input_item_008));
 
         StyleEditorAddAttrBinding binding = StyleEditorAddAttrBinding.inflate(LayoutInflater.from(getContext()));
         builder.setView(binding.getRoot());
 
-        builder.setPositiveButton("Сохранить", (dialog, which) -> {
+        builder.setPositiveButton(Helper.getResString(R.string.auto_property_input_item_009), (dialog, which) -> {
             String name = binding.attrName.getText().toString().trim();
             String value = binding.attrValue.getText().toString().trim();
 
@@ -1072,13 +1072,13 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
             }
         });
 
-        builder.setNegativeButton("Отмена", null);
+        builder.setNegativeButton(Helper.getResString(R.string.auto_property_input_item_010), null);
         builder.show();
     }
 
     private void addNewAttribute(Map<String, String> attributes) {
         var builder = new MaterialAlertDialogBuilder(getContext());
-        builder.setTitle("Добавить новый атрибут");
+        builder.setTitle(Helper.getResString(R.string.auto_property_input_item_011));
 
         PropertyPopupInputTextBinding binding =
                 PropertyPopupInputTextBinding.inflate(LayoutInflater.from(getContext()));
@@ -1086,7 +1086,7 @@ public class PropertyInputItem extends RelativeLayout implements View.OnClickLis
         var input = binding.edTiAutoCompleteInput;
         binding.tiInput.setVisibility(View.GONE);
         binding.tiAutoCompleteInput.setVisibility(View.VISIBLE);
-        binding.tiAutoCompleteInput.setHint("Введите новый атрибут");
+        binding.tiAutoCompleteInput.setHint(Helper.getResString(R.string.auto_property_input_item_012));
         input.setAdapter(
                 new ArrayAdapter<>(
                         getContext(),

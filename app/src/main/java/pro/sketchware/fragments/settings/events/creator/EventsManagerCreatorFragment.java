@@ -154,11 +154,11 @@ public class EventsManagerCreatorFragment extends qA {
 
     private void save() {
         if (!filledIn()) {
-            SketchwareUtil.toast("Некоторые обязательные поля пусты!");
+            SketchwareUtil.toast(Helper.getResString(R.string.auto_events_manager_creator_fragment_001));
             return;
         }
         if (!OldResourceIdMapper.isValidIconId(Helper.getText(binding.eventsCreatorIcon))) {
-            binding.eventsCreatorIconTil.setError("Неверный ID иконки");
+            binding.eventsCreatorIconTil.setError(Helper.getResString(R.string.auto_events_manager_creator_fragment_002));
             binding.eventsCreatorIcon.requestFocus();
             return;
         }
@@ -210,12 +210,12 @@ public class EventsManagerCreatorFragment extends qA {
         configureToolbar(binding.toolbar);
 
         if (isEdit) {
-            binding.toolbar.setTitle("Свойства события");
+            binding.toolbar.setTitle(Helper.getResString(R.string.auto_events_manager_creator_fragment_003));
             binding.toolbar.setSubtitle(event_name);
         } else if (isActivityEvent) {
-            binding.toolbar.setTitle("Новое событие Activity");
+            binding.toolbar.setTitle(Helper.getResString(R.string.auto_events_manager_creator_fragment_004));
         } else {
-            binding.toolbar.setTitle("Новое событие");
+            binding.toolbar.setTitle(Helper.getResString(R.string.auto_events_manager_creator_fragment_005));
             binding.toolbar.setSubtitle(lisName);
         }
     }

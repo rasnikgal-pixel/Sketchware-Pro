@@ -64,7 +64,7 @@ public class EventsManagerDetailsFragment extends qA {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         configureToolbar(binding.toolbar);
-        binding.toolbar.setTitle("Детали события");
+        binding.toolbar.setTitle(Helper.getResString(R.string.auto_events_manager_details_fragment_001));
         binding.toolbar.setSubtitle(listName);
         binding.fabNewEvent.setOnClickListener(v -> {
             Bundle args = new Bundle();
@@ -184,7 +184,7 @@ public class EventsManagerDetailsFragment extends qA {
 
             holder.binding.eventTitle.setText((String) item.get("name"));
             if ("".equals(dataArray.get(position).get("var"))) {
-                holder.binding.eventSubtitle.setText("Событие Activity");
+                holder.binding.eventSubtitle.setText(Helper.getResString(R.string.auto_events_manager_details_fragment_002));
             } else {
                 holder.binding.eventSubtitle.setText((String) dataArray.get(position).get("var"));
             }
@@ -208,7 +208,7 @@ public class EventsManagerDetailsFragment extends qA {
             holder.itemView.setOnLongClickListener(v -> {
                 new MaterialAlertDialogBuilder(requireContext())
                         .setTitle((String) dataArray.get(position).get("name"))
-                        .setMessage("Удалить это событие?")
+                        .setMessage(Helper.getResString(R.string.auto_events_manager_details_fragment_003))
                         .setPositiveButton("Delete", (dialog, i) -> deleteItem(position))
                         .setNeutralButton("Edit", (dialog, i) -> {
                             Bundle args = new Bundle();
@@ -227,7 +227,7 @@ public class EventsManagerDetailsFragment extends qA {
                             fragment.setArguments(args);
                             openFragment(fragment);
                         })
-                        .setNegativeButton("Отмена", (di, i) -> di.dismiss())
+                        .setNegativeButton(Helper.getResString(R.string.auto_events_manager_details_fragment_004), (di, i) -> di.dismiss())
                         .show();
                 return true;
             });

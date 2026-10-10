@@ -56,7 +56,7 @@ public class WidgetsCreatorManager {
     private final String widgetExportDirectoryPath = widgetResourcesDirectoryPath + "export/";
     private final ArrayList<String> allCategories = new ArrayList<>();
     private final ArrayList<String> mainCategories = new ArrayList<>(Arrays.asList(
-            "Макеты", "AndroidX", "Виджеты", "Список", "Библиотека", "Google", "Дата и время"
+            Helper.getResString(R.string.auto_widgets_creator_manager_001), "AndroidX", Helper.getResString(R.string.auto_widgets_creator_manager_002), Helper.getResString(R.string.auto_widgets_creator_manager_003), Helper.getResString(R.string.auto_widgets_creator_manager_004), "Google", Helper.getResString(R.string.auto_widgets_creator_manager_005)
     ));
     private final List<String> availableWidgetsNames = Arrays.asList(
             "BottomNavigationView", "Button", "CardView", "CheckBox", "CodeView", "EditText", "GridView",
@@ -166,7 +166,7 @@ public class WidgetsCreatorManager {
     public void showWidgetsCreatorDialog(int position) {
         boolean isEditing = position != -1;
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
-        builder.setTitle((CharSequence) (isEditing ? Helper.getResString(R.string.widget_editor) : Helper.getResString(R.string.create_new_widget)));
+        builder.setTitle((CharSequence) ((CharSequence) (isEditing ? Helper.getResString(R.string.widget_editor) : Helper.getResString(R.string.create_new_widget))));
         WidgetsCreatorDialogBinding binding = WidgetsCreatorDialogBinding.inflate(LayoutInflater.from(context));
         View inflate = binding.getRoot();
 
@@ -278,7 +278,7 @@ public class WidgetsCreatorManager {
                 FilePickerOptions options = new FilePickerOptions();
                 options.setMultipleSelection(true);
                 options.setExtensions(new String[]{"json"});
-                options.setTitle("Выберите файлы виджетов .json");
+                options.setTitle(Helper.getResString(R.string.auto_widgets_creator_manager_006));
 
                 FilePickerCallback callback = new FilePickerCallback() {
                     @Override

@@ -1,5 +1,8 @@
 package mod.jbk.util;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.content.Context;
 
 import com.google.gson.Gson;
@@ -348,13 +351,13 @@ public final class BlockTemplatesManager {
     public static String getCategoryTitle(String category) {
         if (category == null) return "";
         switch (category) {
-            case "dialog": return "📦 Диалоги";
-            case "ui": return "🎨 Интерфейс";
-            case "nav": return "🚀 Навигация";
-            case "logic": return "🔀 Логика";
-            case "lists": return "📋 Списки";
-            case "vars": return "💾 Переменные";
-            case "files": return "📁 Файлы";
+            case "dialog": return Helper.getResString(R.string.auto_block_templates_manager_001);
+            case "ui": return Helper.getResString(R.string.auto_block_templates_manager_002);
+            case "nav": return Helper.getResString(R.string.auto_block_templates_manager_003);
+            case "logic": return Helper.getResString(R.string.auto_block_templates_manager_004);
+            case "lists": return Helper.getResString(R.string.auto_block_templates_manager_005);
+            case "vars": return Helper.getResString(R.string.auto_block_templates_manager_006);
+            case "files": return Helper.getResString(R.string.auto_block_templates_manager_007);
             default: return category;
         }
     }

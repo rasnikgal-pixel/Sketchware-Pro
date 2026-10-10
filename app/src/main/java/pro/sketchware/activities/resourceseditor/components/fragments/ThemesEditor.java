@@ -124,14 +124,14 @@ public class ThemesEditor extends Fragment {
     public void showAddThemeDialog() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
         StyleEditorAddBinding binding = StyleEditorAddBinding.inflate(getLayoutInflater());
-        dialog.setTitle("Создать новую тему");
-        dialog.setPositiveButton("Создать", (d, which) -> {
+        dialog.setTitle(Helper.getResString(R.string.auto_themes_editor_001));
+        dialog.setPositiveButton(Helper.getResString(R.string.auto_themes_editor_002), (d, which) -> {
             String themeName = Objects.requireNonNull(binding.styleName.getText()).toString();
             String parent = Objects.requireNonNull(binding.styleParent.getText()).toString();
             String header = Objects.requireNonNull(binding.styleHeaderInput.getText()).toString();
 
             if (themeName.isEmpty()) {
-                SketchwareUtil.toastError("Имя темы не введено");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_themes_editor_003));
                 return;
             }
 
@@ -161,14 +161,14 @@ public class ThemesEditor extends Fragment {
             binding.styleHeaderInput.setText(notesMap.get(position));
         }
 
-        dialog.setTitle("Редактировать тему");
+        dialog.setTitle(Helper.getResString(R.string.auto_themes_editor_004));
         dialog.setPositiveButton("Edit", (d, which) -> {
             String themeName = Objects.requireNonNull(binding.styleName.getText()).toString();
             String parent = Objects.requireNonNull(binding.styleParent.getText()).toString();
             String header = Objects.requireNonNull(binding.styleHeaderInput.getText()).toString();
 
             if (themeName.isEmpty()) {
-                SketchwareUtil.toastError("Имя темы не введено");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_themes_editor_005));
                 return;
             }
 
@@ -194,7 +194,7 @@ public class ThemesEditor extends Fragment {
                     updateNoContentLayout();
                     hasUnsavedChanges = true;
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_themes_editor_006), null)
                 .show());
         dialog.setNegativeButton(getString(R.string.cancel), null);
         dialog.setView(binding.getRoot());
@@ -229,7 +229,7 @@ public class ThemesEditor extends Fragment {
                                     attributesAdapter.submitList(new ArrayList<>(attributes.keySet()));
                                     hasUnsavedChanges = true;
                                 })
-                                .setNegativeButton("Отмена", null)
+                                .setNegativeButton(Helper.getResString(R.string.auto_themes_editor_007), null)
                                 .create()
                                 .show();
                     }
@@ -259,14 +259,14 @@ public class ThemesEditor extends Fragment {
             binding.attrValue.setText(theme.getAttribute(attr));
         }
 
-        dialog.setTitle(isEditing ? "Изменить атрибут" : "Создать новый атрибут");
+        dialog.setTitle((CharSequence) (isEditing ? Helper.getResString(R.string.auto_themes_editor_008) : Helper.getResString(R.string.auto_themes_editor_009)));
 
         dialog.setPositiveButton(Helper.getResString(R.string.common_word_save), (d, which) -> {
             String attribute = Objects.requireNonNull(binding.attrName.getText()).toString();
             String value = Objects.requireNonNull(binding.attrValue.getText()).toString();
 
             if (attribute.isEmpty() || value.isEmpty()) {
-                SketchwareUtil.toastError("Заполните все поля");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_themes_editor_010));
                 return;
             }
 

@@ -1,5 +1,8 @@
 package mod.jbk.util;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import com.besome.sketch.beans.BlockBean;
 
 import java.util.ArrayList;
@@ -109,7 +112,7 @@ public final class BlockLogicChecker {
                         Severity.WARNING,
                         ids.isEmpty() ? null : ids.get(0),
                         null,
-                        "Дубликат блока"));
+                        Helper.getResString(R.string.auto_block_logic_checker_001)));
             }
         }
 
@@ -148,12 +151,12 @@ public final class BlockLogicChecker {
             if (!containsBreak(b.subStack1, byIntId, new HashSet<>())) {
                 issues.add(new Issue(
                         "forever",
-                        "Бесконечный цикл forever без break — нет выхода",
+                        Helper.getResString(R.string.auto_block_logic_checker_002),
                         new ArrayList<>(),
                         Severity.WARNING,
                         b.id,
                         null,
-                        "Цикл без выхода"));
+                        Helper.getResString(R.string.auto_block_logic_checker_003)));
             }
         }
     }
@@ -286,12 +289,12 @@ public final class BlockLogicChecker {
             if (visited.contains(b.id)) continue;
             issues.add(new Issue(
                     b.opCode,
-                    "Блок " + b.opCode + " не подключён к событию (висит отдельно)",
+                    "Блок " + b.opCode + Helper.getResString(R.string.auto_block_logic_checker_004),
                     new ArrayList<>(),
                     Severity.WARNING,
                     b.id,
                     null,
-                    "Недостижимый блок"));
+                    Helper.getResString(R.string.auto_block_logic_checker_005)));
         }
     }
 
@@ -339,7 +342,7 @@ public final class BlockLogicChecker {
             if (condition == null || condition.trim().isEmpty()) {
                 issues.add(new Issue(
                         op,
-                        "Пустое условие в блоке " + op + " — может привести к зависанию",
+                        "Пустое условие в блоке " + op + Helper.getResString(R.string.auto_block_logic_checker_006),
                         new ArrayList<>(),
                         Severity.CRITICAL,
                         b.id,
@@ -389,44 +392,44 @@ public final class BlockLogicChecker {
         // Rule: dialogSetTitle / dialogSetMessage without dialogShow
         if (hasSetTitle && !hasShow) {
             issues.add(new Issue("dialogSetTitle",
-                    "dialogSetTitle без dialogShow — диалог не будет показан",
+                    Helper.getResString(R.string.auto_block_logic_checker_007),
                     new ArrayList<>(),
                     Severity.WARNING,
                     null,
                     null,
-                    "dialogSetTitle вне dialogShow"));
+                    Helper.getResString(R.string.auto_block_logic_checker_008)));
         }
         if (hasSetMessage && !hasShow) {
             issues.add(new Issue("dialogSetMessage",
-                    "dialogSetMessage без dialogShow — диалог не будет показан",
+                    Helper.getResString(R.string.auto_block_logic_checker_009),
                     new ArrayList<>(),
                     Severity.WARNING,
                     null,
                     null,
-                    "dialogSetMessage вне dialogShow"));
+                    Helper.getResString(R.string.auto_block_logic_checker_010)));
         }
 
         // Rule: dialogDismiss without dialogShow
         if (hasDismiss && !hasShow) {
             issues.add(new Issue("dialogDismiss",
-                    "dialogDismiss без dialogShow — диалог не показан, dismiss бесполезен",
+                    Helper.getResString(R.string.auto_block_logic_checker_011),
                     new ArrayList<>(),
                     Severity.WARNING,
                     null,
                     null,
-                    "dialogDismiss без показа"));
+                    Helper.getResString(R.string.auto_block_logic_checker_012)));
         }
 
         // Rule: dialogDismiss placed before dialogShow
         if (hasShow && hasDismiss && firstDismissIndex >= 0 && firstShowIndex >= 0
                 && firstDismissIndex < firstShowIndex) {
             issues.add(new Issue("dialogDismiss",
-                    "dialogDismiss стоит до dialogShow — dismiss сработает раньше показа",
+                    Helper.getResString(R.string.auto_block_logic_checker_013),
                     dismissIdsBeforeShow,
                     Severity.WARNING,
                     dismissIdsBeforeShow.isEmpty() ? null : dismissIdsBeforeShow.get(0),
                     null,
-                    "Порядок блоков диалога"));
+                    Helper.getResString(R.string.auto_block_logic_checker_014)));
         }
     }
 

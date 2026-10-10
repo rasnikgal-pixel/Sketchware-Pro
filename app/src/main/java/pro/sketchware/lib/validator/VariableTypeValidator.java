@@ -1,5 +1,8 @@
 package pro.sketchware.lib.validator;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -26,33 +29,33 @@ public class VariableTypeValidator extends MB {
         String reconsInput = String.join(" ", words);
 
         if (!variableType.equals(reconsInput)) {
-            b.setError("Дополнительные пробелы между словами или в конце не допускаются.");
+            b.setError(Helper.getResString(R.string.auto_variable_type_validator_001));
             d = false;
             return;
         }
 
         if (!TextUtils.isEmpty(charSequence)) {
             if (!Character.isLetter(charSequence.charAt(0))) {
-                b.setError("Тип данных переменной должен начинаться с буквы");
+                b.setError(Helper.getResString(R.string.auto_variable_type_validator_002));
                 d = false;
                 return;
             }
         }
 
         if (!isValidAngleBracket(variableType)) {
-            b.setError("Угловая скобка не закрыта");
+            b.setError(Helper.getResString(R.string.auto_variable_type_validator_003));
             d = false;
             return;
         }
 
         if (!isValidBoxBracket(variableType)) {
-            b.setError("Квадратная скобка не закрыта");
+            b.setError(Helper.getResString(R.string.auto_variable_type_validator_004));
             d = false;
             return;
         }
 
         if (!PATTERN_TYPE.matcher(variableType).matches()) {
-            b.setError("Неверный тип данных переменной");
+            b.setError(Helper.getResString(R.string.auto_variable_type_validator_005));
             d = false;
             return;
         }

@@ -122,9 +122,9 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setView(dialogBinding.getRoot())
                 .setTitle(R.string.assets_manager_add_new)
-                .setMessage("Если вы создаёте файл, обязательно добавьте расширение.")
-                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setPositiveButton("Создать", null)
+                .setMessage(Helper.getResString(R.string.auto_manage_assets_activity_001))
+                .setNegativeButton(Helper.getResString(R.string.auto_manage_assets_activity_002), (dialogInterface, i) -> dialogInterface.dismiss())
+                .setPositiveButton(Helper.getResString(R.string.auto_manage_assets_activity_003), null)
                 .create();
 
         dialog.setOnShowListener(dialogInterface -> {
@@ -143,12 +143,12 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                 } else if (checkedChipId == R.id.chip_folder) {
                     FileUtil.makeDir(new File(current_path, editable).getAbsolutePath());
                 } else {
-                    SketchwareUtil.toast("Выберите тип файла");
+                    SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_assets_activity_004));
                     return;
                 }
 
                 refresh();
-                SketchwareUtil.toast("Файл успешно создан");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_assets_activity_005));
                 dialogInterface.dismiss();
             });
         });
@@ -167,7 +167,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
         FilePickerOptions options = new FilePickerOptions();
         options.setSelectionMode(SelectionMode.BOTH);
         options.setMultipleSelection(true);
-        options.setTitle("Выберите файл ресурса");
+        options.setTitle(Helper.getResString(R.string.auto_manage_assets_activity_006));
 
         FilePickerCallback callback = new FilePickerCallback() {
             @Override
@@ -194,12 +194,12 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
         var dialog = new MaterialAlertDialogBuilder(this)
                 .setTitle("Rename " + assetsAdapter.getFileName(position))
                 .setView(dialogBinding.getRoot())
-                .setNegativeButton("Отмена", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton(Helper.getResString(R.string.auto_manage_assets_activity_007), (dialogInterface, i) -> dialogInterface.dismiss())
                 .setPositiveButton("Rename", (dialogInterface, i) -> {
                     if (!Helper.getText(inputText).isEmpty()) {
                         FileUtil.renameFile(assetsAdapter.getItem(position), new File(current_path, Helper.getText(inputText)).getAbsolutePath());
                         refresh();
-                        SketchwareUtil.toast("Успешно переименовано");
+                        SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_assets_activity_008));
                     }
                     dialogInterface.dismiss();
                 })
@@ -221,7 +221,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
                 .setPositiveButton(R.string.common_word_delete, (dialog, which) -> {
                     FileUtil.deleteFile(assetsAdapter.getItem(position));
                     refresh();
-                    SketchwareUtil.toast("Успешно удалено");
+                    SketchwareUtil.toast(Helper.getResString(R.string.auto_manage_assets_activity_009));
                 })
                 .setNegativeButton(R.string.common_word_cancel, null)
                 .create()

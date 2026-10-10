@@ -1,5 +1,8 @@
 package pro.sketchware.palette;
 
+
+import mod.hey.studios.util.Helper;
+import pro.sketchware.R;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -53,18 +56,18 @@ public final class WidgetTabsSettings {
 
     /** Список категорий, которые можно настраивать. */
     public static final String[] CATEGORIES = {
-        "Макеты",
+        Helper.getResString(R.string.auto_widget_tabs_settings_001),
         "AndroidX",
-        "Виджеты",
-        "Списки",
-        "Библиотеки",
+        Helper.getResString(R.string.auto_widget_tabs_settings_002),
+        Helper.getResString(R.string.auto_widget_tabs_settings_003),
+        Helper.getResString(R.string.auto_widget_tabs_settings_004),
         "Google",
-        "Дата и время"
+        Helper.getResString(R.string.auto_widget_tabs_settings_005)
     };
 
     /** Категории, которые нельзя скрыть полностью (только свернуть). */
     public static final String[] ALWAYS_VISIBLE = {
-        "Макеты",
-        "Виджеты"
+        Helper.getResString(R.string.auto_widget_tabs_settings_006),
+        Helper.getResString(R.string.auto_widget_tabs_settings_007)
     };
 }

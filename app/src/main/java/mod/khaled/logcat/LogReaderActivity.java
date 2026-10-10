@@ -127,11 +127,11 @@ public class LogReaderActivity extends BaseAppCompatActivity {
         dialogBinding.imgDelete.setVisibility(View.GONE);
 
         var builder = new MaterialAlertDialogBuilder(this)
-                .setTitle("Фильтр по имени пакета")
-                .setMessage("Для нескольких имён пакетов разделяйте их запятой (,).")
+                .setTitle(Helper.getResString(R.string.auto_log_reader_activity_001))
+                .setMessage(Helper.getResString(R.string.auto_log_reader_activity_002))
                 .setIcon(R.drawable.ic_mtrl_filter)
                 .setView(view)
-                .setPositiveButton("Применить", (dialog, which) -> {
+                .setPositiveButton(Helper.getResString(R.string.auto_log_reader_activity_003), (dialog, which) -> {
                     pkgFilter = Helper.getText(dialogBinding.easyEdInput);
                     pkgFilterList = new ArrayList<>(Arrays.asList(pkgFilter.split(",")));
                     binding.searchInput.setText(Helper.getText(binding.searchInput));
@@ -141,7 +141,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
                     pkgFilterList.clear();
                     dialogBinding.easyEdInput.setText("");
                 })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_log_reader_activity_004), null)
                 .create();
 
         builder.show();
@@ -154,7 +154,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
 
     private void exportLogcat(ArrayList<HashMap<String, Object>> logs) {
         if (logs.isEmpty()) {
-            SketchwareUtil.toastError("Нечего экспортировать");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_log_reader_activity_005));
             return;
         }
         try {
@@ -192,7 +192,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
             FileUtil.writeFile(filePath, contentBuilder.toString());
             SketchwareUtil.toast("Logcat exported successfully: " + filePath);
         } catch (Exception ex) {
-            SketchwareUtil.toastError("Что-то пошло не так!");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_log_reader_activity_006));
         }
     }
 
@@ -348,7 +348,7 @@ public class LogReaderActivity extends BaseAppCompatActivity {
                 binding.dateHeader.setVisibility(View.GONE);
             }
             binding.getRoot().setOnLongClickListener(v -> {
-                SketchwareUtil.toast("Скопировано в буфер обмена");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_log_reader_activity_007));
                 ((ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("clipboard", data.get(position).get("logRaw").toString()));
                 return true;
             });

@@ -148,9 +148,9 @@ public class EventsManagerFragment extends qA {
         }
 
         var dialog = new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(existingListener == null ? "Новое событие" : "Редактировать событие")
+                .setTitle(existingListener == (CharSequence) (null ? Helper.getResString(R.string.auto_events_manager_fragment_001) : Helper.getResString(R.string.auto_events_manager_fragment_002)))
                 .setView(listenerBinding.getRoot())
-                .setPositiveButton("Сохранить", (di, i) -> {
+                .setPositiveButton(Helper.getResString(R.string.auto_events_manager_fragment_003), (di, i) -> {
                     String listenerName = Helper.getText(listenerBinding.listenerName);
                     if (!listenerName.isEmpty()) {
                         HashMap<String, Object> hashMap = existingListener != null ? existingListener : new HashMap<>();
@@ -168,10 +168,10 @@ public class EventsManagerFragment extends qA {
                         addListenerItem();
                         di.dismiss();
                     } else {
-                        SketchwareUtil.toastError("Недопустимое имя!");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_events_manager_fragment_004));
                     }
                 })
-                .setNegativeButton("Отмена", (di, i) -> di.dismiss()).create();
+                .setNegativeButton(Helper.getResString(R.string.auto_events_manager_fragment_005), (di, i) -> di.dismiss()).create();
         dialog.show();
     }
 
@@ -187,16 +187,16 @@ public class EventsManagerFragment extends qA {
 
     private void showImportEventsDialog() {
         FilePickerOptions options = new FilePickerOptions();
-        options.setTitle("Выберите файл .txt");
+        options.setTitle(Helper.getResString(R.string.auto_events_manager_fragment_006));
         options.setExtensions(new String[]{"txt"});
 
         FilePickerCallback callback = new FilePickerCallback() {
             @Override
             public void onFileSelected(File file) {
                 if (FileUtil.readFile(file.getAbsolutePath()).isEmpty()) {
-                    SketchwareUtil.toastError("Выбранный файл пуст!");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_events_manager_fragment_007));
                 } else if (FileUtil.readFile(file.getAbsolutePath()).equals("[]")) {
-                    SketchwareUtil.toastError("Выбранный файл пуст!");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_events_manager_fragment_008));
                 } else {
                     try {
                         String[] split = FileUtil.readFile(file.getAbsolutePath()).split("\n");
@@ -224,7 +224,7 @@ public class EventsManagerFragment extends qA {
         listMap.addAll(data);
         FileUtil.writeFile(EventsManagerConstants.LISTENERS_FILE.getAbsolutePath(), new Gson().toJson(listMap));
         refreshList();
-        SketchwareUtil.toast("События успешно импортированы");
+        SketchwareUtil.toast(Helper.getResString(R.string.auto_events_manager_fragment_009));
     }
 
     private void exportListener(int p) {
@@ -326,8 +326,8 @@ public class EventsManagerFragment extends qA {
                                     break;
                                 case 2:
                                     new MaterialAlertDialogBuilder(context)
-                                            .setTitle("Удалить событие")
-                                            .setMessage("Вы уверены, что хотите удалить этот элемент?")
+                                            .setTitle(Helper.getResString(R.string.auto_events_manager_fragment_010))
+                                            .setMessage(Helper.getResString(R.string.auto_events_manager_fragment_011))
                                             .setPositiveButton("Yes", (di, i) -> {
                                                 deleteRelatedEvents(name);
                                                 deleteItem(position);

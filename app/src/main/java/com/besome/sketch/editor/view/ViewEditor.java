@@ -1,5 +1,7 @@
 package com.besome.sketch.editor.view;
 
+
+import mod.hey.studios.util.Helper;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -760,7 +762,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         tvToolbar.setPadding((int) (dip * 16f), 0, 0, 0);
         tvToolbar.setGravity(Gravity.CENTER_VERTICAL);
         tvToolbar.setTextSize(15f);
-        tvToolbar.setText("Панель инструментов");
+        tvToolbar.setText(Helper.getResString(R.string.auto_view_editor_001));
         tvToolbar.setTypeface(null, Typeface.BOLD);
         toolbar.addView(tvToolbar);
         shape.addView(toolbar);
@@ -1012,7 +1014,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 + "Конвертация: " + (bean.convert != null ? bean.convert : "—") + "\n"
                 + "ID превью: " + (bean.id != null ? bean.id : "—");
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
-                .setTitle("Информация о виджете")
+                .setTitle(Helper.getResString(R.string.auto_view_editor_002))
                 .setMessage(message)
                 .setPositiveButton("OK", null)
                 .show();
@@ -1021,10 +1023,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     /** Контекстное меню виджета на холсте (одиночный тап). */
     private void showWidgetContextMenu(ViewBean bean) {
         if (bean == null) return;
-        String title = (bean.id != null && !bean.id.isEmpty()) ? bean.id : "Виджет";
+        String title = (bean.id != null && !bean.id.isEmpty()) ? bean.id : Helper.getResString(R.string.auto_view_editor_003);
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
                 .setTitle(title)
-                .setItems(new String[]{"Свойства", "События", "Удалить"},
+                .setItems(new String[]{Helper.getResString(R.string.auto_view_editor_004), Helper.getResString(R.string.auto_view_editor_005), Helper.getResString(R.string.auto_view_editor_006)},
                         (d, which) -> {
                             switch (which) {
                                 case 0 -> {
@@ -1038,7 +1040,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                                 case 2 -> deleteWidget(bean);
                             }
                         })
-                .setNegativeButton("Отмена", null)
+                .setNegativeButton(Helper.getResString(R.string.auto_view_editor_007), null)
                 .show();
     }
 
@@ -1142,10 +1144,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     private void b(boolean z, boolean isCustomWidget) {
         if (isCustomWidget) {
             deleteIcon.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.ic_mtrl_edit));
-            deleteText.setText("Перетащите сюда, чтобы увидеть Actions");
+            deleteText.setText(Helper.getResString(R.string.auto_view_editor_008));
         } else if (z) {
             deleteIcon.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.ic_mtrl_delete));
-            deleteText.setText("Перетащите сюда, чтобы удалить");
+            deleteText.setText(Helper.getResString(R.string.auto_view_editor_009));
             setDeleteViewIconAndTextUi(false);
         }
         deleteView.bringToFront();

@@ -149,7 +149,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                                     MaterialAlertDialogBuilder dialog =
                                             new MaterialAlertDialogBuilder(this);
                                     dialog.setTitle(R.string.common_word_delete);
-                                    dialog.setMessage("Вы уверены, что хотите удалить этот элемент?");
+                                    dialog.setMessage(Helper.getResString(R.string.auto_manage_x_m_l_command_activity_001));
                                     dialog.setPositiveButton(
                                             R.string.common_word_yes,
                                             (d, w) -> {
@@ -187,7 +187,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
         switch (item.getItemId()) {
             case 0 -> {
                 new MaterialAlertDialogBuilder(this)
-                        .setTitle("Выберите XML")
+                        .setTitle(Helper.getResString(R.string.auto_manage_x_m_l_command_activity_002))
                         .setAdapter(
                                 new ArrayAdapter<>(
                                         this, android.R.layout.simple_list_item_1, xmlFiles),
@@ -228,7 +228,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                     }
                 });
         dialog.show();
-        binding.title.setText(!edit ? "Добавить новую команду" : "Редактировать команду");
+        binding.title.setText(!(CharSequence) (edit ? Helper.getResString(R.string.auto_manage_x_m_l_command_activity_003) : Helper.getResString(R.string.auto_manage_x_m_l_command_activity_004)));
 
         if (edit) {
             var command = commands.get(position);
@@ -260,11 +260,11 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                     var reference = Helper.getText(binding.reference);
                     var command = Helper.getText(binding.command);
                     if (TextUtils.isEmpty(xmlName)) {
-                        SketchwareUtil.toastError("Требуется имя XML");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_x_m_l_command_activity_005));
                         return;
                     }
                     if (TextUtils.isEmpty(reference)) {
-                        SketchwareUtil.toastError("требуется ссылка");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_x_m_l_command_activity_006));
                         return;
                     }
                     HashMap<String, Object> map = new HashMap<>();
@@ -346,7 +346,7 @@ public class ManageXMLCommandActivity extends BaseAppCompatActivity {
                                         editor.setText(
                                                 !source.isEmpty()
                                                         ? source
-                                                        : "Не удалось сгенерировать исходный код.");
+                                                        : Helper.getResString(R.string.auto_manage_x_m_l_command_activity_007));
                                         editor.getComponent(Magnifier.class)
                                                 .setWithinEditorForcibly(true);
 
