@@ -2434,7 +2434,7 @@ ACTION_VIEW
     <string name="auto_concat_blocks_manager_003">[TODO] Блоки:%1$s</string>
     <string name="auto_concat_blocks_manager_002">[TODO] Блоки:%1$s</string>
     <string name="auto_concat_blocks_manager_001">[TODO] Блоки:%1$s</string>
-    <string name="auto_concat_blocks_manager_creator_activity_002">[TODO] Ошибка: за '%m' должно следовать '.param' на позиции%1$s</string>
+    <string name="auto_concat_blocks_manager_creator_activity_002">[TODO] Error: \%m must be followed by .param at position %1$s</string>
     <string name="auto_concat_blocks_manager_creator_activity_001">[TODO] Пользовательский блок #%1$s in current palette has an invalid name</string>
     <string name="auto_export_project_activity_004">[TODO] Экспорт AAB завершён</string>
     <string name="auto_manage_event_001">[TODO] при прокрутке</string>
