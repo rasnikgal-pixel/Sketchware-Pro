@@ -120,6 +120,7 @@ public class MainDrawer extends NavigationView {
                 .setTitle(R.string.settings_language_title)
                 .setSingleChoiceItems(labels, checked, (dialog, which) -> {
                     pro.sketchware.i18n.LocaleHelper.setLanguage(activity, values[which]);
+                    pro.sketchware.i18n.LocaleHelper.apply(activity);
                     dialog.dismiss();
                     android.widget.Toast.makeText(activity,
                             R.string.settings_language_restart_toast,

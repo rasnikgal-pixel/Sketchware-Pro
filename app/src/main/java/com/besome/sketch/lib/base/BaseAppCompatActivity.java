@@ -31,6 +31,12 @@ import pro.sketchware.dialogs.ProgressDialog;
 
 public abstract class BaseAppCompatActivity extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        // Применяем выбранный язык интерфейса ДО создания ресурсов Activity
+        super.attachBaseContext(pro.sketchware.i18n.LocaleHelper.wrap(newBase));
+    }
+
     public FirebaseAnalytics mAnalytics;
 
     @Deprecated
