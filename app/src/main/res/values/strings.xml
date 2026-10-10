@@ -2474,4 +2474,24 @@ ACTION_VIEW
     <string name="auto_block_logic_checker_trivial">Тривиальное условие %1$s в блоке %2$s — всегда %3$s</string>
     <string name="auto_block_logic_checker_condition">Условие %1$s в %2$s</string>
     <string name="auto_project_logic_checker_component_missing">Несуществующий компонент: %1$s (тип %2$s)</string>
+    <string name="auto_block_selector_manager_fragment_001">Выберите просмотр типов:</string>
+    <string name="auto_block_selector_manager_fragment_002">Имя селектора</string>
+    <string name="auto_block_selector_manager_fragment_003">Заголовок селектора (например: Select View:)</string>
+    <string name="auto_block_selector_manager_fragment_004">Элемент с таким именем уже существует</string>
+    <string name="auto_block_selector_manager_fragment_005">Нельзя изменить имя этого селектора</string>
+    <string name="auto_block_selector_manager_fragment_006">Новый селектор</string>
+    <string name="auto_block_selector_manager_fragment_007">Редактировать селектор</string>
+    <string name="auto_block_selector_manager_fragment_008">Создать</string>
+    <string name="auto_block_selector_manager_fragment_009">Сохранить</string>
+    <string name="auto_block_selector_manager_fragment_010">Введите имя селектора</string>
+    <string name="auto_block_selector_manager_fragment_011">Введите заголовок селектора</string>
+    <string name="auto_block_selector_manager_fragment_012">Элемент с таким именем уже существует</string>
+    <string name="auto_block_selector_manager_fragment_013">Отмена</string>
+    <string name="auto_block_selector_manager_fragment_014">Отмена</string>
+    <string name="auto_block_selector_manager_fragment_015">Выберите файл-селектор .json</string>
+    <string name="auto_block_selector_manager_fragment_016">Убедитесь, что выбрали файл, содержащий элементы селектора.</string>
+    <string name="auto_block_selector_manager_fragment_017">Убедитесь, что выбрали файл, содержащий элементы селектора.</string>
+    <string name="auto_block_selector_manager_fragment_018">Убедитесь, что выбрали файл, содержащий элемент(ы) селектора.</string>
+    <string name="auto_block_selector_manager_fragment_019">Ошибка при получении селектора</string>
+    <string name="auto_block_selector_manager_fragment_020">Ошибка при получении селекторов</string>
 </resources>

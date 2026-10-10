@@ -2474,4 +2474,24 @@ ACTION_VIEW
     <string name="auto_block_logic_checker_trivial">[TODO] Trivial condition %1$s in block %2$s — always %3$s</string>
     <string name="auto_block_logic_checker_condition">[TODO] Condition %1$s in %2$s</string>
     <string name="auto_project_logic_checker_component_missing">[TODO] Non-existent component: %1$s (type %2$s)</string>
+    <string name="auto_block_selector_manager_fragment_001">[TODO] Выберите просмотр типов:</string>
+    <string name="auto_block_selector_manager_fragment_002">[TODO] Имя селектора</string>
+    <string name="auto_block_selector_manager_fragment_003">[TODO] Заголовок селектора (например: Select View:)</string>
+    <string name="auto_block_selector_manager_fragment_004">[TODO] Элемент с таким именем уже существует</string>
+    <string name="auto_block_selector_manager_fragment_005">[TODO] Нельзя изменить имя этого селектора</string>
+    <string name="auto_block_selector_manager_fragment_006">[TODO] Новый селектор</string>
+    <string name="auto_block_selector_manager_fragment_007">[TODO] Редактировать селектор</string>
+    <string name="auto_block_selector_manager_fragment_008">[TODO] Создать</string>
+    <string name="auto_block_selector_manager_fragment_009">[TODO] Сохранить</string>
+    <string name="auto_block_selector_manager_fragment_010">[TODO] Введите имя селектора</string>
+    <string name="auto_block_selector_manager_fragment_011">[TODO] Введите заголовок селектора</string>
+    <string name="auto_block_selector_manager_fragment_012">[TODO] Элемент с таким именем уже существует</string>
+    <string name="auto_block_selector_manager_fragment_013">[TODO] Отмена</string>
+    <string name="auto_block_selector_manager_fragment_014">[TODO] Отмена</string>
+    <string name="auto_block_selector_manager_fragment_015">[TODO] Выберите файл-селектор .json</string>
+    <string name="auto_block_selector_manager_fragment_016">[TODO] Убедитесь, что выбрали файл, содержащий элементы селектора.</string>
+    <string name="auto_block_selector_manager_fragment_017">[TODO] Убедитесь, что выбрали файл, содержащий элементы селектора.</string>
+    <string name="auto_block_selector_manager_fragment_018">[TODO] Убедитесь, что выбрали файл, содержащий элемент(ы) селектора.</string>
+    <string name="auto_block_selector_manager_fragment_019">[TODO] Ошибка при получении селектора</string>
+    <string name="auto_block_selector_manager_fragment_020">[TODO] Ошибка при получении селекторов</string>
 </resources>
