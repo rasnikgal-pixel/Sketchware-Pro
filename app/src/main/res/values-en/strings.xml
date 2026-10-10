@@ -2059,4 +2059,26 @@ ACTION_VIEW
     <string name="auto_design_activity_041">[TODO] Сборка проекта</string>
     <string name="auto_design_activity_042">[TODO] Стоп</string>
     <string name="auto_design_activity_043">[TODO] Запустить</string>
+    <string name="auto_blocks_manager_details_activity_001">[TODO] Выберите JSON-файл</string>
+    <string name="auto_blocks_manager_details_activity_002">[TODO] Выбранный файл пуст!</string>
+    <string name="auto_blocks_manager_details_activity_003">[TODO] Выбранный файл пуст!</string>
+    <string name="auto_blocks_manager_details_activity_004">[TODO] Недопустимый JSON-файл</string>
+    <string name="auto_blocks_manager_details_activity_005">[TODO] Импорт</string>
+    <string name="auto_blocks_manager_details_activity_006">[TODO] Корзина</string>
+    <string name="auto_blocks_manager_details_activity_007">[TODO] Управление блоками</string>
+    <string name="auto_blocks_manager_details_activity_008">[TODO] Восстановить</string>
+    <string name="auto_blocks_manager_details_activity_009">[TODO] Удалить блок?</string>
+    <string name="auto_blocks_manager_details_activity_010">[TODO] Вы уверены, что хотите удалить этот блок?</string>
+    <string name="auto_blocks_manager_details_activity_011">[TODO] Корзина</string>
+    <string name="auto_blocks_manager_details_activity_012">[TODO] Удалить навсегда</string>
+    <string name="auto_blocks_manager_details_activity_013">[TODO] Восстановить в</string>
+    <string name="auto_blocks_manager_details_activity_014">[TODO] Восстановить</string>
+    <string name="auto_blocks_manager_details_activity_015">[TODO] Переместить в</string>
+    <string name="auto_blocks_manager_details_activity_016">[TODO] Импортировать блоки</string>
+    <string name="auto_blocks_manager_details_activity_017">[TODO] Импорт</string>
+    <string name="auto_blocks_manager_details_activity_018">[TODO] Успешно импортировано</string>
+    <string name="auto_blocks_manager_details_activity_019">[TODO] Успешно импортировано</string>
+    <string name="auto_blocks_manager_details_activity_020">[TODO] Успешно импортировано</string>
+    <string name="auto_blocks_manager_details_activity_021">[TODO] (Неверная запись имени блока)</string>
+    <string name="auto_blocks_manager_details_activity_022">[TODO] (Неверная запись spec блока)</string>
 </resources>

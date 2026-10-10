@@ -102,21 +102,21 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
     public void openFileExplorerImport() {
         FilePickerOptions options = new FilePickerOptions();
         options.setExtensions(new String[]{"json"});
-        options.setTitle("Выберите JSON-файл");
+        options.setTitle(Helper.getResString(R.string.auto_blocks_manager_details_activity_001));
 
         FilePickerCallback callback = new FilePickerCallback() {
             @Override
             public void onFileSelected(File file) {
                 if (FileUtil.readFile(file.getAbsolutePath()).isEmpty()) {
-                    SketchwareUtil.toastError("Выбранный файл пуст!");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_blocks_manager_details_activity_002));
                 } else if (FileUtil.readFile(file.getAbsolutePath()).equals("[]")) {
-                    SketchwareUtil.toastError("Выбранный файл пуст!");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_blocks_manager_details_activity_003));
                 } else {
                     try {
                         ArrayList<HashMap<String, Object>> readMap = getGson().fromJson(FileUtil.readFile(file.getAbsolutePath()), Helper.TYPE_MAP_LIST);
                         _importBlocks(readMap);
                     } catch (JsonParseException e) {
-                        SketchwareUtil.toastError("Недопустимый JSON-файл");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_blocks_manager_details_activity_004));
                     }
                 }
             }
@@ -163,7 +163,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
         if (Integer.parseInt(getIntent().getStringExtra("position")) != -1) {
             if (mode.equals("normal")) {
                 menu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Swap").setIcon(AppCompatResources.getDrawable(this, R.drawable.ic_mtrl_swap_vertical)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-                menu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Импорт");
+                menu.add(Menu.NONE, Menu.NONE, Menu.NONE, Helper.getResString(R.string.auto_blocks_manager_details_activity_005));
                 menu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Export");
             } else {
                 menu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Swap").setIcon(AppCompatResources.getDrawable(this, R.drawable.ic_mtrl_save)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -218,13 +218,13 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
         blocks_path = getIntent().getStringExtra("dirB");
         _refreshLists();
         if (palette == -1) {
-            getSupportActionBar().setTitle("Корзина");
+            getSupportActionBar().setTitle(Helper.getResString(R.string.auto_blocks_manager_details_activity_006));
             fab_button.setVisibility(View.GONE);
         } else {
             Object paletteName = pallet_list.get(palette - 9).get("name");
 
             if (paletteName instanceof String) {
-                getSupportActionBar().setTitle("Управление блоками");
+                getSupportActionBar().setTitle(Helper.getResString(R.string.auto_blocks_manager_details_activity_007));
                 getSupportActionBar().setSubtitle((String) paletteName);
             }
         }
@@ -310,7 +310,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
             PopupMenu popupMenu = new PopupMenu(this, view);
             Menu menu = popupMenu.getMenu();
             menu.add("Delete permanently");
-            menu.add("Восстановить");
+            menu.add(Helper.getResString(R.string.auto_blocks_manager_details_activity_008));
             popupMenu.setOnMenuItemClickListener(item -> {
                 switch (item.getTitle().toString()) {
                     case "Delete permanently":
@@ -361,11 +361,11 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
 
                 case "Delete":
                     new MaterialAlertDialogBuilder(this)
-                            .setTitle("Удалить блок?")
-                            .setMessage("Вы уверены, что хотите удалить этот блок?")
-                            .setPositiveButton("Корзина", (dialog, which) -> _moveToRecycleBin(position))
+                            .setTitle(Helper.getResString(R.string.auto_blocks_manager_details_activity_009))
+                            .setMessage(Helper.getResString(R.string.auto_blocks_manager_details_activity_010))
+                            .setPositiveButton(Helper.getResString(R.string.auto_blocks_manager_details_activity_011), (dialog, which) -> _moveToRecycleBin(position))
                             .setNegativeButton(R.string.common_word_cancel, null)
-                            .setNeutralButton("Удалить навсегда", (dialog, which) -> _deleteBlock(position))
+                            .setNeutralButton(Helper.getResString(R.string.auto_blocks_manager_details_activity_012), (dialog, which) -> _deleteBlock(position))
                             .show();
                     break;
 
@@ -422,9 +422,9 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                 .setNegativeButton(R.string.common_word_cancel, null);
         if (palette == -1) {
             AtomicInteger restoreToChoice = new AtomicInteger(-1);
-            builder.setTitle("Восстановить в")
+            builder.setTitle(Helper.getResString(R.string.auto_blocks_manager_details_activity_013))
                     .setSingleChoiceItems(paletteNames.toArray(new String[0]), -1, (dialog, which) -> restoreToChoice.set(which))
-                    .setPositiveButton("Восстановить", (dialog, which) -> {
+                    .setPositiveButton(Helper.getResString(R.string.auto_blocks_manager_details_activity_014), (dialog, which) -> {
                         if (restoreToChoice.get() != -1) {
                             all_blocks_list.get(position).put("palette", String.valueOf(restoreToChoice.get() + 9));
                             Collections.swap(all_blocks_list, position, all_blocks_list.size() - 1);
@@ -434,7 +434,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                     });
         } else {
             AtomicInteger moveToChoice = new AtomicInteger(palette - 9);
-            builder.setTitle("Переместить в")
+            builder.setTitle(Helper.getResString(R.string.auto_blocks_manager_details_activity_015))
                     .setSingleChoiceItems(paletteNames.toArray(new String[0]), palette - 9, (dialog, which) -> moveToChoice.set(which))
                     .setPositiveButton("Move", (dialog, which) -> {
                         all_blocks_list.get(position).put("palette", String.valueOf(moveToChoice.get() + 9));
@@ -460,7 +460,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                 }
             }
             MaterialAlertDialogBuilder import_dialog = new MaterialAlertDialogBuilder(this);
-            import_dialog.setTitle("Импортировать блоки")
+            import_dialog.setTitle(Helper.getResString(R.string.auto_blocks_manager_details_activity_016))
                     .setMultiChoiceItems(names.toArray(new CharSequence[0]), null, (dialog, which, isChecked) -> {
                         if (isChecked) {
                             toAdd.add(which);
@@ -468,7 +468,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                             toAdd.remove((Integer) which);
                         }
                     })
-                    .setPositiveButton("Импорт", (dialog, which) -> {
+                    .setPositiveButton(Helper.getResString(R.string.auto_blocks_manager_details_activity_017), (dialog, which) -> {
                         for (int i = 0; i < blocks.size(); i++) {
                             if (toAdd.contains(i)) {
                                 HashMap<String, Object> map = blocks.get(i);
@@ -478,7 +478,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         }
                         FileUtil.writeFile(blocks_path, getGson().toJson(all_blocks_list));
                         _refreshLists();
-                        SketchwareUtil.toast("Успешно импортировано");
+                        SketchwareUtil.toast(Helper.getResString(R.string.auto_blocks_manager_details_activity_018));
                     })
                     .setNegativeButton("Reverse", (dialog, which) -> {
                         for (int i = 0; i < blocks.size(); i++) {
@@ -490,7 +490,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         }
                         FileUtil.writeFile(blocks_path, getGson().toJson(all_blocks_list));
                         _refreshLists();
-                        SketchwareUtil.toast("Успешно импортировано");
+                        SketchwareUtil.toast(Helper.getResString(R.string.auto_blocks_manager_details_activity_019));
                     })
                     .setNeutralButton("All", (dialog, which) -> {
                         for (int i = 0; i < blocks.size(); i++) {
@@ -500,7 +500,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         }
                         FileUtil.writeFile(blocks_path, getGson().toJson(all_blocks_list));
                         _refreshLists();
-                        SketchwareUtil.toast("Успешно импортировано");
+                        SketchwareUtil.toast(Helper.getResString(R.string.auto_blocks_manager_details_activity_020));
                     })
                     .show();
         } catch (Exception e) {
@@ -569,7 +569,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                 spec.setHint("");
             } else {
                 name.setText("");
-                name.setHint("(Неверная запись имени блока)");
+                name.setHint(Helper.getResString(R.string.auto_blocks_manager_details_activity_021));
             }
 
             Object blockSpec = block.get("spec");
@@ -578,7 +578,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                 spec.setHint("");
             } else {
                 spec.setText("");
-                spec.setHint("(Неверная запись spec блока)");
+                spec.setHint(Helper.getResString(R.string.auto_blocks_manager_details_activity_022));
             }
 
             Object blockType = block.get("type");

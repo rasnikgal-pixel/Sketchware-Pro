@@ -2059,4 +2059,26 @@ ACTION_VIEW
     <string name="auto_design_activity_041">Сборка проекта</string>
     <string name="auto_design_activity_042">Стоп</string>
     <string name="auto_design_activity_043">Запустить</string>
+    <string name="auto_blocks_manager_details_activity_001">Выберите JSON-файл</string>
+    <string name="auto_blocks_manager_details_activity_002">Выбранный файл пуст!</string>
+    <string name="auto_blocks_manager_details_activity_003">Выбранный файл пуст!</string>
+    <string name="auto_blocks_manager_details_activity_004">Недопустимый JSON-файл</string>
+    <string name="auto_blocks_manager_details_activity_005">Импорт</string>
+    <string name="auto_blocks_manager_details_activity_006">Корзина</string>
+    <string name="auto_blocks_manager_details_activity_007">Управление блоками</string>
+    <string name="auto_blocks_manager_details_activity_008">Восстановить</string>
+    <string name="auto_blocks_manager_details_activity_009">Удалить блок?</string>
+    <string name="auto_blocks_manager_details_activity_010">Вы уверены, что хотите удалить этот блок?</string>
+    <string name="auto_blocks_manager_details_activity_011">Корзина</string>
+    <string name="auto_blocks_manager_details_activity_012">Удалить навсегда</string>
+    <string name="auto_blocks_manager_details_activity_013">Восстановить в</string>
+    <string name="auto_blocks_manager_details_activity_014">Восстановить</string>
+    <string name="auto_blocks_manager_details_activity_015">Переместить в</string>
+    <string name="auto_blocks_manager_details_activity_016">Импортировать блоки</string>
+    <string name="auto_blocks_manager_details_activity_017">Импорт</string>
+    <string name="auto_blocks_manager_details_activity_018">Успешно импортировано</string>
+    <string name="auto_blocks_manager_details_activity_019">Успешно импортировано</string>
+    <string name="auto_blocks_manager_details_activity_020">Успешно импортировано</string>
+    <string name="auto_blocks_manager_details_activity_021">(Неверная запись имени блока)</string>
+    <string name="auto_blocks_manager_details_activity_022">(Неверная запись spec блока)</string>
 </resources>
