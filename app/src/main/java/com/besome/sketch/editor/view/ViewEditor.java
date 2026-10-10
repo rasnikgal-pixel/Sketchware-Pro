@@ -146,6 +146,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     private int colorCoolGreen;
     private int colorError;
     private final Runnable longPressRunnable = this::e;
+    /** Время последнего тапа по иконке палитры (для различения одиночного и двойного). */
+    private long lastPaletteTapTime = 0L;
+    /** Отложенное действие одиночного тапа по иконке палитры. */
+    private Runnable pendingPaletteSingleTap = null;
     private int colorErrorContainer;
 
     public ViewEditor(Context context) {
@@ -456,6 +460,28 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 return true;
             }
         } else if (!isDragged) {
+            // Одиночный / двойной тап по иконке палитры
+            if (currentTouchedView instanceof IconBase) {
+                View touched = currentTouchedView;
+                long nowP = System.currentTimeMillis();
+                if (nowP - lastPaletteTapTime < 300L) {
+                    handler.removeCallbacks(pendingPaletteSingleTap);
+                    lastPaletteTapTime = 0L;
+                    performGestureAction(touched,
+                            pro.sketchware.settings.DesignerSettingsStore
+                                    .getPaletteDoubleTapAction(getContext()));
+                } else {
+                    lastPaletteTapTime = nowP;
+                    pendingPaletteSingleTap = () -> performGestureAction(touched,
+                            pro.sketchware.settings.DesignerSettingsStore
+                                    .getPaletteSingleTapAction(getContext()));
+                    handler.postDelayed(pendingPaletteSingleTap, 300L);
+                }
+                currentTouchedView = null;
+                handler.removeCallbacks(longPressRunnable);
+                isDragged = false;
+                return true;
+            }
             if (currentTouchedView instanceof ItemView sy) {
                 long now = System.currentTimeMillis();
                 float tapX = motionEvent.getRawX();
@@ -848,6 +874,15 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 return;
             }
         }
+        // Если долгий тап настроен не на drag — выполняем действие и выходим
+        if (isViewAnIconBase(currentTouchedView)) {
+            String longAction = pro.sketchware.settings.DesignerSettingsStore
+                    .getPaletteLongTapAction(getContext());
+            if (!"drag".equals(longAction)) {
+                performGestureAction(currentTouchedView, longAction);
+                return;
+            }
+        }
         paletteWidget.setScrollEnabled(false);
         paletteFavorite.setScrollEnabled(false);
         if (draggingListener != null) draggingListener.b();
@@ -896,6 +931,64 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
             return textView.getText().toString();
         }
         return null;
+    }
+
+    /** Выполнить действие жеста, выбранное в настройках дизайнера. */
+    private void performGestureAction(View touchedView, String action) {
+        if (action == null || "nothing".equals(action)) return;
+        if (!(touchedView instanceof IconBase icon)) return;
+        ViewBean bean = icon.getBean();
+        if (bean == null) return;
+
+        switch (action) {
+            case "tooltip" -> {
+                String tip = getWidgetDisplayName(touchedView);
+                if (tip != null && !tip.isEmpty()) {
+                    android.widget.Toast.makeText(getContext(), tip,
+                            android.widget.Toast.LENGTH_SHORT).show();
+                }
+            }
+            case "designer_settings" -> openDesignerSettings();
+            case "help" -> {
+                String anchor = com.besome.sketch.help.WidgetHelpMapper.getAnchor(bean.type);
+                if (anchor != null) {
+                    com.besome.sketch.help.HelpOpener.open(getContext(), anchor);
+                }
+            }
+            case "info" -> showWidgetInfoDialog(bean, icon.getName());
+            case "add_center", "drag" -> addWidgetFromIcon(icon, true);
+            case "add_corner" -> addWidgetFromIcon(icon, false);
+        }
+    }
+
+    /** Добавить виджет из палитры в центр холста или в левый верхний угол. */
+    private void addWidgetFromIcon(IconBase icon, boolean center) {
+        ViewBean bean = icon.getBean();
+        if (bean == null) return;
+        bean.id = generateWidgetId(bean);
+        int x = center ? viewPane.getWidth() / 2 : (int) pro.sketchware.utility.SketchwareUtil.dpToPx(20);
+        int y = center ? viewPane.getHeight() / 2 : (int) pro.sketchware.utility.SketchwareUtil.dpToPx(20);
+        viewPane.updateViewBeanProperties(bean, x, y);
+        jC.a(a).a(b, bean);
+        if (bean.type == 3 && projectFileBean.fileType == ProjectFileBean.PROJECT_FILE_TYPE_ACTIVITY) {
+            jC.a(a).a(projectFileBean.getJavaName(), 1, bean.type, bean.id, "onClick");
+        }
+        ItemView added = a(bean, true);
+        a(added, true);
+    }
+
+    /** Диалог с информацией о виджете. */
+    private void showWidgetInfoDialog(ViewBean bean, String name) {
+        String displayName = (name != null && !name.isEmpty()) ? name : "?";
+        String message = "Имя: " + displayName + "\n"
+                + "Тип: " + bean.type + "\n"
+                + "Конвертация: " + (bean.convert != null ? bean.convert : "—") + "\n"
+                + "ID превью: " + (bean.id != null ? bean.id : "—");
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
+                .setTitle("Информация о виджете")
+                .setMessage(message)
+                .setPositiveButton("OK", null)
+                .show();
     }
 
     public ItemView b(ViewBean viewBean, boolean z) {
