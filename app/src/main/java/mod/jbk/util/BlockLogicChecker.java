@@ -107,7 +107,7 @@ public final class BlockLogicChecker {
             if (ids.size() > 1) {
                 List<String> duplicatesToDelete = new ArrayList<>(ids.subList(1, ids.size()));
                 issues.add(new Issue(e.getKey(),
-                        "Дубликат: " + e.getKey() + " × " + ids.size(),
+                        Helper.getResString(R.string.auto_blc_duplicate, e.getKey(), ids.size()),
                         duplicatesToDelete,
                         Severity.WARNING,
                         ids.isEmpty() ? null : ids.get(0),
@@ -207,24 +207,24 @@ public final class BlockLogicChecker {
             if (b.parameters == null || b.parameters.isEmpty()) {
                 issues.add(new Issue(
                         b.opCode,
-                        "Пустой обязательный параметр в блоке " + b.opCode,
+                        Helper.getResString(R.string.auto_blc_empty_required_block, b.opCode),
                         new ArrayList<>(),
                         Severity.WARNING,
                         b.id,
                         null,
-                        "Пустой параметр в " + b.opCode));
+                        Helper.getResString(R.string.auto_blc_empty_param, b.opCode)));
                 continue;
             }
             String first = b.parameters.get(0);
             if (first == null || first.trim().isEmpty()) {
                 issues.add(new Issue(
                         b.opCode,
-                        "Пустой обязательный параметр в блоке " + b.opCode,
+                        Helper.getResString(R.string.auto_blc_empty_required_block, b.opCode),
                         new ArrayList<>(),
                         Severity.WARNING,
                         b.id,
                         null,
-                        "Пустой параметр в " + b.opCode));
+                        Helper.getResString(R.string.auto_blc_empty_param, b.opCode)));
             }
         }
     }
@@ -289,7 +289,7 @@ public final class BlockLogicChecker {
             if (visited.contains(b.id)) continue;
             issues.add(new Issue(
                     b.opCode,
-                    "Блок " + b.opCode + Helper.getResString(R.string.auto_block_logic_checker_004),
+                    Helper.getResString(R.string.auto_blc_block_prefix, b.opCode) + Helper.getResString(R.string.auto_block_logic_checker_004),
                     new ArrayList<>(),
                     Severity.WARNING,
                     b.id,
@@ -342,12 +342,12 @@ public final class BlockLogicChecker {
             if (condition == null || condition.trim().isEmpty()) {
                 issues.add(new Issue(
                         op,
-                        "Пустое условие в блоке " + op + Helper.getResString(R.string.auto_block_logic_checker_006),
+                        Helper.getResString(R.string.auto_blc_empty_condition_block, op) + Helper.getResString(R.string.auto_block_logic_checker_006),
                         new ArrayList<>(),
                         Severity.CRITICAL,
                         b.id,
                         null,
-                        "Пустое условие в " + op));
+                        Helper.getResString(R.string.auto_blc_empty_condition, op)));
             }
         }
     }

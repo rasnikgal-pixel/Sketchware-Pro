@@ -2494,4 +2494,10 @@ ACTION_VIEW
     <string name="auto_block_selector_manager_fragment_018">[TODO] Убедитесь, что выбрали файл, содержащий элемент(ы) селектора.</string>
     <string name="auto_block_selector_manager_fragment_019">[TODO] Ошибка при получении селектора</string>
     <string name="auto_block_selector_manager_fragment_020">[TODO] Ошибка при получении селекторов</string>
+    <string name="auto_blc_duplicate">[TODO] Duplicate: %1$s × %2$s</string>
+    <string name="auto_blc_empty_required_block">[TODO] Empty required parameter in block %1$s</string>
+    <string name="auto_blc_empty_param">[TODO] Empty parameter in %1$s</string>
+    <string name="auto_blc_block_prefix">[TODO] Block %1$s</string>
+    <string name="auto_blc_empty_condition_block">[TODO] Empty condition in block %1$s</string>
+    <string name="auto_blc_empty_condition">[TODO] Empty condition in %1$s</string>
 </resources>
