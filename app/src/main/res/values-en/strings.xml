@@ -2522,4 +2522,11 @@ ACTION_VIEW
     <string name="auto_variable_modifier_invalid">[TODO] Invalid modifier: %1$s</string>
     <string name="auto_variable_modifier_duplicate">[TODO] Duplicate modifier: %1$s</string>
     <string name="auto_sketchware_util_failed_to_get">[TODO] Failed to get %1$s</string>
+    <string name="auto_manage_resource_enter_name">[TODO] Enter a name for the new %1$s</string>
+    <string name="auto_manage_resource_delete_confirm">[TODO] Are you sure you want to delete this %1$s? This action cannot be undone.</string>
+    <string name="auto_manage_assets_delete_confirm">[TODO] Are you sure you want to delete this %1$s? This action cannot be undone.</string>
+    <string name="auto_manage_java_rename_occurrences">[TODO] Rename occurrences of "%1$s" in file</string>
+    <string name="auto_manage_java_delete_confirm">[TODO] Are you sure you want to delete this %1$s? </string>
+    <string name="auto_manage_java_delete_manifest_warning">[TODO] This will also remove it from AndroidManifest. </string>
+    <string name="auto_manage_java_delete_suffix">[TODO] This action cannot be undone.</string>
 </resources>

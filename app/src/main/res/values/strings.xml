@@ -2522,4 +2522,11 @@ ACTION_VIEW
     <string name="auto_variable_modifier_invalid">Неверный модификатор: %1$s</string>
     <string name="auto_variable_modifier_duplicate">Дублирующийся модификатор: %1$s</string>
     <string name="auto_sketchware_util_failed_to_get">Не удалось получить %1$s</string>
+    <string name="auto_manage_resource_enter_name">Введите имя для нового %1$s</string>
+    <string name="auto_manage_resource_delete_confirm">Вы уверены, что хотите удалить этот %1$s? Это нельзя отменить.</string>
+    <string name="auto_manage_assets_delete_confirm">Вы уверены, что хотите удалить этот %1$s? Это нельзя отменить.</string>
+    <string name="auto_manage_java_rename_occurrences">Переименовать вхождения "%1$s" в файле</string>
+    <string name="auto_manage_java_delete_confirm">Вы уверены, что хотите удалить этот %1$s? </string>
+    <string name="auto_manage_java_delete_manifest_warning">Это также удалит его из AndroidManifest. </string>
+    <string name="auto_manage_java_delete_suffix">Это нельзя отменить.</string>
 </resources>

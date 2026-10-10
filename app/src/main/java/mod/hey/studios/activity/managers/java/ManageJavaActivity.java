@@ -321,7 +321,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
 
         if (!isFolder) {
             renameOccurrencesCheckBox.setVisibility(View.VISIBLE);
-            renameOccurrencesCheckBox.setText("Переименовать вхождения \"" + filesAdapter.getFileNameWoExt(position) + "\" in file");
+            renameOccurrencesCheckBox.setText(Helper.getResString(R.string.auto_manage_java_rename_occurrences, filesAdapter.getFileNameWoExt(position)));
         }
         dialog.show();
 
@@ -332,7 +332,7 @@ public class ManageJavaActivity extends BaseAppCompatActivity {
     private void showDeleteDialog(int position) {
         boolean isInManifest = frc.getJavaManifestList().contains(filesAdapter.getFullName(position));
 
-        new MaterialAlertDialogBuilder(this).setTitle("Delete " + filesAdapter.getFileName(position) + "?").setMessage("Вы уверены, что хотите удалить этот" + (filesAdapter.isFolder(position) ? "folder" : "file") + "? " + (isInManifest ? "This will also remove it from AndroidManifest. " : "") + "This action cannot be undone.").setPositiveButton(R.string.common_word_delete, (dialog, which) -> {
+        new MaterialAlertDialogBuilder(this).setTitle("Delete " + filesAdapter.getFileName(position) + "?").setMessage(Helper.getResString(R.string.auto_manage_java_delete_confirm, filesAdapter.isFolder(position) ? "folder" : "file") + (isInManifest ? Helper.getResString(R.string.auto_manage_java_delete_manifest_warning) : "") + Helper.getResString(R.string.auto_manage_java_delete_suffix)).setPositiveButton(R.string.common_word_delete, (dialog, which) -> {
             if (!filesAdapter.isFolder(position) && isInManifest) {
                 frc.getJavaManifestList().remove(filesAdapter.getFullName(position));
                 FileUtil.writeFile(fpu.getManifestJava(sc_id), new Gson().toJson(frc.listJavaManifest));

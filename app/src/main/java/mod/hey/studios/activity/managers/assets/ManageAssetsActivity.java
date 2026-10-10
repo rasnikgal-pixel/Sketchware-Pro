@@ -216,8 +216,7 @@ public class ManageAssetsActivity extends BaseAppCompatActivity {
     private void showDeleteDialog(int position) {
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Delete " + assetsAdapter.getFileName(position) + "?")
-                .setMessage("Вы уверены, что хотите удалить этот" + (assetsAdapter.isFolder(position) ? "folder" : "file") + "? "
-                        + "This action cannot be undone.")
+                .setMessage(Helper.getResString(R.string.auto_manage_assets_delete_confirm, assetsAdapter.isFolder(position) ? "folder" : "file"))
                 .setPositiveButton(R.string.common_word_delete, (dialog, which) -> {
                     FileUtil.deleteFile(assetsAdapter.getItem(position));
                     refresh();
