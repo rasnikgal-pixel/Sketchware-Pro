@@ -1,5 +1,7 @@
 package mod.jbk.build.compiler.resource;
 
+
+import pro.sketchware.R;
 import static com.besome.sketch.Config.VAR_DEFAULT_TARGET_SDK_VERSION;
 
 import android.content.Context;
@@ -118,7 +120,7 @@ public class ResourceCompiler {
 
             long savedTimeMillis = System.currentTimeMillis();
             if (progressListener != null) {
-                progressListener.onProgressUpdate("Компиляция ресурсов (AAPT2)...", 9);
+                progressListener.onProgressUpdate(getString(R.string.auto_resource_compiler_001), 9);
             }
             compileBuiltInLibraryResources();
             LogUtil.d(TAG + ":c", "Compiling built-in library resources took " + (System.currentTimeMillis() - savedTimeMillis) + " ms");

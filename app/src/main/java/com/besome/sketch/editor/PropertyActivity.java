@@ -216,7 +216,7 @@ public class PropertyActivity extends BaseAppCompatActivity implements Kw {
             if (anchor != null) {
                 com.besome.sketch.help.HelpOpener.open(this, anchor);
             } else {
-                android.widget.Toast.makeText(this, "Справка для этого виджета пока недоступна", android.widget.Toast.LENGTH_SHORT).show();
+                android.widget.Toast.makeText(this, getString(R.string.auto_property_activity_001), android.widget.Toast.LENGTH_SHORT).show();
             }
             return true;
         }

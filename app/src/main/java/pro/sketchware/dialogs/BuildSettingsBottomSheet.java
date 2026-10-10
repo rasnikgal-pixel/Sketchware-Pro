@@ -1,5 +1,7 @@
 package pro.sketchware.dialogs;
 
+
+import pro.sketchware.R;
 import static mod.hey.studios.build.BuildSettings.SETTING_ANDROID_JAR_PATH;
 import static mod.hey.studios.build.BuildSettings.SETTING_CLASSPATH;
 import static mod.hey.studios.build.BuildSettings.SETTING_DEXER;
@@ -59,7 +61,7 @@ public class BuildSettingsBottomSheet extends BottomSheetDialogFragment {
 
     public static void handleJavaVersionChange(String choice) {
         if (!choice.equals(SETTING_JAVA_VERSION_1_7)) {
-            SketchwareUtil.toast("Не забудьте включить D8 для компиляции кода Java 8+");
+            SketchwareUtil.toast(getString(R.string.auto_build_settings_bottom_sheet_001));
         }
     }
 
@@ -157,7 +159,7 @@ public class BuildSettingsBottomSheet extends BottomSheetDialogFragment {
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 if (key.equals(SETTING_NO_HTTP_LEGACY)) {
-                    SketchwareUtil.toast("Обратите внимание: эта опция может вызвать проблемы при использовании компонента RequestNetwork");
+                    SketchwareUtil.toast(getString(R.string.auto_build_settings_bottom_sheet_002));
                 }
             }
         });

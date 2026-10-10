@@ -130,7 +130,7 @@ public class ManageCustomComponentActivity extends BaseAppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 0, 0, "Импорт");
+        menu.add(0, 0, 0, getString(R.string.auto_manage_custom_component_activity_001));
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -176,7 +176,7 @@ public class ManageCustomComponentActivity extends BaseAppCompatActivity {
 
     private void showFilePickerDialog() {
         FilePickerOptions options = new FilePickerOptions();
-        options.setTitle("Выберите файл-селектор .json");
+        options.setTitle(getString(R.string.auto_manage_custom_component_activity_002));
         options.setExtensions(new String[]{"json"});
 
         FilePickerCallback callback = new FilePickerCallback() {

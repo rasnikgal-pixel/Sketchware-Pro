@@ -208,7 +208,7 @@ public class ColorPickerDialog extends PopupWindow {
                     return;
                 }
                 if (sc_id != null && finalJ == 2 && !material3LibraryManager.isMaterial3Enabled()) {
-                    SketchwareUtil.toastError("Сначала включите Material3 в менеджере библиотек");
+                    SketchwareUtil.toastError(getString(R.string.auto_color_picker_dialog_001));
                     return;
                 }
                 if (sc_id != null && finalJ == 1) {

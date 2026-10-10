@@ -1,5 +1,7 @@
 package mod.jbk.util;
 
+
+import pro.sketchware.R;
 import android.content.Context;
 
 import com.besome.sketch.beans.BlockBean;
@@ -76,7 +78,7 @@ public final class ProjectLogicChecker {
                     BlockLogicChecker.Severity.CRITICAL,
                     null,
                     null,
-                    "Ссылка на несуществующий компонент"));
+                    getString(R.string.auto_project_logic_checker_001)));
         }
     }
 }

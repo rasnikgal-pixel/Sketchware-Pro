@@ -175,7 +175,7 @@ public class ManageLocalLibraryActivity extends BaseAppCompatActivity {
                     deleteSelectedLocalLibraries(scId, adapter.getLocalLibraries(), projectUsedLibs);
                     runOnUiThread(() -> {
                         h();
-                        SketchwareUtil.toast("Успешно удалено");
+                        SketchwareUtil.toast(getString(R.string.auto_manage_local_library_activity_001));
                         adapter.isSelectionModeEnabled = false;
                         adapter.notifyDataSetChanged();
                         collapseContextualToolbar();

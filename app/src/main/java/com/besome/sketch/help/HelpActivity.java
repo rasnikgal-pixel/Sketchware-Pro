@@ -50,7 +50,7 @@ public class HelpActivity extends BaseAppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Справка");
+            getSupportActionBar().setTitle(getString(R.string.auto_help_activity_001));
         }
 
         if (savedInstanceState == null) {

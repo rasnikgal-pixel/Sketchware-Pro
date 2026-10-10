@@ -23,10 +23,10 @@ public class Material3LibraryItemView extends LibraryItemView {
     public void setData(@Nullable ProjectLibraryBean projectLibraryBean) {
         icon.setImageResource(R.drawable.ic_mtrl_material3);
         title.setText(Helper.getResString(R.string.design_library_title_material3));
-        description.setText("Современный Material design с адаптивной динамической темой");
+        description.setText(getString(R.string.auto_material3_library_item_view_001));
         assert projectLibraryBean != null;
         boolean isEnabled = new Material3LibraryManager(projectLibraryBean).isMaterial3Enabled();
-        enabled.setText(isEnabled ? "ВКЛ" : "ВЫКЛ");
+        enabled.setText(isEnabled ? getString(R.string.auto_material3_library_item_view_002) : getString(R.string.auto_material3_library_item_view_003));
         enabled.setSelected(isEnabled);
     }
 }

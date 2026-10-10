@@ -1,5 +1,7 @@
 package mod.hey.studios.project.stringfog;
 
+
+import pro.sketchware.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +39,9 @@ public class ManageStringFogFragment extends BottomSheetDialogFragment {
 
     private void setStringFogStatus(boolean enabled) {
         if (enabled) {
-            binding.swPgEnabled.setText("StringFog включён");
+            binding.swPgEnabled.setText(getString(R.string.auto_manage_string_fog_fragment_001));
         } else {
-            binding.swPgEnabled.setText("StringFog отключён");
+            binding.swPgEnabled.setText(getString(R.string.auto_manage_string_fog_fragment_002));
         }
     }
 }

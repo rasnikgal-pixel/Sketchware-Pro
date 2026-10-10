@@ -29,8 +29,8 @@ public class PaletteSelector extends RecyclerView {
     private final Context context;
 
     private final String[] MainCategoriesNames = {
-            "Конструктор",
-            "Избранное",
+            getString(R.string.auto_palette_selector_001),
+            getString(R.string.auto_palette_selector_002),
             Helper.getResString(R.string.block_category_var),
             Helper.getResString(R.string.block_category_list),
             Helper.getResString(R.string.block_category_control),
