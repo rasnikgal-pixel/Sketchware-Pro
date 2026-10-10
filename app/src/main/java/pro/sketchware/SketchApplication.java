@@ -36,6 +36,9 @@ public class SketchApplication extends Application {
         super.onCreate();
         ThemeManager.applyTheme(this, ThemeManager.getCurrentTheme(this));
 
+        // Применяем сохранённый язык интерфейса (RU/EN/системный)
+        pro.sketchware.i18n.LocaleHelper.apply(this);
+
         pro.sketchware.smartdrop.DebugLogger.get(this)
                 .i("App", "log_app_started", "");
 

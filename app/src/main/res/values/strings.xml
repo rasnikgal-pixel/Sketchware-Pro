@@ -1216,4 +1216,10 @@ ACTION_VIEW
         <item>0</item>
     </string-array>
 
+    <string name="settings_language_title">Язык интерфейса</string>
+    <string name="settings_language_desc">Выберите язык приложения</string>
+    <string name="settings_language_system">Системный</string>
+    <string name="settings_language_ru">Русский</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_restart_toast">Язык изменён</string>
 </resources>
