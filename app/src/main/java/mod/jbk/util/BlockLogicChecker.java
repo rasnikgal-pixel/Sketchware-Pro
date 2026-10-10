@@ -107,7 +107,7 @@ public final class BlockLogicChecker {
             if (ids.size() > 1) {
                 List<String> duplicatesToDelete = new ArrayList<>(ids.subList(1, ids.size()));
                 issues.add(new Issue(e.getKey(),
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_001, e.getKey(), ids.size()),
+                        "Дубликат: " + e.getKey() + " × " + ids.size(),
                         duplicatesToDelete,
                         Severity.WARNING,
                         ids.isEmpty() ? null : ids.get(0),
@@ -207,24 +207,24 @@ public final class BlockLogicChecker {
             if (b.parameters == null || b.parameters.isEmpty()) {
                 issues.add(new Issue(
                         b.opCode,
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_002, b.opCode),
+                        "Пустой обязательный параметр в блоке " + b.opCode,
                         new ArrayList<>(),
                         Severity.WARNING,
                         b.id,
                         null,
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_003, b.opCode)));
+                        "Пустой параметр в " + b.opCode));
                 continue;
             }
             String first = b.parameters.get(0);
             if (first == null || first.trim().isEmpty()) {
                 issues.add(new Issue(
                         b.opCode,
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_004, b.opCode),
+                        "Пустой обязательный параметр в блоке " + b.opCode,
                         new ArrayList<>(),
                         Severity.WARNING,
                         b.id,
                         null,
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_005, b.opCode)));
+                        "Пустой параметр в " + b.opCode));
             }
         }
     }
@@ -289,7 +289,7 @@ public final class BlockLogicChecker {
             if (visited.contains(b.id)) continue;
             issues.add(new Issue(
                     b.opCode,
-                    Helper.getResString(R.string.auto_concat_block_logic_checker_006, b.opCode, Helper.getResString(R.string.auto_block_logic_checker_004)),
+                    "Блок " + b.opCode + Helper.getResString(R.string.auto_block_logic_checker_004),
                     new ArrayList<>(),
                     Severity.WARNING,
                     b.id,
@@ -315,12 +315,12 @@ public final class BlockLogicChecker {
             if ("true".equals(c) || "false".equals(c)) {
                 issues.add(new Issue(
                         op,
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_007, c, op, c)oncat_block_logic_checker_008, op, c)ing(R.string.auto_concat_block_logic_checker_009, c),
+                        "Тривиальное условие " + c + " в блоке " + op + " — всегда " + c,
                         new ArrayList<>(),
                         Severity.WARNING,
                         b.id,
                         null,
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_010, c, op)ResString(R.string.auto_concat_block_logic_checker_011, op)));
+                        "Условие " + c + " в " + op));
             }
         }
     }
@@ -342,12 +342,12 @@ public final class BlockLogicChecker {
             if (condition == null || condition.trim().isEmpty()) {
                 issues.add(new Issue(
                         op,
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_012, op, Helper.getResString(R.string.auto_block_logic_checker_006)),
+                        "Пустое условие в блоке " + op + Helper.getResString(R.string.auto_block_logic_checker_006),
                         new ArrayList<>(),
                         Severity.CRITICAL,
                         b.id,
                         null,
-                        Helper.getResString(R.string.auto_concat_block_logic_checker_013, op)));
+                        "Пустое условие в " + op));
             }
         }
     }
