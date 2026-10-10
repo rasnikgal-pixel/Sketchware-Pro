@@ -201,7 +201,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 // fall-through to shared error handler
             }
 
-            SketchwareUtil.toastError("Не удалось прочитать настройки приложения! Восстановлены значения по умолчанию.");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_config_activity_001));
             LogUtil.e("ConfigActivity", "Failed to parse App Settings.", toLog);
         }
         settings = new HashMap<>();
@@ -317,7 +317,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
         var binding = PreferenceActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.topAppBar.setTitle("Настройки приложения");
+        binding.topAppBar.setTitle(Helper.getResString(R.string.auto_config_activity_002));
         binding.topAppBar.setNavigationOnClickListener(Helper.getBackPressedClickListener(this));
         var fragment = new PreferenceFragment();
         fragment.setSnackbarView(binding.getRoot());
@@ -360,7 +360,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
             dev.pranav.filepicker.FilePickerOptions options = new dev.pranav.filepicker.FilePickerOptions();
             options.setSelectionMode(dev.pranav.filepicker.SelectionMode.BOTH);
             options.setMultipleSelection(false);
-            options.setTitle("Выберите папку для сохранения");
+            options.setTitle(Helper.getResString(R.string.auto_config_activity_003));
             options.setInitialDirectory(FileUtil.getExternalStorageDir());
 
             dev.pranav.filepicker.FilePickerCallback callback = new dev.pranav.filepicker.FilePickerCallback() {
@@ -389,7 +389,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
             dev.pranav.filepicker.FilePickerOptions options = new dev.pranav.filepicker.FilePickerOptions();
             options.setSelectionMode(dev.pranav.filepicker.SelectionMode.BOTH);
             options.setMultipleSelection(false);
-            options.setTitle("Выберите файл настроек");
+            options.setTitle(Helper.getResString(R.string.auto_config_activity_004));
             options.setInitialDirectory(FileUtil.getExternalStorageDir());
 
             dev.pranav.filepicker.FilePickerCallback callback = new dev.pranav.filepicker.FilePickerCallback() {
@@ -398,24 +398,24 @@ public class ConfigActivity extends BaseAppCompatActivity {
                     if (files.isEmpty()) return;
                     java.io.File source = files.get(0);
                     if (source.isDirectory()) {
-                        android.widget.Toast.makeText(requireContext(), "Нужно выбрать файл, а не папку", android.widget.Toast.LENGTH_LONG).show();
+                        android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_config_activity_005), android.widget.Toast.LENGTH_LONG).show();
                         return;
                     }
                     try {
                         String json = pro.sketchware.utility.FileUtil.readFile(source.getAbsolutePath());
                         if (json == null || json.trim().isEmpty() || !json.trim().startsWith("{")) {
-                            android.widget.Toast.makeText(requireContext(), "Файл не похож на настройки", android.widget.Toast.LENGTH_LONG).show();
+                            android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_config_activity_006), android.widget.Toast.LENGTH_LONG).show();
                             return;
                         }
                         pro.sketchware.utility.FileUtil.writeFile(SETTINGS_FILE.getAbsolutePath(), json);
                         new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
-                                .setTitle("Настройки импортированы")
-                                .setMessage("Чтобы применить все настройки, приложение нужно перезапустить.\n\nПерезапустить сейчас?")
-                                .setPositiveButton("Перезапустить", (d, w) -> {
+                                .setTitle(Helper.getResString(R.string.auto_config_activity_007))
+                                .setMessage(Helper.getResString(R.string.auto_config_activity_008))
+                                .setPositiveButton(Helper.getResString(R.string.auto_config_activity_009), (d, w) -> {
                                     android.os.Process.killProcess(android.os.Process.myPid());
                                     System.exit(0);
                                 })
-                                .setNegativeButton("Позже", null)
+                                .setNegativeButton(Helper.getResString(R.string.auto_config_activity_010), null)
                                 .show();
                     } catch (Throwable t) {
                         android.widget.Toast.makeText(requireContext(), "Ошибка импорта: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
@@ -451,8 +451,8 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 binding.chipGroupTypes.setVisibility(View.GONE);
                 AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext())
                         .setView(binding.getRoot())
-                        .setTitle("Директория резервных копий")
-                        .setMessage("Директория внутри /Internal storage/, например .sketchware/backups")
+                        .setTitle(Helper.getResString(R.string.auto_config_activity_011))
+                        .setMessage(Helper.getResString(R.string.auto_config_activity_012))
                         .setNegativeButton(R.string.common_word_cancel, null)
                         .setPositiveButton(R.string.common_word_save, null)
                         .create();
@@ -494,7 +494,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 if (installWithRoot.isChecked()) {
                     Shell.getShell(shell -> {
                         if (!shell.isRoot()) {
-                            Snackbar.make(snackbarView, "Не удалось получить root-доступ", BaseTransientBottomBar.LENGTH_SHORT).show();
+                            Snackbar.make(snackbarView, Helper.getResString(R.string.auto_config_activity_013), BaseTransientBottomBar.LENGTH_SHORT).show();
                             installWithRoot.setChecked(false);
                         }
                     });
@@ -550,7 +550,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
             Preference updatesCheckNow = findPreference("updates-check-now");
             if (updatesCheckNow != null) {
                 updatesCheckNow.setOnPreferenceClickListener(pref -> {
-                    android.widget.Toast.makeText(requireContext(), "Проверка обновлений...", android.widget.Toast.LENGTH_SHORT).show();
+                    android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_config_activity_014), android.widget.Toast.LENGTH_SHORT).show();
                     new pro.sketchware.updater.UpdateChecker().checkIfNeeded(
                             requireContext(),
                             pro.sketchware.BuildConfig.VERSION_CODE,
@@ -561,7 +561,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                                         pro.sketchware.updater.UpdateDialog.show(getActivity(), info);
                                 }
                                 @Override public void onUpToDate() {
-                                    android.widget.Toast.makeText(requireContext(), "Обновлений нет", android.widget.Toast.LENGTH_SHORT).show();
+                                    android.widget.Toast.makeText(requireContext(), Helper.getResString(R.string.auto_config_activity_015), android.widget.Toast.LENGTH_SHORT).show();
                                 }
                                 @Override public void onError(String message) {
                                     android.widget.Toast.makeText(requireContext(), "Ошибка: " + message, android.widget.Toast.LENGTH_SHORT).show();
@@ -601,7 +601,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
 
                 AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext())
                         .setView(binding.getRoot())
-                        .setTitle("Формат имени файла резервной копии")
+                        .setTitle(Helper.getResString(R.string.auto_config_activity_016))
                         .setMessage("Это определяет, как именуются файлы резервных копий SWB.\n" +
                                 "Available variables:\n" +
                                 " - $projectName - Project name\n" +
@@ -616,7 +616,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                         .setPositiveButton(R.string.common_word_save, null)
                         .setNeutralButton(R.string.common_word_reset, (dialogInterface, which) -> {
                             getDataStore().putString(SETTING_BACKUP_FILENAME, null);
-                            Snackbar.make(snackbarView, "Сброс к значениям по умолчанию завершён.", BaseTransientBottomBar.LENGTH_SHORT).show();
+                            Snackbar.make(snackbarView, Helper.getResString(R.string.auto_config_activity_017), BaseTransientBottomBar.LENGTH_SHORT).show();
                         })
                         .create();
 

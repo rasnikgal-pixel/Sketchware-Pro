@@ -94,7 +94,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                 intent.putExtra("pallet", String.valueOf(palette));
                 startActivity(intent);
             } else {
-                SketchwareUtil.toastError("Недопустимый цвет палитры #" + (palette - 9));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_001, (palette - 9)));
             }
         });
     }
@@ -202,7 +202,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                     FileUtil.writeFile(exportTo, getGson().toJson(filtered_list));
                     SketchwareUtil.toast("Successfully exported blocks to:\n" + exportTo, Toast.LENGTH_LONG);
                 } else {
-                    SketchwareUtil.toastError("Недопустимое имя палитры #" + (palette - 9));
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_002, (palette - 9)));
                 }
                 break;
 
@@ -289,7 +289,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         filtered_list.add(block);
                     }
                 } catch (NumberFormatException e) {
-                    SketchwareUtil.toastError("Недопустимая запись палитры в блоке #" + (i + 1));
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_003, (i + 1)));
                 }
             }
         }
@@ -351,7 +351,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         intent.putExtra("pos", String.valueOf(position));
                         startActivity(intent);
                     } else {
-                        SketchwareUtil.toastError("Недопустимый цвет палитры #" + (palette - 9));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_004, (palette - 9)));
                     }
                     break;
 
@@ -414,7 +414,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
             if (name instanceof String) {
                 paletteNames.add((String) name);
             } else {
-                SketchwareUtil.toastError("Недопустимое имя палитры пользовательского блока #" + (j + 1));
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_005, (j + 1)));
             }
         }
 
@@ -456,7 +456,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                 if (blockName instanceof String) {
                     names.add((String) blockName);
                 } else {
-                    SketchwareUtil.toastError("Недопустимая запись имени пользовательского блока #" + (i + 1) + " in Blocks to import");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_006, (i + 1)));
                 }
             }
             MaterialAlertDialogBuilder import_dialog = new MaterialAlertDialogBuilder(this);
@@ -504,7 +504,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                     })
                     .show();
         } catch (Exception e) {
-            SketchwareUtil.toastError("Произошла ошибка! [" + e.getMessage() + "]");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_007, e.getMessage()));
         }
     }
 
@@ -625,14 +625,14 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                         try {
                             color = Color.parseColor((String) blockColor);
                         } catch (IllegalArgumentException e) {
-                            SketchwareUtil.toastError("Недопустимая запись цвета в блоке #" + (position + 1));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_008, (position + 1)));
                         }
 
                         if (color != -1) {
                             spec.getBackground().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
                         }
                     } else {
-                        SketchwareUtil.toastError("Недопустимая запись цвета в блоке #" + (position + 1));
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_009, (position + 1)));
                     }
                 } else {
                     HashMap<String, Object> paletteObject = pallet_list.get(palette - 9);
@@ -645,7 +645,7 @@ public class BlocksManagerDetailsActivity extends BaseAppCompatActivity {
                                     PorterDuff.Mode.MULTIPLY
                             ));
                         } catch (IllegalArgumentException e) {
-                            SketchwareUtil.toastError("Недопустимый цвет в палитре пользовательского блока #" + (palette - 8));
+                            SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_details_activity_010, (palette - 8)));
                         }
                     }
                 }
