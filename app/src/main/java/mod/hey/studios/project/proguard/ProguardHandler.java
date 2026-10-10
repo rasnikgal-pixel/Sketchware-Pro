@@ -1,5 +1,7 @@
 package mod.hey.studios.project.proguard;
 
+
+import pro.sketchware.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -245,10 +247,10 @@ public class ProguardHandler {
     public void start(BuildProgressReceiver progressReceiver, ProjectBuilder builder) throws IOException {
         if (isShrinkingEnabled()) {
             if (isR8Enabled()) {
-                progressReceiver.onProgress("Выполняется R8...", 15);
+                progressReceiver.onProgress(Helper.getResString(R.string.auto_proguard_handler_001), 15);
                 builder.runR8();
             } else {
-                progressReceiver.onProgress("Обработка ProGuard...", 16);
+                progressReceiver.onProgress(Helper.getResString(R.string.auto_proguard_handler_002), 16);
                 builder.runProguard();
             }
         }

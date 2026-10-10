@@ -23,35 +23,68 @@ def slugify(path):
     s = re.sub(r'(?<!^)(?=[A-Z])', '_', name).lower()
     return s
 
+
+
 def find_ui_strings(source):
-    """Возвращает список (start_pos, end_pos, text) для UI-строк."""
+    """Посимвольный сканер: text blocks, комментарии, обычные строки."""
     results = []
-    # Простое сканирование: ищем "русский текст"
-    # Но пропускаем совпадения внутри комментариев и в строках, содержащих %-конкатенацию
-    for m in re.finditer(r'"([^"\\]*(?:\\.[^"\\]*)*)"', source):
-        text = m.group(1)
-        if not re.search(r'[А-Яа-яЁё]', text):
+    n = len(source)
+    i = 0
+    DQ = chr(34)
+
+    while i < n:
+        c = source[i]
+
+        # text block: три кавычки подряд
+        if source[i:i+3] == DQ + DQ + DQ:
+            end = source.find(DQ + DQ + DQ, i + 3)
+            if end < 0:
+                break
+            i = end + 3
             continue
-        # Пропускаем строки-комментарии: если перед кавычкой стоит // или /* или *
-        before = source[max(0, m.start()-80):m.start()]
-        # Обрезаем по последней //
-        line_start = before.rfind('\n')
-        if line_start >= 0:
-            line = before[line_start+1:]
-        else:
-            line = before
-        stripped = line.lstrip()
-        if stripped.startswith('//') or stripped.startswith('*') or stripped.startswith('/*'):
+
+        # строчный комментарий
+        if source[i:i+2] == '//':
+            nl = source.find(chr(10), i)
+            if nl < 0:
+                break
+            i = nl + 1
             continue
-        # Проверяем контекст: пропускаем case "..." (метки switch)
-        before_short = source[max(0, m.start()-30):m.start()]
-        if re.search(r'\bcase\s*$', before_short):
+
+        # блочный комментарий
+        if source[i:i+2] == '/*':
+            end = source.find('*/', i + 2)
+            if end < 0:
+                break
+            i = end + 2
             continue
-        after = source[m.end():m.end()+40]
-        # Если идёт конкатенация — пропускаем
-        if re.match(r'\s*\+', after):
+
+        # обычная строка
+        if c == DQ:
+            j = i + 1
+            buf = []
+            while j < n:
+                ch = source[j]
+                if ch == chr(92) and j + 1 < n:
+                    buf.append(source[j:j+2])
+                    j += 2
+                    continue
+                if ch == DQ:
+                    break
+                buf.append(ch)
+                j += 1
+            text = ''.join(buf)
+            if re.search(r'[А-Яа-яЁё]', text):
+                before = source[max(0, i-30):i]
+                if not re.search(r'\bcase\s*$', before):
+                    after = source[j+1:j+1+20] if j + 1 < n else ''
+                    if not re.match(r'\s*\+', after):
+                        results.append((i, j+1, text))
+            i = j + 1
             continue
-        results.append((m.start(), m.end(), text))
+
+        i += 1
+
     return results
 
 def ensure_Helper_import(source):

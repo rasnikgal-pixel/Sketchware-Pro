@@ -457,7 +457,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
             String sc_id = activity.get().sc_id;
 
             try {
-                publishProgress("Удаление временных файлов...");
+                publishProgress(Helper.getResString(R.string.auto_export_project_activity_001));
                 FileUtil.deleteFile(project_metadata.projectMyscPath);
 
                 publishProgress(Helper.getResString(R.string.design_run_title_ready_to_build));
@@ -544,7 +544,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
 
                 builder.buildBuiltInLibraryInformation();
 
-                publishProgress("Выполняется AAPT2...");
+                publishProgress(Helper.getResString(R.string.auto_export_project_activity_002));
                 builder.compileResources();
                 if (canceled) {
                     cancel(true);
@@ -557,7 +557,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
                     return;
                 }
 
-                publishProgress("Компиляция Java...");
+                publishProgress(Helper.getResString(R.string.auto_export_project_activity_003));
                 builder.compileJavaCode();
                 if (canceled) {
                     cancel(true);
@@ -739,7 +739,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
             if (buildingAppBundle && new File(Environment.getExternalStorageDirectory(), "sketchware" + File.separator + "signed_aab" + File.separator + aabFilename).exists()) {
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity.get());
                 dialog.setIcon(R.drawable.open_box_48);
-                dialog.setTitle("Экспорт AAB завершён");
+                dialog.setTitle(Helper.getResString(R.string.auto_export_project_activity_004));
                 dialog.setMessage("Вы можете найти сгенерированный подписанный AAB-файл по адресу:\n" +
                         "/Internal storage/sketchware/signed_aab/" + aabFilename);
                 dialog.setPositiveButton(Helper.getResString(R.string.common_word_ok), null);

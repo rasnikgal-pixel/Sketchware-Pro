@@ -1,5 +1,7 @@
 package mod.agus.jcoderz.editor.event;
 
+
+import mod.hey.studios.util.Helper;
 import java.util.ArrayList;
 
 import a.a.a.Gx;
@@ -345,27 +347,27 @@ public class ManageEvent {
      */
     public static String getEventDescription(String eventName) {
         return switch (eventName) {
-            case "onScrolled", "onRecyclerScrolled" -> "при прокрутке";
-            case "onFailureLink" -> "при ошибке";
-            case "onSaveInstanceState" -> "Сохранить состояние Activity";
-            case "onCreateOptionsMenu" -> "При создании меню опций";
-            case "onVerificationCompleted" -> "при завершении проверки";
-            case "onRecyclerScrollChanged", "onScrollChanged" -> "при изменении состояния прокрутки";
-            case "onCreateContextMenu" -> "При создании контекстного меню";
-            case "onRestoreInstanceState" -> "Восстановить состояние Activity";
-            case "onContextItemSelected" -> "При выборе пункта контекстного меню";
-            case "onSuccessLink" -> "при успехе";
-            case "onAccountPickerCancelled" -> "при отмене аккаунта";
-            case "onFragmentAdded" -> "вернуть Fragment";
-            case "onPageChanged" -> "при изменении состояния прокрутки страниц";
-            case "onOptionsItemSelected" -> "При выборе пункта меню";
-            case "onBannerAdClicked" -> "при клике на рекламу";
-            case "onBannerAdLoaded" -> "при загрузке рекламы";
-            case "onTabAdded" -> "вернуть заголовок";
-            case "onBannerAdFailedToLoad", "onInterstitialAdFailedToLoad" -> "при ошибке загрузки рекламы";
-            case "onBannerAdClosed" -> "при закрытии рекламы";
-            case "onRewardAdLoaded" -> "при загрузке рекламы с вознаграждением";
-            case "onRewardAdFailedToLoad" -> "при ошибке загрузки рекламы с вознаграждением";
+            case "onScrolled", "onRecyclerScrolled" -> Helper.getResString(R.string.auto_manage_event_001);
+            case "onFailureLink" -> Helper.getResString(R.string.auto_manage_event_002);
+            case "onSaveInstanceState" -> Helper.getResString(R.string.auto_manage_event_003);
+            case "onCreateOptionsMenu" -> Helper.getResString(R.string.auto_manage_event_004);
+            case "onVerificationCompleted" -> Helper.getResString(R.string.auto_manage_event_005);
+            case "onRecyclerScrollChanged", "onScrollChanged" -> Helper.getResString(R.string.auto_manage_event_006);
+            case "onCreateContextMenu" -> Helper.getResString(R.string.auto_manage_event_007);
+            case "onRestoreInstanceState" -> Helper.getResString(R.string.auto_manage_event_008);
+            case "onContextItemSelected" -> Helper.getResString(R.string.auto_manage_event_009);
+            case "onSuccessLink" -> Helper.getResString(R.string.auto_manage_event_010);
+            case "onAccountPickerCancelled" -> Helper.getResString(R.string.auto_manage_event_011);
+            case "onFragmentAdded" -> Helper.getResString(R.string.auto_manage_event_012);
+            case "onPageChanged" -> Helper.getResString(R.string.auto_manage_event_013);
+            case "onOptionsItemSelected" -> Helper.getResString(R.string.auto_manage_event_014);
+            case "onBannerAdClicked" -> Helper.getResString(R.string.auto_manage_event_015);
+            case "onBannerAdLoaded" -> Helper.getResString(R.string.auto_manage_event_016);
+            case "onTabAdded" -> Helper.getResString(R.string.auto_manage_event_017);
+            case "onBannerAdFailedToLoad", "onInterstitialAdFailedToLoad" -> Helper.getResString(R.string.auto_manage_event_018);
+            case "onBannerAdClosed" -> Helper.getResString(R.string.auto_manage_event_019);
+            case "onRewardAdLoaded" -> Helper.getResString(R.string.auto_manage_event_020);
+            case "onRewardAdFailedToLoad" -> Helper.getResString(R.string.auto_manage_event_021);
             case "onUpdateProfileComplete", "onEmailVerificationSent", "onDateChanged",
                  "onDeleteUserComplete", "onNavigationItemSelected", "onDateSet", "onCompletion",
                  "onPatternLockCleared", "onQueryTextChanged", "onUpdateEmailComplete", "onError",
