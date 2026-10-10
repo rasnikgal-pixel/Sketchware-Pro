@@ -347,8 +347,7 @@ public class BlocksManager extends BaseAppCompatActivity {
         view.setOnLongClickListener(v -> {
             new MaterialAlertDialogBuilder(this)
                     .setTitle(Helper.getResString(R.string.auto_blocks_manager_006))
-                    .setMessage("Вы уверены, что хотите очистить корзину?" +
-                            "Blocks inside will be deleted PERMANENTLY, you CANNOT recover them!")
+                    .setMessage(Helper.getResString(R.string.auto_blocks_empty_bin))
                     .setPositiveButton("Empty", (dialog, which) -> emptyRecyclebin())
                     .setNegativeButton(R.string.common_word_cancel, null)
                     .show();

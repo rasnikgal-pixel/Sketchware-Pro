@@ -2529,4 +2529,12 @@ ACTION_VIEW
     <string name="auto_manage_java_delete_confirm">[TODO] Are you sure you want to delete this %1$s? </string>
     <string name="auto_manage_java_delete_manifest_warning">[TODO] This will also remove it from AndroidManifest. </string>
     <string name="auto_manage_java_delete_suffix">[TODO] This action cannot be undone.</string>
+    <string name="auto_design_missing_dir">[TODO] A directory important for building is missing.</string>
+    <string name="auto_design_try_create">Sketchware Pro can try creating %1$s if you\'d like to.</string>
+    <string name="auto_design_missing_file">[TODO] A file required for building is missing.</string>
+    <string name="auto_design_put_back">Put the correct file back to %1$s and try building again.</string>
+    <string name="auto_collect_error_intro">[TODO] An error occurred while launching Sketchware Pro.</string>
+    <string name="auto_collect_error_report">Do you want to report this error log so that we can fix it? No personal information will be included.</string>
+    <string name="auto_export_aab_saved">[TODO] You can find the generated signed AAB file at:\n/Internal storage/sketchware/signed_aab/%1$s</string>
+    <string name="auto_blocks_empty_bin">[TODO] Are you sure you want to empty the recycle bin? Blocks inside will be deleted PERMANENTLY, you CANNOT recover them!</string>
 </resources>

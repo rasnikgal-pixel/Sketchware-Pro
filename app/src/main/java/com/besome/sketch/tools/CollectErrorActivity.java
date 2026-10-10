@@ -38,9 +38,8 @@ public class CollectErrorActivity extends BaseAppCompatActivity {
 
             var dialog = new MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.common_error_an_error_occurred)
-                    .setMessage("Произошла ошибка при запуске Sketchware Pro." +
-                            "Do you want to report this error log so that we can fix it? " +
-                            "No personal information will be included.")
+                    .setMessage(Helper.getResString(R.string.auto_collect_error_intro) +
+                            Helper.getResString(R.string.auto_collect_error_report))
                     .setPositiveButton("Copy", null)
                     .setNegativeButton(Helper.getResString(R.string.auto_collect_error_activity_001), (dialogInterface, which) -> finish())
                     .setNeutralButton(Helper.getResString(R.string.auto_collect_error_activity_002), null) // null to set proper onClick listeners later without dismissing the AlertDialog

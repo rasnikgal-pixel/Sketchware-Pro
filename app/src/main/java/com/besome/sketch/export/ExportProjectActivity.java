@@ -740,8 +740,7 @@ public class ExportProjectActivity extends BaseAppCompatActivity {
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity.get());
                 dialog.setIcon(R.drawable.open_box_48);
                 dialog.setTitle(Helper.getResString(R.string.auto_export_project_activity_004));
-                dialog.setMessage("Вы можете найти сгенерированный подписанный AAB-файл по адресу:\n" +
-                        "/Internal storage/sketchware/signed_aab/" + aabFilename);
+                dialog.setMessage(Helper.getResString(R.string.auto_export_aab_saved, aabFilename));
                 dialog.setPositiveButton(Helper.getResString(R.string.common_word_ok), null);
                 dialog.show();
             }

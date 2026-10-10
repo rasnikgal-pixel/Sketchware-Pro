@@ -1425,9 +1425,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
                     if (isMissingDirectory) {
                         dialog.setTitle(Helper.getResString(R.string.auto_design_activity_033));
-                        dialog.setMessage("Отсутствует директория, важная для сборки." +
-                                "Sketchware Pro can try creating " + e.getMissingFile().getAbsolutePath() +
-                                " if you'd like to.");
+                        dialog.setMessage(Helper.getResString(R.string.auto_design_missing_dir) +
+                                Helper.getResString(R.string.auto_design_try_create, e.getMissingFile().getAbsolutePath()));
                         dialog.setNeutralButton(Helper.getResString(R.string.auto_design_activity_034), (v, which) -> {
                             v.dismiss();
                             if (!e.getMissingFile().mkdirs()) {
@@ -1436,9 +1435,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                         });
                     } else {
                         dialog.setTitle(Helper.getResString(R.string.auto_design_activity_036));
-                        dialog.setMessage("Отсутствует файл, необходимый для сборки." +
-                                "Put the correct file back to " + e.getMissingFile().getAbsolutePath() +
-                                " and try building again.");
+                        dialog.setMessage(Helper.getResString(R.string.auto_design_missing_file) +
+                                Helper.getResString(R.string.auto_design_put_back, e.getMissingFile().getAbsolutePath()));
                     }
                     dialog.setPositiveButton("Dismiss", null);
                     dialog.show();

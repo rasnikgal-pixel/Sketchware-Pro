@@ -2529,4 +2529,12 @@ ACTION_VIEW
     <string name="auto_manage_java_delete_confirm">Вы уверены, что хотите удалить этот %1$s? </string>
     <string name="auto_manage_java_delete_manifest_warning">Это также удалит его из AndroidManifest. </string>
     <string name="auto_manage_java_delete_suffix">Это нельзя отменить.</string>
+    <string name="auto_design_missing_dir">Отсутствует директория, важная для сборки.</string>
+    <string name="auto_design_try_create">Sketchware Pro can try creating %1$s if you\'d like to.</string>
+    <string name="auto_design_missing_file">Отсутствует файл, необходимый для сборки.</string>
+    <string name="auto_design_put_back">Put the correct file back to %1$s and try building again.</string>
+    <string name="auto_collect_error_intro">Произошла ошибка при запуске Sketchware Pro.</string>
+    <string name="auto_collect_error_report">Do you want to report this error log so that we can fix it? No personal information will be included.</string>
+    <string name="auto_export_aab_saved">Вы можете найти сгенерированный подписанный AAB-файл по адресу:\n/Internal storage/sketchware/signed_aab/%1$s</string>
+    <string name="auto_blocks_empty_bin">Вы уверены, что хотите очистить корзину? Blocks inside will be deleted PERMANENTLY, you CANNOT recover them!</string>
 </resources>
