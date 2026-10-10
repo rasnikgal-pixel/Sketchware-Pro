@@ -445,7 +445,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
                     if (name instanceof String) {
                         id_detector.add((String) name);
                     } else {
-                        SketchwareUtil.toastError("Пользовательский блок #" + i + " in current palette has an invalid name");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_blocks_manager_creator_activity_001, i));
                     }
                 }
                 return;
@@ -471,7 +471,7 @@ public class BlocksManagerCreatorActivity extends BaseAppCompatActivity {
             if (matcher.find()) {
                 int position = matcher.end();
                 //Unable to resolve this error because the Rs class still undecompiled.
-                block.setText("Ошибка: за '%m' должно следовать '.param' на позиции" + position);
+                block.setText(Helper.getResString(R.string.auto_concat_blocks_manager_creator_activity_002, position));
             } else {
                 block.setText(e.toString());
             }

@@ -312,7 +312,7 @@ public class BlocksManager extends BaseAppCompatActivity {
         }
 
         binding.paletteRecycler.setAdapter(new PaletteAdapter(pallet_listmap));
-        binding.recycleSub.setText("Блоки:" + (long) getN(-1));
+        binding.recycleSub.setText(Helper.getResString(R.string.auto_concat_blocks_manager_001, (long) getN(-1)));
         refreshCount();
     }
 
@@ -568,10 +568,10 @@ public class BlocksManager extends BaseAppCompatActivity {
 
             holder.itemView.setVisibility(View.VISIBLE);
             holder.itemBinding.title.setText(Objects.requireNonNull(pallet_listmap.get(position).get("name")).toString());
-            holder.itemBinding.sub.setText("Блоки:" + (long) getN(position + 9));
+            holder.itemBinding.sub.setText(Helper.getResString(R.string.auto_concat_blocks_manager_002, (long) getN(position + 9)));
             holder.itemBinding.color.setBackgroundColor(backgroundColor);
             holder.itemBinding.dragHandler.setVisibility(View.VISIBLE);
-            binding.recycleSub.setText("Блоки:" + (long) getN(-1));
+            binding.recycleSub.setText(Helper.getResString(R.string.auto_concat_blocks_manager_003, (long) getN(-1)));
 
             holder.itemBinding.backgroundCard.setOnLongClickListener(v -> {
                 final String edit = "Edit";
