@@ -1,5 +1,7 @@
 package com.besome.sketch.tools;
 
+
+import mod.hey.studios.util.Helper;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -40,8 +42,8 @@ public class CollectErrorActivity extends BaseAppCompatActivity {
                             "Do you want to report this error log so that we can fix it? " +
                             "No personal information will be included.")
                     .setPositiveButton("Copy", null)
-                    .setNegativeButton("Отмена", (dialogInterface, which) -> finish())
-                    .setNeutralButton("Показать ошибку", null) // null to set proper onClick listeners later without dismissing the AlertDialog
+                    .setNegativeButton(Helper.getResString(R.string.auto_collect_error_activity_001), (dialogInterface, which) -> finish())
+                    .setNeutralButton(Helper.getResString(R.string.auto_collect_error_activity_002), null) // null to set proper onClick listeners later without dismissing the AlertDialog
                     .setCancelable(false)
                     .show();
 

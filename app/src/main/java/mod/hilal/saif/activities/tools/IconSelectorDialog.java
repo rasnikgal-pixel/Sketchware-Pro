@@ -53,9 +53,9 @@ public class IconSelectorDialog {
         }
 
         builder = new MaterialAlertDialogBuilder(activity)
-                .setTitle("Выберите иконку")
+                .setTitle(Helper.getResString(R.string.auto_icon_selector_dialog_001))
                 .setView(dialogBinding.getRoot())
-                .setNegativeButton("Отмена", (dialog, which) -> dialog.dismiss())
+                .setNegativeButton(Helper.getResString(R.string.auto_icon_selector_dialog_002), (dialog, which) -> dialog.dismiss())
                 .create();
         builder.show();
     }

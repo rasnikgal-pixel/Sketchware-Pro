@@ -619,7 +619,7 @@ public class ComponentsHandler {
                 SketchwareUtil.toastError("Couldn't read Custom Components file: " + e.getMessage());
             }
             if (data == null) {
-                SketchwareUtil.toastError("Найден недопустимый файл пользовательских компонентов");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_components_handler_001));
                 data = new ArrayList<>();
             }
         } else {

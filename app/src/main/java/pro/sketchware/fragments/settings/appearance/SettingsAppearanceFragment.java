@@ -1,6 +1,7 @@
 package pro.sketchware.fragments.settings.appearance;
 
-import pro.sketchware.R;
+import mod.hey.studios.util.Helper;
+
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -215,9 +216,9 @@ public class SettingsAppearanceFragment extends qA {
             ThemeManager.setTheme(requireContext(), themeId);
             setupColorThemes(); // redraw all color theme cards with new selection
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
-                    .setTitle(getString(R.string.auto_settings_appearance_fragment_001))
-                    .setMessage(getString(R.string.auto_settings_appearance_fragment_002))
-                    .setPositiveButton(getString(R.string.auto_settings_appearance_fragment_003), (d, w) -> {
+                    .setTitle(Helper.getResString(R.string.auto_settings_appearance_fragment_001))
+                    .setMessage(Helper.getResString(R.string.auto_settings_appearance_fragment_002))
+                    .setPositiveButton(Helper.getResString(R.string.auto_settings_appearance_fragment_003), (d, w) -> {
                         android.content.Context ctx = requireContext().getApplicationContext();
                         android.content.Intent intent = ctx.getPackageManager()
                                 .getLaunchIntentForPackage(ctx.getPackageName());
@@ -230,7 +231,7 @@ public class SettingsAppearanceFragment extends qA {
                         android.os.Process.killProcess(android.os.Process.myPid());
                         System.exit(0);
                     })
-                    .setNegativeButton(getString(R.string.auto_settings_appearance_fragment_004), null)
+                    .setNegativeButton(Helper.getResString(R.string.auto_settings_appearance_fragment_004), null)
                     .show();
         });
 

@@ -1,5 +1,7 @@
 package a.a.a;
 
+
+import mod.hey.studios.util.Helper;
 import static android.system.OsConstants.S_IRUSR;
 import static android.system.OsConstants.S_IWUSR;
 import static android.system.OsConstants.S_IXUSR;
@@ -215,7 +217,7 @@ public class ProjectBuilder {
     }
 
     public String getDxRunningText() {
-        return (isD8Enabled() ? "D8" : "Dx") + " выполняется...";
+        return (isD8Enabled() ? "D8" : "Dx") + Helper.getResString(R.string.auto_project_builder_001);
     }
 
     /**

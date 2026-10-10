@@ -1,5 +1,7 @@
 package com.besome.sketch.editor.logic;
 
+
+import mod.hey.studios.util.Helper;
 import static pro.sketchware.utility.ThemeUtils.getColor;
 import static pro.sketchware.utility.ThemeUtils.isDarkThemeEnabled;
 
@@ -117,7 +119,7 @@ public class PaletteBlock extends LinearLayout {
                     ? android.R.drawable.btn_star_big_on
                     : android.R.drawable.btn_star_big_off);
             android.widget.Toast.makeText(context,
-                    newState ? "Добавлено в избранное" : "Убрано из избранного",
+                    newState ? Helper.getResString(R.string.auto_palette_block_001) : Helper.getResString(R.string.auto_palette_block_002),
                     android.widget.Toast.LENGTH_SHORT).show();
         });
 

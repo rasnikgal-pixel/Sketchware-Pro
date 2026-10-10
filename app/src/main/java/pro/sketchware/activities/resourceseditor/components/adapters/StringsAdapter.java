@@ -99,12 +99,12 @@ public class StringsAdapter extends RecyclerView.Adapter<StringsAdapter.ViewHold
                 dialogBinding.stringKeyInput.setEnabled(false);
             }
 
-            dialog.setTitle("Редактировать строку");
-            dialog.setPositiveButton("Сохранить", (d, which) -> {
+            dialog.setTitle(Helper.getResString(R.string.auto_strings_adapter_001));
+            dialog.setPositiveButton(Helper.getResString(R.string.auto_strings_adapter_002), (d, which) -> {
                 String keyInput = Objects.requireNonNull(dialogBinding.stringKeyInput.getText()).toString();
                 String valueInput = Objects.requireNonNull(dialogBinding.stringValueInput.getText()).toString();
                 if (keyInput.isEmpty() || valueInput.isEmpty()) {
-                    SketchwareUtil.toast("Заполните все поля", Toast.LENGTH_SHORT);
+                    SketchwareUtil.toast(Helper.getResString(R.string.auto_strings_adapter_003), Toast.LENGTH_SHORT);
                     return;
                 }
                 currentItem.put("key", keyInput);

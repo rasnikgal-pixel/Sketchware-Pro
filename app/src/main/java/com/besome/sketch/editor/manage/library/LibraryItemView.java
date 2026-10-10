@@ -1,5 +1,7 @@
 package com.besome.sketch.editor.manage.library;
 
+
+import mod.hey.studios.util.Helper;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +45,7 @@ public class LibraryItemView extends FrameLayout {
 
     public void setData(ProjectLibraryBean projectLibraryBean) {
         boolean enabledChecked = ProjectLibraryBean.LIB_USE_Y.equals(projectLibraryBean.useYn);
-        CharSequence enabledLabel = enabledChecked ? "ВКЛ" : "ВЫКЛ";
+        CharSequence enabledLabel = enabledChecked ? Helper.getResString(R.string.auto_library_item_view_001) : Helper.getResString(R.string.auto_library_item_view_002);
 
         icon.setImageResource(ProjectLibraryBean.getLibraryIcon(projectLibraryBean.libType));
         title.setText(ProjectLibraryBean.getLibraryResName(projectLibraryBean.libType));

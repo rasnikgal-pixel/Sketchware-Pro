@@ -1,5 +1,7 @@
 package com.besome.sketch.editor.view.item;
 
+
+import mod.hey.studios.util.Helper;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -33,9 +35,9 @@ public class ItemTabLayout extends TabLayout implements ItemView {
         setDrawingCacheEnabled(true);
         setClickable(false);
         setFocusable(false);
-        addTab(newTab().setText("Вкладка 1"), true);
-        addTab(newTab().setText("Вкладка 2"));
-        addTab(newTab().setText("Вкладка 3"));
+        addTab(newTab().setText(Helper.getResString(R.string.auto_item_tab_layout_001)), true);
+        addTab(newTab().setText(Helper.getResString(R.string.auto_item_tab_layout_002)));
+        addTab(newTab().setText(Helper.getResString(R.string.auto_item_tab_layout_003)));
     }
 
     @Override

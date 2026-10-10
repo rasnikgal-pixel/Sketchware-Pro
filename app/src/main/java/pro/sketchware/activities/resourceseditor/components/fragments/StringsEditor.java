@@ -127,7 +127,7 @@ public class StringsEditor extends Fragment {
     public void showAddStringDialog() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
         ViewStringEditorAddBinding binding = ViewStringEditorAddBinding.inflate(getLayoutInflater());
-        dialog.setTitle("Создать новую строку");
+        dialog.setTitle(Helper.getResString(R.string.auto_strings_editor_001));
         binding.stringKeyInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -143,12 +143,12 @@ public class StringsEditor extends Fragment {
                 binding.importantNote.setVisibility(s.toString().equals("app_name") ? View.VISIBLE : View.GONE);
             }
         });
-        dialog.setPositiveButton("Создать", (d, which) -> {
+        dialog.setPositiveButton(Helper.getResString(R.string.auto_strings_editor_002), (d, which) -> {
             String key = Objects.requireNonNull(binding.stringKeyInput.getText()).toString();
             String value = Objects.requireNonNull(binding.stringValueInput.getText()).toString();
 
             if (key.isEmpty() || value.isEmpty()) {
-                SketchwareUtil.toastError("Заполните все поля");
+                SketchwareUtil.toastError(Helper.getResString(R.string.auto_strings_editor_003));
                 return;
             }
 

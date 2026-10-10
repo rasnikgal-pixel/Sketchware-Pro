@@ -190,15 +190,15 @@ public class DefaultExtraMenuBean {
                 menus.addAll(Arrays.asList(uq.PROGRESS_STYLE));
             }
             case "cv_theme" -> {
-                title = "Тема";
+                title = Helper.getResString(R.string.auto_default_extra_menu_bean_001);
                 menus.addAll(Arrays.asList(uq.CODEVIEW_THEME));
             }
             case "cv_language" -> {
-                title = "Язык";
+                title = Helper.getResString(R.string.auto_default_extra_menu_bean_002);
                 menus.addAll(Arrays.asList(uq.CODEVIEW_LANGUAGE));
             }
             case "import" -> {
-                title = "Язык";
+                title = Helper.getResString(R.string.auto_default_extra_menu_bean_003);
                 menus.addAll(Arrays.asList(uq.IMPORT_CLASS_PATH));
             }
             //end

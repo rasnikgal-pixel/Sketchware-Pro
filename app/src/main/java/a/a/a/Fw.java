@@ -1,5 +1,7 @@
 package a.a.a;
 
+
+import mod.hey.studios.util.Helper;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -319,7 +321,7 @@ public class Fw extends qA {
 
                 binding.viewItem.setOnLongClickListener(view -> {
                     if (getLayoutPosition() == 0) {
-                        Toast.makeText(getContext(), "Главное activity нельзя удалить", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), Helper.getResString(R.string.auto_fw_001), Toast.LENGTH_SHORT).show();
                         return true;
                     }
                     ((ManageViewActivity) getActivity()).a(true);

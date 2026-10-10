@@ -1,5 +1,7 @@
 package mod.hey.studios.project.proguard;
 
+
+import mod.hey.studios.util.Helper;
 import pro.sketchware.R;
 
 import android.content.Intent;
@@ -58,7 +60,7 @@ public class ManageProguardActivity extends BaseAppCompatActivity
         }
 
         MaterialAlertDialogBuilder bld = new MaterialAlertDialogBuilder(this);
-        bld.setTitle("Выберите локальные библиотеки");
+        bld.setTitle(Helper.getResString(R.string.auto_manage_proguard_activity_001));
         bld.setMultiChoiceItems(
                 libraries,
                 enabledLibraries,
