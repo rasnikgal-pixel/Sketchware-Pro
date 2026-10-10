@@ -140,6 +140,9 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
     /** Флаг: пользователь изменял проект (перемещал виджеты, правил свойства) — для диалога сохранения. */
     public boolean hasUnsavedChanges = false;
+
+    /** Статический флаг: устанавливается из других Activity (LogicEditorActivity) при выходе. */
+    public static boolean hasUnsavedChangesStatic = false;
     private CoordinatorLayout coordinatorLayout;
     private DrawerLayout drawer;
     private yq q;
@@ -818,6 +821,12 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             finish();
         }
 
+        // Читаем статический флаг от других Activity (LogicEditorActivity)
+        if (hasUnsavedChangesStatic) {
+            hasUnsavedChangesStatic = false;
+            hasUnsavedChanges = true;
+        }
+
         long freeMegabytes = GB.c();
         if (freeMegabytes < 100L && freeMegabytes > 0L) {
             warnAboutInsufficientStorageSpace();
@@ -825,9 +834,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
         // Если пользователь изменил настройки дизайнера — пересоздаём палитру.
         long currentCounter = pro.sketchware.settings.DesignerSettingsStore.getChangeCounter(this);
-        android.widget.Toast.makeText(this,
-                "onResume: counter=" + currentCounter + " last=" + lastSeenDesignerSettingsCounter,
-                android.widget.Toast.LENGTH_SHORT).show();
         if (lastSeenDesignerSettingsCounter == -1L) {
             lastSeenDesignerSettingsCounter = currentCounter;
         } else if (currentCounter != lastSeenDesignerSettingsCounter) {
@@ -835,10 +841,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             if (viewTabAdapter != null) {
                 try {
                     viewTabAdapter.e();
-                    android.widget.Toast.makeText(this, "Палитра пересоздана", android.widget.Toast.LENGTH_SHORT).show();
-                } catch (Throwable t) {
-                    android.widget.Toast.makeText(this, "Ошибка e(): " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
-                }
+                } catch (Throwable ignored) {}
             }
         }
 

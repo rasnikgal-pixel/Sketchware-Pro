@@ -1887,6 +1887,12 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             return;
         }
         k();
+
+        // Помечаем проект изменённым — для диалога сохранения в DesignActivity.
+        try {
+            com.besome.sketch.design.DesignActivity.hasUnsavedChangesStatic = true;
+        } catch (Throwable ignored) {}
+
         if (!p()) {
             return;
         }

@@ -470,7 +470,12 @@ public class ViewEditorFragment extends qA {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 213) {
+            // Пользователь вернулся из PropertyActivity. Если сохранение было (RESULT_OK) —
+            // помечаем проект как изменённый.
             if (resultCode == -1) {
+                try {
+                    ((DesignActivity) requireActivity()).hasUnsavedChanges = true;
+                } catch (Throwable ignored) {}
                 c(data.getParcelableExtra("bean"));
             }
 
