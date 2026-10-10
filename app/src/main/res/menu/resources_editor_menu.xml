@@ -28,7 +28,7 @@
 
     <item
         android:id="@+id/action_open_editor"
-        android:title="Открыть в редакторе"
+        android:title="@string/auto_layout_resources_editor_menu_001"
         app:showAsAction="never" />
 
 </menu>

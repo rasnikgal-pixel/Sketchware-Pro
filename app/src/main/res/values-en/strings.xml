@@ -2412,4 +2412,23 @@ ACTION_VIEW
     <string name="auto_layout_view_string_editor_add_001">[TODO] Заголовок строки (опционально)</string>
     <string name="auto_layout_widgets_creator_dialog_002">[TODO] Выберите тип виджета</string>
     <string name="auto_layout_widgets_creator_dialog_001">[TODO] Имя класса виджета</string>
+    <string name="auto_layout_block_selector_menu_002">[TODO] Экспорт всех меню выбора блоков</string>
+    <string name="auto_layout_block_selector_menu_001">[TODO] Импорт меню выбора блоков</string>
+    <string name="auto_layout_design_menu_001">[TODO] Справка</string>
+    <string name="auto_layout_help_only_menu_001">[TODO] Справка</string>
+    <string name="auto_layout_logic_menu_001">[TODO] Справка</string>
+    <string name="auto_layout_main_drawer_menu_003">[TODO] Справка</string>
+    <string name="auto_layout_main_drawer_menu_002">[TODO] Инструменты</string>
+    <string name="auto_layout_main_drawer_menu_001">[TODO] О команде</string>
+    <string name="auto_layout_main_menu_001">[TODO] Справка</string>
+    <string name="auto_layout_manage_screen_menu_001">[TODO] Справка</string>
+    <string name="auto_layout_menu_code_editor_hs_002">[TODO] Автодополнение парных символов</string>
+    <string name="auto_layout_menu_code_editor_hs_001">[TODO] Найти и заменить</string>
+    <string name="auto_layout_menu_expanded_local_libraries_001">[TODO] Удалить выбранные локальные библиотеки</string>
+    <string name="auto_layout_menu_logcat_002">[TODO] Очистить все логи</string>
+    <string name="auto_layout_menu_logcat_001">[TODO] Фильтр по имени пакета</string>
+    <string name="auto_layout_popup_menu_double_002">[TODO] Редактировать с помощью...</string>
+    <string name="auto_layout_popup_menu_double_001">[TODO] Добавить в AndroidManifest</string>
+    <string name="auto_layout_property_menu_001">[TODO] Справка</string>
+    <string name="auto_layout_resources_editor_menu_001">[TODO] Открыть в редакторе</string>
 </resources>

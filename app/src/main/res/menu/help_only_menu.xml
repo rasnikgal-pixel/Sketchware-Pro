@@ -4,6 +4,6 @@
         android:id="@+id/menu_generic_help"
         android:icon="@drawable/ic_mtrl_help"
         android:orderInCategory="100"
-        android:title="Справка"
+        android:title="@string/auto_layout_help_only_menu_001"
         app:showAsAction="always" />
 </menu>

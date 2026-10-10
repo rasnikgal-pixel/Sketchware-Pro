@@ -52,6 +52,6 @@
     <item
         android:id="@+id/menu_logic_help"
         android:orderInCategory="300"
-        android:title="Справка"
+        android:title="@string/auto_layout_logic_menu_001"
         app:showAsAction="never" />
 </menu>

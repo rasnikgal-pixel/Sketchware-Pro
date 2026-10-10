@@ -4,7 +4,7 @@
         android:id="@+id/menu_property_help"
         android:icon="@drawable/ic_mtrl_help"
         android:orderInCategory="90"
-        android:title="Справка"
+        android:title="@string/auto_layout_property_menu_001"
         support:showAsAction="always" />
     <item
         android:id="@+id/menu_add_image_res"

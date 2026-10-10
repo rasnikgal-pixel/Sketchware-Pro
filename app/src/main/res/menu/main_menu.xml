@@ -8,6 +8,6 @@
     <item
         android:id="@+id/item_help"
         android:icon="@drawable/ic_mtrl_article"
-        android:title="Справка" />
+        android:title="@string/auto_layout_main_menu_001" />
 
 </menu>

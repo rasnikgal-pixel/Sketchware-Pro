@@ -10,7 +10,7 @@
     <item
         android:id="@+id/action_delete_selected_local_libraries"
         android:icon="@drawable/ic_mtrl_delete"
-        android:title="Удалить выбранные локальные библиотеки"
+        android:title="@string/auto_layout_menu_expanded_local_libraries_001"
         app:iconTint="?attr/colorError"
         app:showAsAction="ifRoom" />
 

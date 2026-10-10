@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/import_block_selector_menus"
-        android:title="Импорт меню выбора блоков"
+        android:title="@string/auto_layout_block_selector_menu_001"
         android:showAsAction="never" />
     <item
         android:id="@+id/export_all_block_selector_menus"
-        android:title="Экспорт всех меню выбора блоков" 
+        android:title="@string/auto_layout_block_selector_menu_002" 
         android:showAsAction="never" />
 </menu>

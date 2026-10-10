@@ -32,7 +32,7 @@
 
     <item
         android:id="@+id/action_find_replace"
-        android:title="Найти и заменить"
+        android:title="@string/auto_layout_menu_code_editor_hs_001"
         app:showAsAction="never" />
 
     <item
@@ -44,7 +44,7 @@
     <item
         android:id="@+id/action_autocomplete_symbol_pair"
         android:checkable="true"
-        android:title="Автодополнение парных символов"
+        android:title="@string/auto_layout_menu_code_editor_hs_002"
         app:showAsAction="never" />
 
 </menu>

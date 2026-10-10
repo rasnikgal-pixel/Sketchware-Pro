@@ -5,7 +5,7 @@
     <item
         android:id="@+id/about_team"
         android:icon="@drawable/ic_mtrl_team"
-        android:title="О команде" />
+        android:title="@string/auto_layout_main_drawer_menu_001" />
     -->
     
 
@@ -30,7 +30,7 @@
     <item
         android:id="@+id/item_tools"
         android:icon="@drawable/ic_mtrl_box"
-        android:title="Инструменты" />
+        android:title="@string/auto_layout_main_drawer_menu_002" />
 
     <item
         android:id="@+id/item_language"
@@ -46,7 +46,7 @@
             <item
                 android:id="@+id/social_russian_help"
                 android:icon="@drawable/ic_sketchware_24"
-                android:title="Справка" />
+                android:title="@string/auto_layout_main_drawer_menu_003" />
 
         </menu>
     </item>
