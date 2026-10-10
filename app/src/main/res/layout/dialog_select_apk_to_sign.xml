@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="4"
-                android:text="Путь к APK появится здесь"
+                android:text="@string/auto_layout_dialog_select_apk_to_sign_001"
                 android:textSize="18sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Создайте новое"
+            android:text="@string/auto_layout_fragment_events_manager_details_001"
             android:textColor="?attr/colorOnSurface"
             android:textSize="14sp" />
 

@@ -9,7 +9,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите имя атрибута">
+        android:hint="@string/auto_layout_style_editor_add_attr_001">
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="Введите значение атрибута">
+        android:hint="@string/auto_layout_style_editor_add_attr_002">
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"

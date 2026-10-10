@@ -21,7 +21,7 @@
             android:id="@+id/palette_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Поиск виджетов..."
+            android:hint="@string/auto_layout_view_editor_001"
             android:inputType="text"
             android:maxLines="1"
             android:padding="8dp"
@@ -108,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Перетащите сюда для удаления"
+                android:text="@string/auto_layout_view_editor_002"
                 android:textColor="?colorOnSurfaceVariant" />
 
         </LinearLayout>

@@ -74,7 +74,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Следовать системной теме"
+                            android:text="@string/auto_layout_fragment_settings_appearance_001"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?attr/colorOnSurfaceVariant" />
                     </LinearLayout>
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="24dp"
-                android:text="Цветовая тема"
+                android:text="@string/auto_layout_fragment_settings_appearance_002"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="?attr/colorOnSurface" />
 
@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="4dp"
-                android:text="Выберите цветовую схему приложения"
+                android:text="@string/auto_layout_fragment_settings_appearance_003"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorOnSurfaceVariant" />
 

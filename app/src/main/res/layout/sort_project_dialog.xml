@@ -16,14 +16,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Сортировать по имени проекта" />
+            android:text="@string/auto_layout_sort_project_dialog_001" />
 
         <RadioButton
             android:id="@+id/sortByID"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Сортировать по ID" />
+            android:text="@string/auto_layout_sort_project_dialog_002" />
     </RadioGroup>
 
     <RadioGroup
@@ -37,13 +37,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="По возрастанию (A-Z)" />
+            android:text="@string/auto_layout_sort_project_dialog_003" />
 
         <RadioButton
             android:id="@+id/sortOrderDesc"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="По убыванию (Z-A)" />
+            android:text="@string/auto_layout_sort_project_dialog_004" />
     </RadioGroup>
 </LinearLayout>

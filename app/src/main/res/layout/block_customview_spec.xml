@@ -10,7 +10,7 @@
     android:paddingRight="8dp"
     android:paddingBottom="2dp"
     android:singleLine="true"
-    android:text="%m.view изменить цвет фона %m.color"
+    android:text="@string/auto_layout_block_customview_spec_001"
     android:textColor="#ffffffff"
     android:textSize="10sp"
     android:textStyle="bold"

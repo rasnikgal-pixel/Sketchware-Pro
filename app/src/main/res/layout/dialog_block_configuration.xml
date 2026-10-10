@@ -21,7 +21,7 @@
             android:id="@+id/palettesPath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="JSON-файл с палитрами"
+            android:hint="@string/auto_layout_dialog_block_configuration_001"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -36,7 +36,7 @@
             android:id="@+id/blocksPath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="JSON-файл с блоками"
+            android:hint="@string/auto_layout_dialog_block_configuration_002"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>

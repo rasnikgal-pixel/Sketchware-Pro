@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="14dp"
             android:layout_marginTop="10dp"
-            android:text="Выберите цвет"
+            android:text="@string/auto_layout_color_picker_001"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="14dp"
             android:layout_marginTop="4dp"
-            android:text="Введите HEX-код цвета или выберите цвет из списка ниже." />
+            android:text="@string/auto_layout_color_picker_002" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"

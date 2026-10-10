@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
-            android:hint="Имя класса виджета">
+            android:hint="@string/auto_layout_widgets_creator_dialog_001">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/widget_name"
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
-            android:hint="Выберите тип виджета">
+            android:hint="@string/auto_layout_widgets_creator_dialog_002">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/widget_type"

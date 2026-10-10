@@ -138,7 +138,7 @@
                 android:paddingHorizontal="24dp"
                 android:paddingTop="12dp"
                 android:paddingBottom="16dp"
-                android:text="Об этом проекте"
+                android:text="@string/auto_layout_fragment_store_project_preview_001"
                 android:textAppearance="?attr/textAppearanceTitleLargeEmphasized" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

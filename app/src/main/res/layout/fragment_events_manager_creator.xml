@@ -63,7 +63,7 @@
                             android:id="@+id/events_creator_varname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Имя виджета/компонента" />
+                            android:hint="@string/auto_layout_fragment_events_manager_creator_001" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <RelativeLayout
@@ -133,7 +133,7 @@
                             android:id="@+id/events_creator_spec"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Спецификация (### => имя переменной)"
+                            android:hint="@string/auto_layout_fragment_events_manager_creator_002"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,7 +146,7 @@
                             android:id="@+id/events_creator_code"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Код события (### => имя переменной)" />
+                            android:hint="@string/auto_layout_fragment_events_manager_creator_003" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -176,7 +176,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="8dp"
-                                android:text="Свойства события:"
+                                android:text="@string/auto_layout_fragment_events_manager_creator_004"
                                 android:textSize="16sp" />
 
                             <com.google.android.material.textfield.TextInputLayout
@@ -190,7 +190,7 @@
                                     android:id="@+id/events_creator_listenercode"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="Код события (### => имя переменной)"
+                                    android:hint="@string/auto_layout_fragment_events_manager_creator_005"
                                     android:textSize="14sp" />
                             </com.google.android.material.textfield.TextInputLayout>
 

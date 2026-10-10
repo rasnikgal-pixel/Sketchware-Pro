@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="Заголовок строки (опционально)">
+        android:hint="@string/auto_layout_view_string_editor_add_001">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/string_header_input"

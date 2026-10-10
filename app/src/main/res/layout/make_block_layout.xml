@@ -46,7 +46,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
                 android:padding="4dp"
-                android:text="используйте (moreblockName[type|typeName] или\nmoreblockName[type|typeName|typeCode]) для пользовательских типов более-блоков"
+                android:text="@string/auto_layout_make_block_layout_001"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:text="Выберите тип блока"
+                android:text="@string/auto_layout_make_block_layout_002"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="14sp"
                 android:textStyle="bold" />

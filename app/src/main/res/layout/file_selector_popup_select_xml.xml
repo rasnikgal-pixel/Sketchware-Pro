@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Создать новый view"
+            android:text="@string/auto_layout_file_selector_popup_select_xml_001"
             app:icon="@drawable/ic_add_white_24dp" />
 
     </RelativeLayout>

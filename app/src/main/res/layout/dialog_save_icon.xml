@@ -51,6 +51,6 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="10dp"
-        android:text="Эта иконка доступна по лицензии Apache License 2.0. Нажмите, чтобы прочитать." />
+        android:text="@string/auto_layout_dialog_save_icon_001" />
 
 </LinearLayout>

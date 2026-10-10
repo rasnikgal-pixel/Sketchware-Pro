@@ -113,7 +113,7 @@
                         android:textColor="?colorControlNormal"
                         android:textSize="18sp"
                         android:layout_marginVertical="8dp"
-                        android:text="Настройки темы Material3:" />
+                        android:text="@string/auto_layout_manage_library_material3_001" />
 
                     <com.google.android.material.button.MaterialButtonToggleGroup
                         android:id="@+id/toggle_group"
@@ -201,7 +201,7 @@
                         android:singleLine="true"
                         android:textColor="?colorControlNormal"
                         android:textSize="18sp"
-                        android:text="Включить динамические цвета" />
+                        android:text="@string/auto_layout_manage_library_material3_002" />
 
                     <com.google.android.material.materialswitch.MaterialSwitch
                         android:id="@+id/dynamic_colors_switch"

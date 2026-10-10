@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:contentDescription="Оглавление"
+        android:contentDescription="@string/auto_layout_fragment_help_001"
         android:src="@drawable/ic_mtrl_list"
         app:tint="?attr/colorOnPrimaryContainer" />
 

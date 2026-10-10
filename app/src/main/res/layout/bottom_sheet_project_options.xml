@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
-                    android:text="Экспорт переносимой папки (.skproj)"
+                    android:text="@string/auto_layout_bottom_sheet_project_options_001"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
                     app:drawableEndCompat="@drawable/ic_mtrl_arrow_right" />
 
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
-                    android:text="Поделиться проектом"
+                    android:text="@string/auto_layout_bottom_sheet_project_options_002"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
                     app:drawableEndCompat="@drawable/ic_mtrl_arrow_right" />
 
@@ -177,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
-                    android:text="Экспорт/Подпись"
+                    android:text="@string/auto_layout_bottom_sheet_project_options_003"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
                     app:drawableEndCompat="@drawable/ic_mtrl_arrow_right" />
 
@@ -205,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
-                    android:text="Изменить настройки проекта"
+                    android:text="@string/auto_layout_bottom_sheet_project_options_004"
                     android:textAppearance="?attr/textAppearanceBodyLarge"
                     app:drawableEndCompat="@drawable/ic_mtrl_arrow_right" />
 

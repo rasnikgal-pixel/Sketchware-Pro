@@ -42,7 +42,7 @@
             android:id="@+id/listener_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Код (### => имя переменной)" />
+            android:hint="@string/auto_layout_dialog_add_new_listener_001" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.materialswitch.MaterialSwitch
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="16dp"
         android:layout_height="wrap_content"
-        android:text="Независимый класс/метод"
+        android:text="@string/auto_layout_dialog_add_new_listener_002"
         android:textSize="14sp" />
     </LinearLayout>
 </ScrollView>

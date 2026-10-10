@@ -283,7 +283,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
-                            android:text="Экспорт AAB (Android App Bundle)"
+                            android:text="@string/auto_layout_export_project_001"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textSize="16sp"
                             android:textStyle="bold" />

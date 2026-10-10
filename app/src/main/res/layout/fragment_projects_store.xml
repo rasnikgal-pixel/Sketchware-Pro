@@ -36,7 +36,7 @@
                     android:drawablePadding="8dp"
                     android:maxLines="3"
                     android:scrollHorizontally="true"
-                    android:text="Это базовая реализация магазина проектов. Мы активно работаем над улучшением. Следите за обновлениями!"
+                    android:text="@string/auto_layout_fragment_projects_store_001"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?attr/colorOnErrorContainer"
                     app:drawableStartCompat="@drawable/ic_mtrl_info"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:padding="16dp"
-            android:text="Выбор редакции"
+            android:text="@string/auto_layout_fragment_projects_store_002"
             android:textAppearance="?attr/textAppearanceTitleMediumEmphasized"
             android:textSize="20sp" />
 
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="16dp"
-            android:text="Новое и обновлённое"
+            android:text="@string/auto_layout_fragment_projects_store_003"
             android:textAppearance="?attr/textAppearanceTitleMediumEmphasized"
             android:textSize="20sp" />
 
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="16dp"
-            android:text="Самые скачиваемые проекты"
+            android:text="@string/auto_layout_fragment_projects_store_004"
             android:textAppearance="?attr/textAppearanceTitleMediumEmphasized"
             android:textSize="20sp" />
 

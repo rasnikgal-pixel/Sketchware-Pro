@@ -28,7 +28,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:hint="Минимальная версия SDK">
+                android:hint="@string/auto_layout_dialog_project_settings_001">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_minimum_sdk_version"
@@ -44,7 +44,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:hint="Целевая версия SDK">
+                android:hint="@string/auto_layout_dialog_project_settings_002">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_target_sdk_version"
@@ -60,7 +60,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                android:hint="Имя класса приложения">
+                android:hint="@string/auto_layout_dialog_project_settings_003">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_application_class_name"
@@ -99,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Это включит ViewBinding в проекте. Примечание: может потребоваться ручная правка виджетов в ASD-блоке"
+                        android:text="@string/auto_layout_dialog_project_settings_004"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?attr/colorOnSurfaceVariant" />
 
@@ -136,7 +136,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Удалить устаревшие методы"
+                        android:text="@string/auto_layout_dialog_project_settings_005"
                         android:textAppearance="?attr/textAppearanceBodyLarge"
                         android:textColor="?attr/colorOnSurface" />
 
@@ -144,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Это удалит методы в файлах, такие как showMessage, getDip и т.д."
+                        android:text="@string/auto_layout_dialog_project_settings_006"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?attr/colorOnSurfaceVariant" />
 
@@ -189,7 +189,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Это заменит, например, Button на MaterialButton. Будьте осторожны!"
+                        android:text="@string/auto_layout_dialog_project_settings_007"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?attr/colorOnSurfaceVariant" />
 

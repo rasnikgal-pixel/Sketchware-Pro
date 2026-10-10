@@ -346,7 +346,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center|left"
-                            android:text="Имя объявления: "
+                            android:text="@string/auto_layout_manage_library_admob_preview_001"
                             android:textColor="?colorControlNormal"
                             android:textSize="14sp" />
 
@@ -369,7 +369,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center|left"
-                            android:text="ID рекламного блока: "
+                            android:text="@string/auto_layout_manage_library_admob_preview_002"
                             android:textColor="?colorControlNormal"
                             android:textSize="14sp" />
 

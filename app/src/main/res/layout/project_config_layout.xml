@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:hint="Свой android.jar">
+        android:hint="@string/auto_layout_project_config_layout_001">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
-        android:hint="Classpath (разделённые :')">
+        android:hint="@string/auto_layout_project_config_layout_002">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="Скрыть предупреждения в журнале ошибок"
+            android:text="@string/auto_layout_project_config_layout_003"
             android:textAppearance="?attr/textAppearanceBodyMedium" />
 
         <CheckBox
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="Не включать http-legacy-28.dex"
+            android:text="@string/auto_layout_project_config_layout_004"
             android:textAppearance="?attr/textAppearanceBodyMedium" />
 
         <CheckBox
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="Включить логи debug logcat, доступные в Logcat Reader. Не включено в экспортированных AAB/APK."
+            android:text="@string/auto_layout_project_config_layout_005"
             android:textAppearance="?attr/textAppearanceBodyMedium" />
 
         <CheckBox

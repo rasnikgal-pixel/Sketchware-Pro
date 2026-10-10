@@ -10,7 +10,7 @@
         android:id="@+id/input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите свой атрибут"
+        android:hint="@string/auto_layout_color_picker_custom_attr_001"
         app:placeholderText="R.attr.colorSurface">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -27,7 +27,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="4dp"
         android:padding="8dp"
-        android:text="Предпросмотр цвета:"
+        android:text="@string/auto_layout_color_picker_custom_attr_002"
         android:textAppearance="?attr/textAppearanceLabelLarge" />
 
     <include layout="@layout/item_attr" />
