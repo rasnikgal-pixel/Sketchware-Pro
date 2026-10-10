@@ -7,8 +7,9 @@ import re, os, sys
 
 # Паттерн: X ? Helper.getResString(R.string.a) : Helper.getResString(R.string.b)
 # Где X — короткое выражение (без ? и :)
+# Не трогаем, если уже есть (CharSequence) перед тернарником
 TERNA_PATTERN = re.compile(
-    r'([A-Za-z_][\w\.]*)\s*\?\s*'
+    r'(?<!\(CharSequence\) )([A-Za-z_][\w\.]*)\s*\?\s*'
     r'(Helper\.getResString\(R\.string\.[\w]+\))\s*:\s*'
     r'(Helper\.getResString\(R\.string\.[\w]+\))'
 )

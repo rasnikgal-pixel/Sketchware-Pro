@@ -166,7 +166,7 @@ public class WidgetsCreatorManager {
     public void showWidgetsCreatorDialog(int position) {
         boolean isEditing = position != -1;
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
-        builder.setTitle((CharSequence) ((CharSequence) ((CharSequence) ((CharSequence) (isEditing ? Helper.getResString(R.string.widget_editor) : Helper.getResString(R.string.create_new_widget))))));
+        builder.setTitle(isEditing ? Helper.getResString(R.string.widget_editor) : Helper.getResString(R.string.create_new_widget)));
         WidgetsCreatorDialogBinding binding = WidgetsCreatorDialogBinding.inflate(LayoutInflater.from(context));
         View inflate = binding.getRoot();
 

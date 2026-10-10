@@ -26,7 +26,8 @@ public class Material3LibraryItemView extends LibraryItemView {
         description.setText(Helper.getResString(R.string.auto_material3_library_item_view_001));
         assert projectLibraryBean != null;
         boolean isEnabled = new Material3LibraryManager(projectLibraryBean).isMaterial3Enabled();
-        enabled.setText((CharSequence) ((CharSequence) ((CharSequence) ((CharSequence) (isEnabled ? Helper.getResString(R.string.auto_material3_library_item_view_002) : Helper.getResString(R.string.auto_material3_library_item_view_003))))));
+        String label = isEnabled ? Helper.getResString(R.string.auto_material3_library_item_view_002) : Helper.getResString(R.string.auto_material3_library_item_view_003);
+        enabled.setText(label);
         enabled.setSelected(isEnabled);
     }
 }

@@ -148,7 +148,7 @@ public class EventsManagerFragment extends qA {
         }
 
         var dialog = new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(existingListener == (CharSequence) ((CharSequence) (null ? Helper.getResString(R.string.auto_events_manager_fragment_001) : Helper.getResString(R.string.auto_events_manager_fragment_002))))
+                .setTitle(existingListener == null ? Helper.getResString(R.string.auto_events_manager_fragment_001) : Helper.getResString(R.string.auto_events_manager_fragment_002))
                 .setView(listenerBinding.getRoot())
                 .setPositiveButton(Helper.getResString(R.string.auto_events_manager_fragment_003), (di, i) -> {
                     String listenerName = Helper.getText(listenerBinding.listenerName);

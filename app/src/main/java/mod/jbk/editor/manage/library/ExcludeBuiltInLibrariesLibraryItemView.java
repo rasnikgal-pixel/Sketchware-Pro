@@ -33,7 +33,8 @@ public class ExcludeBuiltInLibrariesLibraryItemView extends LibraryItemView {
                         : String.format(ExcludeBuiltInLibrariesActivity.getSelectedLibrariesItemDescription(),
                         excludedLibraries.size(), BuiltInLibraries.KNOWN_BUILT_IN_LIBRARIES.length)
         );
-        enabled.setText((CharSequence) ((CharSequence) ((CharSequence) ((CharSequence) (excludingEnabled ? Helper.getResString(R.string.auto_exclude_built_in_libraries_library_item_view_001) : Helper.getResString(R.string.auto_exclude_built_in_libraries_library_item_view_002))))));
+        String label = excludingEnabled ? Helper.getResString(R.string.auto_exclude_built_in_libraries_library_item_view_001) : Helper.getResString(R.string.auto_exclude_built_in_libraries_library_item_view_002);
+        enabled.setText(label);
         enabled.setSelected(excludingEnabled);
     }
 }

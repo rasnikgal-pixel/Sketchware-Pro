@@ -119,7 +119,7 @@ public class PaletteBlock extends LinearLayout {
                     ? android.R.drawable.btn_star_big_on
                     : android.R.drawable.btn_star_big_off);
             android.widget.Toast.makeText(context,
-                    (CharSequence) ((CharSequence) ((CharSequence) ((CharSequence) (newState ? Helper.getResString(R.string.auto_palette_block_001) : Helper.getResString(R.string.auto_palette_block_002))))),
+                    (CharSequence) (newState ? Helper.getResString(R.string.auto_palette_block_001) : Helper.getResString(R.string.auto_palette_block_002))),
                     android.widget.Toast.LENGTH_SHORT).show();
         });
 

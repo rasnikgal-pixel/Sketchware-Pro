@@ -3479,7 +3479,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                         boolean ok = mod.jbk.util.BlockTemplatesManager
                                 .saveCustomTemplate(id, name, desc, tree);
                         android.widget.Toast.makeText(this,
-                                (CharSequence) ((CharSequence) (ok ? Helper.getResString(R.string.auto_logic_editor_activity_055) : Helper.getResString(R.string.auto_logic_editor_activity_056))),
+                                (CharSequence) (ok ? Helper.getResString(R.string.auto_logic_editor_activity_055) : Helper.getResString(R.string.auto_logic_editor_activity_056)),
                                 android.widget.Toast.LENGTH_SHORT).show();
                         if (ok && extraPaletteBlock != null) {
                             try {
