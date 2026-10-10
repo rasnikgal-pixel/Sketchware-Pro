@@ -42,6 +42,7 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
         buildTabsSection();
         buildAppearanceSection();
         buildWidgetBehaviorSection();
+        buildPaletteGesturesSection();
         buildQuickActionsSection();
     }
 
@@ -125,6 +126,43 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
                 "Всплывающие описания при долгом тапе",
                 DesignerSettingsStore.isTooltips(this),
                 v -> DesignerSettingsStore.setTooltips(this, v));
+    }
+
+    private void buildPaletteGesturesSection() {
+        addHeader("Жесты в палитре");
+
+        String[] ids = {
+                "nothing", "drag", "add_center", "add_corner",
+                "tooltip", "designer_settings", "help", "info"
+        };
+        String[] labels = {
+                "Ничего",
+                "Начать перетаскивание",
+                "Добавить в центр холста",
+                "Добавить в левый верхний угол",
+                "Показать тултип",
+                "Открыть настройки дизайнера",
+                "Открыть справку по виджету",
+                "Показать информацию о виджете"
+        };
+
+        addChoice("Одинарный тап по иконке",
+                "Что делать при обычном тапе на иконку виджета в палитре",
+                DesignerSettingsStore.getPaletteSingleTapAction(this),
+                ids, labels,
+                v -> DesignerSettingsStore.setPaletteSingleTapAction(this, v));
+
+        addChoice("Двойной тап по иконке",
+                "Что делать при двойном тапе на иконку виджета в палитре",
+                DesignerSettingsStore.getPaletteDoubleTapAction(this),
+                ids, labels,
+                v -> DesignerSettingsStore.setPaletteDoubleTapAction(this, v));
+
+        addChoice("Долгий тап по иконке",
+                "Что делать при удержании иконки виджета в палитре",
+                DesignerSettingsStore.getPaletteLongTapAction(this),
+                ids, labels,
+                v -> DesignerSettingsStore.setPaletteLongTapAction(this, v));
     }
 
     private void buildQuickActionsSection() {
