@@ -150,6 +150,8 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     private long lastPaletteTapTime = 0L;
     /** Отложенное действие одиночного тапа по иконке палитры. */
     private Runnable pendingPaletteSingleTap = null;
+    /** Отложенное действие одиночного тапа по виджету на холсте (контекстное меню). */
+    private Runnable pendingWidgetSingleTap = null;
     private int colorErrorContainer;
 
     public ViewEditor(Context context) {
@@ -490,6 +492,11 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                         && (Math.abs(tapX - lastTapX) < DOUBLE_TAP_SLOP_PX)
                         && (Math.abs(tapY - lastTapY) < DOUBLE_TAP_SLOP_PX);
                 if (isDoubleTap) {
+                    // Отменяем отложенное контекстное меню (был двойной тап)
+                    if (pendingWidgetSingleTap != null) {
+                        handler.removeCallbacks(pendingWidgetSingleTap);
+                        pendingWidgetSingleTap = null;
+                    }
                     try {
                         if (sy.getBean() != null) {
                             if (doubleTapListener != null) {
@@ -505,6 +512,15 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                     lastTapTime = now;
                     lastTapX = tapX;
                     lastTapY = tapY;
+                    // Планируем показ контекстного меню через 300 мс
+                    if (pendingWidgetSingleTap != null) {
+                        handler.removeCallbacks(pendingWidgetSingleTap);
+                    }
+                    ViewBean bean = sy.getBean();
+                    if (bean != null) {
+                        pendingWidgetSingleTap = () -> showWidgetContextMenu(bean);
+                        handler.postDelayed(pendingWidgetSingleTap, 300L);
+                    }
                 }
             }
             if (draggingListener != null) {
@@ -1000,6 +1016,48 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 .setMessage(message)
                 .setPositiveButton("OK", null)
                 .show();
+    }
+
+    /** Контекстное меню виджета на холсте (одиночный тап). */
+    private void showWidgetContextMenu(ViewBean bean) {
+        if (bean == null) return;
+        String title = (bean.id != null && !bean.id.isEmpty()) ? bean.id : "Виджет";
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
+                .setTitle(title)
+                .setItems(new String[]{"Свойства", "События", "Удалить"},
+                        (d, which) -> {
+                            switch (which) {
+                                case 0 -> {
+                                    if (doubleTapListener != null) {
+                                        doubleTapListener.onWidgetDoubleTap(bean);
+                                    } else if (propertyClickListener != null) {
+                                        propertyClickListener.a(b, bean);
+                                    }
+                                }
+                                case 1 -> openEventsForWidget(bean);
+                                case 2 -> deleteWidget(bean);
+                            }
+                        })
+                .setNegativeButton("Отмена", null)
+                .show();
+    }
+
+    /** Открыть редактор событий для виджета. */
+    private void openEventsForWidget(ViewBean bean) {
+        if (bean == null || bean.id == null) return;
+        try {
+            android.content.Intent intent = new android.content.Intent(
+                    getContext(),
+                    com.besome.sketch.editor.LogicEditorActivity.class);
+            intent.setFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("sc_id", a);
+            intent.putExtra("id", bean.id);
+            intent.putExtra("event", "onClick");
+            intent.putExtra("project_file", projectFileBean);
+            intent.putExtra("event_text", "onClick");
+            getContext().startActivity(intent);
+        } catch (Throwable ignored) {
+        }
     }
 
     public ItemView b(ViewBean viewBean, boolean z) {
