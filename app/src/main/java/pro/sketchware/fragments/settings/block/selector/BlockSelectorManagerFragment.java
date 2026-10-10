@@ -62,7 +62,7 @@ public class BlockSelectorManagerFragment extends qA {
         if (FileUtil.isExistFile(BlockSelectorConsts.BLOCK_SELECTORS_FILE.getAbsolutePath())) {
             selectors = parseJson(FileUtil.readFile(BlockSelectorConsts.BLOCK_SELECTORS_FILE.getAbsolutePath()));
         } else {
-            selectors.add(new Selector("Выберите просмотр типов:", "typeview", getTypeViewList()));
+            selectors.add(new Selector(Helper.getResString(R.string.auto_block_selector_manager_fragment_001), "typeview", getTypeViewList()));
             saveAllSelectors();
         }
 
@@ -123,8 +123,8 @@ public class BlockSelectorManagerFragment extends qA {
 
     private void showCreateEditDialog(int index, boolean isEdit) {
         DialogBlockConfigurationBinding dialogBinding = DialogBlockConfigurationBinding.inflate(LayoutInflater.from(requireContext()));
-        dialogBinding.tilPalettesPath.setHint("Имя селектора");
-        dialogBinding.tilBlocksPath.setHint("Заголовок селектора (например: Select View:)");
+        dialogBinding.tilPalettesPath.setHint(Helper.getResString(R.string.auto_block_selector_manager_fragment_002));
+        dialogBinding.tilBlocksPath.setHint(Helper.getResString(R.string.auto_block_selector_manager_fragment_003));
 
         if (isEdit) {
             dialogBinding.palettesPath.setText(selectors.get(index).getName());
@@ -133,7 +133,7 @@ public class BlockSelectorManagerFragment extends qA {
 
         addBasicTextChangedListener(dialogBinding.palettesPath, str -> {
             if (itemAlreadyExists(str)) {
-                dialogBinding.tilPalettesPath.setError("Элемент с таким именем уже существует");
+                dialogBinding.tilPalettesPath.setError(Helper.getResString(R.string.auto_block_selector_manager_fragment_004));
             } else {
                 dialogBinding.tilPalettesPath.setError(null);
             }
@@ -141,29 +141,29 @@ public class BlockSelectorManagerFragment extends qA {
 
         if ("typeview".equals(Objects.requireNonNull(dialogBinding.palettesPath.getText()).toString())) {
             dialogBinding.palettesPath.setEnabled(false);
-            dialogBinding.tilPalettesPath.setOnClickListener(v -> SketchwareUtil.toast("Нельзя изменить имя этого селектора"));
+            dialogBinding.tilPalettesPath.setOnClickListener(v -> SketchwareUtil.toast(Helper.getResString(R.string.auto_block_selector_manager_fragment_005)));
         }
 
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(requireActivity());
-        dialog.setTitle(!isEdit ? "Новый селектор" : "Редактировать селектор");
+        dialog.setTitle(!isEdit ? Helper.getResString(R.string.auto_block_selector_manager_fragment_006) : Helper.getResString(R.string.auto_block_selector_manager_fragment_007));
         dialog.setView(dialogBinding.getRoot());
-        dialog.setPositiveButton(!isEdit ? "Создать" : "Сохранить", (v, which) -> {
+        dialog.setPositiveButton(!isEdit ? Helper.getResString(R.string.auto_block_selector_manager_fragment_008) : Helper.getResString(R.string.auto_block_selector_manager_fragment_009), (v, which) -> {
             String selectorName = Helper.getText(dialogBinding.palettesPath);
             String selectorTitle = Objects.requireNonNull(dialogBinding.blocksPath.getText()).toString();
 
             if (selectorName.isEmpty()) {
-                SketchwareUtil.toast("Введите имя селектора");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_block_selector_manager_fragment_010));
                 return;
             }
             if (selectorTitle.isEmpty()) {
-                SketchwareUtil.toast("Введите заголовок селектора");
+                SketchwareUtil.toast(Helper.getResString(R.string.auto_block_selector_manager_fragment_011));
                 return;
             }
             if (!isEdit) {
                 if (!itemAlreadyExists(selectorName)) {
                     selectors.add(new Selector(selectorTitle, selectorName, new ArrayList<>()));
                 } else {
-                    SketchwareUtil.toast("Элемент с таким именем уже существует");
+                    SketchwareUtil.toast(Helper.getResString(R.string.auto_block_selector_manager_fragment_012));
                 }
             } else {
                 selectors.set(index, new Selector(selectorTitle, selectorName, selectors.get(index).getData()));
@@ -172,7 +172,7 @@ public class BlockSelectorManagerFragment extends qA {
             adapter.notifyDataSetChanged();
             v.dismiss();
         });
-        dialog.setNegativeButton("Отмена", (v, which) -> v.dismiss());
+        dialog.setNegativeButton(Helper.getResString(R.string.auto_block_selector_manager_fragment_013), (v, which) -> v.dismiss());
         dialog.show();
     }
 
@@ -210,7 +210,7 @@ public class BlockSelectorManagerFragment extends qA {
         dialog.setTitle("Attention");
         dialog.setMessage(message);
         dialog.setPositiveButton("Yes", (v, which) -> onConfirm.onConfirm(v));
-        dialog.setNegativeButton("Отмена", (v, which) -> onCancel.onCancel(v));
+        dialog.setNegativeButton(Helper.getResString(R.string.auto_block_selector_manager_fragment_014), (v, which) -> onCancel.onCancel(v));
         dialog.setCancelable(false);
         dialog.show();
     }
@@ -232,7 +232,7 @@ public class BlockSelectorManagerFragment extends qA {
 
     private void showImportSelectorDialog() {
         FilePickerOptions options = new FilePickerOptions();
-        options.setTitle("Выберите файл-селектор .json");
+        options.setTitle(Helper.getResString(R.string.auto_block_selector_manager_fragment_015));
         options.setExtensions(new String[]{"json"});
 
         FilePickerCallback callback = new FilePickerCallback() {
@@ -273,7 +273,7 @@ public class BlockSelectorManagerFragment extends qA {
                     saveAllSelectors();
                     adapter.notifyDataSetChanged();
                 } else {
-                    SketchwareUtil.toastError("Убедитесь, что выбрали файл, содержащий элементы селектора.");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_block_selector_manager_fragment_016));
                 }
             } else {
                 List<Selector> selectorsN = getSelectorsFromFile(file);
@@ -282,12 +282,12 @@ public class BlockSelectorManagerFragment extends qA {
                     saveAllSelectors();
                     adapter.notifyDataSetChanged();
                 } else {
-                    SketchwareUtil.toastError("Убедитесь, что выбрали файл, содержащий элементы селектора.");
+                    SketchwareUtil.toastError(Helper.getResString(R.string.auto_block_selector_manager_fragment_017));
                 }
             }
         } catch (Exception e) {
             Log.e(BlockSelectorConsts.TAG, e.toString());
-            SketchwareUtil.toastError("Убедитесь, что выбрали файл, содержащий элемент(ы) селектора.");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_block_selector_manager_fragment_018));
         }
     }
 
@@ -297,7 +297,7 @@ public class BlockSelectorManagerFragment extends qA {
             return getGson().fromJson(json, Selector.class);
         } catch (Exception e) {
             Log.e(BlockSelectorConsts.TAG, e.toString());
-            SketchwareUtil.toastError("Ошибка при получении селектора");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_block_selector_manager_fragment_019));
             return null;
         }
     }
@@ -310,7 +310,7 @@ public class BlockSelectorManagerFragment extends qA {
             return getGson().fromJson(json, itemListType);
         } catch (Exception e) {
             Log.e(BlockSelectorConsts.TAG, e.toString());
-            SketchwareUtil.toastError("Ошибка при получении селекторов");
+            SketchwareUtil.toastError(Helper.getResString(R.string.auto_block_selector_manager_fragment_020));
             return null;
         }
     }
