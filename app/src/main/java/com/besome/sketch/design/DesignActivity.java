@@ -416,11 +416,15 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 currentTabNumber--;
                 viewPager.setCurrentItem(currentTabNumber);
             } else {
-                if (!hasAnyUnsavedData() && !hasUnsavedChanges) {
+                // Проверяем настройку — использовать старый метод или новый.
+                boolean legacyMode = pro.sketchware.settings.DesignerSettingsStore
+                        .isUseLegacySaveDialog(this);
+
+                if (legacyMode || hasAnyUnsavedData() || hasUnsavedChanges) {
+                    showSaveBeforeQuittingDialog();
+                } else {
                     k();
                     finish();
-                } else {
-                    showSaveBeforeQuittingDialog();
                 }
             }
         }

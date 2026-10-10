@@ -50,6 +50,8 @@ public final class DesignerSettingsStore {
     private static final String KEY_MIGRATED_V1 = "migrated_v1";
 
     private static final String KEY_CHANGE_COUNTER = "change_counter";
+    /** Использовать старый метод диалога сохранения — показывать всегда. */
+    private static final String KEY_USE_LEGACY_SAVE_DIALOG = "use_legacy_save_dialog";
 
 
     private DesignerSettingsStore() {}
@@ -135,6 +137,11 @@ public final class DesignerSettingsStore {
         return prefs(ctx).getBoolean(KEY_SHOW_SEARCH, false);
     }
 
+    /** Использовать старый метод диалога сохранения — показывать всегда (true), или только при изменениях (false). */
+    public static boolean isUseLegacySaveDialog(Context ctx) {
+        return prefs(ctx).getBoolean(KEY_USE_LEGACY_SAVE_DIALOG, false);
+    }
+
     // ─── Сеттеры ────────────────────────────────────────────────
 
     public static void setAccordion(Context ctx, boolean v) {
@@ -199,6 +206,11 @@ public final class DesignerSettingsStore {
 
     public static void setShowSearch(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_SHOW_SEARCH, v).apply();
+        bumpCounter(ctx);
+    }
+
+    public static void setUseLegacySaveDialog(Context ctx, boolean v) {
+        prefs(ctx).edit().putBoolean(KEY_USE_LEGACY_SAVE_DIALOG, v).apply();
         bumpCounter(ctx);
     }
 }

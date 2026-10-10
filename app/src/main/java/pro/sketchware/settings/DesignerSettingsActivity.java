@@ -139,6 +139,11 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
                 "Поиск виджетов по названию над палитрой",
                 DesignerSettingsStore.isShowSearch(this),
                 v -> DesignerSettingsStore.setShowSearch(this, v));
+
+        addSwitch("Старый диалог сохранения",
+                "Показывать диалог сохранения ВСЕГДА при выходе из проекта. Если выключено — только при наличии изменений.",
+                DesignerSettingsStore.isUseLegacySaveDialog(this),
+                v -> DesignerSettingsStore.setUseLegacySaveDialog(this, v));
     }
 
     // ─────────────────────────────────────────────────────────────
