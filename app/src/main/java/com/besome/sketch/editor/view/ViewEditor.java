@@ -75,6 +75,9 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     private final Handler handler = new Handler();
     public boolean isLayoutChanged = true;
     public PaletteWidget paletteWidget;
+
+    /** Поле поиска виджетов в палитре (опциональное). */
+    private android.widget.EditText paletteSearch;
     public WidgetsCreatorManager widgetsCreatorManager;
     private ObjectAnimator animatorTranslateX;
     private boolean isAnimating = false;
@@ -257,6 +260,22 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
     }
 
+    /** Показать/скрыть поле поиска в палитре — по настройке дизайнера. */
+    public void applySearchVisibility() {
+        try {
+            if (paletteSearch == null) return;
+            boolean show = pro.sketchware.settings.DesignerSettingsStore
+                    .isShowSearch(getContext());
+            paletteSearch.setVisibility(show ? android.view.View.VISIBLE : android.view.View.GONE);
+            if (!show) {
+                paletteSearch.setText("");
+                if (paletteWidget != null) {
+                    paletteWidget.filterByQuery("");
+                }
+            }
+        } catch (Throwable ignored) {}
+    }
+
     /** Применить настройку ширины палитры к layout_palette. */
     public void applyPaletteWidth() {
         try {
@@ -265,10 +284,6 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
 
             String width = pro.sketchware.settings.DesignerSettingsStore
                     .getPaletteWidth(getContext());
-
-            android.widget.Toast.makeText(getContext(),
-                    "applyPaletteWidth: " + width,
-                    android.widget.Toast.LENGTH_SHORT).show();
 
             int dp;
             switch (width) {
@@ -630,6 +645,19 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         wB.a(context, this, R.layout.view_editor);
 
         paletteWidget = findViewById(R.id.palette_widget);
+        paletteSearch = findViewById(R.id.palette_search);
+        if (paletteSearch != null) {
+            paletteSearch.addTextChangedListener(new android.text.TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                @Override public void afterTextChanged(android.text.Editable e) {
+                    if (paletteWidget != null) {
+                        paletteWidget.filterByQuery(e == null ? "" : e.toString());
+                    }
+                }
+            });
+        }
+        applySearchVisibility();
         paletteFavorite = findViewById(R.id.palette_favorite);
         dummyView = findViewById(R.id.dummy);
         deleteIcon = findViewById(R.id.icon_delete);

@@ -405,6 +405,53 @@ public class PaletteWidget extends LinearLayout {
                 .show();
     }
 
+    /** Фильтр по имени виджета. Пустая строка — показать всё. */
+    public void filterByQuery(String query) {
+        try {
+            String q = (query == null ? "" : query.trim().toLowerCase());
+            // Обходим оба контейнера и фильтруем
+            filterContainer(layoutContainer, q);
+            filterContainer(widgetsContainer, q);
+        } catch (Throwable ignored) {}
+    }
+
+    /** Рекурсивно фильтрует контейнер — скрывает виджеты, не подходящие под запрос. */
+    private void filterContainer(android.view.ViewGroup parent, String query) {
+        if (parent == null) return;
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            android.view.View child = parent.getChildAt(i);
+            if (child instanceof IconBase) {
+                // Виджет — фильтруем по имени
+                IconBase icon = (IconBase) child;
+                String name = icon.getWidgetName();
+                boolean match = query.isEmpty() ||
+                        (name != null && name.toLowerCase().contains(query));
+                child.setVisibility(match ? android.view.View.VISIBLE : android.view.View.GONE);
+            } else if (child instanceof android.view.ViewGroup) {
+                // Контейнер — рекурсивно фильтруем
+                filterContainer((android.view.ViewGroup) child, query);
+
+                // Проверяем — есть ли в подконтейнере хоть один видимый IconBase
+                boolean anyVisible = hasVisibleIcon((android.view.ViewGroup) child);
+                child.setVisibility(anyVisible ? android.view.View.VISIBLE : android.view.View.GONE);
+            }
+        }
+    }
+
+    /** Есть ли в контейнере (рекурсивно) хоть один видимый IconBase. */
+    private boolean hasVisibleIcon(android.view.ViewGroup parent) {
+        if (parent == null) return false;
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            android.view.View child = parent.getChildAt(i);
+            if (child instanceof IconBase) {
+                if (child.getVisibility() == android.view.View.VISIBLE) return true;
+            } else if (child instanceof android.view.ViewGroup) {
+                if (hasVisibleIcon((android.view.ViewGroup) child)) return true;
+            }
+        }
+        return false;
+    }
+
     /** Применить состояния ко всем категориям. */
     public void applyAllCategoryStates() {
         String startState = pro.sketchware.settings.DesignerSettingsStore
