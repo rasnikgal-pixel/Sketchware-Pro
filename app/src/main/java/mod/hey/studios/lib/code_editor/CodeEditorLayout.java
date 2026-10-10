@@ -47,6 +47,13 @@ import pro.sketchware.utility.SketchwareUtil;
  */
 
 public class CodeEditorLayout extends LinearLayout implements TextWatcher {
+    private static final int MENU_ID_FONT_SIZE = 1;
+    private static final int MENU_ID_WORD_WRAP = 2;
+    private static final int MENU_ID_BRACKETS = 3;
+    private static final int MENU_ID_DARK_THEME = 4;
+    private static final int MENU_ID_FORMAT = 5;
+    private static final int MENU_ID_EXIT_CONFIRM = 6;
+
 
     private static final int DEFAULT_LAYOUT = R.layout.code_editor_layout;
     private static final int NOWRAP_LAYOUT = R.layout.code_editor_layout_nowrap;
@@ -126,35 +133,35 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
         PopupMenu popup = new PopupMenu(context, v);
         Menu menu = popup.getMenu();
 
-        menu.add("Font size")
+        menu.add(0, MENU_ID_FONT_SIZE, 0, "Font size")
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add(Helper.getResString(R.string.auto_code_editor_layout_001))
+        menu.add(0, MENU_ID_WORD_WRAP, 1, Helper.getResString(R.string.auto_code_editor_layout_001))
                 .setCheckable(true)
                 .setChecked(word_wrap)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add("Complete brackets")
+        menu.add(0, MENU_ID_BRACKETS, 2, "Complete brackets")
                 .setCheckable(true)
                 .setChecked(complete_brackets)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add("Dark theme")
+        menu.add(0, MENU_ID_DARK_THEME, 3, "Dark theme")
                 .setCheckable(true)
                 .setChecked(dark_theme)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add(Helper.getResString(R.string.auto_code_editor_layout_002))
+        menu.add(0, MENU_ID_FORMAT, 4, Helper.getResString(R.string.auto_code_editor_layout_002))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        menu.add("Exit confirmation")
+        menu.add(0, MENU_ID_EXIT_CONFIRM, 5, "Exit confirmation")
                 .setCheckable(true)
                 .setChecked(exit_confirmation_dialog)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
         popup.setOnMenuItemClickListener(item -> {
-            switch (item.getTitle().toString()) {
-                case "Font size":
+            switch (item.getItemId()) {
+                case MENU_ID_FONT_SIZE:
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
                     NumberPicker numPicker = new NumberPicker(context);
@@ -173,25 +180,25 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                             .show();
                     break;
 
-                case Helper.getResString(R.string.auto_code_editor_layout_004):
+                case MENU_ID_WORD_WRAP:
                     item.setChecked(!item.isChecked());
                     setWordWrap(item.isChecked());
                     break;
 
-                case "Complete brackets":
+                case MENU_ID_BRACKETS:
                     item.setChecked(!item.isChecked());
                     complete_brackets = item.isChecked();
                     setPreference("complete_brackets", complete_brackets);
                     break;
 
-                case "Dark theme":
+                case MENU_ID_DARK_THEME:
                     item.setChecked(!item.isChecked());
                     dark_theme = item.isChecked();
                     editText.removeTextChangedListener(this);
                     startHighlighting(type);
                     break;
 
-                case Helper.getResString(R.string.auto_code_editor_layout_005):
+                case MENU_ID_FORMAT:
                     StringBuilder string = new StringBuilder();
                     String[] lines = getText().split("\n");
 
@@ -214,7 +221,7 @@ public class CodeEditorLayout extends LinearLayout implements TextWatcher {
                     setText(prettifiedString);
                     break;
 
-                case "Exit confirmation":
+                case MENU_ID_EXIT_CONFIRM:
                     exit_confirmation_dialog = !item.isChecked();
                     item.setChecked(exit_confirmation_dialog);
                     setPreference("exit_confirmation_dialog", exit_confirmation_dialog);
