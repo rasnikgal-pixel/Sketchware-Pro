@@ -2287,10 +2287,10 @@ ACTION_VIEW
     <string name="auto_concat_sk_proj_export_task_003">Путь: %1$s</string>
     <string name="auto_concat_sk_proj_export_task_002">Размер: %1$s\n</string>
     <string name="auto_concat_sk_proj_export_task_001">Файл: %1$s\n</string>
-    <string name="auto_concat_extra_palette_block_010">Пользовательский блок #%1$s</string>
-    <string name="auto_concat_extra_palette_block_009">Пользовательский блок #%1$s</string>
-    <string name="auto_concat_extra_palette_block_008">Пользовательский блок #%1$s</string>
-    <string name="auto_concat_extra_palette_block_007">Пользовательский блок #%1$s</string>
+    <string name="auto_concat_extra_palette_block_010">Пользовательский блок #%1$s имеет недопустимый тип block palette</string>
+    <string name="auto_concat_extra_palette_block_009">Пользовательский блок #%1$s имеет недопустимый тип block type</string>
+    <string name="auto_concat_extra_palette_block_008">Пользовательский блок #%1$s имеет недопустимый тип name</string>
+    <string name="auto_concat_extra_palette_block_007">Пользовательский блок #%1$s имеет недопустимый тип spec</string>
     <string name="auto_concat_extra_palette_block_006">Ошибка шаблона: %1$s</string>
     <string name="auto_concat_extra_palette_block_005">Мои наборы (%1$s)</string>
     <string name="auto_concat_extra_palette_block_004">Ошибка шаблона: %1$s</string>

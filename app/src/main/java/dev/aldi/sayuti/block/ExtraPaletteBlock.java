@@ -1341,8 +1341,7 @@ public class ExtraPaletteBlock {
                                     if (spec instanceof String specString) {
                                         logicEditor.a(specString, getTitleBgColor());
                                     } else {
-                                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_007, paletteBlocks)
-                                                " of current palette has an invalid spec data type");
+                                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_007, paletteBlocks));
                                     }
                                 } else {
                                     Object name = map.get("name");
@@ -1356,18 +1355,15 @@ public class ExtraPaletteBlock {
                                             logicEditor.a("", typeString, "", nameString);
                                         }
                                     } else {
-                                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_008, paletteBlocks)
-                                                " of current palette has an invalid name data type");
+                                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_008, paletteBlocks));
                                     }
                                 }
                             } else {
-                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_009, paletteBlocks)
-                                        " of current palette has an invalid block type data type");
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_009, paletteBlocks));
                             }
                         }
                     } else {
-                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_010, paletteBlocks)
-                                " of current palette has an invalid block palette data type");
+                        SketchwareUtil.toastError(Helper.getResString(R.string.auto_concat_extra_palette_block_010, paletteBlocks));
                     }
                 }
                 break;
