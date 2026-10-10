@@ -2460,4 +2460,15 @@ ACTION_VIEW
     <string name="auto_manage_event_021">[TODO] при ошибке загрузки рекламы с вознаграждением</string>
     <string name="auto_proguard_handler_001">[TODO] Выполняется R8...</string>
     <string name="auto_proguard_handler_002">[TODO] Обработка ProGuard...</string>
+    <string name="auto_src_code_editor_001">[TODO] Выберите тему</string>
+    <string name="auto_src_code_editor_002">[TODO] Выберите язык</string>
+    <string name="auto_src_code_editor_003">[TODO] Предпросмотр макета</string>
+    <string name="auto_src_code_editor_004">[TODO] Найти и заменить</string>
+    <string name="auto_src_code_editor_005">[TODO] Перенос строк</string>
+    <string name="auto_src_code_editor_006">[TODO] Форматировать</string>
+    <string name="auto_src_code_editor_007">[TODO] Язык</string>
+    <string name="auto_src_code_editor_008">[TODO] Тема</string>
+    <string name="auto_src_code_editor_009">[TODO] В коде неправильно вложены скобки</string>
+    <string name="auto_src_code_editor_010">[TODO] Не удалось отформатировать XML-файл</string>
+    <string name="auto_src_code_editor_011">[TODO] Форматировать можно только Java- и XML-файлы</string>
 </resources>

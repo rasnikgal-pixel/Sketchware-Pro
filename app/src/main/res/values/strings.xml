@@ -2460,4 +2460,15 @@ ACTION_VIEW
     <string name="auto_manage_event_021">при ошибке загрузки рекламы с вознаграждением</string>
     <string name="auto_proguard_handler_001">Выполняется R8...</string>
     <string name="auto_proguard_handler_002">Обработка ProGuard...</string>
+    <string name="auto_src_code_editor_001">Выберите тему</string>
+    <string name="auto_src_code_editor_002">Выберите язык</string>
+    <string name="auto_src_code_editor_003">Предпросмотр макета</string>
+    <string name="auto_src_code_editor_004">Найти и заменить</string>
+    <string name="auto_src_code_editor_005">Перенос строк</string>
+    <string name="auto_src_code_editor_006">Форматировать</string>
+    <string name="auto_src_code_editor_007">Язык</string>
+    <string name="auto_src_code_editor_008">Тема</string>
+    <string name="auto_src_code_editor_009">В коде неправильно вложены скобки</string>
+    <string name="auto_src_code_editor_010">Не удалось отформатировать XML-файл</string>
+    <string name="auto_src_code_editor_011">Форматировать можно только Java- и XML-файлы</string>
 </resources>

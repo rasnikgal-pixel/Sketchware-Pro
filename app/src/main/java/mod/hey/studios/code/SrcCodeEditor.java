@@ -67,6 +67,18 @@ import pro.sketchware.utility.ThemeUtils;
 import pro.sketchware.utility.UI;
 
 public class SrcCodeEditor extends BaseAppCompatActivity {
+    private static final int MENU_ID_UNDO = 1;
+    private static final int MENU_ID_REDO = 2;
+    private static final int MENU_ID_SAVE = 3;
+    private static final int MENU_ID_LAYOUT_PREVIEW = 4;
+    private static final int MENU_ID_FIND_REPLACE = 5;
+    private static final int MENU_ID_WORD_WRAP = 6;
+    private static final int MENU_ID_FORMAT = 7;
+    private static final int MENU_ID_LANGUAGE = 8;
+    private static final int MENU_ID_THEME = 9;
+    private static final int MENU_ID_AUTOCOMPLETE = 10;
+    private static final int MENU_ID_AUTOCOMPLETE_SYMBOL = 11;
+
     public static final String FLAG_FROM_ANDROID_MANIFEST = "from_android_manifest";
     public static final List<Pair<String, Class<? extends EditorColorScheme>>> KNOWN_COLOR_SCHEMES = List.of(
             new Pair<>("Default", EditorColorScheme.class),
@@ -252,7 +264,7 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                 .map(pair -> pair.first)
                 .toArray(String[]::new);
         new MaterialAlertDialogBuilder(activity)
-                .setTitle("Выберите тему")
+                .setTitle(Helper.getResString(R.string.auto_src_code_editor_001))
                 .setSingleChoiceItems(themeItems, selectedThemeIndex, listener)
                 .setNegativeButton(R.string.common_word_cancel, null)
                 .show();
@@ -266,7 +278,7 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
         };
 
         new MaterialAlertDialogBuilder(activity)
-                .setTitle("Выберите язык")
+                .setTitle(Helper.getResString(R.string.auto_src_code_editor_002))
                 .setSingleChoiceItems(languagesList, languageId, listener)
                 .setNegativeButton(R.string.common_word_cancel, null)
                 .show();
@@ -389,36 +401,35 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
             SharedPreferences local_pref = getSharedPreferences("hsce", Activity.MODE_PRIVATE);
             Menu toolbarMenu = binding.toolbar.getMenu();
             toolbarMenu.clear();
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Undo").setIcon(AppCompatResources.getDrawable(this, R.drawable.ic_mtrl_undo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Redo").setIcon(AppCompatResources.getDrawable(this, R.drawable.ic_mtrl_redo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Save").setIcon(AppCompatResources.getDrawable(this, R.drawable.ic_mtrl_save)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            toolbarMenu.add(Menu.NONE, MENU_ID_UNDO, Menu.NONE, "Undo").setIcon(AppCompatResources.getDrawable(this, R.drawable.ic_mtrl_undo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            toolbarMenu.add(Menu.NONE, MENU_ID_REDO, Menu.NONE, "Redo").setIcon(AppCompatResources.getDrawable(this, R.drawable.ic_mtrl_redo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            toolbarMenu.add(Menu.NONE, MENU_ID_SAVE, Menu.NONE, "Save").setIcon(AppCompatResources.getDrawable(this, R.drawable.ic_mtrl_save)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
             if (isFileInLayoutFolder() && getIntent().hasExtra("sc_id")) {
-                toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Предпросмотр макета");
+                toolbarMenu.add(Menu.NONE, MENU_ID_LAYOUT_PREVIEW, Menu.NONE, Helper.getResString(R.string.auto_src_code_editor_003));
             }
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Найти и заменить");
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Перенос строк").setCheckable(true).setChecked(local_pref.getBoolean("act_ww", false));
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Форматировать");
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Язык");
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Тема");
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Auto complete").setCheckable(true).setChecked(local_pref.getBoolean("act_ac", true));
-            toolbarMenu.add(Menu.NONE, Menu.NONE, Menu.NONE, "Auto complete symbol pair").setCheckable(true).setChecked(local_pref.getBoolean("act_acsp", true));
+            toolbarMenu.add(Menu.NONE, MENU_ID_FIND_REPLACE, Menu.NONE, Helper.getResString(R.string.auto_src_code_editor_004));
+            toolbarMenu.add(Menu.NONE, MENU_ID_WORD_WRAP, Menu.NONE, Helper.getResString(R.string.auto_src_code_editor_005)).setCheckable(true).setChecked(local_pref.getBoolean("act_ww", false));
+            toolbarMenu.add(Menu.NONE, MENU_ID_FORMAT, Menu.NONE, Helper.getResString(R.string.auto_src_code_editor_006));
+            toolbarMenu.add(Menu.NONE, MENU_ID_LANGUAGE, Menu.NONE, Helper.getResString(R.string.auto_src_code_editor_007));
+            toolbarMenu.add(Menu.NONE, MENU_ID_THEME, Menu.NONE, Helper.getResString(R.string.auto_src_code_editor_008));
+            toolbarMenu.add(Menu.NONE, MENU_ID_AUTOCOMPLETE, Menu.NONE, "Auto complete").setCheckable(true).setChecked(local_pref.getBoolean("act_ac", true));
+            toolbarMenu.add(Menu.NONE, MENU_ID_AUTOCOMPLETE_SYMBOL, Menu.NONE, "Auto complete symbol pair").setCheckable(true).setChecked(local_pref.getBoolean("act_acsp", true));
 
             binding.toolbar.setOnMenuItemClickListener(item -> {
-                String title1 = item.getTitle().toString();
-                switch (title1) {
-                    case "Undo":
+                switch (item.getItemId()) {
+                    case MENU_ID_UNDO:
                         binding.editor.undo();
                         break;
 
-                    case "Redo":
+                    case MENU_ID_REDO:
                         binding.editor.redo();
                         break;
 
-                    case "Save":
+                    case MENU_ID_SAVE:
                         save();
                         break;
 
-                    case "Форматировать":
+                    case MENU_ID_FORMAT:
                         if (getIntent().hasExtra("java")) {
                             StringBuilder b = new StringBuilder();
 
@@ -437,7 +448,7 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                                 ss = Lx.j(ss, true);
                             } catch (Exception e) {
                                 err = true;
-                                SketchwareUtil.toastError("В коде неправильно вложены скобки");
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_src_code_editor_009));
                             }
 
                             if (!err) binding.editor.setText(ss);
@@ -448,26 +459,26 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                             if (format != null) {
                                 binding.editor.setText(format);
                             } else {
-                                SketchwareUtil.toastError("Не удалось отформатировать XML-файл", Toast.LENGTH_LONG);
+                                SketchwareUtil.toastError(Helper.getResString(R.string.auto_src_code_editor_010), Toast.LENGTH_LONG);
                             }
                         } else {
-                            SketchwareUtil.toast("Форматировать можно только Java- и XML-файлы");
+                            SketchwareUtil.toast(Helper.getResString(R.string.auto_src_code_editor_011));
                         }
                         break;
 
-                    case "Язык":
+                    case MENU_ID_LANGUAGE:
                         showSwitchLanguageDialog(this, binding.editor, (dialog, which) -> {
                             selectLanguage(binding.editor, which);
                             dialog.dismiss();
                         });
                         break;
 
-                    case "Найти и заменить":
+                    case MENU_ID_FIND_REPLACE:
                         binding.editor.getSearcher().stopSearch();
                         binding.editor.beginSearchMode();
                         break;
 
-                    case "Тема":
+                    case MENU_ID_THEME:
                         showSwitchThemeDialog(this, binding.editor, (dialog, which) -> {
                             selectTheme(binding.editor, which);
                             pref.edit().putInt("act_theme", which).apply();
@@ -475,28 +486,28 @@ public class SrcCodeEditor extends BaseAppCompatActivity {
                         });
                         break;
 
-                    case "Перенос строк":
+                    case MENU_ID_WORD_WRAP:
                         item.setChecked(!item.isChecked());
                         binding.editor.setWordwrap(item.isChecked());
 
                         pref.edit().putBoolean("act_ww", item.isChecked()).apply();
                         break;
 
-                    case "Auto complete symbol pair":
+                    case MENU_ID_AUTOCOMPLETE_SYMBOL:
                         item.setChecked(!item.isChecked());
                         binding.editor.getProps().symbolPairAutoCompletion = item.isChecked();
 
                         pref.edit().putBoolean("act_acsp", item.isChecked()).apply();
                         break;
 
-                    case "Auto complete":
+                    case MENU_ID_AUTOCOMPLETE:
                         item.setChecked(!item.isChecked());
 
                         binding.editor.getComponent(EditorAutoCompletion.class).setEnabled(item.isChecked());
                         pref.edit().putBoolean("act_ac", item.isChecked()).apply();
                         break;
 
-                    case "Предпросмотр макета":
+                    case MENU_ID_LAYOUT_PREVIEW:
                         toLayoutPreview();
                         break;
 
