@@ -169,7 +169,7 @@ public class ShowBlockCollectionActivity extends BaseAppCompatActivity implement
             addBlocks(block.blocks);
             resizeBottomViews();
         } else {
-            SketchwareUtil.toastError(Helper.getResString(R.string.auto_show_block_collection_activity_001));
+            SketchwareUtil.toastError("Не удалось открыть повреждённый блок");
             finish();
         }
     }
@@ -193,7 +193,7 @@ public class ShowBlockCollectionActivity extends BaseAppCompatActivity implement
             if (ImageFactory.saveBitmap(binding.editor.getChildAt(0), blockName).exists()) {
                 SketchwareUtil.toast("Изображение сохранено в /Internal storage/sketchware/saved_block/" + blockName + ".png!");
             } else {
-                SketchwareUtil.toastError(Helper.getResString(R.string.auto_show_block_collection_activity_002));
+                SketchwareUtil.toastError("Не удалось сохранить изображение");
             }
         }
 

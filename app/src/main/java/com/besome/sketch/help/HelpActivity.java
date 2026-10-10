@@ -1,7 +1,5 @@
 package com.besome.sketch.help;
 
-
-import mod.hey.studios.util.Helper;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,7 +50,7 @@ public class HelpActivity extends BaseAppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(Helper.getResString(R.string.auto_help_activity_001));
+            getSupportActionBar().setTitle("Справка");
         }
 
         if (savedInstanceState == null) {

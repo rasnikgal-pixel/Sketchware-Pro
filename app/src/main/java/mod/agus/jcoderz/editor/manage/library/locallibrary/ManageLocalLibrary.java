@@ -42,7 +42,7 @@ public class ManageLocalLibrary {
                 // fall-through to shared error handler
             }
 
-            SketchwareUtil.toastError(Helper.getResString(R.string.auto_manage_local_library_001));
+            SketchwareUtil.toastError("Найдена недопустимая конфигурация локальной библиотеки! Временно не используется");
         }
         list = new ArrayList<>();
     }

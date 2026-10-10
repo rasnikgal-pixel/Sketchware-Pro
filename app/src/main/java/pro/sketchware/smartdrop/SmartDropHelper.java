@@ -1,7 +1,5 @@
 package pro.sketchware.smartdrop;
 
-
-import mod.hey.studios.util.Helper;
 import android.content.Context;
 import android.util.Log;
 import com.besome.sketch.beans.BlockBean;
@@ -300,7 +298,7 @@ public class SmartDropHelper {
                 } else {
                     log.e(TAG, "log_smartdrop_exception", new Exception("createComponent returned false"));
                     Toast.makeText(activity,
-                            Helper.getResString(R.string.auto_smart_drop_helper_001), Toast.LENGTH_SHORT).show();
+                            "Ошибка создания компонента", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -457,7 +455,7 @@ public class SmartDropHelper {
 
         ArrayList<ComponentBean> unresolved = getUnresolvedComponents(droppedBlocks, scId, javaName);
         if (unresolved.isEmpty()) {
-            log.d(TAG, "log_smartdrop_no_component_required", Helper.getResString(R.string.auto_smart_drop_helper_002));
+            log.d(TAG, "log_smartdrop_no_component_required", "все компоненты разрешены");
             return;
         }
 

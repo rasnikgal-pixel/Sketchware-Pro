@@ -1,7 +1,5 @@
 package pro.sketchware.smartdrop;
 
-
-import mod.hey.studios.util.Helper;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
@@ -47,7 +45,7 @@ public final class AutoBackupManager {
             if (outFile == null) {
                 // Ошибка — файл не создан
                 logError(context, scId, "backup() returned null outFile");
-                showToastSafe(context, Helper.getResString(R.string.auto_auto_backup_manager_001));
+                showToastSafe(context, "Не удалось создать автобэкап");
                 return;
             }
 
@@ -61,7 +59,7 @@ public final class AutoBackupManager {
 
         } catch (Throwable t) {
             logError(context, scId, String.valueOf(t));
-            showToastSafe(context, Helper.getResString(R.string.auto_auto_backup_manager_002));
+            showToastSafe(context, "Ошибка автобэкапа");
         }
     }
 

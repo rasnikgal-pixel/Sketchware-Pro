@@ -1,7 +1,5 @@
 package pro.sketchware.activities.main.fragments.projects_store;
 
-
-import mod.hey.studios.util.Helper;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -75,7 +73,7 @@ public class ProjectPreviewActivity extends BaseAppCompatActivity {
         binding.filesize.setText("Размер:" + project.getProjectSize());
         binding.timestamp.setText("Выпущено:" + DateFormat.getDateInstance().format(new Date(Long.parseLong(project.getPublishedTimestamp()))));
         binding.btnComments.setOnClickListener(v -> openCommentsSheet());
-        binding.btnDownload.setOnClickListener(v -> SketchwareUtil.toastError(Helper.getResString(R.string.auto_project_preview_activity_001)));
+        binding.btnDownload.setOnClickListener(v -> SketchwareUtil.toastError("Загрузка проектов сейчас недоступна!"));
         binding.btnOpenIn.setOnClickListener(v -> openProject());
         binding.btnBack.setOnClickListener(v -> finish());
 

@@ -261,12 +261,12 @@ public class EventsHandler {
 
     public static String getDesc(String name) {
         return switch (name) {
-            case "Import" -> Helper.getResString(R.string.auto_events_handler_001);
+            case "Import" -> "Добавить свои импорты";
             case "onActivityResult" -> "onActivityResult";
             case "initializeLogic" -> "initializeLogic";
             case "onSwipeRefreshLayout" -> "On SwipeRefreshLayout swipe";
             case " onLongClick" -> "onLongClick";
-            case "onTabLayoutNewTabAdded" -> Helper.getResString(R.string.auto_events_handler_002);
+            case "onTabLayoutNewTabAdded" -> "возвращает имя текущей вкладки";
             case "onPreExecute" ->
                     "This method contains the code which is executed before the background processing starts.";
             case "doInBackground" ->
@@ -420,7 +420,7 @@ public class EventsHandler {
 
     public static String getSpec(String name, String event) {
         return switch (event) {
-            case "Import" -> Helper.getResString(R.string.auto_events_handler_003);
+            case "Import" -> "создать новый импорт";
             case "onActivityResult" ->
                     "OnActivityResult %d.requestCode %d.resultCode %m.intent.data";
             case "initializeLogic" -> "initializeLogic";
