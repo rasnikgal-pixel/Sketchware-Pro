@@ -2500,4 +2500,21 @@ ACTION_VIEW
     <string name="auto_blc_block_prefix">Блок %1$s</string>
     <string name="auto_blc_empty_condition_block">Пустое условие в блоке %1$s</string>
     <string name="auto_blc_empty_condition">Пустое условие в %1$s</string>
+    <string name="auto_ipd_hint_search">Поиск...</string>
+    <string name="auto_ipd_list_all">Листать все иконки</string>
+    <string name="auto_ipd_title">Выберите иконку</string>
+    <string name="auto_ipd_ok">ОК</string>
+    <string name="auto_ipd_cancel">Отмена</string>
+    <string name="auto_ipd_cat_basic">Основные</string>
+    <string name="auto_ipd_cat_actions">Действия</string>
+    <string name="auto_ipd_cat_arrows">Стрелки</string>
+    <string name="auto_ipd_cat_media">Медиа</string>
+    <string name="auto_ipd_cat_connect">Связь</string>
+    <string name="auto_ipd_cat_time">Время</string>
+    <string name="auto_ipd_cat_place">Место</string>
+    <string name="auto_ipd_cat_data">Данные</string>
+    <string name="auto_ipd_cat_dev">Разработка</string>
+    <string name="auto_ipd_cat_ui">Интерфейс</string>
+    <string name="auto_ipd_cat_user">Пользователь</string>
+    <string name="auto_ipd_cat_misc">Разное</string>
 </resources>

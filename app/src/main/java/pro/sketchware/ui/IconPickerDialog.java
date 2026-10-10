@@ -1,5 +1,7 @@
 package pro.sketchware.ui;
 
+
+import mod.hey.studios.util.Helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -41,14 +43,14 @@ public class IconPickerDialog {
 
     private static final Map<String, List<String>> CATEGORIES = new LinkedHashMap<>();
     static {
-        CATEGORIES.put("Основные", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_basic), Arrays.asList(
                 "ic_mtrl_home", "ic_mtrl_settings", "ic_mtrl_star", "ic_mtrl_done",
                 "ic_mtrl_help", "ic_mtrl_info", "ic_mtrl_search", "ic_mtrl_menu",
                 "ic_mtrl_category", "ic_mtrl_grid", "ic_mtrl_list", "ic_mtrl_checklist",
                 "ic_mtrl_bookmark", "ic_mtrl_label", "ic_mtrl_pin", "ic_mtrl_pin_fill",
                 "ic_mtrl_team", "ic_mtrl_group", "ic_mtrl_component", "ic_mtrl_preview"
         ));
-        CATEGORIES.put("Действия", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_actions), Arrays.asList(
                 "ic_mtrl_add", "ic_mtrl_add_circle", "ic_mtrl_edit", "ic_mtrl_delete",
                 "ic_mtrl_save", "ic_mtrl_save_as", "ic_mtrl_close", "ic_mtrl_check",
                 "ic_mtrl_undo", "ic_mtrl_redo", "ic_mtrl_refresh", "ic_mtrl_sync",
@@ -56,21 +58,21 @@ public class IconPickerDialog {
                 "ic_mtrl_sort", "ic_mtrl_clear_all", "ic_mtrl_cancel", "ic_mtrl_reset",
                 "ic_mtrl_done", "ic_mtrl_swap_vertical", "ic_mtrl_more_vertical"
         ));
-        CATEGORIES.put("Стрелки", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_arrows), Arrays.asList(
                 "ic_mtrl_arrow_left", "ic_mtrl_arrow_right", "ic_mtrl_arrow_right2", "ic_mtrl_arrow_up",
                 "ic_mtrl_arrow_down", "ic_mtrl_chevron_right_24", "ic_mtrl_next", "ic_mtrl_exit",
                 "ic_mtrl_expand", "ic_mtrl_enlarge", "ic_mtrl_pull_down", "ic_mtrl_top",
                 "ic_mtrl_swipe_up", "ic_mtrl_swipe_down", "ic_mtrl_swipe_horizontal", "ic_mtrl_swipe_vertical",
                 "ic_mtrl_move_x", "ic_mtrl_move_y", "ic_mtrl_rotate", "ic_mtrl_rotate_90"
         ));
-        CATEGORIES.put("Медиа", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_media), Arrays.asList(
                 "ic_mtrl_image", "ic_mtrl_circle_play", "ic_mtrl_circle_pause", "ic_mtrl_stop",
                 "ic_mtrl_volume", "ic_mtrl_video", "ic_mtrl_music", "ic_mtrl_camera",
                 "ic_mtrl_screen", "ic_mtrl_screen_play", "ic_mtrl_style", "ic_mtrl_palette",
                 "ic_mtrl_pick_color", "ic_mtrl_font", "ic_mtrl_formattext", "ic_mtrl_type",
                 "ic_mtrl_speech", "ic_mtrl_tts", "ic_mtrl_stt", "ic_mtrl_youtube"
         ));
-        CATEGORIES.put("Связь", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_connect), Arrays.asList(
                 "ic_mtrl_bluetooth", "ic_mtrl_bluetooth_connected", "ic_mtrl_wifi",
                 "ic_mtrl_notifications", "ic_mtrl_email_sent", "ic_mtrl_sms_check",
                 "ic_mtrl_chat", "ic_mtrl_web", "ic_mtrl_link", "ic_mtrl_link_check",
@@ -78,22 +80,22 @@ public class IconPickerDialog {
                 "ic_mtrl_shield_check", "ic_mtrl_shield_lock",
                 "ic_mtrl_verified_user", "ic_mtrl_fingerprint", "ic_mtrl_profile"
         ));
-        CATEGORIES.put("Время", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_time), Arrays.asList(
                 "ic_mtrl_calendar", "ic_mtrl_calendar_add", "ic_mtrl_calendary_today",
                 "ic_mtrl_date_changed", "ic_mtrl_time", "ic_mtrl_timer", "ic_mtrl_clock",
                 "ic_mtrl_history", "ic_mtrl_sprint"
         ));
-        CATEGORIES.put("Место", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_place), Arrays.asList(
                 "ic_mtrl_location", "ic_mtrl_location_changed", "ic_mtrl_map", "ic_mtrl_map_ready",
                 "ic_mtrl_pin", "ic_mtrl_pin_fill", "ic_mtrl_loc_click", "ic_mtrl_devices"
         ));
-        CATEGORIES.put("Данные", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_data), Arrays.asList(
                 "ic_mtrl_database_added", "ic_mtrl_database_edit", "ic_mtrl_database_moved",
                 "ic_mtrl_database_off", "ic_mtrl_folder", "ic_mtrl_folder_code",
                 "ic_mtrl_file", "ic_mtrl_file_picked", "ic_mtrl_file_present",
                 "ic_mtrl_package"
         ));
-        CATEGORIES.put("Разработка", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_dev), Arrays.asList(
                 "ic_mtrl_code", "ic_mtrl_java", "ic_mtrl_kotlin", "ic_mtrl_terminal",
                 "ic_mtrl_bug_report", "ic_mtrl_apk_document", "ic_mtrl_apk_install",
                 "ic_mtrl_firebase", "ic_mtrl_firebase_auth", "ic_mtrl_firebase_cloud",
@@ -102,7 +104,7 @@ public class IconPickerDialog {
                 "ic_mtrl_material3", "ic_mtrl_regular_expression", "ic_mtrl_deployed_code",
                 "ic_mtrl_version_control", "ic_mtrl_inject"
         ));
-        CATEGORIES.put("Интерфейс", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_ui), Arrays.asList(
                 "ic_mtrl_design", "ic_mtrl_view_horizontal", "ic_mtrl_view_relative",
                 "ic_mtrl_view_vertical", "ic_mtrl_orientation", "ic_mtrl_width", "ic_mtrl_height",
                 "ic_mtrl_margin", "ic_mtrl_padding", "ic_mtrl_weight", "ic_mtrl_drag",
@@ -113,11 +115,11 @@ public class IconPickerDialog {
                 "ic_mtrl_scroller", "ic_mtrl_indeterminate", "ic_mtrl_progress",
                 "ic_mtrl_progress_check", "ic_mtrl_prog_max", "ic_mtrl_prog_min", "ic_mtrl_tune"
         ));
-        CATEGORIES.put("Пользователь", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_user), Arrays.asList(
                 "ic_mtrl_user_create", "ic_mtrl_user_delete", "ic_mtrl_user_edit",
                 "ic_mtrl_user_register_complete", "ic_mtrl_user_remove"
         ));
-        CATEGORIES.put("Разное", Arrays.asList(
+        CATEGORIES.put(Helper.getResString(R.string.auto_ipd_cat_misc), Arrays.asList(
                 "ic_mtrl_key", "ic_mtrl_keyboard", "ic_mtrl_sensor",
                 "ic_mtrl_sensors", "ic_mtrl_payment", "ic_mtrl_admob", "ic_mtrl_ad",
                 "ic_mtrl_interests", "ic_mtrl_interface", "ic_mtrl_animation",
@@ -188,7 +190,7 @@ public class IconPickerDialog {
 
         // Поиск
         EditText search = new EditText(context);
-        search.setHint("Поиск...");
+        search.setHint(Helper.getResString(R.string.auto_ipd_hint_search));
         search.setSingleLine(true);
         content.addView(search);
 
@@ -280,7 +282,7 @@ public class IconPickerDialog {
 
         // Чекбокс "Листать все иконки"
         CheckBox listAllCb = new CheckBox(context);
-        listAllCb.setText("Листать все иконки");
+        listAllCb.setText(Helper.getResString(R.string.auto_ipd_list_all));
         listAllCb.setChecked(listAll);
         listAllCb.setOnCheckedChangeListener((btn, checked) -> {
             listAll = checked;
@@ -301,10 +303,10 @@ public class IconPickerDialog {
         });
 
         new AlertDialog.Builder(context)
-                .setTitle("Выберите иконку")
+                .setTitle(Helper.getResString(R.string.auto_ipd_title))
                 .setView(content)
-                .setPositiveButton("ОК", (d, w) -> {})
-                .setNegativeButton("Отмена", null)
+                .setPositiveButton(Helper.getResString(R.string.auto_ipd_ok), (d, w) -> {})
+                .setNegativeButton(Helper.getResString(R.string.auto_ipd_cancel), null)
                 .show();
 
         refreshIcons();

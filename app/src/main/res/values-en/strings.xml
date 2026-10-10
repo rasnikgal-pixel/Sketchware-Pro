@@ -2500,4 +2500,21 @@ ACTION_VIEW
     <string name="auto_blc_block_prefix">[TODO] Block %1$s</string>
     <string name="auto_blc_empty_condition_block">[TODO] Empty condition in block %1$s</string>
     <string name="auto_blc_empty_condition">[TODO] Empty condition in %1$s</string>
+    <string name="auto_ipd_hint_search">[TODO] Search...</string>
+    <string name="auto_ipd_list_all">[TODO] Browse all icons</string>
+    <string name="auto_ipd_title">[TODO] Select icon</string>
+    <string name="auto_ipd_ok">[TODO] OK</string>
+    <string name="auto_ipd_cancel">[TODO] Cancel</string>
+    <string name="auto_ipd_cat_basic">[TODO] Basic</string>
+    <string name="auto_ipd_cat_actions">[TODO] Actions</string>
+    <string name="auto_ipd_cat_arrows">[TODO] Arrows</string>
+    <string name="auto_ipd_cat_media">[TODO] Media</string>
+    <string name="auto_ipd_cat_connect">[TODO] Connection</string>
+    <string name="auto_ipd_cat_time">[TODO] Time</string>
+    <string name="auto_ipd_cat_place">[TODO] Place</string>
+    <string name="auto_ipd_cat_data">[TODO] Data</string>
+    <string name="auto_ipd_cat_dev">[TODO] Development</string>
+    <string name="auto_ipd_cat_ui">[TODO] Interface</string>
+    <string name="auto_ipd_cat_user">[TODO] User</string>
+    <string name="auto_ipd_cat_misc">[TODO] Misc</string>
 </resources>
