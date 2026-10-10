@@ -155,7 +155,7 @@ public class SketchwareUtil {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
         dialog.setIcon(R.drawable.break_warning_96_red);
         dialog.setTitle(Helper.getResString(R.string.auto_sketchware_util_failed_to_get, componentLabel));
-        dialog.setMessage("Не удалось разобрать" + componentLabel + " from file " + json + ". Fix by renaming old file to " + json.getName() + ".bak? " + "If not, no " + componentLabel + " will be used.");
+        dialog.setMessage(Helper.getResString(R.string.auto_sketchware_util_parse_failed, componentLabel, json, json.getName(), componentLabel));
         dialog.setPositiveButton("Rename", (v, which) -> {
             FileUtil.renameFile(json.getAbsolutePath(), json.getAbsolutePath() + ".bak");
             afterRenameLogic.accept(null);

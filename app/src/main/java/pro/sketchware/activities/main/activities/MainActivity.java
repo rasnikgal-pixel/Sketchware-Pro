@@ -405,7 +405,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
                 dialog.setIcon(R.drawable.ic_expire_48dp);
                 dialog.setTitle(Helper.getResString(R.string.auto_main_activity_004));
-                dialog.setMessage("Начиная с Android 11, Sketchware Pro требуется новое разрешение, чтобы избежать" + "taking ages to build projects. Don't worry, we can't do more to storage than " + "with current granted permissions.");
+                dialog.setMessage(Helper.getResString(R.string.auto_main_activity_permission_intro) + " " + Helper.getResString(R.string.auto_main_activity_permission_rest));
                 dialog.setPositiveButton(Helper.getResString(R.string.common_word_settings), (v, which) -> {
                     FileUtil.requestAllFilesAccessPermission(this);
                     v.dismiss();

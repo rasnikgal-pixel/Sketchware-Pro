@@ -1009,10 +1009,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     /** Диалог с информацией о виджете. */
     private void showWidgetInfoDialog(ViewBean bean, String name) {
         String displayName = (name != null && !name.isEmpty()) ? name : "?";
-        String message = "Имя: " + displayName + "\n"
-                + "Тип: " + bean.type + "\n"
-                + "Конвертация: " + (bean.convert != null ? bean.convert : "—") + "\n"
-                + "ID превью: " + (bean.id != null ? bean.id : "—");
+        String message = Helper.getResString(R.string.auto_view_editor_widget_info,
+                displayName, bean.type,
+                bean.convert != null ? bean.convert : "—",
+                bean.id != null ? bean.id : "—");
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
                 .setTitle(Helper.getResString(R.string.auto_view_editor_002))
                 .setMessage(message)

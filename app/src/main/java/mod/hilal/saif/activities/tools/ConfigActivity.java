@@ -602,16 +602,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext())
                         .setView(binding.getRoot())
                         .setTitle(Helper.getResString(R.string.auto_config_activity_016))
-                        .setMessage("Это определяет, как именуются файлы резервных копий SWB.\n" +
-                                "Available variables:\n" +
-                                " - $projectName - Project name\n" +
-                                " - $versionCode - App version code\n" +
-                                " - $versionName - App version name\n" +
-                                " - $pkgName - App package name\n" +
-                                " - $timeInMs - Time during backup in milliseconds\n" +
-                                "\n" +
-                                "Additionally, you can format your own time like this using Java's date formatter syntax:\n" +
-                                "$time(yyyy-MM-dd'T'HHmmss)\n")
+                        .setMessage(Helper.getResString(R.string.auto_config_activity_backup_naming))
                         .setNegativeButton(R.string.common_word_cancel, null)
                         .setPositiveButton(R.string.common_word_save, null)
                         .setNeutralButton(R.string.common_word_reset, (dialogInterface, which) -> {
