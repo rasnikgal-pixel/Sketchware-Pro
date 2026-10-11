@@ -2598,4 +2598,12 @@ ACTION_VIEW
     <string name="graph_export_error">Export error</string>
     <string name="graph_export_empty">No nodes to export</string>
     <string name="graph_settings_applied">Settings applied</string>
+    <string name="graph_settings_layout">Layout</string>
+    <string name="graph_settings_layout_tree">Tree (top-down)</string>
+    <string name="graph_settings_layout_horizontal">Tree (left-right)</string>
+    <string name="graph_settings_layout_radial">Radial</string>
+    <string name="graph_settings_layout_grid">Grid</string>
+    <string name="graph_settings_layout_force">Force-directed</string>
+    <string name="graph_settings_level_gap">Level gap</string>
+    <string name="graph_settings_show_edges">Show edges</string>
 </resources>

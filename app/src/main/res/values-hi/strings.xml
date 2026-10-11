@@ -2531,4 +2531,12 @@ ACTION_VIEW
     <string name="graph_export_error">निर्यात त्रुटि</string>
     <string name="graph_export_empty">निर्यात करने के लिए कोई नोड नहीं</string>
     <string name="graph_settings_applied">सेटिंग्स लागू</string>
+    <string name="graph_settings_layout">लेआउट</string>
+    <string name="graph_settings_layout_tree">पेड़ (ऊपर से नीचे)</string>
+    <string name="graph_settings_layout_horizontal">पेड़ (बाएं-दाएं)</string>
+    <string name="graph_settings_layout_radial">रेडियल</string>
+    <string name="graph_settings_layout_grid">ग्रिड</string>
+    <string name="graph_settings_layout_force">फोर्स-निर्देशित</string>
+    <string name="graph_settings_level_gap">स्तर अंतराल</string>
+    <string name="graph_settings_show_edges">किनारे दिखाएं</string>
 </resources>

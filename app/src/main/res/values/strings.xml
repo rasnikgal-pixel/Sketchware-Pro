@@ -2608,4 +2608,12 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="graph_export_error">Ошибка экспорта</string>
     <string name="graph_export_empty">Нет узлов для экспорта</string>
     <string name="graph_settings_applied">Настройки применены</string>
+    <string name="graph_settings_layout">Раскладка</string>
+    <string name="graph_settings_layout_tree">Дерево (сверху вниз)</string>
+    <string name="graph_settings_layout_horizontal">Дерево (слева направо)</string>
+    <string name="graph_settings_layout_radial">Радиальная</string>
+    <string name="graph_settings_layout_grid">Сетка</string>
+    <string name="graph_settings_layout_force">Force-directed (силовая)</string>
+    <string name="graph_settings_level_gap">Отступ между уровнями</string>
+    <string name="graph_settings_show_edges">Показывать связи</string>
 </resources>

@@ -2531,4 +2531,12 @@ ACTION_VIEW
     <string name="graph_export_error">Помилка експорту</string>
     <string name="graph_export_empty">Немає вузлів для експорту</string>
     <string name="graph_settings_applied">Налаштування застосовано</string>
+    <string name="graph_settings_layout">Розкладка</string>
+    <string name="graph_settings_layout_tree">Дерево (зверху вниз)</string>
+    <string name="graph_settings_layout_horizontal">Дерево (зліва направо)</string>
+    <string name="graph_settings_layout_radial">Радіальна</string>
+    <string name="graph_settings_layout_grid">Сітка</string>
+    <string name="graph_settings_layout_force">Force-directed (силова)</string>
+    <string name="graph_settings_level_gap">Відступ між рівнями</string>
+    <string name="graph_settings_show_edges">Показувати зв\'язки</string>
 </resources>

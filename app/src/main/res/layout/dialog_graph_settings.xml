@@ -1,39 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:layout_height="wrap_content">
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/switch_drag_nodes"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/graph_settings_drag_nodes"
-        android:textAppearance="?attr/textAppearanceBodyLarge" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/switch_export_full"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/graph_settings_export_full"
-        android:textAppearance="?attr/textAppearanceBodyLarge" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/graph_settings_layout"
+            android:textAppearance="?attr/textAppearanceTitleMedium" />
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/switch_force_directed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/graph_settings_force_directed"
-        android:textAppearance="?attr/textAppearanceBodyLarge" />
+        <RadioGroup
+            android:id="@+id/radio_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/switch_edge_labels"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/graph_settings_show_edge_labels"
-        android:textAppearance="?attr/textAppearanceBodyLarge" />
+            <RadioButton
+                android:id="@+id/radio_layout_tree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/graph_settings_layout_tree" />
 
-</LinearLayout>
+            <RadioButton
+                android:id="@+id/radio_layout_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/graph_settings_layout_horizontal" />
+
+            <RadioButton
+                android:id="@+id/radio_layout_radial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/graph_settings_layout_radial" />
+
+            <RadioButton
+                android:id="@+id/radio_layout_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/graph_settings_layout_grid" />
+
+            <RadioButton
+                android:id="@+id/radio_layout_force"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/graph_settings_layout_force" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/graph_settings_level_gap"
+            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+        <SeekBar
+            android:id="@+id/seek_level_gap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="2" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switch_show_edges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/graph_settings_show_edges"
+            android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switch_drag_nodes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/graph_settings_drag_nodes"
+            android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switch_export_full"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/graph_settings_export_full"
+            android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switch_edge_labels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/graph_settings_show_edge_labels"
+            android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+    </LinearLayout>
+
+</ScrollView>

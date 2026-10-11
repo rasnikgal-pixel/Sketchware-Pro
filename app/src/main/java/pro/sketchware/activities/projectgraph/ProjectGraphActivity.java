@@ -65,7 +65,11 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                     return;
                 }
                 graph = result;
+                GraphSettings settings = new GraphSettings(ProjectGraphActivity.this);
+                binding.graphView.setShowEdges(settings.isShowEdges());
+                binding.graphView.setDragEnabled(settings.isDragNodesEnabled());
                 binding.graphView.setGraph(graph);
+                binding.graphView.applyLayout(settings.getLayout(), settings.getLevelGap());
             });
         }).start();
     }
@@ -101,34 +105,68 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         android.view.View view = getLayoutInflater().inflate(
                 R.layout.dialog_graph_settings, null);
 
+        android.widget.RadioGroup radioLayout = view.findViewById(R.id.radio_layout);
+        android.widget.SeekBar seekGap = view.findViewById(R.id.seek_level_gap);
+        com.google.android.material.materialswitch.MaterialSwitch swEdges =
+                view.findViewById(R.id.switch_show_edges);
         com.google.android.material.materialswitch.MaterialSwitch swDrag =
                 view.findViewById(R.id.switch_drag_nodes);
         com.google.android.material.materialswitch.MaterialSwitch swExport =
                 view.findViewById(R.id.switch_export_full);
-        com.google.android.material.materialswitch.MaterialSwitch swForce =
-                view.findViewById(R.id.switch_force_directed);
-        com.google.android.material.materialswitch.MaterialSwitch swEdge =
+        com.google.android.material.materialswitch.MaterialSwitch swEdgeLabels =
                 view.findViewById(R.id.switch_edge_labels);
 
+        // Раскладка — выбрать текущую
+        int layout = settings.getLayout();
+        switch (layout) {
+            case GraphSettings.LAYOUT_HORIZONTAL -> radioLayout.check(R.id.radio_layout_horizontal);
+            case GraphSettings.LAYOUT_RADIAL -> radioLayout.check(R.id.radio_layout_radial);
+            case GraphSettings.LAYOUT_GRID -> radioLayout.check(R.id.radio_layout_grid);
+            case GraphSettings.LAYOUT_FORCE -> radioLayout.check(R.id.radio_layout_force);
+            case GraphSettings.LAYOUT_TREE:
+            default -> radioLayout.check(R.id.radio_layout_tree);
+        }
+
+        seekGap.setMax(2);
+        seekGap.setProgress(settings.getLevelGap());
+        swEdges.setChecked(settings.isShowEdges());
         swDrag.setChecked(settings.isDragNodesEnabled());
         swExport.setChecked(settings.isExportFullTree());
-        swForce.setChecked(settings.isForceDirected());
-        swEdge.setChecked(settings.isShowEdgeLabels());
+        swEdgeLabels.setChecked(settings.isShowEdgeLabels());
 
         new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.graph_settings_title)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (d, w) -> {
+                    // Определить раскладку
+                    int newLayout;
+                    int checkedId = radioLayout.getCheckedRadioButtonId();
+                    if (checkedId == R.id.radio_layout_horizontal) {
+                        newLayout = GraphSettings.LAYOUT_HORIZONTAL;
+                    } else if (checkedId == R.id.radio_layout_radial) {
+                        newLayout = GraphSettings.LAYOUT_RADIAL;
+                    } else if (checkedId == R.id.radio_layout_grid) {
+                        newLayout = GraphSettings.LAYOUT_GRID;
+                    } else if (checkedId == R.id.radio_layout_force) {
+                        newLayout = GraphSettings.LAYOUT_FORCE;
+                    } else {
+                        newLayout = GraphSettings.LAYOUT_TREE;
+                    }
+                    int newGap = seekGap.getProgress();
+
+                    // Сохранить
+                    settings.setLayout(newLayout);
+                    settings.setLevelGap(newGap);
+                    settings.setShowEdges(swEdges.isChecked());
                     settings.setDragNodesEnabled(swDrag.isChecked());
                     settings.setExportFullTree(swExport.isChecked());
-                    settings.setForceDirected(swForce.isChecked());
-                    settings.setShowEdgeLabels(swEdge.isChecked());
-                    // Применить drag в GraphView
+                    settings.setShowEdgeLabels(swEdgeLabels.isChecked());
+
+                    // Применить
                     binding.graphView.setDragEnabled(swDrag.isChecked());
-                    // Перестроить граф, если изменилась раскладка
-                    if (graph != null) {
-                        binding.graphView.setGraph(graph);
-                    }
+                    binding.graphView.setShowEdges(swEdges.isChecked());
+                    binding.graphView.applyLayout(newLayout, newGap);
+
                     android.widget.Toast.makeText(this,
                             getString(R.string.graph_settings_applied),
                             android.widget.Toast.LENGTH_SHORT).show();

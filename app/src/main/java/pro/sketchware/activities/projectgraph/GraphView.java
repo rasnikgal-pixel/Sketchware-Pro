@@ -27,8 +27,6 @@ public class GraphView extends View {
     private static final float NODE_WIDTH = 220f;
     private static final float NODE_HEIGHT = 70f;
     private static final float NODE_RADIUS = 12f;
-    private static final float LEVEL_GAP_X = 280f;
-    private static final float LEVEL_GAP_Y = 110f;
     private static final float TEXT_PADDING = 12f;
     private static final float TEXT_SIZE = 26f;
 
@@ -76,6 +74,26 @@ public class GraphView extends View {
     private ProjectGraphNode draggingNode = null;
     private float dragOffsetX = 0f;
     private float dragOffsetY = 0f;
+
+    // Раскладка
+    private int currentLayout = GraphSettings.LAYOUT_TREE;
+    private int currentGap = GraphSettings.GAP_STANDARD;
+    private boolean showEdges = true;
+
+    /** Применить раскладку. */
+    public void applyLayout(int layout, int levelGap) {
+        this.currentLayout = layout;
+        this.currentGap = levelGap;
+        if (graph != null) {
+            GraphLayout.apply(graph, layout, levelGap);
+            invalidate();
+        }
+    }
+
+    public void setShowEdges(boolean show) {
+        this.showEdges = show;
+        invalidate();
+    }
 
     public GraphView(Context context) {
         this(context, null);
@@ -145,7 +163,7 @@ public class GraphView extends View {
     public void setGraph(ProjectGraph graph) {
         this.graph = graph;
         if (graph != null) {
-            layout();
+            GraphLayout.apply(graph, currentLayout, currentGap);
             // Авто-центрирование
             post(() -> {
                 translateX = (getWidth() - computeGraphWidth() * scale) / 2f;
@@ -358,22 +376,23 @@ public class GraphView extends View {
         canvas.translate(translateX, translateY);
         canvas.scale(scale, scale);
 
-        // Рёбра
-        for (ProjectGraph.Edge edge : graph.edges) {
-            if (!isEdgeVisible(edge)) continue;
-            ProjectGraphNode from = graph.findNode(edge.fromId);
-            ProjectGraphNode to = graph.findNode(edge.toId);
-            if (from == null || to == null) continue;
-            if (!visibleTypes.contains(from.type) || !visibleTypes.contains(to.type)) continue;
+        // Рёбра (только если включены)
+        if (showEdges) {
+            for (ProjectGraph.Edge edge : graph.edges) {
+                if (!isEdgeVisible(edge)) continue;
+                ProjectGraphNode from = graph.findNode(edge.fromId);
+                ProjectGraphNode to = graph.findNode(edge.toId);
+                if (from == null || to == null) continue;
+                if (!visibleTypes.contains(from.type) || !visibleTypes.contains(to.type)) continue;
 
-            float x1 = from.x + NODE_WIDTH / 2f;
-            float y1 = from.y + NODE_HEIGHT;
-            float x2 = to.x + NODE_WIDTH / 2f;
-            float y2 = to.y;
+                float x1 = from.x + NODE_WIDTH / 2f;
+                float y1 = from.y + NODE_HEIGHT;
+                float x2 = to.x + NODE_WIDTH / 2f;
+                float y2 = to.y;
 
-            canvas.drawLine(x1, y1, x2, y2, edgePaint);
-            // Стрелка (маленький треугольник)
-            drawArrow(canvas, x1, y1, x2, y2);
+                canvas.drawLine(x1, y1, x2, y2, edgePaint);
+                drawArrow(canvas, x1, y1, x2, y2);
+            }
         }
 
         // Узлы
@@ -441,54 +460,6 @@ public class GraphView extends View {
             case COMPONENT: return COLOR_COMPONENT;
         }
         return 0xFF888888;
-    }
-
-    /**
-     * Простая раскладка: дерево по уровням.
-     * PROJECT - в центре сверху.
-     * ACTIVITY - второй уровень.
-     * EVENT - третий.
-     * BLOCK - четвёртый и дальше (вглубь).
-     */
-    private void layout() {
-        if (graph == null) return;
-
-        // Считаем уровни
-        java.util.Map<String, Integer> level = new java.util.HashMap<>();
-        for (ProjectGraphNode n : graph.nodes) {
-            level.put(n.id, getDepth(n.id));
-        }
-
-        // Группируем узлы по уровням
-        java.util.Map<Integer, java.util.List<ProjectGraphNode>> byLevel = new java.util.TreeMap<>();
-        for (ProjectGraphNode n : graph.nodes) {
-            int lvl = level.getOrDefault(n.id, 0);
-            byLevel.computeIfAbsent(lvl, k -> new java.util.ArrayList<>()).add(n);
-        }
-
-        // Раскладываем по уровням
-        float y = 0;
-        for (java.util.Map.Entry<Integer, java.util.List<ProjectGraphNode>> entry : byLevel.entrySet()) {
-            java.util.List<ProjectGraphNode> nodes = entry.getValue();
-            float totalWidth = nodes.size() * NODE_WIDTH + (nodes.size() - 1) * (LEVEL_GAP_X - NODE_WIDTH);
-            float x = -totalWidth / 2f;
-            for (ProjectGraphNode n : nodes) {
-                n.x = x;
-                n.y = y;
-                x += LEVEL_GAP_X;
-            }
-            y += LEVEL_GAP_Y;
-        }
-    }
-
-    private int getDepth(String nodeId) {
-        int depth = 0;
-        ProjectGraphNode current = graph.findNode(nodeId);
-        while (current != null && current.parentId != null) {
-            depth++;
-            current = graph.findNode(current.parentId);
-        }
-        return depth;
     }
 
     private float computeGraphWidth() {

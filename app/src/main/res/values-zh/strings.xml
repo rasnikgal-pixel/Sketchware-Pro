@@ -2531,4 +2531,12 @@ ACTION_VIEW
     <string name="graph_export_error">导出错误</string>
     <string name="graph_export_empty">没有要导出的节点</string>
     <string name="graph_settings_applied">设置已应用</string>
+    <string name="graph_settings_layout">布局</string>
+    <string name="graph_settings_layout_tree">树（从上到下）</string>
+    <string name="graph_settings_layout_horizontal">树（从左到右）</string>
+    <string name="graph_settings_layout_radial">径向</string>
+    <string name="graph_settings_layout_grid">网格</string>
+    <string name="graph_settings_layout_force">力导向</string>
+    <string name="graph_settings_level_gap">层级间距</string>
+    <string name="graph_settings_show_edges">显示边</string>
 </resources>
