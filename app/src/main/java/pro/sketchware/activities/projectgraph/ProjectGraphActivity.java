@@ -123,7 +123,6 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
             case GraphSettings.LAYOUT_RADIAL -> radioLayout.check(R.id.radio_layout_radial);
             case GraphSettings.LAYOUT_GRID -> radioLayout.check(R.id.radio_layout_grid);
             case GraphSettings.LAYOUT_FORCE -> radioLayout.check(R.id.radio_layout_force);
-            case GraphSettings.LAYOUT_TREE:
             default -> radioLayout.check(R.id.radio_layout_tree);
         }
 
