@@ -88,9 +88,4 @@ public class SoraEditorAdapter extends FragmentStateAdapter {
         return fragment;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull androidx.viewpager2.widget.ViewPager2.ViewHolder holder,
-                                 int position, @NonNull List<Object> payloads) {
-        super.onBindViewHolder(holder, position, payloads);
-    }
 }

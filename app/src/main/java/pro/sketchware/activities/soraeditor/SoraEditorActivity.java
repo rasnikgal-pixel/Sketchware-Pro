@@ -290,7 +290,7 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         if (tabMediator != null) tabMediator.detach();
         super.onDestroy();
     }
