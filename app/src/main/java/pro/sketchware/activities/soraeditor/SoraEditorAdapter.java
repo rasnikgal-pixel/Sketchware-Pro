@@ -1,7 +1,5 @@
 package pro.sketchware.activities.soraeditor;
 
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -12,13 +10,12 @@ import java.util.List;
 
 /**
  * Адаптер ViewPager2 для редактора SORA.
- * Динамически создаёт фрагменты по списку открытых файлов.
+ * Использует стабильные ID для сохранения фрагментов при переключении вкладок.
  */
 public class SoraEditorAdapter extends FragmentStateAdapter {
 
     private final List<String> filePaths = new ArrayList<>();
     private SoraEditorFragment.OnModifiedListener modifiedListener;
-    private final List<SoraEditorFragment> fragments = new ArrayList<>();
 
     public SoraEditorAdapter(@NonNull FragmentActivity activity) {
         super(activity);
@@ -30,7 +27,6 @@ public class SoraEditorAdapter extends FragmentStateAdapter {
 
     public void setFiles(List<String> paths) {
         filePaths.clear();
-        fragments.clear();
         if (paths != null) filePaths.addAll(paths);
         notifyDataSetChanged();
     }
@@ -38,14 +34,12 @@ public class SoraEditorAdapter extends FragmentStateAdapter {
     public void addFile(String path) {
         if (path == null || filePaths.contains(path)) return;
         filePaths.add(path);
-        fragments.add(null);
         notifyItemInserted(filePaths.size() - 1);
     }
 
     public void removeFileAt(int index) {
         if (index < 0 || index >= filePaths.size()) return;
         filePaths.remove(index);
-        if (index < fragments.size()) fragments.remove(index);
         notifyItemRemoved(index);
         notifyItemRangeChanged(index, filePaths.size() - index);
     }
@@ -59,17 +53,8 @@ public class SoraEditorAdapter extends FragmentStateAdapter {
         return new ArrayList<>(filePaths);
     }
 
-    public SoraEditorFragment getFragmentAt(int index) {
-        if (index < 0 || index >= fragments.size()) return null;
-        return fragments.get(index);
-    }
-
     public int getIndexForPath(String path) {
         return filePaths.indexOf(path);
-    }
-
-    public int getCount() {
-        return filePaths.size();
     }
 
     @Override
@@ -83,9 +68,23 @@ public class SoraEditorAdapter extends FragmentStateAdapter {
         String path = filePaths.get(position);
         SoraEditorFragment fragment = SoraEditorFragment.newInstance(path);
         fragment.setOnModifiedListener(modifiedListener);
-        while (fragments.size() <= position) fragments.add(null);
-        fragments.set(position, fragment);
         return fragment;
     }
 
+    @Override
+    public long getItemId(int position) {
+        if (position < 0 || position >= filePaths.size()) return RecyclerView_NO_ID;
+        // Стабильный ID на основе пути файла
+        return filePaths.get(position).hashCode();
+    }
+
+    @Override
+    public boolean containsItem(long itemId) {
+        for (String path : filePaths) {
+            if (path.hashCode() == itemId) return true;
+        }
+        return false;
+    }
+
+    private static final long RecyclerView_NO_ID = -1L;
 }

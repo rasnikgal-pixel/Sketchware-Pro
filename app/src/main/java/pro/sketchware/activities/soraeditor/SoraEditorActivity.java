@@ -8,6 +8,7 @@ import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.besome.sketch.lib.base.BaseAppCompatActivity;
@@ -128,7 +129,7 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
             if (tab == null) continue;
             String path = adapter.getFilePath(i);
             if (path == null) continue;
-            SoraEditorFragment f = adapter.getFragmentAt(i);
+            SoraEditorFragment f = findFragmentAt(i);
             boolean modified = f != null && f.isModified();
             String name = collector.getShortName(path);
             tab.setText(modified ? name + " *" : name);
@@ -187,7 +188,7 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
     }
 
     private SoraEditorFragment currentFragment() {
-        return adapter.getFragmentAt(binding.viewPager.getCurrentItem());
+        return findFragmentAt(binding.viewPager.getCurrentItem());
     }
 
     private void saveCurrent() {
@@ -200,7 +201,7 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
 
     private void closeCurrentTab() {
         int index = binding.viewPager.getCurrentItem();
-        SoraEditorFragment f = adapter.getFragmentAt(index);
+        SoraEditorFragment f = findFragmentAt(index);
         if (f != null && f.isModified()) {
             new MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.sora_xml_editor_unsaved)
@@ -278,10 +279,24 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
                 .show();
     }
 
+
+    /**
+     * Находит фрагмент для указанной позиции.
+     * ViewPager2 использует FragmentStateAdapter с itemId = путь.hashCode().
+     */
+    private SoraEditorFragment findFragmentAt(int position) {
+        if (position < 0 || position >= adapter.getItemCount()) return null;
+        String path = adapter.getFilePath(position);
+        if (path == null) return null;
+        String tag = "f" + path.hashCode();
+        Fragment f = getSupportFragmentManager().findFragmentByTag(tag);
+        return (f instanceof SoraEditorFragment) ? (SoraEditorFragment) f : null;
+    }
+
     private void confirmExit() {
         List<String> modified = new ArrayList<>();
         for (int i = 0; i < adapter.getItemCount(); i++) {
-            SoraEditorFragment f = adapter.getFragmentAt(i);
+            SoraEditorFragment f = findFragmentAt(i);
             if (f != null && f.isModified()) {
                 modified.add(f.getFilePath());
             }
