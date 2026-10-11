@@ -55,4 +55,14 @@
         android:title="@string/sora_xml_editor_action_theme"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_copy_path"
+        android:title="@string/sora_xml_editor_action_copy_path"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/sora_xml_editor_action_settings"
+        app:showAsAction="never" />
+
 </menu>

@@ -131,9 +131,106 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
             if (path == null) continue;
             SoraEditorFragment f = findFragmentAt(i);
             boolean modified = f != null && f.isModified();
-            String name = collector.getShortName(path);
+            String name = shortName(path);
             tab.setText(modified ? name + " *" : name);
+            // Двойной тап по вкладке → копировать путь
+            if (tab.view != null) {
+                tab.view.setOnTouchListener(new android.view.View.OnTouchListener() {
+                    private long lastTap = 0L;
+                    @Override
+                    public boolean onTouch(android.view.View v, android.view.MotionEvent event) {
+                        if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+                            long now = System.currentTimeMillis();
+                            if (now - lastTap < 350L) {
+                                copyToClipboard(path);
+                                return true;
+                            }
+                            lastTap = now;
+                        }
+                        return false;
+                    }
+                });
+            }
         }
+    }
+
+    /** Короткое имя файла для вкладки (последний сегмент пути). */
+    private String shortName(String path) {
+        if (path == null) return "";
+        int idx = path.lastIndexOf('/');
+        return (idx >= 0) ? path.substring(idx + 1) : path;
+    }
+
+    /** Копирует путь текущего файла в буфер обмена. */
+    private void copyCurrentPathToClipboard() {
+        int idx = binding.viewPager.getCurrentItem();
+        String path = adapter.getFilePath(idx);
+        if (path == null) return;
+        copyToClipboard(path);
+    }
+
+    private void copyToClipboard(String text) {
+        try {
+            android.content.ClipboardManager cm = (android.content.ClipboardManager)
+                    getSystemService(android.content.Context.CLIPBOARD_SERVICE);
+            if (cm != null) {
+                cm.setPrimaryClip(android.content.ClipData.newPlainText("SORA path", text));
+                android.widget.Toast.makeText(this,
+                        getString(R.string.sora_xml_editor_copy_path) + "\n" + text,
+                        android.widget.Toast.LENGTH_SHORT).show();
+            }
+        } catch (Throwable ignored) {
+        }
+    }
+
+    /** Диалог настроек редактора. */
+    private void showSettingsDialog() {
+        SoraEditorSettings settings = new SoraEditorSettings(this);
+        android.view.View view = getLayoutInflater().inflate(
+                R.layout.dialog_sora_settings, null);
+        com.google.android.material.materialswitch.MaterialSwitch swXml =
+                view.findViewById(R.id.switch_xml_highlight);
+        com.google.android.material.materialswitch.MaterialSwitch swWrap =
+                view.findViewById(R.id.switch_word_wrap);
+        android.widget.SeekBar seekBar = view.findViewById(R.id.seek_font_size);
+        android.widget.TextView tvSize = view.findViewById(R.id.tv_font_size_value);
+
+        swXml.setChecked(settings.isXmlHighlightEnabled());
+        swWrap.setChecked(settings.isWordWrapEnabled());
+        seekBar.setMax(24); // 8..32
+        seekBar.setProgress(settings.getFontSize() - 8);
+        tvSize.setText(String.valueOf(settings.getFontSize()));
+
+        seekBar.setOnSeekBarChangeListener(new android.widget.SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(android.widget.SeekBar sb, int progress, boolean fromUser) {
+                tvSize.setText(String.valueOf(progress + 8));
+            }
+            @Override public void onStartTrackingTouch(android.widget.SeekBar sb) {}
+            @Override public void onStopTrackingTouch(android.widget.SeekBar sb) {}
+        });
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.sora_xml_editor_settings_title)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (d, w) -> {
+                    settings.setXmlHighlightEnabled(swXml.isChecked());
+                    settings.setWordWrapEnabled(swWrap.isChecked());
+                    settings.setFontSize(seekBar.getProgress() + 8);
+                    // Применить к текущему фрагменту
+                    SoraEditorFragment f = findFragmentAt(binding.viewPager.getCurrentItem());
+                    if (f != null && f.getView() != null) {
+                        android.view.View ed = f.getView().findViewById(R.id.editor);
+                        if (ed instanceof io.github.rosemoe.sora.widget.CodeEditor) {
+                            io.github.rosemoe.sora.widget.CodeEditor ce =
+                                    (io.github.rosemoe.sora.widget.CodeEditor) ed;
+                            try { ce.setTextSize(settings.getFontSize()); } catch (Throwable ignored) {}
+                            try { ce.setWordwrap(settings.isWordWrapEnabled()); } catch (Throwable ignored) {}
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
     }
 
     private void updateEmptyState() {
@@ -181,6 +278,12 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
             return true;
         } else if (id == R.id.action_theme) {
             showThemeDialog();
+            return true;
+        } else if (id == R.id.action_copy_path) {
+            copyCurrentPathToClipboard();
+            return true;
+        } else if (id == R.id.action_settings) {
+            showSettingsDialog();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

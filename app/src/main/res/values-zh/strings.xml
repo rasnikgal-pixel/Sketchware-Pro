@@ -2514,4 +2514,11 @@ ACTION_VIEW
     <string name="tools_activity_sora_subtitle">编辑所有项目文件</string>
     <string name="tools_activity_logcat_title">📋 调试日志</string>
     <string name="tools_activity_logcat_subtitle">查看应用和项目日志</string>
+    <string name="sora_xml_editor_settings_title">编辑器设置</string>
+    <string name="sora_xml_editor_settings_xml_highlight">XML 高亮（可能变慢）</string>
+    <string name="sora_xml_editor_settings_font_size">字体大小</string>
+    <string name="sora_xml_editor_settings_word_wrap">自动换行</string>
+    <string name="sora_xml_editor_copy_path">路径已复制</string>
+    <string name="sora_xml_editor_action_settings">设置</string>
+    <string name="sora_xml_editor_action_copy_path">复制路径</string>
 </resources>

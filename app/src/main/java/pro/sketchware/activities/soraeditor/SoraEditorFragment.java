@@ -90,28 +90,39 @@ public class SoraEditorFragment extends Fragment {
         } catch (Throwable ignored) {
         }
 
-        // 2. Язык подсветки — ДО текста
+        // 2. Настройки SORA (шрифт, wrap, XML-подсветка)
+        SoraEditorSettings settings = new SoraEditorSettings(requireContext());
         try {
-            int lang = SoraFileCollector.getLanguageForFile(filePath);
+            editor.setTextSize(settings.getFontSize());
+        } catch (Throwable ignored) {
+        }
+        try {
+            editor.setWordwrap(settings.isWordWrapEnabled());
+        } catch (Throwable ignored) {
+        }
+
+        // 3. Язык подсветки — ДО текста (Java/Kotlin), XML — отдельно после setText
+        final int lang = SoraFileCollector.getLanguageForFile(filePath);
+        try {
             if (lang == 0) {
-                // Java — подсветка есть
+                // Java — сразу
                 editor.setEditorLanguage(new io.github.rosemoe.sora.langs.java.JavaLanguage());
             } else if (lang == 1) {
                 editor.setEditorLanguage(CodeEditorLanguages.loadTextMateLanguage(
                         CodeEditorLanguages.SCOPE_NAME_KOTLIN));
             }
-            // XML: не ставим TextMate (ломает отображение), оставляем без подсветки
+            // XML — поставим ниже, если включена настройка
         } catch (Throwable ignored) {
         }
 
-        // 3. Тема по приложению
+        // 4. Тема по приложению
         try {
             boolean isDark = pro.sketchware.utility.ThemeUtils.isDarkThemeEnabled(requireContext());
             SrcCodeEditor.selectTheme(editor, isDark ? 3 : 0);
         } catch (Throwable ignored) {
         }
 
-        // 4. Читаем файл
+        // 5. Читаем файл
         String content = null;
         try {
             content = FileUtil.readFile(filePath);
@@ -119,13 +130,24 @@ public class SoraEditorFragment extends Fragment {
         }
         initialContent = content == null ? "" : content;
 
-        // 5. Ставим текст ПОСЛЕ всего остального
+        // 6. Ставим текст
         editor.setText(initialContent);
 
-        // 6. Курсор в начало
+        // 7. Курсор в начало
         try {
             editor.setSelection(0, 0);
         } catch (Throwable ignored) {
+        }
+
+        // 8. XML-подсветка — с задержкой, только если включена в настройках
+        if (lang == 2 && settings.isXmlHighlightEnabled()) {
+            editor.postDelayed(() -> {
+                try {
+                    editor.setEditorLanguage(CodeEditorLanguages.loadTextMateLanguage(
+                            CodeEditorLanguages.SCOPE_NAME_XML));
+                } catch (Throwable ignored) {
+                }
+            }, 500);
         }
 
         // 7. Отслеживание изменений

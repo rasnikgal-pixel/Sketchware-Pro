@@ -2581,4 +2581,11 @@ ACTION_VIEW
     <string name="tools_activity_sora_subtitle">Edit all project files</string>
     <string name="tools_activity_logcat_title">📋 Debug log</string>
     <string name="tools_activity_logcat_subtitle">View app and project logs</string>
+    <string name="sora_xml_editor_settings_title">Editor settings</string>
+    <string name="sora_xml_editor_settings_xml_highlight">XML highlighting (may slow down)</string>
+    <string name="sora_xml_editor_settings_font_size">Font size</string>
+    <string name="sora_xml_editor_settings_word_wrap">Word wrap</string>
+    <string name="sora_xml_editor_copy_path">Path copied</string>
+    <string name="sora_xml_editor_action_settings">Settings</string>
+    <string name="sora_xml_editor_action_copy_path">Copy path</string>
 </resources>

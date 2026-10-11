@@ -2514,4 +2514,11 @@ ACTION_VIEW
     <string name="tools_activity_sora_subtitle">सभी प्रोजेक्ट फ़ाइलें संपादित करें</string>
     <string name="tools_activity_logcat_title">📋 डीबग लॉग</string>
     <string name="tools_activity_logcat_subtitle">ऐप और प्रोजेक्ट लॉग देखें</string>
+    <string name="sora_xml_editor_settings_title">एडिटर सेटिंग्स</string>
+    <string name="sora_xml_editor_settings_xml_highlight">XML हाइलाइटिंग (धीमा कर सकता है)</string>
+    <string name="sora_xml_editor_settings_font_size">फ़ॉन्ट आकार</string>
+    <string name="sora_xml_editor_settings_word_wrap">शब्द रैप</string>
+    <string name="sora_xml_editor_copy_path">पथ कॉपी किया गया</string>
+    <string name="sora_xml_editor_action_settings">सेटिंग्स</string>
+    <string name="sora_xml_editor_action_copy_path">पथ कॉपी करें</string>
 </resources>
