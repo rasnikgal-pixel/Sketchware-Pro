@@ -24,4 +24,5 @@
     <item name="item_logcat_reader" type="id" />
     <item name="item_collection_manager" type="id" />
     <item name="item_sora_editor" type="id" />
+    <item name="item_project_graph" type="id" />
 </resources>

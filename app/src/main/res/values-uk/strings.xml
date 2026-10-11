@@ -2498,4 +2498,14 @@ ACTION_VIEW
     <string name="sora_xml_editor_tab_limit">Досягнуто ліміту вкладок (10)</string>
     <string name="sora_xml_editor_file_picker_title">Вибрати файли для відкриття</string>
     <string name="sora_xml_editor_pick_project">Виберіть проєкт</string>
+    <string name="project_graph_title">Граф проєкту</string>
+    <string name="project_graph_drawer_title">Граф проєкту</string>
+    <string name="project_graph_drawer_subtitle">Візуальна схема структури проєкту</string>
+    <string name="project_graph_reset_zoom">Скинути зум</string>
+    <string name="project_graph_filter">Фільтр</string>
+    <string name="project_graph_empty">Немає даних для відображення</string>
+    <string name="project_graph_node_project">Проєкт</string>
+    <string name="project_graph_node_activity">Екрани</string>
+    <string name="project_graph_node_event">Події</string>
+    <string name="project_graph_node_block">Блоки</string>
 </resources>

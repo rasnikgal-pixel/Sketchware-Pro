@@ -2575,4 +2575,14 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_xml_editor_tab_limit">Достигнут лимит вкладок (10)</string>
     <string name="sora_xml_editor_file_picker_title">Выбрать файлы для открытия</string>
     <string name="sora_xml_editor_pick_project">Выберите проект</string>
+    <string name="project_graph_title">Граф проекта</string>
+    <string name="project_graph_drawer_title">Граф проекта</string>
+    <string name="project_graph_drawer_subtitle">Визуальная схема структуры проекта</string>
+    <string name="project_graph_reset_zoom">Сбросить зум</string>
+    <string name="project_graph_filter">Фильтр</string>
+    <string name="project_graph_empty">Нет данных для отображения</string>
+    <string name="project_graph_node_project">Проект</string>
+    <string name="project_graph_node_activity">Экраны</string>
+    <string name="project_graph_node_event">События</string>
+    <string name="project_graph_node_block">Блоки</string>
 </resources>

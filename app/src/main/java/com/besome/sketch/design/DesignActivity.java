@@ -121,6 +121,7 @@ import pro.sketchware.activities.editor.view.CodeViewerActivity;
 import pro.sketchware.activities.editor.view.ViewCodeEditorActivity;
 import pro.sketchware.activities.resourceseditor.ResourcesEditorActivity;
 import pro.sketchware.activities.soraeditor.SoraEditorActivity;
+import pro.sketchware.activities.projectgraph.ProjectGraphActivity;
 import pro.sketchware.dialogs.BuildSettingsBottomSheet;
 import pro.sketchware.utility.FileUtil;
 import pro.sketchware.utility.SketchwareUtil;
@@ -1152,6 +1153,16 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
     void toSoraEditor() {
         Intent intent = new Intent(getApplicationContext(), SoraEditorActivity.class);
         intent.putExtra("sc_id", sc_id);
+        startActivity(intent);
+    }
+
+    /**
+     * Opens {@link ProjectGraphActivity}.
+     */
+    void toProjectGraph() {
+        Intent intent = new Intent(getApplicationContext(), ProjectGraphActivity.class);
+        intent.putExtra("sc_id", sc_id);
+        intent.putExtra("project_name", getTitle() != null ? getTitle().toString() : "");
         startActivity(intent);
     }
 

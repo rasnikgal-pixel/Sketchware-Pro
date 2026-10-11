@@ -2565,4 +2565,14 @@ ACTION_VIEW
     <string name="sora_xml_editor_tab_limit">Tab limit reached (10)</string>
     <string name="sora_xml_editor_file_picker_title">Select files to open</string>
     <string name="sora_xml_editor_pick_project">Select project</string>
+    <string name="project_graph_title">Project graph</string>
+    <string name="project_graph_drawer_title">Project graph</string>
+    <string name="project_graph_drawer_subtitle">Visual diagram of project structure</string>
+    <string name="project_graph_reset_zoom">Reset zoom</string>
+    <string name="project_graph_filter">Filter</string>
+    <string name="project_graph_empty">No data to display</string>
+    <string name="project_graph_node_project">Project</string>
+    <string name="project_graph_node_activity">Screens</string>
+    <string name="project_graph_node_event">Events</string>
+    <string name="project_graph_node_block">Blocks</string>
 </resources>
