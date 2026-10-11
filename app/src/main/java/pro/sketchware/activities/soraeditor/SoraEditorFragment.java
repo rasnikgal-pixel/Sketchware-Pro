@@ -67,8 +67,13 @@ public class SoraEditorFragment extends Fragment {
         if (getArguments() != null) {
             filePath = getArguments().getString(ARG_FILE_PATH);
         }
-        // Настройки из общих (размер шрифта, тема, wrap)
-        SrcCodeEditor.loadCESettings(requireContext(), editor, "sora_editor", true);
+        // Настройки из общих (размер шрифта, wrap) — тему ставим отдельно
+        SrcCodeEditor.loadCESettings(requireContext(), editor, "sora_editor", false);
+
+        // Тема редактора следует за темой приложения
+        boolean isDark = pro.sketchware.utility.ThemeUtils.isDarkThemeEnabled(requireContext());
+        // 3 = Darcula (тёмная), 0 = Default (светлая)
+        SrcCodeEditor.selectTheme(editor, isDark ? 3 : 0);
     }
 
     @Override
