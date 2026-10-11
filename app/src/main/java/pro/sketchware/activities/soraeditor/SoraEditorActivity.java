@@ -58,6 +58,9 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         binding.viewPager.setAdapter(adapter);
         binding.viewPager.setOffscreenPageLimit(1);
 
+        // Свайп между вкладками: только если включён перенос строк
+        applySwipeSetting();
+
         tabMediator = new TabLayoutMediator(binding.tabLayout, binding.viewPager,
                 (tab, position) -> {
                     String path = adapter.getFilePath(position);
@@ -183,19 +186,30 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         }
     }
 
+    /** Применить настройку свайпа между вкладками. */
+    private void applySwipeSetting() {
+        try {
+            SoraEditorSettings settings = new SoraEditorSettings(this);
+            // Свайп работает ТОЛЬКО при включённом word wrap
+            binding.viewPager.setUserInputEnabled(settings.isWordWrapEnabled());
+        } catch (Throwable ignored) {
+        }
+    }
+
     /** Диалог настроек редактора. */
     private void showSettingsDialog() {
         SoraEditorSettings settings = new SoraEditorSettings(this);
         android.view.View view = getLayoutInflater().inflate(
                 R.layout.dialog_sora_settings, null);
-        com.google.android.material.materialswitch.MaterialSwitch swXml =
-                view.findViewById(R.id.switch_xml_highlight);
         com.google.android.material.materialswitch.MaterialSwitch swWrap =
                 view.findViewById(R.id.switch_word_wrap);
         android.widget.SeekBar seekBar = view.findViewById(R.id.seek_font_size);
         android.widget.TextView tvSize = view.findViewById(R.id.tv_font_size_value);
 
-        swXml.setChecked(settings.isXmlHighlightEnabled());
+        // Скрыть переключатель XML-подсветки (отключена)
+        android.view.View swXml = view.findViewById(R.id.switch_xml_highlight);
+        if (swXml != null) swXml.setVisibility(android.view.View.GONE);
+
         swWrap.setChecked(settings.isWordWrapEnabled());
         seekBar.setMax(24); // 8..32
         seekBar.setProgress(settings.getFontSize() - 8);
@@ -214,7 +228,6 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
                 .setTitle(R.string.sora_xml_editor_settings_title)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (d, w) -> {
-                    settings.setXmlHighlightEnabled(swXml.isChecked());
                     settings.setWordWrapEnabled(swWrap.isChecked());
                     settings.setFontSize(seekBar.getProgress() + 8);
                     // Применить к текущему фрагменту
@@ -228,6 +241,8 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
                             try { ce.setWordwrap(settings.isWordWrapEnabled()); } catch (Throwable ignored) {}
                         }
                     }
+                    // Обновить свайп
+                    applySwipeSetting();
                 })
                 .setNegativeButton(R.string.common_word_cancel, null)
                 .show();

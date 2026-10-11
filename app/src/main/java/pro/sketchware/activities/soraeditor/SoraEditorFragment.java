@@ -139,16 +139,8 @@ public class SoraEditorFragment extends Fragment {
         } catch (Throwable ignored) {
         }
 
-        // 8. XML-подсветка — с задержкой, только если включена в настройках
-        if (lang == 2 && settings.isXmlHighlightEnabled()) {
-            editor.postDelayed(() -> {
-                try {
-                    editor.setEditorLanguage(CodeEditorLanguages.loadTextMateLanguage(
-                            CodeEditorLanguages.SCOPE_NAME_XML));
-                } catch (Throwable ignored) {
-                }
-            }, 500);
-        }
+        // 8. XML-подсветка отключена (ломает отображение даже с postDelayed)
+        // Возможно, добавим позже через другой способ
 
         // 7. Отслеживание изменений
         try {
