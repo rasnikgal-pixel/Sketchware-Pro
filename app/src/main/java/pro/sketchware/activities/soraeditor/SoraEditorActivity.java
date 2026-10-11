@@ -79,13 +79,21 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
 
     private void openInitialFiles() {
         List<String> all = collector.collect();
+        pro.sketchware.smartdrop.DebugLogger.get(this)
+                .d("SoraEditor", "files_found", "count=" + all.size());
         if (all.isEmpty()) return;
+
+        // Логируем первые 5 файлов для диагностики
+        for (int i = 0; i < Math.min(5, all.size()); i++) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .d("SoraEditor", "file_" + i, all.get(i));
+        }
 
         // Открыть: AndroidManifest, первый layout, первый java
         List<String> initial = new ArrayList<>();
         for (String path : all) {
             String lower = path.toLowerCase();
-            if (lower.endsWith("/androidmanifest.xml")) {
+            if (lower.endsWith("/androidmanifest.xml") || lower.endsWith("\\androidmanifest.xml")) {
                 initial.add(path);
                 break;
             }
@@ -107,6 +115,8 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         if (initial.isEmpty()) {
             initial.add(all.get(0));
         }
+        pro.sketchware.smartdrop.DebugLogger.get(this)
+                .d("SoraEditor", "initial_tabs", "count=" + initial.size());
         adapter.setFiles(initial);
         updateTabTitles();
     }
