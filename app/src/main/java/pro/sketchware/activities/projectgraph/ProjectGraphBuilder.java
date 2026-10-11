@@ -53,6 +53,7 @@ public class ProjectGraphBuilder {
             ProjectGraphNode actNode = new ProjectGraphNode(
                     activityId, activityLabel,
                     ProjectGraphNode.Type.ACTIVITY, ROOT_ID);
+            actNode.extra1 = javaName;
             graph.addNode(actNode);
             graph.addEdge(ROOT_ID, activityId, "has");
 
@@ -64,6 +65,8 @@ public class ProjectGraphBuilder {
                 ProjectGraphNode evtNode = new ProjectGraphNode(
                         eventId, eventKey,
                         ProjectGraphNode.Type.EVENT, activityId);
+                evtNode.extra1 = javaName;
+                evtNode.extra2 = eventKey;
                 graph.addNode(evtNode);
                 graph.addEdge(activityId, eventId, "has");
 

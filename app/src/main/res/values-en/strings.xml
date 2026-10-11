@@ -2613,4 +2613,5 @@ ACTION_VIEW
     <string name="graph_filter_only_this">Show only this</string>
     <string name="graph_filter_reset">Reset filter</string>
     <string name="graph_force_directed_warning">Force-directed layout may lag on large projects</string>
+    <string name="graph_open_in_editor">Open in editor</string>
 </resources>

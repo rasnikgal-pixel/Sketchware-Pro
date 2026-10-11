@@ -318,7 +318,17 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
                 .setTitle(node.label)
                 .setMessage(msg)
-                .setPositiveButton(android.R.string.ok, null);
+                .setNegativeButton(R.string.common_word_cancel, null);
+
+        // Опция "Открыть в редакторе" для EVENT
+        if (node.type == ProjectGraphNode.Type.EVENT
+                && node.extra1 != null && node.extra2 != null) {
+            builder.setPositiveButton(R.string.graph_open_in_editor, (d, w) -> {
+                openEventInLogicEditor(node.extra1, node.extra2);
+            });
+        } else {
+            builder.setPositiveButton(android.R.string.ok, null);
+        }
 
         // Опция фильтра для Activity и Event
         if (node.type == ProjectGraphNode.Type.ACTIVITY) {
@@ -329,7 +339,6 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
             });
         } else if (node.type == ProjectGraphNode.Type.EVENT
                 || node.type == ProjectGraphNode.Type.BLOCK) {
-            // Найти родительскую Activity и фильтровать по ней
             builder.setNeutralButton(R.string.graph_filter_only_this, (d, w) -> {
                 String actId = findActivityAncestorId(node);
                 if (actId != null) {
@@ -341,6 +350,46 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         }
 
         builder.show();
+    }
+
+    /** Открыть событие в LogicEditor. */
+    private void openEventInLogicEditor(String javaName, String eventKey) {
+        try {
+            // eventKey = "button1_onClick" → id = "button1", eventName = "onClick"
+            int idx = eventKey.indexOf('_');
+            if (idx < 0) return;
+            String widgetId = eventKey.substring(0, idx);
+            String eventName = eventKey.substring(idx + 1);
+
+            // Получить ProjectFileBean
+            com.besome.sketch.beans.ProjectFileBean pfb = null;
+            try {
+                pfb = a.a.a.jC.b(scId).a(javaName);
+            } catch (Throwable ignored) {
+            }
+            if (pfb == null) {
+                android.widget.Toast.makeText(this,
+                        getString(R.string.graph_search_not_found),
+                        android.widget.Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            android.content.Intent intent = new android.content.Intent(this,
+                    com.besome.sketch.editor.LogicEditorActivity.class);
+            intent.setFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("sc_id", scId);
+            intent.putExtra("id", widgetId);
+            intent.putExtra("event", eventName);
+            intent.putExtra("project_file", pfb);
+            intent.putExtra("event_text", eventName);
+            startActivity(intent);
+        } catch (Throwable t) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .d("ProjectGraph", "open_editor_error", String.valueOf(t.getMessage()));
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_error) + ": " + t.getMessage(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
     }
 
     private String findActivityAncestorId(ProjectGraphNode node) {

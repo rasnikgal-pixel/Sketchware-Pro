@@ -22,6 +22,12 @@ public class ProjectGraphNode {
     public final Type type;
     public final String parentId;
 
+    // Дополнительные поля (для разных типов узлов)
+    // EVENT: extra1 = javaName, extra2 = eventKey
+    // ACTIVITY: extra1 = javaName
+    public String extra1 = null;
+    public String extra2 = null;
+
     // Координаты на холсте
     public float x;
     public float y;

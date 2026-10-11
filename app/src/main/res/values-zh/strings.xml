@@ -2546,4 +2546,5 @@ ACTION_VIEW
     <string name="graph_filter_only_this">仅显示此</string>
     <string name="graph_filter_reset">重置筛选</string>
     <string name="graph_force_directed_warning">力导向布局在大型项目上可能会卡顿</string>
+    <string name="graph_open_in_editor">在编辑器中打开</string>
 </resources>
