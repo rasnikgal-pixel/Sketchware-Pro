@@ -6,6 +6,60 @@
 
 ---
 
+## 🌍 Мультиязычность (7.4.0)
+
+### Что сделано
+
+**5 языков + системный:**
+- 🇷🇺 **Русский** (values/)
+- 🇬🇧 **English** (values-en/)
+- 🇨🇳 **中文** — китайский (values-zh/)
+- 🇮🇳 **हिन्दी** — хинди (values-hi/)
+- 🇺🇦 **Українська** — украинский (values-uk/)
+
+**Переключение:** боковое меню → **Язык интерфейса** → выбор.
+
+### Инфраструктура
+
+- **LocaleHelper.java** — хранение и применение языка через AppCompatDelegate.setApplicationLocales() (API 33+) и attachBaseContext (API 26-32).
+- **BaseAppCompatActivity.attachBaseContext()** — каждая Activity получает правильную локаль.
+- **Сервис AppLocalesMetadataHolderService** в AndroidManifest.xml — чтобы Android 13+ запоминал выбранный язык.
+- **Умный fallback:** если системный язык не поддерживается (немецкий, арабский и т.д.) — приложение переходит на **английский**.
+
+### Полный вынос хардкода
+
+| Источник | Строк |
+|----------|-------|
+| Java auto_* (обычные) | ~1100 |
+| Java auto_concat_* (конкатенации) | ~250 |
+| Layout auto_layout_* | 117 |
+| Menu auto_layout_* | 19 |
+| **Итого** | **~1500** |
+
+### Рефакторинг
+
+- **Меню через MENU_ID** (CodeEditorLayout.java, SrcCodeEditor.java) — устранён баг с switch (item.getTitle().toString()), который ломался при смене языка.
+- **Устранены (CharSequence) ambiguity** в тернарниках — в PaletteBlock, LibraryItemView, Material3LibraryItemView, ExcludeBuiltInLibrariesLibraryItemView, WidgetsCreatorManager, ManageXMLCommandActivity, BlocksManager, EventsManagerFragment.
+- **Экранированы апострофы и знак %** во всех локалях.
+- **Удалены дубликаты common_word_*** между strings.xml и strings_common.xml.
+
+### Скрипты для разработки
+
+- **i18n_extract.py** — вынос русских строк из Java (посимвольный парсер, корректно обрабатывает text blocks, комментарии).
+- **i18n_extract_concat.py** — вынос конкатенаций (текст + переменная).
+- **i18n_extract_layout.py** — вынос android:text / hint / title из layout и menu.
+- **add_string.py** — добавление новой строки сразу во все 5 локалей:
+  python3 add_string.py --key my_key --ru Привет --en Hello --zh 你好 --hi नमस्ते --uk Привіт
+
+### Язык справки
+
+- **HelpFragment.resolveBaseUrl()** — язык справки соответствует языку приложения:
+  - 🇷🇺 RU / 🇺🇦 UK → **русская** справка
+  - 🇬🇧 EN / 🇨🇳 ZH / 🇮🇳 HI → **английская** справка (готовится)
+  - Системный → по системному языку с fallback на английский
+
+---
+
 ## 🐛 Исправленные баги (из официального Sketchware Pro)
 
 ### [#1812](https://github.com/Sketchware-Pro/Sketchware-Pro/issues/1812) — ConcurrentModificationException при выходе из пустой секции компонентов
