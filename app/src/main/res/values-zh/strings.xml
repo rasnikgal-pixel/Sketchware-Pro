@@ -2497,4 +2497,5 @@ ACTION_VIEW
     <string name="sora_xml_editor_confirm_close">不保存就关闭吗？</string>
     <string name="sora_xml_editor_tab_limit">已达到标签页上限（10）</string>
     <string name="sora_xml_editor_file_picker_title">选择要打开的文件</string>
+    <string name="sora_xml_editor_pick_project">选择项目</string>
 </resources>

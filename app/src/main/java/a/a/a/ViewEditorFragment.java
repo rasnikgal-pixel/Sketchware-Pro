@@ -84,18 +84,8 @@ public class ViewEditorFragment extends qA {
         viewEditor.setOnWidgetDoubleTapListener(viewBean -> {
             if (viewBean == null) return;
 
-            String action = pro.sketchware.settings.DesignerSettingsStore
-                    .getDoubleTapAction(requireContext());
-
-            switch (action) {
-                case "none":
-                    // Ничего не делать
-                    break;
-                case "properties":
-                default:
-                    openPropertyActivity(viewBean);
-                    break;
-            }
+            // Двойной тап — открыть список событий виджета (как в Delphi)
+            showWidgetEventsDialog(viewBean);
         });
 
         viewEditor.setOnWidgetSelectedListener(new cy() {
@@ -179,6 +169,43 @@ public class ViewEditorFragment extends qA {
         }
         c(viewBean);
         viewProperty.e();
+    }
+
+    /**
+     * Показывает диалог со списком всех событий виджета (как в Delphi).
+     * По выбору открывает LogicEditorActivity для создания блоков события.
+     */
+    private void showWidgetEventsDialog(ViewBean bean) {
+        if (bean == null || bean.id == null) return;
+        try {
+            String[] events = oq.getEventsForClass(bean.getClassInfo());
+            if (events == null || events.length == 0) {
+                SketchwareUtil.toast(Helper.getResString(R.string.sora_xml_editor_empty));
+                return;
+            }
+
+            // Формируем читаемые названия без суффикса Listener
+            String[] display = new String[events.length];
+            for (int i = 0; i < events.length; i++) {
+                display[i] = events[i].replace("Listener", "");
+            }
+
+            String title = (bean.id != null && !bean.id.isEmpty())
+                    ? bean.id
+                    : Helper.getResString(R.string.auto_view_editor_003);
+
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(title)
+                    .setItems(display, (d, which) -> {
+                        String eventName = events[which];
+                        toLogicEditorActivity(bean.id, eventName, display[which]);
+                    })
+                    .setNegativeButton(Helper.getResString(R.string.common_word_cancel), null)
+                    .show();
+        } catch (Throwable t) {
+            pro.sketchware.smartdrop.DebugLogger.get(requireContext())
+                    .d("ViewEditorFragment", "showWidgetEventsDialog_error", String.valueOf(t.getMessage()));
+        }
     }
 
     private void toLogicEditorActivity(String eventId, String eventName, String eventName2) {

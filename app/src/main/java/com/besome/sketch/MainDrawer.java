@@ -97,7 +97,48 @@ public class MainDrawer extends NavigationView {
             Intent intent = new Intent(activity, ToolsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             activity.startActivity(intent);
+        } else if (id == R.id.sora_editor) {
+            showProjectPickerDialog(activity);
         }
+    }
+
+    /**
+     * Показывает диалог выбора проекта и открывает SoraEditorActivity.
+     */
+    private void showProjectPickerDialog(Activity activity) {
+        java.util.ArrayList<java.util.HashMap<String, Object>> projects = a.a.a.lC.a();
+        if (projects == null || projects.isEmpty()) {
+            pro.sketchware.utility.SketchwareUtil.toast(
+                    mod.hey.studios.util.Helper.getResString(R.string.sora_xml_editor_empty));
+            return;
+        }
+
+        // Сортируем по имени проекта
+        projects.sort((p1, p2) -> {
+            String n1 = String.valueOf(p1.get("my_ws_name"));
+            String n2 = String.valueOf(p2.get("my_ws_name"));
+            return n1.compareToIgnoreCase(n2);
+        });
+
+        String[] names = new String[projects.size()];
+        final String[] ids = new String[projects.size()];
+        for (int i = 0; i < projects.size(); i++) {
+            java.util.HashMap<String, Object> p = projects.get(i);
+            names[i] = String.valueOf(p.get("my_ws_name"));
+            ids[i] = String.valueOf(p.get("sc_id"));
+        }
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.sora_xml_editor_pick_project)
+                .setItems(names, (d, which) -> {
+                    Intent intent = new Intent(activity,
+                            pro.sketchware.activities.soraeditor.SoraEditorActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("sc_id", ids[which]);
+                    activity.startActivity(intent);
+                })
+                .setNegativeButton(mod.hey.studios.util.Helper.getResString(R.string.common_word_cancel), null)
+                .show();
     }
 
     private void showLanguageDialog(Activity activity) {

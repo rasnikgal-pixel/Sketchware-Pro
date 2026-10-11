@@ -2497,4 +2497,5 @@ ACTION_VIEW
     <string name="sora_xml_editor_confirm_close">Закрити без збереження?</string>
     <string name="sora_xml_editor_tab_limit">Досягнуто ліміту вкладок (10)</string>
     <string name="sora_xml_editor_file_picker_title">Вибрати файли для відкриття</string>
+    <string name="sora_xml_editor_pick_project">Виберіть проєкт</string>
 </resources>

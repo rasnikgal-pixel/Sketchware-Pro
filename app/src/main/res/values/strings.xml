@@ -2574,4 +2574,5 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_xml_editor_confirm_close">Закрыть без сохранения?</string>
     <string name="sora_xml_editor_tab_limit">Достигнут лимит вкладок (10)</string>
     <string name="sora_xml_editor_file_picker_title">Выбрать файлы для открытия</string>
+    <string name="sora_xml_editor_pick_project">Выберите проект</string>
 </resources>
