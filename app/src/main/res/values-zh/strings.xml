@@ -377,7 +377,7 @@
     <string name="invalid_value_rule_2">仅使用字母 (a-z)、数字和特殊字符 (.)</string>
     <string name="invalid_value_rule_3">仅使用字母 (a-z)、数字和特殊字符 (_)</string>
     <string name="invalid_value_rule_4">仅使用小写字母 (a-z)、数字和特殊字符 (_)</string>
-    <string name="invalid_value_rule_5">不允许使用特殊字符 (&amp;, &lt;, >, &quot;, ')</string>
+    <string name="invalid_value_rule_5">不允许使用特殊字符 (&amp;, &lt;, >, &quot;, \')</string>
     <string name="invalid_value_rule_6">不允许使用空格</string>
     <string name="local_library_manager">本地库管理器</string>
     <string name="local_library_manager_dependency_example">示例：org.ow2.asm:asm:9.5</string>

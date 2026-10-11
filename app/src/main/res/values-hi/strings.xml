@@ -377,7 +377,7 @@
     <string name="invalid_value_rule_2">केवल अक्षर (a-z), संख्याएँ, और विशेष वर्ण (.) उपयोग करें</string>
     <string name="invalid_value_rule_3">केवल अक्षर (a-z), संख्याएँ, और विशेष वर्ण (_) उपयोग करें</string>
     <string name="invalid_value_rule_4">केवल छोटे अक्षर (a-z), संख्याएँ, और विशेष वर्ण (_) उपयोग करें</string>
-    <string name="invalid_value_rule_5">विशेष वर्ण (&amp;, &lt;, >, &quot;, ') की अनुमति नहीं है</string>
+    <string name="invalid_value_rule_5">विशेष वर्ण (&amp;, &lt;, >, &quot;, \') की अनुमति नहीं है</string>
     <string name="invalid_value_rule_6">रिक्त स्थान की अनुमति नहीं है</string>
     <string name="local_library_manager">स्थानीय लाइब्रेरी मैनेजर</string>
     <string name="local_library_manager_dependency_example">उदाहरण: org.ow2.asm:asm:9.5</string>

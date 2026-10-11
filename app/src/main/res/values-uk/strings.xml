@@ -377,7 +377,7 @@
     <string name="invalid_value_rule_2">Використовуйте лише літери (a-z), цифри та спеціальні символи (.)</string>
     <string name="invalid_value_rule_3">Використовуйте лише літери (a-z), цифри та спеціальний символ (_)</string>
     <string name="invalid_value_rule_4">Використовуйте лише малі літери (a-z), цифри та спеціальний символ (_)</string>
-    <string name="invalid_value_rule_5">Спеціальні символи (&amp;, &lt;, >, &quot;, ') не допускаються</string>
+    <string name="invalid_value_rule_5">Спеціальні символи (&amp;, &lt;, >, &quot;, \') не допускаються</string>
     <string name="invalid_value_rule_6">Пробіли не допускаються</string>
     <string name="local_library_manager">Менеджер локальних бібліотек</string>
     <string name="local_library_manager_dependency_example">Приклад: org.ow2.asm:asm:9.5</string>
@@ -1854,7 +1854,7 @@ Available variables:
  - $pkgName - App package name
  - $timeInMs - Time during backup in milliseconds
 
-Additionally, you can format your own time like this using Java's date formatter syntax:
+Additionally, you can format your own time like this using Java\'s date formatter syntax:
 $time(yyyy-MM-dd\'T\'HHmmss)
 </string>
     <string name="auto_manage_local_library_in_use">Ця бібліотека \"%1$s" already used in your project, removing it may break your project\rDo you want to continue removing it?</string>
@@ -1873,7 +1873,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 <string name="common_word_import_variant">Імпортувати з варіанта за замовчуванням</string>
 <string name="common_word_step">Крок %d</string>
 <string name="common_word_add_activtiy">Додати Activity</string>
-<string name="common_word_project_information_version_name">Ім'я версії</string>
+<string name="common_word_project_information_version_name">Ім\'я версії</string>
 <string name="common_word_project_information_version_code">Код версії</string>
 <string name="common_word_backup_directory">Директорія резервних копій</string>
 <string name="common_word_export_logcat">Експортувати Logcat</string>
@@ -1889,14 +1889,14 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 <string name="common_word_blocks_collection">Колекція блоків</string>
 <string name="common_word_app_information">Інформація про додаток</string>
 <string name="common_word_create_keystore">Створити keystore</string>
-<string name="common_word_related_links">Пов'язані посилання</string>
-<string name="common_word_style_name">Ім'я стилю</string>
+<string name="common_word_related_links">Пов\'язані посилання</string>
+<string name="common_word_style_name">Ім\'я стилю</string>
 <string name="common_word_style_parent">Батько стилю</string>
 <string name="common_word_select_command">Виберіть команду</string>
 <string name="common_word_input_code">Введіть код</string>
 <string name="common_word_custom_import">Користувацький імпорт</string>
-<string name="common_word_block_name">Ім'я блоку</string>
-<string name="common_word_variable_name">Ім'я змінної</string>
+<string name="common_word_block_name">Ім\'я блоку</string>
+<string name="common_word_variable_name">Ім\'я змінної</string>
 <string name="common_word_label_text">Текст мітки</string>
 <string name="common_word_custom_parameter">Користувацький параметр</string>
 <string name="common_word_signing_mode">Режим підпису</string>
@@ -1904,17 +1904,17 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 <string name="common_word_alias_password">Пароль псевдоніма</string>
 <string name="common_word_signing_algorithm">Алгоритм підпису</string>
 <string name="common_word_font_preview">Попередній перегляд шрифту</string>
-<string name="common_word_font_name">Ім'я шрифту</string>
+<string name="common_word_font_name">Ім\'я шрифту</string>
 <string name="common_word_theme_settings">Налаштування теми</string>
 <string name="common_word_logcat_reader">Читання Logcat</string>
 <string name="common_word_search_log">Пошук за логом</string>
 <string name="common_word_create_view">Створити представлення</string>
-<string name="common_word_enter_name">Введіть ім'я</string>
+<string name="common_word_enter_name">Введіть ім\'я</string>
 <string name="common_word_important_note">Важлива примітка</string>
 <string name="common_word_unspecified">Не вказано</string>
 <string name="common_word_no_events">Немає подій</string>
 <string name="common_word_new_event">Нова подія</string>
-<string name="common_word_array_name">Ім'я масиву</string>
+<string name="common_word_array_name">Ім\'я масиву</string>
 <string name="common_word_array_type">Тип масиву</string>
 <string name="common_word_permissions_manager">Менеджер дозволів</string>
 <string name="common_word_string_key">Ключ рядка</string>
@@ -1933,7 +1933,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 <string name="common_word_custom_value">Користувацьке значення</string>
 <string name="common_word_enable_material3">Увімкнути Material3</string>
 <string name="common_word_edit_block">Редагувати блок</string>
-<string name="common_word_type_name">Ім'я типу</string>
+<string name="common_word_type_name">Ім\'я типу</string>
 <string name="common_word_widget_title">Заголовок віджета</string>
 <string name="common_word_select_category">Виберіть категорію</string>
 <string name="common_word_export_aab">Експортувати AAB</string>
@@ -1946,18 +1946,18 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 <string name="common_word_horizontal_position">Горизонтальна позиція</string>
 <string name="common_word_badge_text">Текст значка</string>
 <string name="common_word_adaptive_icon">Адаптивна іконка</string>
-<string name="common_word_event_name">Ім'я події</string>
+<string name="common_word_event_name">Ім\'я події</string>
 <string name="str_custom_import">Користувацький імпорт</string>
-<string name="common_word_activity_name">Ім'я Activity</string>
+<string name="common_word_activity_name">Ім\'я Activity</string>
 <string name="common_word_enable_viewbinding">Увімкнути ViewBinding</string>
 <string name="common_word_use_materialcomponents">Використовувати MaterialComponents</string>
 <string name="common_word_block_manager">Менеджер блоків</string>
 <string name="common_word_selected_apk">Вибраний APK</string>
-<string name="common_word_color_name">Ім'я кольору</string>
+<string name="common_word_color_name">Ім\'я кольору</string>
 <string name="common_word_color_value">Значення кольору</string>
 <string name="common_word_full_mode">Повний режим</string>
 <string name="common_word_replace_all">Замінити все</string>
-<string name="common_word_palette_name">Ім'я палітри</string>
+<string name="common_word_palette_name">Ім\'я палітри</string>
 <string name="common_word_save_changes">Зберегти зміни</string>
 <string name="common_word_confirm_delete">Підтвердьте видалення</string>
 <string name="common_word_tab_1">Вкладка 1</string>
@@ -1970,7 +1970,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 <string name="common_word_compile_log">Журнал компіляції</string>
 <string name="common_word_new_folder">Новий каталог</string>
 <string name="common_word_import_library">Імпортувати бібліотеку</string>
-<string name="common_word_folder_name">Ім'я каталогу</string>
+<string name="common_word_folder_name">Ім\'я каталогу</string>
 <string name="common_word_renamed_successfully">Успішно перейменовано</string>
 <string name="common_word_nothing_changed">Нічого не змінено</string>
 <string name="common_word_deleted_successfully">Успішно видалено</string>
@@ -2000,7 +2000,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 <string name="common_word_activity_event">Подія Activity</string>
 <string name="common_word_event_details">Деталі події</string>
 <string name="common_word_event_properties">Властивості події</string>
-<string name="common_word_selector_name">Ім'я селектора</string>
+<string name="common_word_selector_name">Ім\'я селектора</string>
 <string name="common_word_save_completed">Збереження завершено</string>
 <string name="common_word_edit_string">Редагувати рядок</string>
 <string name="common_word_no_parent">Немає батька</string>
@@ -2018,7 +2018,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 <string name="common_word_import_all">Імпортувати все</string>
 <string name="common_word_progressing">У процесі</string>
 <string name="common_word_project_information">Інформація про проєкт</string>
-<string name="common_word_project_information_app_name">Ім'я додатка</string>
+<string name="common_word_project_information_app_name">Ім\'я додатка</string>
 <string name="common_word_save_as_new">Зберегти як новий</string>
 <string name="common_word_try_again">Спробувати знову</string>
 <string name="menu_export_templates">Експорт конструктора</string>
