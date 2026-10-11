@@ -104,12 +104,18 @@ public class MainDrawer extends NavigationView {
         String[] labels = {
                 activity.getString(R.string.settings_language_system),
                 activity.getString(R.string.settings_language_ru),
-                activity.getString(R.string.settings_language_en)
+                activity.getString(R.string.settings_language_en),
+                activity.getString(R.string.settings_language_zh),
+                activity.getString(R.string.settings_language_hi),
+                activity.getString(R.string.settings_language_uk)
         };
         String[] values = {
                 pro.sketchware.i18n.LocaleHelper.LANG_SYSTEM,
                 pro.sketchware.i18n.LocaleHelper.LANG_RU,
-                pro.sketchware.i18n.LocaleHelper.LANG_EN
+                pro.sketchware.i18n.LocaleHelper.LANG_EN,
+                pro.sketchware.i18n.LocaleHelper.LANG_ZH,
+                pro.sketchware.i18n.LocaleHelper.LANG_HI,
+                pro.sketchware.i18n.LocaleHelper.LANG_UK
         };
         String current = pro.sketchware.i18n.LocaleHelper.getLanguage(activity);
         int checked = 0;

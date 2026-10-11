@@ -24,6 +24,9 @@ public final class LocaleHelper {
     public static final String LANG_SYSTEM = "";
     public static final String LANG_RU = "ru";
     public static final String LANG_EN = "en";
+    public static final String LANG_ZH = "zh";
+    public static final String LANG_HI = "hi";
+    public static final String LANG_UK = "uk";
 
     private LocaleHelper() {}
 

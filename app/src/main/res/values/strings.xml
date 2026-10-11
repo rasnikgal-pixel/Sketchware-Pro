@@ -2553,4 +2553,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
 </string>
     <string name="auto_manage_local_library_in_use">Эта библиотека "%1$s" already used in your project, removing it may break your project\rDo you want to continue removing it?</string>
     <string name="auto_sketchware_util_parse_failed">Не удалось разобрать %1$s from file %2$s. Fix by renaming old file to %3$s.bak? If not, no %4$s will be used.</string>
+    <string name="settings_language_zh">中文</string>
+    <string name="settings_language_hi">हिन्दी</string>
+    <string name="settings_language_uk">Українська</string>
 </resources>
