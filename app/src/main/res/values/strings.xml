@@ -2556,4 +2556,22 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="settings_language_zh">中文</string>
     <string name="settings_language_hi">हिन्दी</string>
     <string name="settings_language_uk">Українська</string>
+    <string name="sora_xml_editor_title">Текстовый редактор SORA</string>
+    <string name="sora_xml_editor_empty">Нет открытых файлов</string>
+    <string name="sora_xml_editor_drawer_title">Текстовый редактор SORA</string>
+    <string name="sora_xml_editor_drawer_subtitle">Редактировать все файлы проекта</string>
+    <string name="sora_xml_editor_action_save">Сохранить</string>
+    <string name="sora_xml_editor_action_undo">Отменить</string>
+    <string name="sora_xml_editor_action_redo">Повторить</string>
+    <string name="sora_xml_editor_action_open_file">Открыть файл</string>
+    <string name="sora_xml_editor_action_close_tab">Закрыть вкладку</string>
+    <string name="sora_xml_editor_action_find">Найти и заменить</string>
+    <string name="sora_xml_editor_action_format">Форматировать</string>
+    <string name="sora_xml_editor_action_preview">Предпросмотр</string>
+    <string name="sora_xml_editor_action_word_wrap">Перенос строк</string>
+    <string name="sora_xml_editor_action_theme">Тема</string>
+    <string name="sora_xml_editor_unsaved">Не сохранено</string>
+    <string name="sora_xml_editor_confirm_close">Закрыть без сохранения?</string>
+    <string name="sora_xml_editor_tab_limit">Достигнут лимит вкладок (10)</string>
+    <string name="sora_xml_editor_file_picker_title">Выбрать файлы для открытия</string>
 </resources>

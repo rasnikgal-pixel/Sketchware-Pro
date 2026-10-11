@@ -2479,4 +2479,22 @@ ACTION_VIEW
     <string name="view_panel_title_widgets">Віджет</string>
     <string name="xml_strings">XML-рядки</string>
     <string name="common_signin_button_text">Sign in</string>
+    <string name="sora_xml_editor_title">Текстовий редактор SORA</string>
+    <string name="sora_xml_editor_empty">Немає відкритих файлів</string>
+    <string name="sora_xml_editor_drawer_title">Текстовий редактор SORA</string>
+    <string name="sora_xml_editor_drawer_subtitle">Редагувати всі файли проєкту</string>
+    <string name="sora_xml_editor_action_save">Зберегти</string>
+    <string name="sora_xml_editor_action_undo">Скасувати</string>
+    <string name="sora_xml_editor_action_redo">Повторити</string>
+    <string name="sora_xml_editor_action_open_file">Відкрити файл</string>
+    <string name="sora_xml_editor_action_close_tab">Закрити вкладку</string>
+    <string name="sora_xml_editor_action_find">Знайти та замінити</string>
+    <string name="sora_xml_editor_action_format">Форматувати</string>
+    <string name="sora_xml_editor_action_preview">Попередній перегляд</string>
+    <string name="sora_xml_editor_action_word_wrap">Перенесення рядків</string>
+    <string name="sora_xml_editor_action_theme">Тема</string>
+    <string name="sora_xml_editor_unsaved">Не збережено</string>
+    <string name="sora_xml_editor_confirm_close">Закрити без збереження?</string>
+    <string name="sora_xml_editor_tab_limit">Досягнуто ліміту вкладок (10)</string>
+    <string name="sora_xml_editor_file_picker_title">Вибрати файли для відкриття</string>
 </resources>

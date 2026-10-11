@@ -2546,4 +2546,22 @@ ACTION_VIEW
     <string name="settings_language_zh">中文</string>
     <string name="settings_language_hi">हिन्दी</string>
     <string name="settings_language_uk">Українська</string>
+    <string name="sora_xml_editor_title">SORA Text Editor</string>
+    <string name="sora_xml_editor_empty">No open files</string>
+    <string name="sora_xml_editor_drawer_title">SORA Text Editor</string>
+    <string name="sora_xml_editor_drawer_subtitle">Edit all project files</string>
+    <string name="sora_xml_editor_action_save">Save</string>
+    <string name="sora_xml_editor_action_undo">Undo</string>
+    <string name="sora_xml_editor_action_redo">Redo</string>
+    <string name="sora_xml_editor_action_open_file">Open file</string>
+    <string name="sora_xml_editor_action_close_tab">Close tab</string>
+    <string name="sora_xml_editor_action_find">Find and replace</string>
+    <string name="sora_xml_editor_action_format">Format</string>
+    <string name="sora_xml_editor_action_preview">Preview</string>
+    <string name="sora_xml_editor_action_word_wrap">Word wrap</string>
+    <string name="sora_xml_editor_action_theme">Theme</string>
+    <string name="sora_xml_editor_unsaved">Unsaved</string>
+    <string name="sora_xml_editor_confirm_close">Close without saving?</string>
+    <string name="sora_xml_editor_tab_limit">Tab limit reached (10)</string>
+    <string name="sora_xml_editor_file_picker_title">Select files to open</string>
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_save"
+        android:icon="@drawable/ic_mtrl_save"
+        android:title="@string/sora_xml_editor_action_save"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_undo"
+        android:icon="@drawable/ic_mtrl_undo"
+        android:title="@string/sora_xml_editor_action_undo"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_redo"
+        android:icon="@drawable/ic_mtrl_redo"
+        android:title="@string/sora_xml_editor_action_redo"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_open_file"
+        android:title="@string/sora_xml_editor_action_open_file"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_close_tab"
+        android:title="@string/sora_xml_editor_action_close_tab"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_find_replace"
+        android:title="@string/sora_xml_editor_action_find"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_format"
+        android:title="@string/sora_xml_editor_action_format"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_preview"
+        android:title="@string/sora_xml_editor_action_preview"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_word_wrap"
+        android:title="@string/sora_xml_editor_action_word_wrap"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_theme"
+        android:title="@string/sora_xml_editor_action_theme"
+        app:showAsAction="never" />
+
+</menu>
