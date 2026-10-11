@@ -1,12 +1,12 @@
 {
   "versionCode": 174,
   "versionName": "7.4.0",
-  "downloadUrl": "https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/download/7.3.1/app-release.apk",
+  "downloadUrl": "https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/download/7.4.0/app-release.apk",
   "changelog": "🌍 МУЛЬТИЯЗЫЧНОСТЬ — 5 ЯЗЫКОВ + СИСТЕМНЫЙ!\n\nТеперь приложение поддерживает:\n🇷🇺 Русский\n🇬🇧 English\n🇨🇳 中文 (китайский)\n🇮🇳 हिन्दी (хинди)\n🇺🇦 Українська (украинский)\n\nПереключение: боковое меню → Язык интерфейса.\n\nУмный fallback: если системный язык не поддерживается, приложение автоматически переходит на английский.\n\n📦 ПОЛНАЯ ЛОКАЛИЗАЦИЯ ИНТЕРФЕЙСА\n• ~1300 строк из Java вынесено в strings.xml\n• 117 строк из layout-файлов\n• 19 строк из menu\n• 443 недостающих строки допереведены\n• 100% покрытие всех наших строк в RU/EN/ZH/HI/UK\n\n🔧 РЕФАКТОРИНГ И ФИКСЫ\n• Меню редактора кода через MENU_ID (CodeEditorLayout, SrcCodeEditor)\n• Устранены все (CharSequence) ambiguity\n• Исправлен NPE в ViewPane (#2077, #2034)\n• Экранированы апострофы и % во всех строках\n• Язык справки подстраивается под язык приложения (RU/UK → русская, EN/ZH/HI → английская)\n\n🛠 ДЛЯ РАЗРАБОТЧИКОВ\n• Скрипт add_string.py — добавление строк во все 5 языков одной командой",
   "required": false,
   "releaseDate": "2026-10-11",
   "minVersion": 0,
   "channel": "stable",
   "apkSize": 140797118,
-  "sha256": "d30825bb4312920fc3902ef6a33dfb2862b538ae483d2e21a6b5e98ea7bba23b"
+  "sha256": "90e6d9464170dbd5dff57ffaabe31bf38f1ee2ab1590e1529d8c326574c5a8f8"
 }
