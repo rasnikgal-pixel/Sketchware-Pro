@@ -2550,4 +2550,26 @@ ACTION_VIEW
     <string name="graph_settings_show_variables">显示变量</string>
     <string name="graph_settings_show_components">显示组件</string>
     <string name="graph_settings_show_functions">显示函数</string>
+    <string name="user_code_title">我的代码</string>
+    <string name="user_code_subtitle">自定义 Java 类（不会被覆盖）</string>
+    <string name="user_code_empty">空。点击 + 创建第一个类。</string>
+    <string name="user_code_create">创建文件</string>
+    <string name="user_code_template">模板</string>
+    <string name="user_code_template_class">空类</string>
+    <string name="user_code_template_utils">工具类（静态方法）</string>
+    <string name="user_code_template_view">自定义 View</string>
+    <string name="user_code_template_interface">接口</string>
+    <string name="user_code_class_name">类名</string>
+    <string name="user_code_delete">删除</string>
+    <string name="user_code_delete_confirm">删除此文件？</string>
+    <string name="user_code_rename">重命名</string>
+    <string name="user_code_rename_hint">新名称</string>
+    <string name="user_code_open_sora">在 SORA 中打开</string>
+    <string name="user_code_open_src">在代码编辑器中打开</string>
+    <string name="user_code_show_path">显示路径</string>
+    <string name="user_code_created">文件已创建</string>
+    <string name="user_code_already_exists">同名文件已存在</string>
+    <string name="user_code_invalid_name">无效的类名 (A-Za-z0-9_)</string>
+    <string name="tools_activity_user_code_title">💻 我的代码</string>
+    <string name="tools_activity_user_code_subtitle">不会被覆盖的自定义 Java 类</string>
 </resources>

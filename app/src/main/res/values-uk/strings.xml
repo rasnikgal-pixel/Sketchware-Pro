@@ -2550,4 +2550,26 @@ ACTION_VIEW
     <string name="graph_settings_show_variables">Показувати змінні</string>
     <string name="graph_settings_show_components">Показувати компоненти</string>
     <string name="graph_settings_show_functions">Показувати функції</string>
+    <string name="user_code_title">Мій код</string>
+    <string name="user_code_subtitle">Користувацькі Java-класи (не перезаписуються)</string>
+    <string name="user_code_empty">Порожньо. Натисніть + щоб створити перший клас.</string>
+    <string name="user_code_create">Створити файл</string>
+    <string name="user_code_template">Шаблон</string>
+    <string name="user_code_template_class">Порожній клас</string>
+    <string name="user_code_template_utils">Утиліта (статичні методи)</string>
+    <string name="user_code_template_view">Кастомний View</string>
+    <string name="user_code_template_interface">Інтерфейс</string>
+    <string name="user_code_class_name">Ім\'я класу</string>
+    <string name="user_code_delete">Видалити</string>
+    <string name="user_code_delete_confirm">Видалити цей файл?</string>
+    <string name="user_code_rename">Перейменувати</string>
+    <string name="user_code_rename_hint">Нове ім\'я</string>
+    <string name="user_code_open_sora">Відкрити в SORA</string>
+    <string name="user_code_open_src">Відкрити в редакторі коду</string>
+    <string name="user_code_show_path">Показати шлях</string>
+    <string name="user_code_created">Файл створено</string>
+    <string name="user_code_already_exists">Файл з таким іменем вже існує</string>
+    <string name="user_code_invalid_name">Невірне ім\'я класу (A-Za-z0-9_)</string>
+    <string name="tools_activity_user_code_title">💻 Мій код</string>
+    <string name="tools_activity_user_code_subtitle">Власні Java-класи, що не перезаписуються</string>
 </resources>

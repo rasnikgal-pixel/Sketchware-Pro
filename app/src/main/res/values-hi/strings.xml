@@ -2550,4 +2550,26 @@ ACTION_VIEW
     <string name="graph_settings_show_variables">चर दिखाएं</string>
     <string name="graph_settings_show_components">घटक दिखाएं</string>
     <string name="graph_settings_show_functions">फ़ंक्शन दिखाएं</string>
+    <string name="user_code_title">मेरा कोड</string>
+    <string name="user_code_subtitle">कस्टम Java क्लास (अधिलेखित नहीं)</string>
+    <string name="user_code_empty">खाली है। पहली क्लास बनाने के लिए + दबाएं।</string>
+    <string name="user_code_create">फ़ाइल बनाएं</string>
+    <string name="user_code_template">टेम्पलेट</string>
+    <string name="user_code_template_class">खाली क्लास</string>
+    <string name="user_code_template_utils">उपयोगिता (स्टेटिक मेथड्स)</string>
+    <string name="user_code_template_view">कस्टम व्यू</string>
+    <string name="user_code_template_interface">इंटरफ़ेस</string>
+    <string name="user_code_class_name">क्लास नाम</string>
+    <string name="user_code_delete">हटाएं</string>
+    <string name="user_code_delete_confirm">यह फ़ाइल हटाएं?</string>
+    <string name="user_code_rename">नाम बदलें</string>
+    <string name="user_code_rename_hint">नया नाम</string>
+    <string name="user_code_open_sora">SORA में खोलें</string>
+    <string name="user_code_open_src">कोड एडिटर में खोलें</string>
+    <string name="user_code_show_path">पथ दिखाएं</string>
+    <string name="user_code_created">फ़ाइल बनाई गई</string>
+    <string name="user_code_already_exists">इस नाम की फ़ाइल पहले से मौजूद है</string>
+    <string name="user_code_invalid_name">अमान्य क्लास नाम (A-Za-z0-9_)</string>
+    <string name="tools_activity_user_code_title">💻 मेरा कोड</string>
+    <string name="tools_activity_user_code_subtitle">कस्टम Java क्लास जो अधिलेखित नहीं होतीं</string>
 </resources>

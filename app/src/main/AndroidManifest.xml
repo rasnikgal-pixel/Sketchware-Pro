@@ -305,6 +305,7 @@
         <activity android:name="pro.sketchware.activities.resourceseditor.ResourcesEditorActivity" />
         <activity android:name="pro.sketchware.activities.soraeditor.SoraEditorActivity" />
         <activity android:name="pro.sketchware.activities.projectgraph.ProjectGraphActivity" />
+        <activity android:name="pro.sketchware.activities.usercode.UserCodeActivity" />
 
         <activity
             android:name="com.besome.sketch.editor.manage.library.material3.Material3LibraryActivity"

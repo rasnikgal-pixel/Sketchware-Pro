@@ -2627,4 +2627,26 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="graph_settings_show_variables">Показывать переменные</string>
     <string name="graph_settings_show_components">Показывать компоненты</string>
     <string name="graph_settings_show_functions">Показывать функции</string>
+    <string name="user_code_title">Мой код</string>
+    <string name="user_code_subtitle">Пользовательские Java-классы (не перезаписываются)</string>
+    <string name="user_code_empty">Здесь пока пусто. Нажми + чтобы создать первый класс.</string>
+    <string name="user_code_create">Создать файл</string>
+    <string name="user_code_template">Шаблон</string>
+    <string name="user_code_template_class">Пустой класс</string>
+    <string name="user_code_template_utils">Утилита (статические методы)</string>
+    <string name="user_code_template_view">Кастомный View</string>
+    <string name="user_code_template_interface">Интерфейс</string>
+    <string name="user_code_class_name">Имя класса</string>
+    <string name="user_code_delete">Удалить</string>
+    <string name="user_code_delete_confirm">Удалить этот файл?</string>
+    <string name="user_code_rename">Переименовать</string>
+    <string name="user_code_rename_hint">Новое имя</string>
+    <string name="user_code_open_sora">Открыть в SORA</string>
+    <string name="user_code_open_src">Открыть в редакторе кода</string>
+    <string name="user_code_show_path">Показать путь</string>
+    <string name="user_code_created">Файл создан</string>
+    <string name="user_code_already_exists">Файл с таким именем уже существует</string>
+    <string name="user_code_invalid_name">Неверное имя класса (A-Za-z0-9_)</string>
+    <string name="tools_activity_user_code_title">💻 Мой код</string>
+    <string name="tools_activity_user_code_subtitle">Свои Java-классы, которые не перезаписываются</string>
 </resources>

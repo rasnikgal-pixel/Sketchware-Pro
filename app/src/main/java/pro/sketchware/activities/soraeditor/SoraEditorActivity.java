@@ -300,6 +300,12 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         } else if (id == R.id.action_settings) {
             showSettingsDialog();
             return true;
+        } else if (id == R.id.action_user_code) {
+            android.content.Intent intent = new android.content.Intent(this,
+                    pro.sketchware.activities.usercode.UserCodeActivity.class);
+            intent.putExtra("sc_id", scId);
+            startActivity(intent);
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }

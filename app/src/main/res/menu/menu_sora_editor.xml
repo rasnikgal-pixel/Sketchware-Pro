@@ -61,6 +61,11 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_user_code"
+        android:title="@string/user_code_title"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_settings"
         android:title="@string/sora_xml_editor_action_settings"
         app:showAsAction="never" />

@@ -2617,4 +2617,26 @@ ACTION_VIEW
     <string name="graph_settings_show_variables">Show variables</string>
     <string name="graph_settings_show_components">Show components</string>
     <string name="graph_settings_show_functions">Show functions</string>
+    <string name="user_code_title">My code</string>
+    <string name="user_code_subtitle">Custom Java classes (not overwritten)</string>
+    <string name="user_code_empty">Empty. Tap + to create your first class.</string>
+    <string name="user_code_create">Create file</string>
+    <string name="user_code_template">Template</string>
+    <string name="user_code_template_class">Empty class</string>
+    <string name="user_code_template_utils">Utility (static methods)</string>
+    <string name="user_code_template_view">Custom View</string>
+    <string name="user_code_template_interface">Interface</string>
+    <string name="user_code_class_name">Class name</string>
+    <string name="user_code_delete">Delete</string>
+    <string name="user_code_delete_confirm">Delete this file?</string>
+    <string name="user_code_rename">Rename</string>
+    <string name="user_code_rename_hint">New name</string>
+    <string name="user_code_open_sora">Open in SORA</string>
+    <string name="user_code_open_src">Open in code editor</string>
+    <string name="user_code_show_path">Show path</string>
+    <string name="user_code_created">File created</string>
+    <string name="user_code_already_exists">File with this name already exists</string>
+    <string name="user_code_invalid_name">Invalid class name (A-Za-z0-9_)</string>
+    <string name="tools_activity_user_code_title">💻 My code</string>
+    <string name="tools_activity_user_code_subtitle">Custom Java classes that are not overwritten</string>
 </resources>

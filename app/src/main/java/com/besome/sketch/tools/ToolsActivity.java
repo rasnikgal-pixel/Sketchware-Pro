@@ -117,7 +117,23 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 R.drawable.ic_mtrl_article,
                 this::onLogcat
         ));
+        items.add(new ToolItem(
+                Helper.getResString(R.string.tools_activity_user_code_title),
+                Helper.getResString(R.string.tools_activity_user_code_subtitle),
+                R.drawable.ic_mtrl_java,
+                this::onUserCode
+        ));
         return items;
+    }
+
+    /** Открывает экран "Мой код". */
+    private void onUserCode() {
+        showProjectPickerDialog((scId, projectName) -> {
+            android.content.Intent intent = new android.content.Intent(this,
+                    pro.sketchware.activities.usercode.UserCodeActivity.class);
+            intent.putExtra("sc_id", scId);
+            startActivity(intent);
+        });
     }
 
     /** Открывает журнал отладки. */
