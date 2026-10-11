@@ -85,8 +85,97 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         } else if (id == R.id.action_filter) {
             showFilterDialog();
             return true;
+        } else if (id == R.id.action_export_png) {
+            exportPng();
+            return true;
+        } else if (id == R.id.action_settings) {
+            showGraphSettingsDialog();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /** Диалог настроек графа. */
+    private void showGraphSettingsDialog() {
+        GraphSettings settings = new GraphSettings(this);
+        android.view.View view = getLayoutInflater().inflate(
+                R.layout.dialog_graph_settings, null);
+
+        com.google.android.material.materialswitch.MaterialSwitch swDrag =
+                view.findViewById(R.id.switch_drag_nodes);
+        com.google.android.material.materialswitch.MaterialSwitch swExport =
+                view.findViewById(R.id.switch_export_full);
+        com.google.android.material.materialswitch.MaterialSwitch swForce =
+                view.findViewById(R.id.switch_force_directed);
+        com.google.android.material.materialswitch.MaterialSwitch swEdge =
+                view.findViewById(R.id.switch_edge_labels);
+
+        swDrag.setChecked(settings.isDragNodesEnabled());
+        swExport.setChecked(settings.isExportFullTree());
+        swForce.setChecked(settings.isForceDirected());
+        swEdge.setChecked(settings.isShowEdgeLabels());
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.graph_settings_title)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (d, w) -> {
+                    settings.setDragNodesEnabled(swDrag.isChecked());
+                    settings.setExportFullTree(swExport.isChecked());
+                    settings.setForceDirected(swForce.isChecked());
+                    settings.setShowEdgeLabels(swEdge.isChecked());
+                    // Применить drag в GraphView
+                    binding.graphView.setDragEnabled(swDrag.isChecked());
+                    // Перестроить граф, если изменилась раскладка
+                    if (graph != null) {
+                        binding.graphView.setGraph(graph);
+                    }
+                    android.widget.Toast.makeText(this,
+                            getString(R.string.graph_settings_applied),
+                            android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
+    }
+
+    /** Экспорт графа в PNG. */
+    private void exportPng() {
+        if (graph == null || graph.nodes.isEmpty()) {
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_empty),
+                    android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            GraphSettings settings = new GraphSettings(this);
+            android.graphics.Bitmap bmp = binding.graphView.renderToBitmap(
+                    settings.isExportFullTree());
+
+            // Путь сохранения
+            java.io.File dir = new java.io.File(
+                    android.os.Environment.getExternalStorageDirectory(),
+                    "Sketchware/Graphs");
+            if (!dir.exists() && !dir.mkdirs()) {
+                throw new java.io.IOException("Cannot create directory");
+            }
+            String safeName = (projectName == null || projectName.isEmpty())
+                    ? "project" : projectName.replaceAll("[^a-zA-Z0-9_]", "_");
+            String fileName = safeName + "_" + System.currentTimeMillis() + ".png";
+            java.io.File outFile = new java.io.File(dir, fileName);
+
+            try (java.io.FileOutputStream fos = new java.io.FileOutputStream(outFile)) {
+                bmp.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, fos);
+            }
+
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_success) + "\n" + outFile.getAbsolutePath(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        } catch (Throwable t) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .d("ProjectGraph", "export_error", String.valueOf(t.getMessage()));
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_error) + ": " + t.getMessage(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showFilterDialog() {

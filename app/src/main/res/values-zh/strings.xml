@@ -2521,4 +2521,14 @@ ACTION_VIEW
     <string name="sora_xml_editor_copy_path">路径已复制</string>
     <string name="sora_xml_editor_action_settings">设置</string>
     <string name="sora_xml_editor_action_copy_path">复制路径</string>
+    <string name="graph_settings_title">图设置</string>
+    <string name="graph_settings_drag_nodes">拖动节点</string>
+    <string name="graph_settings_export_full">导出：完整树（否则仅可见）</string>
+    <string name="graph_settings_force_directed">力导向布局</string>
+    <string name="graph_settings_show_edge_labels">边标签</string>
+    <string name="graph_action_export_png">导出 PNG</string>
+    <string name="graph_export_success">PNG 已保存</string>
+    <string name="graph_export_error">导出错误</string>
+    <string name="graph_export_empty">没有要导出的节点</string>
+    <string name="graph_settings_applied">设置已应用</string>
 </resources>

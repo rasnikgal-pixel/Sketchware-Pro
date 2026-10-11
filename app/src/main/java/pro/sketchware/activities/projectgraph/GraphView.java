@@ -71,6 +71,12 @@ public class GraphView extends View {
 
     private OnNodeTapListener tapListener;
 
+    // Drag узлов
+    private boolean dragEnabled = true;
+    private ProjectGraphNode draggingNode = null;
+    private float dragOffsetX = 0f;
+    private float dragOffsetY = 0f;
+
     public GraphView(Context context) {
         this(context, null);
     }
@@ -154,6 +160,113 @@ public class GraphView extends View {
         this.tapListener = l;
     }
 
+    public void setDragEnabled(boolean enabled) {
+        this.dragEnabled = enabled;
+        if (!enabled) draggingNode = null;
+    }
+
+    public boolean isDragEnabled() {
+        return dragEnabled;
+    }
+
+    /**
+     * Рендер графа в Bitmap.
+     * @param fullTree true — всё дерево целиком, false — только видимая область.
+     */
+    public android.graphics.Bitmap renderToBitmap(boolean fullTree) {
+        if (graph == null || graph.nodes.isEmpty()) {
+            return android.graphics.Bitmap.createBitmap(10, 10,
+                    android.graphics.Bitmap.Config.ARGB_8888);
+        }
+
+        if (!fullTree) {
+            // Только видимое
+            android.graphics.Bitmap bmp = android.graphics.Bitmap.createBitmap(
+                    Math.max(1, getWidth()), Math.max(1, getHeight()),
+                    android.graphics.Bitmap.Config.ARGB_8888);
+            android.graphics.Canvas canvas = new android.graphics.Canvas(bmp);
+            draw(canvas);
+            return bmp;
+        }
+
+        // Всё дерево целиком — считаем bounding box
+        float minX = Float.MAX_VALUE, minY = Float.MAX_VALUE;
+        float maxX = -Float.MAX_VALUE, maxY = -Float.MAX_VALUE;
+        for (ProjectGraphNode n : graph.nodes) {
+            if (!visibleTypes.contains(n.type)) continue;
+            if (n.x < minX) minX = n.x;
+            if (n.y < minY) minY = n.y;
+            if (n.x + NODE_WIDTH > maxX) maxX = n.x + NODE_WIDTH;
+            if (n.y + NODE_HEIGHT > maxY) maxY = n.y + NODE_HEIGHT;
+        }
+        if (minX == Float.MAX_VALUE) {
+            return android.graphics.Bitmap.createBitmap(10, 10,
+                    android.graphics.Bitmap.Config.ARGB_8888);
+        }
+
+        float padding = 40f;
+        int width = (int) (maxX - minX + padding * 2);
+        int height = (int) (maxY - minY + padding * 2);
+        if (width < 1) width = 1;
+        if (height < 1) height = 1;
+
+        android.graphics.Bitmap bmp = android.graphics.Bitmap.createBitmap(
+                width, height, android.graphics.Bitmap.Config.ARGB_8888);
+        android.graphics.Canvas canvas = new android.graphics.Canvas(bmp);
+        canvas.drawColor(0xFF121212);
+
+        // Сохраняем текущую трансформацию
+        float savedScale = scale;
+        float savedTx = translateX;
+        float savedTy = translateY;
+
+        try {
+            // Устанавливаем так, чтобы весь граф влез
+            scale = 1f;
+            translateX = -minX + padding;
+            translateY = -minY + padding;
+            drawGraphContent(canvas);
+        } finally {
+            scale = savedScale;
+            translateX = savedTx;
+            translateY = savedTy;
+        }
+
+        return bmp;
+    }
+
+    /** Отрисовка содержимого графа (без super.onDraw и без save/restore). */
+    private void drawGraphContent(android.graphics.Canvas canvas) {
+        canvas.save();
+        canvas.translate(translateX, translateY);
+        canvas.scale(scale, scale);
+
+        // Рёбра
+        for (ProjectGraph.Edge edge : graph.edges) {
+            if (!isEdgeVisible(edge)) continue;
+            ProjectGraphNode from = graph.findNode(edge.fromId);
+            ProjectGraphNode to = graph.findNode(edge.toId);
+            if (from == null || to == null) continue;
+            if (!visibleTypes.contains(from.type) || !visibleTypes.contains(to.type)) continue;
+
+            float x1 = from.x + NODE_WIDTH / 2f;
+            float y1 = from.y + NODE_HEIGHT;
+            float x2 = to.x + NODE_WIDTH / 2f;
+            float y2 = to.y;
+
+            canvas.drawLine(x1, y1, x2, y2, edgePaint);
+            drawArrow(canvas, x1, y1, x2, y2);
+        }
+
+        // Узлы
+        for (ProjectGraphNode node : graph.nodes) {
+            if (!visibleTypes.contains(node.type)) continue;
+            drawNode(canvas, node);
+        }
+
+        canvas.restore();
+    }
+
     public Set<ProjectGraphNode.Type> getVisibleTypes() {
         return visibleTypes;
     }
@@ -182,9 +295,58 @@ public class GraphView extends View {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
+        // Drag узла
+        if (draggingNode != null) {
+            if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                float x = (event.getX() - translateX) / scale - dragOffsetX;
+                float y = (event.getY() - translateY) / scale - dragOffsetY;
+                draggingNode.x = x;
+                draggingNode.y = y;
+                invalidate();
+                return true;
+            } else if (event.getAction() == MotionEvent.ACTION_UP
+                    || event.getAction() == MotionEvent.ACTION_CANCEL) {
+                draggingNode = null;
+                return true;
+            }
+        }
+
+        // Long press — начать drag узла
+        if (dragEnabled && event.getAction() == MotionEvent.ACTION_DOWN) {
+            ProjectGraphNode node = findNodeAt(event.getX(), event.getY());
+            if (node != null) {
+                // Запускаем таймер long press
+                final float dx = event.getX();
+                final float dy = event.getY();
+                final ProjectGraphNode target = node;
+                postDelayed(() -> {
+                    if (target != null) {
+                        draggingNode = target;
+                        dragOffsetX = (dx - translateX) / scale - target.x;
+                        dragOffsetY = (dy - translateY) / scale - target.y;
+                    }
+                }, 350L);
+            }
+        }
+
         scaleDetector.onTouchEvent(event);
         gestureDetector.onTouchEvent(event);
         return true;
+    }
+
+    /** Поиск узла в точке экрана. */
+    private ProjectGraphNode findNodeAt(float screenX, float screenY) {
+        if (graph == null) return null;
+        float x = (screenX - translateX) / scale;
+        float y = (screenY - translateY) / scale;
+        for (ProjectGraphNode n : graph.nodes) {
+            if (!visibleTypes.contains(n.type)) continue;
+            if (x >= n.x && x <= n.x + NODE_WIDTH
+                    && y >= n.y && y <= n.y + NODE_HEIGHT) {
+                return n;
+            }
+        }
+        return null;
     }
 
     @Override

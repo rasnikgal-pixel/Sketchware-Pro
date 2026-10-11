@@ -9,9 +9,21 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_export_png"
+        android:icon="@drawable/ic_mtrl_save"
+        android:title="@string/graph_action_export_png"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_filter"
         android:icon="@drawable/ic_mtrl_filter"
         android:title="@string/project_graph_filter"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_mtrl_settings"
+        android:title="@string/graph_settings_title"
+        app:showAsAction="never" />
 
 </menu>

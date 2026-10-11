@@ -2598,4 +2598,14 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_xml_editor_copy_path">Путь скопирован</string>
     <string name="sora_xml_editor_action_settings">Настройки</string>
     <string name="sora_xml_editor_action_copy_path">Копировать путь</string>
+    <string name="graph_settings_title">Настройки графа</string>
+    <string name="graph_settings_drag_nodes">Перетаскивание узлов</string>
+    <string name="graph_settings_export_full">Экспорт: всё дерево (иначе — только видимое)</string>
+    <string name="graph_settings_force_directed">Force-directed раскладка</string>
+    <string name="graph_settings_show_edge_labels">Подписи рёбер</string>
+    <string name="graph_action_export_png">Экспорт PNG</string>
+    <string name="graph_export_success">PNG сохранён</string>
+    <string name="graph_export_error">Ошибка экспорта</string>
+    <string name="graph_export_empty">Нет узлов для экспорта</string>
+    <string name="graph_settings_applied">Настройки применены</string>
 </resources>

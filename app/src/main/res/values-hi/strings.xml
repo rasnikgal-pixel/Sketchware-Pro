@@ -2521,4 +2521,14 @@ ACTION_VIEW
     <string name="sora_xml_editor_copy_path">पथ कॉपी किया गया</string>
     <string name="sora_xml_editor_action_settings">सेटिंग्स</string>
     <string name="sora_xml_editor_action_copy_path">पथ कॉपी करें</string>
+    <string name="graph_settings_title">ग्राफ सेटिंग्स</string>
+    <string name="graph_settings_drag_nodes">नोड्स खींचें</string>
+    <string name="graph_settings_export_full">निर्यात: पूरा पेड़ (अन्यथा केवल दिखाई देने वाला)</string>
+    <string name="graph_settings_force_directed">फोर्स-निर्देशित लेआउट</string>
+    <string name="graph_settings_show_edge_labels">एज लेबल</string>
+    <string name="graph_action_export_png">PNG निर्यात करें</string>
+    <string name="graph_export_success">PNG सहेजा गया</string>
+    <string name="graph_export_error">निर्यात त्रुटि</string>
+    <string name="graph_export_empty">निर्यात करने के लिए कोई नोड नहीं</string>
+    <string name="graph_settings_applied">सेटिंग्स लागू</string>
 </resources>

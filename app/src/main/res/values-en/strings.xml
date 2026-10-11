@@ -2588,4 +2588,14 @@ ACTION_VIEW
     <string name="sora_xml_editor_copy_path">Path copied</string>
     <string name="sora_xml_editor_action_settings">Settings</string>
     <string name="sora_xml_editor_action_copy_path">Copy path</string>
+    <string name="graph_settings_title">Graph settings</string>
+    <string name="graph_settings_drag_nodes">Drag nodes</string>
+    <string name="graph_settings_export_full">Export: full tree (else visible only)</string>
+    <string name="graph_settings_force_directed">Force-directed layout</string>
+    <string name="graph_settings_show_edge_labels">Edge labels</string>
+    <string name="graph_action_export_png">Export PNG</string>
+    <string name="graph_export_success">PNG saved</string>
+    <string name="graph_export_error">Export error</string>
+    <string name="graph_export_empty">No nodes to export</string>
+    <string name="graph_settings_applied">Settings applied</string>
 </resources>
