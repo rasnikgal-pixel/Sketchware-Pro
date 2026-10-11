@@ -120,6 +120,7 @@ import pro.sketchware.activities.editor.command.ManageXMLCommandActivity;
 import pro.sketchware.activities.editor.view.CodeViewerActivity;
 import pro.sketchware.activities.editor.view.ViewCodeEditorActivity;
 import pro.sketchware.activities.resourceseditor.ResourcesEditorActivity;
+import pro.sketchware.activities.soraeditor.SoraEditorActivity;
 import pro.sketchware.dialogs.BuildSettingsBottomSheet;
 import pro.sketchware.utility.FileUtil;
 import pro.sketchware.utility.SketchwareUtil;
@@ -1143,6 +1144,15 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
      */
     void toResourceEditor() {
         launchActivity(ResourcesEditorActivity.class, openResourcesManager);
+    }
+
+    /**
+     * Opens {@link SoraEditorActivity}.
+     */
+    void toSoraEditor() {
+        Intent intent = new Intent(getApplicationContext(), SoraEditorActivity.class);
+        intent.putExtra("sc_id", sc_id);
+        startActivity(intent);
     }
 
     /**
