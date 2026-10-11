@@ -2547,4 +2547,7 @@ ACTION_VIEW
     <string name="graph_filter_reset">重置筛选</string>
     <string name="graph_force_directed_warning">力导向布局在大型项目上可能会卡顿</string>
     <string name="graph_open_in_editor">在编辑器中打开</string>
+    <string name="graph_settings_show_variables">显示变量</string>
+    <string name="graph_settings_show_components">显示组件</string>
+    <string name="graph_settings_show_functions">显示函数</string>
 </resources>

@@ -2614,4 +2614,7 @@ ACTION_VIEW
     <string name="graph_filter_reset">Reset filter</string>
     <string name="graph_force_directed_warning">Force-directed layout may lag on large projects</string>
     <string name="graph_open_in_editor">Open in editor</string>
+    <string name="graph_settings_show_variables">Show variables</string>
+    <string name="graph_settings_show_components">Show components</string>
+    <string name="graph_settings_show_functions">Show functions</string>
 </resources>

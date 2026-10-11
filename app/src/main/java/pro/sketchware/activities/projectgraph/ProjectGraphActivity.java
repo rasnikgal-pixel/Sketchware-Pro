@@ -69,6 +69,9 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                 binding.graphView.setShowEdges(settings.isShowEdges());
                 binding.graphView.setDragEnabled(settings.isDragNodesEnabled());
                 binding.graphView.setShowBlocks(settings.isShowBlocks());
+                binding.graphView.setShowVariables(settings.isShowVariables());
+                binding.graphView.setShowComponents(settings.isShowComponents());
+                binding.graphView.setShowFunctions(settings.isShowFunctions());
                 binding.graphView.setActivityFilter(settings.getActivityFilter());
                 binding.graphView.setGraph(graph);
                 binding.graphView.applyLayout(settings.getLayout(), settings.getLevelGap());
@@ -164,6 +167,12 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                 view.findViewById(R.id.switch_export_full);
         com.google.android.material.materialswitch.MaterialSwitch swShowBlocks =
                 view.findViewById(R.id.switch_show_blocks);
+        com.google.android.material.materialswitch.MaterialSwitch swShowVariables =
+                view.findViewById(R.id.switch_show_variables);
+        com.google.android.material.materialswitch.MaterialSwitch swShowComponents =
+                view.findViewById(R.id.switch_show_components);
+        com.google.android.material.materialswitch.MaterialSwitch swShowFunctions =
+                view.findViewById(R.id.switch_show_functions);
 
         // Раскладка — выбрать текущую
         int layout = settings.getLayout();
@@ -181,6 +190,9 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         swDrag.setChecked(settings.isDragNodesEnabled());
         swExport.setChecked(settings.isExportFullTree());
         swShowBlocks.setChecked(settings.isShowBlocks());
+        swShowVariables.setChecked(settings.isShowVariables());
+        swShowComponents.setChecked(settings.isShowComponents());
+        swShowFunctions.setChecked(settings.isShowFunctions());
 
         new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.graph_settings_title)
@@ -209,11 +221,17 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                     settings.setDragNodesEnabled(swDrag.isChecked());
                     settings.setExportFullTree(swExport.isChecked());
                     settings.setShowBlocks(swShowBlocks.isChecked());
+                    settings.setShowVariables(swShowVariables.isChecked());
+                    settings.setShowComponents(swShowComponents.isChecked());
+                    settings.setShowFunctions(swShowFunctions.isChecked());
 
                     // Применить
                     binding.graphView.setDragEnabled(swDrag.isChecked());
                     binding.graphView.setShowEdges(swEdges.isChecked());
                     binding.graphView.setShowBlocks(swShowBlocks.isChecked());
+                    binding.graphView.setShowVariables(swShowVariables.isChecked());
+                    binding.graphView.setShowComponents(swShowComponents.isChecked());
+                    binding.graphView.setShowFunctions(swShowFunctions.isChecked());
                     binding.graphView.applyLayout(newLayout, newGap);
 
                     android.widget.Toast.makeText(this,

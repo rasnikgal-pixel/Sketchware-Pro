@@ -82,6 +82,9 @@ public class GraphView extends View {
 
     // Фильтры
     private boolean showBlocks = false;
+    private boolean showVariables = true;
+    private boolean showComponents = true;
+    private boolean showFunctions = true;
     private String activityFilterId = null;
     private String searchQuery = null;
 
@@ -105,6 +108,21 @@ public class GraphView extends View {
         invalidate();
     }
 
+    public void setShowVariables(boolean show) {
+        this.showVariables = show;
+        invalidate();
+    }
+
+    public void setShowComponents(boolean show) {
+        this.showComponents = show;
+        invalidate();
+    }
+
+    public void setShowFunctions(boolean show) {
+        this.showFunctions = show;
+        invalidate();
+    }
+
     public void setActivityFilter(String activityId) {
         this.activityFilterId = activityId;
         invalidate();
@@ -120,10 +138,12 @@ public class GraphView extends View {
         if (!visibleTypes.contains(node.type)) return false;
         // Блоки скрыты, если showBlocks=false
         if (node.type == ProjectGraphNode.Type.BLOCK && !showBlocks) return false;
+        if (node.type == ProjectGraphNode.Type.VARIABLE && !showVariables) return false;
+        if (node.type == ProjectGraphNode.Type.COMPONENT && !showComponents) return false;
+        if (node.type == ProjectGraphNode.Type.FUNCTION && !showFunctions) return false;
         // Фильтр по Activity
         if (activityFilterId != null) {
             if (node.type == ProjectGraphNode.Type.PROJECT) return true;
-            // Должны совпасть: сам узел activity, либо его предок = activity
             String ancestor = findActivityAncestor(node);
             if (!activityFilterId.equals(ancestor)) return false;
         }

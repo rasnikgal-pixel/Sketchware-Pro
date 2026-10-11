@@ -2547,4 +2547,7 @@ ACTION_VIEW
     <string name="graph_filter_reset">Скинути фільтр</string>
     <string name="graph_force_directed_warning">Force-directed розкладка може гальмувати на великих проєктах</string>
     <string name="graph_open_in_editor">Відкрити в редакторі</string>
+    <string name="graph_settings_show_variables">Показувати змінні</string>
+    <string name="graph_settings_show_components">Показувати компоненти</string>
+    <string name="graph_settings_show_functions">Показувати функції</string>
 </resources>

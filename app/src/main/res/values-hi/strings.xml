@@ -2547,4 +2547,7 @@ ACTION_VIEW
     <string name="graph_filter_reset">फ़िल्टर रीसेट करें</string>
     <string name="graph_force_directed_warning">फोर्स-निर्देशित लेआउट बड़े प्रोजेक्ट पर लैग कर सकता है</string>
     <string name="graph_open_in_editor">एडिटर में खोलें</string>
+    <string name="graph_settings_show_variables">चर दिखाएं</string>
+    <string name="graph_settings_show_components">घटक दिखाएं</string>
+    <string name="graph_settings_show_functions">फ़ंक्शन दिखाएं</string>
 </resources>

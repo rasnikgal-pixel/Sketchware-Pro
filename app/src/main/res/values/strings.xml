@@ -2624,4 +2624,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="graph_filter_reset">Сбросить фильтр</string>
     <string name="graph_force_directed_warning">Force-directed раскладка может тормозить на больших проектах</string>
     <string name="graph_open_in_editor">Открыть в редакторе</string>
+    <string name="graph_settings_show_variables">Показывать переменные</string>
+    <string name="graph_settings_show_components">Показывать компоненты</string>
+    <string name="graph_settings_show_functions">Показывать функции</string>
 </resources>

@@ -87,12 +87,44 @@ public class ProjectGraphBuilder {
                     if (i == 0) {
                         graph.addEdge(eventId, blockId, "start");
                     } else {
-                        // Связь предыдущего блока с текущим
                         BlockBean prev = blocks.get(i - 1);
                         String prevId = "blk_" + javaName + "_" + eventKey + "_" + (i - 1);
                         graph.addEdge(prevId, blockId, "next");
                     }
                 }
+            }
+
+            // 5. Переменные
+            List<ProjectAnalyzer.VariableInfo> variables = analyzer.collectVariables(javaName);
+            for (ProjectAnalyzer.VariableInfo v : variables) {
+                String varId = "var_" + javaName + "_" + v.name;
+                ProjectGraphNode varNode = new ProjectGraphNode(
+                        varId, v.name + " : " + v.getTypeName(),
+                        ProjectGraphNode.Type.VARIABLE, activityId);
+                graph.addNode(varNode);
+                graph.addEdge(activityId, varId, "has");
+            }
+
+            // 6. Компоненты
+            List<ProjectAnalyzer.ComponentInfo> components = analyzer.collectComponents(javaName);
+            for (ProjectAnalyzer.ComponentInfo c : components) {
+                String compId = "cmp_" + javaName + "_" + c.name;
+                ProjectGraphNode cmpNode = new ProjectGraphNode(
+                        compId, c.name + " (" + c.typeName + ")",
+                        ProjectGraphNode.Type.COMPONENT, activityId);
+                graph.addNode(cmpNode);
+                graph.addEdge(activityId, compId, "has");
+            }
+
+            // 7. Функции (More Blocks)
+            List<ProjectAnalyzer.FunctionInfo> functions = analyzer.collectFunctions(javaName);
+            for (ProjectAnalyzer.FunctionInfo f : functions) {
+                String fnId = "fn_" + javaName + "_" + f.name;
+                ProjectGraphNode fnNode = new ProjectGraphNode(
+                        fnId, f.name,
+                        ProjectGraphNode.Type.FUNCTION, activityId);
+                graph.addNode(fnNode);
+                graph.addEdge(activityId, fnId, "has");
             }
         }
 

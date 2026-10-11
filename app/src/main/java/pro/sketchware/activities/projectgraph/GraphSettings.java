@@ -30,6 +30,9 @@ public class GraphSettings {
     private static final String KEY_LAYOUT = "layout";
     private static final String KEY_LEVEL_GAP = "level_gap";
     private static final String KEY_SHOW_EDGES = "show_edges";
+    private static final String KEY_SHOW_VARIABLES = "show_variables";
+    private static final String KEY_SHOW_COMPONENTS = "show_components";
+    private static final String KEY_SHOW_FUNCTIONS = "show_functions";
 
     private static final boolean DEFAULT_DRAG_NODES = true;
     private static final boolean DEFAULT_EXPORT_FULL = true;
@@ -38,6 +41,9 @@ public class GraphSettings {
     private static final int DEFAULT_LAYOUT = LAYOUT_TREE;
     private static final int DEFAULT_LEVEL_GAP = GAP_STANDARD;
     private static final boolean DEFAULT_SHOW_EDGES = true;
+    private static final boolean DEFAULT_SHOW_VARIABLES = true;
+    private static final boolean DEFAULT_SHOW_COMPONENTS = true;
+    private static final boolean DEFAULT_SHOW_FUNCTIONS = true;
 
     private final SharedPreferences prefs;
 
@@ -109,5 +115,29 @@ public class GraphSettings {
 
     public void setShowEdges(boolean v) {
         prefs.edit().putBoolean(KEY_SHOW_EDGES, v).apply();
+    }
+
+    public boolean isShowVariables() {
+        return prefs.getBoolean(KEY_SHOW_VARIABLES, DEFAULT_SHOW_VARIABLES);
+    }
+
+    public void setShowVariables(boolean v) {
+        prefs.edit().putBoolean(KEY_SHOW_VARIABLES, v).apply();
+    }
+
+    public boolean isShowComponents() {
+        return prefs.getBoolean(KEY_SHOW_COMPONENTS, DEFAULT_SHOW_COMPONENTS);
+    }
+
+    public void setShowComponents(boolean v) {
+        prefs.edit().putBoolean(KEY_SHOW_COMPONENTS, v).apply();
+    }
+
+    public boolean isShowFunctions() {
+        return prefs.getBoolean(KEY_SHOW_FUNCTIONS, DEFAULT_SHOW_FUNCTIONS);
+    }
+
+    public void setShowFunctions(boolean v) {
+        prefs.edit().putBoolean(KEY_SHOW_FUNCTIONS, v).apply();
     }
 }
