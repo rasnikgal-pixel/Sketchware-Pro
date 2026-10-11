@@ -99,7 +99,76 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 R.drawable.ic_mtrl_download,
                 this::onImportSkproj
         ));
+        items.add(new ToolItem(
+                Helper.getResString(R.string.tools_activity_project_graph_title),
+                Helper.getResString(R.string.tools_activity_project_graph_subtitle),
+                R.drawable.ic_mtrl_deployed_code,
+                this::onProjectGraph
+        ));
+        items.add(new ToolItem(
+                Helper.getResString(R.string.tools_activity_sora_title),
+                Helper.getResString(R.string.tools_activity_sora_subtitle),
+                R.drawable.ic_mtrl_code,
+                this::onSoraEditor
+        ));
         return items;
+    }
+
+    /** Открывает граф проекта с выбором проекта. */
+    private void onProjectGraph() {
+        showProjectPickerDialog((scId, projectName) -> {
+            android.content.Intent intent = new android.content.Intent(this,
+                    pro.sketchware.activities.projectgraph.ProjectGraphActivity.class);
+            intent.putExtra("sc_id", scId);
+            intent.putExtra("project_name", projectName);
+            startActivity(intent);
+        });
+    }
+
+    /** Открывает SORA-редактор с выбором проекта. */
+    private void onSoraEditor() {
+        showProjectPickerDialog((scId, projectName) -> {
+            android.content.Intent intent = new android.content.Intent(this,
+                    pro.sketchware.activities.soraeditor.SoraEditorActivity.class);
+            intent.putExtra("sc_id", scId);
+            startActivity(intent);
+        });
+    }
+
+    private interface OnProjectPicked {
+        void onPicked(String scId, String projectName);
+    }
+
+    /** Диалог выбора проекта. */
+    private void showProjectPickerDialog(OnProjectPicked callback) {
+        java.util.ArrayList<java.util.HashMap<String, Object>> projects = a.a.a.lC.a();
+        if (projects == null || projects.isEmpty()) {
+            mod.hey.studios.util.Helper.getResString(R.string.sora_xml_editor_empty);
+            android.widget.Toast.makeText(this,
+                    mod.hey.studios.util.Helper.getResString(R.string.sora_xml_editor_empty),
+                    android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        projects.sort((p1, p2) -> {
+            String n1 = String.valueOf(p1.get("my_ws_name"));
+            String n2 = String.valueOf(p2.get("my_ws_name"));
+            return n1.compareToIgnoreCase(n2);
+        });
+
+        String[] names = new String[projects.size()];
+        final String[] ids = new String[projects.size()];
+        for (int i = 0; i < projects.size(); i++) {
+            java.util.HashMap<String, Object> p = projects.get(i);
+            names[i] = String.valueOf(p.get("my_ws_name"));
+            ids[i] = String.valueOf(p.get("sc_id"));
+        }
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.sora_xml_editor_pick_project)
+                .setItems(names, (d, which) -> callback.onPicked(ids[which], names[which]))
+                .setNegativeButton(mod.hey.studios.util.Helper.getResString(R.string.common_word_cancel), null)
+                .show();
     }
 
     private void onExportSkproj() {

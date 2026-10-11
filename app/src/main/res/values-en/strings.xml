@@ -2575,4 +2575,8 @@ ACTION_VIEW
     <string name="project_graph_node_activity">Screens</string>
     <string name="project_graph_node_event">Events</string>
     <string name="project_graph_node_block">Blocks</string>
+    <string name="tools_activity_project_graph_title">🗺 Project graph</string>
+    <string name="tools_activity_project_graph_subtitle">Visual diagram of project structure</string>
+    <string name="tools_activity_sora_title">📝 SORA text editor</string>
+    <string name="tools_activity_sora_subtitle">Edit all project files</string>
 </resources>

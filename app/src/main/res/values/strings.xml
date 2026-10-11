@@ -2585,4 +2585,8 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="project_graph_node_activity">Экраны</string>
     <string name="project_graph_node_event">События</string>
     <string name="project_graph_node_block">Блоки</string>
+    <string name="tools_activity_project_graph_title">🗺 Граф проекта</string>
+    <string name="tools_activity_project_graph_subtitle">Визуальная схема структуры проекта</string>
+    <string name="tools_activity_sora_title">📝 Текстовый редактор SORA</string>
+    <string name="tools_activity_sora_subtitle">Редактировать все файлы проекта</string>
 </resources>

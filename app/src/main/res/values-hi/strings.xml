@@ -2508,4 +2508,8 @@ ACTION_VIEW
     <string name="project_graph_node_activity">स्क्रीन</string>
     <string name="project_graph_node_event">इवेंट</string>
     <string name="project_graph_node_block">ब्लॉक</string>
+    <string name="tools_activity_project_graph_title">🗺 प्रोजेक्ट ग्राफ</string>
+    <string name="tools_activity_project_graph_subtitle">प्रोजेक्ट संरचना का दृश्य</string>
+    <string name="tools_activity_sora_title">📝 SORA टेक्स्ट एडिटर</string>
+    <string name="tools_activity_sora_subtitle">सभी प्रोजेक्ट फ़ाइलें संपादित करें</string>
 </resources>

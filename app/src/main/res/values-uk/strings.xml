@@ -2508,4 +2508,8 @@ ACTION_VIEW
     <string name="project_graph_node_activity">Екрани</string>
     <string name="project_graph_node_event">Події</string>
     <string name="project_graph_node_block">Блоки</string>
+    <string name="tools_activity_project_graph_title">🗺 Граф проєкту</string>
+    <string name="tools_activity_project_graph_subtitle">Візуальна схема структури проєкту</string>
+    <string name="tools_activity_sora_title">📝 Текстовий редактор SORA</string>
+    <string name="tools_activity_sora_subtitle">Редагувати всі файли проєкту</string>
 </resources>

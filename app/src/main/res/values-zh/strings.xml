@@ -2508,4 +2508,8 @@ ACTION_VIEW
     <string name="project_graph_node_activity">屏幕</string>
     <string name="project_graph_node_event">事件</string>
     <string name="project_graph_node_block">块</string>
+    <string name="tools_activity_project_graph_title">🗺 项目图</string>
+    <string name="tools_activity_project_graph_subtitle">项目结构的可视化图</string>
+    <string name="tools_activity_sora_title">📝 SORA 文本编辑器</string>
+    <string name="tools_activity_sora_subtitle">编辑所有项目文件</string>
 </resources>
