@@ -2539,4 +2539,11 @@ ACTION_VIEW
     <string name="graph_settings_layout_force">Force-directed (силова)</string>
     <string name="graph_settings_level_gap">Відступ між рівнями</string>
     <string name="graph_settings_show_edges">Показувати зв\'язки</string>
+    <string name="graph_settings_show_blocks">Показувати блоки (може сповільнити)</string>
+    <string name="graph_action_search">Пошук</string>
+    <string name="graph_search_hint">Ім\'я вузла…</string>
+    <string name="graph_search_not_found">Не знайдено</string>
+    <string name="graph_filter_only_this">Показати лише це</string>
+    <string name="graph_filter_reset">Скинути фільтр</string>
+    <string name="graph_force_directed_warning">Force-directed розкладка може гальмувати на великих проєктах</string>
 </resources>

@@ -80,6 +80,11 @@ public class GraphView extends View {
     private int currentGap = GraphSettings.GAP_STANDARD;
     private boolean showEdges = true;
 
+    // Фильтры
+    private boolean showBlocks = false;
+    private String activityFilterId = null;
+    private String searchQuery = null;
+
     /** Применить раскладку. */
     public void applyLayout(int layout, int levelGap) {
         this.currentLayout = layout;
@@ -92,6 +97,69 @@ public class GraphView extends View {
 
     public void setShowEdges(boolean show) {
         this.showEdges = show;
+        invalidate();
+    }
+
+    public void setShowBlocks(boolean show) {
+        this.showBlocks = show;
+        invalidate();
+    }
+
+    public void setActivityFilter(String activityId) {
+        this.activityFilterId = activityId;
+        invalidate();
+    }
+
+    public void setSearchQuery(String query) {
+        this.searchQuery = (query == null || query.isEmpty()) ? null : query.toLowerCase();
+        invalidate();
+    }
+
+    /** Проверка — виден ли узел с учётом всех фильтров. */
+    private boolean isNodeVisible(ProjectGraphNode node) {
+        if (!visibleTypes.contains(node.type)) return false;
+        // Блоки скрыты, если showBlocks=false
+        if (node.type == ProjectGraphNode.Type.BLOCK && !showBlocks) return false;
+        // Фильтр по Activity
+        if (activityFilterId != null) {
+            if (node.type == ProjectGraphNode.Type.PROJECT) return true;
+            // Должны совпасть: сам узел activity, либо его предок = activity
+            String ancestor = findActivityAncestor(node);
+            if (!activityFilterId.equals(ancestor)) return false;
+        }
+        return true;
+    }
+
+    /** Находит ID Activity-предка для узла. */
+    private String findActivityAncestor(ProjectGraphNode node) {
+        if (node == null) return null;
+        if (node.type == ProjectGraphNode.Type.ACTIVITY) return node.id;
+        ProjectGraphNode current = node;
+        while (current != null && current.parentId != null) {
+            current = graph.findNode(current.parentId);
+            if (current != null && current.type == ProjectGraphNode.Type.ACTIVITY) {
+                return current.id;
+            }
+        }
+        return null;
+    }
+
+    /** Подсветка узла по поиску. */
+    private boolean isNodeHighlighted(ProjectGraphNode node) {
+        if (searchQuery == null) return false;
+        return node.label.toLowerCase().contains(searchQuery)
+                || node.id.toLowerCase().contains(searchQuery);
+    }
+
+    /** Центрировать на узле по ID. */
+    public void scrollToNode(String nodeId) {
+        if (graph == null || nodeId == null) return;
+        ProjectGraphNode node = graph.findNode(nodeId);
+        if (node == null) return;
+        float centerX = getWidth() / 2f;
+        float centerY = getHeight() / 2f;
+        translateX = centerX - (node.x + NODE_WIDTH / 2f) * scale;
+        translateY = centerY - (node.y + NODE_HEIGHT / 2f) * scale;
         invalidate();
     }
 
@@ -260,25 +328,26 @@ public class GraphView extends View {
         canvas.scale(scale, scale);
 
         // Рёбра
-        for (ProjectGraph.Edge edge : graph.edges) {
-            if (!isEdgeVisible(edge)) continue;
-            ProjectGraphNode from = graph.findNode(edge.fromId);
-            ProjectGraphNode to = graph.findNode(edge.toId);
-            if (from == null || to == null) continue;
-            if (!visibleTypes.contains(from.type) || !visibleTypes.contains(to.type)) continue;
+        if (showEdges) {
+            for (ProjectGraph.Edge edge : graph.edges) {
+                ProjectGraphNode from = graph.findNode(edge.fromId);
+                ProjectGraphNode to = graph.findNode(edge.toId);
+                if (from == null || to == null) continue;
+                if (!isNodeVisible(from) || !isNodeVisible(to)) continue;
 
-            float x1 = from.x + NODE_WIDTH / 2f;
-            float y1 = from.y + NODE_HEIGHT;
-            float x2 = to.x + NODE_WIDTH / 2f;
-            float y2 = to.y;
+                float x1 = from.x + NODE_WIDTH / 2f;
+                float y1 = from.y + NODE_HEIGHT;
+                float x2 = to.x + NODE_WIDTH / 2f;
+                float y2 = to.y;
 
-            canvas.drawLine(x1, y1, x2, y2, edgePaint);
-            drawArrow(canvas, x1, y1, x2, y2);
+                canvas.drawLine(x1, y1, x2, y2, edgePaint);
+                drawArrow(canvas, x1, y1, x2, y2);
+            }
         }
 
         // Узлы
         for (ProjectGraphNode node : graph.nodes) {
-            if (!visibleTypes.contains(node.type)) continue;
+            if (!isNodeVisible(node)) continue;
             drawNode(canvas, node);
         }
 
@@ -376,14 +445,13 @@ public class GraphView extends View {
         canvas.translate(translateX, translateY);
         canvas.scale(scale, scale);
 
-        // Рёбра (только если включены)
+        // Рёбра (только если включены и оба конца видимы)
         if (showEdges) {
             for (ProjectGraph.Edge edge : graph.edges) {
-                if (!isEdgeVisible(edge)) continue;
                 ProjectGraphNode from = graph.findNode(edge.fromId);
                 ProjectGraphNode to = graph.findNode(edge.toId);
                 if (from == null || to == null) continue;
-                if (!visibleTypes.contains(from.type) || !visibleTypes.contains(to.type)) continue;
+                if (!isNodeVisible(from) || !isNodeVisible(to)) continue;
 
                 float x1 = from.x + NODE_WIDTH / 2f;
                 float y1 = from.y + NODE_HEIGHT;
@@ -395,9 +463,9 @@ public class GraphView extends View {
             }
         }
 
-        // Узлы
+        // Узлы (только видимые)
         for (ProjectGraphNode node : graph.nodes) {
-            if (!visibleTypes.contains(node.type)) continue;
+            if (!isNodeVisible(node)) continue;
             drawNode(canvas, node);
         }
 
@@ -412,7 +480,17 @@ public class GraphView extends View {
         tmpRect.set(node.x, node.y, node.x + NODE_WIDTH, node.y + NODE_HEIGHT);
         nodePaint.setColor(getColorForType(node.type));
         canvas.drawRoundRect(tmpRect, NODE_RADIUS, NODE_RADIUS, nodePaint);
-        canvas.drawRoundRect(tmpRect, NODE_RADIUS, NODE_RADIUS, borderPaint);
+
+        // Рамка: яркая жёлтая, если узел совпал с поиском; иначе обычная
+        if (isNodeHighlighted(node)) {
+            Paint highlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            highlightPaint.setStyle(Paint.Style.STROKE);
+            highlightPaint.setStrokeWidth(8f);
+            highlightPaint.setColor(0xFFFFEB3B); // жёлтая
+            canvas.drawRoundRect(tmpRect, NODE_RADIUS, NODE_RADIUS, highlightPaint);
+        } else {
+            canvas.drawRoundRect(tmpRect, NODE_RADIUS, NODE_RADIUS, borderPaint);
+        }
 
         // Текст (обрезка до одной строки)
         String label = node.label;

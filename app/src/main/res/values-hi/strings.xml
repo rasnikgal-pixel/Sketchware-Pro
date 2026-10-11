@@ -2539,4 +2539,11 @@ ACTION_VIEW
     <string name="graph_settings_layout_force">फोर्स-निर्देशित</string>
     <string name="graph_settings_level_gap">स्तर अंतराल</string>
     <string name="graph_settings_show_edges">किनारे दिखाएं</string>
+    <string name="graph_settings_show_blocks">ब्लॉक दिखाएं (धीमा कर सकता है)</string>
+    <string name="graph_action_search">खोजें</string>
+    <string name="graph_search_hint">नोड नाम…</string>
+    <string name="graph_search_not_found">नहीं मिला</string>
+    <string name="graph_filter_only_this">केवल यह दिखाएं</string>
+    <string name="graph_filter_reset">फ़िल्टर रीसेट करें</string>
+    <string name="graph_force_directed_warning">फोर्स-निर्देशित लेआउट बड़े प्रोजेक्ट पर लैग कर सकता है</string>
 </resources>

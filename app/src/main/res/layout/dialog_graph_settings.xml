@@ -93,11 +93,11 @@
             android:textAppearance="?attr/textAppearanceBodyLarge" />
 
         <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switch_edge_labels"
+            android:id="@+id/switch_show_blocks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/graph_settings_show_edge_labels"
+            android:text="@string/graph_settings_show_blocks"
             android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     </LinearLayout>

@@ -25,7 +25,8 @@ public class GraphSettings {
     private static final String KEY_DRAG_NODES = "drag_nodes";
     private static final String KEY_EXPORT_FULL = "export_full";
     private static final String KEY_FORCE_DIRECTED = "force_directed";
-    private static final String KEY_SHOW_EDGE_LABELS = "show_edge_labels";
+    private static final String KEY_SHOW_BLOCKS = "show_blocks";
+    private static final String KEY_ACTIVITY_FILTER = "activity_filter";
     private static final String KEY_LAYOUT = "layout";
     private static final String KEY_LEVEL_GAP = "level_gap";
     private static final String KEY_SHOW_EDGES = "show_edges";
@@ -33,7 +34,7 @@ public class GraphSettings {
     private static final boolean DEFAULT_DRAG_NODES = true;
     private static final boolean DEFAULT_EXPORT_FULL = true;
     private static final boolean DEFAULT_FORCE_DIRECTED = false;
-    private static final boolean DEFAULT_SHOW_EDGE_LABELS = false;
+    private static final boolean DEFAULT_SHOW_BLOCKS = false;
     private static final int DEFAULT_LAYOUT = LAYOUT_TREE;
     private static final int DEFAULT_LEVEL_GAP = GAP_STANDARD;
     private static final boolean DEFAULT_SHOW_EDGES = true;
@@ -69,12 +70,21 @@ public class GraphSettings {
         prefs.edit().putBoolean(KEY_FORCE_DIRECTED, v).apply();
     }
 
-    public boolean isShowEdgeLabels() {
-        return prefs.getBoolean(KEY_SHOW_EDGE_LABELS, DEFAULT_SHOW_EDGE_LABELS);
+    public boolean isShowBlocks() {
+        return prefs.getBoolean(KEY_SHOW_BLOCKS, DEFAULT_SHOW_BLOCKS);
     }
 
-    public void setShowEdgeLabels(boolean v) {
-        prefs.edit().putBoolean(KEY_SHOW_EDGE_LABELS, v).apply();
+    public void setShowBlocks(boolean v) {
+        prefs.edit().putBoolean(KEY_SHOW_BLOCKS, v).apply();
+    }
+
+    /** ID Activity для фильтра (null = показывать всё). */
+    public String getActivityFilter() {
+        return prefs.getString(KEY_ACTIVITY_FILTER, null);
+    }
+
+    public void setActivityFilter(String id) {
+        prefs.edit().putString(KEY_ACTIVITY_FILTER, id).apply();
     }
 
     public int getLayout() {

@@ -2616,4 +2616,11 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="graph_settings_layout_force">Force-directed (силовая)</string>
     <string name="graph_settings_level_gap">Отступ между уровнями</string>
     <string name="graph_settings_show_edges">Показывать связи</string>
+    <string name="graph_settings_show_blocks">Показывать блоки (может замедлить)</string>
+    <string name="graph_action_search">Поиск</string>
+    <string name="graph_search_hint">Имя узла…</string>
+    <string name="graph_search_not_found">Не найдено</string>
+    <string name="graph_filter_only_this">Показать только это</string>
+    <string name="graph_filter_reset">Сбросить фильтр</string>
+    <string name="graph_force_directed_warning">Force-directed раскладка может тормозить на больших проектах</string>
 </resources>

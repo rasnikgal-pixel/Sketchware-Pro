@@ -2606,4 +2606,11 @@ ACTION_VIEW
     <string name="graph_settings_layout_force">Force-directed</string>
     <string name="graph_settings_level_gap">Level gap</string>
     <string name="graph_settings_show_edges">Show edges</string>
+    <string name="graph_settings_show_blocks">Show blocks (may slow down)</string>
+    <string name="graph_action_search">Search</string>
+    <string name="graph_search_hint">Node name…</string>
+    <string name="graph_search_not_found">Not found</string>
+    <string name="graph_filter_only_this">Show only this</string>
+    <string name="graph_filter_reset">Reset filter</string>
+    <string name="graph_force_directed_warning">Force-directed layout may lag on large projects</string>
 </resources>

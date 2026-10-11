@@ -68,6 +68,8 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                 GraphSettings settings = new GraphSettings(ProjectGraphActivity.this);
                 binding.graphView.setShowEdges(settings.isShowEdges());
                 binding.graphView.setDragEnabled(settings.isDragNodesEnabled());
+                binding.graphView.setShowBlocks(settings.isShowBlocks());
+                binding.graphView.setActivityFilter(settings.getActivityFilter());
                 binding.graphView.setGraph(graph);
                 binding.graphView.applyLayout(settings.getLayout(), settings.getLevelGap());
             });
@@ -77,7 +79,46 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_project_graph, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        if (searchItem != null) {
+            androidx.appcompat.widget.SearchView searchView =
+                    (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+            if (searchView != null) {
+                searchView.setQueryHint(getString(R.string.graph_search_hint));
+                searchView.setOnQueryTextListener(
+                        new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        applySearch(query);
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        applySearch(newText);
+                        return true;
+                    }
+                });
+            }
+        }
         return true;
+    }
+
+    /** Применить поиск: подсветка + автоцентрирование. */
+    private void applySearch(String query) {
+        if (binding == null || binding.graphView == null) return;
+        binding.graphView.setSearchQuery(query);
+        if (query != null && !query.isEmpty() && graph != null) {
+            String lower = query.toLowerCase();
+            for (ProjectGraphNode n : graph.nodes) {
+                if (n.label.toLowerCase().contains(lower)
+                        || n.id.toLowerCase().contains(lower)) {
+                    binding.graphView.scrollToNode(n.id);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -94,6 +135,14 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
             return true;
         } else if (id == R.id.action_settings) {
             showGraphSettingsDialog();
+            return true;
+        } else if (id == R.id.action_reset_filter) {
+            GraphSettings settings = new GraphSettings(this);
+            settings.setActivityFilter(null);
+            binding.graphView.setActivityFilter(null);
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_filter_reset),
+                    android.widget.Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -113,8 +162,8 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                 view.findViewById(R.id.switch_drag_nodes);
         com.google.android.material.materialswitch.MaterialSwitch swExport =
                 view.findViewById(R.id.switch_export_full);
-        com.google.android.material.materialswitch.MaterialSwitch swEdgeLabels =
-                view.findViewById(R.id.switch_edge_labels);
+        com.google.android.material.materialswitch.MaterialSwitch swShowBlocks =
+                view.findViewById(R.id.switch_show_blocks);
 
         // Раскладка — выбрать текущую
         int layout = settings.getLayout();
@@ -131,7 +180,7 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         swEdges.setChecked(settings.isShowEdges());
         swDrag.setChecked(settings.isDragNodesEnabled());
         swExport.setChecked(settings.isExportFullTree());
-        swEdgeLabels.setChecked(settings.isShowEdgeLabels());
+        swShowBlocks.setChecked(settings.isShowBlocks());
 
         new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.graph_settings_title)
@@ -159,11 +208,12 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                     settings.setShowEdges(swEdges.isChecked());
                     settings.setDragNodesEnabled(swDrag.isChecked());
                     settings.setExportFullTree(swExport.isChecked());
-                    settings.setShowEdgeLabels(swEdgeLabels.isChecked());
+                    settings.setShowBlocks(swShowBlocks.isChecked());
 
                     // Применить
                     binding.graphView.setDragEnabled(swDrag.isChecked());
                     binding.graphView.setShowEdges(swEdges.isChecked());
+                    binding.graphView.setShowBlocks(swShowBlocks.isChecked());
                     binding.graphView.applyLayout(newLayout, newGap);
 
                     android.widget.Toast.makeText(this,
@@ -262,11 +312,46 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
     }
 
     private void showNodeDetails(ProjectGraphNode node) {
-        new MaterialAlertDialogBuilder(this)
+        String msg = "Тип: " + node.type.name() + "\nID: " + node.id
+                + (node.parentId != null ? "\nРодитель: " + node.parentId : "");
+
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
                 .setTitle(node.label)
-                .setMessage("Тип: " + node.type.name() + "\nID: " + node.id
-                        + (node.parentId != null ? "\nРодитель: " + node.parentId : ""))
-                .setPositiveButton(android.R.string.ok, null)
-                .show();
+                .setMessage(msg)
+                .setPositiveButton(android.R.string.ok, null);
+
+        // Опция фильтра для Activity и Event
+        if (node.type == ProjectGraphNode.Type.ACTIVITY) {
+            builder.setNeutralButton(R.string.graph_filter_only_this, (d, w) -> {
+                GraphSettings settings = new GraphSettings(this);
+                settings.setActivityFilter(node.id);
+                binding.graphView.setActivityFilter(node.id);
+            });
+        } else if (node.type == ProjectGraphNode.Type.EVENT
+                || node.type == ProjectGraphNode.Type.BLOCK) {
+            // Найти родительскую Activity и фильтровать по ней
+            builder.setNeutralButton(R.string.graph_filter_only_this, (d, w) -> {
+                String actId = findActivityAncestorId(node);
+                if (actId != null) {
+                    GraphSettings settings = new GraphSettings(this);
+                    settings.setActivityFilter(actId);
+                    binding.graphView.setActivityFilter(actId);
+                }
+            });
+        }
+
+        builder.show();
+    }
+
+    private String findActivityAncestorId(ProjectGraphNode node) {
+        if (graph == null || node == null) return null;
+        ProjectGraphNode current = node;
+        while (current != null && current.parentId != null) {
+            current = graph.findNode(current.parentId);
+            if (current != null && current.type == ProjectGraphNode.Type.ACTIVITY) {
+                return current.id;
+            }
+        }
+        return null;
     }
 }

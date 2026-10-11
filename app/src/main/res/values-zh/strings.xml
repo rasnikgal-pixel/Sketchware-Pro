@@ -2539,4 +2539,11 @@ ACTION_VIEW
     <string name="graph_settings_layout_force">力导向</string>
     <string name="graph_settings_level_gap">层级间距</string>
     <string name="graph_settings_show_edges">显示边</string>
+    <string name="graph_settings_show_blocks">显示块（可能变慢）</string>
+    <string name="graph_action_search">搜索</string>
+    <string name="graph_search_hint">节点名称…</string>
+    <string name="graph_search_not_found">未找到</string>
+    <string name="graph_filter_only_this">仅显示此</string>
+    <string name="graph_filter_reset">重置筛选</string>
+    <string name="graph_force_directed_warning">力导向布局在大型项目上可能会卡顿</string>
 </resources>
