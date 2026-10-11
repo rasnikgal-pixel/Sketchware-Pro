@@ -2589,4 +2589,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="tools_activity_project_graph_subtitle">Визуальная схема структуры проекта</string>
     <string name="tools_activity_sora_title">📝 Текстовый редактор SORA</string>
     <string name="tools_activity_sora_subtitle">Редактировать все файлы проекта</string>
+    <string name="tools_activity_logcat_title">📋 Журнал отладки</string>
+    <string name="tools_activity_logcat_subtitle">Просмотреть логи приложения и проектов</string>
 </resources>

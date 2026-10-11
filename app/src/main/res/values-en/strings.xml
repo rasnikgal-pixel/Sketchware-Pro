@@ -2579,4 +2579,6 @@ ACTION_VIEW
     <string name="tools_activity_project_graph_subtitle">Visual diagram of project structure</string>
     <string name="tools_activity_sora_title">📝 SORA text editor</string>
     <string name="tools_activity_sora_subtitle">Edit all project files</string>
+    <string name="tools_activity_logcat_title">📋 Debug log</string>
+    <string name="tools_activity_logcat_subtitle">View app and project logs</string>
 </resources>

@@ -2512,4 +2512,6 @@ ACTION_VIEW
     <string name="tools_activity_project_graph_subtitle">प्रोजेक्ट संरचना का दृश्य</string>
     <string name="tools_activity_sora_title">📝 SORA टेक्स्ट एडिटर</string>
     <string name="tools_activity_sora_subtitle">सभी प्रोजेक्ट फ़ाइलें संपादित करें</string>
+    <string name="tools_activity_logcat_title">📋 डीबग लॉग</string>
+    <string name="tools_activity_logcat_subtitle">ऐप और प्रोजेक्ट लॉग देखें</string>
 </resources>

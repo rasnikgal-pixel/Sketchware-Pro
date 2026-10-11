@@ -2512,4 +2512,6 @@ ACTION_VIEW
     <string name="tools_activity_project_graph_subtitle">Візуальна схема структури проєкту</string>
     <string name="tools_activity_sora_title">📝 Текстовий редактор SORA</string>
     <string name="tools_activity_sora_subtitle">Редагувати всі файли проєкту</string>
+    <string name="tools_activity_logcat_title">📋 Журнал налагодження</string>
+    <string name="tools_activity_logcat_subtitle">Переглянути логи застосунку та проєктів</string>
 </resources>

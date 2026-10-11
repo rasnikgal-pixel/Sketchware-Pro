@@ -111,7 +111,21 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 R.drawable.ic_mtrl_code,
                 this::onSoraEditor
         ));
+        items.add(new ToolItem(
+                Helper.getResString(R.string.tools_activity_logcat_title),
+                Helper.getResString(R.string.tools_activity_logcat_subtitle),
+                R.drawable.ic_mtrl_article,
+                this::onLogcat
+        ));
         return items;
+    }
+
+    /** Открывает журнал отладки. */
+    private void onLogcat() {
+        android.content.Intent intent = new android.content.Intent(this,
+                mod.khaled.logcat.LogReaderActivity.class);
+        intent.setFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
     /** Открывает граф проекта с выбором проекта. */
