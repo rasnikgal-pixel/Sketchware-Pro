@@ -2478,4 +2478,5 @@ ACTION_VIEW
     <string name="view_panel_title_properties">属性</string>
     <string name="view_panel_title_widgets">小组件</string>
     <string name="xml_strings">XML 字符串</string>
+    <string name="common_signin_button_text">Sign in</string>
 </resources>

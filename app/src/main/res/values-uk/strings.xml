@@ -2478,4 +2478,5 @@ ACTION_VIEW
     <string name="view_panel_title_properties">Властивості</string>
     <string name="view_panel_title_widgets">Віджет</string>
     <string name="xml_strings">XML-рядки</string>
+    <string name="common_signin_button_text">Sign in</string>
 </resources>

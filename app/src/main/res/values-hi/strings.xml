@@ -2478,4 +2478,5 @@ ACTION_VIEW
     <string name="view_panel_title_properties">गुण</string>
     <string name="view_panel_title_widgets">विजेट</string>
     <string name="xml_strings">XML स्ट्रिंग</string>
+    <string name="common_signin_button_text">Sign in</string>
 </resources>
