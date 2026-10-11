@@ -2,18 +2,17 @@ package pro.sketchware.activities.projectgraph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import a.a.a.jC;
 import com.besome.sketch.beans.BlockBean;
-import com.besome.sketch.beans.EventBean;
 import com.besome.sketch.beans.ProjectFileBean;
-import com.besome.sketch.beans.ViewBean;
 
 /**
  * Собирает данные проекта для построения графа.
- * Использует публичные API jC/hC/eC/kC/iC.
+ * Использует только проверенные публичные API jC.
  */
 public class ProjectAnalyzer {
 
@@ -37,43 +36,36 @@ public class ProjectAnalyzer {
     }
 
     /**
-     * Все события Activity.
+     * Возвращает карту событий Activity:
+     * ключ = eventKey (например, "button1_onClick"),
+     * значение = список блоков события.
      */
-    public List<EventBean> collectEvents(String javaName) {
-        List<EventBean> result = new ArrayList<>();
+    public Map<String, List<BlockBean>> collectEvents(String javaName) {
+        Map<String, List<BlockBean>> result = new LinkedHashMap<>();
         try {
-            List<EventBean> list = jC.a(scId).b(javaName);
-            if (list != null) result.addAll(list);
+            HashMap<String, ArrayList<BlockBean>> map = jC.a(scId).b(javaName);
+            if (map != null) {
+                for (Map.Entry<String, ArrayList<BlockBean>> entry : map.entrySet()) {
+                    List<BlockBean> blocks = entry.getValue();
+                    if (blocks != null) {
+                        result.put(entry.getKey(), new ArrayList<>(blocks));
+                    }
+                }
+            }
         } catch (Throwable ignored) {
         }
         return result;
     }
 
     /**
-     * Блоки конкретного события.
+     * Вспомогательный метод: разбивает eventKey "button1_onClick" на
+     * widgetId и eventName.
      */
-    public List<BlockBean> collectBlocks(String javaName, String eventKey) {
-        List<BlockBean> result = new ArrayList<>();
-        try {
-            List<BlockBean> list = jC.a(scId).a(javaName, eventKey);
-            if (list != null) result.addAll(list);
-        } catch (Throwable ignored) {
-        }
-        return result;
-    }
-
-    /**
-     * Виджеты Activity (если API доступен).
-     */
-    public List<ViewBean> collectWidgets(String javaName) {
-        List<ViewBean> result = new ArrayList<>();
-        try {
-            // Пробуем через hC.c(javaName)
-            List<ViewBean> list = jC.b(scId).c(javaName);
-            if (list != null) result.addAll(list);
-        } catch (Throwable ignored) {
-        }
-        return result;
+    public static String[] splitEventKey(String eventKey) {
+        if (eventKey == null) return new String[]{"", ""};
+        int idx = eventKey.indexOf('_');
+        if (idx < 0) return new String[]{eventKey, ""};
+        return new String[]{eventKey.substring(0, idx), eventKey.substring(idx + 1)};
     }
 
     public String getScId() {
