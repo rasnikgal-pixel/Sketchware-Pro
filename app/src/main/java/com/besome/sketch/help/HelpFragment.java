@@ -76,7 +76,7 @@ public class HelpFragment extends Fragment {
         if (fab != null) {
             fab.setOnClickListener(v -> {
                 if (webView != null) {
-                    webView.loadUrl(BASE_URL + "?page=" + DEFAULT_PAGE);
+                    webView.loadUrl(resolveBaseUrl() + "?page=" + DEFAULT_PAGE);
                 }
             });
         }
@@ -110,7 +110,25 @@ public class HelpFragment extends Fragment {
         }
         if (page == null || page.isEmpty()) page = DEFAULT_PAGE;
 
-        webView.loadUrl(BASE_URL + "?page=" + page);
+        webView.loadUrl(resolveBaseUrl() + "?page=" + page);
+    }
+
+    /**
+     * Возвращает базовый URL справки в зависимости от языка приложения.
+     * Русский/украинский -> русская справка, остальные -> английская.
+     * Сейчас существует только русская версия сайта, поэтому возвращается
+     * она. Когда появится /en/ — раскомментировать блок с проверкой.
+     */
+    private String resolveBaseUrl() {
+        String lang = null;
+        try {
+            lang = pro.sketchware.i18n.LocaleHelper.getHelpLanguage(requireContext());
+        } catch (Throwable ignored) {}
+
+        // if (pro.sketchware.i18n.LocaleHelper.LANG_EN.equals(lang)) {
+        //     return BASE_URL + "en/";
+        // }
+        return BASE_URL;
     }
 
     @Override
