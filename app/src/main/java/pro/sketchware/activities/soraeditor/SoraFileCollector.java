@@ -43,24 +43,44 @@ public class SoraFileCollector {
      */
     public List<String> collect() {
         List<String> result = new ArrayList<>();
-        String projectRoot = wq.b(scId);
-        if (projectRoot == null) return result;
 
-        File root = new File(projectRoot);
-        if (!root.exists() || !root.isDirectory()) return result;
+        // 1. Основные файлы проекта: .sketchware/mysc/<sc_id>/app/src/main/
+        String projectRoot = wq.d(scId);
+        if (projectRoot != null) {
+            File srcMain = new File(projectRoot, "app/src/main");
+            File searchRoot = srcMain.exists() && srcMain.isDirectory()
+                    ? srcMain : new File(projectRoot);
+            if (searchRoot.exists() && searchRoot.isDirectory()) {
+                collectFrom(searchRoot, result);
+            }
+        }
 
+        // 2. ProGuard-правила: .sketchware/data/<sc_id>/proguard-rules.pro
+        String dataRoot = wq.b(scId);
+        if (dataRoot != null) {
+            File proguard = new File(dataRoot, "proguard-rules.pro");
+            if (proguard.exists() && proguard.isFile()) {
+                result.add(proguard.getAbsolutePath());
+            }
+        }
+
+        result.sort(String::compareTo);
+        return result;
+    }
+
+    private void collectFrom(File root, List<String> result) {
         for (String ext : EDITABLE_EXTENSIONS) {
             List<File> found = FileUtil.listFilesRecursively(root, ext);
             if (found == null) continue;
             for (File f : found) {
                 if (f == null || !f.isFile()) continue;
                 if (isExcluded(f.getAbsolutePath())) continue;
-                result.add(f.getAbsolutePath());
+                String abs = f.getAbsolutePath();
+                if (!result.contains(abs)) {
+                    result.add(abs);
+                }
             }
         }
-
-        result.sort(String::compareTo);
-        return result;
     }
 
     private boolean isExcluded(String absolutePath) {
@@ -76,7 +96,7 @@ public class SoraFileCollector {
      * Используется для заголовка вкладки.
      */
     public String getShortName(String absolutePath) {
-        String projectRoot = wq.b(scId);
+        String projectRoot = wq.d(scId);
         if (projectRoot == null) return new File(absolutePath).getName();
         String normalizedRoot = projectRoot.replace(File.separatorChar, '/');
         String normalizedPath = absolutePath.replace(File.separatorChar, '/');
