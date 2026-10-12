@@ -382,20 +382,23 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
             return;
         }
         try {
-            // Вычисляем bounding box
+            final float r = 14f;
+            final float labelGap = 34f;
+            final float pad = 40f;
+            final float legendH = 130f;
+
             float minX = Float.MAX_VALUE, minY = Float.MAX_VALUE;
             float maxX = -Float.MAX_VALUE, maxY = -Float.MAX_VALUE;
-            final float pad = 60f;
             for (ProjectGraphNode n : graph.nodes) {
                 if (n.x < minX) minX = n.x;
                 if (n.y < minY) minY = n.y;
                 if (n.x > maxX) maxX = n.x;
                 if (n.y > maxY) maxY = n.y;
             }
-            float w = (maxX - minX) + pad * 2;
-            float h = (maxY - minY) + pad * 2;
             float offX = -minX + pad;
             float offY = -minY + pad;
+            float w = (maxX - minX) + pad * 2;
+            float h = (maxY - minY) + pad * 2 + labelGap + legendH;
 
             java.util.Map<String, ProjectGraphNode> byId = new java.util.HashMap<>();
             for (ProjectGraphNode n : graph.nodes) byId.put(n.id, n);
@@ -409,7 +412,7 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
             sb.append("<rect width=\"100%\" height=\"100%\" fill=\"#FAFAFA\"/>\n");
 
             // Рёбра
-            sb.append("<g stroke=\"#9E9E9E\" stroke-width=\"1.5\" fill=\"none\">\n");
+            sb.append("<g stroke=\"#9E9E9E\" stroke-width=\"1.2\" fill=\"none\">\n");
             for (ProjectGraph.Edge e : graph.edges) {
                 ProjectGraphNode a = byId.get(e.fromId);
                 ProjectGraphNode b = byId.get(e.toId);
@@ -427,17 +430,44 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                 float cx = n.x + offX;
                 float cy = n.y + offY;
                 sb.append("<circle cx=\"").append(cx).append("\" ")
-                  .append("cy=\"").append(cy).append("\" r=\"14\" ")
+                  .append("cy=\"").append(cy).append("\" r=\"").append(r).append("\" ")
                   .append("fill=\"").append(color).append("\" ")
                   .append("stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n");
-                String label = (n.label == null ? "" : n.label)
-                        .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+                String label = n.label == null ? "" : n.label;
+                if (label.length() > 40) label = label.substring(0, 37) + "...";
+                label = label.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
                 sb.append("<text x=\"").append(cx).append("\" ")
-                  .append("y=\"").append(cy + 30).append("\" ")
-                  .append("font-family=\"sans-serif\" font-size=\"12\" ")
+                  .append("y=\"").append(cy + labelGap).append("\" ")
+                  .append("font-family=\"sans-serif\" font-size=\"11\" ")
                   .append("text-anchor=\"middle\" fill=\"#212121\">")
                   .append(label).append("</text>\n");
             }
+
+            // Легенда
+            float lx = 20f;
+            float ly = h - legendH + 10f;
+            sb.append("<g font-family=\"sans-serif\" font-size=\"12\" fill=\"#212121\">\n");
+            sb.append("<text x=\"").append(lx).append("\" y=\"").append(ly)
+              .append("\" font-weight=\"bold\">Типы узлов:</text>\n");
+            ProjectGraphNode.Type[] types = {
+                    ProjectGraphNode.Type.PROJECT,
+                    ProjectGraphNode.Type.ACTIVITY,
+                    ProjectGraphNode.Type.EVENT,
+                    ProjectGraphNode.Type.BLOCK,
+                    ProjectGraphNode.Type.VARIABLE,
+                    ProjectGraphNode.Type.COMPONENT,
+                    ProjectGraphNode.Type.FUNCTION
+            };
+            String[] names = {"PROJECT", "ACTIVITY", "EVENT", "BLOCK", "VARIABLE", "COMPONENT", "FUNCTION"};
+            for (int i = 0; i < types.length; i++) {
+                float y = ly + 18f * (i + 1);
+                sb.append("<circle cx=\"").append(lx + 6f).append("\" ")
+                  .append("cy=\"").append(y - 4f).append("\" r=\"6\" ")
+                  .append("fill=\"").append(svgColorFor(types[i])).append("\"/>\n");
+                sb.append("<text x=\"").append(lx + 20f).append("\" y=\"").append(y)
+                  .append("\">").append(names[i]).append("</text>\n");
+            }
+            sb.append("</g>\n");
 
             sb.append("</svg>\n");
 
