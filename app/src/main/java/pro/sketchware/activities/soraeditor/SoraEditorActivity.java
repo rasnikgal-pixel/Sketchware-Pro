@@ -401,7 +401,7 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         final com.google.android.material.textfield.TextInputEditText input =
                 new com.google.android.material.textfield.TextInputEditText(this);
         input.setSingleLine(true);
-        til.addView(input, new android.widget.FrameLayout.LayoutParams(
+        til.addView(input, new android.widget.LinearLayout.LayoutParams(
                 android.view.ViewGroup.LayoutParams.MATCH_PARENT,
                 android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
