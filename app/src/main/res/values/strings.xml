@@ -2657,6 +2657,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_project_search_title">Поиск по проекту</string>
     <string name="sora_project_search_hint">Текст для поиска</string>
     <string name="sora_project_search_empty">Ничего не найдено</string>
-    <string name="sora_project_search_results">Найдено: %1</string>
-    <string name="sora_xml_editor_toast_max_tabs">Максимум вкладок: %1</string>
+    <string name="sora_project_search_results">Найдено: %1$d</string>
+    <string name="sora_xml_editor_toast_max_tabs">Максимум вкладок: %1$d</string>
 </resources>

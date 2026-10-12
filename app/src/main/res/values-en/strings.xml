@@ -2647,6 +2647,6 @@ ACTION_VIEW
     <string name="sora_project_search_title">Search in project</string>
     <string name="sora_project_search_hint">Text to search</string>
     <string name="sora_project_search_empty">Nothing found</string>
-    <string name="sora_project_search_results">Found: %1</string>
-    <string name="sora_xml_editor_toast_max_tabs">Maximum tabs: %1</string>
+    <string name="sora_project_search_results">Found: %1$d</string>
+    <string name="sora_xml_editor_toast_max_tabs">Maximum tabs: %1$d</string>
 </resources>
