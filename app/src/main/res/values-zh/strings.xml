@@ -2581,7 +2581,5 @@ ACTION_VIEW
     <string name="sora_project_search_hint">搜索文本</string>
     <string name="sora_project_search_empty">未找到</string>
     <string name="sora_project_search_results">已找到：%1</string>
-    <string name="common_word_search">搜索</string>
-    <string name="common_word_close">关闭</string>
     <string name="sora_xml_editor_toast_max_tabs">最大标签数：%1</string>
 </resources>

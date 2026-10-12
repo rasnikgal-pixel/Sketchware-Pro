@@ -2581,7 +2581,5 @@ ACTION_VIEW
     <string name="sora_project_search_hint">Текст для пошуку</string>
     <string name="sora_project_search_empty">Нічого не знайдено</string>
     <string name="sora_project_search_results">Знайдено: %1</string>
-    <string name="common_word_search">Знайти</string>
-    <string name="common_word_close">Закрити</string>
     <string name="sora_xml_editor_toast_max_tabs">Максимум вкладок: %1</string>
 </resources>
