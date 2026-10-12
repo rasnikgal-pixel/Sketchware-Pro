@@ -2651,4 +2651,5 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="tools_activity_user_code_subtitle">Свои Java-классы, которые не перезаписываются</string>
     <string name="graph_force_warning_title">Раскладка может тормозить</string>
     <string name="graph_force_warning_msg">В проекте %1$d узлов. Раскладка «сила» может тормозить. Продолжить?</string>
+    <string name="graph_action_export_json">Экспорт JSON</string>
 </resources>

@@ -2641,4 +2641,5 @@ ACTION_VIEW
     <string name="tools_activity_user_code_subtitle">Custom Java classes that are not overwritten</string>
     <string name="graph_force_warning_title">Layout may be slow</string>
     <string name="graph_force_warning_msg">Project has %1$d nodes. Force-directed layout may be slow. Continue?</string>
+    <string name="graph_action_export_json">Export JSON</string>
 </resources>

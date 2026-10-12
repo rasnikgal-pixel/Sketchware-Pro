@@ -136,6 +136,9 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         } else if (id == R.id.action_export_png) {
             exportPng();
             return true;
+        } else if (id == R.id.action_export_json) {
+            exportJson();
+            return true;
         } else if (id == R.id.action_settings) {
             showGraphSettingsDialog();
             return true;
@@ -296,6 +299,71 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         } catch (Throwable t) {
             pro.sketchware.smartdrop.DebugLogger.get(this)
                     .d("ProjectGraph", "export_error", String.valueOf(t.getMessage()));
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_error) + ": " + t.getMessage(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** Экспорт графа в JSON. */
+    private void exportJson() {
+        if (graph == null || graph.nodes.isEmpty()) {
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_empty),
+                    android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            org.json.JSONObject root = new org.json.JSONObject();
+            root.put("project", projectName == null ? "" : projectName);
+            root.put("exportedAt", System.currentTimeMillis());
+
+            org.json.JSONArray nodesArr = new org.json.JSONArray();
+            for (ProjectGraphNode n : graph.nodes) {
+                org.json.JSONObject o = new org.json.JSONObject();
+                o.put("id", n.id);
+                o.put("label", n.label);
+                o.put("type", n.type.name());
+                o.put("parentId", n.parentId == null ? org.json.JSONObject.NULL : n.parentId);
+                if (n.extra1 != null) o.put("extra1", n.extra1);
+                if (n.extra2 != null) o.put("extra2", n.extra2);
+                o.put("x", n.x);
+                o.put("y", n.y);
+                nodesArr.put(o);
+            }
+            root.put("nodes", nodesArr);
+
+            org.json.JSONArray edgesArr = new org.json.JSONArray();
+            for (ProjectGraph.Edge e : graph.edges) {
+                org.json.JSONObject o = new org.json.JSONObject();
+                o.put("from", e.fromId);
+                o.put("to", e.toId);
+                if (e.label != null) o.put("label", e.label);
+                edgesArr.put(o);
+            }
+            root.put("edges", edgesArr);
+
+            java.io.File dir = new java.io.File(
+                    android.os.Environment.getExternalStorageDirectory(),
+                    "Sketchware/Graphs");
+            if (!dir.exists() && !dir.mkdirs()) {
+                throw new java.io.IOException("Cannot create directory");
+            }
+            String safeName = (projectName == null || projectName.isEmpty())
+                    ? "project" : projectName.replaceAll("[^a-zA-Z0-9_]", "_");
+            String fileName = safeName + "_" + System.currentTimeMillis() + ".json";
+            java.io.File outFile = new java.io.File(dir, fileName);
+
+            try (java.io.FileWriter fw = new java.io.FileWriter(outFile)) {
+                fw.write(root.toString(2));
+            }
+
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_success) + "\n" + outFile.getAbsolutePath(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        } catch (Throwable t) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .d("ProjectGraph", "export_json_error", String.valueOf(t.getMessage()));
             android.widget.Toast.makeText(this,
                     getString(R.string.graph_export_error) + ": " + t.getMessage(),
                     android.widget.Toast.LENGTH_LONG).show();
