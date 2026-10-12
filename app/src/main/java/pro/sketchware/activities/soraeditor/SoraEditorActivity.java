@@ -393,22 +393,39 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
 
     /** Диалог ввода текста для поиска по проекту. */
     private void showProjectSearchDialog() {
-        final android.widget.EditText input = new android.widget.EditText(this);
-        input.setHint(R.string.sora_project_search_hint);
+        com.google.android.material.textfield.TextInputLayout til =
+                new com.google.android.material.textfield.TextInputLayout(this);
+        til.setHint(getString(R.string.sora_project_search_hint));
+        til.setEndIconMode(com.google.android.material.textfield.TextInputLayout.END_ICON_CLEAR_TEXT);
+
+        final com.google.android.material.textfield.TextInputEditText input =
+                new com.google.android.material.textfield.TextInputEditText(this);
         input.setSingleLine(true);
+        til.addView(input, new android.widget.FrameLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+
         int pad = (int) (16 * getResources().getDisplayMetrics().density);
         android.widget.FrameLayout wrap = new android.widget.FrameLayout(this);
         wrap.setPadding(pad, pad / 2, pad, 0);
-        wrap.addView(input, new android.widget.FrameLayout.LayoutParams(
+        wrap.addView(til, new android.widget.FrameLayout.LayoutParams(
                 android.view.ViewGroup.LayoutParams.MATCH_PARENT,
                 android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        SoraEditorSettings settings = new SoraEditorSettings(this);
+        String last = settings.getLastSearchQuery();
+        if (last != null && !last.isEmpty()) {
+            input.setText(last);
+            input.setSelection(last.length());
+        }
 
         new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.sora_project_search_title)
                 .setView(wrap)
                 .setPositiveButton(R.string.common_word_search, (d, w) -> {
-                    String q = input.getText().toString();
+                    String q = input.getText() == null ? "" : input.getText().toString().trim();
                     if (!q.isEmpty()) {
+                        settings.setLastSearchQuery(q);
                         runProjectSearch(q);
                     }
                 })
@@ -458,8 +475,9 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         for (int i = 0; i < hits.size(); i++) {
             String[] h = hits.get(i);
             String rel = collector.getShortName(h[0]);
-            String preview = h[2].length() > 80 ? h[2].substring(0, 77) + "..." : h[2];
-            items[i] = rel + ":" + h[1] + "  " + preview;
+            String preview = h[2];
+            if (preview.length() > 70) preview = preview.substring(0, 67) + "...";
+            items[i] = rel + ":" + h[1] + "\n" + preview;
         }
         new MaterialAlertDialogBuilder(this)
                 .setTitle(getString(R.string.sora_project_search_results, hits.size()))
@@ -485,12 +503,19 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
                 return;
             }
             adapter.addFile(path);
+            updateTabTitles();
+            updateEmptyState();
             binding.viewPager.setCurrentItem(adapter.getItemCount() - 1, false);
         }
+        final int targetLine = Math.max(0, line - 1);
         binding.viewPager.postDelayed(() -> {
             SoraEditorFragment f = currentFragment();
-            if (f != null) f.goToLine(line - 1);
-        }, 200);
+            if (f != null) f.requestJumpToLine(targetLine);
+        }, 150);
+        binding.viewPager.postDelayed(() -> {
+            SoraEditorFragment f = currentFragment();
+            if (f != null) f.requestJumpToLine(targetLine);
+        }, 600);
     }
 
     private void showThemeDialog() {

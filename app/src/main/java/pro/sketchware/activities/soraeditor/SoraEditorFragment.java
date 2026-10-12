@@ -29,6 +29,7 @@ public class SoraEditorFragment extends Fragment {
     private boolean modified = false;
     private String initialContent = "";
     private OnModifiedListener modifiedListener;
+    private int pendingLine = -1;
 
     public interface OnModifiedListener {
         void onModifiedChanged(String filePath, boolean modified);
@@ -142,6 +143,13 @@ public class SoraEditorFragment extends Fragment {
         // 8. XML-подсветка отключена (ломает отображение даже с postDelayed)
         // Возможно, добавим позже через другой способ
 
+        // 6b. Применить отложенный переход к строке
+        if (pendingLine >= 0) {
+            final int ln = pendingLine;
+            pendingLine = -1;
+            editor.post(() -> goToLine(ln));
+        }
+
         // 7. Отслеживание изменений
         try {
             editor.getText().addContentListener(new io.github.rosemoe.sora.text.ContentListener() {
@@ -195,15 +203,29 @@ public class SoraEditorFragment extends Fragment {
     }
 
     /** Перейти к строке. */
+    /** Запросить переход к строке. */
+    public void requestJumpToLine(int line) {
+        if (line < 0) return;
+        if (loaded && editor != null) {
+            goToLine(line);
+        } else {
+            pendingLine = line;
+        }
+    }
+
+    /** Перейти к строке. */
     public void goToLine(int line) {
         if (editor == null || line < 0) return;
         try {
             int total = editor.getText().getLineCount();
+            if (total <= 0) return;
             if (line >= total) line = total - 1;
             if (line < 0) line = 0;
-            editor.setSelection(line, 0);
+            final int ln = line;
+            editor.setSelection(ln, 0);
             editor.post(() -> {
                 try {
+                    editor.setSelection(ln, 0);
                     editor.ensureSelectionVisible();
                 } catch (Throwable ignored) {
                 }

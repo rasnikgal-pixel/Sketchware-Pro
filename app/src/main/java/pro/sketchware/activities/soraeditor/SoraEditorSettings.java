@@ -45,6 +45,16 @@ public class SoraEditorSettings {
         prefs.edit().putInt(KEY_FONT_SIZE, size).apply();
     }
 
+    private static final String KEY_LAST_SEARCH = "last_search_query";
+
+    public String getLastSearchQuery() {
+        return prefs.getString(KEY_LAST_SEARCH, "");
+    }
+
+    public void setLastSearchQuery(String query) {
+        prefs.edit().putString(KEY_LAST_SEARCH, query == null ? "" : query).apply();
+    }
+
     public boolean isWordWrapEnabled() {
         return prefs.getBoolean(KEY_WORD_WRAP, DEFAULT_WORD_WRAP);
     }
