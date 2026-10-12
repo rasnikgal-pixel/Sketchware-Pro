@@ -115,7 +115,7 @@ public class UserCodeActivity extends BaseAppCompatActivity {
                 .setTitle(R.string.user_code_create)
                 .setView(v)
                 .setPositiveButton(android.R.string.ok, (d, w) -> {
-                    String name = etName.getText().toString().trim();
+                    String name = UserCodeManager.capitalize(etName.getText().toString().trim());
                     if (!UserCodeManager.isValidClassName(name)) {
                         SketchwareUtil.toast(getString(R.string.user_code_invalid_name));
                         return;
@@ -133,6 +133,10 @@ public class UserCodeActivity extends BaseAppCompatActivity {
                     if (manager.createFile(name, template)) {
                         SketchwareUtil.toast(getString(R.string.user_code_created));
                         refresh();
+                        File created = new File(manager.getUserDir(), name + ".java");
+                        if (created.exists()) {
+                            openInSrcEditor(created);
+                        }
                     }
                 })
                 .setNegativeButton(R.string.common_word_cancel, null)
@@ -184,7 +188,7 @@ public class UserCodeActivity extends BaseAppCompatActivity {
                 .setTitle(R.string.user_code_rename)
                 .setView(v)
                 .setPositiveButton(android.R.string.ok, (d, w) -> {
-                    String newName = et.getText().toString().trim();
+                    String newName = UserCodeManager.capitalize(et.getText().toString().trim());
                     if (!UserCodeManager.isValidClassName(newName)) {
                         SketchwareUtil.toast(getString(R.string.user_code_invalid_name));
                         return;

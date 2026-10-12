@@ -107,6 +107,12 @@ public class UserCodeManager {
         return true;
     }
 
+    /** Приводит первую букву имени класса к верхнему регистру. */
+    public static String capitalize(String name) {
+        if (name == null || name.isEmpty()) return name;
+        return Character.toUpperCase(name.charAt(0)) + name.substring(1);
+    }
+
     /** Создаёт новый файл с шаблоном. */
     public boolean createFile(String className, int template) {
         if (!isValidClassName(className)) return false;
