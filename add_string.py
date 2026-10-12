@@ -50,7 +50,7 @@ def validate_format(key, code, value):
     if bad and not has_valid:
         print(f'ОШИБКА формата [--{code}] "{value}"', file=sys.stderr)
         print(f'  Похоже, bash съел "$d" в "{bad[0]}$d".', file=sys.stderr)
-        print(f'  Используй одинарные кавычки: --{code} '{value}$d'', file=sys.stderr)
+        print('  Используй одинарные кавычки: --' + code + ' \'' + value + '$d\'', file=sys.stderr)
         sys.exit(2)
 
 def prepare(text):
