@@ -36,8 +36,22 @@ def escape_apostrophes(text):
     return ''.join(result)
 
 def escape_percent(text):
-    # Экранируем % если это не %1$s, %2$d, %s, %d
-    return re.sub(r'%(?![0-9s])', r'\\%', text)
+    # Безопасные форматы: %1$s, %2$d, %s, %d, %1$02d и т.п.
+    # Всё остальное (%, %1, %2 без $) — экранируем.
+    return re.sub(r'%(?![0-9]+\$[-#+ 0,(]*[0-9]*[a-zA-Z]|[sd])', r'\\%', text)
+
+
+def validate_format(key, code, value):
+    """Падаем, если в значении есть висячий %N без $[sd] — признак того, что bash съел $d."""
+    # Ищем %цифры без последующего $или буквы
+    bad = re.findall(r'%[0-9]+(?![0-9$]|\$)', value)
+    # Но это ошибка только если также НЕТ валидных %N$[sd]
+    has_valid = re.search(r'%[0-9]+\$[-#+ 0,(]*[0-9]*[a-zA-Z]', value)
+    if bad and not has_valid:
+        print(f'ОШИБКА формата [--{code}] "{value}"', file=sys.stderr)
+        print(f'  Похоже, bash съел "$d" в "{bad[0]}$d".', file=sys.stderr)
+        print(f'  Используй одинарные кавычки: --{code} '{value}$d'', file=sys.stderr)
+        sys.exit(2)
 
 def prepare(text):
     if not text:
@@ -79,6 +93,7 @@ def main():
             print(f'ПРОПУСК (нет файла): {path}')
             continue
         val = getattr(args, code, None) or args.ru
+        validate_format(code, args.key, val)
         if add_to_file(path, args.key, val):
             added.append(folder)
         else:
