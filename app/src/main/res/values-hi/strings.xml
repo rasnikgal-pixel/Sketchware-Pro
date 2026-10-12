@@ -2575,4 +2575,5 @@ ACTION_VIEW
     <string name="graph_force_warning_title">लेआउट धीमा हो सकता है</string>
     <string name="graph_force_warning_msg">प्रोजेक्ट में %1$d नोड हैं। बल-निर्देशित लेआउट धीमा हो सकता है। जारी रखें?</string>
     <string name="graph_action_export_json">JSON निर्यात करें</string>
+    <string name="graph_action_export_svg">SVG निर्यात करें</string>
 </resources>

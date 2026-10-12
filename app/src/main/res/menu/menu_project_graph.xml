@@ -27,6 +27,11 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_export_svg"
+        android:title="@string/graph_action_export_svg"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_reset_filter"
         android:title="@string/graph_filter_reset"
         app:showAsAction="never" />

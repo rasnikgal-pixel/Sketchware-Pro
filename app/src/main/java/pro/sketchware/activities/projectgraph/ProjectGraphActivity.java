@@ -139,6 +139,9 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
         } else if (id == R.id.action_export_json) {
             exportJson();
             return true;
+        } else if (id == R.id.action_export_svg) {
+            exportSvg();
+            return true;
         } else if (id == R.id.action_settings) {
             showGraphSettingsDialog();
             return true;
@@ -367,6 +370,115 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
             android.widget.Toast.makeText(this,
                     getString(R.string.graph_export_error) + ": " + t.getMessage(),
                     android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** Экспорт графа в SVG. */
+    private void exportSvg() {
+        if (graph == null || graph.nodes.isEmpty()) {
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_empty),
+                    android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            // Вычисляем bounding box
+            float minX = Float.MAX_VALUE, minY = Float.MAX_VALUE;
+            float maxX = -Float.MAX_VALUE, maxY = -Float.MAX_VALUE;
+            final float pad = 60f;
+            for (ProjectGraphNode n : graph.nodes) {
+                if (n.x < minX) minX = n.x;
+                if (n.y < minY) minY = n.y;
+                if (n.x > maxX) maxX = n.x;
+                if (n.y > maxY) maxY = n.y;
+            }
+            float w = (maxX - minX) + pad * 2;
+            float h = (maxY - minY) + pad * 2;
+            float offX = -minX + pad;
+            float offY = -minY + pad;
+
+            java.util.Map<String, ProjectGraphNode> byId = new java.util.HashMap<>();
+            for (ProjectGraphNode n : graph.nodes) byId.put(n.id, n);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+            sb.append("<svg xmlns=\"http://www.w3.org/2000/svg\" ")
+              .append("width=\"").append(w).append("\" ")
+              .append("height=\"").append(h).append("\" ")
+              .append("viewBox=\"0 0 ").append(w).append(" ").append(h).append("\">\n");
+            sb.append("<rect width=\"100%\" height=\"100%\" fill=\"#FAFAFA\"/>\n");
+
+            // Рёбра
+            sb.append("<g stroke=\"#9E9E9E\" stroke-width=\"1.5\" fill=\"none\">\n");
+            for (ProjectGraph.Edge e : graph.edges) {
+                ProjectGraphNode a = byId.get(e.fromId);
+                ProjectGraphNode b = byId.get(e.toId);
+                if (a == null || b == null) continue;
+                sb.append("<line x1=\"").append(a.x + offX).append("\" ")
+                  .append("y1=\"").append(a.y + offY).append("\" ")
+                  .append("x2=\"").append(b.x + offX).append("\" ")
+                  .append("y2=\"").append(b.y + offY).append("\"/>\n");
+            }
+            sb.append("</g>\n");
+
+            // Узлы
+            for (ProjectGraphNode n : graph.nodes) {
+                String color = svgColorFor(n.type);
+                float cx = n.x + offX;
+                float cy = n.y + offY;
+                sb.append("<circle cx=\"").append(cx).append("\" ")
+                  .append("cy=\"").append(cy).append("\" r=\"14\" ")
+                  .append("fill=\"").append(color).append("\" ")
+                  .append("stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n");
+                String label = (n.label == null ? "" : n.label)
+                        .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+                sb.append("<text x=\"").append(cx).append("\" ")
+                  .append("y=\"").append(cy + 30).append("\" ")
+                  .append("font-family=\"sans-serif\" font-size=\"12\" ")
+                  .append("text-anchor=\"middle\" fill=\"#212121\">")
+                  .append(label).append("</text>\n");
+            }
+
+            sb.append("</svg>\n");
+
+            java.io.File dir = new java.io.File(
+                    android.os.Environment.getExternalStorageDirectory(),
+                    "Sketchware/Graphs");
+            if (!dir.exists() && !dir.mkdirs()) {
+                throw new java.io.IOException("Cannot create directory");
+            }
+            String safeName = (projectName == null || projectName.isEmpty())
+                    ? "project" : projectName.replaceAll("[^a-zA-Z0-9_]", "_");
+            String fileName = safeName + "_" + System.currentTimeMillis() + ".svg";
+            java.io.File outFile = new java.io.File(dir, fileName);
+
+            try (java.io.FileWriter fw = new java.io.FileWriter(outFile)) {
+                fw.write(sb.toString());
+            }
+
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_success) + "\n" + outFile.getAbsolutePath(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        } catch (Throwable t) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .d("ProjectGraph", "export_svg_error", String.valueOf(t.getMessage()));
+            android.widget.Toast.makeText(this,
+                    getString(R.string.graph_export_error) + ": " + t.getMessage(),
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** Цвет узла для SVG. */
+    private String svgColorFor(ProjectGraphNode.Type t) {
+        switch (t) {
+            case PROJECT:   return "#9C27B0";
+            case ACTIVITY:  return "#2196F3";
+            case EVENT:     return "#FF9800";
+            case BLOCK:     return "#4CAF50";
+            case VARIABLE:  return "#03A9F4";
+            case COMPONENT: return "#795548";
+            case FUNCTION:  return "#E91E63";
+            default:        return "#607D8B";
         }
     }
 

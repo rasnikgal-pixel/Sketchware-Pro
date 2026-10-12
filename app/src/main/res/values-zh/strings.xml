@@ -2575,4 +2575,5 @@ ACTION_VIEW
     <string name="graph_force_warning_title">布局可能很慢</string>
     <string name="graph_force_warning_msg">项目有 %1$d 个节点。力导向布局可能很慢。继续吗？</string>
     <string name="graph_action_export_json">导出 JSON</string>
+    <string name="graph_action_export_svg">导出 SVG</string>
 </resources>

@@ -2575,4 +2575,5 @@ ACTION_VIEW
     <string name="graph_force_warning_title">Розкладка може гальмувати</string>
     <string name="graph_force_warning_msg">У проєкті %1$d вузлів. Розкладка «сила» може гальмувати. Продовжити?</string>
     <string name="graph_action_export_json">Експорт JSON</string>
+    <string name="graph_action_export_svg">Експорт SVG</string>
 </resources>
