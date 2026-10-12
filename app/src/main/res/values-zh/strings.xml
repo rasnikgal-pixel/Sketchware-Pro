@@ -2572,4 +2572,6 @@ ACTION_VIEW
     <string name="user_code_invalid_name">无效的类名 (A-Za-z0-9_)</string>
     <string name="tools_activity_user_code_title">💻 我的代码</string>
     <string name="tools_activity_user_code_subtitle">不会被覆盖的自定义 Java 类</string>
+    <string name="graph_force_warning_title">布局可能很慢</string>
+    <string name="graph_force_warning_msg">项目有 %1$d 个节点。力导向布局可能很慢。继续吗？</string>
 </resources>

@@ -2572,4 +2572,6 @@ ACTION_VIEW
     <string name="user_code_invalid_name">Невірне ім\'я класу (A-Za-z0-9_)</string>
     <string name="tools_activity_user_code_title">💻 Мій код</string>
     <string name="tools_activity_user_code_subtitle">Власні Java-класи, що не перезаписуються</string>
+    <string name="graph_force_warning_title">Розкладка може гальмувати</string>
+    <string name="graph_force_warning_msg">У проєкті %1$d вузлів. Розкладка «сила» може гальмувати. Продовжити?</string>
 </resources>

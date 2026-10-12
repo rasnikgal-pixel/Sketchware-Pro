@@ -2649,4 +2649,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="user_code_invalid_name">Неверное имя класса (A-Za-z0-9_)</string>
     <string name="tools_activity_user_code_title">💻 Мой код</string>
     <string name="tools_activity_user_code_subtitle">Свои Java-классы, которые не перезаписываются</string>
+    <string name="graph_force_warning_title">Раскладка может тормозить</string>
+    <string name="graph_force_warning_msg">В проекте %1$d узлов. Раскладка «сила» может тормозить. Продолжить?</string>
 </resources>

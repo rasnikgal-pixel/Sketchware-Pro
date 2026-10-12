@@ -215,28 +215,47 @@ public class ProjectGraphActivity extends BaseAppCompatActivity {
                     int newGap = seekGap.getProgress();
 
                     // Сохранить
-                    settings.setLayout(newLayout);
-                    settings.setLevelGap(newGap);
-                    settings.setShowEdges(swEdges.isChecked());
-                    settings.setDragNodesEnabled(swDrag.isChecked());
-                    settings.setExportFullTree(swExport.isChecked());
-                    settings.setShowBlocks(swShowBlocks.isChecked());
-                    settings.setShowVariables(swShowVariables.isChecked());
-                    settings.setShowComponents(swShowComponents.isChecked());
-                    settings.setShowFunctions(swShowFunctions.isChecked());
+                    final int layoutToApply = newLayout;
+                    final int gapToApply = newGap;
+                    Runnable applyAll = () -> {
+                        settings.setLayout(layoutToApply);
+                        settings.setLevelGap(gapToApply);
+                        settings.setShowEdges(swEdges.isChecked());
+                        settings.setDragNodesEnabled(swDrag.isChecked());
+                        settings.setExportFullTree(swExport.isChecked());
+                        settings.setShowBlocks(swShowBlocks.isChecked());
+                        settings.setShowVariables(swShowVariables.isChecked());
+                        settings.setShowComponents(swShowComponents.isChecked());
+                        settings.setShowFunctions(swShowFunctions.isChecked());
 
-                    // Применить
-                    binding.graphView.setDragEnabled(swDrag.isChecked());
-                    binding.graphView.setShowEdges(swEdges.isChecked());
-                    binding.graphView.setShowBlocks(swShowBlocks.isChecked());
-                    binding.graphView.setShowVariables(swShowVariables.isChecked());
-                    binding.graphView.setShowComponents(swShowComponents.isChecked());
-                    binding.graphView.setShowFunctions(swShowFunctions.isChecked());
-                    binding.graphView.applyLayout(newLayout, newGap);
+                        // Применить
+                        binding.graphView.setDragEnabled(swDrag.isChecked());
+                        binding.graphView.setShowEdges(swEdges.isChecked());
+                        binding.graphView.setShowBlocks(swShowBlocks.isChecked());
+                        binding.graphView.setShowVariables(swShowVariables.isChecked());
+                        binding.graphView.setShowComponents(swShowComponents.isChecked());
+                        binding.graphView.setShowFunctions(swShowFunctions.isChecked());
+                        binding.graphView.applyLayout(layoutToApply, gapToApply);
 
-                    android.widget.Toast.makeText(this,
-                            getString(R.string.graph_settings_applied),
-                            android.widget.Toast.LENGTH_SHORT).show();
+                        android.widget.Toast.makeText(this,
+                                getString(R.string.graph_settings_applied),
+                                android.widget.Toast.LENGTH_SHORT).show();
+                    };
+
+                    if (layoutToApply == GraphSettings.LAYOUT_FORCE
+                            && graph != null
+                            && graph.nodes.size() > 200) {
+                        final int nodeCount = graph.nodes.size();
+                        new MaterialAlertDialogBuilder(this)
+                                .setTitle(R.string.graph_force_warning_title)
+                                .setMessage(getString(R.string.graph_force_warning_msg, nodeCount))
+                                .setPositiveButton(R.string.common_word_continue,
+                                        (d2, w2) -> applyAll.run())
+                                .setNegativeButton(R.string.common_word_cancel, null)
+                                .show();
+                    } else {
+                        applyAll.run();
+                    }
                 })
                 .setNegativeButton(R.string.common_word_cancel, null)
                 .show();

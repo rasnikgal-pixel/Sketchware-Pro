@@ -2572,4 +2572,6 @@ ACTION_VIEW
     <string name="user_code_invalid_name">अमान्य क्लास नाम (A-Za-z0-9_)</string>
     <string name="tools_activity_user_code_title">💻 मेरा कोड</string>
     <string name="tools_activity_user_code_subtitle">कस्टम Java क्लास जो अधिलेखित नहीं होतीं</string>
+    <string name="graph_force_warning_title">लेआउट धीमा हो सकता है</string>
+    <string name="graph_force_warning_msg">प्रोजेक्ट में %1$d नोड हैं। बल-निर्देशित लेआउट धीमा हो सकता है। जारी रखें?</string>
 </resources>
