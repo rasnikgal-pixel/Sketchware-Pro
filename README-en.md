@@ -77,6 +77,61 @@ Translation covers **all interface levels**:
 
 ---
 
+## 🆕 What's new in 7.5.0
+
+**Major update with three new developer tools.**
+
+### 📝 SORA Editor (text editor)
+
+- **Tabs for project files** — Manifest, layouts, Java.
+- **Java/Kotlin syntax highlighting** (TextMate).
+- **Menu**: Save, Undo, Redo, Open, Close, Find/Replace, Format, Preview, Wrap, Theme, Copy path, Settings.
+- **Settings**: font size (8-32), word wrap.
+- **Short tab names** + double-tap to copy full path.
+- **Theme follows** the app theme.
+
+### 📊 Project Graph
+
+- **5 layouts**: tree, horizontal, radial, grid, force-directed.
+- **Nodes**: Project, Activity, Event, Block, Variable, Component, Function.
+- **Export PNG** (full tree / visible area).
+- **Drag nodes** with long press.
+- **Search nodes** with highlighting.
+- **Filter by Activity** — "show only this".
+- **Tap on Event → block editor**.
+- Settings: layout, gap, show edges/blocks/variables/components/functions.
+
+### ⚡ Double-tap on widget in designer
+
+- Opens **list of all events** for the widget (like Delphi).
+- By selection — **block editor** for this event.
+
+### 💻 My Code — custom Java classes
+
+- Folder `user/` in the project — **not overwritten** during build.
+- **4 templates**: empty class, utility, custom View, interface.
+- **Create / delete / rename**.
+- **Compiled** with the project.
+- From blocks — via `addSourceDirectly`.
+
+### 🛠 All features in "Tools" section
+
+- Project Graph, SORA Text Editor, Debug Log, **My Code** — all with project picker.
+- **"My Code"** item also in SORA menu.
+
+### 🛡 Update protection
+
+- **HEAD request** to downloadUrl before showing update.
+- If APK missing — auto-check silently ignores, manual — shows "Update is being prepared".
+
+### 🚀 CI
+
+- **Release tag** — automatically from `build.gradle`.
+- **Release name** — in English.
+- **update.json** — updated automatically after build.
+
+---
+
 ## 🆕 What's new in 7.4.0
 
 **🌍 MULTILINGUAL — 5 LANGUAGES + SYSTEM!**
