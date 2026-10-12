@@ -340,4 +340,5 @@
 
     <string name="menu_export_templates">Export builder</string>
     <string name="menu_import_templates">Import builder</string>
+    <string name="common_word_search">Search</string>
 </resources>

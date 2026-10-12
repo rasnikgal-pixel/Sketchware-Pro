@@ -340,4 +340,5 @@
 
     <string name="menu_export_templates">Экспорт конструктора</string>
     <string name="menu_import_templates">Импорт конструктора</string>
+    <string name="common_word_search">Найти</string>
 </resources>

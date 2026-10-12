@@ -194,7 +194,7 @@ public class SoraEditorFragment extends Fragment {
         return editor == null ? "" : editor.getText().toString();
     }
 
-    /** Перейти к строке и подсветить её. */
+    /** Перейти к строке. */
     public void goToLine(int line) {
         if (editor == null || line < 0) return;
         try {
@@ -204,11 +204,7 @@ public class SoraEditorFragment extends Fragment {
             editor.setSelection(line, 0);
             editor.post(() -> {
                 try {
-                    editor.getCursor().setLine(line);
-                    editor.getCursor().setColumn(0);
-                    if (editor.getCursor() != null) {
-                        editor.ensureSelectionVisible();
-                    }
+                    editor.ensureSelectionVisible();
                 } catch (Throwable ignored) {
                 }
             });
