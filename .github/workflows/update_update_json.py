@@ -27,8 +27,8 @@ def read_gradle_version():
         return None, None
 
     text = gradle.read_text(encoding="utf-8")
-    vcode = re.search(r"versionCode\s+(\d+)", text)
-    vname = re.search(r'versionName\s+"([^"]+)"', text)
+    vcode = re.search(r"versionCode\s*=?\s*(\d+)", text)
+    vname = re.search(r'versionName\s*=?\s*"([^"]+)"', text)
     vname_str = vname.group(1).lstrip("v") if vname else None
     return (
         int(vcode.group(1)) if vcode else None,
