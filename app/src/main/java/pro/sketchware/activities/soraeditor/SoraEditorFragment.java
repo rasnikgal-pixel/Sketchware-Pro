@@ -194,6 +194,28 @@ public class SoraEditorFragment extends Fragment {
         return editor == null ? "" : editor.getText().toString();
     }
 
+    /** Перейти к строке и подсветить её. */
+    public void goToLine(int line) {
+        if (editor == null || line < 0) return;
+        try {
+            int total = editor.getText().getLineCount();
+            if (line >= total) line = total - 1;
+            if (line < 0) line = 0;
+            editor.setSelection(line, 0);
+            editor.post(() -> {
+                try {
+                    editor.getCursor().setLine(line);
+                    editor.getCursor().setColumn(0);
+                    if (editor.getCursor() != null) {
+                        editor.ensureSelectionVisible();
+                    }
+                } catch (Throwable ignored) {
+                }
+            });
+        } catch (Throwable ignored) {
+        }
+    }
+
     public void undo() {
         if (editor != null) {
             try { editor.undo(); } catch (Throwable ignored) {}

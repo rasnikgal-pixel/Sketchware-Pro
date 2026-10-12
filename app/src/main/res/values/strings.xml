@@ -2653,4 +2653,12 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="graph_force_warning_msg">В проекте %1$d узлов. Раскладка «сила» может тормозить. Продолжить?</string>
     <string name="graph_action_export_json">Экспорт JSON</string>
     <string name="graph_action_export_svg">Экспорт SVG</string>
+    <string name="sora_xml_editor_action_project_search">Поиск по проекту</string>
+    <string name="sora_project_search_title">Поиск по проекту</string>
+    <string name="sora_project_search_hint">Текст для поиска</string>
+    <string name="sora_project_search_empty">Ничего не найдено</string>
+    <string name="sora_project_search_results">Найдено: %1</string>
+    <string name="common_word_search">Найти</string>
+    <string name="common_word_close">Закрыть</string>
+    <string name="sora_xml_editor_toast_max_tabs">Максимум вкладок: %1</string>
 </resources>

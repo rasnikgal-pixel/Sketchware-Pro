@@ -2576,4 +2576,12 @@ ACTION_VIEW
     <string name="graph_force_warning_msg">У проєкті %1$d вузлів. Розкладка «сила» може гальмувати. Продовжити?</string>
     <string name="graph_action_export_json">Експорт JSON</string>
     <string name="graph_action_export_svg">Експорт SVG</string>
+    <string name="sora_xml_editor_action_project_search">Пошук по проєкту</string>
+    <string name="sora_project_search_title">Пошук по проєкту</string>
+    <string name="sora_project_search_hint">Текст для пошуку</string>
+    <string name="sora_project_search_empty">Нічого не знайдено</string>
+    <string name="sora_project_search_results">Знайдено: %1</string>
+    <string name="common_word_search">Знайти</string>
+    <string name="common_word_close">Закрити</string>
+    <string name="sora_xml_editor_toast_max_tabs">Максимум вкладок: %1</string>
 </resources>

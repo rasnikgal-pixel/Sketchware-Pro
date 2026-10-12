@@ -2643,4 +2643,12 @@ ACTION_VIEW
     <string name="graph_force_warning_msg">Project has %1$d nodes. Force-directed layout may be slow. Continue?</string>
     <string name="graph_action_export_json">Export JSON</string>
     <string name="graph_action_export_svg">Export SVG</string>
+    <string name="sora_xml_editor_action_project_search">Search in project</string>
+    <string name="sora_project_search_title">Search in project</string>
+    <string name="sora_project_search_hint">Text to search</string>
+    <string name="sora_project_search_empty">Nothing found</string>
+    <string name="sora_project_search_results">Found: %1</string>
+    <string name="common_word_search">Search</string>
+    <string name="common_word_close">Close</string>
+    <string name="sora_xml_editor_toast_max_tabs">Maximum tabs: %1</string>
 </resources>

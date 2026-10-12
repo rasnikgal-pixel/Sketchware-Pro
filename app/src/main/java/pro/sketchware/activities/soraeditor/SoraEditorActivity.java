@@ -278,6 +278,9 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         } else if (id == R.id.action_open_file) {
             showOpenFileDialog();
             return true;
+        } else if (id == R.id.action_project_search) {
+            showProjectSearchDialog();
+            return true;
         } else if (id == R.id.action_close_tab) {
             closeCurrentTab();
             return true;
@@ -386,6 +389,108 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
                 })
                 .setNegativeButton(R.string.common_word_cancel, null)
                 .show();
+    }
+
+    /** Диалог ввода текста для поиска по проекту. */
+    private void showProjectSearchDialog() {
+        final android.widget.EditText input = new android.widget.EditText(this);
+        input.setHint(R.string.sora_project_search_hint);
+        input.setSingleLine(true);
+        int pad = (int) (16 * getResources().getDisplayMetrics().density);
+        android.widget.FrameLayout wrap = new android.widget.FrameLayout(this);
+        wrap.setPadding(pad, pad / 2, pad, 0);
+        wrap.addView(input, new android.widget.FrameLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.sora_project_search_title)
+                .setView(wrap)
+                .setPositiveButton(R.string.common_word_search, (d, w) -> {
+                    String q = input.getText().toString();
+                    if (!q.isEmpty()) {
+                        runProjectSearch(q);
+                    }
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
+    }
+
+    /** Фоновый поиск по всем файлам проекта. */
+    private void runProjectSearch(String query) {
+        final String needle = query.toLowerCase(java.util.Locale.ROOT);
+        new Thread(() -> {
+            java.util.List<String> files = collector.collect();
+            final java.util.List<String[]> hits = new java.util.ArrayList<>();
+            final int MAX_HITS = 500;
+            for (String path : files) {
+                if (hits.size() >= MAX_HITS) break;
+                try {
+                    java.io.BufferedReader br = new java.io.BufferedReader(
+                            new java.io.InputStreamReader(
+                                    new java.io.FileInputStream(path), "UTF-8"));
+                    String line;
+                    int lineNo = 0;
+                    while ((line = br.readLine()) != null) {
+                        lineNo++;
+                        if (line.toLowerCase(java.util.Locale.ROOT).contains(needle)) {
+                            hits.add(new String[]{path, String.valueOf(lineNo), line.trim()});
+                            if (hits.size() >= MAX_HITS) break;
+                        }
+                    }
+                    br.close();
+                } catch (Throwable ignore) {
+                }
+            }
+            runOnUiThread(() -> showSearchResults(hits));
+        }, "sora-project-search").start();
+    }
+
+    /** Показывает список результатов поиска. */
+    private void showSearchResults(java.util.List<String[]> hits) {
+        if (hits.isEmpty()) {
+            android.widget.Toast.makeText(this,
+                    getString(R.string.sora_project_search_empty),
+                    android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final String[] items = new String[hits.size()];
+        for (int i = 0; i < hits.size(); i++) {
+            String[] h = hits.get(i);
+            String rel = collector.getShortName(h[0]);
+            String preview = h[2].length() > 80 ? h[2].substring(0, 77) + "..." : h[2];
+            items[i] = rel + ":" + h[1] + "  " + preview;
+        }
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.sora_project_search_results, hits.size()))
+                .setItems(items, (d, which) -> {
+                    String[] h = hits.get(which);
+                    openFileAtLine(h[0], Integer.parseInt(h[1]));
+                })
+                .setNegativeButton(R.string.common_word_close, null)
+                .show();
+    }
+
+    /** Открывает файл во вкладке и переходит на строку. */
+    private void openFileAtLine(String path, int line) {
+        if (path == null) return;
+        int existing = adapter.getIndexForPath(path);
+        if (existing >= 0) {
+            binding.viewPager.setCurrentItem(existing, false);
+        } else {
+            if (adapter.getItemCount() >= MAX_TABS) {
+                android.widget.Toast.makeText(this,
+                        getString(R.string.sora_xml_editor_toast_max_tabs, MAX_TABS),
+                        android.widget.Toast.LENGTH_SHORT).show();
+                return;
+            }
+            adapter.addFile(path);
+            binding.viewPager.setCurrentItem(adapter.getItemCount() - 1, false);
+        }
+        binding.viewPager.postDelayed(() -> {
+            SoraEditorFragment f = currentFragment();
+            if (f != null) f.goToLine(line - 1);
+        }, 200);
     }
 
     private void showThemeDialog() {
