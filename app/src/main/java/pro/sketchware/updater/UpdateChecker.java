@@ -162,6 +162,21 @@ public class UpdateChecker {
                         callback.onUpToDate();
                         return;
                     }
+
+                    // НОВОЕ: проверяем, что APK реально доступен
+                    if (!isDownloadUrlAvailable(info.downloadUrl)) {
+                        DebugLogger.get(ctx).w("Updater",
+                                "apk_not_available", info.downloadUrl);
+                        if (userInitiated) {
+                            // Пользователь сам запросил — сообщаем
+                            callback.onError("Обновление ещё готовится, попробуйте позже");
+                        } else {
+                            // Автопроверка — тихо игнорируем
+                            callback.onUpToDate();
+                        }
+                        return;
+                    }
+
                     callback.onUpdateAvailable(info);
                 });
             } catch (Exception e) {
@@ -169,6 +184,30 @@ public class UpdateChecker {
                 mainHandler.post(() -> callback.onError(e.getMessage()));
             }
         });
+    }
+
+    /**
+     * Проверка доступности APK по downloadUrl.
+     * Выполняет HEAD-запрос, следит за редиректами.
+     * @return true — файл доступен (200-399), false — нет.
+     */
+    private static boolean isDownloadUrlAvailable(String url) {
+        if (url == null || url.isEmpty()) return false;
+        HttpURLConnection conn = null;
+        try {
+            URL u = new URL(url);
+            conn = (HttpURLConnection) u.openConnection();
+            conn.setRequestMethod("HEAD");
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+            conn.setInstanceFollowRedirects(true);
+            int code = conn.getResponseCode();
+            return code >= 200 && code < 400;
+        } catch (Throwable t) {
+            return false;
+        } finally {
+            if (conn != null) conn.disconnect();
+        }
     }
 
     /** Загрузить и распарсить update.json. Пробует основной URL, затем fallback. */
