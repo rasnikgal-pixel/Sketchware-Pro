@@ -2653,4 +2653,5 @@ ACTION_VIEW
     <string name="designer_settings_preview_primary_title">Preview as primary button</string>
     <string name="designer_settings_preview_primary_desc">Preview button instead of Run. Run stays in the menu.</string>
     <string name="preview_activity_title">Preview</string>
+    <string name="preview_generating">Generating preview…</string>
 </resources>

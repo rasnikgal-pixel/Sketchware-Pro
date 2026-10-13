@@ -2663,4 +2663,5 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="designer_settings_preview_primary_title">Предпросмотр как основная кнопка</string>
     <string name="designer_settings_preview_primary_desc">Кнопка Предпросмотр вместо Запустить. Запуск останется в меню.</string>
     <string name="preview_activity_title">Предпросмотр</string>
+    <string name="preview_generating">Генерация предпросмотра…</string>
 </resources>

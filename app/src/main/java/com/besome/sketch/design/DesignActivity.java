@@ -658,14 +658,39 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
         }
     }
 
-    /** Открывает экран предпросмотра. */
+    /** Открывает экран предпросмотра с генерацией xml в фоне. */
     private void openPreview() {
         if (projectFile == null) return;
-        android.content.Intent intent = new android.content.Intent(this,
-                pro.sketchware.activities.preview.LayoutPreviewActivity.class);
-        intent.putExtra("sc_id", sc_id);
-        intent.putExtra("title", projectFile.getXmlName());
-        startActivity(intent);
+        final String xmlName = projectFile.getXmlName();
+
+        final androidx.appcompat.app.AlertDialog progress = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setMessage(R.string.preview_generating)
+                .setCancelable(false)
+                .create();
+        progress.show();
+
+        new Thread(() -> {
+            String xml = null;
+            try {
+                xml = new a.a.a.yq(getApplicationContext(), sc_id)
+                        .getFileSrc(xmlName, a.a.a.jC.b(sc_id), a.a.a.jC.a(sc_id), a.a.a.jC.c(sc_id));
+            } catch (Throwable t) {
+                pro.sketchware.smartdrop.DebugLogger.get(this)
+                        .d("DesignPreview", "get_file_src_error", String.valueOf(t.getMessage()));
+            }
+            final String result = xml;
+            runOnUiThread(() -> {
+                try { progress.dismiss(); } catch (Throwable ignored) {}
+                android.content.Intent intent = new android.content.Intent(this,
+                        pro.sketchware.activities.preview.LayoutPreviewActivity.class);
+                intent.putExtra("sc_id", sc_id);
+                intent.putExtra("title", xmlName);
+                if (result != null && !result.isEmpty()) {
+                    intent.putExtra("xml", result);
+                }
+                startActivity(intent);
+            });
+        }, "design-preview-gen").start();
     }
 
     private void startBuildTask() {

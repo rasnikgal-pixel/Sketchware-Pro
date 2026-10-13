@@ -2586,4 +2586,5 @@ ACTION_VIEW
     <string name="designer_settings_preview_primary_title">将预览设为主按钮</string>
     <string name="designer_settings_preview_primary_desc">使用预览按钮代替运行。运行保留在菜单中。</string>
     <string name="preview_activity_title">预览</string>
+    <string name="preview_generating">正在生成预览…</string>
 </resources>

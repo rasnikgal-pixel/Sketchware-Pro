@@ -2586,4 +2586,5 @@ ACTION_VIEW
     <string name="designer_settings_preview_primary_title">पूर्वावलोकन को मुख्य बटन बनाएं</string>
     <string name="designer_settings_preview_primary_desc">रन के बजाय पूर्वावलोकन बटन। रन मेनू में रहेगा।</string>
     <string name="preview_activity_title">पूर्वावलोकन</string>
+    <string name="preview_generating">पूर्वावलोकन तैयार हो रहा है…</string>
 </resources>

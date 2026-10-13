@@ -2586,4 +2586,5 @@ ACTION_VIEW
     <string name="designer_settings_preview_primary_title">Попередній перегляд як основна кнопка</string>
     <string name="designer_settings_preview_primary_desc">Кнопка Попередній перегляд замість Запустити. Запуск залишиться в меню.</string>
     <string name="preview_activity_title">Попередній перегляд</string>
+    <string name="preview_generating">Генерація попереднього перегляду…</string>
 </resources>
