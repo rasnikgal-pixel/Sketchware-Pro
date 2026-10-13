@@ -2058,7 +2058,7 @@ ACTION_VIEW
     <string name="auto_design_activity_040">Начало сборки...</string>
     <string name="auto_design_activity_041">Сборка проекта</string>
     <string name="auto_design_activity_042">Стоп</string>
-    <string name="auto_design_activity_043">Запустить</string>
+    <string name="auto_design_activity_043">Собрать APK</string>
     <string name="auto_blocks_manager_details_activity_001">Выберите JSON-файл</string>
     <string name="auto_blocks_manager_details_activity_002">Выбранный файл пуст!</string>
     <string name="auto_blocks_manager_details_activity_003">Выбранный файл пуст!</string>
@@ -2659,9 +2659,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_project_search_empty">Ничего не найдено</string>
     <string name="sora_project_search_results">Найдено: %1$d</string>
     <string name="sora_xml_editor_toast_max_tabs">Максимум вкладок: %1$d</string>
-    <string name="designer_settings_preview_section">Предпросмотр</string>
-    <string name="designer_settings_preview_primary_title">Предпросмотр как основная кнопка</string>
-    <string name="designer_settings_preview_primary_desc">Кнопка Предпросмотр вместо Запустить. Запуск останется в меню.</string>
     <string name="preview_activity_title">Предпросмотр</string>
     <string name="preview_generating">Генерация предпросмотра…</string>
 </resources>

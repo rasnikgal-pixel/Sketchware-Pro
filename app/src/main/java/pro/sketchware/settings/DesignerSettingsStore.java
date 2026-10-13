@@ -55,10 +55,6 @@ public final class DesignerSettingsStore {
     /** Показывать строку поиска над палитрой. */
     private static final String KEY_SHOW_SEARCH = "show_search";
 
-    // ─── Предпросмотр ───────────────────────────────────────────
-    /** Основная кнопка в Дизайнере — Предпросмотр (иначе Запуск). */
-    private static final String KEY_PREVIEW_PRIMARY = "preview_primary";
-
     private static final String KEY_MIGRATED_V1 = "migrated_v1";
 
     private static final String KEY_CHANGE_COUNTER = "change_counter";
@@ -67,16 +63,6 @@ public final class DesignerSettingsStore {
 
 
     private DesignerSettingsStore() {}
-
-    /** Основная кнопка в Дизайнере — Предпросмотр. */
-    public static boolean isPreviewPrimary(Context ctx) {
-        return prefs(ctx).getBoolean(KEY_PREVIEW_PRIMARY, false);
-    }
-
-    public static void setPreviewPrimary(Context ctx, boolean value) {
-        prefs(ctx).edit().putBoolean(KEY_PREVIEW_PRIMARY, value).apply();
-        bumpCounter(ctx);
-    }
 
     /** Счётчик изменений — увеличивается при каждом setX. Используется для детекта изменений. */
     public static long getChangeCounter(Context ctx) {

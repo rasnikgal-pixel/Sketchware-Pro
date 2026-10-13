@@ -2058,7 +2058,7 @@ ACTION_VIEW
     <string name="auto_design_activity_040">Starting build...</string>
     <string name="auto_design_activity_041">Building project</string>
     <string name="auto_design_activity_042">Stop</string>
-    <string name="auto_design_activity_043">Run</string>
+    <string name="auto_design_activity_043">Build APK</string>
     <string name="auto_blocks_manager_details_activity_001">Select JSON file</string>
     <string name="auto_blocks_manager_details_activity_002">The selected file is empty!</string>
     <string name="auto_blocks_manager_details_activity_003">The selected file is empty!</string>
@@ -2649,9 +2649,6 @@ ACTION_VIEW
     <string name="sora_project_search_empty">Nothing found</string>
     <string name="sora_project_search_results">Found: %1$d</string>
     <string name="sora_xml_editor_toast_max_tabs">Maximum tabs: %1$d</string>
-    <string name="designer_settings_preview_section">Preview</string>
-    <string name="designer_settings_preview_primary_title">Preview as primary button</string>
-    <string name="designer_settings_preview_primary_desc">Preview button instead of Run. Run stays in the menu.</string>
     <string name="preview_activity_title">Preview</string>
     <string name="preview_generating">Generating preview…</string>
 </resources>

@@ -2075,7 +2075,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="auto_design_activity_034">创建</string>
     <string name="auto_design_activity_038">取消...</string>
     <string name="auto_design_activity_042">停止</string>
-    <string name="auto_design_activity_043">运行</string>
+    <string name="auto_design_activity_043">构建 APK</string>
     <string name="auto_design_put_back">将正确的文件放回 %1$s 并重新构建。</string>
     <string name="auto_design_try_create">如果你愿意，Sketchware Pro 可以尝试创建 %1$s。</string>
     <string name="auto_designer_settings_activity_002">手风琴</string>
@@ -2582,9 +2582,6 @@ ACTION_VIEW
     <string name="sora_project_search_empty">未找到</string>
     <string name="sora_project_search_results">已找到：%1$d</string>
     <string name="sora_xml_editor_toast_max_tabs">最大标签数：%1$d</string>
-    <string name="designer_settings_preview_section">预览</string>
-    <string name="designer_settings_preview_primary_title">将预览设为主按钮</string>
-    <string name="designer_settings_preview_primary_desc">使用预览按钮代替运行。运行保留在菜单中。</string>
     <string name="preview_activity_title">预览</string>
     <string name="preview_generating">正在生成预览…</string>
 </resources>

@@ -501,26 +501,15 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             checkLogicBeforeBuild();
         });
 
-        // Переопределяем кнопку в зависимости от настройки Предпросмотра
-        applyPreviewPrimaryMode();
-
         btnOptions = findViewById(R.id.btn_options);
         btnOptions.setOnClickListener(v -> bottomPopupMenu.show());
 
         bottomPopupMenu = new PopupMenu(this, btnOptions);
         bottomMenu = bottomPopupMenu.getMenu();
-        boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(this);
-        if (previewPrimary) {
-            bottomMenu.add(Menu.NONE, 100, Menu.NONE, Helper.getResString(R.string.auto_design_activity_043)).setOnMenuItemClickListener(item -> {
-                if (btnRun != null) btnRun.performClick();
-                return true;
-            });
-        } else {
-            bottomMenu.add(Menu.NONE, 101, Menu.NONE, Helper.getResString(R.string.preview_activity_title)).setOnMenuItemClickListener(item -> {
-                openPreview();
-                return true;
-            });
-        }
+        bottomMenu.add(Menu.NONE, 101, Menu.NONE, Helper.getResString(R.string.preview_activity_title)).setOnMenuItemClickListener(item -> {
+            openPreview();
+            return true;
+        });
 
         bottomMenu.add(Menu.NONE, 1, Menu.NONE, Helper.getResString(R.string.auto_design_activity_005)).setOnMenuItemClickListener(item -> {
             BuildSettingsBottomSheet sheet = BuildSettingsBottomSheet.newInstance(sc_id);
@@ -632,32 +621,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
     /**
      * Запускает сборку APK. Вынесено из btnRun для переиспользования.
      */
-    /** Применяет режим «Предпросмотр как основная кнопка». */
-    private void applyPreviewPrimaryMode() {
-        boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(this);
-        if (btnRun == null) return;
-        // Отключаем старые listener'ы, ставим новые
-        btnRun.setOnClickListener(null);
-        if (previewPrimary) {
-            btnRun.setText(R.string.preview_activity_title);
-            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_preview));
-            btnRun.setOnClickListener(v -> openPreview());
-        } else {
-            btnRun.setText(R.string.auto_design_activity_043);
-            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_run));
-            btnRun.setOnClickListener(v -> {
-                if (currentBuildTask != null && !currentBuildTask.canceled && !currentBuildTask.isBuildFinished) {
-                    currentBuildTask.cancelBuild();
-                    return;
-                }
-                if (currentBuildTask != null && !currentBuildTask.isBuildFinished) {
-                    return;
-                }
-                checkLogicBeforeBuild();
-            });
-        }
-    }
-
     /** Открывает экран предпросмотра с генерацией xml в фоне. */
     private void openPreview() {
         if (projectFile == null) return;

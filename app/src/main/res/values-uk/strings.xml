@@ -2075,7 +2075,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="auto_design_activity_034">Створити</string>
     <string name="auto_design_activity_038">Скасувати...</string>
     <string name="auto_design_activity_042">Зупинити</string>
-    <string name="auto_design_activity_043">Запустити</string>
+    <string name="auto_design_activity_043">Зібрати APK</string>
     <string name="auto_design_put_back">Поверніть правильний файл до %1$s і спробуйте зібрати знову.</string>
     <string name="auto_design_try_create">Sketchware Pro може спробувати створити %1$s, якщо ви бажаєте.</string>
     <string name="auto_designer_settings_activity_002">Акордеон</string>
@@ -2582,9 +2582,6 @@ ACTION_VIEW
     <string name="sora_project_search_empty">Нічого не знайдено</string>
     <string name="sora_project_search_results">Знайдено: %1$d</string>
     <string name="sora_xml_editor_toast_max_tabs">Максимум вкладок: %1$d</string>
-    <string name="designer_settings_preview_section">Попередній перегляд</string>
-    <string name="designer_settings_preview_primary_title">Попередній перегляд як основна кнопка</string>
-    <string name="designer_settings_preview_primary_desc">Кнопка Попередній перегляд замість Запустити. Запуск залишиться в меню.</string>
     <string name="preview_activity_title">Попередній перегляд</string>
     <string name="preview_generating">Генерація попереднього перегляду…</string>
 </resources>
