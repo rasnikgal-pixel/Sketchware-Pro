@@ -1566,14 +1566,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 activity.runOnUiThread(() -> {
                     activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     btnRun.setEnabled(true);
-                    boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(activity);
-                    if (previewPrimary) {
-                        btnRun.setIcon(ContextCompat.getDrawable(activity, R.drawable.ic_mtrl_preview));
-                        btnRun.setText(R.string.preview_activity_title);
-                    } else {
-                        btnRun.setIcon(ContextCompat.getDrawable(activity, R.drawable.ic_mtrl_run));
-                        btnRun.setText(Helper.getResString(R.string.auto_design_activity_038));
-                    }
+                    btnRun.setIcon(ContextCompat.getDrawable(activity, R.drawable.ic_mtrl_run));
+                    btnRun.setText(Helper.getResString(R.string.auto_design_activity_038));
                 });
             }
         }
@@ -1637,18 +1631,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             var context = getActivity();
             btnRun.setEnabled(true);
             btnRun.setBackgroundTintList(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorErrorContainer : R.attr.colorPrimary)));
-            // В режиме «Предпросмотр как основная кнопка» не перезаписываем иконку и текст
-            boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(context);
-            if (!previewPrimary) {
-                btnRun.setIcon(ContextCompat.getDrawable(context, isRunning ? R.drawable.ic_mtrl_stop : R.drawable.ic_mtrl_run));
-                btnRun.setText((CharSequence) (isRunning ? Helper.getResString(R.string.auto_design_activity_042) : Helper.getResString(R.string.auto_design_activity_043)));
-            } else if (isRunning) {
-                btnRun.setIcon(ContextCompat.getDrawable(context, R.drawable.ic_mtrl_stop));
-                btnRun.setText(R.string.auto_design_activity_042);
-            } else {
-                btnRun.setIcon(ContextCompat.getDrawable(context, R.drawable.ic_mtrl_preview));
-                btnRun.setText(R.string.preview_activity_title);
-            }
+            btnRun.setIcon(ContextCompat.getDrawable(context, isRunning ? R.drawable.ic_mtrl_stop : R.drawable.ic_mtrl_run));
+            btnRun.setText((CharSequence) (isRunning ? Helper.getResString(R.string.auto_design_activity_042) : Helper.getResString(R.string.auto_design_activity_043)));
             btnRun.setIconTint(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorOnErrorContainer : R.attr.colorSurfaceContainerLowest)));
             btnRun.setTextColor(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorOnErrorContainer : R.attr.colorSurfaceContainerLowest)));
             btnOptions.setEnabled(!isRunning);
