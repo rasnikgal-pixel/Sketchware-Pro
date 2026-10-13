@@ -310,6 +310,18 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
         return 0;
     }
 
+    // ─────────────────────────────────────────────────────────────
+    // Секция 7: Предпросмотр
+    // ─────────────────────────────────────────────────────────────
+    private void buildPreviewSection() {
+        addHeader(Helper.getResString(R.string.designer_settings_preview_section));
+
+        addSwitch(Helper.getResString(R.string.designer_settings_preview_primary_title),
+                Helper.getResString(R.string.designer_settings_preview_primary_desc),
+                DesignerSettingsStore.isPreviewPrimary(this),
+                v -> DesignerSettingsStore.setPreviewPrimary(this, v));
+    }
+
     private int dp(int value) {
         return (int) (value * getResources().getDisplayMetrics().density);
     }
