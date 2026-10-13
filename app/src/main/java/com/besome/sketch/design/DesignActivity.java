@@ -485,50 +485,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
         findViewById(R.id.file_name_container).setOnClickListener(this);
 
         btnRun = findViewById(R.id.btn_run);
-        applyPreviewPrimaryMode();
-    /** Применяет режим «Предпросмотр как основная кнопка». */
-    private void applyPreviewPrimaryMode() {
-        boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(this);
-        if (btnRun == null) return;
-        // Отключаем старые listener'ы, ставим новые
-        btnRun.setOnClickListener(null);
-        if (previewPrimary) {
-            btnRun.setText(R.string.preview_activity_title);
-            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_preview));
-            btnRun.setOnClickListener(v -> openPreview());
-        } else {
-            btnRun.setText(R.string.auto_design_activity_043);
-            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_run));
-            btnRun.setOnClickListener(v -> {
-                if (currentBuildTask != null && !currentBuildTask.canceled && !currentBuildTask.isBuildFinished) {
-                    currentBuildTask.cancelBuild();
-                    return;
-                }
-                if (currentBuildTask != null && !currentBuildTask.isBuildFinished) {
-                    return;
-                }
-                checkLogicBeforeBuild();
-            });
-        }
-    }
-
-    /** Открывает экран предпросмотра. */
-    private void openPreview() {
-        if (projectFile == null) return;
-        android.content.Intent intent = new android.content.Intent(this,
-                pro.sketchware.activities.preview.LayoutPreviewActivity.class);
-        intent.putExtra("sc_id", sc_id);
-        intent.putExtra("title", projectFile.getXmlName());
-        startActivity(intent);
-    }
-
-    /** Открывает экран предпросмотра. */
-    private void openPreview() {
-        android.content.Intent intent = new android.content.Intent(this,
-                pro.sketchware.activities.preview.PreviewActivity.class);
-        intent.putExtra(pro.sketchware.activities.preview.PreviewActivity.EXTRA_SC_ID, sc_id);
-        startActivity(intent);
-    }
 
         btnRun.setOnClickListener(v -> {
             if (currentBuildTask != null && !currentBuildTask.canceled && !currentBuildTask.isBuildFinished) {
@@ -676,6 +632,42 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
     /**
      * Запускает сборку APK. Вынесено из btnRun для переиспользования.
      */
+    /** Применяет режим «Предпросмотр как основная кнопка». */
+    private void applyPreviewPrimaryMode() {
+        boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(this);
+        if (btnRun == null) return;
+        // Отключаем старые listener'ы, ставим новые
+        btnRun.setOnClickListener(null);
+        if (previewPrimary) {
+            btnRun.setText(R.string.preview_activity_title);
+            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_preview));
+            btnRun.setOnClickListener(v -> openPreview());
+        } else {
+            btnRun.setText(R.string.auto_design_activity_043);
+            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_run));
+            btnRun.setOnClickListener(v -> {
+                if (currentBuildTask != null && !currentBuildTask.canceled && !currentBuildTask.isBuildFinished) {
+                    currentBuildTask.cancelBuild();
+                    return;
+                }
+                if (currentBuildTask != null && !currentBuildTask.isBuildFinished) {
+                    return;
+                }
+                checkLogicBeforeBuild();
+            });
+        }
+    }
+
+    /** Открывает экран предпросмотра. */
+    private void openPreview() {
+        if (projectFile == null) return;
+        android.content.Intent intent = new android.content.Intent(this,
+                pro.sketchware.activities.preview.LayoutPreviewActivity.class);
+        intent.putExtra("sc_id", sc_id);
+        intent.putExtra("title", projectFile.getXmlName());
+        startActivity(intent);
+    }
+
     private void startBuildTask() {
         BuildTask buildTask = new BuildTask(this);
         currentBuildTask = buildTask;
@@ -1586,8 +1578,14 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 activity.runOnUiThread(() -> {
                     activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     btnRun.setEnabled(true);
-                    btnRun.setIcon(ContextCompat.getDrawable(activity, R.drawable.ic_mtrl_run));
-                    btnRun.setText(Helper.getResString(R.string.auto_design_activity_038));
+                    boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(activity);
+                    if (previewPrimary) {
+                        btnRun.setIcon(ContextCompat.getDrawable(activity, R.drawable.ic_mtrl_preview));
+                        btnRun.setText(R.string.preview_activity_title);
+                    } else {
+                        btnRun.setIcon(ContextCompat.getDrawable(activity, R.drawable.ic_mtrl_run));
+                        btnRun.setText(Helper.getResString(R.string.auto_design_activity_038));
+                    }
                 });
             }
         }
@@ -1651,10 +1649,20 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             var context = getActivity();
             btnRun.setEnabled(true);
             btnRun.setBackgroundTintList(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorErrorContainer : R.attr.colorPrimary)));
-            btnRun.setIcon(ContextCompat.getDrawable(context, isRunning ? R.drawable.ic_mtrl_stop : R.drawable.ic_mtrl_run));
+            // В режиме «Предпросмотр как основная кнопка» не перезаписываем иконку и текст
+            boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(context);
+            if (!previewPrimary) {
+                btnRun.setIcon(ContextCompat.getDrawable(context, isRunning ? R.drawable.ic_mtrl_stop : R.drawable.ic_mtrl_run));
+                btnRun.setText((CharSequence) (isRunning ? Helper.getResString(R.string.auto_design_activity_042) : Helper.getResString(R.string.auto_design_activity_043)));
+            } else if (isRunning) {
+                btnRun.setIcon(ContextCompat.getDrawable(context, R.drawable.ic_mtrl_stop));
+                btnRun.setText(R.string.auto_design_activity_042);
+            } else {
+                btnRun.setIcon(ContextCompat.getDrawable(context, R.drawable.ic_mtrl_preview));
+                btnRun.setText(R.string.preview_activity_title);
+            }
             btnRun.setIconTint(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorOnErrorContainer : R.attr.colorSurfaceContainerLowest)));
             btnRun.setTextColor(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorOnErrorContainer : R.attr.colorSurfaceContainerLowest)));
-            btnRun.setText((CharSequence) (isRunning ? Helper.getResString(R.string.auto_design_activity_042) : Helper.getResString(R.string.auto_design_activity_043)));
             btnOptions.setEnabled(!isRunning);
             progressContainer.setVisibility(isRunning ? View.VISIBLE : View.GONE);
         }
