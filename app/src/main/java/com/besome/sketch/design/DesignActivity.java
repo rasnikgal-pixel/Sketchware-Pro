@@ -485,6 +485,32 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
         findViewById(R.id.file_name_container).setOnClickListener(this);
 
         btnRun = findViewById(R.id.btn_run);
+        applyPreviewPrimaryMode();
+    /** Применяет режим «Предпросмотр как основная кнопка». */
+    private void applyPreviewPrimaryMode() {
+        boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(this);
+        if (btnRun == null) return;
+        if (previewPrimary) {
+            btnRun.setText(R.string.preview_activity_title);
+            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_search));
+            btnRun.setOnClickListener(v -> openPreview());
+        } else {
+            btnRun.setText(R.string.auto_design_activity_043);
+            btnRun.setOnClickListener(v -> {
+                // старое поведение — оставляем как есть,
+                // оно перекрывается ниже, но пока не важно
+            });
+        }
+    }
+
+    /** Открывает экран предпросмотра. */
+    private void openPreview() {
+        android.content.Intent intent = new android.content.Intent(this,
+                pro.sketchware.activities.preview.PreviewActivity.class);
+        intent.putExtra(pro.sketchware.activities.preview.PreviewActivity.EXTRA_SC_ID, sc_id);
+        startActivity(intent);
+    }
+
         btnRun.setOnClickListener(v -> {
             if (currentBuildTask != null && !currentBuildTask.canceled && !currentBuildTask.isBuildFinished) {
                 currentBuildTask.cancelBuild();

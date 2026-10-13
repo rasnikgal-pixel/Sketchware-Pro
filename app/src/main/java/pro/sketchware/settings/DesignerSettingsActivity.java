@@ -46,6 +46,7 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
         buildWidgetBehaviorSection();
         buildPaletteGesturesSection();
         buildQuickActionsSection();
+        buildPreviewSection();
     }
 
     // ─────────────────────────────────────────────────────────────
