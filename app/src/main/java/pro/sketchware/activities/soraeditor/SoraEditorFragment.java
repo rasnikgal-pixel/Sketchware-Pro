@@ -102,24 +102,32 @@ public class SoraEditorFragment extends Fragment {
         } catch (Throwable ignored) {
         }
 
-        // 3. Язык подсветки — ДО текста (Java/Kotlin), XML — отдельно после setText
+        // 3+4. Язык и тема — ДО setText (TextMate требует свой color scheme)
         final int lang = SoraFileCollector.getLanguageForFile(filePath);
         try {
+            boolean isDark = pro.sketchware.utility.ThemeUtils.isDarkThemeEnabled(requireContext());
             if (lang == 0) {
-                // Java — сразу
+                // Java
                 editor.setEditorLanguage(new io.github.rosemoe.sora.langs.java.JavaLanguage());
+                SrcCodeEditor.selectTheme(editor, isDark ? 3 : 0);
             } else if (lang == 1) {
+                // Kotlin (TextMate)
                 editor.setEditorLanguage(CodeEditorLanguages.loadTextMateLanguage(
                         CodeEditorLanguages.SCOPE_NAME_KOTLIN));
+                editor.setColorScheme(mod.jbk.code.CodeEditorColorSchemes.loadTextMateColorScheme(
+                        isDark ? mod.jbk.code.CodeEditorColorSchemes.THEME_DRACULA
+                               : mod.jbk.code.CodeEditorColorSchemes.THEME_GITHUB));
+            } else if (lang == 2) {
+                // XML (TextMate)
+                editor.setEditorLanguage(CodeEditorLanguages.loadTextMateLanguage(
+                        CodeEditorLanguages.SCOPE_NAME_XML));
+                editor.setColorScheme(mod.jbk.code.CodeEditorColorSchemes.loadTextMateColorScheme(
+                        isDark ? mod.jbk.code.CodeEditorColorSchemes.THEME_DRACULA
+                               : mod.jbk.code.CodeEditorColorSchemes.THEME_GITHUB));
+            } else {
+                // Прочее — тема как раньше
+                SrcCodeEditor.selectTheme(editor, isDark ? 3 : 0);
             }
-            // XML — поставим ниже, если включена настройка
-        } catch (Throwable ignored) {
-        }
-
-        // 4. Тема по приложению
-        try {
-            boolean isDark = pro.sketchware.utility.ThemeUtils.isDarkThemeEnabled(requireContext());
-            SrcCodeEditor.selectTheme(editor, isDark ? 3 : 0);
         } catch (Throwable ignored) {
         }
 
