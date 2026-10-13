@@ -117,8 +117,6 @@ public class SoraEditorFragment extends Fragment {
                 editor.setColorScheme(mod.jbk.code.CodeEditorColorSchemes.loadTextMateColorScheme(
                         isDark ? mod.jbk.code.CodeEditorColorSchemes.THEME_DRACULA
                                : mod.jbk.code.CodeEditorColorSchemes.THEME_GITHUB));
-                editor.setColorScheme(pro.sketchware.utility.EditorUtils.getMaterialStyledScheme(editor));
-                editor.setPinLineNumber(true);
             } else if (lang == 2) {
                 // XML (TextMate)
                 editor.setEditorLanguage(CodeEditorLanguages.loadTextMateLanguage(
@@ -126,8 +124,6 @@ public class SoraEditorFragment extends Fragment {
                 editor.setColorScheme(mod.jbk.code.CodeEditorColorSchemes.loadTextMateColorScheme(
                         isDark ? mod.jbk.code.CodeEditorColorSchemes.THEME_DRACULA
                                : mod.jbk.code.CodeEditorColorSchemes.THEME_GITHUB));
-                editor.setColorScheme(pro.sketchware.utility.EditorUtils.getMaterialStyledScheme(editor));
-                editor.setPinLineNumber(true);
             } else {
                 // Прочее — тема как раньше
                 SrcCodeEditor.selectTheme(editor, isDark ? 3 : 0);
