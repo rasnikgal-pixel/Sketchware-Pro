@@ -50,7 +50,26 @@ public class SketchwareUtil {
     }
 
     public static float getDip(int input) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, input, getContext().getResources().getDisplayMetrics());
+        try {
+            Context ctx = getContext();
+            if (ctx == null) {
+                // fallback: 1dp = 1px
+                return input;
+            }
+            android.content.res.Resources res = ctx.getResources();
+            if (res == null) {
+                return input;
+            }
+            android.util.DisplayMetrics dm = res.getDisplayMetrics();
+            if (dm == null || dm.density <= 0f) {
+                // На Android 16 (SDK 36) density может быть 0 — защита от нулевого layout.
+                return input;
+            }
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, input, dm);
+        } catch (Throwable t) {
+            // Любая ошибка — fallback без краша.
+            return input;
+        }
     }
 
     /**
