@@ -2736,4 +2736,8 @@ ACTION_VIEW
     <string name="sora_project_replace_done">Replaced in files: %1$d</string>
     <string name="sora_project_replace_confirm">Replace in all project files?</string>
     <string name="sora_project_replace_empty">No files changed</string>
+    <string name="common_word_project_settings">Project settings</string>
+    <string name="common_word_project_configuration">Project configuration</string>
+    <string name="common_word_backup_project">Project backup</string>
+    <string name="common_word_pin_project">Pin project</string>
 </resources>

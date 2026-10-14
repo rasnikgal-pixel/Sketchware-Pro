@@ -2746,4 +2746,8 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_project_replace_done">Заменено в файлах: %1$d</string>
     <string name="sora_project_replace_confirm">Заменить во всех файлах проекта?</string>
     <string name="sora_project_replace_empty">Файлы не изменены</string>
+    <string name="common_word_project_settings">Настройки проекта</string>
+    <string name="common_word_project_configuration">Конфигурация проекта</string>
+    <string name="common_word_backup_project">Резервная копия проекта</string>
+    <string name="common_word_pin_project">Закрепить проект</string>
 </resources>
