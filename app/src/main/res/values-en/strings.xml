@@ -2732,4 +2732,8 @@ ACTION_VIEW
     <string name="sora_export_success">File saved</string>
     <string name="sora_export_failed">Failed to save</string>
     <string name="sora_export_title">Save as</string>
+    <string name="sora_project_replace_hint">Replace with (optional)</string>
+    <string name="sora_project_replace_done">Replaced in files: %1$d</string>
+    <string name="sora_project_replace_confirm">Replace in all project files?</string>
+    <string name="sora_project_replace_empty">No files changed</string>
 </resources>

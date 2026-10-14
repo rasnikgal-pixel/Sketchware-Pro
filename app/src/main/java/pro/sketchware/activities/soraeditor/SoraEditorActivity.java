@@ -453,47 +453,61 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
 
     /** Диалог ввода текста для поиска по проекту. */
     private void showProjectSearchDialog() {
-        com.google.android.material.textfield.TextInputLayout til =
-                new com.google.android.material.textfield.TextInputLayout(this);
-        til.setHint(getString(R.string.sora_project_search_hint));
-        til.setEndIconMode(com.google.android.material.textfield.TextInputLayout.END_ICON_CLEAR_TEXT);
-
+        android.widget.LinearLayout box = new android.widget.LinearLayout(this);
+        box.setOrientation(android.widget.LinearLayout.VERTICAL);
+        int pad = (int) (16 * getResources().getDisplayMetrics().density);
+        box.setPadding(pad, pad / 2, pad, 0);
         final com.google.android.material.textfield.TextInputEditText input =
                 new com.google.android.material.textfield.TextInputEditText(this);
         input.setSingleLine(true);
-        til.addView(input, new android.widget.LinearLayout.LayoutParams(
+        input.setHint(R.string.sora_project_search_hint);
+        box.addView(input, new android.widget.LinearLayout.LayoutParams(
                 android.view.ViewGroup.LayoutParams.MATCH_PARENT,
                 android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        int pad = (int) (16 * getResources().getDisplayMetrics().density);
-        android.widget.FrameLayout wrap = new android.widget.FrameLayout(this);
-        wrap.setPadding(pad, pad / 2, pad, 0);
-        wrap.addView(til, new android.widget.FrameLayout.LayoutParams(
+        final com.google.android.material.textfield.TextInputEditText repl =
+                new com.google.android.material.textfield.TextInputEditText(this);
+        repl.setSingleLine(true);
+        repl.setHint(R.string.sora_project_replace_hint);
+        box.addView(repl, new android.widget.LinearLayout.LayoutParams(
                 android.view.ViewGroup.LayoutParams.MATCH_PARENT,
                 android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        SoraEditorSettings settings = new SoraEditorSettings(this);
+        final SoraEditorSettings settings = new SoraEditorSettings(this);
         String last = settings.getLastSearchQuery();
-        if (last != null && !last.isEmpty()) {
+        if (last != null && last.isEmpty() == false) {
             input.setText(last);
             input.setSelection(last.length());
         }
 
         new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.sora_project_search_title)
-                .setView(wrap)
+                .setView(box)
                 .setPositiveButton(R.string.common_word_search, (d, w) -> {
                     String q = input.getText() == null ? "" : input.getText().toString().trim();
-                    if (!q.isEmpty()) {
-                        settings.setLastSearchQuery(q);
+                    String r = repl.getText() == null ? "" : repl.getText().toString();
+                    if (q.isEmpty()) return;
+                    settings.setLastSearchQuery(q);
+                    if (r.isEmpty()) {
                         runProjectSearch(q);
+                    } else {
+                        confirmReplaceInProject(q, r);
                     }
                 })
                 .setNegativeButton(R.string.common_word_cancel, null)
                 .show();
     }
 
-    /** Фоновый поиск по всем файлам проекта. */
+    private void confirmReplaceInProject(String find, String repl) {
+        new MaterialAlertDialogBuilder(this)
+                .setMessage(R.string.sora_project_replace_confirm)
+                .setPositiveButton(R.string.common_word_yes, (d, w) -> {
+                    new Thread(() -> replaceInProject(find, repl)).start();
+                })
+                .setNegativeButton(R.string.common_word_no, null)
+                .show();
+    }
+
     private void runProjectSearch(String query) {
         final String needle = query.toLowerCase(java.util.Locale.ROOT);
         new Thread(() -> {
@@ -736,6 +750,27 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         } catch (Throwable t) {
             android.widget.Toast.makeText(this, R.string.sora_export_failed, android.widget.Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void replaceInProject(String find, String repl) {
+        java.util.List<String> files = collector.collect();
+        int changed = 0;
+        for (String path : files) {
+            try {
+                String src = pro.sketchware.utility.FileUtil.readFile(path);
+                if (src == null) continue;
+                if (src.contains(find) == false) continue;
+                String dst = src.replace(find, repl);
+                pro.sketchware.utility.FileUtil.writeFile(path, dst);
+                changed++;
+            } catch (Throwable ignored) {}
+        }
+        final int n = changed;
+        runOnUiThread(() -> {
+            int msg = n > 0 ? R.string.sora_project_replace_done : R.string.sora_project_replace_empty;
+            String text = n > 0 ? getString(msg, n) : getString(msg);
+            android.widget.Toast.makeText(this, text, android.widget.Toast.LENGTH_LONG).show();
+        });
     }
 
     private void confirmExit() {

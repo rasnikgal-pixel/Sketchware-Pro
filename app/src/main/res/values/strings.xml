@@ -2742,4 +2742,8 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_export_success">Файл сохранён</string>
     <string name="sora_export_failed">Не удалось сохранить</string>
     <string name="sora_export_title">Куда сохранить</string>
+    <string name="sora_project_replace_hint">Заменить на (необязательно)</string>
+    <string name="sora_project_replace_done">Заменено в файлах: %1$d</string>
+    <string name="sora_project_replace_confirm">Заменить во всех файлах проекта?</string>
+    <string name="sora_project_replace_empty">Файлы не изменены</string>
 </resources>

@@ -2678,4 +2678,8 @@ ACTION_VIEW
     <string name="sora_export_success">文件已保存</string>
     <string name="sora_export_failed">保存失败</string>
     <string name="sora_export_title">保存为</string>
+    <string name="sora_project_replace_hint">替换为（可选）</string>
+    <string name="sora_project_replace_done">已替换文件数：%1$d</string>
+    <string name="sora_project_replace_confirm">在所有项目文件中替换？</string>
+    <string name="sora_project_replace_empty">没有文件被修改</string>
 </resources>

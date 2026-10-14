@@ -2678,4 +2678,8 @@ ACTION_VIEW
     <string name="sora_export_success">Файл збережено</string>
     <string name="sora_export_failed">Не вдалося зберегти</string>
     <string name="sora_export_title">Зберегти як</string>
+    <string name="sora_project_replace_hint">Замінити на (необов\'язково)</string>
+    <string name="sora_project_replace_done">Замінено у файлах: %1$d</string>
+    <string name="sora_project_replace_confirm">Замінити в усіх файлах проєкту?</string>
+    <string name="sora_project_replace_empty">Файли не змінено</string>
 </resources>

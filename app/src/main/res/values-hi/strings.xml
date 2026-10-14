@@ -2678,4 +2678,8 @@ ACTION_VIEW
     <string name="sora_export_success">फ़ाइल सहेजी गई</string>
     <string name="sora_export_failed">सहेजने में विफल</string>
     <string name="sora_export_title">इस रूप में सहेजें</string>
+    <string name="sora_project_replace_hint">इससे बदलें (वैकल्पिक)</string>
+    <string name="sora_project_replace_done">फ़ाइलों में बदला गया: %1$d</string>
+    <string name="sora_project_replace_confirm">सभी प्रोजेक्ट फ़ाइलों में बदलें?</string>
+    <string name="sora_project_replace_empty">कोई फ़ाइल नहीं बदली</string>
 </resources>
