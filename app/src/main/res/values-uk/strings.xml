@@ -2618,4 +2618,13 @@ ACTION_VIEW
     <string name="project_restore_in_progress">Відновлюється…</string>
     <string name="project_restore_done">Відновлено</string>
     <string name="project_restore_error">Помилка відновлення: %1$s</string>
+    <string name="tools_import_title">Імпорт проєкту (.swb)</string>
+    <string name="tools_import_info_format">Проєкт: %1$s\nПакет: %2$s\nВерсія: %3$s (%4$s)\nРозмір: %5$s\nДата: %6$s</string>
+    <string name="tools_import_restore_new">Відновити як новий</string>
+    <string name="tools_import_restore_replace">Замінити існуючий</string>
+    <string name="tools_import_replace_warning">Проєкт з ID %1$s вже існує. Замінити його вміст?</string>
+    <string name="tools_import_in_progress">Імпорт…</string>
+    <string name="tools_import_error">Помилка імпорту: %1$s</string>
+    <string name="tools_import_bad_file">Не вдалося прочитати файл резервної копії</string>
+    <string name="tools_import_done">Проєкт імпортовано</string>
 </resources>

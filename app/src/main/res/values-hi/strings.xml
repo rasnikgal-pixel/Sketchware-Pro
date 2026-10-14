@@ -2618,4 +2618,13 @@ ACTION_VIEW
     <string name="project_restore_in_progress">पुनर्स्थापित हो रहा है…</string>
     <string name="project_restore_done">पुनर्स्थापित किया गया</string>
     <string name="project_restore_error">पुनर्स्थापना त्रुटि: %1$s</string>
+    <string name="tools_import_title">प्रोजेक्ट आयात करें (.swb)</string>
+    <string name="tools_import_info_format">प्रोजेक्ट: %1$s\nपैकेज: %2$s\nसंस्करण: %3$s (%4$s)\nआकार: %5$s\nदिनांक: %6$s</string>
+    <string name="tools_import_restore_new">नए के रूप में पुनर्स्थापित करें</string>
+    <string name="tools_import_restore_replace">मौजूदा को बदलें</string>
+    <string name="tools_import_replace_warning">ID %1$s वाला प्रोजेक्ट पहले से मौजूद है। इसकी सामग्री बदलें?</string>
+    <string name="tools_import_in_progress">आयात हो रहा है…</string>
+    <string name="tools_import_error">आयात त्रुटि: %1$s</string>
+    <string name="tools_import_bad_file">बैकअप फ़ाइल पढ़ नहीं सका</string>
+    <string name="tools_import_done">प्रोजेक्ट आयातित</string>
 </resources>

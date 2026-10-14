@@ -2618,4 +2618,13 @@ ACTION_VIEW
     <string name="project_restore_in_progress">正在恢复…</string>
     <string name="project_restore_done">已恢复</string>
     <string name="project_restore_error">恢复错误：%1$s</string>
+    <string name="tools_import_title">导入项目 (.swb)</string>
+    <string name="tools_import_info_format">项目：%1$s\n包名：%2$s\n版本：%3$s (%4$s)\n大小：%5$s\n日期：%6$s</string>
+    <string name="tools_import_restore_new">恢复为新项目</string>
+    <string name="tools_import_restore_replace">替换现有项目</string>
+    <string name="tools_import_replace_warning">ID 为 %1$s 的项目已存在。替换其内容？</string>
+    <string name="tools_import_in_progress">正在导入…</string>
+    <string name="tools_import_error">导入错误：%1$s</string>
+    <string name="tools_import_bad_file">无法读取备份文件</string>
+    <string name="tools_import_done">项目已导入</string>
 </resources>

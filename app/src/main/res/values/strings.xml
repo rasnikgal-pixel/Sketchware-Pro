@@ -2695,4 +2695,13 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="project_restore_in_progress">Восстанавливается…</string>
     <string name="project_restore_done">Восстановлено</string>
     <string name="project_restore_error">Ошибка восстановления: %1$s</string>
+    <string name="tools_import_title">Импорт проекта (.swb)</string>
+    <string name="tools_import_info_format">Проект: %1$s\nПакет: %2$s\nВерсия: %3$s (%4$s)\nРазмер: %5$s\nДата: %6$s</string>
+    <string name="tools_import_restore_new">Восстановить как новый</string>
+    <string name="tools_import_restore_replace">Заменить существующий</string>
+    <string name="tools_import_replace_warning">Проект с ID %1$s уже существует. Заменить его содержимое?</string>
+    <string name="tools_import_in_progress">Импорт…</string>
+    <string name="tools_import_error">Ошибка импорта: %1$s</string>
+    <string name="tools_import_bad_file">Не удалось прочитать файл резервной копии</string>
+    <string name="tools_import_done">Проект импортирован</string>
 </resources>

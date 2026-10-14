@@ -2685,4 +2685,13 @@ ACTION_VIEW
     <string name="project_restore_in_progress">Restoring…</string>
     <string name="project_restore_done">Restored</string>
     <string name="project_restore_error">Restore error: %1$s</string>
+    <string name="tools_import_title">Import project (.swb)</string>
+    <string name="tools_import_info_format">Project: %1$s\nPackage: %2$s\nVersion: %3$s (%4$s)\nSize: %5$s\nDate: %6$s</string>
+    <string name="tools_import_restore_new">Restore as new</string>
+    <string name="tools_import_restore_replace">Replace existing</string>
+    <string name="tools_import_replace_warning">Project with ID %1$s already exists. Replace its contents?</string>
+    <string name="tools_import_in_progress">Importing…</string>
+    <string name="tools_import_error">Import error: %1$s</string>
+    <string name="tools_import_bad_file">Could not read backup file</string>
+    <string name="tools_import_done">Project imported</string>
 </resources>

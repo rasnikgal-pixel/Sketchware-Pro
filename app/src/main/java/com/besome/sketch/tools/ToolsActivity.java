@@ -298,12 +298,169 @@ public class ToolsActivity extends BaseAppCompatActivity {
         startActivity(intent);
     }
 
+    /** Импорт .swb: файловый пикер → превью → восстановление. */
     private void onImportSkproj() {
+        dev.pranav.filepicker.FilePickerOptions options = new dev.pranav.filepicker.FilePickerOptions();
+        options.setMultipleSelection(false);
+        options.setExtensions(new String[]{mod.hey.studios.project.backup.BackupFactory.EXTENSION});
+        options.setTitle(Helper.getResString(R.string.tools_import_title));
+
+        dev.pranav.filepicker.FilePickerCallback callback = new dev.pranav.filepicker.FilePickerCallback() {
+            @Override
+            public void onFilesSelected(@org.jetbrains.annotations.NotNull java.util.List<? extends java.io.File> files) {
+                if (files == null || files.isEmpty()) return;
+                showImportPreviewDialog(files.get(0));
+            }
+        };
+
+        new dev.pranav.filepicker.FilePickerDialogFragment(options, callback)
+                .show(getSupportFragmentManager(), "import_picker");
+    }
+
+    /** Превью .swb с кнопками восстановления. */
+    private void showImportPreviewDialog(final java.io.File swbFile) {
+        java.util.HashMap<String, Object> meta = readSwbMetadata(swbFile);
+        if (meta == null) {
+            android.widget.Toast.makeText(this, R.string.tools_import_bad_file, android.widget.Toast.LENGTH_LONG).show();
+            return;
+        }
+        String name = String.valueOf(meta.get("my_ws_name"));
+        String pkg = String.valueOf(meta.get("my_sc_pkg_name"));
+        String verName = String.valueOf(meta.get("sc_ver_name"));
+        String verCode = String.valueOf(meta.get("sc_ver_code"));
+        String insideScId = String.valueOf(meta.get("sc_id"));
+        if (name == null || "null".equals(name)) name = swbFile.getName();
+        if (pkg == null || "null".equals(pkg)) pkg = "-";
+        if (verName == null || "null".equals(verName)) verName = "-";
+        if (verCode == null || "null".equals(verCode)) verCode = "-";
+
+        String size = formatSize(swbFile.length());
+        String date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault())
+                .format(new java.util.Date(swbFile.lastModified()));
+
+        String message = getString(R.string.tools_import_info_format, name, pkg, verName, verCode, size, date);
+
+        final String finalInsideScId = insideScId;
         new MaterialAlertDialogBuilder(this)
-                .setTitle(Helper.getResString(R.string.auto_tools_activity_013))
-                .setMessage(Helper.getResString(R.string.auto_tools_activity_014))
-                .setPositiveButton("OK", null)
+                .setTitle(R.string.tools_import_title)
+                .setMessage(message)
+                .setPositiveButton(R.string.tools_import_restore_new, (d, w) ->
+                        doImport(swbFile, null))
+                .setNeutralButton(R.string.tools_import_restore_replace, (d, w) -> {
+                    if (finalInsideScId == null || "null".equals(finalInsideScId) || finalInsideScId.isEmpty()) {
+                        android.widget.Toast.makeText(this, R.string.tools_import_bad_file, android.widget.Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    confirmReplace(swbFile, finalInsideScId);
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
                 .show();
+    }
+
+    private void confirmReplace(final java.io.File swbFile, final String scId) {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.tools_import_restore_replace)
+                .setMessage(getString(R.string.tools_import_replace_warning, scId))
+                .setPositiveButton(R.string.tools_import_restore_replace, (d, w) -> doImport(swbFile, scId))
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
+    }
+
+    /** Фоновый импорт. targetScId == null → новый. */
+    private void doImport(final java.io.File swbFile, final String targetScId) {
+        final androidx.appcompat.app.AlertDialog progress = new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.tools_import_title)
+                .setMessage(R.string.tools_import_in_progress)
+                .setCancelable(false)
+                .create();
+        progress.show();
+
+        new Thread(() -> {
+            String err = null;
+            String finalScId = targetScId;
+            try {
+                if (finalScId == null) {
+                    finalScId = mod.hey.studios.project.backup.BackupFactory.getNewScId();
+                } else {
+                    java.io.File ext = android.os.Environment.getExternalStorageDirectory();
+                    java.io.File mysc = new java.io.File(ext, ".sketchware/mysc/list/" + finalScId);
+                    java.io.File data = new java.io.File(ext, ".sketchware/data/" + finalScId);
+                    pro.sketchware.utility.FileUtil.deleteFile(mysc.getAbsolutePath());
+                    pro.sketchware.utility.FileUtil.deleteFile(data.getAbsolutePath());
+                    String[] resDirs = {"fonts", "icons", "images", "sounds"};
+                    for (String sub : resDirs) {
+                        java.io.File r = new java.io.File(ext, ".sketchware/resources/" + sub + "/" + finalScId);
+                        pro.sketchware.utility.FileUtil.deleteFile(r.getAbsolutePath());
+                    }
+                }
+                mod.hey.studios.project.backup.BackupFactory bf =
+                        new mod.hey.studios.project.backup.BackupFactory(finalScId);
+                bf.setBackupLocalLibs(false);
+                bf.restore(swbFile);
+                if (!bf.isRestoreSuccess()) err = bf.getError();
+            } catch (Throwable t) {
+                err = String.valueOf(t.getMessage());
+            }
+            final String finalErr = err;
+            runOnUiThread(() -> {
+                try { progress.dismiss(); } catch (Throwable ignored) {}
+                if (finalErr == null) {
+                    android.widget.Toast.makeText(this, R.string.tools_import_done, android.widget.Toast.LENGTH_SHORT).show();
+                    try {
+                        android.content.Intent i = new android.content.Intent(this,
+                                pro.sketchware.activities.main.activities.MainActivity.class);
+                        i.setFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP | android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        i.putExtra("refresh_projects", true);
+                        startActivity(i);
+                    } catch (Throwable ignored) {}
+                    finish();
+                } else {
+                    android.widget.Toast.makeText(this,
+                            getString(R.string.tools_import_error, finalErr),
+                            android.widget.Toast.LENGTH_LONG).show();
+                }
+            });
+        }, "tools-import-thread").start();
+    }
+
+    /** Читает метаданные .swb — распаковывает zip и читает project/project.json. */
+    private java.util.HashMap<String, Object> readSwbMetadata(java.io.File swbFile) {
+        java.io.File tmpDir = new java.io.File(getCacheDir(), "swb_preview_" + System.currentTimeMillis());
+        try {
+            if (!mod.hey.studios.project.backup.BackupFactory.unzip(swbFile, tmpDir)) {
+                return null;
+            }
+            java.io.File projectFile = new java.io.File(tmpDir, "project");
+            if (!projectFile.exists()) return null;
+
+            byte[] encrypted;
+            try (java.io.RandomAccessFile raf = new java.io.RandomAccessFile(projectFile, "r")) {
+                encrypted = new byte[(int) raf.length()];
+                raf.readFully(encrypted);
+            }
+            javax.crypto.Cipher cipher = javax.crypto.Cipher.getInstance("AES/CBC/PKCS5Padding");
+            byte[] key = "sketchwaresecure".getBytes();
+            cipher.init(javax.crypto.Cipher.DECRYPT_MODE,
+                    new javax.crypto.spec.SecretKeySpec(key, "AES"),
+                    new javax.crypto.spec.IvParameterSpec(key));
+            byte[] decrypted = cipher.doFinal(encrypted);
+            String json = new String(decrypted).trim();
+
+            return new com.google.gson.Gson().fromJson(json, mod.hey.studios.util.Helper.TYPE_MAP);
+        } catch (Throwable t) {
+            pro.sketchware.smartdrop.DebugLogger.get(this)
+                    .d("ToolsImport", "read_swb_error", String.valueOf(t.getMessage()));
+            return null;
+        } finally {
+            try { pro.sketchware.utility.FileUtil.deleteFile(tmpDir.getAbsolutePath()); } catch (Throwable ignored) {}
+        }
+    }
+
+    /** Форматирует размер файла. */
+    private String formatSize(long bytes) {
+        if (bytes < 1024) return bytes + " B";
+        if (bytes < 1024 * 1024) return String.format(java.util.Locale.ROOT, "%.1f KB", bytes / 1024.0);
+        return String.format(java.util.Locale.ROOT, "%.2f MB", bytes / (1024.0 * 1024.0));
     }
 
     /** Модель пункта. */
