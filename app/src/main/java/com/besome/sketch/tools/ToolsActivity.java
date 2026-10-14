@@ -293,11 +293,9 @@ public class ToolsActivity extends BaseAppCompatActivity {
     }
 
     private void onBackups() {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(Helper.getResString(R.string.auto_tools_activity_011))
-                .setMessage(Helper.getResString(R.string.auto_tools_activity_012))
-                .setPositiveButton("OK", null)
-                .show();
+        android.content.Intent intent = new android.content.Intent(this,
+                pro.sketchware.activities.backuplist.BackupListActivity.class);
+        startActivity(intent);
     }
 
     private void onImportSkproj() {

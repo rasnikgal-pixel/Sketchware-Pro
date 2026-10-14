@@ -292,6 +292,7 @@
             android:theme="@style/Theme.SketchwarePro.ProjectPreview" />
 
         <activity android:name="pro.sketchware.activities.settings.SettingsActivity" />
+        <activity android:name="pro.sketchware.activities.backuplist.BackupListActivity" />
         <activity
             android:name="pro.sketchware.templates.TemplateGalleryActivity"
             android:exported="false"

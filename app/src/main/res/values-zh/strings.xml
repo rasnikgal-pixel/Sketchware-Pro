@@ -2595,4 +2595,19 @@ ACTION_VIEW
     <string name="tools_export_success">已导出：
 %1$s</string>
     <string name="tools_export_error">导出错误：%1$s</string>
+    <string name="backup_list_title">备份</string>
+    <string name="backup_list_empty">没有备份</string>
+    <string name="backup_list_action_restore">恢复</string>
+    <string name="backup_list_action_share">分享</string>
+    <string name="backup_list_action_rename">重命名</string>
+    <string name="backup_list_action_delete">删除</string>
+    <string name="backup_list_delete_confirm">删除备份？</string>
+    <string name="backup_list_deleted">备份已删除</string>
+    <string name="backup_list_restore_confirm">恢复为新项目？</string>
+    <string name="backup_list_restore_in_progress">正在恢复…</string>
+    <string name="backup_list_restore_success">项目已恢复</string>
+    <string name="backup_list_restore_error">恢复错误：%1$s</string>
+    <string name="backup_list_rename_title">新文件名</string>
+    <string name="backup_list_open_folder">打开文件夹</string>
+    <string name="backup_list_refresh">刷新</string>
 </resources>

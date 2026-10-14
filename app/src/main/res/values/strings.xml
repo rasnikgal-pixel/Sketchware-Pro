@@ -2672,4 +2672,19 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="tools_export_success">Экспортировано:
 %1$s</string>
     <string name="tools_export_error">Ошибка экспорта: %1$s</string>
+    <string name="backup_list_title">Резервные копии</string>
+    <string name="backup_list_empty">Резервных копий нет</string>
+    <string name="backup_list_action_restore">Восстановить</string>
+    <string name="backup_list_action_share">Поделиться</string>
+    <string name="backup_list_action_rename">Переименовать</string>
+    <string name="backup_list_action_delete">Удалить</string>
+    <string name="backup_list_delete_confirm">Удалить резервную копию?</string>
+    <string name="backup_list_deleted">Резервная копия удалена</string>
+    <string name="backup_list_restore_confirm">Восстановить как новый проект?</string>
+    <string name="backup_list_restore_in_progress">Восстанавливается…</string>
+    <string name="backup_list_restore_success">Проект восстановлен</string>
+    <string name="backup_list_restore_error">Ошибка восстановления: %1$s</string>
+    <string name="backup_list_rename_title">Новое имя файла</string>
+    <string name="backup_list_open_folder">Открыть папку</string>
+    <string name="backup_list_refresh">Обновить</string>
 </resources>

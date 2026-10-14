@@ -2662,4 +2662,19 @@ ACTION_VIEW
     <string name="tools_export_success">Exported:
 %1$s</string>
     <string name="tools_export_error">Export error: %1$s</string>
+    <string name="backup_list_title">Backups</string>
+    <string name="backup_list_empty">No backups</string>
+    <string name="backup_list_action_restore">Restore</string>
+    <string name="backup_list_action_share">Share</string>
+    <string name="backup_list_action_rename">Rename</string>
+    <string name="backup_list_action_delete">Delete</string>
+    <string name="backup_list_delete_confirm">Delete backup?</string>
+    <string name="backup_list_deleted">Backup deleted</string>
+    <string name="backup_list_restore_confirm">Restore as new project?</string>
+    <string name="backup_list_restore_in_progress">Restoring…</string>
+    <string name="backup_list_restore_success">Project restored</string>
+    <string name="backup_list_restore_error">Restore error: %1$s</string>
+    <string name="backup_list_rename_title">New file name</string>
+    <string name="backup_list_open_folder">Open folder</string>
+    <string name="backup_list_refresh">Refresh</string>
 </resources>

@@ -2595,4 +2595,19 @@ ACTION_VIEW
     <string name="tools_export_success">Експортовано:
 %1$s</string>
     <string name="tools_export_error">Помилка експорту: %1$s</string>
+    <string name="backup_list_title">Резервні копії</string>
+    <string name="backup_list_empty">Резервних копій немає</string>
+    <string name="backup_list_action_restore">Відновити</string>
+    <string name="backup_list_action_share">Поділитися</string>
+    <string name="backup_list_action_rename">Перейменувати</string>
+    <string name="backup_list_action_delete">Видалити</string>
+    <string name="backup_list_delete_confirm">Видалити резервну копию?</string>
+    <string name="backup_list_deleted">Резервну копію видалено</string>
+    <string name="backup_list_restore_confirm">Відновити як новий проєкт?</string>
+    <string name="backup_list_restore_in_progress">Відновлюється…</string>
+    <string name="backup_list_restore_success">Проєкт відновлено</string>
+    <string name="backup_list_restore_error">Помилка відновлення: %1$s</string>
+    <string name="backup_list_rename_title">Нова назва файлу</string>
+    <string name="backup_list_open_folder">Відкрити папку</string>
+    <string name="backup_list_refresh">Оновити</string>
 </resources>

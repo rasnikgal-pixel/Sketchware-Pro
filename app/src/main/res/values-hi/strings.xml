@@ -2595,4 +2595,19 @@ ACTION_VIEW
     <string name="tools_export_success">निर्यात किया गया:
 %1$s</string>
     <string name="tools_export_error">निर्यात त्रुटि: %1$s</string>
+    <string name="backup_list_title">बैकअप</string>
+    <string name="backup_list_empty">कोई बैकअप नहीं</string>
+    <string name="backup_list_action_restore">पुनर्स्थापित करें</string>
+    <string name="backup_list_action_share">साझा करें</string>
+    <string name="backup_list_action_rename">नाम बदलें</string>
+    <string name="backup_list_action_delete">हटाएं</string>
+    <string name="backup_list_delete_confirm">बैकअप हटाएं?</string>
+    <string name="backup_list_deleted">बैकअप हटा दिया गया</string>
+    <string name="backup_list_restore_confirm">नए प्रोजेक्ट के रूप में पुनर्स्थापित करें?</string>
+    <string name="backup_list_restore_in_progress">पुनर्स्थापित हो रहा है…</string>
+    <string name="backup_list_restore_success">प्रोजेक्ट बहाल</string>
+    <string name="backup_list_restore_error">पुनर्स्थापना त्रुटि: %1$s</string>
+    <string name="backup_list_rename_title">नया फ़ाइल नाम</string>
+    <string name="backup_list_open_folder">फ़ोल्डर खोलें</string>
+    <string name="backup_list_refresh">रीफ़्रेश करें</string>
 </resources>
