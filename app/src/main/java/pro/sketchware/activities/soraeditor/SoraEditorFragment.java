@@ -148,7 +148,7 @@ public class SoraEditorFragment extends Fragment {
         SoraEditorSettings st = new SoraEditorSettings(requireContext());
         foldEnabled = st.isFoldEnabled();
         bracketHighlight = st.isBracketHighlightEnabled();
-        try { editor.setFoldEnabled(foldEnabled); } catch (Throwable ignored) {}
+        applyFold(foldEnabled);
         try { editor.setHighlightBracketPair(bracketHighlight); } catch (Throwable ignored) {}
 
         // 7. Курсор в начало
@@ -266,7 +266,7 @@ public class SoraEditorFragment extends Fragment {
     public void setFoldEnabled(boolean enabled) {
         this.foldEnabled = enabled;
         if (editor != null) {
-            try { editor.setFoldEnabled(enabled); } catch (Throwable ignored) {}
+            applyFold(enabled);
         }
     }
 
@@ -305,6 +305,15 @@ public class SoraEditorFragment extends Fragment {
                 onContentChanged();
             } catch (Throwable ignored) {}
         });
+    }
+
+    /** Fold в SORA 0.23.6 отсутствует; вызываем через рефлексию, если появится. */
+    private void applyFold(boolean enabled) {
+        if (editor == null) return;
+        try {
+            java.lang.reflect.Method m = editor.getClass().getMethod("setFoldEnabled", boolean.class);
+            m.invoke(editor, enabled);
+        } catch (Throwable ignored) {}
     }
 
     private static int countChar(String s, char c) {
