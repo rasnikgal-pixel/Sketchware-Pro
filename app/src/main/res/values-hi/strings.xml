@@ -2587,4 +2587,12 @@ ACTION_VIEW
     <string name="designer_settings_preview_section">पूर्वावलोकन</string>
     <string name="designer_settings_preview_primary_title">पूर्वावलोकन को मुख्य बटन बनाएं</string>
     <string name="designer_settings_preview_primary_desc">बिल्ड APK के बजाय पूर्वावलोकन बटन। बिल्ड मेनू में रहेगा।</string>
+    <string name="tools_export_title">प्रोजेक्ट निर्यात करें (.swb)</string>
+    <string name="tools_export_option_libs">स्थानीय लाइब्रेरी शामिल करें</string>
+    <string name="tools_export_option_blocks">कस्टम ब्लॉक शामिल करें</string>
+    <string name="tools_export_start">निर्यात करें</string>
+    <string name="tools_export_in_progress">निर्यात हो रहा है…</string>
+    <string name="tools_export_success">निर्यात किया गया:
+%1$s</string>
+    <string name="tools_export_error">निर्यात त्रुटि: %1$s</string>
 </resources>

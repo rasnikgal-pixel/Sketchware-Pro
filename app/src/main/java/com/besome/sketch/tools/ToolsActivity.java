@@ -201,12 +201,95 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 .show();
     }
 
+    /** Экспорт проекта в .swb через BackupFactory. */
     private void onExportSkproj() {
+        showProjectPickerDialog((scId, projectName) -> showExportOptionsDialog(scId, projectName));
+    }
+
+    /** Диалог с чекбоксами: local libs + custom blocks. */
+    private void showExportOptionsDialog(final String scId, final String projectName) {
+        android.widget.LinearLayout box = new android.widget.LinearLayout(this);
+        box.setOrientation(android.widget.LinearLayout.VERTICAL);
+        int pad = dp(16);
+        box.setPadding(pad, pad, pad, 0);
+
+        final android.widget.CheckBox cbLibs = new android.widget.CheckBox(this);
+        cbLibs.setText(R.string.tools_export_option_libs);
+        cbLibs.setChecked(true);
+        box.addView(cbLibs);
+
+        final android.widget.CheckBox cbBlocks = new android.widget.CheckBox(this);
+        cbBlocks.setText(R.string.tools_export_option_blocks);
+        cbBlocks.setChecked(true);
+        box.addView(cbBlocks);
+
         new MaterialAlertDialogBuilder(this)
-                .setTitle(Helper.getResString(R.string.auto_tools_activity_009))
-                .setMessage(Helper.getResString(R.string.auto_tools_activity_010))
-                .setPositiveButton("OK", null)
+                .setTitle(R.string.tools_export_title)
+                .setView(box)
+                .setPositiveButton(R.string.tools_export_start, (d, w) ->
+                        doExport(scId, projectName, cbLibs.isChecked(), cbBlocks.isChecked()))
+                .setNegativeButton(R.string.common_word_cancel, null)
                 .show();
+    }
+
+    /** Фоновый экспорт и копирование в Sketchware/Exports. */
+    private void doExport(final String scId, final String projectName, final boolean libs, final boolean blocks) {
+        final android.app.AlertDialog progress = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.tools_export_title)
+                .setMessage(R.string.tools_export_in_progress)
+                .setCancelable(false)
+                .create();
+        progress.show();
+
+        new Thread(() -> {
+            String errorMsg = null;
+            String outPath = null;
+            try {
+                mod.hey.studios.project.backup.BackupFactory bf =
+                        new mod.hey.studios.project.backup.BackupFactory(scId);
+                bf.setBackupLocalLibs(libs);
+                bf.setBackupCustomBlocks(blocks);
+                bf.backup(getApplicationContext(), projectName);
+
+                java.io.File out = bf.getOutFile();
+                if (out == null || !out.exists()) {
+                    errorMsg = bf.getError();
+                    if (errorMsg == null || errorMsg.isEmpty()) errorMsg = "backup() returned null";
+                } else {
+                    // Копируем в Sketchware/Exports
+                    java.io.File exportsDir = new java.io.File(
+                            android.os.Environment.getExternalStorageDirectory(),
+                            "Sketchware/Exports");
+                    if (!exportsDir.exists() && !exportsDir.mkdirs()) {
+                        throw new java.io.IOException("Cannot create " + exportsDir.getAbsolutePath());
+                    }
+                    String safe = projectName.replaceAll("[^a-zA-Z0-9_\u0400-\u04FF\u4E00-\u9FFF-]", "_");
+                    String filename = safe + "_" + System.currentTimeMillis() + "." + mod.hey.studios.project.backup.BackupFactory.EXTENSION;
+                    java.io.File dest = new java.io.File(exportsDir, filename);
+                    pro.sketchware.utility.FileUtil.copyFile(out.getAbsolutePath(), dest.getAbsolutePath());
+                    outPath = dest.getAbsolutePath();
+                }
+            } catch (Throwable t) {
+                errorMsg = String.valueOf(t.getMessage());
+                pro.sketchware.smartdrop.DebugLogger.get(this)
+                        .d("ToolsExport", "error", String.valueOf(t.getMessage()));
+            }
+
+            final String err = errorMsg;
+            final String path = outPath;
+            runOnUiThread(() -> {
+                try { progress.dismiss(); } catch (Throwable ignored) {}
+                if (path != null) {
+                    android.widget.Toast.makeText(this,
+                            getString(R.string.tools_export_success, path),
+                            android.widget.Toast.LENGTH_LONG).show();
+                } else {
+                    android.widget.Toast.makeText(this,
+                            getString(R.string.tools_export_error, err == null ? "unknown" : err),
+                            android.widget.Toast.LENGTH_LONG).show();
+                }
+            });
+        }, "tools-export-thread").start();
     }
 
     private void onBackups() {

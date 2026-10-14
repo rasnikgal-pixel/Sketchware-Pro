@@ -2587,4 +2587,12 @@ ACTION_VIEW
     <string name="designer_settings_preview_section">Попередній перегляд</string>
     <string name="designer_settings_preview_primary_title">Попередній перегляд як основна кнопка</string>
     <string name="designer_settings_preview_primary_desc">Кнопка Попередній перегляд замість Зібрати APK. Збірка залишиться в меню.</string>
+    <string name="tools_export_title">Експорт проєкту (.swb)</string>
+    <string name="tools_export_option_libs">Включити локальні бібліотеки</string>
+    <string name="tools_export_option_blocks">Включити користувацькі блоки</string>
+    <string name="tools_export_start">Експортувати</string>
+    <string name="tools_export_in_progress">Експортується…</string>
+    <string name="tools_export_success">Експортовано:
+%1$s</string>
+    <string name="tools_export_error">Помилка експорту: %1$s</string>
 </resources>

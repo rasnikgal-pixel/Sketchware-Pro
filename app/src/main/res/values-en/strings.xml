@@ -2654,4 +2654,12 @@ ACTION_VIEW
     <string name="designer_settings_preview_section">Preview</string>
     <string name="designer_settings_preview_primary_title">Preview as primary button</string>
     <string name="designer_settings_preview_primary_desc">Preview button instead of Build APK. Build stays in the menu.</string>
+    <string name="tools_export_title">Export project (.swb)</string>
+    <string name="tools_export_option_libs">Include local libraries</string>
+    <string name="tools_export_option_blocks">Include custom blocks</string>
+    <string name="tools_export_start">Export</string>
+    <string name="tools_export_in_progress">Exporting…</string>
+    <string name="tools_export_success">Exported:
+%1$s</string>
+    <string name="tools_export_error">Export error: %1$s</string>
 </resources>

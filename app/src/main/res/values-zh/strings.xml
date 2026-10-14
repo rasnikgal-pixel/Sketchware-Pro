@@ -2587,4 +2587,12 @@ ACTION_VIEW
     <string name="designer_settings_preview_section">预览</string>
     <string name="designer_settings_preview_primary_title">将预览设为主按钮</string>
     <string name="designer_settings_preview_primary_desc">使用预览按钮代替构建 APK。构建保留在菜单中。</string>
+    <string name="tools_export_title">导出项目 (.swb)</string>
+    <string name="tools_export_option_libs">包含本地库</string>
+    <string name="tools_export_option_blocks">包含自定义块</string>
+    <string name="tools_export_start">导出</string>
+    <string name="tools_export_in_progress">正在导出…</string>
+    <string name="tools_export_success">已导出：
+%1$s</string>
+    <string name="tools_export_error">导出错误：%1$s</string>
 </resources>

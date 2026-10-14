@@ -2664,4 +2664,12 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="designer_settings_preview_section">Предпросмотр</string>
     <string name="designer_settings_preview_primary_title">Предпросмотр как основная кнопка</string>
     <string name="designer_settings_preview_primary_desc">Кнопка Предпросмотр вместо Собрать APK. Сборка останется в меню.</string>
+    <string name="tools_export_title">Экспорт проекта (.swb)</string>
+    <string name="tools_export_option_libs">Включить локальные библиотеки</string>
+    <string name="tools_export_option_blocks">Включить пользовательские блоки</string>
+    <string name="tools_export_start">Экспортировать</string>
+    <string name="tools_export_in_progress">Экспортируется…</string>
+    <string name="tools_export_success">Экспортировано:
+%1$s</string>
+    <string name="tools_export_error">Ошибка экспорта: %1$s</string>
 </resources>
