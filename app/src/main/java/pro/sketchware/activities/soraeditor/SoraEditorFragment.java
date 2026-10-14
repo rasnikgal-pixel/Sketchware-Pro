@@ -284,21 +284,20 @@ public class SoraEditorFragment extends Fragment {
         if (editor == null) return;
         editor.post(() -> {
             try {
+                char LF = (char) 10;
                 String src = editor.getText().toString();
-                String[] lines = src.split("\n", -1);
+                String[] lines = src.split(String.valueOf(LF), -1);
                 StringBuilder out = new StringBuilder(src.length() + 64);
                 int indent = 0;
                 for (String raw : lines) {
                     String line = raw.trim();
-                    if (line.isEmpty()) { out.append("
-"); continue; }
+                    if (line.isEmpty()) { out.append(LF); continue; }
                     int open = countChar(line, (char) 123);
                     int close = countChar(line, (char) 125);
                     int lineIndent = indent - (line.startsWith(String.valueOf((char) 125)) ? 1 : 0);
                     if (lineIndent < 0) lineIndent = 0;
                     for (int k = 0; k < lineIndent; k++) out.append("    ");
-                    out.append(line).append("
-");
+                    out.append(line).append(LF);
                     indent += open - close;
                     if (indent < 0) indent = 0;
                 }
