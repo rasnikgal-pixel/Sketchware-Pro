@@ -172,11 +172,17 @@ public class BackupListActivity extends BaseAppCompatActivity {
             runOnUiThread(() -> {
                 try { progress.dismiss(); } catch (Throwable ignored) {}
                 if (err == null) {
-                    // Пометить главный список на обновление
-                    try {
-                        pro.sketchware.activities.main.fragments.projects.ProjectsFragment.markPendingRefresh();
-                    } catch (Throwable ignored) {}
                     Toast.makeText(this, R.string.backup_list_restore_success, Toast.LENGTH_SHORT).show();
+                    // Закрыть все активити над MainActivity и вернуться с обновлением списка
+                    try {
+                        android.content.Intent i = new android.content.Intent(this,
+                                pro.sketchware.activities.main.activities.MainActivity.class);
+                        i.setFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                | android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        i.putExtra("refresh_projects", true);
+                        startActivity(i);
+                    } catch (Throwable ignored) {}
+                    finish();
                 } else {
                     Toast.makeText(this, getString(R.string.backup_list_restore_error, err), Toast.LENGTH_LONG).show();
                 }

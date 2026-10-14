@@ -312,6 +312,14 @@ public class MainActivity extends BasePermissionAppCompatActivity {
     }
 
     @Override
+    protected void onNewIntent(android.content.Intent intent) {
+        super.onNewIntent(intent);
+        if (intent != null && intent.getBooleanExtra("refresh_projects", false)) {
+            n();
+        }
+    }
+
+    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("selected_tab_id", currentNavItemId);
