@@ -2719,4 +2719,20 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="send_request_empty_name">Введите имя</string>
     <string name="send_request_empty_text">Введите текст запроса</string>
     <string name="send_request_no_app">Не найдено приложение для отправки почты</string>
+    <string name="sora_xml_editor_action_fold">Свернуть блоки</string>
+    <string name="sora_xml_editor_action_bracket">Подсветка скобок</string>
+    <string name="sora_find_replace_title">Найти и заменить</string>
+    <string name="sora_find_field">Найти</string>
+    <string name="sora_replace_field">Заменить</string>
+    <string name="sora_find_next">Далее</string>
+    <string name="sora_replace_one">Заменить</string>
+    <string name="sora_replace_all">Заменить всё</string>
+    <string name="sora_replace_all_confirm">Заменить во всём файле? Действие нельзя отменить.</string>
+    <string name="sora_not_found">Не найдено</string>
+    <string name="sora_format_done">Форматирование выполнено</string>
+    <string name="sora_preview_unavailable">Предпросмотр доступен только для layout-XML</string>
+    <string name="sora_fold_on">Свернуть блоки: включено</string>
+    <string name="sora_fold_off">Свернуть блоки: выключено</string>
+    <string name="sora_bracket_on">Подсветка скобок: включена</string>
+    <string name="sora_bracket_off">Подсветка скобок: выключена</string>
 </resources>

@@ -294,6 +294,37 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
                 }
             }
             return true;
+        } else if (id == R.id.action_fold) {
+            SoraEditorFragment f = currentFragment();
+            if (f != null) {
+                boolean v = f.isFoldEnabled() == false;
+                f.setFoldEnabled(v);
+                new SoraEditorSettings(this).setFoldEnabled(v);
+                android.widget.Toast.makeText(this, v ? R.string.sora_fold_on : R.string.sora_fold_off, android.widget.Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        } else if (id == R.id.action_bracket) {
+            SoraEditorFragment f = currentFragment();
+            if (f != null) {
+                boolean v = f.isBracketHighlightEnabled() == false;
+                f.setHighlightBracketPair(v);
+                new SoraEditorSettings(this).setBracketHighlightEnabled(v);
+                android.widget.Toast.makeText(this, v ? R.string.sora_bracket_on : R.string.sora_bracket_off, android.widget.Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        } else if (id == R.id.action_format) {
+            SoraEditorFragment f = currentFragment();
+            if (f != null) {
+                f.formatCode();
+                android.widget.Toast.makeText(this, R.string.sora_format_done, android.widget.Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        } else if (id == R.id.action_preview) {
+            openPreview();
+            return true;
+        } else if (id == R.id.action_find_replace) {
+            showFindReplaceDialog();
+            return true;
         } else if (id == R.id.action_theme) {
             showThemeDialog();
             return true;
@@ -545,6 +576,96 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         String tag = "f" + path.hashCode();
         Fragment f = getSupportFragmentManager().findFragmentByTag(tag);
         return (f instanceof SoraEditorFragment) ? (SoraEditorFragment) f : null;
+    }
+
+    private void openPreview() {
+        SoraEditorFragment f = currentFragment();
+        if (f == null) return;
+        String path = f.getFilePath();
+        if (path == null || path.toLowerCase().endsWith(".xml") == false) {
+            android.widget.Toast.makeText(this, R.string.sora_preview_unavailable, android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            android.content.Intent i = new android.content.Intent(this,
+                    pro.sketchware.activities.preview.LayoutPreviewActivity.class);
+            i.putExtra("xml_path", path);
+            i.putExtra("sc_id", scId);
+            startActivity(i);
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, R.string.sora_preview_unavailable, android.widget.Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showFindReplaceDialog() {
+        SoraEditorFragment f = currentFragment();
+        if (f == null || f.getView() == null) return;
+        android.view.View v = f.getView().findViewById(R.id.editor);
+        if (v instanceof io.github.rosemoe.sora.widget.CodeEditor == false) return;
+        io.github.rosemoe.sora.widget.CodeEditor ce = (io.github.rosemoe.sora.widget.CodeEditor) v;
+        android.widget.LinearLayout ll = new android.widget.LinearLayout(this);
+        ll.setOrientation(android.widget.LinearLayout.VERTICAL);
+        int pad = (int) (16 * getResources().getDisplayMetrics().density);
+        ll.setPadding(pad, pad, pad, pad);
+        final android.widget.EditText findEt = new android.widget.EditText(this);
+        findEt.setHint(R.string.sora_find_field);
+        final android.widget.EditText replEt = new android.widget.EditText(this);
+        replEt.setHint(R.string.sora_replace_field);
+        ll.addView(findEt);
+        ll.addView(replEt);
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.sora_find_replace_title)
+                .setView(ll)
+                .setPositiveButton(R.string.sora_replace_one, (d, w) -> {
+                    String q = findEt.getText().toString();
+                    String r = replEt.getText().toString();
+                    if (q.isEmpty()) return;
+                    boolean ok = replaceFirstInEditor(ce, q, r);
+                    android.widget.Toast.makeText(this, ok ? R.string.sora_replace_one : R.string.sora_not_found, android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNeutralButton(R.string.sora_replace_all, (d, w) -> {
+                    String q = findEt.getText().toString();
+                    String r = replEt.getText().toString();
+                    if (q.isEmpty()) return;
+                    new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                            .setMessage(R.string.sora_replace_all_confirm)
+                            .setPositiveButton(R.string.sora_replace_all, (d2, w2) -> {
+                                int n = replaceAllInEditor(ce, q, r);
+                                android.widget.Toast.makeText(this, n > 0 ? R.string.sora_format_done : R.string.sora_not_found, android.widget.Toast.LENGTH_SHORT).show();
+                            })
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .show();
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    private boolean replaceFirstInEditor(io.github.rosemoe.sora.widget.CodeEditor ce, String q, String r) {
+        try {
+            String src = ce.getText().toString();
+            int idx = src.indexOf(q);
+            if (idx < 0) return false;
+            String dst = src.substring(0, idx) + r + src.substring(idx + q.length());
+            ce.setText(dst);
+            return true;
+        } catch (Throwable t) { return false; }
+    }
+
+    private int replaceAllInEditor(io.github.rosemoe.sora.widget.CodeEditor ce, String q, String r) {
+        try {
+            String src = ce.getText().toString();
+            int n = 0, from = 0;
+            StringBuilder out = new StringBuilder();
+            while (true) {
+                int idx = src.indexOf(q, from);
+                if (idx < 0) { out.append(src, from, src.length()); break; }
+                out.append(src, from, idx).append(r);
+                from = idx + q.length();
+                n++;
+            }
+            if (n > 0) ce.setText(out.toString());
+            return n;
+        } catch (Throwable t) { return 0; }
     }
 
     private void confirmExit() {

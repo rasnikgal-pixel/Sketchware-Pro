@@ -36,6 +36,16 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_fold"
+        android:title="@string/sora_xml_editor_action_fold"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_bracket"
+        android:title="@string/sora_xml_editor_action_bracket"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_find_replace"
         android:title="@string/sora_xml_editor_action_find"
         app:showAsAction="never" />

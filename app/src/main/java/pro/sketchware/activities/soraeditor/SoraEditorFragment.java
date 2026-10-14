@@ -30,6 +30,8 @@ public class SoraEditorFragment extends Fragment {
     private String initialContent = "";
     private OnModifiedListener modifiedListener;
     private int pendingLine = -1;
+    private boolean foldEnabled = true;
+    private boolean bracketHighlight = true;
 
     public interface OnModifiedListener {
         void onModifiedChanged(String filePath, boolean modified);
@@ -142,6 +144,13 @@ public class SoraEditorFragment extends Fragment {
         // 6. Ставим текст
         editor.setText(initialContent);
 
+        // 6c. Fold и подсветка скобок
+        SoraEditorSettings st = new SoraEditorSettings(requireContext());
+        foldEnabled = st.isFoldEnabled();
+        bracketHighlight = st.isBracketHighlightEnabled();
+        try { editor.setFoldEnabled(foldEnabled); } catch (Throwable ignored) {}
+        try { editor.setHighlightBracketPair(bracketHighlight); } catch (Throwable ignored) {}
+
         // 7. Курсор в начало
         try {
             editor.setSelection(0, 0);
@@ -252,6 +261,57 @@ public class SoraEditorFragment extends Fragment {
         if (editor != null) {
             try { editor.redo(); } catch (Throwable ignored) {}
         }
+    }
+
+    public void setFoldEnabled(boolean enabled) {
+        this.foldEnabled = enabled;
+        if (editor != null) {
+            try { editor.setFoldEnabled(enabled); } catch (Throwable ignored) {}
+        }
+    }
+
+    public void setHighlightBracketPair(boolean enabled) {
+        this.bracketHighlight = enabled;
+        if (editor != null) {
+            try { editor.setHighlightBracketPair(enabled); } catch (Throwable ignored) {}
+        }
+    }
+
+    public boolean isFoldEnabled() { return foldEnabled; }
+    public boolean isBracketHighlightEnabled() { return bracketHighlight; }
+
+    public void formatCode() {
+        if (editor == null) return;
+        editor.post(() -> {
+            try {
+                String src = editor.getText().toString();
+                String[] lines = src.split("\n", -1);
+                StringBuilder out = new StringBuilder(src.length() + 64);
+                int indent = 0;
+                for (String raw : lines) {
+                    String line = raw.trim();
+                    if (line.isEmpty()) { out.append("
+"); continue; }
+                    int open = countChar(line, (char) 123);
+                    int close = countChar(line, (char) 125);
+                    int lineIndent = indent - (line.startsWith(String.valueOf((char) 125)) ? 1 : 0);
+                    if (lineIndent < 0) lineIndent = 0;
+                    for (int k = 0; k < lineIndent; k++) out.append("    ");
+                    out.append(line).append("
+");
+                    indent += open - close;
+                    if (indent < 0) indent = 0;
+                }
+                editor.setText(out.toString());
+                onContentChanged();
+            } catch (Throwable ignored) {}
+        });
+    }
+
+    private static int countChar(String s, char c) {
+        int n = 0;
+        for (int i = 0; i < s.length(); i++) if (s.charAt(i) == c) n++;
+        return n;
     }
 
     @Override

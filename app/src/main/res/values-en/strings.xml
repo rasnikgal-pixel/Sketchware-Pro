@@ -2709,4 +2709,20 @@ ACTION_VIEW
     <string name="send_request_empty_name">Enter your name</string>
     <string name="send_request_empty_text">Enter request text</string>
     <string name="send_request_no_app">No email app found</string>
+    <string name="sora_xml_editor_action_fold">Fold blocks</string>
+    <string name="sora_xml_editor_action_bracket">Bracket highlight</string>
+    <string name="sora_find_replace_title">Find and replace</string>
+    <string name="sora_find_field">Find</string>
+    <string name="sora_replace_field">Replace</string>
+    <string name="sora_find_next">Next</string>
+    <string name="sora_replace_one">Replace</string>
+    <string name="sora_replace_all">Replace all</string>
+    <string name="sora_replace_all_confirm">Replace in the whole file? This cannot be undone.</string>
+    <string name="sora_not_found">Not found</string>
+    <string name="sora_format_done">Formatting done</string>
+    <string name="sora_preview_unavailable">Preview is only available for layout XML</string>
+    <string name="sora_fold_on">Fold blocks: on</string>
+    <string name="sora_fold_off">Fold blocks: off</string>
+    <string name="sora_bracket_on">Bracket highlight: on</string>
+    <string name="sora_bracket_off">Bracket highlight: off</string>
 </resources>
