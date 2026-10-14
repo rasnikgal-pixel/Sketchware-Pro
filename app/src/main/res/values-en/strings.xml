@@ -2677,4 +2677,12 @@ ACTION_VIEW
     <string name="backup_list_rename_title">New file name</string>
     <string name="backup_list_open_folder">Open folder</string>
     <string name="backup_list_refresh">Refresh</string>
+    <string name="project_restore_backup">Restore from backup</string>
+    <string name="project_restore_dialog_title">Restore project</string>
+    <string name="project_restore_replace">Replace current project</string>
+    <string name="project_restore_new">Create new project</string>
+    <string name="project_restore_replace_warning">The current project and all its data will be replaced with the backup contents. Continue?</string>
+    <string name="project_restore_in_progress">Restoring…</string>
+    <string name="project_restore_done">Restored</string>
+    <string name="project_restore_error">Restore error: %1$s</string>
 </resources>

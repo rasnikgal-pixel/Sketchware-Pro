@@ -315,6 +315,13 @@ public class MainActivity extends BasePermissionAppCompatActivity {
     protected void onNewIntent(android.content.Intent intent) {
         super.onNewIntent(intent);
         if (intent != null && intent.getBooleanExtra("refresh_projects", false)) {
+            // Закрыть drawer, если открыт
+            try {
+                if (binding != null && binding.drawerLayout != null
+                        && binding.drawerLayout.isDrawerOpen(androidx.core.view.GravityCompat.START)) {
+                    binding.drawerLayout.closeDrawers();
+                }
+            } catch (Throwable ignored) {}
             n();
         }
     }

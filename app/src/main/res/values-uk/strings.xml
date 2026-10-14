@@ -2610,4 +2610,12 @@ ACTION_VIEW
     <string name="backup_list_rename_title">Нова назва файлу</string>
     <string name="backup_list_open_folder">Відкрити папку</string>
     <string name="backup_list_refresh">Оновити</string>
+    <string name="project_restore_backup">Відновити з резервної копії</string>
+    <string name="project_restore_dialog_title">Відновити проєкт</string>
+    <string name="project_restore_replace">Замінити поточний проєкт</string>
+    <string name="project_restore_new">Створити новий проєкт</string>
+    <string name="project_restore_replace_warning">Поточний проєкт і всі його дані буде замінено вмістом резервної копії. Продовжити?</string>
+    <string name="project_restore_in_progress">Відновлюється…</string>
+    <string name="project_restore_done">Відновлено</string>
+    <string name="project_restore_error">Помилка відновлення: %1$s</string>
 </resources>

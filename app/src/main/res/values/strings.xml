@@ -2687,4 +2687,12 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="backup_list_rename_title">Новое имя файла</string>
     <string name="backup_list_open_folder">Открыть папку</string>
     <string name="backup_list_refresh">Обновить</string>
+    <string name="project_restore_backup">Восстановить из резервной копии</string>
+    <string name="project_restore_dialog_title">Восстановить проект</string>
+    <string name="project_restore_replace">Заменить текущий проект</string>
+    <string name="project_restore_new">Создать новый проект</string>
+    <string name="project_restore_replace_warning">Текущий проект и все его данные будут заменены содержимым резервной копии. Продолжить?</string>
+    <string name="project_restore_in_progress">Восстанавливается…</string>
+    <string name="project_restore_done">Восстановлено</string>
+    <string name="project_restore_error">Ошибка восстановления: %1$s</string>
 </resources>

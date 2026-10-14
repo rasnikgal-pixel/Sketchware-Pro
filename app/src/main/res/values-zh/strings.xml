@@ -2610,4 +2610,12 @@ ACTION_VIEW
     <string name="backup_list_rename_title">新文件名</string>
     <string name="backup_list_open_folder">打开文件夹</string>
     <string name="backup_list_refresh">刷新</string>
+    <string name="project_restore_backup">从备份恢复</string>
+    <string name="project_restore_dialog_title">恢复项目</string>
+    <string name="project_restore_replace">替换当前项目</string>
+    <string name="project_restore_new">创建新项目</string>
+    <string name="project_restore_replace_warning">当前项目及其所有数据将被备份内容替换。继续？</string>
+    <string name="project_restore_in_progress">正在恢复…</string>
+    <string name="project_restore_done">已恢复</string>
+    <string name="project_restore_error">恢复错误：%1$s</string>
 </resources>

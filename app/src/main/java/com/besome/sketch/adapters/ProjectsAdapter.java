@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DiffUtil;
@@ -34,6 +35,8 @@ import a.a.a.yB;
 import mod.hey.studios.project.ProjectSettingsDialog;
 import mod.hey.studios.project.backup.BackupRestoreManager;
 import mod.hey.studios.util.Helper;
+import org.jetbrains.annotations.NotNull;
+
 import pro.sketchware.skproj.SkProjExportTask;
 import pro.sketchware.utility.SketchwareUtil;
 import pro.sketchware.R;
@@ -284,6 +287,11 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
             projectOptionsBSD.dismiss();
         });
 
+        binding.projectRestore.setOnClickListener(v -> {
+            projectOptionsBSD.dismiss();
+            showRestoreDialog(projectMap);
+        });
+
         binding.exportSkproj.setOnClickListener(v -> {
             projectOptionsBSD.dismiss();
             String skprojScId = yB.c(projectMap, "sc_id");
@@ -364,6 +372,115 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         }
 
         projectOptionsBSD.show();
+    }
+
+    /** Диалог выбора .swb + режима восстановления. */
+    private void showRestoreDialog(HashMap<String, Object> projectMap) {
+        dev.pranav.filepicker.FilePickerOptions options = new dev.pranav.filepicker.FilePickerOptions();
+        options.setMultipleSelection(false);
+        options.setExtensions(new String[]{mod.hey.studios.project.backup.BackupFactory.EXTENSION});
+        options.setTitle(Helper.getResString(R.string.project_restore_dialog_title));
+
+        dev.pranav.filepicker.FilePickerCallback callback = new dev.pranav.filepicker.FilePickerCallback() {
+            @Override
+            public void onFilesSelected(@NotNull java.util.List<? extends File> files) {
+                if (files == null || files.isEmpty()) return;
+                File picked = files.get(0);
+                askReplaceOrNew(projectMap, picked);
+            }
+        };
+
+        new dev.pranav.filepicker.FilePickerDialogFragment(options, callback)
+                .show(projectsFragment.getChildFragmentManager(), "restore_picker");
+    }
+
+    /** Спрашиваем: заменить или новый. */
+    private void askReplaceOrNew(HashMap<String, Object> projectMap, File swbFile) {
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.project_restore_dialog_title)
+                .setItems(new CharSequence[]{
+                        Helper.getResString(R.string.project_restore_new),
+                        Helper.getResString(R.string.project_restore_replace)
+                }, (d, which) -> {
+                    if (which == 0) {
+                        doRestoreFromFile(swbFile, null);
+                    } else {
+                        confirmReplace(projectMap, swbFile);
+                    }
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
+    }
+
+    private void confirmReplace(HashMap<String, Object> projectMap, File swbFile) {
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.project_restore_replace)
+                .setMessage(R.string.project_restore_replace_warning)
+                .setPositiveButton(R.string.project_restore_replace, (d, w) ->
+                        doRestoreFromFile(swbFile, yB.c(projectMap, "sc_id")))
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
+    }
+
+    /**
+     * Восстановление в фоне.
+     * @param targetScId null — создать новый, иначе заменить этот sc_id.
+     */
+    private void doRestoreFromFile(File swbFile, @Nullable String targetScId) {
+        final androidx.appcompat.app.AlertDialog progress = new MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.project_restore_dialog_title)
+                .setMessage(R.string.project_restore_in_progress)
+                .setCancelable(false)
+                .create();
+        progress.show();
+
+        new Thread(() -> {
+            String error = null;
+            String finalScId = null;
+            try {
+                if (targetScId == null) {
+                    finalScId = mod.hey.studios.project.backup.BackupFactory.getNewScId();
+                } else {
+                    finalScId = targetScId;
+                    // Удаляем старые данные проекта
+                    File ext = android.os.Environment.getExternalStorageDirectory();
+                    File mysc = new File(ext, ".sketchware/mysc/list/" + targetScId);
+                    File data = new File(ext, ".sketchware/data/" + targetScId);
+                    pro.sketchware.utility.FileUtil.deleteFile(mysc.getAbsolutePath());
+                    pro.sketchware.utility.FileUtil.deleteFile(data.getAbsolutePath());
+                    // resources/*
+                    String[] resDirs = {"fonts", "icons", "images", "sounds"};
+                    for (String sub : resDirs) {
+                        File r = new File(ext, ".sketchware/resources/" + sub + "/" + targetScId);
+                        pro.sketchware.utility.FileUtil.deleteFile(r.getAbsolutePath());
+                    }
+                }
+                mod.hey.studios.project.backup.BackupFactory bf =
+                        new mod.hey.studios.project.backup.BackupFactory(finalScId);
+                bf.setBackupLocalLibs(false);
+                bf.restore(swbFile);
+                if (!bf.isRestoreSuccess()) error = bf.getError();
+            } catch (Throwable t) {
+                error = String.valueOf(t.getMessage());
+            }
+            final String err = error;
+            activity.runOnUiThread(() -> {
+                try { progress.dismiss(); } catch (Throwable ignored) {}
+                if (err == null) {
+                    SketchwareUtil.toast(Helper.getResString(R.string.project_restore_done));
+                    // Закрыть всё и вернуться на главный с обновлением
+                    try {
+                        Intent i = new Intent(activity,
+                                pro.sketchware.activities.main.activities.MainActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        i.putExtra("refresh_projects", true);
+                        activity.startActivity(i);
+                    } catch (Throwable ignored) {}
+                } else {
+                    SketchwareUtil.toastError(Helper.getResString(R.string.project_restore_error, err));
+                }
+            });
+        }, "project-restore-thread").start();
     }
 
     public static class ProjectViewHolder extends RecyclerView.ViewHolder {
