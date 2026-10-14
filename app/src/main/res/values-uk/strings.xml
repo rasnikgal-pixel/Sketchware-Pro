@@ -2671,4 +2671,11 @@ ACTION_VIEW
     <string name="sora_editor_replaceAll">Замінити все</string>
     <string name="sora_editor_replacement">Заміна</string>
     <string name="sora_editor_text_to_search">Текст для пошуку</string>
+    <string name="sora_xml_editor_action_go_to_symbol">Перейти до символу</string>
+    <string name="sora_xml_editor_action_export">Експорт файлу</string>
+    <string name="sora_go_to_symbol_title">Символи у файлі</string>
+    <string name="sora_go_to_symbol_empty">Символи не знайдено</string>
+    <string name="sora_export_success">Файл збережено</string>
+    <string name="sora_export_failed">Не вдалося зберегти</string>
+    <string name="sora_export_title">Зберегти як</string>
 </resources>

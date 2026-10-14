@@ -36,6 +36,16 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_go_to_symbol"
+        android:title="@string/sora_xml_editor_action_go_to_symbol"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_export"
+        android:title="@string/sora_xml_editor_action_export"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_fold"
         android:title="@string/sora_xml_editor_action_fold"
         app:showAsAction="never" />

@@ -322,6 +322,12 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
         } else if (id == R.id.action_preview) {
             openPreview();
             return true;
+        } else if (id == R.id.action_go_to_symbol) {
+            showGoToSymbolDialog();
+            return true;
+        } else if (id == R.id.action_export) {
+            exportCurrentFile();
+            return true;
         } else if (id == R.id.action_find_replace) {
             showFindReplaceDialog();
             return true;
@@ -342,6 +348,29 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
             return true;
         } else {
             return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private static final int REQ_EXPORT = 42001;
+    private String pendingExportPath = null;
+
+    @Override
+    protected void onActivityResult(int req, int res, android.content.Intent data) {
+        super.onActivityResult(req, res, data);
+        if (req != REQ_EXPORT) return;
+        if (res != RESULT_OK || data == null) return;
+        if (pendingExportPath == null) return;
+        try {
+            java.io.InputStream in = new java.io.FileInputStream(pendingExportPath);
+            java.io.OutputStream out = getContentResolver().openOutputStream(data.getData());
+            byte[] buf = new byte[8192];
+            int n;
+            while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+            in.close();
+            if (out != null) out.close();
+            android.widget.Toast.makeText(this, R.string.sora_export_success, android.widget.Toast.LENGTH_SHORT).show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, R.string.sora_export_failed, android.widget.Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -666,6 +695,47 @@ public class SoraEditorActivity extends BaseAppCompatActivity {
             if (n > 0) ce.setText(out.toString());
             return n;
         } catch (Throwable t) { return 0; }
+    }
+
+    private void showGoToSymbolDialog() {
+        SoraEditorFragment f = currentFragment();
+        if (f == null) return;
+        java.util.List<String[]> syms = f.collectSymbols();
+        if (syms.isEmpty()) {
+            android.widget.Toast.makeText(this, R.string.sora_go_to_symbol_empty, android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String[] items = new String[syms.size()];
+        for (int i = 0; i < syms.size(); i++) {
+            items[i] = syms.get(i)[0] + ":  " + syms.get(i)[1];
+        }
+        final java.util.List<String[]> ref = syms;
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.sora_go_to_symbol_title)
+                .setItems(items, (d, which) -> {
+                    int ln = Integer.parseInt(ref.get(which)[0]) - 1;
+                    f.goToLine(ln);
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+    private void exportCurrentFile() {
+        SoraEditorFragment f = currentFragment();
+        if (f == null) return;
+        String path = f.getFilePath();
+        if (path == null) return;
+        try {
+            java.io.File src = new java.io.File(path);
+            String name = src.getName();
+            android.content.Intent i = new android.content.Intent(android.content.Intent.ACTION_CREATE_DOCUMENT);
+            i.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+            i.setType("text/plain");
+            i.putExtra(android.content.Intent.EXTRA_TITLE, name);
+            pendingExportPath = path;
+            startActivityForResult(i, REQ_EXPORT);
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, R.string.sora_export_failed, android.widget.Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void confirmExit() {

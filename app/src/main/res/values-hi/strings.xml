@@ -2671,4 +2671,11 @@ ACTION_VIEW
     <string name="sora_editor_replaceAll">सभी बदलें</string>
     <string name="sora_editor_replacement">प्रतिस्थापन</string>
     <string name="sora_editor_text_to_search">खोजने के लिए टेक्स्ट</string>
+    <string name="sora_xml_editor_action_go_to_symbol">प्रतीक पर जाएं</string>
+    <string name="sora_xml_editor_action_export">फ़ाइल निर्यात करें</string>
+    <string name="sora_go_to_symbol_title">फ़ाइल में प्रतीक</string>
+    <string name="sora_go_to_symbol_empty">कोई प्रतीक नहीं मिला</string>
+    <string name="sora_export_success">फ़ाइल सहेजी गई</string>
+    <string name="sora_export_failed">सहेजने में विफल</string>
+    <string name="sora_export_title">इस रूप में सहेजें</string>
 </resources>

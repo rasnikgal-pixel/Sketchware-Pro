@@ -2735,4 +2735,11 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_fold_off">Свернуть блоки: выключено</string>
     <string name="sora_bracket_on">Подсветка скобок: включена</string>
     <string name="sora_bracket_off">Подсветка скобок: выключена</string>
+    <string name="sora_xml_editor_action_go_to_symbol">Перейти к символу</string>
+    <string name="sora_xml_editor_action_export">Экспорт файла</string>
+    <string name="sora_go_to_symbol_title">Символы в файле</string>
+    <string name="sora_go_to_symbol_empty">Символы не найдены</string>
+    <string name="sora_export_success">Файл сохранён</string>
+    <string name="sora_export_failed">Не удалось сохранить</string>
+    <string name="sora_export_title">Куда сохранить</string>
 </resources>

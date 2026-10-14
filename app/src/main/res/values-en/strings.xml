@@ -2725,4 +2725,11 @@ ACTION_VIEW
     <string name="sora_fold_off">Fold blocks: off</string>
     <string name="sora_bracket_on">Bracket highlight: on</string>
     <string name="sora_bracket_off">Bracket highlight: off</string>
+    <string name="sora_xml_editor_action_go_to_symbol">Go to symbol</string>
+    <string name="sora_xml_editor_action_export">Export file</string>
+    <string name="sora_go_to_symbol_title">Symbols in file</string>
+    <string name="sora_go_to_symbol_empty">No symbols found</string>
+    <string name="sora_export_success">File saved</string>
+    <string name="sora_export_failed">Failed to save</string>
+    <string name="sora_export_title">Save as</string>
 </resources>

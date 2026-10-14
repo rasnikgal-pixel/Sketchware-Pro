@@ -2671,4 +2671,11 @@ ACTION_VIEW
     <string name="sora_editor_replaceAll">全部替换</string>
     <string name="sora_editor_replacement">替换内容</string>
     <string name="sora_editor_text_to_search">要搜索的文本</string>
+    <string name="sora_xml_editor_action_go_to_symbol">跳转到符号</string>
+    <string name="sora_xml_editor_action_export">导出文件</string>
+    <string name="sora_go_to_symbol_title">文件中的符号</string>
+    <string name="sora_go_to_symbol_empty">未找到符号</string>
+    <string name="sora_export_success">文件已保存</string>
+    <string name="sora_export_failed">保存失败</string>
+    <string name="sora_export_title">保存为</string>
 </resources>

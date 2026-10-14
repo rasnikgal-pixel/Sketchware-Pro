@@ -307,6 +307,37 @@ public class SoraEditorFragment extends Fragment {
         });
     }
 
+    public java.util.List<String[]> collectSymbols() {
+        java.util.List<String[]> r = new java.util.ArrayList<>();
+        if (editor == null) return r;
+        try {
+            String t = editor.getText().toString();
+            char LF = (char) 10;
+            String[] L = t.split(String.valueOf(LF), -1);
+            for (int i = 0; i < L.length; i++) {
+                String n = sym(L[i]);
+                if (n == null) continue;
+                r.add(new String[]{"" + (i + 1), n});
+            }
+        } catch (Throwable ignored) {}
+        return r;
+    }
+
+    private static String sym(String line) {
+        String s = line.trim();
+        if (s.length() == 0) return null;
+        if (s.startsWith("/")) return null;
+        if (s.startsWith("*")) return null;
+        int a = s.indexOf(40);
+        if (a < 0) return null;
+        String head = s.substring(0, a).trim();
+        int b = head.lastIndexOf(32);
+        if (b < 0) return null;
+        String name = head.substring(b + 1);
+        if (name.length() < 2) return null;
+        return name;
+    }
+
     /** Fold в SORA 0.23.6 отсутствует; вызываем через рефлексию, если появится. */
     private void applyFold(boolean enabled) {
         if (editor == null) return;
