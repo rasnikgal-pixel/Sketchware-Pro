@@ -172,6 +172,10 @@ public class BackupListActivity extends BaseAppCompatActivity {
             runOnUiThread(() -> {
                 try { progress.dismiss(); } catch (Throwable ignored) {}
                 if (err == null) {
+                    // Пометить главный список на обновление
+                    try {
+                        pro.sketchware.activities.main.fragments.projects.ProjectsFragment.markPendingRefresh();
+                    } catch (Throwable ignored) {}
                     Toast.makeText(this, R.string.backup_list_restore_success, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, getString(R.string.backup_list_restore_error, err), Toast.LENGTH_LONG).show();

@@ -213,6 +213,14 @@ public class ProjectsFragment extends DA {
         }
     }
 
+    /** Флаг: нужно обновить список при следующем onResume. */
+    private static volatile boolean pendingRefresh = false;
+
+    /** Пометить, что список нужно обновить. */
+    public static void markPendingRefresh() {
+        pendingRefresh = true;
+    }
+
     public void refreshProjectsList() {
         // Check if the fragment is still attached to the activity
         if (!isAdded()) return;
