@@ -46,6 +46,7 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
         buildWidgetBehaviorSection();
         buildPaletteGesturesSection();
         buildQuickActionsSection();
+        buildPreviewSection();
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -307,6 +308,18 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
     private int indexOf(String[] arr, String val) {
         for (int i = 0; i < arr.length; i++) if (arr[i].equals(val)) return i;
         return 0;
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // Секция 7: Предпросмотр
+    // ─────────────────────────────────────────────────────────────
+    private void buildPreviewSection() {
+        addHeader(Helper.getResString(R.string.designer_settings_preview_section));
+
+        addSwitch(Helper.getResString(R.string.designer_settings_preview_primary_title),
+                Helper.getResString(R.string.designer_settings_preview_primary_desc),
+                DesignerSettingsStore.isPreviewPrimary(this),
+                v -> DesignerSettingsStore.setPreviewPrimary(this, v));
     }
 
     private int dp(int value) {

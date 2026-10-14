@@ -506,10 +506,18 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
         bottomPopupMenu = new PopupMenu(this, btnOptions);
         bottomMenu = bottomPopupMenu.getMenu();
-        bottomMenu.add(Menu.NONE, 101, Menu.NONE, Helper.getResString(R.string.preview_activity_title)).setOnMenuItemClickListener(item -> {
-            openPreview();
-            return true;
-        });
+        boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(this);
+        if (previewPrimary) {
+            bottomMenu.add(Menu.NONE, 100, Menu.NONE, Helper.getResString(R.string.auto_design_activity_043)).setOnMenuItemClickListener(item -> {
+                if (btnRun != null) btnRun.performClick();
+                return true;
+            });
+        } else {
+            bottomMenu.add(Menu.NONE, 101, Menu.NONE, Helper.getResString(R.string.preview_activity_title)).setOnMenuItemClickListener(item -> {
+                openPreview();
+                return true;
+            });
+        }
 
         bottomMenu.add(Menu.NONE, 1, Menu.NONE, Helper.getResString(R.string.auto_design_activity_005)).setOnMenuItemClickListener(item -> {
             BuildSettingsBottomSheet sheet = BuildSettingsBottomSheet.newInstance(sc_id);
@@ -552,6 +560,9 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             return true;
         });
         bottomPopupMenu.setOnDismissListener(menu -> btnOptions.setChecked(false));
+
+        // Применить режим Предпросмотра после всех настроек кнопки и меню
+        applyPreviewPrimaryMode();
 
         xmlLayoutOrientation = findViewById(R.id.img_orientation);
         viewPager = findViewById(R.id.viewpager);
@@ -621,6 +632,30 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
     /**
      * Запускает сборку APK. Вынесено из btnRun для переиспользования.
      */
+    /** Применяет режим «Предпросмотр как основная кнопка». */
+    private void applyPreviewPrimaryMode() {
+        boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(this);
+        if (btnRun == null) return;
+        if (previewPrimary) {
+            btnRun.setText(R.string.preview_activity_title);
+            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_preview));
+            btnRun.setOnClickListener(v -> openPreview());
+        } else {
+            btnRun.setText(R.string.auto_design_activity_043);
+            btnRun.setIcon(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_mtrl_run));
+            btnRun.setOnClickListener(v -> {
+                if (currentBuildTask != null && !currentBuildTask.canceled && !currentBuildTask.isBuildFinished) {
+                    currentBuildTask.cancelBuild();
+                    return;
+                }
+                if (currentBuildTask != null && !currentBuildTask.isBuildFinished) {
+                    return;
+                }
+                checkLogicBeforeBuild();
+            });
+        }
+    }
+
     /** Открывает экран предпросмотра с генерацией xml в фоне. */
     private void openPreview() {
         if (projectFile == null) return;
@@ -1631,8 +1666,14 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             var context = getActivity();
             btnRun.setEnabled(true);
             btnRun.setBackgroundTintList(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorErrorContainer : R.attr.colorPrimary)));
-            btnRun.setIcon(ContextCompat.getDrawable(context, isRunning ? R.drawable.ic_mtrl_stop : R.drawable.ic_mtrl_run));
-            btnRun.setText((CharSequence) (isRunning ? Helper.getResString(R.string.auto_design_activity_042) : Helper.getResString(R.string.auto_design_activity_043)));
+            boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(context);
+            if (previewPrimary && !isRunning) {
+                btnRun.setIcon(ContextCompat.getDrawable(context, R.drawable.ic_mtrl_preview));
+                btnRun.setText(R.string.preview_activity_title);
+            } else {
+                btnRun.setIcon(ContextCompat.getDrawable(context, isRunning ? R.drawable.ic_mtrl_stop : R.drawable.ic_mtrl_run));
+                btnRun.setText((CharSequence) (isRunning ? Helper.getResString(R.string.auto_design_activity_042) : Helper.getResString(R.string.auto_design_activity_043)));
+            }
             btnRun.setIconTint(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorOnErrorContainer : R.attr.colorSurfaceContainerLowest)));
             btnRun.setTextColor(ColorStateList.valueOf(ThemeUtils.getColor(context, isRunning ? R.attr.colorOnErrorContainer : R.attr.colorSurfaceContainerLowest)));
             btnOptions.setEnabled(!isRunning);

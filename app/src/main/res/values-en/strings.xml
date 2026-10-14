@@ -2651,4 +2651,7 @@ ACTION_VIEW
     <string name="sora_xml_editor_toast_max_tabs">Maximum tabs: %1$d</string>
     <string name="preview_activity_title">Preview</string>
     <string name="preview_generating">Generating preview…</string>
+    <string name="designer_settings_preview_section">Preview</string>
+    <string name="designer_settings_preview_primary_title">Preview as primary button</string>
+    <string name="designer_settings_preview_primary_desc">Preview button instead of Build APK. Build stays in the menu.</string>
 </resources>

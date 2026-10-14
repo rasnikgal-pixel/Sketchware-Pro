@@ -2584,4 +2584,7 @@ ACTION_VIEW
     <string name="sora_xml_editor_toast_max_tabs">अधिकतम टैब: %1$d</string>
     <string name="preview_activity_title">पूर्वावलोकन</string>
     <string name="preview_generating">पूर्वावलोकन तैयार हो रहा है…</string>
+    <string name="designer_settings_preview_section">पूर्वावलोकन</string>
+    <string name="designer_settings_preview_primary_title">पूर्वावलोकन को मुख्य बटन बनाएं</string>
+    <string name="designer_settings_preview_primary_desc">बिल्ड APK के बजाय पूर्वावलोकन बटन। बिल्ड मेनू में रहेगा।</string>
 </resources>
