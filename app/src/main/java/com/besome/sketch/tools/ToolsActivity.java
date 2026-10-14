@@ -123,6 +123,12 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 R.drawable.ic_mtrl_java,
                 this::onUserCode
         ));
+        items.add(new ToolItem(
+                Helper.getResString(R.string.tools_send_request),
+                Helper.getResString(R.string.tools_send_request_desc),
+                R.drawable.ic_mtrl_email_sent,
+                this::onSendRequest
+        ));
         return items;
     }
 
@@ -290,6 +296,127 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 }
             });
         }, "tools-export-thread").start();
+    }
+
+    /** Открывает форму отправки запроса. */
+    private void onSendRequest() {
+        final android.content.SharedPreferences prefs = getSharedPreferences("send_request_prefs", MODE_PRIVATE);
+        final int pad = dp(16);
+
+        android.widget.LinearLayout box = new android.widget.LinearLayout(this);
+        box.setOrientation(android.widget.LinearLayout.VERTICAL);
+        box.setPadding(pad, pad / 2, pad, 0);
+
+        // Поле: Имя
+        com.google.android.material.textfield.TextInputLayout tilName =
+                new com.google.android.material.textfield.TextInputLayout(this);
+        tilName.setHint(getString(R.string.send_request_name_hint));
+        com.google.android.material.textfield.TextInputEditText etName =
+                new com.google.android.material.textfield.TextInputEditText(this);
+        etName.setSingleLine(true);
+        etName.setText(prefs.getString("name", ""));
+        tilName.addView(etName, new android.widget.LinearLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+        box.addView(tilName);
+
+        // Поле: Тип (выпадающий список)
+        com.google.android.material.textfield.TextInputLayout tilType =
+                new com.google.android.material.textfield.TextInputLayout(this,
+                        null, com.google.android.material.R.attr.textInputOutlinedExposedDropdownMenuStyle);
+        tilType.setHint(getString(R.string.send_request_type));
+        final com.google.android.material.textfield.MaterialAutoCompleteTextView actv =
+                new com.google.android.material.textfield.MaterialAutoCompleteTextView(this);
+        actv.setInputType(android.text.InputType.TYPE_NULL);
+        final String[] types = {
+                getString(R.string.send_request_type_bug),
+                getString(R.string.send_request_type_feature),
+                getString(R.string.send_request_type_other)
+        };
+        actv.setAdapter(new android.widget.ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, types));
+        actv.setText(types[0], false);
+        tilType.addView(actv, new android.widget.LinearLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+        android.widget.LinearLayout.LayoutParams tilTypeLp = new android.widget.LinearLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+        tilTypeLp.topMargin = dp(12);
+        tilType.setLayoutParams(tilTypeLp);
+        box.addView(tilType);
+
+        // Поле: Текст
+        com.google.android.material.textfield.TextInputLayout tilText =
+                new com.google.android.material.textfield.TextInputLayout(this);
+        tilText.setHint(getString(R.string.send_request_text_hint));
+        final com.google.android.material.textfield.TextInputEditText etText =
+                new com.google.android.material.textfield.TextInputEditText(this);
+        etText.setMinLines(4);
+        etText.setGravity(android.view.Gravity.TOP | android.view.Gravity.START);
+        etText.setInputType(android.text.InputType.TYPE_CLASS_TEXT
+                | android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        tilText.addView(etText, new android.widget.LinearLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+        android.widget.LinearLayout.LayoutParams tilTextLp = new android.widget.LinearLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+        tilTextLp.topMargin = dp(12);
+        tilText.setLayoutParams(tilTextLp);
+        box.addView(tilText);
+
+        // Обернуть в ScrollView на случай маленького экрана
+        android.widget.ScrollView scroll = new android.widget.ScrollView(this);
+        scroll.addView(box);
+        box.setPadding(pad, pad / 2, pad, pad);
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.send_request_title)
+                .setView(scroll)
+                .setPositiveButton(R.string.send_request_send, (d, w) -> {
+                    String name = etName.getText() == null ? "" : etName.getText().toString().trim();
+                    String text = etText.getText() == null ? "" : etText.getText().toString().trim();
+                    String type = actv.getText() == null ? "" : actv.getText().toString();
+
+                    if (name.isEmpty()) {
+                        android.widget.Toast.makeText(this, R.string.send_request_empty_name,
+                                android.widget.Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (text.isEmpty()) {
+                        android.widget.Toast.makeText(this, R.string.send_request_empty_text,
+                                android.widget.Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    prefs.edit().putString("name", name).apply();
+                    sendFeedbackEmail(name, type, text);
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
+    }
+
+    /** Формирует письмо и открывает почтовый клиент. */
+    private void sendFeedbackEmail(String name, String type, String text) {
+        final String RECIPIENT = "SkwProME@gmail.com";
+        String subject = "[Sketchware Pro] " + type + " — " + name;
+        String body = "Тип: " + type + "\n"
+                + "Имя: " + name + "\n\n"
+                + text + "\n\n"
+                + "— Отправлено из Sketchware Pro 7.5.0";
+
+        try {
+            android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_SENDTO);
+            intent.setData(android.net.Uri.parse("mailto:" + RECIPIENT));
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+            startActivity(android.content.Intent.createChooser(intent,
+                    getString(R.string.send_request_title)));
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, R.string.send_request_no_app,
+                    android.widget.Toast.LENGTH_LONG).show();
+        }
     }
 
     private void onBackups() {

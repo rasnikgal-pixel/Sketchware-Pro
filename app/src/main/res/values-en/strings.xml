@@ -2694,4 +2694,19 @@ ACTION_VIEW
     <string name="tools_import_error">Import error: %1$s</string>
     <string name="tools_import_bad_file">Could not read backup file</string>
     <string name="tools_import_done">Project imported</string>
+    <string name="tools_send_request">Send request…</string>
+    <string name="tools_send_request_desc">Report a bug or suggest a feature</string>
+    <string name="send_request_title">Send request</string>
+    <string name="send_request_name">Your name</string>
+    <string name="send_request_name_hint">What should we call you?</string>
+    <string name="send_request_type">Request type</string>
+    <string name="send_request_type_bug">Bug</string>
+    <string name="send_request_type_feature">Feature</string>
+    <string name="send_request_type_other">Other</string>
+    <string name="send_request_text">Request text</string>
+    <string name="send_request_text_hint">Describe the problem or idea…</string>
+    <string name="send_request_send">Send</string>
+    <string name="send_request_empty_name">Enter your name</string>
+    <string name="send_request_empty_text">Enter request text</string>
+    <string name="send_request_no_app">No email app found</string>
 </resources>

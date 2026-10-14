@@ -2704,4 +2704,19 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="tools_import_error">Ошибка импорта: %1$s</string>
     <string name="tools_import_bad_file">Не удалось прочитать файл резервной копии</string>
     <string name="tools_import_done">Проект импортирован</string>
+    <string name="tools_send_request">Отправить запрос…</string>
+    <string name="tools_send_request_desc">Сообщить об ошибке или предложить улучшение</string>
+    <string name="send_request_title">Отправить запрос</string>
+    <string name="send_request_name">Ваше имя</string>
+    <string name="send_request_name_hint">Как к вам обращаться?</string>
+    <string name="send_request_type">Тип запроса</string>
+    <string name="send_request_type_bug">Ошибка</string>
+    <string name="send_request_type_feature">Улучшение</string>
+    <string name="send_request_type_other">Другое</string>
+    <string name="send_request_text">Текст запроса</string>
+    <string name="send_request_text_hint">Опишите проблему или идею…</string>
+    <string name="send_request_send">Отправить</string>
+    <string name="send_request_empty_name">Введите имя</string>
+    <string name="send_request_empty_text">Введите текст запроса</string>
+    <string name="send_request_no_app">Не найдено приложение для отправки почты</string>
 </resources>

@@ -2627,4 +2627,19 @@ ACTION_VIEW
     <string name="tools_import_error">导入错误：%1$s</string>
     <string name="tools_import_bad_file">无法读取备份文件</string>
     <string name="tools_import_done">项目已导入</string>
+    <string name="tools_send_request">发送请求…</string>
+    <string name="tools_send_request_desc">报告错误或建议改进</string>
+    <string name="send_request_title">发送请求</string>
+    <string name="send_request_name">您的名字</string>
+    <string name="send_request_name_hint">我们该怎么称呼您？</string>
+    <string name="send_request_type">请求类型</string>
+    <string name="send_request_type_bug">错误</string>
+    <string name="send_request_type_feature">功能建议</string>
+    <string name="send_request_type_other">其他</string>
+    <string name="send_request_text">请求内容</string>
+    <string name="send_request_text_hint">描述问题或想法…</string>
+    <string name="send_request_send">发送</string>
+    <string name="send_request_empty_name">请输入名字</string>
+    <string name="send_request_empty_text">请输入请求内容</string>
+    <string name="send_request_no_app">未找到邮件应用</string>
 </resources>

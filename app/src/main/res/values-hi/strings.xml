@@ -2627,4 +2627,19 @@ ACTION_VIEW
     <string name="tools_import_error">आयात त्रुटि: %1$s</string>
     <string name="tools_import_bad_file">बैकअप फ़ाइल पढ़ नहीं सका</string>
     <string name="tools_import_done">प्रोजेक्ट आयातित</string>
+    <string name="tools_send_request">अनुरोध भेजें…</string>
+    <string name="tools_send_request_desc">बग की रिपोर्ट करें या सुधार सुझाएं</string>
+    <string name="send_request_title">अनुरोध भेजें</string>
+    <string name="send_request_name">आपका नाम</string>
+    <string name="send_request_name_hint">हम आपको क्या कहें?</string>
+    <string name="send_request_type">अनुरोध प्रकार</string>
+    <string name="send_request_type_bug">बग</string>
+    <string name="send_request_type_feature">सुविधा</string>
+    <string name="send_request_type_other">अन्य</string>
+    <string name="send_request_text">अनुरोध पाठ</string>
+    <string name="send_request_text_hint">समस्या या विचार का वर्णन करें…</string>
+    <string name="send_request_send">भेजें</string>
+    <string name="send_request_empty_name">नाम दर्ज करें</string>
+    <string name="send_request_empty_text">अनुरोध पाठ दर्ज करें</string>
+    <string name="send_request_no_app">कोई ईमेल ऐप नहीं मिला</string>
 </resources>

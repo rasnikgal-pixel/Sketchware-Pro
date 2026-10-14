@@ -2627,4 +2627,19 @@ ACTION_VIEW
     <string name="tools_import_error">Помилка імпорту: %1$s</string>
     <string name="tools_import_bad_file">Не вдалося прочитати файл резервної копії</string>
     <string name="tools_import_done">Проєкт імпортовано</string>
+    <string name="tools_send_request">Надіслати запит…</string>
+    <string name="tools_send_request_desc">Повідомити про помилку або запропонувати покращення</string>
+    <string name="send_request_title">Надіслати запит</string>
+    <string name="send_request_name">Ваше ім\'я</string>
+    <string name="send_request_name_hint">Як до вас звертатися?</string>
+    <string name="send_request_type">Тип запиту</string>
+    <string name="send_request_type_bug">Помилка</string>
+    <string name="send_request_type_feature">Покращення</string>
+    <string name="send_request_type_other">Інше</string>
+    <string name="send_request_text">Текст запиту</string>
+    <string name="send_request_text_hint">Опишіть проблему або ідею…</string>
+    <string name="send_request_send">Надіслати</string>
+    <string name="send_request_empty_name">Введіть ім\'я</string>
+    <string name="send_request_empty_text">Введіть текст запиту</string>
+    <string name="send_request_no_app">Не знайдено додаток для надсилання пошти</string>
 </resources>
