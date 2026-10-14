@@ -234,7 +234,7 @@ public class ToolsActivity extends BaseAppCompatActivity {
 
     /** Фоновый экспорт и копирование в Sketchware/Exports. */
     private void doExport(final String scId, final String projectName, final boolean libs, final boolean blocks) {
-        final android.app.AlertDialog progress = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+        final androidx.appcompat.app.AlertDialog progress = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.tools_export_title)
                 .setMessage(R.string.tools_export_in_progress)
                 .setCancelable(false)
