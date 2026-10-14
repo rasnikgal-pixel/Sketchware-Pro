@@ -508,8 +508,10 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
         bottomMenu = bottomPopupMenu.getMenu();
         boolean previewPrimary = pro.sketchware.settings.DesignerSettingsStore.isPreviewPrimary(this);
         if (previewPrimary) {
+            // Кнопка = Предпросмотр, в меню — Собрать APK.
+            // Вызываем сборку НАПРЯМУЮ, не через кнопку.
             bottomMenu.add(Menu.NONE, 100, Menu.NONE, Helper.getResString(R.string.auto_design_activity_043)).setOnMenuItemClickListener(item -> {
-                if (btnRun != null) btnRun.performClick();
+                startBuildFromMenu();
                 return true;
             });
         } else {
@@ -654,6 +656,18 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 checkLogicBeforeBuild();
             });
         }
+    }
+
+    /** Запуск сборки APK напрямую (без btnRun.performClick). */
+    private void startBuildFromMenu() {
+        if (currentBuildTask != null && !currentBuildTask.canceled && !currentBuildTask.isBuildFinished) {
+            currentBuildTask.cancelBuild();
+            return;
+        }
+        if (currentBuildTask != null && !currentBuildTask.isBuildFinished) {
+            return;
+        }
+        checkLogicBeforeBuild();
     }
 
     /** Открывает экран предпросмотра с генерацией xml в фоне. */
