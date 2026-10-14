@@ -163,21 +163,15 @@ public class UpdateChecker {
                         return;
                     }
 
-                    // НОВОЕ: проверяем, что APK реально доступен
-                    if (!isDownloadUrlAvailable(info.downloadUrl)) {
+                    // Проверка доступности APK. При ручной проверке пропускаем —
+                    // пользователь сам решил, и HEAD-запрос GitHub часто даёт ложные срабатывания.
+                    if (userInitiated || isDownloadUrlAvailable(info.downloadUrl)) {
+                        callback.onUpdateAvailable(info);
+                    } else {
                         DebugLogger.get(ctx).w("Updater",
                                 "apk_not_available", info.downloadUrl);
-                        if (userInitiated) {
-                            // Пользователь сам запросил — сообщаем
-                            callback.onError("Обновление ещё готовится, попробуйте позже");
-                        } else {
-                            // Автопроверка — тихо игнорируем
-                            callback.onUpToDate();
-                        }
-                        return;
+                        callback.onUpToDate();
                     }
-
-                    callback.onUpdateAvailable(info);
                 });
             } catch (Exception e) {
                 DebugLogger.get(ctx).e("Updater", "log_updater_check_failed", e);
@@ -197,7 +191,9 @@ public class UpdateChecker {
         try {
             URL u = new URL(url);
             conn = (HttpURLConnection) u.openConnection();
-            conn.setRequestMethod("HEAD");
+            // GET + Range вместо HEAD — GitHub корректно отвечает на Range-запросы
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Range", "bytes=0-0");
             conn.setConnectTimeout(5000);
             conn.setReadTimeout(5000);
             conn.setInstanceFollowRedirects(true);
