@@ -301,8 +301,10 @@ public class BackupFactory {
             while (matcher.find()) {
                 finalFileName = finalFileName.replaceFirst(Pattern.quote(Objects.requireNonNull(matcher.group(0))), getFormattedDateFrom(matcher.group(1)));
             }
-        } catch (Exception ignored) {
-            SketchwareUtil.toastError(Helper.getResString(R.string.auto_backup_factory_001));
+        } catch (Exception e) {
+            // Не вызываем toast — backup() может выполняться в фоновом потоке
+            // без темы — MaterialColors упадёт. Просто логируем.
+            error = "invalid backup filename pattern: " + e.getMessage();
             // Example name: InternalDemo v1.0 (com.jbk.internal.demo, 1) 2021-12-31T125827
             finalFileName = projectNameOnly + " v" + versionName + " (" + pkgName + ", " + versionCode + ") " + getFormattedDateFrom("yyyy-M-dd'T'HHmmss");
         }
