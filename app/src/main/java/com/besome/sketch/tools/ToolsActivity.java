@@ -407,10 +407,11 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 + "— Отправлено из Sketchware Pro 7.5.0";
 
         try {
-            android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_SENDTO);
-            intent.setData(android.net.Uri.parse("mailto:" + RECIPIENT));
-            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
-            intent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+            // subject/body в URI — EXTRA_SUBJECT/EXTRA_TEXT не работают с mailto: в Gmail
+            android.net.Uri uri = android.net.Uri.parse("mailto:" + RECIPIENT
+                    + "?subject=" + android.net.Uri.encode(subject)
+                    + "&body=" + android.net.Uri.encode(body));
+            android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_SENDTO, uri);
             startActivity(android.content.Intent.createChooser(intent,
                     getString(R.string.send_request_title)));
         } catch (Throwable t) {
