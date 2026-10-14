@@ -53,13 +53,6 @@ public class ToolsActivity extends BaseAppCompatActivity {
         adapter = new ToolAdapter();
         adapter.setItems(buildTools());
         toolsList.setAdapter(adapter);
-
-        // Скрытый фрагмент-хост для FilePicker
-        if (getSupportFragmentManager().findFragmentByTag("picker_host") == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(new androidx.fragment.app.Fragment(), "picker_host")
-                    .commitNowAllowingStateLoss();
-        }
     }
 
     @Override
@@ -320,14 +313,8 @@ public class ToolsActivity extends BaseAppCompatActivity {
             }
         };
 
-        androidx.fragment.app.Fragment host = getSupportFragmentManager().findFragmentByTag("picker_host");
-        if (host != null) {
-            new dev.pranav.filepicker.FilePickerDialogFragment(options, callback)
-                    .show(host.getChildFragmentManager(), "import_picker");
-        } else {
-            new dev.pranav.filepicker.FilePickerDialogFragment(options, callback)
-                    .show(getSupportFragmentManager(), "import_picker");
-        }
+        new dev.pranav.filepicker.FilePickerDialogFragment(options, callback)
+                .show(getSupportFragmentManager(), "import_picker");
     }
 
     /** Превью .swb с кнопками восстановления. */

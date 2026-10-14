@@ -13,6 +13,12 @@
         app:title="Инструменты"
         app:titleTextColor="?attr/colorOnPrimary" />
 
+    <FrameLayout
+        android:id="@+id/picker_host_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tools_list"
         android:layout_width="match_parent"

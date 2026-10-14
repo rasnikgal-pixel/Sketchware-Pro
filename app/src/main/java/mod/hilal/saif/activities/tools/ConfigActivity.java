@@ -201,7 +201,8 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 // fall-through to shared error handler
             }
 
-            SketchwareUtil.toastError(Helper.getResString(R.string.auto_config_activity_001));
+            // Не вызываем toastError — метод может быть вызван из фонового потока
+            // (BackupFactory.backup() → getBackupFileName() → здесь). MaterialColors упадёт без темы.
             LogUtil.e("ConfigActivity", "Failed to parse App Settings.", toLog);
         }
         settings = new HashMap<>();
