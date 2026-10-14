@@ -9,6 +9,8 @@ public class UpdateInfo {
     public String versionName;
     public String downloadUrl;
     public String changelog;
+    /** Мультиязычный changelog: ключ — код языка (ru/en/zh/hi/uk). */
+    public java.util.Map<String, String> changelogI18n;
     public boolean required;
     public String releaseDate;
     public int minVersion;

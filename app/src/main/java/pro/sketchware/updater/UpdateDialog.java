@@ -27,9 +27,10 @@ public class UpdateDialog {
         msg.append(Helper.getResString(R.string.auto_update_dialog_002)).append(info.versionName)
                 .append(" (").append(info.versionCode).append(")\n\n");
 
-        if (info.changelog != null && !info.changelog.isEmpty()) {
+        String chText = resolveChangelog(activity, info);
+        if (chText != null && chText.isEmpty() == false) {
             msg.append(Helper.getResString(R.string.auto_update_dialog_003));
-            msg.append(info.changelog);
+            msg.append(chText);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity)
@@ -52,6 +53,19 @@ public class UpdateDialog {
         }
 
         builder.show();
+    }
+
+
+    /** Выбрать changelog по языку пользователя с fallback. */
+    private static String resolveChangelog(Context ctx, UpdateInfo info) {
+        if (info.changelogI18n != null && !info.changelogI18n.isEmpty()) {
+            String lang = pro.sketchware.i18n.LocaleHelper.getEffectiveLanguage(ctx);
+            String v = info.changelogI18n.get(lang);
+            if (v == null) v = info.changelogI18n.get("en");
+            if (v == null) v = info.changelogI18n.get("ru");
+            if (v != null && !v.isEmpty()) return v;
+        }
+        return info.changelog;
     }
 
     /** Открыть ссылку на APK в браузере. */
