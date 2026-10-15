@@ -168,6 +168,33 @@ The app now supports:
 
 ---
 
+## 🆕 What's new in 7.1.0
+
+**📦 Block collections** — new **"Collections"** category at the top of the block palette. 10 ready-made templates (dialogs, progress, finish, Toast) that can be dropped as a **single block** and expand into a chain with nested blocks.
+
+**🤖 SmartDrop** — when you drag a block that requires a component, the app offers to create or connect the needed component. No more manual adding of dialogs, timers, vibrators, etc.
+
+**🖼 Screen templates** — 200 ready-made layouts in 20 categories. Gallery with search, preview and history. Quick start of a new screen in one tap.
+
+**🎨 5 colored themes** — Purple Dark (per reference), AMOLED, Blue, Green, Gold. Full Material3 schemes.
+
+**🔍 Editor improvements:**
+- Block search across all palettes
+- Favorite blocks with ☆ icon
+- Smart search: `dialog show` finds `dialogShow`
+- Palette scroll position saved (per-project)
+- Block Logic Checker — 8 logic check rules
+
+**💾 Settings export/import** — save all app settings to JSON via FilePicker.
+
+**📜 Debug log (RU/EN)** — built-in log viewer with share, copy, clear.
+
+**🔄 Update system** — the app checks for new versions and offers to download.
+
+More details — [FIXES.md](FIXES.md).
+
+---
+
 ## 🔄 Update check
 
 The app downloads the `update.json` file from the repository and compares `versionCode` with the installed version.
