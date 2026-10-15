@@ -18,7 +18,7 @@ android {
         minSdk = 26
         versionCode = 178
         versionName = "7.8.0"
-    // Rebuild trigger: blocks visibility fix v2
+    // Rebuild trigger: palette 7 fix
 
         buildConfigField("String", "GIT_HASH", "\"${gitCommitHash}\"")
 
