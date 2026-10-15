@@ -2047,6 +2047,10 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 public void afterTextChanged(android.text.Editable s) {
                     blockSearchQuery = s == null ? "" : s.toString();
                     if (m != null) m.setBlockSearchQuery(blockSearchQuery);
+                    if (!mod.hilal.saif.activities.tools.ConfigActivity.isLiveSearchEnabled()) {
+                        // Живой поиск выключен — ждём нажатия кнопки «Найти».
+                        return;
+                    }
                     if (pendingSearchRunnable != null) {
                         searchHandler.removeCallbacks(pendingSearchRunnable);
                     }
@@ -2060,9 +2064,34 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                             extraPaletteBlock.setBlockAll(lastPaletteColor);
                         }
                     };
-                    searchHandler.postDelayed(pendingSearchRunnable, 350);
+                    searchHandler.postDelayed(pendingSearchRunnable, 600);
                 }
             });
+
+            // Кнопка «Поиск» на клавиатуре — запускает поиск вручную
+            blockSearchInput.setOnEditorActionListener((v, actionId, event) -> {
+                if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
+                        || (event != null && event.getKeyCode() == android.view.KeyEvent.KEYCODE_ENTER)) {
+                    if (extraPaletteBlock != null) {
+                        blockSearchQuery = v.getText() == null ? "" : v.getText().toString();
+                        if (m != null) m.setBlockSearchQuery(blockSearchQuery);
+                        if (blockSearchQuery.isEmpty()) {
+                            if (lastPaletteId != -1) {
+                                extraPaletteBlock.setBlock(lastPaletteId, lastPaletteColor);
+                            }
+                        } else {
+                            extraPaletteBlock.setBlockAll(lastPaletteColor);
+                        }
+                    }
+                    // Скрыть клавиатуру
+                    android.view.inputmethod.InputMethodManager imm =
+                        (android.view.inputmethod.InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    if (imm != null) imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            });
+
         }
 
         // Button next to the search field: run logic check manually.

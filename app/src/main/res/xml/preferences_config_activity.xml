@@ -24,6 +24,12 @@
         app:title="@string/block_dep_hints_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
+        app:key="live-search-enabled"
+        app:defaultValue="false"
+        app:summary="Искать блоки автоматически при вводе. Иначе — после нажатия кнопки Найти."
+        app:title="Живой поиск блоков" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
         app:key="show-headers-when-searching-blocks"
         app:summary="При поиске блоков оставлять заголовки подразделов только если под ними есть найденные блоки."
         app:title="Заголовки при поиске блоков" />
