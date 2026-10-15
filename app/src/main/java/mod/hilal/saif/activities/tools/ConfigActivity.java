@@ -174,8 +174,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
      *         По умолчанию — включено (для новичков).
      */
     public static boolean isBlockDependencyHintsEnabled() {
-        return DataStore.getInstance().getBoolean(SETTING_BLOCK_DEPENDENCY_HINTS,
-                SETTING_LIVE_SEARCH_ENABLED, true);
+        return DataStore.getInstance().getBoolean(SETTING_BLOCK_DEPENDENCY_HINTS, true);
     }
 
     /** @return true если включён живой поиск блоков (автоматически при вводе) */
