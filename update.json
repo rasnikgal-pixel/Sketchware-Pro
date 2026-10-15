@@ -1,12 +1,12 @@
 {
   "versionCode": 177,
   "versionName": "7.7.0",
-  "downloadUrl": "https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/download/7.6.0/app-release.apk",
+  "downloadUrl": "https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/download/7.7.0/app-release.apk",
   "changelog": "🇷🇺 ЧТО НОВОГО В 7.7.0\n\n📝 SORA-РЕДАКТОР\n• Свернуть блоки и подсветка парных скобок\n• Форматирование кода\n• Поиск и замена в файле и по всему проекту\n• Перейти к символу (класс/метод)\n• Экспорт файла через SAF\n• Предпросмотр layout-XML\n\n🌍 МУЛЬТИЯЗЫЧНОСТЬ\n• Changelog на языке пользователя\n• Мастер языка — экспорт мастер-файла для переводчика\n• Проверка полноты локализации (i18n_check.py)\n• Исправлены пропущенные ключи в zh/hi/uk\n\n🛠 ИНФРАСТРУКТУРА\n• check_links.py — проверка ссылок в документации\n• generate_readme.py — проверка синхронности README\n\n━━━━━━━━━━━━━━━━━━━━\n\n🇬🇧 WHAT'S NEW IN 7.7.0\n\n📝 SORA EDITOR\n• Fold blocks and bracket pair highlight\n• Code formatting\n• Find and replace in file and across project\n• Go to symbol (class/method)\n• Export file via SAF\n• Layout-XML preview\n\n🌍 MULTILINGUAL\n• Changelog in user's language\n• Language master — export master file for translators\n• Localization completeness check (i18n_check.py)\n• Fixed missing keys in zh/hi/uk\n\n🛠 INFRASTRUCTURE\n• check_links.py — link checker for docs\n• generate_readme.py — README consistency check\n\n━━━━━━━━━━━━━━━━━━━━\n\n🇨🇳 7.7.0 新功能\n\n📝 SORA 编辑器\n• 折叠代码块和括号对高亮\n• 代码格式化\n• 在文件和整个项目中查找和替换\n• 跳转到符号（类/方法）\n• 通过 SAF 导出文件\n• 布局 XML 预览\n\n🌍 多语言\n• 用户语言的更新日志\n• 语言大师 — 为翻译者导出母版文件\n• 本地化完整性检查 (i18n_check.py)\n• 修复 zh/hi/uk 中缺失的键\n\n🛠 基础设施\n• check_links.py — 文档链接检查\n• generate_readme.py — README 一致性检查\n\n━━━━━━━━━━━━━━━━━━━━\n\n🇮🇳 7.7.0 में नया\n\n📝 SORA संपादक\n• ब्लॉक संकुचित करें और कोष्ठक जोड़ी हाइलाइट\n• कोड फ़ॉर्मेटिंग\n• फ़ाइल में और पूरे प्रोजेक्ट में खोजें और बदलें\n• प्रतीक पर जाएं (क्लास/मेथड)\n• SAF के माध्यम से फ़ाइल निर्यात करें\n• layout-XML पूर्वावलोकन\n\n🌍 बहुभाषी\n• उपयोगकर्ता की भाषा में चेंजलॉग\n• भाषा मास्टर — अनुवादकों के लिए मास्टर फ़ाइल निर्यात करें\n• स्थानीयकरण पूर्णता जाँच (i18n_check.py)\n• zh/hi/uk में छूटी कुंजियाँ ठीक कीं\n\n🛠 अवसंरचना\n• check_links.py — दस्तावेज़ों के लिए लिंक जाँच\n• generate_readme.py — README संगतता जाँच\n\n━━━━━━━━━━━━━━━━━━━━\n\n🇺🇦 ЩО НОВОГО В 7.7.0\n\n📝 SORA-РЕДАКТОР\n• Згортання блоків і підсвітка парних дужок\n• Форматування коду\n• Пошук і заміна у файлі та по всьому проєкту\n• Перейти до символу (клас/метод)\n• Експорт файлу через SAF\n• Попередній перегляд layout-XML\n\n🌍 БАГАТОМОВНІСТЬ\n• Changelog мовою користувача\n• Майстер мови — експорт мастер-файлу для перекладача\n• Перевірка повноти локалізації (i18n_check.py)\n• Виправлено пропущені ключі у zh/hi/uk\n\n🛠 ІНФРАСТРУКТУРА\n• check_links.py — перевірка посилань у документації\n• generate_readme.py — перевірка синхронності README",
   "required": false,
-  "releaseDate": "2026-10-14",
+  "releaseDate": "2026-10-15",
   "minVersion": 0,
   "channel": "stable",
-  "apkSize": 140944299,
-  "sha256": "1899eb2717fbc0819c5974b4acb465f8b23728b076aaf450b9482f0b94f672e1"
+  "apkSize": 141016295,
+  "sha256": "fdb69f31091ebdca603eed5f55f909635cca1e7e59f787c498315b3c41e9d868"
 }
