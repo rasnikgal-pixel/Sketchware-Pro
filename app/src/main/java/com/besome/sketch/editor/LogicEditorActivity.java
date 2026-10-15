@@ -2023,6 +2023,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         // Pass project id to PaletteBlock so it can store per-project scroll positions
         if (m != null) {
             m.setScId(scId);
+            m.setJavaName(M != null ? M.getJavaName() : "");
         }
         // Restore the last opened palette for this project
         if (scId != null && !scId.isEmpty() && paletteSelector != null) {

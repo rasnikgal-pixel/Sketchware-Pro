@@ -2,6 +2,8 @@ package com.besome.sketch.editor.logic;
 
 
 import mod.hey.studios.util.Helper;
+import mod.hilal.saif.activities.tools.ConfigActivity;
+import com.besome.sketch.beans.ComponentBean;
 import static pro.sketchware.utility.ThemeUtils.getColor;
 import static pro.sketchware.utility.ThemeUtils.isDarkThemeEnabled;
 
@@ -96,6 +98,30 @@ public class PaletteBlock extends LinearLayout {
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         row.setLayoutParams(rowParams);
         row.setGravity(android.view.Gravity.CENTER_VERTICAL);
+
+        // ⚠ — пометка «требует компонента» (фича block-dependency-hints)
+        if (ConfigActivity.isBlockDependencyHintsEnabled()
+                && !scId.isEmpty() && !javaName.isEmpty()) {
+            try {
+                pro.sketchware.smartdrop.SmartDropHelper helper =
+                        pro.sketchware.smartdrop.SmartDropHelper.get(context);
+                Integer compType = helper.getRequiredComponent(name);
+                if (compType != null) {
+                    boolean has = !helper.findComponents(scId, javaName, compType).isEmpty();
+                    if (!has) {
+                        android.widget.TextView warn = new android.widget.TextView(context);
+                        int warnSize = (int) (f * 18.0F);
+                        LinearLayout.LayoutParams wp = new LinearLayout.LayoutParams(warnSize, warnSize);
+                        warn.setLayoutParams(wp);
+                        warn.setText("\u26A0");
+                        warn.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, warnSize * 0.9f);
+                        warn.setGravity(android.view.Gravity.CENTER);
+                        warn.setTextColor(0xFFFFA000);
+                        row.addView(warn);
+                    }
+                }
+            } catch (Throwable ignored) {}
+        }
 
         android.widget.ImageView star = new android.widget.ImageView(context);
         int starSize = (int) (f * 22.0F);
