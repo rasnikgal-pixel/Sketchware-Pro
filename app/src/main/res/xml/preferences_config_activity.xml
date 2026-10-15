@@ -18,6 +18,12 @@
         app:title="Показывать все блоки палитр" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
+        app:key="block-dependency-hints"
+        app:defaultValue="true"
+        app:summary="@string/block_dep_hints_summary"
+        app:title="@string/block_dep_hints_title" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
         app:key="show-headers-when-searching-blocks"
         app:summary="При поиске блоков оставлять заголовки подразделов только если под ними есть найденные блоки."
         app:title="Заголовки при поиске блоков" />

@@ -2688,4 +2688,9 @@ ACTION_VIEW
     <string name="tools_language_master_exporting">Готуємо файл…</string>
     <string name="tools_language_master_done">Готово: %1$d ключів</string>
     <string name="tools_language_master_failed">Не вдалося створити файл</string>
+    <string name="block_dep_hints_title">Підказки залежностей блоків</string>
+    <string name="block_dep_hints_summary">Показувати блоки, що потребують компонентів, навіть якщо їх ще немає в проєкті</string>
+    <string name="block_dep_hint_requires">Потрібно: %1$s</string>
+    <string name="block_dep_hint_add">Додати</string>
+    <string name="block_dep_hint_added">Компонент «%1$s» додано</string>
 </resources>

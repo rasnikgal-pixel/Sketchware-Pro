@@ -128,11 +128,14 @@ public class ExtraBlocks {
     }
 
     public boolean isComponentUsed(int componentId) {
-        return projectDataManager.f(javaName, componentId) || ConfigActivity.isSettingEnabled(ConfigActivity.SETTING_SHOW_EVERY_SINGLE_BLOCK);
+        return projectDataManager.f(javaName, componentId)
+                || ConfigActivity.isSettingEnabled(ConfigActivity.SETTING_SHOW_EVERY_SINGLE_BLOCK)
+                || ConfigActivity.isBlockDependencyHintsEnabled();
     }
 
     public boolean isCustomVarUsed(String variable) {
-        if (ConfigActivity.isSettingEnabled(ConfigActivity.SETTING_SHOW_EVERY_SINGLE_BLOCK)) {
+        if (ConfigActivity.isSettingEnabled(ConfigActivity.SETTING_SHOW_EVERY_SINGLE_BLOCK)
+                || ConfigActivity.isBlockDependencyHintsEnabled()) {
             return true;
         }
 

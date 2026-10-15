@@ -70,6 +70,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
     public static final String SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH = "palletteDir";
     public static final String SETTING_SMARTDROP_UPDATE_ALL_BLOCKS = "smartdrop-update-all-blocks";
     public static final String SETTING_SMARTDROP_FORCE_REPLACE = "smartdrop-force-replace";
+    public static final String SETTING_BLOCK_DEPENDENCY_HINTS = "block-dependency-hints";
     public static final String SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH = "blockDir";
     // SkProj export settings
     public static final String SETTING_SKPROJ_INCLUDE_COMPONENTS = "skproj-include-components";
@@ -166,6 +167,15 @@ public class ConfigActivity extends BaseAppCompatActivity {
         return DataStore.getInstance().getBoolean(SETTING_SMARTDROP_FORCE_REPLACE, true);
     }
 
+    /**
+     * @return true если показывать в палитре блоки, требующие компонентов,
+     *         даже если этих компонентов ещё нет в проекте.
+     *         По умолчанию — включено (для новичков).
+     */
+    public static boolean isBlockDependencyHintsEnabled() {
+        return DataStore.getInstance().getBoolean(SETTING_BLOCK_DEPENDENCY_HINTS, true);
+    }
+
     public static void setSetting(String key, Object value) {
         var dataStore = DataStore.getInstance();
         if (value instanceof String s) {
@@ -236,6 +246,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 SETTING_SKPROJ_FORMAT_ZIP,
                 SETTING_SKPROJ_OUTPUT_DIR,
                 SETTING_BLOCK_TEMPLATES,
+                SETTING_BLOCK_DEPENDENCY_HINTS,
                 SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH,
                 SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH);
 
@@ -264,6 +275,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 SETTING_BLOCK_LOGIC_CHECK,
                 SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD,
                 SETTING_BLOCK_TEMPLATES,
+                SETTING_BLOCK_DEPENDENCY_HINTS,
                 SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH,
                 SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH);
 
@@ -297,6 +309,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
             case SETTING_SKPROJ_FORMAT_ZIP -> true;
             case SETTING_SKPROJ_OUTPUT_DIR -> "/.sketchware/backups/exports/";
             case SETTING_BLOCK_TEMPLATES -> true;
+            case SETTING_BLOCK_DEPENDENCY_HINTS -> true;
             case SETTING_ALWAYS_SHOW_BLOCKS,
                  SETTING_ROOT_AUTO_INSTALL_PROJECTS, SETTING_SHOW_BUILT_IN_BLOCKS,
                  SETTING_SHOW_EVERY_SINGLE_BLOCK, SETTING_USE_NEW_VERSION_CONTROL,
