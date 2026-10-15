@@ -41,21 +41,57 @@ public class PermissionManager {
     }
 
     /**
-     * Собирает extra-permissions (SMS, Contacts, NFC и т.д.) из jq проекта.
-     * Они не помещаются в int q и хранятся как строки в jq.extraPerms.
+     * Собирает extra-permissions (SMS, Contacts, NFC и т.д.) из блоков проекта.
+     * Они не помещаются в int q и не входят в стандартный набор Sketchware.
      */
     private ArrayList<String> addedExtraPermissions() {
         ArrayList<String> permList = new ArrayList<>();
-        try {
-            jq project = jC.b(sc_id);
-            if (project != null && project.extraPerms != null) {
-                for (String perm : project.extraPerms) {
-                    if (perm == null || perm.isEmpty()) continue;
+        for (Entry<String, ArrayList<BlockBean>> blocks : jC.a(sc_id).b(javaName).entrySet()) {
+            for (BlockBean block : blocks.getValue()) {
+                String perm = opCodeToExtraPermission(block.opCode);
+                if (perm != null && !perm.isEmpty()) {
                     permList.add("Manifest.permission." + perm);
                 }
             }
-        } catch (Throwable ignored) {}
+        }
         return permList;
+    }
+
+    /**
+     * Маппинг opCode → extra-permission (без префикса).
+     * Возвращает null, если блок не требует extra-разрешения.
+     */
+    private static String opCodeToExtraPermission(String opCode) {
+        if (opCode == null) return null;
+        switch (opCode) {
+            case "smsSend": return "SEND_SMS";
+            case "smsGetCount":
+            case "smsGetBodyByIndex": return "READ_SMS";
+            case "contactsGetCount":
+            case "contactsReadAllNames":
+            case "contactsReadByName": return "READ_CONTACTS";
+            case "contactsAdd": return "WRITE_CONTACTS";
+            case "callPhoneDirect": return "CALL_PHONE";
+            case "nfcIsAvailable":
+            case "nfcIsEnabled": return "NFC";
+            case "biometricIsAvailable":
+            case "biometricAuthenticate": return "USE_BIOMETRIC";
+            case "wallpaperSetFromFile": return "SET_WALLPAPER";
+            case "alarmSet":
+            case "alarmCancel": return "SET_ALARM";
+            case "wakelockAcquire":
+            case "wakelockRelease": return "WAKE_LOCK";
+            case "accountsGetCount":
+            case "accountsGetNames": return "GET_ACCOUNTS";
+            case "getOperatorName":
+            case "getNetworkCountryIso":
+            case "isCallActive": return "READ_PHONE_STATE";
+            case "isAppInstalled":
+            case "getAppVersionName":
+            case "getInstalledAppsCount": return "QUERY_ALL_PACKAGES";
+            case "wifiIsEnabled": return "ACCESS_WIFI_STATE";
+            default: return null;
+        }
     }
 
     private String formatPermission(boolean isAppCompat, String permission) {
