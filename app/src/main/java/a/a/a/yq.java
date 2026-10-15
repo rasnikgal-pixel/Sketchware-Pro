@@ -669,6 +669,62 @@ public class yq {
                             N.addPermission(jq.PERMISSION_ACCESS_NETWORK_STATE);
                             break;
 
+                        // ─── Новые системные блоки (SecurityBlocks) ───
+                        case "smsSend":
+                            N.addExtraPermission(activity.getActivityName(), "SEND_SMS");
+                            break;
+                        case "smsGetCount":
+                        case "smsGetBodyByIndex":
+                            N.addExtraPermission(activity.getActivityName(), "READ_SMS");
+                            break;
+                        case "contactsGetCount":
+                        case "contactsReadAllNames":
+                        case "contactsReadByName":
+                            N.addExtraPermission(activity.getActivityName(), "READ_CONTACTS");
+                            break;
+                        case "contactsAdd":
+                            N.addExtraPermission(activity.getActivityName(), "WRITE_CONTACTS");
+                            break;
+                        case "callPhoneDirect":
+                            N.addExtraPermission(activity.getActivityName(), "CALL_PHONE");
+                            break;
+                        case "nfcIsAvailable":
+                        case "nfcIsEnabled":
+                            N.addExtraPermission(activity.getActivityName(), "NFC");
+                            break;
+                        case "biometricIsAvailable":
+                        case "biometricAuthenticate":
+                            N.addExtraPermission(activity.getActivityName(), "USE_BIOMETRIC");
+                            break;
+                        case "wallpaperSetFromFile":
+                            N.addExtraPermission(activity.getActivityName(), "SET_WALLPAPER");
+                            break;
+                        case "alarmSet":
+                        case "alarmCancel":
+                            N.addExtraPermission(activity.getActivityName(), "SET_ALARM");
+                            break;
+                        case "wakelockAcquire":
+                        case "wakelockRelease":
+                            N.addExtraPermission(activity.getActivityName(), "WAKE_LOCK");
+                            break;
+                        case "accountsGetCount":
+                        case "accountsGetNames":
+                            N.addExtraPermission(activity.getActivityName(), "GET_ACCOUNTS");
+                            break;
+                        case "getOperatorName":
+                        case "getNetworkCountryIso":
+                        case "isCallActive":
+                            N.addExtraPermission(activity.getActivityName(), "READ_PHONE_STATE");
+                            break;
+                        case "isAppInstalled":
+                        case "getAppVersionName":
+                        case "getInstalledAppsCount":
+                            N.addExtraPermission(activity.getActivityName(), "QUERY_ALL_PACKAGES");
+                            break;
+                        case "wifiIsEnabled":
+                            N.addExtraPermission(activity.getActivityName(), "ACCESS_WIFI_STATE");
+                            break;
+
                         default:
                     }
                 }
