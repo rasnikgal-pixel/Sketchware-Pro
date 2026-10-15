@@ -42,6 +42,9 @@ public class UpdateChecker {
     public static final String PERIOD_6DAYS = "6days";
     public static final String PERIOD_9DAYS = "9days";
 
+    /** Пропущенная версия ТОЛЬКО для текущего запуска (A1). */
+    private static volatile int inMemorySkipped = -1;
+
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
@@ -72,11 +75,13 @@ public class UpdateChecker {
     }
 
     public static int getSkippedVersion(Context ctx) {
-        return prefs(ctx).getInt(KEY_SKIPPED_VERSION, -1);
+        return inMemorySkipped;
     }
 
     public static void skipVersion(Context ctx, int versionCode) {
-        prefs(ctx).edit().putInt(KEY_SKIPPED_VERSION, versionCode).apply();
+        inMemorySkipped = versionCode;
+        // На всякий случай чистим старое значение из prefs (миграция с бага прошлой версии)
+        prefs(ctx).edit().remove(KEY_SKIPPED_VERSION).apply();
     }
 
     private static SharedPreferences prefs(Context ctx) {
