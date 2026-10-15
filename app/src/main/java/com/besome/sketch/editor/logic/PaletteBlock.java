@@ -35,10 +35,15 @@ public class PaletteBlock extends LinearLayout {
     private boolean hasPendingHeader = false;
     private int currentPaletteId = -1;
     private String scId = "";
+    private String javaName = "";
     private static final String PREFS_SCROLL = "palette_scroll_positions_per_project";
 
     public void setScId(String scId) {
         this.scId = scId == null ? "" : scId;
+    }
+
+    public void setJavaName(String javaName) {
+        this.javaName = javaName == null ? "" : javaName;
     }
 
     private String keyPrefix() {
