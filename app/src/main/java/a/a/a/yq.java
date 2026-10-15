@@ -401,9 +401,10 @@ public class yq {
                         "Application \\{", "androidx.multidex.MultiDexApplication {");
             }
             if (logcatEnabled) {
-                // Логгер запускается в отложенном потоке через 2 сек, чтобы не блокировать старт приложения
+                // Логгер — запуск в ОТДЕЛЬНОМ фоновом потоке (не в UI, не в Application.onCreate)
+                // Это НЕ блокирует старт и НЕ требует Looper.
                 sketchApplicationFileContent = sketchApplicationFileContent.replace(
-                                "super.onCreate();", "super.onCreate();\n        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(new Runnable() { public void run() { try { SketchLogger.startLogging(); } catch (Throwable _t) { } } }, 2000);")
+                                "super.onCreate();", "super.onCreate();\n        new Thread(new Runnable() { public void run() { try { Thread.sleep(1000); SketchLogger.startLogging(); } catch (Throwable _t) { } } }).start();")
                         .replace("Process.killProcess(Process.myPid());",
                                 "SketchLogger.broadcastLog(Log.getStackTraceString(throwable));\n" +
                                         "                    Process.killProcess(Process.myPid());"
