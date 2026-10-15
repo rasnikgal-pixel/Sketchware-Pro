@@ -153,13 +153,9 @@ public final class SecurityBlocks {
                 "biometric is available"));
 
         list.add(block("biometricAuthenticate", " ", "",
-                "new androidx.biometric.BiometricPrompt((androidx.fragment.app.FragmentActivity) %1$s, androidx.core.content.ContextCompat.getMainExecutor(%1$s), new androidx.biometric.BiometricPrompt.AuthenticationCallback() {\n"
-                + "@Override public void onAuthenticationSucceeded(androidx.biometric.BiometricPrompt.AuthenticationResult _r) {\n"
-                + "%2$s\n"
-                + "}\n"
-                + "}).authenticate(new androidx.biometric.BiometricPrompt.PromptInfo.Builder().setTitle(%3$s).setNegativeButtonText(\"Cancel\").build());",
+                "new androidx.biometric.BiometricPrompt((androidx.fragment.app.FragmentActivity) %1$s, androidx.core.content.ContextCompat.getMainExecutor(%1$s), new androidx.biometric.BiometricPrompt.AuthenticationCallback() { @Override public void onAuthenticationSucceeded(androidx.biometric.BiometricPrompt.AuthenticationResult _r) { } }).authenticate(new androidx.biometric.BiometricPrompt.PromptInfo.Builder().setTitle(%2$s).setNegativeButtonText(\"Cancel\").build());",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
-                "biometric authenticate in %m.activity on success %s title %s"));
+                "biometric authenticate in %m.activity title %s"));
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -254,10 +250,10 @@ public final class SecurityBlocks {
                 COLOR_FUNC, PALETTE_FUNC,
                 "app %s is installed"));
 
-        list.add(block("getAppVersionName", "s", "",
+        list.add(block("getPackageVersionName", "s", "",
                 "getPackageManager().getPackageInfo(%1$s, 0).versionName",
                 COLOR_FUNC, PALETTE_FUNC,
-                "version of app %s"));
+                "version of package %s"));
 
         list.add(block("getInstalledAppsCount", "d", "",
                 "getPackageManager().getInstalledPackages(0).size()",

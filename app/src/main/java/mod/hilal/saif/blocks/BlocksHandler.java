@@ -28,6 +28,15 @@ public class BlocksHandler {
         dev.aldi.sayuti.block.ListBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.MathBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.ColorBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.SystemInfoBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.CryptoBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.DateTimeBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.SqliteBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.UiUtilsBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.LocaleBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.NotificationExtBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.BatteryBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.RegexBlocks.addBlocks(arrayList);
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("name", "CommandBlockJava");
