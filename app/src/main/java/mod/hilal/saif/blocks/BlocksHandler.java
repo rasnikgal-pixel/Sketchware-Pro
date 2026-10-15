@@ -19,6 +19,7 @@ public class BlocksHandler {
     public static void builtInBlocks(ArrayList<HashMap<String, Object>> arrayList) {
         ExtraBlocks.extraBlocks(arrayList);
         dev.aldi.sayuti.block.SecurityBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.UtilityBlocks.addBlocks(arrayList);
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("name", "CommandBlockJava");
