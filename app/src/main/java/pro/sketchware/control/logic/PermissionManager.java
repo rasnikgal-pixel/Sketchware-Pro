@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import a.a.a.Jx;
 import a.a.a.jC;
 import a.a.a.jq;
+import java.util.Set;
 
 public class PermissionManager {
 
@@ -36,6 +37,24 @@ public class PermissionManager {
                 }
             }
         }
+        return permList;
+    }
+
+    /**
+     * Собирает extra-permissions (SMS, Contacts, NFC и т.д.) из jq проекта.
+     * Они не помещаются в int q и хранятся как строки в jq.extraPerms.
+     */
+    private ArrayList<String> addedExtraPermissions() {
+        ArrayList<String> permList = new ArrayList<>();
+        try {
+            jq project = jC.b(sc_id);
+            if (project != null && project.extraPerms != null) {
+                for (String perm : project.extraPerms) {
+                    if (perm == null || perm.isEmpty()) continue;
+                    permList.add("Manifest.permission." + perm);
+                }
+            }
+        } catch (Throwable ignored) {}
         return permList;
     }
 
@@ -76,6 +95,15 @@ public class PermissionManager {
         StringBuilder permissionCode = new StringBuilder();
 
         addReqPermission(isAppCompat, checkPerm, addPerm);
+
+        // Extra permissions (SMS, Contacts, NFC и т.д.) — те, что не входят в int q.
+        for (String extraPerm : addedExtraPermissions()) {
+            String checkStr = isAppCompat
+                    ? "ContextCompat.checkSelfPermission(this, " + extraPerm + ") == PackageManager.PERMISSION_DENIED"
+                    : "checkSelfPermission(" + extraPerm + ") == PackageManager.PERMISSION_DENIED";
+            checkPerm.add(checkStr);
+            addPerm.add(extraPerm);
+        }
 
         if (isAppCompat) {
             if ((var1 & jq.PERMISSION_CALL_PHONE) == jq.PERMISSION_CALL_PHONE) {
