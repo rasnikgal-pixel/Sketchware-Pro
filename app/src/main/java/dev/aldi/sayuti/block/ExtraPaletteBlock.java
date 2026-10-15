@@ -460,6 +460,7 @@ public class ExtraPaletteBlock {
 
             case 3:
                 BlocksHandler.primaryBlocksD(logicEditor);
+                addCustomBlocksForPalette(3);
                 return;
 
             case 4:
@@ -1196,6 +1197,7 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "progressdialogDismiss");
                     return;
                 }
+                addCustomBlocksForPalette(7);
                 return;
 
             case 8:
@@ -1373,4 +1375,36 @@ public class ExtraPaletteBlock {
     private @ColorInt int getTitleBgColor() {
         return getColor(logicEditor, isDarkThemeEnabled(logicEditor) ? R.attr.colorSurfaceContainerHigh : R.attr.colorSurfaceInverse);
     }
+
+    /**
+     * Добавляет блоки из ExtraBlockFile для указанной палитры.
+     * Нужно, потому что case 0-8 обрабатывают палитры явно, и наши
+     * дополнительные блоки (SecurityBlocks, UtilityBlocks и т.д.)
+     * без этого не отображаются.
+     */
+    private void addCustomBlocksForPalette(int paletteId) {
+        ArrayList<HashMap<String, Object>> data = ExtraBlockFile.getExtraBlockData();
+        for (HashMap<String, Object> map : data) {
+            Object pal = map.get("palette");
+            if (!String.valueOf(paletteId).equals(pal)) continue;
+
+            Object type = map.get("type");
+            Object opcode = map.get("name");
+            Object typeName = map.get("typeName");
+
+            if (!(type instanceof String)) continue;
+            if (!(opcode instanceof String)) continue;
+
+            String t = (String) type;
+            String o = (String) opcode;
+            String tn = (typeName instanceof String) ? (String) typeName : "";
+
+            if (tn.isEmpty()) {
+                logicEditor.a(t, o);
+            } else {
+                logicEditor.a("", t, o);
+            }
+        }
+    }
+
 }
