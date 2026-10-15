@@ -542,25 +542,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 });
             }
 
-            // Настройки обновлений
-            SwitchPreferenceCompat updatesEnabled = findPreference("updates-check-enabled");
-            if (updatesEnabled != null) {
-                updatesEnabled.setChecked(pro.sketchware.updater.UpdateChecker.isEnabled(requireContext()));
-                updatesEnabled.setOnPreferenceChangeListener((pref, v) -> {
-                    pro.sketchware.updater.UpdateChecker.setEnabled(requireContext(), (Boolean) v);
-                    return true;
-                });
-            }
-
-            androidx.preference.ListPreference updatesPeriod = findPreference("updates-check-period");
-            if (updatesPeriod != null) {
-                updatesPeriod.setValue(pro.sketchware.updater.UpdateChecker.getPeriod(requireContext()));
-                updatesPeriod.setOnPreferenceChangeListener((pref, v) -> {
-                    pro.sketchware.updater.UpdateChecker.setPeriod(requireContext(), (String) v);
-                    return true;
-                });
-            }
-
+            // Ручная проверка обновлений (настройки периода убраны)
             Preference updatesCheckNow = findPreference("updates-check-now");
             if (updatesCheckNow != null) {
                 updatesCheckNow.setOnPreferenceClickListener(pref -> {

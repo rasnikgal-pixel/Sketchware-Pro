@@ -105,27 +105,12 @@ public class UpdateChecker {
         }
     }
 
-    /** Проверить, надо ли запускать проверку сейчас (учитывая период). */
+    /**
+     * Всегда проверять обновления при запуске — без настроек периода.
+     * Настройки убраны, потому что они ломали автопроверку у пользователей.
+     */
     public static boolean shouldCheckNow(Context ctx) {
-        if (!isEnabled(ctx)) return false;
-
-        String period = getPeriod(ctx);
-        if (PERIOD_ALWAYS.equals(period)) return true;
-
-        long last = getLastCheck(ctx);
-        long now = System.currentTimeMillis();
-        long diff = now - last;
-
-        long needed;
-        switch (period) {
-            case PERIOD_DAILY: needed = 24L * 60 * 60 * 1000; break;
-            case PERIOD_3DAYS: needed = 3L * 24 * 60 * 60 * 1000; break;
-            case PERIOD_6DAYS: needed = 6L * 24 * 60 * 60 * 1000; break;
-            case PERIOD_9DAYS: needed = 9L * 24 * 60 * 60 * 1000; break;
-            default: needed = 24L * 60 * 60 * 1000;
-        }
-
-        return diff >= needed;
+        return true;
     }
 
     /** Фоновая проверка. Учитывает настройки и период. */
@@ -168,15 +153,10 @@ public class UpdateChecker {
                         return;
                     }
 
-                    // Проверка доступности APK. При ручной проверке пропускаем —
-                    // пользователь сам решил, и HEAD-запрос GitHub часто даёт ложные срабатывания.
-                    if (userInitiated || isDownloadUrlAvailable(info.downloadUrl)) {
-                        callback.onUpdateAvailable(info);
-                    } else {
-                        DebugLogger.get(ctx).w("Updater",
-                                "apk_not_available", info.downloadUrl);
-                        callback.onUpToDate();
-                    }
+                    // Доверяем update.json — если там есть новая версия, показываем диалог.
+                    // Проверка доступности APK вызывала ложные срабатывания:
+                    // GitHub иногда отдаёт 302/429 при GET+Range, и обновление не показывалось.
+                    callback.onUpdateAvailable(info);
                 });
             } catch (Exception e) {
                 DebugLogger.get(ctx).e("Updater", "log_updater_check_failed", e);
