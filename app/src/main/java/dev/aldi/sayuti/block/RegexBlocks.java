@@ -29,11 +29,11 @@ public final class RegexBlocks {
                 "%1$s fully matches regex %2$s"));
 
         list.add(blk("regexFind", "s", "",
-                "((java.util.function.Supplier<String>) () -> { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return _m.find() ? _m.group() : \"\"; }).get()",
+                "((java.util.function.Supplier<String>) () -> { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return _m.find() ? _m.group() : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
                 "first match of regex %2$s in %1$s"));
 
         list.add(blk("regexFindAll", "s", "",
-                "((java.util.function.Supplier<String>) () -> { StringBuilder _sb = new StringBuilder(); java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); while (_m.find()) { _sb.append(_m.group()).append(\"\\n\"); } return _sb.toString(); }).get()",
+                "((java.util.function.Supplier<String>) () -> { StringBuilder _sb = new StringBuilder(); try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); while (_m.find()) { _sb.append(_m.group()).append(\"\\n\"); } } catch (Throwable _t) {} return _sb.toString(); }).get()",
                 "all matches of regex %2$s in %1$s"));
 
         list.add(blk("regexReplaceAll", "s", "",
@@ -49,7 +49,7 @@ public final class RegexBlocks {
                 "%1$s split by regex %2$s"));
 
         list.add(blk("regexGroup", "s", "",
-                "((java.util.function.Supplier<String>) () -> { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return (_m.find() && _m.groupCount() >= (int)(%3$s)) ? _m.group((int)(%3$s)) : \"\"; }).get()",
+                "((java.util.function.Supplier<String>) () -> { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return (_m.find() && _m.groupCount() >= (int)(%3$s)) ? _m.group((int)(%3$s)) : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
                 "group %3$d of regex %2$s in %1$s"));
 
         list.add(blk("regexIsValid", "b", "",

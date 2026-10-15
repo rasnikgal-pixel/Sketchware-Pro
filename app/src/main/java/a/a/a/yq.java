@@ -402,7 +402,7 @@ public class yq {
             }
             if (logcatEnabled) {
                 sketchApplicationFileContent = sketchApplicationFileContent.replace(
-                                "super.onCreate();", "SketchLogger.startLogging();\n        super.onCreate();")
+                                "super.onCreate();", "super.onCreate();\n        try { SketchLogger.startLogging(); } catch (Throwable _t) { }")
                         .replace("Process.killProcess(Process.myPid());",
                                 "SketchLogger.broadcastLog(Log.getStackTraceString(throwable));\n" +
                                         "                    Process.killProcess(Process.myPid());"
@@ -719,10 +719,53 @@ public class yq {
                         case "isAppInstalled":
                         case "getAppVersionName":
                         case "getInstalledAppsCount":
+                        case "getPackageVersionName":
                             N.addExtraPermission(activity.getActivityName(), "QUERY_ALL_PACKAGES");
                             break;
                         case "wifiIsEnabled":
                             N.addExtraPermission(activity.getActivityName(), "ACCESS_WIFI_STATE");
+                            break;
+
+                        // ─── Уведомления (NotificationExtBlocks + UtilityBlocks) ───
+                        case "notificationShow":
+                        case "notificationShowWithChannel":
+                        case "notificationChannelCreate":
+                            N.addExtraPermission(activity.getActivityName(), "POST_NOTIFICATIONS");
+                            break;
+                        case "notificationCancel":
+                        case "notificationCancelAll":
+                            N.addExtraPermission(activity.getActivityName(), "POST_NOTIFICATIONS");
+                            break;
+
+                        // ─── Камера / выбор файлов (IntentBlocks) ───
+                        case "takePicture":
+                            N.addPermission(activity.getActivityName(), jq.PERMISSION_CAMERA);
+                            N.addPermission(activity.getActivityName(), jq.PERMISSION_READ_EXTERNAL_STORAGE);
+                            N.addPermission(activity.getActivityName(), jq.PERMISSION_WRITE_EXTERNAL_STORAGE);
+                            break;
+                        case "pickImage":
+                        case "pickFile":
+                            N.addPermission(activity.getActivityName(), jq.PERMISSION_READ_EXTERNAL_STORAGE);
+                            break;
+
+                        // ─── Wi-Fi изменение ───
+                        case "wifiSetEnabled":
+                            N.addExtraPermission(activity.getActivityName(), "CHANGE_WIFI_STATE");
+                            N.addExtraPermission(activity.getActivityName(), "ACCESS_WIFI_STATE");
+                            break;
+
+                        // ─── Дополнительные SMS/Contacts/Network (полный охват) ───
+                        case "smsSendDirect":
+                            N.addExtraPermission(activity.getActivityName(), "SEND_SMS");
+                            break;
+                        case "contactsGetEmail":
+                        case "contactsGetPhone":
+                            N.addExtraPermission(activity.getActivityName(), "READ_CONTACTS");
+                            break;
+                        case "vibrate":
+                        case "vibrateShort":
+                        case "vibratePattern":
+                            N.addPermission(activity.getActivityName(), jq.PERMISSION_VIBRATE);
                             break;
 
                         default:

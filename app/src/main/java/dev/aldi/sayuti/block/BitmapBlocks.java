@@ -38,15 +38,15 @@ public final class BitmapBlocks {
                 "Bitmap %m.bitmap resize to %d x %d"));
 
         list.add(blk("bitmapGetWidth", "d", "",
-                "%1$s.getWidth()",
+                "((java.util.function.Supplier<Double>) () -> { try { android.graphics.Bitmap _b = %1$s; return _b != null ? (double) _b.getWidth() : 0.0; } catch (Throwable _t) { return 0.0; } }).get()",
                 "Bitmap %m.bitmap width"));
 
         list.add(blk("bitmapGetHeight", "d", "",
-                "%1$s.getHeight()",
+                "((java.util.function.Supplier<Double>) () -> { try { android.graphics.Bitmap _b = %1$s; return _b != null ? (double) _b.getHeight() : 0.0; } catch (Throwable _t) { return 0.0; } }).get()",
                 "Bitmap %m.bitmap height"));
 
         list.add(blk("bitmapSaveToFile", " ", "",
-                "try { java.io.FileOutputStream _fos = new java.io.FileOutputStream(%2$s); %1$s.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, _fos); _fos.flush(); _fos.close(); } catch (Throwable _t) {}",
+                "try { android.graphics.Bitmap _b = %1$s; if (_b != null) { java.io.FileOutputStream _fos = new java.io.FileOutputStream(%2$s); _b.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, _fos); _fos.flush(); _fos.close(); } } catch (Throwable _t) {}",
                 "save Bitmap %m.bitmap to file %s"));
 
         list.add(blk("bitmapRotate", "v", TYPE_BITMAP,

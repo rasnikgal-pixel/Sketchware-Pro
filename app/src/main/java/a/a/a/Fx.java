@@ -467,7 +467,7 @@ public class Fx {
             case "toNumber":
                 String doub = params.get(0);
                 doub = (!doub.equals("\"\"")) ? doub : "\"0\"";
-                opcode = String.format("Double.parseDouble(%s)", doub);
+                opcode = String.format("((java.util.function.Supplier<Double>) () -> { try { return Double.parseDouble(%s); } catch (Throwable _t) { return 0.0; } }).get()", doub);
                 break;
             case "currentTime":
                 opcode = "System.currentTimeMillis()";
@@ -488,14 +488,14 @@ public class Fx {
                 opcode = String.format("String.valueOf(%s)", params.get(0));
                 break;
             case "toStringFormat":
-                opcode = String.format("new DecimalFormat(%s).format(%s)", params.get(1), params.get(0));
+                opcode = String.format("((java.util.function.Supplier<String>) () -> { try { return new DecimalFormat(%s).format(%s); } catch (Throwable _t) { return \"\"; } }).get()", params.get(1), params.get(0));
                 break;
             case "addSourceDirectly":
                 String asd = bean.parameters.get(0);
                 opcode = (asd != null) ? asd : opcode;
                 break;
             case "strToMap":
-                opcode = String.format("%s = new Gson().fromJson(%s, new TypeToken<HashMap<String, Object>>(){}.getType());", params.get(1), params.get(0));
+                opcode = String.format("try { %s = new Gson().fromJson(%s, new TypeToken<HashMap<String, Object>>(){}.getType()); } catch (Throwable _t) {}", params.get(1), params.get(0));
                 break;
             case "mapToStr", "listMapToStr":
                 opcode = String.format("new Gson().toJson(%s)", params.get(0));
@@ -653,7 +653,7 @@ public class Fx {
                 opcode = String.format("SketchwareUtil.showMessage(getApplicationContext(), %s);", params.get(0));
                 break;
             case "copyToClipboard":
-                opcode = String.format("((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(\"clipboard\", %s));", params.get(0));
+                opcode = String.format("try { android.content.ClipboardManager _cm = (android.content.ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE); if (_cm != null) _cm.setPrimaryClip(android.content.ClipData.newPlainText(\"clipboard\", %s)); } catch (Throwable _t) {}", params.get(0));
                 break;
             case "setTitle":
                 opcode = String.format("setTitle(%s);", params.get(0));
@@ -677,7 +677,7 @@ public class Fx {
                 opcode = String.format("getIntent().getStringExtra(%s)", params.get(0));
                 break;
             case "startActivity":
-                opcode = String.format("startActivity(%s);", params.get(0));
+                opcode = String.format("try { startActivity(%s); } catch (Throwable _t) {}", params.get(0));
                 break;
             case "finishActivity":
                 opcode = "finish();";
@@ -818,7 +818,7 @@ public class Fx {
                 opcode = String.format("%s.getSelectedItemPosition()", params.get(0));
                 break;
             case "webViewLoadUrl":
-                opcode = String.format("%s.loadUrl(%s);", params.get(0), params.get(1));
+                opcode = String.format("try { %s.loadUrl(%s); } catch (Throwable _t) {}", params.get(0), params.get(1));
                 break;
             case "webViewGetUrl":
                 opcode = String.format("%s.getUrl()", params.get(0));
@@ -908,12 +908,12 @@ public class Fx {
             case "timerAfter":
                 String onRun = (bean.subStack1 >= 0) ? a(String.valueOf(bean.subStack1), "") : "";
 
-                opcode = String.format("%s = new TimerTask() {\n@Override\npublic void run() {\nrunOnUiThread(new Runnable() {\n@Override\npublic void run() {\n%s\n}\n});\n}\n};\n_timer.schedule(%s, (int)(%s));", params.get(0), onRun, params.get(0), params.get(1));
+                opcode = String.format("%s = new TimerTask() {\n@Override\npublic void run() {\nrunOnUiThread(new Runnable() {\n@Override\npublic void run() {\n%s\n}\n});\n}\n};\nnew Timer().schedule(%s, (long)(%s));", params.get(0), onRun, params.get(0), params.get(1));
                 break;
             case "timerEvery":
                 onRun = (bean.subStack1 >= 0) ? a(String.valueOf(bean.subStack1), "") : "";
 
-                opcode = String.format("%s = new TimerTask() {\n@Override\npublic void run() {\nrunOnUiThread(new Runnable() {\n@Override\npublic void run() {\n%s\n}\n});\n}\n};\n_timer.scheduleAtFixedRate(%s, (int)(%s), (int)(%s));", params.get(0), onRun, params.get(0), params.get(1), params.get(2));
+                opcode = String.format("%s = new TimerTask() {\n@Override\npublic void run() {\nrunOnUiThread(new Runnable() {\n@Override\npublic void run() {\n%s\n}\n});\n}\n};\nnew Timer().scheduleAtFixedRate(%s, (long)(%s), (long)(%s));", params.get(0), onRun, params.get(0), params.get(1), params.get(2));
                 break;
             case "timerCancel":
                 opcode = String.format("%s.cancel();", params.get(0));
@@ -969,10 +969,10 @@ public class Fx {
                 opcode = "(FirebaseAuth.getInstance().getCurrentUser() != null)";
                 break;
             case "firebaseauthGetCurrentUser":
-                opcode = "FirebaseAuth.getInstance().getCurrentUser().getEmail()";
+                opcode = "(FirebaseAuth.getInstance().getCurrentUser() != null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : \"\")";
                 break;
             case "firebaseauthGetUid":
-                opcode = "FirebaseAuth.getInstance().getCurrentUser().getUid()";
+                opcode = "(FirebaseAuth.getInstance().getCurrentUser() != null ? FirebaseAuth.getInstance().getCurrentUser().getUid() : \"\")";
                 break;
             case "firebaseauthResetPassword":
                 if (!params.get(1).equals("\"\"")) {
@@ -1022,16 +1022,16 @@ public class Fx {
                 opcode = String.format("%s.setNeutralButton(%s, new DialogInterface.OnClickListener() {\n@Override\npublic void onClick(DialogInterface _dialog, int _which) {\n%s\n}\n});", params.get(0), params.get(1), onClick);
                 break;
             case "mediaplayerCreate":
-                opcode = String.format("%s = MediaPlayer.create(getApplicationContext(), R.raw.%s);", params.get(0), params.get(1).toLowerCase());
+                opcode = String.format("try { %s = MediaPlayer.create(getApplicationContext(), R.raw.%s); } catch (Throwable _t) {}", params.get(0), params.get(1).toLowerCase());
                 break;
             case "mediaplayerStart":
-                opcode = String.format("%s.start();", params.get(0));
+                opcode = String.format("try { %s.start(); } catch (Throwable _t) {}", params.get(0));
                 break;
             case "mediaplayerPause":
-                opcode = String.format("%s.pause();", params.get(0));
+                opcode = String.format("try { %s.pause(); } catch (Throwable _t) {}", params.get(0));
                 break;
             case "mediaplayerSeek":
-                opcode = String.format("%s.seekTo((int)(%s));", params.get(0), params.get(1));
+                opcode = String.format("try { %s.seekTo((int)(%s)); } catch (Throwable _t) {}", params.get(0), params.get(1));
                 break;
             case "mediaplayerGetCurrent":
                 opcode = String.format("%s.getCurrentPosition()", params.get(0));
@@ -1040,10 +1040,10 @@ public class Fx {
                 opcode = String.format("%s.getDuration()", params.get(0));
                 break;
             case "mediaplayerReset":
-                opcode = String.format("%s.reset();", params.get(0));
+                opcode = String.format("try { %s.reset(); } catch (Throwable _t) {}", params.get(0));
                 break;
             case "mediaplayerRelease":
-                opcode = String.format("%s.release();", params.get(0));
+                opcode = String.format("try { %s.release(); } catch (Throwable _t) {}", params.get(0));
 
                 break;
             case "mediaplayerIsPlaying":
@@ -1300,10 +1300,10 @@ public class Fx {
                 }
                 break;
             case "filepickerstartpickfiles":
-                opcode = String.format("startActivityForResult(%s, REQ_CD_%s);", params.get(0), params.get(0).toUpperCase());
+                opcode = String.format("try { startActivityForResult(%s, REQ_CD_%s); } catch (Throwable _t) {}", params.get(0), params.get(0).toUpperCase());
                 break;
             case "camerastarttakepicture":
-                opcode = String.format("startActivityForResult(%s, REQ_CD_%s);", params.get(0), params.get(0).toUpperCase());
+                opcode = String.format("try { startActivityForResult(%s, REQ_CD_%s); } catch (Throwable _t) {}", params.get(0), params.get(0).toUpperCase());
                 break;
             case "setImageFilePath":
                 if (!params.get(1).equals("\"\"")) {

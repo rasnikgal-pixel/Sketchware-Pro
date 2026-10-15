@@ -99,7 +99,7 @@ public class BuildSettingsBottomSheet extends BottomSheetDialogFragment {
 
         setCheckboxValue(binding.cbNoWarnings, SETTING_NO_WARNINGS, true);
         setCheckboxValue(binding.cbNoHttpLegacy, SETTING_NO_HTTP_LEGACY, false);
-        setCheckboxValue(binding.cbEnableLogcat, SETTING_ENABLE_LOGCAT, true);
+        setCheckboxValue(binding.cbEnableLogcat, SETTING_ENABLE_LOGCAT, false);
 
         binding.btnCancel.setOnClickListener(v -> dismiss());
         binding.btnSave.setOnClickListener(v -> {

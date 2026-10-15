@@ -50,17 +50,17 @@ public final class NetworkBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addNetworkStateBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(blk("isNetworkAvailable", "b", "",
-                "(((android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null && ((android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo().isConnected())",
+                "((java.util.function.Supplier<Boolean>) () -> { try { android.net.ConnectivityManager _cm = (android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE); return _cm != null && _cm.getActiveNetwork() != null; } catch (Throwable _t) { return false; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "network is available"));
 
         list.add(blk("isWifiConnected", "b", "",
-                "(((android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE)).getNetworkInfo(android.net.ConnectivityManager.TYPE_WIFI) != null && ((android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE)).getNetworkInfo(android.net.ConnectivityManager.TYPE_WIFI).isConnected())",
+                "((java.util.function.Supplier<Boolean>) () -> { try { android.net.ConnectivityManager _cm = (android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE); if (_cm == null) return false; android.net.NetworkCapabilities _nc = _cm.getNetworkCapabilities(_cm.getActiveNetwork()); return _nc != null && _nc.hasTransport(android.net.NetworkCapabilities.TRANSPORT_WIFI); } catch (Throwable _t) { return false; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "Wi-Fi is connected"));
 
         list.add(blk("isMobileConnected", "b", "",
-                "(((android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE)).getNetworkInfo(android.net.ConnectivityManager.TYPE_MOBILE) != null && ((android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE)).getNetworkInfo(android.net.ConnectivityManager.TYPE_MOBILE).isConnected())",
+                "((java.util.function.Supplier<Boolean>) () -> { try { android.net.ConnectivityManager _cm = (android.net.ConnectivityManager) getApplicationContext().getSystemService(android.content.Context.CONNECTIVITY_SERVICE); if (_cm == null) return false; android.net.NetworkCapabilities _nc = _cm.getNetworkCapabilities(_cm.getActiveNetwork()); return _nc != null && _nc.hasTransport(android.net.NetworkCapabilities.TRANSPORT_CELLULAR); } catch (Throwable _t) { return false; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "mobile network is connected"));
     }

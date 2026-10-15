@@ -16,8 +16,8 @@ android {
         //noinspection ExpiredTargetSdkVersion since we don't target getting Sketchware Pro on Google Play.
         targetSdk = 28
         minSdk = 26
-        versionCode = 178
-        versionName = "7.8.0"
+        versionCode = 179
+        versionName = "7.8.1"
     // Rebuild trigger: search toggle
 
         buildConfigField("String", "GIT_HASH", "\"${gitCommitHash}\"")

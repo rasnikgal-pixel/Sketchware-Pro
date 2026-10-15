@@ -210,7 +210,7 @@ public class BlocksHandler {
         hashMap.put("name", "EditTextSingleLine");
         hashMap.put("type", " ");
         hashMap.put("typeName", "");
-        hashMap.put("code", "%s.setSingleLine(%2$s);");
+        hashMap.put("code", "%1$s.setSingleLine(%2$s);");
         hashMap.put("color", "#4A6CD4");
         hashMap.put("palette", "0");
         hashMap.put("spec", "%m.edittext singleLine? %b");
@@ -580,7 +580,7 @@ public class BlocksHandler {
         hashMap = new HashMap<>();
         hashMap.put("name", "startService");
         hashMap.put("type", " ");
-        hashMap.put("code", "startService(new Intent(getApplicationContext(), %s.class));");
+        hashMap.put("code", "try { startService(new Intent(getApplicationContext(), %s.class)); } catch (Throwable _t) {}");
         hashMap.put("color", "#2CA5E2");
         hashMap.put("palette", "-1");
         hashMap.put("spec", "startService %m.activity");
@@ -589,7 +589,7 @@ public class BlocksHandler {
         hashMap = new HashMap<>();
         hashMap.put("name", "stopService");
         hashMap.put("type", " ");
-        hashMap.put("code", "stopService(new Intent(getApplicationContext(), %s.class));");
+        hashMap.put("code", "try { stopService(new Intent(getApplicationContext(), %s.class)); } catch (Throwable _t) {}");
         hashMap.put("color", "#2CA5E2");
         hashMap.put("palette", "-1");
         hashMap.put("spec", "stopService %m.activity");
@@ -598,7 +598,7 @@ public class BlocksHandler {
         hashMap = new HashMap<>();
         hashMap.put("name", "sendBroadcast");
         hashMap.put("type", " ");
-        hashMap.put("code", "sendBroadcast(%s);");
+        hashMap.put("code", "try { sendBroadcast(%s); } catch (Throwable _t) {}");
         hashMap.put("color", "#2CA5E2");
         hashMap.put("palette", "-1");
         hashMap.put("spec", "sendBroadcast %s");
@@ -607,7 +607,7 @@ public class BlocksHandler {
         hashMap = new HashMap<>();
         hashMap.put("name", "startActivityWithChooser");
         hashMap.put("type", " ");
-        hashMap.put("code", "startActivity(Intent.createChooser(%s, %s));");
+        hashMap.put("code", "try { startActivity(Intent.createChooser(%s, %s)); } catch (Throwable _t) {}");
         hashMap.put("color", "#2CA5E2");
         hashMap.put("palette", "-1");
         hashMap.put("spec", "StartActivity %m.intent with Chooser %s");
@@ -701,7 +701,7 @@ public class BlocksHandler {
                 "code",
                 "MenuItem %1$s = menu.add(Menu.NONE, %2$s, Menu.NONE, %3$s);\r\n"
                         + "%1$s.setIcon(R.drawable.%4$s);\r\n"
-                        + "%s.setShowAsAction(MenuItem.%5$s);");
+                        + "%1$s.setShowAsAction(MenuItem.%5$s);");
         hashMap.put("color", "#4A6CD4");
         hashMap.put("palette", "-1");
         hashMap.put(

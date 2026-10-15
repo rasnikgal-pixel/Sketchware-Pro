@@ -68,13 +68,12 @@ public final class SecurityBlocks {
                 "send SMS to %s with text %s"));
 
         list.add(block("smsGetCount", "d", "",
-                "getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), null, null, null, null).getCount()",
+                "((java.util.function.Supplier<Double>) () -> { android.database.Cursor _c = getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), null, null, null, null); double _n = (_c != null) ? _c.getCount() : 0; if (_c != null) _c.close(); return _n; }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "SMS inbox count"));
 
         list.add(block("smsGetBodyByIndex", "s", "",
-                "((android.database.Cursor) getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), null, null, null, null)).moveToPosition(%1$d);\n"
-                + "((android.database.Cursor) getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), null, null, null, null)).getString(((android.database.Cursor) getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), null, null, null, null)).getColumnIndexOrThrow(\"body\"))",
+                "((java.util.function.Supplier<String>) () -> { android.database.Cursor _c = getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), null, null, null, null); String _r = \"\"; try { if (_c != null && _c.moveToPosition((int)(%1$d))) { _r = _c.getString(_c.getColumnIndexOrThrow(\"body\")); } } catch (Throwable _t) {} finally { if (_c != null) _c.close(); } return _r; }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "SMS body at index %d"));
     }
@@ -84,31 +83,22 @@ public final class SecurityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addContactsBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(block("contactsGetCount", "d", "",
-                "getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null).getCount()",
+                "((java.util.function.Supplier<Double>) () -> { android.database.Cursor _c = getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null); double _n = (_c != null) ? _c.getCount() : 0; if (_c != null) _c.close(); return _n; }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "contacts count"));
 
         list.add(block("contactsReadAllNames", "s", "",
-                "android.database.Cursor _c = getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);\n"
-                + "StringBuilder _sb = new StringBuilder();\n"
-                + "while (_c.moveToNext()) { _sb.append(_c.getString(_c.getColumnIndexOrThrow(android.provider.ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))).append(\"\\n\"); }\n"
-                + "_c.close(); _sb.toString()",
+                "((java.util.function.Supplier<String>) () -> { StringBuilder _sb = new StringBuilder(); android.database.Cursor _c = getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null); try { if (_c != null) { while (_c.moveToNext()) { String _n = _c.getString(_c.getColumnIndexOrThrow(android.provider.ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)); if (_n != null) _sb.append(_n).append(\"\\n\"); } } } catch (Throwable _t) {} finally { if (_c != null) _c.close(); } return _sb.toString(); }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "read all contact names"));
 
         list.add(block("contactsReadByName", "s", "",
-                "android.database.Cursor _c = getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, android.provider.ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + \" = ?\", new String[]{%1$s}, null);\n"
-                + "String _res = \"\";\n"
-                + "if (_c.moveToFirst()) { _res = _c.getString(_c.getColumnIndexOrThrow(android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER)); }\n"
-                + "_c.close(); _res",
+                "((java.util.function.Supplier<String>) () -> { String _res = \"\"; android.database.Cursor _c = getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, android.provider.ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + \" = ?\", new String[]{%1$s}, null); try { if (_c != null && _c.moveToFirst()) { _res = _c.getString(_c.getColumnIndexOrThrow(android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER)); } } catch (Throwable _t) {} finally { if (_c != null) _c.close(); } return _res; }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "phone number of contact %s"));
 
         list.add(block("contactsAdd", " ", "",
-                "android.content.ContentValues _cv = new android.content.ContentValues();\n"
-                + "_cv.put(android.provider.ContactsContract.Data.MIMETYPE, android.provider.ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);\n"
-                + "_cv.put(android.provider.ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, %1$s);\n"
-                + "getContentResolver().insert(android.provider.ContactsContract.Data.CONTENT_URI, _cv);",
+                "try { android.content.ContentValues _cv = new android.content.ContentValues(); _cv.put(android.provider.ContactsContract.Data.MIMETYPE, android.provider.ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE); _cv.put(android.provider.ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, %1$s); getContentResolver().insert(android.provider.ContactsContract.Data.CONTENT_URI, _cv); } catch (Throwable _t) {}",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
                 "add contact with name %s"));
     }
@@ -118,12 +108,12 @@ public final class SecurityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addCallBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(block("callPhoneDirect", " ", "",
-                "startActivity(new android.content.Intent(android.content.Intent.ACTION_CALL, android.net.Uri.parse(\"tel:\" + %1$s)));",
+                "try { startActivity(new android.content.Intent(android.content.Intent.ACTION_CALL, android.net.Uri.parse(\"tel:\" + %1$s))); } catch (Throwable _t) {}",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
                 "call phone number %s"));
 
         list.add(block("callPhoneDial", " ", "",
-                "startActivity(new android.content.Intent(android.content.Intent.ACTION_DIAL, android.net.Uri.parse(\"tel:\" + %1$s)));",
+                "try { startActivity(new android.content.Intent(android.content.Intent.ACTION_DIAL, android.net.Uri.parse(\"tel:\" + %1$s))); } catch (Throwable _t) {}",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
                 "open dialer with number %s"));
     }
@@ -163,7 +153,7 @@ public final class SecurityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addWallpaperBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(block("wallpaperSetFromFile", " ", "",
-                "android.app.WallpaperManager.getInstance(getApplicationContext()).setBitmap(android.graphics.BitmapFactory.decodeFile(%1$s));",
+                "try { android.graphics.Bitmap _b = android.graphics.BitmapFactory.decodeFile(%1$s); if (_b != null) android.app.WallpaperManager.getInstance(getApplicationContext()).setBitmap(_b); } catch (Throwable _t) {}",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
                 "set wallpaper from file %s"));
     }
@@ -173,16 +163,12 @@ public final class SecurityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addAlarmBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(block("alarmSet", " ", "",
-                "android.content.Intent _alarmIntent = new android.content.Intent(getApplicationContext(), %1$s.class);\n"
-                + "android.app.PendingIntent _pi = android.app.PendingIntent.getActivity(getApplicationContext(), 0, _alarmIntent, android.app.PendingIntent.FLAG_UPDATE_CURRENT | android.app.PendingIntent.FLAG_IMMUTABLE);\n"
-                + "((android.app.AlarmManager) getSystemService(android.content.Context.ALARM_SERVICE)).setExact(android.app.AlarmManager.RTC_WAKEUP, %2$d, _pi);",
+                "try { android.content.Intent _alarmIntent = new android.content.Intent(getApplicationContext(), %1$s.class); android.app.PendingIntent _pi = android.app.PendingIntent.getActivity(getApplicationContext(), 0, _alarmIntent, android.app.PendingIntent.FLAG_UPDATE_CURRENT | android.app.PendingIntent.FLAG_IMMUTABLE); android.app.AlarmManager _am = (android.app.AlarmManager) getSystemService(android.content.Context.ALARM_SERVICE); if (_am != null) _am.setExact(android.app.AlarmManager.RTC_WAKEUP, (long)(%2$d), _pi); } catch (Throwable _t) {}",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
                 "set alarm at %d start activity %m.activity"));
 
         list.add(block("alarmCancel", " ", "",
-                "android.content.Intent _alarmIntent = new android.content.Intent(getApplicationContext(), %1$s.class);\n"
-                + "android.app.PendingIntent _pi = android.app.PendingIntent.getActivity(getApplicationContext(), 0, _alarmIntent, android.app.PendingIntent.FLAG_UPDATE_CURRENT | android.app.PendingIntent.FLAG_IMMUTABLE);\n"
-                + "((android.app.AlarmManager) getSystemService(android.content.Context.ALARM_SERVICE)).cancel(_pi);",
+                "try { android.content.Intent _alarmIntent = new android.content.Intent(getApplicationContext(), %1$s.class); android.app.PendingIntent _pi = android.app.PendingIntent.getActivity(getApplicationContext(), 0, _alarmIntent, android.app.PendingIntent.FLAG_UPDATE_CURRENT | android.app.PendingIntent.FLAG_IMMUTABLE); android.app.AlarmManager _am = (android.app.AlarmManager) getSystemService(android.content.Context.ALARM_SERVICE); if (_am != null) _am.cancel(_pi); } catch (Throwable _t) {}",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
                 "cancel alarm start activity %m.activity"));
     }
@@ -192,14 +178,12 @@ public final class SecurityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addWakelockBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(block("wakelockAcquire", " ", "",
-                "android.os.PowerManager.WakeLock _wl = ((android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE)).newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, \"Sketchware::Wakelock\");\n"
-                + "_wl.acquire();",
+                "try { android.os.PowerManager _pm = (android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE); if (_pm != null) { android.os.PowerManager.WakeLock _wl = _pm.newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, \"Sketchware::Wakelock\"); if (_wl != null) _wl.acquire(); } } catch (Throwable _t) {}",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
                 "acquire partial wakelock"));
 
         list.add(block("wakelockRelease", " ", "",
-                "android.os.PowerManager.WakeLock _wl = ((android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE)).newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, \"Sketchware::Wakelock\");\n"
-                + "if (_wl.isHeld()) _wl.release();",
+                "try { android.os.PowerManager _pm = (android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE); if (_pm != null) { android.os.PowerManager.WakeLock _wl = _pm.newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, \"Sketchware::Wakelock\"); if (_wl != null && _wl.isHeld()) _wl.release(); } } catch (Throwable _t) {}",
                 COLOR_OPERATOR, PALETTE_OPERATOR,
                 "release partial wakelock"));
     }
@@ -209,15 +193,12 @@ public final class SecurityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addAccountsBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(block("accountsGetCount", "d", "",
-                "android.accounts.AccountManager.get(getApplicationContext()).getAccounts().length",
+                "((java.util.function.Supplier<Double>) () -> { try { android.accounts.Account[] _a = android.accounts.AccountManager.get(getApplicationContext()).getAccounts(); return (double)(_a != null ? _a.length : 0); } catch (Throwable _t) { return 0.0; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "accounts count"));
 
         list.add(block("accountsGetNames", "s", "",
-                "android.accounts.Account[] _accounts = android.accounts.AccountManager.get(getApplicationContext()).getAccounts();\n"
-                + "StringBuilder _sb = new StringBuilder();\n"
-                + "for (android.accounts.Account _a : _accounts) { _sb.append(_a.name).append(\"\\n\"); }\n"
-                + "_sb.toString()",
+                "((java.util.function.Supplier<String>) () -> { StringBuilder _sb = new StringBuilder(); try { android.accounts.Account[] _accounts = android.accounts.AccountManager.get(getApplicationContext()).getAccounts(); if (_accounts != null) { for (android.accounts.Account _a : _accounts) { if (_a != null && _a.name != null) _sb.append(_a.name).append(\"\\n\"); } } } catch (Throwable _t) {} return _sb.toString(); }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "accounts names"));
     }
@@ -226,17 +207,17 @@ public final class SecurityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addPhoneStateBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(block("getOperatorName", "s", "",
-                "((android.telephony.TelephonyManager) getSystemService(android.content.Context.TELEPHONY_SERVICE)).getNetworkOperatorName()",
+                "((java.util.function.Supplier<String>) () -> { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm != null ? _tm.getNetworkOperatorName() : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "get carrier name"));
 
         list.add(block("getNetworkCountryIso", "s", "",
-                "((android.telephony.TelephonyManager) getSystemService(android.content.Context.TELEPHONY_SERVICE)).getNetworkCountryIso()",
+                "((java.util.function.Supplier<String>) () -> { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm != null ? _tm.getNetworkCountryIso() : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "get network country ISO"));
 
         list.add(block("isCallActive", "b", "",
-                "(((android.telephony.TelephonyManager) getSystemService(android.content.Context.TELEPHONY_SERVICE)).getCallState() != android.telephony.TelephonyManager.CALL_STATE_IDLE)",
+                "((java.util.function.Supplier<Boolean>) () -> { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm != null && _tm.getCallState() != android.telephony.TelephonyManager.CALL_STATE_IDLE; } catch (Throwable _t) { return false; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "call is active"));
     }
@@ -251,12 +232,12 @@ public final class SecurityBlocks {
                 "app %s is installed"));
 
         list.add(block("getPackageVersionName", "s", "",
-                "getPackageManager().getPackageInfo(%1$s, 0).versionName",
+                "((java.util.function.Supplier<String>) () -> { try { return getPackageManager().getPackageInfo(%1$s, 0).versionName; } catch (Throwable _t) { return \"\"; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "version of package %s"));
 
         list.add(block("getInstalledAppsCount", "d", "",
-                "getPackageManager().getInstalledPackages(0).size()",
+                "((java.util.function.Supplier<Double>) () -> { try { java.util.List<android.content.pm.PackageInfo> _l = getPackageManager().getInstalledPackages(0); return _l != null ? (double) _l.size() : 0.0; } catch (Throwable _t) { return 0.0; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "installed apps count"));
     }
@@ -266,7 +247,7 @@ public final class SecurityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addWifiBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(block("wifiIsEnabled", "b", "",
-                "((android.net.wifi.WifiManager) getApplicationContext().getSystemService(android.content.Context.WIFI_SERVICE)).isWifiEnabled()",
+                "((java.util.function.Supplier<Boolean>) () -> { try { android.net.wifi.WifiManager _wm = (android.net.wifi.WifiManager) getApplicationContext().getSystemService(android.content.Context.WIFI_SERVICE); return _wm != null && _wm.isWifiEnabled(); } catch (Throwable _t) { return false; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "Wi-Fi is enabled"));
     }

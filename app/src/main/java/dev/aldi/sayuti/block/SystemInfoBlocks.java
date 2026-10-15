@@ -29,11 +29,11 @@ public final class SystemInfoBlocks {
                 "Android SDK version"));
 
         list.add(blk("getAppVersionName", "s", "",
-                "getPackageManager().getPackageInfo(getPackageName(), 0).versionName",
+                "((java.util.function.Supplier<String>) () -> { try { return getPackageManager().getPackageInfo(getPackageName(), 0).versionName; } catch (Throwable _t) { return \"\"; } }).get()",
                 "app version name"));
 
         list.add(blk("getAppVersionCode", "d", "",
-                "(double) getPackageManager().getPackageInfo(getPackageName(), 0).versionCode",
+                "((java.util.function.Supplier<Double>) () -> { try { return (double) getPackageManager().getPackageInfo(getPackageName(), 0).versionCode; } catch (Throwable _t) { return 0.0; } }).get()",
                 "app version code"));
 
         list.add(blk("getAppPackageName", "s", "",
@@ -41,7 +41,7 @@ public final class SystemInfoBlocks {
                 "app package name"));
 
         list.add(blk("getAppName", "s", "",
-                "getApplicationInfo().loadLabel(getPackageManager()).toString()",
+                "((java.util.function.Supplier<String>) () -> { try { return getApplicationInfo().loadLabel(getPackageManager()).toString(); } catch (Throwable _t) { return \"\"; } }).get()",
                 "app name"));
 
         list.add(blk("getTimezone", "s", "",

@@ -40,7 +40,7 @@ public final class LocaleBlocks {
                 COLOR_FUNC, PALETTE_FUNC, "format percent %d"));
 
         list.add(blk("setLocale", " ", "",
-                "androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(new android.os.LocaleList(new java.util.Locale(%1$s)));",
+                "if (android.os.Build.VERSION.SDK_INT >= 33) { androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(new android.os.LocaleList(new java.util.Locale(%1$s))); }",
                 COLOR_OP, PALETTE_OP, "set locale to %s"));
     }
 }

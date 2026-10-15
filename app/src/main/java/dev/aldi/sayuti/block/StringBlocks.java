@@ -40,7 +40,7 @@ public final class StringBlocks {
                 "%1$s.replace(%2$s, %3$s)", "%1$s replace %2$s with %3$s"));
 
         list.add(blk("strSplitGet", "s", "",
-                "%1$s.split(java.util.regex.Pattern.quote(%2$s))[(int)(%3$s)]",
+                "((java.util.function.Supplier<String>) () -> { try { String[] _parts = %1$s.split(java.util.regex.Pattern.quote(%2$s)); int _i = (int)(%3$s); return (_i >= 0 && _i < _parts.length) ? _parts[_i] : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
                 "%1$s split by %2$s get item %3$d"));
 
         list.add(blk("strSplitSize", "d", "",

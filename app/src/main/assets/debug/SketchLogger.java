@@ -21,39 +21,37 @@ import <?class_name_package?>.<?class_name?>;
  */
 public class SketchLogger {
     private static volatile boolean isRunning = false;
-    private static Thread loggerThread = new Thread() {
-        @Override
-        public void run() {
-            isRunning = true;
+    private static volatile Thread loggerThread = null;
 
-            try {
-                Runtime.getRuntime().exec("logcat -c");
-                Process process = Runtime.getRuntime().exec("logcat");
-
-                try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-                    String logTxt = bufferedReader.readLine();
-                    do {
-                        broadcastLog(logTxt);
-                    } while (isRunning && (logTxt = bufferedReader.readLine()) != null);
-
-                    if (isRunning) {
-                        broadcastLog("Logger got killed. Restarting.");
-                        startLogging();
-                    } else {
-                        broadcastLog("Logger stopped.");
-                    }
+    private static void runLogcat() {
+        try {
+            Process process = Runtime.getRuntime().exec("logcat");
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String logTxt = bufferedReader.readLine();
+                while (isRunning && logTxt != null) {
+                    try { broadcastLog(logTxt); } catch (Throwable _t) { }
+                    logTxt = bufferedReader.readLine();
                 }
-            } catch (IOException e) {
-                broadcastLog(e.getMessage());
             }
+        } catch (Throwable _t) {
+            try { broadcastLog("Logcat error: " + _t.getMessage()); } catch (Throwable _t2) { }
         }
-    };
+    }
 
     public static synchronized void startLogging() {
-        if (!isRunning) {
+        if (isRunning) {
+            try { broadcastLog("Logger already running"); } catch (Throwable _t) { }
+            return;
+        }
+        isRunning = true;
+        try {
+            loggerThread = new Thread(new Runnable() {
+                @Override public void run() { runLogcat(); }
+            });
+            loggerThread.setDaemon(true);
             loggerThread.start();
-        } else {
-            broadcastLog("Logger already running");
+        } catch (Throwable _t) {
+            isRunning = false;
         }
     }
 

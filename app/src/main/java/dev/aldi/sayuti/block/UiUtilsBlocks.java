@@ -28,11 +28,11 @@ public final class UiUtilsBlocks {
 
     public static void addBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(blk("dpToPx", "d", "",
-                "(double) ((int) (%1$s * getResources().getDisplayMetrics().density + 0.5f))",
+                "((java.util.function.Supplier<Double>) () -> { try { float _d = getResources().getDisplayMetrics().density; if (_d <= 0f) _d = 1f; return (double)(int)(%1$s * _d + 0.5f); } catch (Throwable _t) { return %1$s; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC, "%d dp to px"));
 
         list.add(blk("pxToDp", "d", "",
-                "(double) ((int) (%1$s / getResources().getDisplayMetrics().density + 0.5f))",
+                "((java.util.function.Supplier<Double>) () -> { try { float _d = getResources().getDisplayMetrics().density; if (_d <= 0f) _d = 1f; return (double)(int)(%1$s / _d + 0.5f); } catch (Throwable _t) { return %1$s; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC, "%d px to dp"));
 
         list.add(blk("getStatusBarHeight", "d", "",
@@ -40,11 +40,11 @@ public final class UiUtilsBlocks {
                 COLOR_FUNC, PALETTE_FUNC, "status bar height resource"));
 
         list.add(blk("getScreenDensity", "d", "",
-                "(double) getResources().getDisplayMetrics().density",
+                "((java.util.function.Supplier<Double>) () -> { try { return (double) getResources().getDisplayMetrics().density; } catch (Throwable _t) { return 1.0; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC, "screen density"));
 
         list.add(blk("getScreenDpi", "d", "",
-                "(double) getResources().getDisplayMetrics().densityDpi",
+                "((java.util.function.Supplier<Double>) () -> { try { return (double) getResources().getDisplayMetrics().densityDpi; } catch (Throwable _t) { return 160.0; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC, "screen dpi"));
 
     }

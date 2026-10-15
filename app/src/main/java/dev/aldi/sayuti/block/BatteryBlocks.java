@@ -25,15 +25,15 @@ public final class BatteryBlocks {
 
     public static void addBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(blk("batteryTemperature", "d", "",
-                "((double) getApplicationContext().registerReceiver(null, new android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED)).getIntExtra(android.os.BatteryManager.EXTRA_TEMPERATURE, 0)) / 10.0",
+                "((double) getIntent().getIntExtra(android.os.BatteryManager.EXTRA_TEMPERATURE, 0)) / 10.0",
                 "battery temperature in degrees Celsius"));
 
         list.add(blk("batteryVoltage", "d", "",
-                "(double) getApplicationContext().registerReceiver(null, new android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED)).getIntExtra(android.os.BatteryManager.EXTRA_VOLTAGE, 0)",
+                "(double) getIntent().getIntExtra(android.os.BatteryManager.EXTRA_VOLTAGE, 0)",
                 "battery voltage in mV"));
 
         list.add(blk("batteryHealth", "s", "",
-                "String.valueOf(getApplicationContext().registerReceiver(null, new android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED)).getIntExtra(android.os.BatteryManager.EXTRA_HEALTH, -1))",
+                "String.valueOf(getIntent().getIntExtra(android.os.BatteryManager.EXTRA_HEALTH, -1))",
                 "battery health status code"));
     }
 }

@@ -88,8 +88,26 @@ public class PermissionManager {
             case "isCallActive": return "READ_PHONE_STATE";
             case "isAppInstalled":
             case "getAppVersionName":
-            case "getInstalledAppsCount": return "QUERY_ALL_PACKAGES";
+            case "getInstalledAppsCount":
+            case "getPackageVersionName": return "QUERY_ALL_PACKAGES";
             case "wifiIsEnabled": return "ACCESS_WIFI_STATE";
+
+            // ─── Camera / File picker (API 23+) ───
+            case "takePicture": return "CAMERA";
+            case "pickImage":
+            case "pickFile": return "READ_EXTERNAL_STORAGE";
+
+            // ─── Notifications (API 33+) ───
+            case "notificationShow":
+            case "notificationShowWithChannel":
+            case "notificationChannelCreate":
+            case "notificationCancel":
+            case "notificationCancelAll": return "POST_NOTIFICATIONS";
+
+            // ─── Vibrate ───
+            case "vibrateShort":
+            case "vibratePattern": return "VIBRATE";
+
             default: return null;
         }
     }

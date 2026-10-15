@@ -42,9 +42,9 @@ public class ExtraBlocks {
         arrayList.add(addBlock("intentSetType", " ", "", "%s.setType(%s);", "#2ca5e2", "%m.intent setType %s"));
         arrayList.add(addBlock("intentRemoveExtra", " ", "", "%s.removeExtra(%s);", "#2ca5e2", "%m.intent removeExtra key %s"));
         arrayList.add(addBlock("fileContainsData", "b", "", "%1$s.contains(%2$s)", "#2ca5e2", "%m.file contains %s"));
-        arrayList.add(addBlock("viewGetChildAt", "v", "View", "%1$s.getChildAt(%2$s)", "#4a6cd4", "%m.view getChildAt %d"));
-        arrayList.add(addBlock("strParseInteger", "d", "", "Integer.parseInt(%s)", "#5cb722", "parse int %s"));
-        arrayList.add(addBlock("stringSubSingle", "s", "", "%1$s.substring(%2$s)", "#5cb722", "%s subString %d"));
+        arrayList.add(addBlock("viewGetChildAt", "v", "View", "((java.util.function.Supplier<View>) () -> { try { return %1$s.getChildAt((int)(%2$s)); } catch (Throwable _t) { return null; } }).get()", "#4a6cd4", "%m.view getChildAt %d"));
+        arrayList.add(addBlock("strParseInteger", "d", "", "((java.util.function.Supplier<Double>) () -> { try { return (double) Integer.parseInt(%s); } catch (Throwable _t) { return 0.0; } }).get()", "#5cb722", "parse int %s"));
+        arrayList.add(addBlock("stringSubSingle", "s", "", "((java.util.function.Supplier<String>) () -> { try { return %1$s.substring((int)(%2$s)); } catch (Throwable _t) { return %1$s; } }).get()", "#5cb722", "%s subString %d"));
         arrayList.add(addBlock("webviewGetProgress", "d", "", "%1$s.getProgress()", "#4a6cd4", "%m.webview getProgress"));
         arrayList.add(addBlock("menuItemSetVisible", " ", "", "%1$s.setVisible(%2$s);", "#4a6cd4", "%m.MenuItem setVisible %b"));
         arrayList.add(addBlock("menuItemSetEnabled", " ", "", "%1$s.setEnabled(%2$s);", "#4a6cd4", "%m.MenuItem setEnabled %b"));
@@ -75,7 +75,7 @@ public class ExtraBlocks {
         arrayList.add(addBlock("bannerAdViewLoadAd", " ", "", "{\r\nAdRequest adRequest = new AdRequest.Builder().build();\r\n%1$s.loadAd(adRequest);\r\n}", "#4a6cd4", "%m.adview load"));
         //RewardedVideoAd
         arrayList.add(addBlock("rewardedVideoAdLoad", " ", "", "RewardedAd.load(%2$s.this, _reward_ad_unit_id, new AdRequest.Builder().build(), _%1$s_rewarded_ad_load_callback);", "#2ca5e2", "%m.videoad load in %m.activity"));
-        arrayList.add(addBlock("rewardedVideoAdShow", " ", "", "%1s.show(%2$s.this, _%1$s_on_user_earned_reward_listener);", "#2ca5e2", "%m.videoad show in %m.activity"));
+        arrayList.add(addBlock("rewardedVideoAdShow", " ", "", "%1$s.show(%2$s.this, _%1$s_on_user_earned_reward_listener);", "#2ca5e2", "%m.videoad show in %m.activity"));
     }
 
     /**

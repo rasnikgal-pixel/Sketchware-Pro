@@ -2042,6 +2042,48 @@ public class Lx {
                 "        return new File(path).length();\r\n" +
                 "    }\r\n" +
                 "\r\n" +
+                "    public static String readFileIfExist(String path) {\r\n" +
+                "        StringBuilder sb = new StringBuilder();\r\n" +
+                "        try (FileReader fr = new FileReader(path)) {\r\n" +
+                "            char[] buff = new char[1024];\r\n" +
+                "            int length;\r\n" +
+                "            while ((length = fr.read(buff)) > 0) {\r\n" +
+                "                sb.append(new String(buff, 0, length));\r\n" +
+                "            }\r\n" +
+                "        } catch (IOException e) {\r\n" +
+                "            e.printStackTrace();\r\n" +
+                "        }\r\n" +
+                "        return sb.toString();\r\n" +
+                "    }\r\n" +
+                "\r\n" +
+                "    public static String getFileNameNoExtension(String filePath) {\r\n" +
+                "        File file = new File(filePath);\r\n" +
+                "        String name = file.getName();\r\n" +
+                "        int lastDot = name.lastIndexOf(\'.\');\r\n" +
+                "        return lastDot > 0 ? name.substring(0, lastDot) : name;\r\n" +
+                "    }\r\n" +
+                "\r\n" +
+                "    public static String getFileExtension(String filePath) {\r\n" +
+                "        File file = new File(filePath);\r\n" +
+                "        String name = file.getName();\r\n" +
+                "        int lastDot = name.lastIndexOf(\'.\');\r\n" +
+                "        return lastDot > 0 ? name.substring(lastDot + 1) : \"\";\r\n" +
+                "    }\r\n" +
+                "\r\n" +
+                "    public static ArrayList<String> listFiles(String dir, String extension) {\r\n" +
+                "        ArrayList<String> list = new ArrayList<>();\r\n" +
+                "        File dirFile = new File(dir);\r\n" +
+                "        File[] files = dirFile.listFiles();\r\n" +
+                "        if (files != null) {\r\n" +
+                "            for (File file : files) {\r\n" +
+                "                if (file.isFile() && file.getName().endsWith(extension)) {\r\n" +
+                "                    list.add(file.getAbsolutePath());\r\n" +
+                "                }\r\n" +
+                "            }\r\n" +
+                "        }\r\n" +
+                "        return list;\r\n" +
+                "    }\r\n" +
+                "\r\n" +
                 "    public static String getExternalStorageDir() {\r\n" +
                 "        return Environment.getExternalStorageDirectory().getAbsolutePath();\r\n" +
                 "    }\r\n" +

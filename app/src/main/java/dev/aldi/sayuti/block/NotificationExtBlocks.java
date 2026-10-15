@@ -28,19 +28,19 @@ public final class NotificationExtBlocks {
 
     public static void addBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(blk("notificationChannelCreate", " ", "",
-                "if (android.os.Build.VERSION.SDK_INT >= 26) { ((android.app.NotificationManager) getApplicationContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE)).createNotificationChannel(new android.app.NotificationChannel(%1$s, %2$s, android.app.NotificationManager.IMPORTANCE_DEFAULT)); }",
+                "try { if (android.os.Build.VERSION.SDK_INT >= 26) { android.app.NotificationManager _nm = (android.app.NotificationManager) getApplicationContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE); if (_nm != null) _nm.createNotificationChannel(new android.app.NotificationChannel(%1$s, %2$s, android.app.NotificationManager.IMPORTANCE_DEFAULT)); } } catch (Throwable _t) {}",
                 COLOR_OP, PALETTE_OP, "create notification channel id %s name %s"));
 
         list.add(blk("areNotificationsEnabled", "b", "",
-                "((android.app.NotificationManager) getApplicationContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE)).areNotificationsEnabled()",
+                "((java.util.function.Supplier<Boolean>) () -> { try { if (android.os.Build.VERSION.SDK_INT < 24) return true; android.app.NotificationManager _nm = (android.app.NotificationManager) getApplicationContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE); return _nm != null && _nm.areNotificationsEnabled(); } catch (Throwable _t) { return false; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC, "notifications are enabled"));
 
         list.add(blk("notificationShowWithChannel", " ", "",
-                "((android.app.NotificationManager) getApplicationContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE)).notify(1, new androidx.core.app.NotificationCompat.Builder(getApplicationContext(), %1$s).setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle(%2$s).setContentText(%3$s).setAutoCancel(true).build());",
+                "try { android.app.NotificationManager _nm = (android.app.NotificationManager) getApplicationContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE); if (_nm != null) _nm.notify((int)(System.currentTimeMillis() % 2000000000), new androidx.core.app.NotificationCompat.Builder(getApplicationContext(), %1$s).setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle(%2$s).setContentText(%3$s).setAutoCancel(true).build()); } catch (Throwable _t) {}",
                 COLOR_OP, PALETTE_OP, "show notification in channel %s title %s text %s"));
 
         list.add(blk("openNotificationSettings", " ", "",
-                "startActivity(new android.content.Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, getPackageName()));",
+                "try { startActivity(new android.content.Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, getPackageName())); } catch (Throwable _t) {}",
                 COLOR_OP, PALETTE_OP, "open notification settings"));
     }
 }
