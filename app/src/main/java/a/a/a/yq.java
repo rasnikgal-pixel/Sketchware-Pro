@@ -355,7 +355,7 @@ public class yq {
      */
     public void generateDebugFiles(Context context) {
         boolean logcatEnabled = N.isDebugBuild && new BuildSettings(sc_id).getValue(
-                        BuildSettings.SETTING_ENABLE_LOGCAT, BuildSettings.SETTING_GENERIC_VALUE_TRUE)
+                        BuildSettings.SETTING_ENABLE_LOGCAT, BuildSettings.SETTING_GENERIC_VALUE_FALSE)
                 .equals(BuildSettings.SETTING_GENERIC_VALUE_TRUE);
 
         String javaDir = FileUtil.getExternalStorageDir() + "/.sketchware/data/" + sc_id + "/files/java/";
@@ -401,8 +401,9 @@ public class yq {
                         "Application \\{", "androidx.multidex.MultiDexApplication {");
             }
             if (logcatEnabled) {
+                // Логгер запускается в отложенном потоке через 2 сек, чтобы не блокировать старт приложения
                 sketchApplicationFileContent = sketchApplicationFileContent.replace(
-                                "super.onCreate();", "super.onCreate();\n        try { SketchLogger.startLogging(); } catch (Throwable _t) { }")
+                                "super.onCreate();", "super.onCreate();\n        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(new Runnable() { public void run() { try { SketchLogger.startLogging(); } catch (Throwable _t) { } } }, 2000);")
                         .replace("Process.killProcess(Process.myPid());",
                                 "SketchLogger.broadcastLog(Log.getStackTraceString(throwable));\n" +
                                         "                    Process.killProcess(Process.myPid());"
