@@ -439,6 +439,12 @@ public class Ix {
                 writePermission(a, Manifest.permission.ACCESS_FINE_LOCATION);
             }
         }
+        // Extra permissions (SMS, Contacts, NFC и т.д.) — строки без префикса.
+        // Добавляются через jq.addExtraPermission(...) или из блоков (yq.java).
+        for (String perm : c.extraPerms) {
+            if (perm == null || perm.isEmpty()) continue;
+            writePermission(a, "android.permission." + perm);
+        }
         if (FileUtil.isExistFile(fpu.getPathPermission(c.sc_id))) {
             for (String s : frc.getPermissionList()) {
                 writePermission(a, s);

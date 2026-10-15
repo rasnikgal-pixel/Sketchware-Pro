@@ -7,6 +7,8 @@ import com.besome.sketch.beans.ProjectLibraryBean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import mod.agus.jcoderz.handle.component.ConstVarComponent;
 
@@ -187,6 +189,14 @@ public class jq {
     public int q = 0;
 
     /**
+     * Дополнительные разрешения (вне int-битфилда q). Хранятся как строки
+     * без префикса "android.permission." (например, "SEND_SMS", "NFC").
+     * Используются, когда разрешение не помещается в int или не входит
+     * в стандартный набор Sketchware.
+     */
+    public Set<String> extraPerms = new HashSet<>();
+
+    /**
      * Configured ad unit ID for banner ads. Set to demo ad unit provided by Google by default.
      */
     public String bannerAdUnitId = "ca-app-pub-3940256099942544/6300978111";
@@ -242,6 +252,29 @@ public class jq {
      */
     public void addPermission(int permission) {
         q = permission | q;
+    }
+
+    /**
+     * Registers an extra permission (string form) for the entire project.
+     * Example: addExtraPermission("SEND_SMS") for android.permission.SEND_SMS.
+     */
+    public void addExtraPermission(String permissionName) {
+        if (permissionName == null || permissionName.isEmpty()) return;
+        extraPerms.add(permissionName);
+    }
+
+    /**
+     * @return True if the extra permission was registered on the project.
+     */
+    public boolean hasExtraPermission(String permissionName) {
+        return permissionName != null && extraPerms.contains(permissionName);
+    }
+
+    /**
+     * Registers an extra permission for an Activity.
+     */
+    public void addExtraPermission(String activityName, String permissionName) {
+        addExtraPermission(permissionName);
     }
 
     /**
