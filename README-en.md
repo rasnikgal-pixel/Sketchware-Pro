@@ -8,6 +8,8 @@
 
 📖 **Documentation in other languages:** [🇷🇺 RU](README.md) · [🇬🇧 EN](README-en.md) · [🇨🇳 中文](README-zh.md) · [🇮🇳 हिन्दी](README-hi.md) · [🇺🇦 UK](README-uk.md)
 
+📜 **Full version history:** [CHANGELOG.md](CHANGELOG.md)
+
 This repository is a **fork** of the **Sketchware Pro** project, with **full multilingual localization** added: **Russian, English, Chinese, Hindi, and Ukrainian**. The original project was created to revive the visual Android app development environment after the original Sketchware stopped being updated.
 
 **Switching language in the app:** side drawer → **Interface language** → select a language.
