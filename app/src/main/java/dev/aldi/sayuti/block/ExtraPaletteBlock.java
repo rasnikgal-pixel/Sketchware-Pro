@@ -1195,7 +1195,6 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "progressdialogSetStyle");
                     logicEditor.a(" ", "progressdialogShow");
                     logicEditor.a(" ", "progressdialogDismiss");
-                    return;
                 }
                 addCustomBlocksForPalette(7);
                 return;
@@ -1384,9 +1383,11 @@ public class ExtraPaletteBlock {
      */
     private void addCustomBlocksForPalette(int paletteId) {
         ArrayList<HashMap<String, Object>> data = ExtraBlockFile.getExtraBlockData();
+        int added = 0;
         for (HashMap<String, Object> map : data) {
             Object pal = map.get("palette");
             if (!String.valueOf(paletteId).equals(pal)) continue;
+            added++;
 
             Object type = map.get("type");
             Object opcode = map.get("name");
@@ -1405,6 +1406,10 @@ public class ExtraPaletteBlock {
                 logicEditor.a("", t, o);
             }
         }
+        try {
+            pro.sketchware.smartdrop.DebugLogger.get(logicEditor)
+                .i("Blocks", "palette_" + paletteId, "all=" + data.size() + ", added=" + added);
+        } catch (Throwable ignored) {}
     }
 
 }
