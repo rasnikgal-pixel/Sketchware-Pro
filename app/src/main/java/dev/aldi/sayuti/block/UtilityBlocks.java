@@ -233,12 +233,12 @@ public final class UtilityBlocks {
                 "Base64 decode %s"));
 
         list.add(blk("md5", "s", "",
-                "pro.sketchware.utility.UtilityBlocksHashHelper.md5(%1$s)",
+                "((java.util.function.Supplier<String>) () -> { try { return new java.math.BigInteger(1, java.security.MessageDigest.getInstance(\"MD5\").digest(%1$s.getBytes(\"UTF-8\"))).toString(16); } catch (Throwable _t) { return \"\"; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "MD5 hash of %s"));
 
         list.add(blk("sha256", "s", "",
-                "pro.sketchware.utility.UtilityBlocksHashHelper.sha256(%1$s)",
+                "((java.util.function.Supplier<String>) () -> { try { return new java.math.BigInteger(1, java.security.MessageDigest.getInstance(\"SHA-256\").digest(%1$s.getBytes(\"UTF-8\"))).toString(16); } catch (Throwable _t) { return \"\"; } }).get()",
                 COLOR_FUNC, PALETTE_FUNC,
                 "SHA-256 hash of %s"));
     }
