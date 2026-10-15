@@ -170,6 +170,15 @@ public class ToolsActivity extends BaseAppCompatActivity {
 
     private static final int REQ_LANG_MASTER = 42001;
 
+    /** Открывает SAF для сохранения мастер-файла локализации. */
+    private void onLanguageMaster() {
+        android.content.Intent i = new android.content.Intent(android.content.Intent.ACTION_CREATE_DOCUMENT);
+        i.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+        i.setType("text/xml");
+        i.putExtra(android.content.Intent.EXTRA_TITLE, "strings_master.xml");
+        startActivityForResult(i, REQ_LANG_MASTER);
+    }
+
     private void onUserCode() {
         showProjectPickerDialog((scId, projectName) -> {
             android.content.Intent intent = new android.content.Intent(this,
