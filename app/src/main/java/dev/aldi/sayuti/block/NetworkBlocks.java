@@ -39,16 +39,6 @@ public final class NetworkBlocks {
     // URL
     // ─────────────────────────────────────────────────────────────
     private static void addUrlBlocks(ArrayList<HashMap<String, Object>> list) {
-        list.add(blk("urlEncode", "s", "",
-                "java.net.URLEncoder.encode(%1$s, \\"UTF-8\\")",
-                COLOR_FUNC, PALETTE_FUNC,
-                "URL encode %s"));
-
-        list.add(blk("urlDecode", "s", "",
-                "java.net.URLDecoder.decode(%1$s, \\"UTF-8\\")",
-                COLOR_FUNC, PALETTE_FUNC,
-                "URL decode %s"));
-
         list.add(blk("parseUrlHost", "s", "",
                 "android.net.Uri.parse(%1$s).getHost()",
                 COLOR_FUNC, PALETTE_FUNC,

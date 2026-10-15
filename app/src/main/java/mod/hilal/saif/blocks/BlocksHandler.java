@@ -21,6 +21,9 @@ public class BlocksHandler {
         dev.aldi.sayuti.block.SecurityBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.UtilityBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.NetworkBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.BitmapBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.FileBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.IntentBlocks.addBlocks(arrayList);
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("name", "CommandBlockJava");
