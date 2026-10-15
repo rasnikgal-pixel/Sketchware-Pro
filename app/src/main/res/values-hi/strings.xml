@@ -2682,4 +2682,10 @@ ACTION_VIEW
     <string name="sora_project_replace_done">फ़ाइलों में बदला गया: %1$d</string>
     <string name="sora_project_replace_confirm">सभी प्रोजेक्ट फ़ाइलों में बदलें?</string>
     <string name="sora_project_replace_empty">कोई फ़ाइल नहीं बदली</string>
+    <string name="tools_language_master">भाषा मास्टर</string>
+    <string name="tools_language_master_title">नई भाषा के लिए मास्टर फ़ाइल निर्यात करें</string>
+    <string name="tools_language_master_desc">सभी कुंजियों (RU) और खाली मानों के साथ XML बनाता है</string>
+    <string name="tools_language_master_exporting">फ़ाइल तैयार की जा रही है…</string>
+    <string name="tools_language_master_done">पूर्ण: %1$d कुंजियाँ</string>
+    <string name="tools_language_master_failed">फ़ाइल बनाने में विफल</string>
 </resources>

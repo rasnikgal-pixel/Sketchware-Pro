@@ -2682,4 +2682,10 @@ ACTION_VIEW
     <string name="sora_project_replace_done">Замінено у файлах: %1$d</string>
     <string name="sora_project_replace_confirm">Замінити в усіх файлах проєкту?</string>
     <string name="sora_project_replace_empty">Файли не змінено</string>
+    <string name="tools_language_master">Майстер мови</string>
+    <string name="tools_language_master_title">Експорт мастер-файлу для нової мови</string>
+    <string name="tools_language_master_desc">Створює XML з усіма ключами (RU) та порожніми значеннями</string>
+    <string name="tools_language_master_exporting">Готуємо файл…</string>
+    <string name="tools_language_master_done">Готово: %1$d ключів</string>
+    <string name="tools_language_master_failed">Не вдалося створити файл</string>
 </resources>

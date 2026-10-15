@@ -2682,4 +2682,10 @@ ACTION_VIEW
     <string name="sora_project_replace_done">已替换文件数：%1$d</string>
     <string name="sora_project_replace_confirm">在所有项目文件中替换？</string>
     <string name="sora_project_replace_empty">没有文件被修改</string>
+    <string name="tools_language_master">语言大师</string>
+    <string name="tools_language_master_title">为新语言导出母版文件</string>
+    <string name="tools_language_master_desc">生成包含所有键（RU）和空值的 XML</string>
+    <string name="tools_language_master_exporting">正在准备文件…</string>
+    <string name="tools_language_master_done">完成：%1$d 个键</string>
+    <string name="tools_language_master_failed">创建文件失败</string>
 </resources>

@@ -2746,4 +2746,10 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="sora_project_replace_done">Заменено в файлах: %1$d</string>
     <string name="sora_project_replace_confirm">Заменить во всех файлах проекта?</string>
     <string name="sora_project_replace_empty">Файлы не изменены</string>
+    <string name="tools_language_master">Мастер языка</string>
+    <string name="tools_language_master_title">Экспорт мастер-файла для нового языка</string>
+    <string name="tools_language_master_desc">Создаёт XML со всеми ключами (RU) и пустыми значениями</string>
+    <string name="tools_language_master_exporting">Готовим файл…</string>
+    <string name="tools_language_master_done">Готово: %1$d ключей</string>
+    <string name="tools_language_master_failed">Не удалось создать файл</string>
 </resources>

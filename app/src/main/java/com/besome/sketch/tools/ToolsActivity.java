@@ -129,10 +129,47 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 R.drawable.ic_mtrl_email_sent,
                 this::onSendRequest
         ));
+        items.add(new ToolItem(
+                Helper.getResString(R.string.tools_language_master),
+                Helper.getResString(R.string.tools_language_master_desc),
+                R.drawable.ic_mtrl_code,
+                this::onLanguageMaster
+        ));
         return items;
     }
 
     /** Открывает экран "Мой код". */
+
+    /** Обработка результата SAF для мастер-файла. */
+    @Override
+    protected void onActivityResult(int req, int res, android.content.Intent data) {
+        super.onActivityResult(req, res, data);
+        if (req != REQ_LANG_MASTER) return;
+        if (res != RESULT_OK || data == null) return;
+        try {
+            java.io.OutputStream out = getContentResolver().openOutputStream(data.getData());
+            if (out == null) {
+                toast(R.string.tools_language_master_failed);
+                return;
+            }
+            long n = MasterExporter.copy(this, out);
+            out.close();
+            toast(getString(R.string.tools_language_master_done, (int) n));
+        } catch (Throwable t) {
+            toast(R.string.tools_language_master_failed);
+        }
+    }
+
+    private void toast(int resId) {
+        android.widget.Toast.makeText(this, resId, android.widget.Toast.LENGTH_LONG).show();
+    }
+
+    private void toast(String text) {
+        android.widget.Toast.makeText(this, text, android.widget.Toast.LENGTH_LONG).show();
+    }
+
+    private static final int REQ_LANG_MASTER = 42001;
+
     private void onUserCode() {
         showProjectPickerDialog((scId, projectName) -> {
             android.content.Intent intent = new android.content.Intent(this,
