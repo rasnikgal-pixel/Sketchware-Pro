@@ -9,7 +9,7 @@ import sys
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "app", "src", "main", "res")
 LOCALES = ["values", "values-en", "values-zh", "values-hi", "values-uk"]
 
-SKIP = ("abc_", "mtrl_", "material_", "androidx_", "bottomsheet_", "appbar_", "call_notification_", "character_counter_", "common_google_play_services_", "status_bar_", "expand_button_", "fab_transformation_", "m3_", "com.google.", "ga_", "gcm_", "google_", "project_id", "password_toggle_", "path_password_", "preference_", "searchbar_", "searchview_", "side_sheet_", "nav_rail_", "summary_collapsed_", "v7_preference_", "exposed_dropdown_", "hide_bottom_", "item_view_role_", "clear_text_end_")
+SKIP = ("abc_", "mtrl_", "material_", "androidx_", "bottomsheet_", "appbar_", "call_notification_", "character_counter_", "common_google_play_services_", "status_bar_", "expand_button_", "fab_transformation_", "m3_", "com.google.", "ga_", "gcm_", "google_", "project_id", "password_toggle_", "path_password_", "preference_", "searchbar_", "searchview_", "side_sheet_", "nav_rail_", "summary_collapsed_", "v7_preference_", "exposed_dropdown_", "hide_bottom_", "item_view_role_", "clear_text_end_", "bottom_sheet_behavior", "title_activity_")
 
 def read_keys(path):
     if not os.path.isfile(path):
@@ -21,7 +21,9 @@ def read_keys(path):
 def main():
     keys_by_loc = {}
     for loc in LOCALES:
-        keys_by_loc[loc] = read_keys(os.path.join(ROOT, loc, "strings.xml"))
+        k1 = read_keys(os.path.join(ROOT, loc, "strings.xml"))
+        k2 = read_keys(os.path.join(ROOT, loc, "strings_common.xml"))
+        keys_by_loc[loc] = k1 | k2
     base = keys_by_loc["values"]
     missing_total = 0
     extra_total = 0
