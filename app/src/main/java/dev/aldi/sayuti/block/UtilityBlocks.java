@@ -51,7 +51,7 @@ public final class UtilityBlocks {
     // ─────────────────────────────────────────────────────────────
     private static void addNotificationBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(blk("notificationShow", " ", "",
-                "((android.app.NotificationManager) getApplicationContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE)).notify(1, new androidx.core.app.NotificationCompat.Builder(getApplicationContext(), \\"default\\").setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle(%1$s).setContentText(%2$s).setAutoCancel(true).build());",
+                "((android.app.NotificationManager) getApplicationContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE)).notify(1, new androidx.core.app.NotificationCompat.Builder(getApplicationContext(), \"default\").setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle(%1$s).setContentText(%2$s).setAutoCancel(true).build());",
                 COLOR_OP, PALETTE_OP,
                 "show notification title %s text %s"));
 
