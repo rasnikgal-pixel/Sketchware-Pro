@@ -1,0 +1,9 @@
+{
+  "Camera": ["CAMERA"],
+  "LocationManager": ["ACCESS_FINE_LOCATION"],
+  "SpeechToText": ["RECORD_AUDIO"],
+  "BluetoothConnect": ["BLUETOOTH", "BLUETOOTH_ADMIN"],
+  "FilePicker": ["READ_EXTERNAL_STORAGE"],
+  "RequestNetwork": ["INTERNET", "ACCESS_NETWORK_STATE"],
+  "Vibrator": ["VIBRATE"]
+}

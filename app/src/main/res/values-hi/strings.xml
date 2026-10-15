@@ -2691,6 +2691,5 @@ ACTION_VIEW
     <string name="block_dep_hints_title">ब्लॉक निर्भरता संकेत</string>
     <string name="block_dep_hints_summary">प्रोजेक्ट में घटक न होने पर भी उनकी आवश्यकता वाले ब्लॉक दिखाएँ</string>
     <string name="block_dep_hint_requires">आवश्यक: %1$s</string>
-    <string name="block_dep_hint_add">जोड़ें</string>
-    <string name="block_dep_hint_added">घटक "%1$s" जोड़ा गया</string>
+    <string name="block_dep_perm_header">📋 अनुमति जोड़ी जाएगी:</string>
 </resources>

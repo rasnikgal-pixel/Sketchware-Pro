@@ -90,6 +90,10 @@ public class SmartDropDialog {
         input.setText(suggestedNewName);
         root.addView(input);
 
+        // Блок «Будет добавлено разрешение X»
+        View permView = buildPermissionInfoView(componentType);
+        if (permView != null) root.addView(permView);
+
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setView(root)
@@ -117,9 +121,22 @@ public class SmartDropDialog {
         String message = context.getString(R.string.smartdrop_connect_to)
                 .replace("%s", existing.componentId);
 
+        LinearLayout root = new LinearLayout(context);
+        root.setOrientation(LinearLayout.VERTICAL);
+        int pad = dp(20);
+        root.setPadding(pad, dp(8), pad, dp(8));
+
+        TextView msgView = new TextView(context);
+        msgView.setText(message);
+        root.addView(msgView);
+
+        // Блок «Будет добавлено разрешение X» (только если создаём новый)
+        View permView = buildPermissionInfoView(componentType);
+        if (permView != null) root.addView(permView);
+
         new AlertDialog.Builder(context)
                 .setTitle(title)
-                .setMessage(message)
+                .setView(root)
                 .setPositiveButton(R.string.smartdrop_btn_connect,
                         (d, w) -> callback.onAttachExisting(existing))
                 .setNeutralButton(R.string.smartdrop_btn_new,
@@ -176,6 +193,10 @@ public class SmartDropDialog {
         root.addView(label);
         root.addView(input);
 
+        // Блок «Будет добавлено разрешение X» (для случая «создать новый»)
+        View permView = buildPermissionInfoView(componentType);
+        if (permView != null) root.addView(permView);
+
         group.setOnCheckedChangeListener((g, checkedId) -> {
             boolean isNew = checkedId == rbNew.getId();
             int vis = isNew ? View.VISIBLE : View.GONE;
@@ -206,6 +227,50 @@ public class SmartDropDialog {
                         (d, w) -> callback.onCancelled())
                 .setOnCancelListener(d -> callback.onCancelled())
                 .show();
+    }
+
+    /**
+     * Строит информационный блок про разрешения Android, которые будут добавлены
+     * вместе с компонентом. Возвращает null, если разрешения не нужны.
+     */
+    private View buildPermissionInfoView(int componentType) {
+        String componentName = com.besome.sketch.beans.ComponentBean
+                .getComponentName(context, componentType);
+        java.util.List<PermissionHintHelper.PermissionDescription> perms =
+                PermissionHintHelper.describeForComponent(context, componentName);
+        if (perms.isEmpty()) return null;
+
+        LinearLayout box = new LinearLayout(context);
+        box.setOrientation(LinearLayout.VERTICAL);
+        int pad = dp(12);
+        box.setPadding(pad, pad, pad, pad);
+
+        // Заголовок
+        TextView header = new TextView(context);
+        header.setText(R.string.block_dep_perm_header);
+        header.setTypeface(null, android.graphics.Typeface.BOLD);
+        header.setPadding(0, 0, 0, dp(6));
+        box.addView(header);
+
+        for (PermissionHintHelper.PermissionDescription d : perms) {
+            TextView t = new TextView(context);
+            StringBuilder sb = new StringBuilder();
+            sb.append("\uD83D\uDD12 ").append(d.title);
+            if (d.tag != null && !d.tag.isEmpty()) {
+                sb.append("  [").append(d.tag).append("]");
+            }
+            t.setText(sb.toString());
+            t.setTypeface(null, android.graphics.Typeface.BOLD);
+            t.setPadding(0, dp(4), 0, 0);
+            box.addView(t);
+
+            TextView desc = new TextView(context);
+            desc.setText(d.description);
+            desc.setPadding(dp(20), 0, 0, dp(4));
+            desc.setAlpha(0.85f);
+            box.addView(desc);
+        }
+        return box;
     }
 
     private int dp(int v) {

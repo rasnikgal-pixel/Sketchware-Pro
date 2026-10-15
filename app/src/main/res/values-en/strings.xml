@@ -2745,6 +2745,5 @@ ACTION_VIEW
     <string name="block_dep_hints_title">Block dependency hints</string>
     <string name="block_dep_hints_summary">Show blocks that require components even if they aren\'t in the project yet</string>
     <string name="block_dep_hint_requires">Requires: %1$s</string>
-    <string name="block_dep_hint_add">Add</string>
-    <string name="block_dep_hint_added">Component "%1$s" added</string>
+    <string name="block_dep_perm_header">📋 Permission will be added:</string>
 </resources>

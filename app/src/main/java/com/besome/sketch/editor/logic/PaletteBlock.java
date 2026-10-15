@@ -117,6 +117,12 @@ public class PaletteBlock extends LinearLayout {
                         warn.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, warnSize * 0.9f);
                         warn.setGravity(android.view.Gravity.CENTER);
                         warn.setTextColor(0xFFFFA000);
+                        try {
+                            warn.setContentDescription(
+                                    Helper.getResString(R.string.block_dep_hint_requires)
+                                            .replace("%1$s",
+                                                    ComponentBean.getComponentName(context, compType)));
+                        } catch (Throwable ignored) {}
                         row.addView(warn);
                     }
                 }
