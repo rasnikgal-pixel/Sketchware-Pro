@@ -2783,4 +2783,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="tools_health_error_generic">Ошибка диагностики: %1$s</string>
     <string name="settings_logic_editor_gpu_title">GPU-ускорение редактора блоков</string>
     <string name="settings_logic_editor_gpu_summary">Использовать аппаратное ускорение. Быстрее, но на старых устройствах возможны артефакты.</string>
+    <string name="settings_logic_editor_gpu_warn_body">GPU-ускорение может ускорить редактор блоков, но на старых устройствах возможны артефакты: чёрные квадраты, мигание, неправильные цвета блоков.\n\nЕсли заметите проблемы — вернитесь сюда и выключите опцию.\n\nВключить GPU-ускорение?</string>
+    <string name="settings_logic_editor_gpu_warn_continue">Продолжить</string>
 </resources>

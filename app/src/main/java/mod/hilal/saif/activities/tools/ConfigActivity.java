@@ -460,6 +460,26 @@ public class ConfigActivity extends BaseAppCompatActivity {
             dataStore = DataStore.getInstance();
             getPreferenceManager().setPreferenceDataStore(dataStore);
             setPreferencesFromResource(R.xml.preferences_config_activity, rootKey);
+
+            // GPU-ускорение редактора блоков — диалог-предупреждение при включении
+            SwitchPreferenceCompat gpuPref = findPreference(SETTING_LOGIC_EDITOR_GPU);
+            if (gpuPref != null) {
+                gpuPref.setOnPreferenceChangeListener((pref, newValue) -> {
+                    boolean turningOn = Boolean.TRUE.equals(newValue);
+                    if (!turningOn) return true;
+                    new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                            .setTitle(R.string.settings_logic_editor_gpu_title)
+                            .setMessage(R.string.settings_logic_editor_gpu_warn_body)
+                            .setPositiveButton(R.string.settings_logic_editor_gpu_warn_continue, (d, w) -> {
+                                DataStore.getInstance().putBoolean(SETTING_LOGIC_EDITOR_GPU, true);
+                                gpuPref.setChecked(true);
+                            })
+                            .setNegativeButton(R.string.common_word_cancel, null)
+                            .show();
+                    return false;
+                });
+            }
+
             Preference helpPref = findPreference("open-help");
             if (helpPref != null) {
                 helpPref.setOnPreferenceClickListener(preference -> {

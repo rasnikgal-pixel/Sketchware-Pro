@@ -2719,4 +2719,6 @@ ACTION_VIEW
     <string name="tools_health_error_generic">Помилка діагностики: %1$s</string>
     <string name="settings_logic_editor_gpu_title">GPU-прискорення редактора блоків</string>
     <string name="settings_logic_editor_gpu_summary">Використовувати апаратне прискорення. Швидше, але на старих пристроях можливі артефакти.</string>
+    <string name="settings_logic_editor_gpu_warn_body">GPU-прискорення може пришвидшити редактор блоків, але на старих пристроях можливі артефакти: чорні квадрати, миготіння, неправильні кольори блоків.\n\nЯкщо помітите проблеми — поверніться сюди та вимкніть опцію.\n\nУвімкнути GPU-прискорення?</string>
+    <string name="settings_logic_editor_gpu_warn_continue">Продовжити</string>
 </resources>

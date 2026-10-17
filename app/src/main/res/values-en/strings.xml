@@ -2773,4 +2773,6 @@ ACTION_VIEW
     <string name="tools_health_error_generic">Diagnostics error: %1$s</string>
     <string name="settings_logic_editor_gpu_title">Block editor GPU acceleration</string>
     <string name="settings_logic_editor_gpu_summary">Use hardware acceleration. Faster, but may cause artifacts on older devices.</string>
+    <string name="settings_logic_editor_gpu_warn_body">GPU acceleration can speed up the block editor, but may cause artifacts on older devices: black squares, flickering, wrong block colors.\n\nIf you notice issues — come back here and turn it off.\n\nEnable GPU acceleration?</string>
+    <string name="settings_logic_editor_gpu_warn_continue">Continue</string>
 </resources>

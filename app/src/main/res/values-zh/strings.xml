@@ -2719,4 +2719,6 @@ ACTION_VIEW
     <string name="tools_health_error_generic">诊断错误：%1$s</string>
     <string name="settings_logic_editor_gpu_title">积木编辑器 GPU 加速</string>
     <string name="settings_logic_editor_gpu_summary">使用硬件加速。更快，但在较旧设备上可能出现异常。</string>
+    <string name="settings_logic_editor_gpu_warn_body">GPU 加速可以加快积木编辑器的速度，但在较旧设备上可能会出现异常：黑色方块、闪烁、积木颜色错误。\n\n如果发现问题——请回到此处并关闭该选项。\n\n要启用 GPU 加速吗？</string>
+    <string name="settings_logic_editor_gpu_warn_continue">继续</string>
 </resources>
