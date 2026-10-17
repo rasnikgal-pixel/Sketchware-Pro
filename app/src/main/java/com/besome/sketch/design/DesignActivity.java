@@ -719,7 +719,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
      */
     private void checkLogicBeforeBuild() {
         try {
-            android.util.Log.d("PREFLIGHT", "checkLogicBeforeBuild START");
             // Тумблер выключен → сразу сборка
             if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
                     mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD)) {
@@ -729,7 +728,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
             // Обходим Activity-экраны проекта
             java.util.ArrayList<ProjectFileBean> activities = jC.b(sc_id).b();
-            android.util.Log.d("PREFLIGHT", "activities size=" + (activities == null ? "null" : activities.size()));
             if (activities == null || activities.isEmpty()) {
                 startBuildTask();
                 return;
@@ -741,10 +739,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 preflightIssues = mod.jbk.util.ProjectPreflightChecker.check(
                         this, sc_id, activities, null);
             } catch (Throwable t) {
-                android.util.Log.e("PREFLIGHT", "preflight EXCEPTION: " + t, t);
                 preflightIssues = new java.util.ArrayList<>();
             }
-            android.util.Log.d("PREFLIGHT", "preflightIssues size=" + (preflightIssues == null ? "null" : preflightIssues.size()));
             int preflightCritical = 0;
             int preflightWarning = 0;
             if (preflightIssues != null) {
@@ -834,7 +830,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 msg.append("\n");
             }
 
-            android.util.Log.d("PREFLIGHT", "showing dialog: totalC=" + totalCritical + " totalW=" + totalWarning + " byEvent=" + byEventKey.size() + " preflight=" + (preflightIssues == null ? "null" : preflightIssues.size()));
             String title = totalCritical > 0
                     ? Helper.getResString(R.string.auto_design_activity_019)
                     : Helper.getResString(R.string.auto_design_activity_020);
