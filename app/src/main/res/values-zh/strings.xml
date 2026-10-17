@@ -2715,4 +2715,6 @@ ACTION_VIEW
     <string name="tools_health_copied">已复制</string>
     <string name="tools_health_saved">报告已保存</string>
     <string name="tools_health_error">错误：%1$s</string>
+    <string name="tools_health_dialog_title">诊断：%1$s</string>
+    <string name="tools_health_error_generic">诊断错误：%1$s</string>
 </resources>

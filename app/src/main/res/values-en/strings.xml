@@ -2769,4 +2769,6 @@ ACTION_VIEW
     <string name="tools_health_copied">Copied</string>
     <string name="tools_health_saved">Report saved</string>
     <string name="tools_health_error">Error: %1$s</string>
+    <string name="tools_health_dialog_title">Diagnostics: %1$s</string>
+    <string name="tools_health_error_generic">Diagnostics error: %1$s</string>
 </resources>

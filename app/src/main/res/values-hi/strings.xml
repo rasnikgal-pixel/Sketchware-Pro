@@ -2715,4 +2715,6 @@ ACTION_VIEW
     <string name="tools_health_copied">कॉपी किया गया</string>
     <string name="tools_health_saved">रिपोर्ट सहेजी गई</string>
     <string name="tools_health_error">त्रुटि: %1$s</string>
+    <string name="tools_health_dialog_title">डायग्नोस्टिक्स: %1$s</string>
+    <string name="tools_health_error_generic">डायग्नोस्टिक्स त्रुटि: %1$s</string>
 </resources>

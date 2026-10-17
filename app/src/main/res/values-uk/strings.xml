@@ -2715,4 +2715,6 @@ ACTION_VIEW
     <string name="tools_health_copied">Скопійовано</string>
     <string name="tools_health_saved">Звіт збережено</string>
     <string name="tools_health_error">Помилка: %1$s</string>
+    <string name="tools_health_dialog_title">Діагностика: %1$s</string>
+    <string name="tools_health_error_generic">Помилка діагностики: %1$s</string>
 </resources>
