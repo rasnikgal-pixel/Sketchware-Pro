@@ -196,7 +196,7 @@ public class Ox {
 
             if (backgroundColor != 0xffffff) {
                 if (backgroundColor != 0) {
-                    int color = backgroundColor & 0xffffff;
+                    int color = backgroundColor;
                     if (nx.c().equals("BottomAppBar")) {
                         if (!toNotAdd.contains("app:backgroundTint") && !injectHandler.contains("backgroundTint") && (backgroundResColor != null)) {
                             if (backgroundResColor.startsWith("?") || backgroundResColor.startsWith("@color/")) {
