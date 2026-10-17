@@ -2717,4 +2717,6 @@ ACTION_VIEW
     <string name="tools_health_error">错误：%1$s</string>
     <string name="tools_health_dialog_title">诊断：%1$s</string>
     <string name="tools_health_error_generic">诊断错误：%1$s</string>
+    <string name="settings_logic_editor_gpu_title">积木编辑器 GPU 加速</string>
+    <string name="settings_logic_editor_gpu_summary">使用硬件加速。更快，但在较旧设备上可能出现异常。</string>
 </resources>

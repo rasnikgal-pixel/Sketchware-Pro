@@ -2717,4 +2717,6 @@ ACTION_VIEW
     <string name="tools_health_error">त्रुटि: %1$s</string>
     <string name="tools_health_dialog_title">डायग्नोस्टिक्स: %1$s</string>
     <string name="tools_health_error_generic">डायग्नोस्टिक्स त्रुटि: %1$s</string>
+    <string name="settings_logic_editor_gpu_title">ब्लॉक संपादक GPU त्वरण</string>
+    <string name="settings_logic_editor_gpu_summary">हार्डवेयर त्वरण का उपयोग करें। तेज़, लेकिन पुराने डिवाइस पर विसंगतियाँ हो सकती हैं।</string>
 </resources>

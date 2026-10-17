@@ -2771,4 +2771,6 @@ ACTION_VIEW
     <string name="tools_health_error">Error: %1$s</string>
     <string name="tools_health_dialog_title">Diagnostics: %1$s</string>
     <string name="tools_health_error_generic">Diagnostics error: %1$s</string>
+    <string name="settings_logic_editor_gpu_title">Block editor GPU acceleration</string>
+    <string name="settings_logic_editor_gpu_summary">Use hardware acceleration. Faster, but may cause artifacts on older devices.</string>
 </resources>

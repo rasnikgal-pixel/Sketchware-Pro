@@ -2717,4 +2717,6 @@ ACTION_VIEW
     <string name="tools_health_error">Помилка: %1$s</string>
     <string name="tools_health_dialog_title">Діагностика: %1$s</string>
     <string name="tools_health_error_generic">Помилка діагностики: %1$s</string>
+    <string name="settings_logic_editor_gpu_title">GPU-прискорення редактора блоків</string>
+    <string name="settings_logic_editor_gpu_summary">Використовувати апаратне прискорення. Швидше, але на старих пристроях можливі артефакти.</string>
 </resources>

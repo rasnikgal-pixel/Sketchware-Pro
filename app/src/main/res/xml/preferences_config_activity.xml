@@ -30,6 +30,12 @@
         app:title="Живой поиск блоков" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
+        app:key="logic-editor-gpu"
+        app:defaultValue="false"
+        app:summary="@string/settings_logic_editor_gpu_summary"
+        app:title="@string/settings_logic_editor_gpu_title" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
         app:key="show-headers-when-searching-blocks"
         app:summary="При поиске блоков оставлять заголовки подразделов только если под ними есть найденные блоки."
         app:title="Заголовки при поиске блоков" />
