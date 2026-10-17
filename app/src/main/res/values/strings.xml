@@ -2756,4 +2756,24 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="block_dep_hints_summary">Показывать блоки, требующие компонентов, даже если их ещё нет в проекте</string>
     <string name="block_dep_hint_requires">Требуется: %1$s</string>
     <string name="block_dep_perm_header">📋 Будет добавлено разрешение:</string>
+    <string name="tools_health_title">Диагностика проекта</string>
+    <string name="tools_health_subtitle">Здоровье проекта, блоки, компоненты, разрешения, размер</string>
+    <string name="tools_health_save">Сохранить</string>
+    <string name="tools_health_copy">Копировать</string>
+    <string name="tools_health_close">Закрыть</string>
+    <string name="health_report_title">=== Диагностика проекта ===</string>
+    <string name="health_report_project">Проект: %1$s</string>
+    <string name="health_report_screens">Экраны:</string>
+    <string name="health_report_activity">Activity: %1$d</string>
+    <string name="health_report_layouts">Layout (другие): %1$d</string>
+    <string name="health_report_blocks">Блоков всего: %1$d</string>
+    <string name="health_report_components">Компонентов: %1$d</string>
+    <string name="health_report_problems">Проблемы:</string>
+    <string name="health_report_empty_java">🔴 Экранов без javaName: %1$d</string>
+    <string name="health_report_dup_java">🔴 Дубликатов javaName: %1$d</string>
+    <string name="health_report_no_icon">🟡 Иконка приложения не задана</string>
+    <string name="health_report_user_classes">Классов в «Мой код»: %1$d</string>
+    <string name="health_report_bad_classes"> (🔴 невалидных: %1$d)</string>
+    <string name="health_report_ok">✅ Проблем не найдено</string>
+    <string name="health_report_size">Размер проекта: %1$s</string>
 </resources>

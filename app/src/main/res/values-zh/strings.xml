@@ -2692,4 +2692,24 @@ ACTION_VIEW
     <string name="block_dep_hints_summary">即使项目中还没有组件，也显示需要它们的积木</string>
     <string name="block_dep_hint_requires">需要：%1$s</string>
     <string name="block_dep_perm_header">📋 将添加权限：</string>
+    <string name="tools_health_title">项目诊断</string>
+    <string name="tools_health_subtitle">项目健康状况、积木、组件、权限、大小</string>
+    <string name="tools_health_save">保存</string>
+    <string name="tools_health_copy">复制</string>
+    <string name="tools_health_close">关闭</string>
+    <string name="health_report_title">=== 项目诊断 ===</string>
+    <string name="health_report_project">项目：%1$s</string>
+    <string name="health_report_screens">屏幕：</string>
+    <string name="health_report_activity">Activity：%1$d</string>
+    <string name="health_report_layouts">布局（其他）：%1$d</string>
+    <string name="health_report_blocks">积木总数：%1$d</string>
+    <string name="health_report_components">组件：%1$d</string>
+    <string name="health_report_problems">问题：</string>
+    <string name="health_report_empty_java">🔴 没有 javaName 的屏幕：%1$d</string>
+    <string name="health_report_dup_java">🔴 重复的 javaName：%1$d</string>
+    <string name="health_report_no_icon">🟡 未设置应用图标</string>
+    <string name="health_report_user_classes">「我的代码」中的类：%1$d</string>
+    <string name="health_report_bad_classes"> (🔴 无效：%1$d)</string>
+    <string name="health_report_ok">✅ 未发现问题</string>
+    <string name="health_report_size">项目大小：%1$s</string>
 </resources>

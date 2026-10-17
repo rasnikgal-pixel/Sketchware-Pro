@@ -10,6 +10,7 @@ import java.util.List;
 import a.a.a.jC;
 import a.a.a.wq;
 import pro.sketchware.activities.usercode.UserCodeManager;
+import mod.hey.studios.util.Helper;
 import pro.sketchware.utility.FileUtil;
 
 /**
@@ -22,10 +23,10 @@ public final class ProjectHealthChecker {
 
     public static String buildReport(Context ctx, String scId, String projectName) {
         StringBuilder r = new StringBuilder();
-        if (scId == null) return "Нет проекта";
+        if (scId == null) return "";
 
-        r.append("=== Диагностика проекта ===\n");
-        if (projectName != null) r.append("Проект: ").append(projectName).append("\n");
+        r.append(Helper.getResString(com.besome.sketch.R.string.health_report_title)).append("\n");
+        if (projectName != null) r.append(Helper.getResString(com.besome.sketch.R.string.health_report_project, projectName)).append("\n");
         r.append("sc_id: ").append(scId).append("\n\n");
 
         // Экраны
@@ -79,21 +80,21 @@ public final class ProjectHealthChecker {
             }
         } catch (Throwable ignored) {}
 
-        r.append("Экраны:\n");
-        r.append("  Activity:       ").append(activities).append("\n");
-        r.append("  Layout (другие): ").append(layouts).append("\n");
-        r.append("  Блоков всего:   ").append(totalBlocks).append("\n");
-        r.append("  Компонентов:    ").append(totalComponents).append("\n\n");
+        r.append(Helper.getResString(com.besome.sketch.R.string.health_report_screens)).append("\n");
+        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_activity, activities)).append("\n");
+        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_layouts, layouts)).append("\n");
+        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_blocks, totalBlocks)).append("\n");
+        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_components, totalComponents)).append("\n\n");
 
         // Проблемы
         int problems = 0;
-        r.append("Проблемы:\n");
+        r.append(Helper.getResString(com.besome.sketch.R.string.health_report_problems)).append("\n");
         if (emptyActivities > 0) {
-            r.append("  🔴 Экранов без javaName: ").append(emptyActivities).append("\n");
+            r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_empty_java, emptyActivities)).append("\n");
             problems++;
         }
         if (duplicateJavaNames > 0) {
-            r.append("  🔴 Дубликатов javaName: ").append(duplicateJavaNames).append("\n");
+            r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_dup_java, duplicateJavaNames)).append("\n");
             problems++;
         }
 
@@ -101,7 +102,7 @@ public final class ProjectHealthChecker {
         try {
             String iconPath = wq.e() + File.separator + scId + File.separator + "icon.png";
             if (!FileUtil.isExistFile(iconPath)) {
-                r.append("  🟡 Иконка приложения не задана\n");
+                r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_no_icon)).append("\n");
                 problems++;
             }
         } catch (Throwable ignored) {}
@@ -122,19 +123,21 @@ public final class ProjectHealthChecker {
                 }
             }
         } catch (Throwable ignored) {}
-        r.append("  Классов в «Мой код»: ").append(userClasses);
-        if (badUserClasses > 0) r.append(" (🔴 невалидных: ").append(badUserClasses).append(")");
+        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_user_classes, userClasses));
+        if (badUserClasses > 0) {
+            r.append(Helper.getResString(com.besome.sketch.R.string.health_report_bad_classes, badUserClasses));
+        }
         r.append("\n");
 
         if (problems == 0) {
-            r.append("  ✅ Проблем не найдено\n");
+            r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_ok)).append("\n");
         }
         r.append("\n");
 
         // Размер
         try {
             long bytes = dirSize(new File(wq.e() + File.separator + scId));
-            r.append("Размер проекта: ").append(humanSize(bytes)).append("\n");
+            r.append(Helper.getResString(com.besome.sketch.R.string.health_report_size, humanSize(bytes))).append("\n");
         } catch (Throwable ignored) {}
 
         return r.toString();

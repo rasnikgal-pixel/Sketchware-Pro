@@ -2692,4 +2692,24 @@ ACTION_VIEW
     <string name="block_dep_hints_summary">Показувати блоки, що потребують компонентів, навіть якщо їх ще немає в проєкті</string>
     <string name="block_dep_hint_requires">Потрібно: %1$s</string>
     <string name="block_dep_perm_header">📋 Буде додано дозвіл:</string>
+    <string name="tools_health_title">Діагностика проєкту</string>
+    <string name="tools_health_subtitle">Здоров\'я проєкту, блоки, компоненти, дозволи, розмір</string>
+    <string name="tools_health_save">Зберегти</string>
+    <string name="tools_health_copy">Копіювати</string>
+    <string name="tools_health_close">Закрити</string>
+    <string name="health_report_title">=== Діагностика проєкту ===</string>
+    <string name="health_report_project">Проєкт: %1$s</string>
+    <string name="health_report_screens">Екрани:</string>
+    <string name="health_report_activity">Activity: %1$d</string>
+    <string name="health_report_layouts">Layout (інші): %1$d</string>
+    <string name="health_report_blocks">Блоків всього: %1$d</string>
+    <string name="health_report_components">Компонентів: %1$d</string>
+    <string name="health_report_problems">Проблеми:</string>
+    <string name="health_report_empty_java">🔴 Екранів без javaName: %1$d</string>
+    <string name="health_report_dup_java">🔴 Дублікатів javaName: %1$d</string>
+    <string name="health_report_no_icon">🟡 Іконку застосунку не задано</string>
+    <string name="health_report_user_classes">Класів у «Мій код»: %1$d</string>
+    <string name="health_report_bad_classes"> (🔴 невалідних: %1$d)</string>
+    <string name="health_report_ok">✅ Проблем не знайдено</string>
+    <string name="health_report_size">Розмір проєкту: %1$s</string>
 </resources>

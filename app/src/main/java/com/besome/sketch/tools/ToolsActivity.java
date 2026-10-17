@@ -118,8 +118,8 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 this::onLogcat
         ));
         items.add(new ToolItem(
-                "Диагностика проекта",
-                "Здоровье проекта, блоки, компоненты, разрешения, размер",
+                Helper.getResString(R.string.tools_health_title),
+                Helper.getResString(R.string.tools_health_subtitle),
                 R.drawable.ic_mtrl_help,
                 this::onHealthCheck
         ));
@@ -177,15 +177,15 @@ public class ToolsActivity extends BaseAppCompatActivity {
             try {
                 java.io.OutputStream out = getContentResolver().openOutputStream(data.getData());
                 if (out == null) {
-                    toast("Не удалось открыть файл");
+                    toast("Error: cannot open file");
                     pendingHealthReport = null;
                     return;
                 }
                 out.write(pendingHealthReport.getBytes(java.nio.charset.StandardCharsets.UTF_8));
                 out.close();
-                toast("Отчёт сохранён");
+                toast("Saved");
             } catch (Throwable t) {
-                toast("Ошибка сохранения: " + t);
+                toast("Error: " + t);
             } finally {
                 pendingHealthReport = null;
             }
@@ -235,16 +235,16 @@ public class ToolsActivity extends BaseAppCompatActivity {
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
                     .setTitle("Диагностика: " + projectName)
                     .setMessage(report)
-                    .setPositiveButton("Сохранить", (d, w) -> saveHealthReport(projectName, finalReport))
-                    .setNeutralButton("Копировать", (d, w) -> {
+                    .setPositiveButton(Helper.getResString(R.string.tools_health_save), (d, w) -> saveHealthReport(projectName, finalReport))
+                    .setNeutralButton(Helper.getResString(R.string.tools_health_copy), (d, w) -> {
                         android.content.ClipboardManager cm = (android.content.ClipboardManager)
                                 getSystemService(android.content.Context.CLIPBOARD_SERVICE);
                         if (cm != null) {
                             cm.setPrimaryClip(android.content.ClipData.newPlainText("health", finalReport));
-                            android.widget.Toast.makeText(this, "Скопировано", android.widget.Toast.LENGTH_SHORT).show();
+                            android.widget.Toast.makeText(this, Helper.getResString(R.string.health_report_ok), android.widget.Toast.LENGTH_SHORT).show();
                         }
                     })
-                    .setNegativeButton("Закрыть", null)
+                    .setNegativeButton(Helper.getResString(R.string.tools_health_close), null)
                     .show();
         });
     }
@@ -260,7 +260,7 @@ public class ToolsActivity extends BaseAppCompatActivity {
             startActivityForResult(i, REQ_HEALTH_REPORT);
             pendingHealthReport = report;
         } catch (Throwable t) {
-            android.widget.Toast.makeText(this, "Не удалось сохранить: " + t, android.widget.Toast.LENGTH_LONG).show();
+            android.widget.Toast.makeText(this, "Error: " + t, android.widget.Toast.LENGTH_LONG).show();
         }
     }
 

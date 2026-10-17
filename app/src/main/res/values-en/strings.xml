@@ -2746,4 +2746,24 @@ ACTION_VIEW
     <string name="block_dep_hints_summary">Show blocks that require components even if they aren\'t in the project yet</string>
     <string name="block_dep_hint_requires">Requires: %1$s</string>
     <string name="block_dep_perm_header">📋 Permission will be added:</string>
+    <string name="tools_health_title">Project diagnostics</string>
+    <string name="tools_health_subtitle">Project health, blocks, components, permissions, size</string>
+    <string name="tools_health_save">Save</string>
+    <string name="tools_health_copy">Copy</string>
+    <string name="tools_health_close">Close</string>
+    <string name="health_report_title">=== Project diagnostics ===</string>
+    <string name="health_report_project">Project: %1$s</string>
+    <string name="health_report_screens">Screens:</string>
+    <string name="health_report_activity">Activity: %1$d</string>
+    <string name="health_report_layouts">Layout (others): %1$d</string>
+    <string name="health_report_blocks">Total blocks: %1$d</string>
+    <string name="health_report_components">Components: %1$d</string>
+    <string name="health_report_problems">Issues:</string>
+    <string name="health_report_empty_java">🔴 Screens without javaName: %1$d</string>
+    <string name="health_report_dup_java">🔴 Duplicate javaNames: %1$d</string>
+    <string name="health_report_no_icon">🟡 App icon not set</string>
+    <string name="health_report_user_classes">Classes in "My code": %1$d</string>
+    <string name="health_report_bad_classes"> (🔴 invalid: %1$d)</string>
+    <string name="health_report_ok">✅ No issues found</string>
+    <string name="health_report_size">Project size: %1$s</string>
 </resources>

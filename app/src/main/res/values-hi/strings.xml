@@ -2692,4 +2692,24 @@ ACTION_VIEW
     <string name="block_dep_hints_summary">प्रोजेक्ट में घटक न होने पर भी उनकी आवश्यकता वाले ब्लॉक दिखाएँ</string>
     <string name="block_dep_hint_requires">आवश्यक: %1$s</string>
     <string name="block_dep_perm_header">📋 अनुमति जोड़ी जाएगी:</string>
+    <string name="tools_health_title">प्रोजेक्ट डायग्नोस्टिक्स</string>
+    <string name="tools_health_subtitle">प्रोजेक्ट स्वास्थ्य, ब्लॉक, घटक, अनुमतियाँ, आकार</string>
+    <string name="tools_health_save">सहेजें</string>
+    <string name="tools_health_copy">कॉपी करें</string>
+    <string name="tools_health_close">बंद करें</string>
+    <string name="health_report_title">=== प्रोजेक्ट डायग्नोस्टिक्स ===</string>
+    <string name="health_report_project">प्रोजेक्ट: %1$s</string>
+    <string name="health_report_screens">स्क्रीन:</string>
+    <string name="health_report_activity">Activity: %1$d</string>
+    <string name="health_report_layouts">लेआउट (अन्य): %1$d</string>
+    <string name="health_report_blocks">कुल ब्लॉक: %1$d</string>
+    <string name="health_report_components">घटक: %1$d</string>
+    <string name="health_report_problems">समस्याएँ:</string>
+    <string name="health_report_empty_java">🔴 javaName के बिना स्क्रीन: %1$d</string>
+    <string name="health_report_dup_java">🔴 डुप्लिकेट javaName: %1$d</string>
+    <string name="health_report_no_icon">🟡 ऐप आइकन सेट नहीं है</string>
+    <string name="health_report_user_classes">"मेरा कोड" में क्लास: %1$d</string>
+    <string name="health_report_bad_classes"> (🔴 अमान्य: %1$d)</string>
+    <string name="health_report_ok">✅ कोई समस्या नहीं मिली</string>
+    <string name="health_report_size">प्रोजेक्ट आकार: %1$s</string>
 </resources>
