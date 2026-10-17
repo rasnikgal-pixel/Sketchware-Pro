@@ -54,6 +54,7 @@ public class ViewEditorFragment extends qA {
     private View quickPropsHintLayout;
     private ViewBean quickPropsCurrentBean;
     private boolean quickPropsUpdating = false;
+    private View quickBottomToggle;
     private ObjectAnimator showPropertyViewAnimator;
     private ObjectAnimator hidePropertyViewAnimator;
     private boolean isPropertyViewVisible;
@@ -97,7 +98,62 @@ public class ViewEditorFragment extends qA {
             if (quickPropsId != null) quickPropsId.addTextChangedListener(watcher);
             if (quickPropsText != null) quickPropsText.addTextChangedListener(watcher);
             if (quickPropsHint != null) quickPropsHint.addTextChangedListener(watcher);
+
+            initBottomToggle(viewGroup);
         } catch (Throwable ignored) {}
+    }
+
+    /** Инициализация кнопки-шторки нижней панели свойств. */
+    private void initBottomToggle(ViewGroup viewGroup) {
+        try {
+            quickBottomToggle = requireActivity().findViewById(R.id.bottom_panel_toggle);
+            if (quickBottomToggle == null) return;
+            quickBottomToggle.setOnClickListener(v -> {
+                try {
+                    a(!isPropertyViewVisible);
+                } catch (Throwable ignored) {}
+            });
+            updateBottomTogglePosition(isPropertyViewVisible);
+        } catch (Throwable ignored) {}
+    }
+
+    /**
+     * Синхронизирует позицию кнопки-шторки с нижней панелью.
+     * Панель скрыта → кнопка внизу (translationY=0), иконка «вверх» (^).
+     * Панель открыта → кнопка над панелью (translationY=-height), иконка «вниз» (v).
+     */
+    private void updateBottomTogglePosition(boolean panelVisible) {
+        if (quickBottomToggle == null || getContext() == null) return;
+        try {
+            if (quickBottomToggle.getVisibility() != View.VISIBLE) return;
+            float h = wB.a(requireActivity(), 170f);
+            float newY = panelVisible ? -h : 0f;
+            quickBottomToggle.animate()
+                    .translationY(newY)
+                    .setDuration(300L)
+                    .setInterpolator(new DecelerateInterpolator())
+                    .start();
+            android.widget.ImageView icon = quickBottomToggle.findViewById(R.id.bottom_panel_toggle_icon);
+            if (icon != null) {
+                icon.setImageResource(panelVisible
+                        ? R.drawable.ic_mtrl_arrow_down
+                        : R.drawable.ic_mtrl_arrow_up);
+                icon.setContentDescription(Helper.getResString(panelVisible
+                        ? R.string.quick_props_collapse
+                        : R.string.quick_props_expand));
+            }
+        } catch (Throwable ignored) {}
+    }
+
+    private void showBottomToggle() {
+        if (quickBottomToggle != null) {
+            quickBottomToggle.setVisibility(View.VISIBLE);
+            updateBottomTogglePosition(isPropertyViewVisible);
+        }
+    }
+
+    private void hideBottomToggle() {
+        if (quickBottomToggle != null) quickBottomToggle.setVisibility(View.GONE);
     }
 
     private boolean isQuickPropsEnabled() {
@@ -115,6 +171,7 @@ public class ViewEditorFragment extends qA {
         try {
             quickPropsCurrentBean = bean;
             quickPropsPanel.setVisibility(View.VISIBLE);
+            showBottomToggle();
             if (quickPropsId != null) quickPropsId.setText(bean.id == null ? "" : bean.id);
             boolean hasText = hasTextField(bean);
             if (quickPropsTextLayout != null) quickPropsTextLayout.setVisibility(hasText ? View.VISIBLE : View.GONE);
@@ -135,6 +192,7 @@ public class ViewEditorFragment extends qA {
 
     private void hideQuickPropsPanel() {
         if (quickPropsPanel != null) quickPropsPanel.setVisibility(View.GONE);
+        hideBottomToggle();
         quickPropsCurrentBean = null;
     }
 
@@ -376,6 +434,7 @@ public class ViewEditorFragment extends qA {
             }
 
             isPropertyViewVisible = var1;
+            updateBottomTogglePosition(isPropertyViewVisible);
         }
     }
 

@@ -179,6 +179,13 @@
             android:layout_height="170dp"
             android:layout_alignParentBottom="true"
             android:translationY="170dp" />
+
+        <include
+            android:id="@+id/bottom_panel_toggle_include"
+            layout="@layout/bottom_panel_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
     <com.besome.sketch.design.DesignDrawer

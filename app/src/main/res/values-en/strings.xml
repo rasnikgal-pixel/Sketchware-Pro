@@ -2857,4 +2857,6 @@ ACTION_VIEW
     <string name="quick_props_hint">Hint</string>
     <string name="quick_props_more">More</string>
     <string name="quick_props_close">Close</string>
+    <string name="quick_props_expand">Expand properties panel</string>
+    <string name="quick_props_collapse">Collapse properties panel</string>
 </resources>

@@ -2803,4 +2803,6 @@ ACTION_VIEW
     <string name="quick_props_hint">提示</string>
     <string name="quick_props_more">更多</string>
     <string name="quick_props_close">关闭</string>
+    <string name="quick_props_expand">展开属性面板</string>
+    <string name="quick_props_collapse">折叠属性面板</string>
 </resources>

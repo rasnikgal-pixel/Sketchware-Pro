@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_panel_toggle"
+    android:layout_width="match_parent"
+    android:layout_height="24dp"
+    android:background="?attr/colorSurfaceContainerHigh"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/bottom_panel_toggle_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@string/quick_props_expand"
+        android:src="@drawable/ic_mtrl_arrow_up"
+        android:tint="?attr/colorOnSurface" />
+</LinearLayout>

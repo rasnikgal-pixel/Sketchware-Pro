@@ -2803,4 +2803,6 @@ ACTION_VIEW
     <string name="quick_props_hint">संकेत</string>
     <string name="quick_props_more">अधिक</string>
     <string name="quick_props_close">बंद करें</string>
+    <string name="quick_props_expand">गुण पैनल विस्तृत करें</string>
+    <string name="quick_props_collapse">गुण पैनल संक्षिप्त करें</string>
 </resources>
