@@ -229,11 +229,11 @@ public class ToolsActivity extends BaseAppCompatActivity {
             try {
                 report = mod.jbk.util.ProjectHealthChecker.buildReport(this, scId, projectName);
             } catch (Throwable t) {
-                report = "Ошибка диагностики: " + t;
+                report = Helper.getResString(R.string.tools_health_error_generic, String.valueOf(t));
             }
             final String finalReport = report;
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("Диагностика: " + projectName)
+                    .setTitle(Helper.getResString(R.string.tools_health_dialog_title, projectName))
                     .setMessage(report)
                     .setPositiveButton(Helper.getResString(R.string.tools_health_save), (d, w) -> saveHealthReport(projectName, finalReport))
                     .setNeutralButton(Helper.getResString(R.string.tools_health_copy), (d, w) -> {
