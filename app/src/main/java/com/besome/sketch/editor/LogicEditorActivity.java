@@ -1946,21 +1946,22 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // GPU-ускорение редактора блоков (настройка в ConfigActivity)
+        // GPU-ускорение — флаг ДО super.onCreate
         try {
             boolean useGpu = mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
                     mod.hilal.saif.activities.tools.ConfigActivity.SETTING_LOGIC_EDITOR_GPU);
-            if (useGpu) {
-                getWindow().setFlags(
-                        android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
-                        android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-            } else {
-                getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+            if (getWindow() != null) {
+                if (useGpu) {
+                    getWindow().setFlags(
+                            android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                            android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+                } else {
+                    getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+                }
             }
         } catch (Throwable ignored) {}
 
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.logic_editor);
         if (!super.isStoragePermissionGranted()) {
             finish();
