@@ -175,7 +175,7 @@ public class ViewEditorFragment extends qA {
                 bean.text.hint = quickPropsHint.getText() == null ? "" : quickPropsHint.getText().toString();
             }
             // Обновить отображение в редакторе + сохранить
-            viewEditor.updateSelection(bean);
+            viewEditor.updateSelection(bean.id);
             a(bean.id);
             invalidateOptionsMenu();
         } catch (Throwable ignored) {}
