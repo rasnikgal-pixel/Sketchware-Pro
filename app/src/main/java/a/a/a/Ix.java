@@ -51,7 +51,6 @@ public class Ix {
         frc = new FileResConfig(c.sc_id);
         a.addAttribute("xmlns", "android", "http://schemas.android.com/apk/res/android");
         // xmlns:tools нужен для tools:node="remove" — удаляет auto-init провайдеры из AAR
-        a.addAttribute("xmlns", "tools", "http://schemas.android.com/tools");
     }
 
     /**
@@ -216,21 +215,26 @@ public class Ix {
     }
 
     private void writeAndroidxStartupInitializationProvider(XmlBuilder application) {
-        // ВАЖНО: EmojiCompatInitializer УБРАН — он синхронно грузит шрифт эмодзи
-        // в Application.onCreate и вызывает БЕЛЫЙ ЭКРАН при запуске на некоторых устройствах.
-        //
-        // АГП автоматически подмешивает EmojiCompatInitializer из AAR androidx.emoji2.
-        // Поэтому дополнительно применяем tools:node="remove" к InitializationProvider —
-        // это удалит ВСЕ auto-init из AAR (включая EmojiCompat).
-        //
-        // Если пользователю нужны WorkManager / ProcessLifecycle — они подключаются
-        // явно через свои API (WorkManager.getInstance() инициализирует сам).
-        XmlBuilder initializationProvider = new XmlBuilder("provider");
-        initializationProvider.addAttribute("android", "name", "androidx.startup.InitializationProvider");
-        initializationProvider.addAttribute("android", "authorities", c.packageName + ".androidx-startup");
-        initializationProvider.addAttribute("android", "exported", "false");
-        initializationProvider.addAttribute("tools", "node", "remove");
-        application.addChildNode(initializationProvider);
+        var initializers = Set.of(
+                new Pair<>(builtInLibraryManager.containsLibrary(BuiltInLibraries.ANDROIDX_LIFECYCLE_PROCESS), "androidx.lifecycle.ProcessLifecycleInitializer"),
+                new Pair<>(builtInLibraryManager.containsLibrary(BuiltInLibraries.ANDROIDX_WORK_RUNTIME), "androidx.work.WorkManagerInitializer")
+        );
+
+        if (initializers.stream().anyMatch(initializer -> initializer.first)) {
+            XmlBuilder initializationProvider = new XmlBuilder("provider");
+            initializationProvider.addAttribute("android", "name", "androidx.startup.InitializationProvider");
+            initializationProvider.addAttribute("android", "authorities", c.packageName + ".androidx-startup");
+            initializationProvider.addAttribute("android", "exported", "false");
+            for (var pair : initializers) {
+                if (pair.first) {
+                    XmlBuilder metadata = new XmlBuilder("meta-data");
+                    metadata.addAttribute("android", "name", pair.second);
+                    metadata.addAttribute("android", "value", "androidx.startup");
+                    initializationProvider.addChildNode(metadata);
+                }
+            }
+            application.addChildNode(initializationProvider);
+        }
     }
 
     private void writeAndroidxWorkRuntimeTags(XmlBuilder application) {
