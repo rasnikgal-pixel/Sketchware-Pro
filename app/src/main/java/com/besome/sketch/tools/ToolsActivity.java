@@ -177,15 +177,15 @@ public class ToolsActivity extends BaseAppCompatActivity {
             try {
                 java.io.OutputStream out = getContentResolver().openOutputStream(data.getData());
                 if (out == null) {
-                    toast("Error: cannot open file");
+                    toast(Helper.getResString(R.string.tools_health_error, "cannot open file"));
                     pendingHealthReport = null;
                     return;
                 }
                 out.write(pendingHealthReport.getBytes(java.nio.charset.StandardCharsets.UTF_8));
                 out.close();
-                toast("Saved");
+                toast(Helper.getResString(R.string.tools_health_saved));
             } catch (Throwable t) {
-                toast("Error: " + t);
+                toast(Helper.getResString(R.string.tools_health_error, String.valueOf(t)));
             } finally {
                 pendingHealthReport = null;
             }
@@ -241,7 +241,7 @@ public class ToolsActivity extends BaseAppCompatActivity {
                                 getSystemService(android.content.Context.CLIPBOARD_SERVICE);
                         if (cm != null) {
                             cm.setPrimaryClip(android.content.ClipData.newPlainText("health", finalReport));
-                            android.widget.Toast.makeText(this, Helper.getResString(R.string.health_report_ok), android.widget.Toast.LENGTH_SHORT).show();
+                            android.widget.Toast.makeText(this, Helper.getResString(R.string.tools_health_copied), android.widget.Toast.LENGTH_SHORT).show();
                         }
                     })
                     .setNegativeButton(Helper.getResString(R.string.tools_health_close), null)
@@ -260,7 +260,7 @@ public class ToolsActivity extends BaseAppCompatActivity {
             startActivityForResult(i, REQ_HEALTH_REPORT);
             pendingHealthReport = report;
         } catch (Throwable t) {
-            android.widget.Toast.makeText(this, "Error: " + t, android.widget.Toast.LENGTH_LONG).show();
+            android.widget.Toast.makeText(this, Helper.getResString(R.string.tools_health_error, String.valueOf(t)), android.widget.Toast.LENGTH_LONG).show();
         }
     }
 

@@ -2712,4 +2712,7 @@ ACTION_VIEW
     <string name="health_report_bad_classes"> (🔴 невалідних: %1$d)</string>
     <string name="health_report_ok">✅ Проблем не знайдено</string>
     <string name="health_report_size">Розмір проєкту: %1$s</string>
+    <string name="tools_health_copied">Скопійовано</string>
+    <string name="tools_health_saved">Звіт збережено</string>
+    <string name="tools_health_error">Помилка: %1$s</string>
 </resources>

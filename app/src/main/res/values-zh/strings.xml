@@ -2712,4 +2712,7 @@ ACTION_VIEW
     <string name="health_report_bad_classes"> (🔴 无效：%1$d)</string>
     <string name="health_report_ok">✅ 未发现问题</string>
     <string name="health_report_size">项目大小：%1$s</string>
+    <string name="tools_health_copied">已复制</string>
+    <string name="tools_health_saved">报告已保存</string>
+    <string name="tools_health_error">错误：%1$s</string>
 </resources>

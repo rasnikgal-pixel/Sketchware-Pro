@@ -2776,4 +2776,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="health_report_bad_classes"> (🔴 невалидных: %1$d)</string>
     <string name="health_report_ok">✅ Проблем не найдено</string>
     <string name="health_report_size">Размер проекта: %1$s</string>
+    <string name="tools_health_copied">Скопировано</string>
+    <string name="tools_health_saved">Отчёт сохранён</string>
+    <string name="tools_health_error">Ошибка: %1$s</string>
 </resources>

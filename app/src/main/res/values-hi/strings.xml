@@ -2712,4 +2712,7 @@ ACTION_VIEW
     <string name="health_report_bad_classes"> (🔴 अमान्य: %1$d)</string>
     <string name="health_report_ok">✅ कोई समस्या नहीं मिली</string>
     <string name="health_report_size">प्रोजेक्ट आकार: %1$s</string>
+    <string name="tools_health_copied">कॉपी किया गया</string>
+    <string name="tools_health_saved">रिपोर्ट सहेजी गई</string>
+    <string name="tools_health_error">त्रुटि: %1$s</string>
 </resources>
