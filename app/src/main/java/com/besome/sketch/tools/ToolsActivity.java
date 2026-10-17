@@ -118,6 +118,12 @@ public class ToolsActivity extends BaseAppCompatActivity {
                 this::onLogcat
         ));
         items.add(new ToolItem(
+                "Диагностика проекта",
+                "Здоровье проекта, блоки, компоненты, разрешения, размер",
+                R.drawable.ic_mtrl_help,
+                this::onHealthCheck
+        ));
+        items.add(new ToolItem(
                 Helper.getResString(R.string.tools_activity_user_code_title),
                 Helper.getResString(R.string.tools_activity_user_code_subtitle),
                 R.drawable.ic_mtrl_java,
@@ -144,19 +150,45 @@ public class ToolsActivity extends BaseAppCompatActivity {
     @Override
     protected void onActivityResult(int req, int res, android.content.Intent data) {
         super.onActivityResult(req, res, data);
-        if (req != REQ_LANG_MASTER) return;
-        if (res != RESULT_OK || data == null) return;
-        try {
-            java.io.OutputStream out = getContentResolver().openOutputStream(data.getData());
-            if (out == null) {
+
+        if (req == REQ_LANG_MASTER) {
+            if (res != RESULT_OK || data == null) return;
+            try {
+                java.io.OutputStream out = getContentResolver().openOutputStream(data.getData());
+                if (out == null) {
+                    toast(R.string.tools_language_master_failed);
+                    return;
+                }
+                long n = MasterExporter.copy(this, out);
+                out.close();
+                toast(getString(R.string.tools_language_master_done, (int) n));
+            } catch (Throwable t) {
                 toast(R.string.tools_language_master_failed);
+            }
+            return;
+        }
+
+        if (req == REQ_HEALTH_REPORT) {
+            if (res != RESULT_OK || data == null) {
+                pendingHealthReport = null;
                 return;
             }
-            long n = MasterExporter.copy(this, out);
-            out.close();
-            toast(getString(R.string.tools_language_master_done, (int) n));
-        } catch (Throwable t) {
-            toast(R.string.tools_language_master_failed);
+            if (pendingHealthReport == null) return;
+            try {
+                java.io.OutputStream out = getContentResolver().openOutputStream(data.getData());
+                if (out == null) {
+                    toast("Не удалось открыть файл");
+                    pendingHealthReport = null;
+                    return;
+                }
+                out.write(pendingHealthReport.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                out.close();
+                toast("Отчёт сохранён");
+            } catch (Throwable t) {
+                toast("Ошибка сохранения: " + t);
+            } finally {
+                pendingHealthReport = null;
+            }
         }
     }
 
@@ -169,6 +201,8 @@ public class ToolsActivity extends BaseAppCompatActivity {
     }
 
     private static final int REQ_LANG_MASTER = 42001;
+    private static final int REQ_HEALTH_REPORT = 42002;
+    private String pendingHealthReport;
 
     /** Открывает SAF для сохранения мастер-файла локализации. */
     private void onLanguageMaster() {
@@ -186,6 +220,48 @@ public class ToolsActivity extends BaseAppCompatActivity {
             intent.putExtra("sc_id", scId);
             startActivity(intent);
         });
+    }
+
+    /** Показывает отчёт «Диагностика проекта» с возможностью сохранить в файл. */
+    private void onHealthCheck() {
+        showProjectPickerDialog((scId, projectName) -> {
+            String report;
+            try {
+                report = mod.jbk.util.ProjectHealthChecker.buildReport(this, scId, projectName);
+            } catch (Throwable t) {
+                report = "Ошибка диагностики: " + t;
+            }
+            final String finalReport = report;
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("Диагностика: " + projectName)
+                    .setMessage(report)
+                    .setPositiveButton("Сохранить", (d, w) -> saveHealthReport(projectName, finalReport))
+                    .setNeutralButton("Копировать", (d, w) -> {
+                        android.content.ClipboardManager cm = (android.content.ClipboardManager)
+                                getSystemService(android.content.Context.CLIPBOARD_SERVICE);
+                        if (cm != null) {
+                            cm.setPrimaryClip(android.content.ClipData.newPlainText("health", finalReport));
+                            android.widget.Toast.makeText(this, "Скопировано", android.widget.Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("Закрыть", null)
+                    .show();
+        });
+    }
+
+    private void saveHealthReport(String projectName, String report) {
+        try {
+            String safeName = projectName == null ? "project" : projectName.replaceAll("[^a-zA-Z0-9._-]", "_");
+            String fileName = "health_" + safeName + "_" + System.currentTimeMillis() + ".txt";
+            android.content.Intent i = new android.content.Intent(android.content.Intent.ACTION_CREATE_DOCUMENT);
+            i.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+            i.setType("text/plain");
+            i.putExtra(android.content.Intent.EXTRA_TITLE, fileName);
+            startActivityForResult(i, REQ_HEALTH_REPORT);
+            pendingHealthReport = report;
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Не удалось сохранить: " + t, android.widget.Toast.LENGTH_LONG).show();
+        }
     }
 
     /** Открывает журнал отладки. */
