@@ -733,10 +733,27 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 return;
             }
 
+            // Pre-flight проверки проекта (иконка, пустые/дубликаты javaName, «Мой код»)
+            java.util.List<mod.jbk.util.BlockLogicChecker.Issue> preflightIssues;
+            try {
+                preflightIssues = mod.jbk.util.ProjectPreflightChecker.check(
+                        this, sc_id, activities, null);
+            } catch (Throwable t) {
+                preflightIssues = new java.util.ArrayList<>();
+            }
+            int preflightCritical = 0;
+            int preflightWarning = 0;
+            if (preflightIssues != null) {
+                for (mod.jbk.util.BlockLogicChecker.Issue i : preflightIssues) {
+                    if (i.severity == mod.jbk.util.BlockLogicChecker.Severity.CRITICAL) preflightCritical++;
+                    else preflightWarning++;
+                }
+            }
+
             // Собираем issues по всем событиям всех экранов
             java.util.LinkedHashMap<String, java.util.List<mod.jbk.util.BlockLogicChecker.Issue>> byEventKey = new java.util.LinkedHashMap<>();
-            int totalCritical = 0;
-            int totalWarning = 0;
+            int totalCritical = preflightCritical;
+            int totalWarning = preflightWarning;
 
             for (ProjectFileBean pfb : activities) {
                 String javaName = pfb.getJavaName();
@@ -776,7 +793,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             // Записываем в журнал
             try {
                 java.util.List<String> flat = new java.util.ArrayList<>();
-                flat.add("beforeBuild: " + byEventKey.size() + " events, " + totalCritical + " critical, " + totalWarning + " warnings");
+                flat.add("beforeBuild: " + byEventKey.size() + " events, preflight " + preflightCritical + "C/" + preflightWarning + "W, total " + totalCritical + "C/" + totalWarning + "W");
                 mod.jbk.util.BlockLogicJournal.record(sc_id, "beforeBuild", flat);
             } catch (Throwable ignored) {}
 
@@ -784,6 +801,17 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
             StringBuilder msg = new StringBuilder();
             msg.append(Helper.getResString(R.string.auto_design_activity_015)).append(totalCritical)
                .append(Helper.getResString(R.string.auto_design_activity_016)).append(totalWarning).append("\n\n");
+            if (preflightIssues != null && !preflightIssues.isEmpty()) {
+                msg.append("\uD83D\uDCE6 Проект\n");
+                for (mod.jbk.util.BlockLogicChecker.Issue i : preflightIssues) {
+                    msg.append("  ").append(i.emoji()).append(" ").append(i.message);
+                    if (i.humanLocation != null && !i.humanLocation.isEmpty()) {
+                        msg.append(" (").append(i.humanLocation).append(")");
+                    }
+                    msg.append("\n");
+                }
+                msg.append("\n");
+            }
             int shown = 0;
             for (java.util.Map.Entry<String, java.util.List<mod.jbk.util.BlockLogicChecker.Issue>> e : byEventKey.entrySet()) {
                 if (shown >= 15) {
