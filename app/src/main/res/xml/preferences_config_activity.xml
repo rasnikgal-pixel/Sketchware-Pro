@@ -4,18 +4,18 @@
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="built-in-blocks"
-        app:summary="Может замедлить загрузку блоков в редакторе логики."
-        app:title="Встроенные блоки" />
+        app:summary="@string/settings_builtin_blocks_summary"
+        app:title="@string/settings_builtin_blocks_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="always-show-blocks"
-        app:summary="Все блоки переменных будут видны, даже если у вас нет переменных для них."
-        app:title="Показывать все блоки переменных" />
+        app:summary="@string/settings_show_all_var_summary"
+        app:title="@string/settings_show_all_var_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="show-every-single-block"
-        app:summary="Будет показан каждый доступный блок. Замедлит открытие палитр!"
-        app:title="Показывать все блоки палитр" />
+        app:summary="@string/settings_show_all_blocks_summary"
+        app:title="@string/settings_show_all_blocks_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="block-dependency-hints"
@@ -26,8 +26,8 @@
         app:iconSpaceReserved="false"
         app:key="live-search-enabled"
         app:defaultValue="false"
-        app:summary="Искать блоки автоматически при вводе. Иначе — после нажатия кнопки Найти."
-        app:title="Живой поиск блоков" />
+        app:summary="@string/settings_live_search_summary"
+        app:title="@string/settings_live_search_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="logic-editor-gpu"
@@ -37,164 +37,164 @@
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="show-headers-when-searching-blocks"
-        app:summary="При поиске блоков оставлять заголовки подразделов только если под ними есть найденные блоки."
-        app:title="Заголовки при поиске блоков" />
+        app:summary="@string/settings_search_headers_summary"
+        app:title="@string/settings_search_headers_title" />
     <Preference
         app:iconSpaceReserved="false"
         app:key="backup-dir"
-        app:summary="Директория по умолчанию — /Внутренняя память/.sketchware/backups/."
+        app:summary="@string/settings_backup_dir_summary"
         app:title="@string/common_word_backup_directory" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="root-auto-install-projects"
-        app:summary="Автоматически устанавливает APK проектов после сборки с использованием root-доступа."
-        app:title="Устанавливать проекты с root-доступом" />
+        app:summary="@string/settings_root_install_summary"
+        app:title="@string/settings_root_install_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="root-auto-open-after-installing"
-        app:summary="Автоматически открывает проекты после автоустановки с помощью root."
-        app:title="Запускать проекты после установки" />
+        app:summary="@string/settings_root_open_summary"
+        app:title="@string/settings_root_open_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="use-new-version-control"
-        app:summary="Включает пользовательский код и имя версии для проектов."
-        app:title="Использовать новый контроль версий" />
+        app:summary="@string/settings_new_version_control_summary"
+        app:title="@string/settings_new_version_control_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="use-asd-highlighter"
-        app:summary="Включает подсветку синтаксиса при редактировании текстовых параметров блоков."
-        app:title="Включить подсветку ввода текста блоков" />
+        app:summary="@string/settings_asd_highlighter_summary"
+        app:title="@string/settings_asd_highlighter_title" />
     <Preference
         app:iconSpaceReserved="false"
         app:key="backup-filename"
-        app:summary="По умолчанию — &quot;$projectName v$versionName ($pkgName, $versionCode) $time(yyyy-MM-dd'T'HHmmss)&quot;"
-        app:title="Формат имени файла резервной копии" />
+        app:summary="@string/settings_backup_filename_summary"
+        app:title="@string/settings_backup_filename_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="block-logic-check"
-        app:summary="Предупреждать о дубликатах блоков и логических ошибках в событиях."
-        app:title="Проверка логики блоков" />
+        app:summary="@string/settings_block_logic_check_summary"
+        app:title="@string/settings_block_logic_check_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="block-logic-check-before-build"
-        app:summary="Перед сборкой APK проверять логику всех экранов и предлагать исправить найденные проблемы."
-        app:title="Проверка логики перед сборкой" />
+        app:summary="@string/settings_block_logic_before_build_summary"
+        app:title="@string/settings_block_logic_before_build_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="block-templates"
-        app:summary="Показывать раздел «Сборки» в палитре блоков — готовые наборы блоков."
-        app:title="Сборки блоков" />
-    <PreferenceCategory app:title="Экспорт переносимой папки (.skproj)">
+        app:summary="@string/settings_block_templates_summary"
+        app:title="@string/settings_block_templates_title" />
+    <PreferenceCategory app:title="@string/settings_category_skproj_export">
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="skproj-include-components"
             app:defaultValue="true"
-            app:summary="Включить компоненты (Dialog, Timer, Firebase и др.)."
-            app:title="Включать компоненты" />
+            app:summary="@string/settings_skproj_components_summary"
+            app:title="@string/settings_skproj_components_title" />
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="skproj-include-variables"
             app:defaultValue="true"
-            app:summary="Включить переменные и списки проекта."
-            app:title="Включать переменные и списки" />
+            app:summary="@string/settings_skproj_vars_summary"
+            app:title="@string/settings_skproj_vars_title" />
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="skproj-include-resources"
             app:defaultValue="true"
-            app:summary="Включить ресурсы (картинки, звуки, шрифты)."
-            app:title="Включать ресурсы" />
+            app:summary="@string/settings_skproj_resources_summary"
+            app:title="@string/settings_skproj_resources_title" />
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="skproj-include-custom-blocks"
             app:defaultValue="true"
-            app:summary="Включить custom blocks, используемые в проекте."
-            app:title="Включать custom blocks" />
+            app:summary="@string/settings_skproj_custom_blocks_summary"
+            app:title="@string/settings_skproj_custom_blocks_title" />
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="skproj-include-local-libs"
             app:defaultValue="false"
-            app:summary="Включить local libraries (JAR/AAR). Увеличит размер."
-            app:title="Включать local libraries" />
+            app:summary="@string/settings_skproj_local_libs_summary"
+            app:title="@string/settings_skproj_local_libs_title" />
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="skproj-include-apk"
             app:defaultValue="false"
-            app:summary="Включить скомпилированный APK (если есть)."
-            app:title="Включать APK" />
+            app:summary="@string/settings_skproj_apk_summary"
+            app:title="@string/settings_skproj_apk_title" />
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="skproj-format-zip"
             app:defaultValue="true"
-            app:summary="Экспортировать в один .skproj.zip. Выключено — в папку .skproj/."
-            app:title="Формат: zip-архив" />
+            app:summary="@string/settings_skproj_zip_summary"
+            app:title="@string/settings_skproj_zip_title" />
         <Preference
             app:iconSpaceReserved="false"
             app:key="skproj-output-dir"
-            app:summary="Директория для экспортированных проектов."
-            app:title="Папка экспорта" />
+            app:summary="@string/settings_skproj_output_dir_summary"
+            app:title="@string/settings_skproj_output_dir_title" />
     </PreferenceCategory>
-    <PreferenceCategory app:title="Автобэкап проектов">
+    <PreferenceCategory app:title="@string/settings_category_auto_backup">
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="auto-backup-enabled"
-            app:summary="Автоматически создавать резервную копию проекта после успешной сборки APK."
-            app:title="Автобэкап после сборки" />
+            app:summary="@string/settings_auto_backup_after_build_summary"
+            app:title="@string/settings_auto_backup_after_build_title" />
         <ListPreference
             app:iconSpaceReserved="false"
             app:key="auto-backup-keep-count"
             app:defaultValue="5"
             app:entries="@array/auto_backup_keep_entries"
             app:entryValues="@array/auto_backup_keep_values"
-            app:summary="Старые бэкапы сверх лимита удаляются автоматически."
-            app:title="Хранить бэкапов" />
+            app:summary="@string/settings_auto_backup_keep_summary"
+            app:title="@string/settings_auto_backup_keep_title" />
     </PreferenceCategory>
-    <PreferenceCategory app:title="Резервное копирование настроек">
+    <PreferenceCategory app:title="@string/settings_category_backup_settings">
         <Preference
             app:iconSpaceReserved="false"
             app:key="export-app-settings"
-            app:summary="Сохранить все настройки приложения в JSON-файл"
-            app:title="Экспорт настроек" />
+            app:summary="@string/settings_export_settings_summary"
+            app:title="@string/settings_export_settings_title" />
         <Preference
             app:iconSpaceReserved="false"
             app:key="import-app-settings"
-            app:summary="Загрузить настройки приложения из JSON-файла"
-            app:title="Импорт настроек" />
+            app:summary="@string/settings_import_settings_summary"
+            app:title="@string/settings_import_settings_title" />
     </PreferenceCategory>
-    <PreferenceCategory app:title="Отладка">
+    <PreferenceCategory app:title="@string/settings_category_debug">
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="debug-log-enabled"
-            app:summary="Записывать все действия приложения в файл"
-            app:title="Журнал отладки" />
+            app:summary="@string/settings_debug_log_summary"
+            app:title="@string/settings_debug_log_title" />
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="debug-log-verbose"
-            app:summary="Записывать каждое действие (быстрее заполняет файл)"
-            app:title="Подробный журнал" />
+            app:summary="@string/settings_debug_verbose_summary"
+            app:title="@string/settings_debug_verbose_title" />
         <Preference
             app:iconSpaceReserved="false"
             app:key="debug-log-open"
-            app:summary="Просмотр, копирование и отправка журнала"
-            app:title="Открыть журнал" />
+            app:summary="@string/settings_debug_open_summary"
+            app:title="@string/settings_debug_open_title" />
     </PreferenceCategory>
-    <PreferenceCategory app:title="SmartDrop">
+    <PreferenceCategory app:title="@string/settings_category_smartdrop">
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:defaultValue="true"
             app:key="smartdrop-update-all-blocks"
-            app:summary="При подключении блока к компоненту обновлять все блоки того же типа"
-            app:title="Обновлять все блоки типа" />
+            app:summary="@string/settings_smartdrop_update_all_summary"
+            app:title="@string/settings_smartdrop_update_all_title" />
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:defaultValue="true"
             app:key="smartdrop-force-replace"
-            app:summary="Заменять параметры блоков без подтверждения"
-            app:title="Принудительно заменять" />
+            app:summary="@string/settings_smartdrop_force_replace_summary"
+            app:title="@string/settings_smartdrop_force_replace_title" />
         <Preference
             app:iconSpaceReserved="false"
             app:key="smartdrop-update-all-now"
-            app:summary="Массово заменить компонент во всех блоках события"
-            app:title="Обновить блоки события вручную" />
+            app:summary="@string/settings_smartdrop_manual_update_summary"
+            app:title="@string/settings_smartdrop_manual_update_title" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/updates_settings_title">
         <Preference
@@ -203,12 +203,12 @@
             app:summary="@string/updates_check_now_summary"
             app:title="@string/updates_check_now" />
     </PreferenceCategory>
-    <PreferenceCategory app:title="Помощь">
+    <PreferenceCategory app:title="@string/settings_category_help">
         <Preference
             app:iconSpaceReserved="false"
             app:key="open-help"
-            app:summary="Открыть справку Sketchware Pro"
-            app:title="Справка" />
+            app:summary="@string/settings_help_open_summary"
+            app:title="@string/settings_help_open_title" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/settings_icons_category">
         <SwitchPreferenceCompat
