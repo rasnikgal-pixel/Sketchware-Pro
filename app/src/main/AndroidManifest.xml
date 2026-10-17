@@ -60,7 +60,7 @@
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="false"
             android:theme="@style/Theme.SketchwarePro.SmallToolbar"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
             android:name="com.besome.sketch.editor.PropertyActivity"
             android:configChanges="orientation|screenSize" />
