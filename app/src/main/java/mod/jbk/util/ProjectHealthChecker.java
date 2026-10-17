@@ -72,7 +72,7 @@ public final class ProjectHealthChecker {
                     } catch (Throwable ignored) {}
                     try {
                         java.util.ArrayList<com.besome.sketch.beans.ComponentBean> comps =
-                                jC.b(scId).e(jn);
+                                jC.a(scId).e(jn);
                         if (comps != null) totalComponents += comps.size();
                     } catch (Throwable ignored) {}
                 }
