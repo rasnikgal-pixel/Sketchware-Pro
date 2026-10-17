@@ -2071,6 +2071,8 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             // Кнопка «Поиск» на клавиатуре — запускает поиск вручную
             blockSearchInput.setOnEditorActionListener((v, actionId, event) -> {
                 if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
+                        || actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE
+                        || actionId == android.view.inputmethod.EditorInfo.IME_ACTION_GO
                         || (event != null && event.getKeyCode() == android.view.KeyEvent.KEYCODE_ENTER)) {
                     if (extraPaletteBlock != null) {
                         blockSearchQuery = v.getText() == null ? "" : v.getText().toString();
