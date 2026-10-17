@@ -9,4 +9,12 @@
         android:layout_height="match_parent"
         android:forceDarkAllowed="false"
         tools:ignore="UnusedAttribute" />
+
+    <include
+        android:id="@+id/quick_props_include"
+        layout="@layout/quick_props_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
 </RelativeLayout>

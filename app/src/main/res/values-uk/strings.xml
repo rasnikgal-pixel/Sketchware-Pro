@@ -2795,4 +2795,12 @@ ACTION_VIEW
     <string name="settings_export_settings_summary">Зберегти всі налаштування застосунку у JSON-файл</string>
     <string name="settings_import_settings_title">Імпорт налаштувань</string>
     <string name="settings_import_settings_summary">Завантажити налаштування застосунку з JSON-файлу</string>
+    <string name="settings_quick_props_panel_title">Швидка панель властивостей зверху</string>
+    <string name="settings_quick_props_panel_summary">Показувати id, текст і підказку віджета у верхній панелі при виборі. Повні властивості — за кнопкою «Ще».</string>
+    <string name="quick_props_title">Властивості віджета</string>
+    <string name="quick_props_id">ID віджета</string>
+    <string name="quick_props_text">Текст</string>
+    <string name="quick_props_hint">Підказка</string>
+    <string name="quick_props_more">Ще</string>
+    <string name="quick_props_close">Закрити</string>
 </resources>

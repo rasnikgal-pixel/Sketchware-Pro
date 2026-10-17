@@ -1204,6 +1204,20 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         selectedItem = itemView;
     }
 
+    /**
+     * Найти ViewBean по тегу (id) виджета. Используется быстрой панелью свойств.
+     * @return ViewBean или null, если не найден
+     */
+    public ViewBean findViewBeanByTag(String tag) {
+        if (tag == null || tag.isEmpty() || viewPane == null) return null;
+        try {
+            ItemView iv = viewPane.findItemViewByTag(tag);
+            return iv == null ? null : iv.getBean();
+        } catch (Throwable t) {
+            return null;
+        }
+    }
+
     private void a() {
         toolbar.setVisibility(S ? View.VISIBLE : View.GONE);
         bgStatus.setVisibility(T ? View.GONE : View.VISIBLE);

@@ -2795,4 +2795,12 @@ ACTION_VIEW
     <string name="settings_export_settings_summary">सभी ऐप सेटिंग्स को JSON फ़ाइल में सहेजें</string>
     <string name="settings_import_settings_title">सेटिंग्स आयात करें</string>
     <string name="settings_import_settings_summary">JSON फ़ाइल से ऐप सेटिंग्स लोड करें</string>
+    <string name="settings_quick_props_panel_title">ऊपर त्वरित गुण पैनल</string>
+    <string name="settings_quick_props_panel_summary">चयनित होने पर शीर्ष पैनल में विजेट id, टेक्स्ट और संकेत दिखाएँ। पूर्ण गुण — "अधिक" बटन के माध्यम से।</string>
+    <string name="quick_props_title">विजेट गुण</string>
+    <string name="quick_props_id">विजेट ID</string>
+    <string name="quick_props_text">टेक्स्ट</string>
+    <string name="quick_props_hint">संकेत</string>
+    <string name="quick_props_more">अधिक</string>
+    <string name="quick_props_close">बंद करें</string>
 </resources>

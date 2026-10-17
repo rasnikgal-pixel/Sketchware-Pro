@@ -36,6 +36,12 @@
         app:title="@string/settings_logic_editor_gpu_title" />
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
+        app:key="quick-props-panel"
+        app:defaultValue="false"
+        app:summary="@string/settings_quick_props_panel_summary"
+        app:title="@string/settings_quick_props_panel_title" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
         app:key="show-headers-when-searching-blocks"
         app:summary="@string/settings_search_headers_summary"
         app:title="@string/settings_search_headers_title" />

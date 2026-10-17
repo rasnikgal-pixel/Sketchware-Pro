@@ -2795,4 +2795,12 @@ ACTION_VIEW
     <string name="settings_export_settings_summary">将所有应用设置保存到 JSON 文件</string>
     <string name="settings_import_settings_title">导入设置</string>
     <string name="settings_import_settings_summary">从 JSON 文件加载应用设置</string>
+    <string name="settings_quick_props_panel_title">顶部快速属性面板</string>
+    <string name="settings_quick_props_panel_summary">选中时在顶部面板显示控件 id、文本和提示。完整属性——通过「更多」按钮。</string>
+    <string name="quick_props_title">控件属性</string>
+    <string name="quick_props_id">控件 ID</string>
+    <string name="quick_props_text">文本</string>
+    <string name="quick_props_hint">提示</string>
+    <string name="quick_props_more">更多</string>
+    <string name="quick_props_close">关闭</string>
 </resources>

@@ -2849,4 +2849,12 @@ ACTION_VIEW
     <string name="settings_export_settings_summary">Save all app settings to a JSON file</string>
     <string name="settings_import_settings_title">Import settings</string>
     <string name="settings_import_settings_summary">Load app settings from a JSON file</string>
+    <string name="settings_quick_props_panel_title">Quick properties panel on top</string>
+    <string name="settings_quick_props_panel_summary">Show widget id, text and hint in the top panel when selected. Full properties — via the "More" button.</string>
+    <string name="quick_props_title">Widget properties</string>
+    <string name="quick_props_id">Widget ID</string>
+    <string name="quick_props_text">Text</string>
+    <string name="quick_props_hint">Hint</string>
+    <string name="quick_props_more">More</string>
+    <string name="quick_props_close">Close</string>
 </resources>

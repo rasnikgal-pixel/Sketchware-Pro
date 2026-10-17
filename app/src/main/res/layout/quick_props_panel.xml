@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quick_props_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorSurfaceContainer"
+    android:elevation="8dp"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- Заголовок с X -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/quick_props_title"
+            android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+        <ImageButton
+            android:id="@+id/quick_props_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/quick_props_close"
+            android:src="@drawable/ic_mtrl_close" />
+    </LinearLayout>
+
+    <!-- ID -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/quick_props_id_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/quick_props_id">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/quick_props_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Text (для TextView/Button/EditText и т.п.) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/quick_props_text_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:hint="@string/quick_props_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/quick_props_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Hint (только для EditText) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/quick_props_hint_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:hint="@string/quick_props_hint">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/quick_props_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Кнопка "Ещё" -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/quick_props_more"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/quick_props_more" />
+</LinearLayout>

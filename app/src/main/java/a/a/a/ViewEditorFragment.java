@@ -4,6 +4,12 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,6 +44,16 @@ public class ViewEditorFragment extends qA {
     private ProjectFileBean projectFileBean;
     private boolean isFabEnabled = false;
     private ViewProperty viewProperty;
+
+    // Быстрая панель свойств виджета (сверху)
+    private View quickPropsPanel;
+    private EditText quickPropsId;
+    private EditText quickPropsText;
+    private EditText quickPropsHint;
+    private View quickPropsTextLayout;
+    private View quickPropsHintLayout;
+    private ViewBean quickPropsCurrentBean;
+    private boolean quickPropsUpdating = false;
     private ObjectAnimator showPropertyViewAnimator;
     private ObjectAnimator hidePropertyViewAnimator;
     private boolean isPropertyViewVisible;
@@ -49,9 +65,126 @@ public class ViewEditorFragment extends qA {
     public ViewEditorFragment() {
     }
 
+    /**
+     * Инициализация быстрой панели свойств виджета (сверху).
+     * Показывает id / text / hint выбранного виджета. Полные свойства — кнопка "Ещё".
+     */
+    private void initQuickPropsPanel(ViewGroup viewGroup) {
+        try {
+            quickPropsPanel = viewGroup.findViewById(R.id.quick_props_include);
+            if (quickPropsPanel == null) return;
+            quickPropsId = quickPropsPanel.findViewById(R.id.quick_props_id);
+            quickPropsText = quickPropsPanel.findViewById(R.id.quick_props_text);
+            quickPropsHint = quickPropsPanel.findViewById(R.id.quick_props_hint);
+            quickPropsTextLayout = quickPropsPanel.findViewById(R.id.quick_props_text_layout);
+            quickPropsHintLayout = quickPropsPanel.findViewById(R.id.quick_props_hint_layout);
+
+            ImageButton close = quickPropsPanel.findViewById(R.id.quick_props_close);
+            if (close != null) close.setOnClickListener(v -> hideQuickPropsPanel());
+
+            View more = quickPropsPanel.findViewById(R.id.quick_props_more);
+            if (more != null) more.setOnClickListener(v -> {
+                if (quickPropsCurrentBean != null) openPropertyActivity(quickPropsCurrentBean);
+            });
+
+            TextWatcher watcher = new TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
+                @Override public void onTextChanged(CharSequence s, int st, int b, int c) {}
+                @Override public void afterTextChanged(Editable e) {
+                    applyQuickPropsChanges();
+                }
+            };
+            if (quickPropsId != null) quickPropsId.addTextChangedListener(watcher);
+            if (quickPropsText != null) quickPropsText.addTextChangedListener(watcher);
+            if (quickPropsHint != null) quickPropsHint.addTextChangedListener(watcher);
+        } catch (Throwable ignored) {}
+    }
+
+    private boolean isQuickPropsEnabled() {
+        try {
+            return mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                    mod.hilal.saif.activities.tools.ConfigActivity.SETTING_QUICK_PROPS_PANEL);
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
+    private void showQuickPropsPanel(ViewBean bean) {
+        if (quickPropsPanel == null || bean == null || !isQuickPropsEnabled()) return;
+        quickPropsUpdating = true;
+        try {
+            quickPropsCurrentBean = bean;
+            quickPropsPanel.setVisibility(View.VISIBLE);
+            if (quickPropsId != null) quickPropsId.setText(bean.id == null ? "" : bean.id);
+            boolean hasText = hasTextField(bean);
+            if (quickPropsTextLayout != null) quickPropsTextLayout.setVisibility(hasText ? View.VISIBLE : View.GONE);
+            if (quickPropsText != null) {
+                String txt = bean.text != null && bean.text.text != null ? bean.text.text : "";
+                quickPropsText.setText(txt);
+            }
+            boolean hasHint = hasHintField(bean);
+            if (quickPropsHintLayout != null) quickPropsHintLayout.setVisibility(hasHint ? View.VISIBLE : View.GONE);
+            if (quickPropsHint != null) {
+                String hint = bean.text != null && bean.text.hint != null ? bean.text.hint : "";
+                quickPropsHint.setText(hint);
+            }
+        } finally {
+            quickPropsUpdating = false;
+        }
+    }
+
+    private void hideQuickPropsPanel() {
+        if (quickPropsPanel != null) quickPropsPanel.setVisibility(View.GONE);
+        quickPropsCurrentBean = null;
+    }
+
+    /** Тип виджета поддерживает "text" (TextView, Button, EditText, CheckBox и т.п.)? */
+    private boolean hasTextField(ViewBean bean) {
+        int t = bean.type;
+        return t == ViewBean.VIEW_TYPE_WIDGET_TEXTVIEW
+                || t == ViewBean.VIEW_TYPE_WIDGET_BUTTON
+                || t == ViewBean.VIEW_TYPE_WIDGET_EDITTEXT
+                || t == ViewBean.VIEW_TYPE_WIDGET_CHECKBOX
+                || t == ViewBean.VIEW_TYPE_WIDGET_SWITCH
+                || t == ViewBean.VIEW_TYPE_WIDGET_FAB;
+    }
+
+    /** Тип виджета поддерживает "hint" (только EditText)? */
+    private boolean hasHintField(ViewBean bean) {
+        return bean.type == ViewBean.VIEW_TYPE_WIDGET_EDITTEXT;
+    }
+
+    /** Применяет изменения из панели к выбранному ViewBean. */
+    private void applyQuickPropsChanges() {
+        if (quickPropsUpdating) return;
+        if (quickPropsCurrentBean == null || quickPropsPanel == null) return;
+        try {
+            ViewBean bean = quickPropsCurrentBean;
+            if (quickPropsId != null) {
+                String newId = quickPropsId.getText() == null ? "" : quickPropsId.getText().toString().trim();
+                if (!newId.isEmpty() && !newId.equals(bean.id)) {
+                    bean.id = newId;
+                }
+            }
+            if (hasTextField(bean) && quickPropsText != null) {
+                if (bean.text == null) bean.text = new com.besome.sketch.beans.TextBean();
+                bean.text.text = quickPropsText.getText() == null ? "" : quickPropsText.getText().toString();
+            }
+            if (hasHintField(bean) && quickPropsHint != null) {
+                if (bean.text == null) bean.text = new com.besome.sketch.beans.TextBean();
+                bean.text.hint = quickPropsHint.getText() == null ? "" : quickPropsHint.getText().toString();
+            }
+            // Обновить отображение в редакторе + сохранить
+            viewEditor.updateSelection(bean);
+            a(bean.id);
+            invalidateOptionsMenu();
+        } catch (Throwable ignored) {}
+    }
+
     private void initialize(ViewGroup viewGroup) {
         setHasOptionsMenu(true);
         viewEditor = viewGroup.findViewById(R.id.view_editor);
+        initQuickPropsPanel(viewGroup);
         viewEditor.setScreenType(getResources().getConfiguration().orientation);
         widgetsCreatorManager = new WidgetsCreatorManager(this);
         viewEditor.widgetsCreatorManager = widgetsCreatorManager;
@@ -93,6 +226,7 @@ public class ViewEditorFragment extends qA {
             public void a() {
                 n();
                 viewProperty.e();
+                hideQuickPropsPanel();
             }
 
             @Override
@@ -107,6 +241,13 @@ public class ViewEditorFragment extends qA {
                     a();
                     viewProperty.a(viewId);
                     viewProperty.e();
+                    // Быстрая панель свойств сверху
+                    try {
+                        ViewBean qb = viewEditor.findViewBeanByTag(viewId);
+                        if (qb != null) showQuickPropsPanel(qb);
+                    } catch (Throwable ignored) {}
+                } else {
+                    hideQuickPropsPanel();
                 }
 
                 ViewEditorFragment.this.a(var1);

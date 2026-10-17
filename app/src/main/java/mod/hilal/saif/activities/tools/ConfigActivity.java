@@ -73,6 +73,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
     public static final String SETTING_BLOCK_DEPENDENCY_HINTS = "block-dependency-hints";
     public static final String SETTING_LIVE_SEARCH_ENABLED = "live-search-enabled";
     public static final String SETTING_LOGIC_EDITOR_GPU = "logic-editor-gpu";
+    public static final String SETTING_QUICK_PROPS_PANEL = "quick-props-panel";
     public static final String SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH = "blockDir";
     // SkProj export settings
     public static final String SETTING_SKPROJ_INCLUDE_COMPONENTS = "skproj-include-components";
@@ -256,6 +257,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 SETTING_BLOCK_DEPENDENCY_HINTS,
                 SETTING_LIVE_SEARCH_ENABLED,
                 SETTING_LOGIC_EDITOR_GPU,
+                SETTING_QUICK_PROPS_PANEL,
                 SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH,
                 SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH);
 
@@ -287,6 +289,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
                 SETTING_BLOCK_DEPENDENCY_HINTS,
                 SETTING_LIVE_SEARCH_ENABLED,
                 SETTING_LOGIC_EDITOR_GPU,
+                SETTING_QUICK_PROPS_PANEL,
                 SETTING_BLOCKMANAGER_DIRECTORY_PALETTE_FILE_PATH,
                 SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH);
 
@@ -323,6 +326,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
             case SETTING_BLOCK_DEPENDENCY_HINTS -> true;
             case SETTING_LIVE_SEARCH_ENABLED -> false;
             case SETTING_LOGIC_EDITOR_GPU -> false;
+            case SETTING_QUICK_PROPS_PANEL -> false;
             case SETTING_ALWAYS_SHOW_BLOCKS,
                  SETTING_ROOT_AUTO_INSTALL_PROJECTS, SETTING_SHOW_BUILT_IN_BLOCKS,
                  SETTING_SHOW_EVERY_SINGLE_BLOCK, SETTING_USE_NEW_VERSION_CONTROL,
