@@ -169,13 +169,13 @@
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="debug-log-verbose"
-            app:summary="@string/settings_debug_verbose_summary"
-            app:title="@string/settings_debug_verbose_title" />
+            app:summary="@string/settings_debug_log_verbose_summary"
+            app:title="@string/settings_debug_log_verbose_title" />
         <Preference
             app:iconSpaceReserved="false"
             app:key="debug-log-open"
-            app:summary="@string/settings_debug_open_summary"
-            app:title="@string/settings_debug_open_title" />
+            app:summary="@string/settings_debug_log_open_summary"
+            app:title="@string/settings_debug_log_open" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/settings_category_smartdrop">
         <SwitchPreferenceCompat

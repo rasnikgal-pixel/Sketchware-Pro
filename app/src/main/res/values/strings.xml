@@ -2830,12 +2830,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="settings_skproj_output_dir_title">Папка экспорта</string>
     <string name="settings_skproj_output_dir_summary">Директория для экспортированных проектов.</string>
     <string name="settings_category_debug">Отладка</string>
-    <string name="settings_debug_log_title">Журнал отладки</string>
-    <string name="settings_debug_log_summary">Записывать все действия приложения в файл</string>
-    <string name="settings_debug_verbose_title">Подробный журнал</string>
-    <string name="settings_debug_verbose_summary">Записывать каждое действие (быстрее заполняет файл)</string>
-    <string name="settings_debug_open_title">Открыть журнал</string>
-    <string name="settings_debug_open_summary">Просмотр, копирование и отправка журнала</string>
     <string name="settings_category_smartdrop">SmartDrop</string>
     <string name="settings_smartdrop_update_all_title">Обновлять все блоки типа</string>
     <string name="settings_smartdrop_update_all_summary">При подключении блока к компоненту обновлять все блоки того же типа</string>

@@ -2766,12 +2766,6 @@ ACTION_VIEW
     <string name="settings_skproj_output_dir_title">导出文件夹</string>
     <string name="settings_skproj_output_dir_summary">导出项目的目录。</string>
     <string name="settings_category_debug">调试</string>
-    <string name="settings_debug_log_title">调试日志</string>
-    <string name="settings_debug_log_summary">将所有应用操作记录到文件</string>
-    <string name="settings_debug_verbose_title">详细日志</string>
-    <string name="settings_debug_verbose_summary">记录每个操作（更快填满文件）</string>
-    <string name="settings_debug_open_title">打开日志</string>
-    <string name="settings_debug_open_summary">查看、复制和发送日志</string>
     <string name="settings_category_smartdrop">SmartDrop</string>
     <string name="settings_smartdrop_update_all_title">更新该类型的所有积木</string>
     <string name="settings_smartdrop_update_all_summary">将积木连接到组件时，更新所有相同类型的积木</string>

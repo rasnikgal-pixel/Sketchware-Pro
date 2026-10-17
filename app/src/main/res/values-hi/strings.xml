@@ -2766,12 +2766,6 @@ ACTION_VIEW
     <string name="settings_skproj_output_dir_title">निर्यात फ़ोल्डर</string>
     <string name="settings_skproj_output_dir_summary">निर्यात किए गए प्रोजेक्ट के लिए निर्देशिका।</string>
     <string name="settings_category_debug">डीबगिंग</string>
-    <string name="settings_debug_log_title">डीबग लॉग</string>
-    <string name="settings_debug_log_summary">सभी ऐप क्रियाओं को फ़ाइल में लॉग करें</string>
-    <string name="settings_debug_verbose_title">विस्तृत लॉग</string>
-    <string name="settings_debug_verbose_summary">हर क्रिया लॉग करें (फ़ाइल जल्दी भरती है)</string>
-    <string name="settings_debug_open_title">लॉग खोलें</string>
-    <string name="settings_debug_open_summary">लॉग देखें, कॉपी करें और भेजें</string>
     <string name="settings_category_smartdrop">SmartDrop</string>
     <string name="settings_smartdrop_update_all_title">उस प्रकार के सभी ब्लॉक अपडेट करें</string>
     <string name="settings_smartdrop_update_all_summary">किसी ब्लॉक को घटक से जोड़ते समय, उसी प्रकार के सभी ब्लॉक अपडेट करें</string>

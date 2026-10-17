@@ -2820,12 +2820,6 @@ ACTION_VIEW
     <string name="settings_skproj_output_dir_title">Export folder</string>
     <string name="settings_skproj_output_dir_summary">Directory for exported projects.</string>
     <string name="settings_category_debug">Debugging</string>
-    <string name="settings_debug_log_title">Debug log</string>
-    <string name="settings_debug_log_summary">Log all app actions to a file</string>
-    <string name="settings_debug_verbose_title">Verbose log</string>
-    <string name="settings_debug_verbose_summary">Log every action (fills the file faster)</string>
-    <string name="settings_debug_open_title">Open log</string>
-    <string name="settings_debug_open_summary">View, copy and send the log</string>
     <string name="settings_category_smartdrop">SmartDrop</string>
     <string name="settings_smartdrop_update_all_title">Update all blocks of the type</string>
     <string name="settings_smartdrop_update_all_summary">When linking a block to a component, update all blocks of the same type</string>

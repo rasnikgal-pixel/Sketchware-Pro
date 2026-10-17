@@ -2766,12 +2766,6 @@ ACTION_VIEW
     <string name="settings_skproj_output_dir_title">Папка експорту</string>
     <string name="settings_skproj_output_dir_summary">Директорія для експортованих проєктів.</string>
     <string name="settings_category_debug">Відлагодження</string>
-    <string name="settings_debug_log_title">Журнал відлагодження</string>
-    <string name="settings_debug_log_summary">Записувати всі дії застосунку у файл</string>
-    <string name="settings_debug_verbose_title">Детальний журнал</string>
-    <string name="settings_debug_verbose_summary">Записувати кожну дію (швидше заповнює файл)</string>
-    <string name="settings_debug_open_title">Відкрити журнал</string>
-    <string name="settings_debug_open_summary">Перегляд, копіювання та надсилання журналу</string>
     <string name="settings_category_smartdrop">SmartDrop</string>
     <string name="settings_smartdrop_update_all_title">Оновлювати всі блоки типу</string>
     <string name="settings_smartdrop_update_all_summary">Під час підключення блоку до компонента оновлювати всі блоки того ж типу</string>

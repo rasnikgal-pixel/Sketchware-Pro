@@ -35,8 +35,8 @@
     <string name="log_viewer_loading">Loading...</string>
 
     <!-- Settings -->
-    <string name="settings_debug_log_title">Debug Log</string>
-    <string name="settings_debug_log_summary">Record all application actions</string>
+    <string name="settings_debug_log_title">डीबग लॉग</string>
+    <string name="settings_debug_log_summary">सभी ऐप क्रियाओं को फ़ाइल में लॉग करें</string>
     <string name="settings_debug_log_open">Open log</string>
     <string name="log_feature_clicked">Feature click: %s</string>
     <string name="log_screen_open">Screen opened: %s</string>
@@ -67,4 +67,5 @@
     <string name="log_updater_fallback_used">Fallback source used: %s</string>
     <string name="log_updater_source_failed">Update source unreachable: %s</string>
     <string name="log_updater_migrated">Update settings migrated: period = %s</string>
+    <string name="settings_debug_log_open_summary">लॉग देखें, कॉपी करें और भेजें</string>
 </resources>
