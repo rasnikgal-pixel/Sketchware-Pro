@@ -25,8 +25,8 @@ public final class ProjectHealthChecker {
         StringBuilder r = new StringBuilder();
         if (scId == null) return "";
 
-        r.append(Helper.getResString(com.besome.sketch.R.string.health_report_title)).append("\n");
-        if (projectName != null) r.append(Helper.getResString(com.besome.sketch.R.string.health_report_project, projectName)).append("\n");
+        r.append(Helper.getResString(pro.sketchware.R.string.health_report_title)).append("\n");
+        if (projectName != null) r.append(Helper.getResString(pro.sketchware.R.string.health_report_project, projectName)).append("\n");
         r.append("sc_id: ").append(scId).append("\n\n");
 
         // Экраны
@@ -80,21 +80,21 @@ public final class ProjectHealthChecker {
             }
         } catch (Throwable ignored) {}
 
-        r.append(Helper.getResString(com.besome.sketch.R.string.health_report_screens)).append("\n");
-        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_activity, activities)).append("\n");
-        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_layouts, layouts)).append("\n");
-        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_blocks, totalBlocks)).append("\n");
-        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_components, totalComponents)).append("\n\n");
+        r.append(Helper.getResString(pro.sketchware.R.string.health_report_screens)).append("\n");
+        r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_activity, activities)).append("\n");
+        r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_layouts, layouts)).append("\n");
+        r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_blocks, totalBlocks)).append("\n");
+        r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_components, totalComponents)).append("\n\n");
 
         // Проблемы
         int problems = 0;
-        r.append(Helper.getResString(com.besome.sketch.R.string.health_report_problems)).append("\n");
+        r.append(Helper.getResString(pro.sketchware.R.string.health_report_problems)).append("\n");
         if (emptyActivities > 0) {
-            r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_empty_java, emptyActivities)).append("\n");
+            r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_empty_java, emptyActivities)).append("\n");
             problems++;
         }
         if (duplicateJavaNames > 0) {
-            r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_dup_java, duplicateJavaNames)).append("\n");
+            r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_dup_java, duplicateJavaNames)).append("\n");
             problems++;
         }
 
@@ -102,7 +102,7 @@ public final class ProjectHealthChecker {
         try {
             String iconPath = wq.e() + File.separator + scId + File.separator + "icon.png";
             if (!FileUtil.isExistFile(iconPath)) {
-                r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_no_icon)).append("\n");
+                r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_no_icon)).append("\n");
                 problems++;
             }
         } catch (Throwable ignored) {}
@@ -123,21 +123,21 @@ public final class ProjectHealthChecker {
                 }
             }
         } catch (Throwable ignored) {}
-        r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_user_classes, userClasses));
+        r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_user_classes, userClasses));
         if (badUserClasses > 0) {
-            r.append(Helper.getResString(com.besome.sketch.R.string.health_report_bad_classes, badUserClasses));
+            r.append(Helper.getResString(pro.sketchware.R.string.health_report_bad_classes, badUserClasses));
         }
         r.append("\n");
 
         if (problems == 0) {
-            r.append("  ").append(Helper.getResString(com.besome.sketch.R.string.health_report_ok)).append("\n");
+            r.append("  ").append(Helper.getResString(pro.sketchware.R.string.health_report_ok)).append("\n");
         }
         r.append("\n");
 
         // Размер
         try {
             long bytes = dirSize(new File(wq.e() + File.separator + scId));
-            r.append(Helper.getResString(com.besome.sketch.R.string.health_report_size, humanSize(bytes))).append("\n");
+            r.append(Helper.getResString(pro.sketchware.R.string.health_report_size, humanSize(bytes))).append("\n");
         } catch (Throwable ignored) {}
 
         return r.toString();
