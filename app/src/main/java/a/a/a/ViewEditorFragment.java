@@ -172,6 +172,10 @@ public class ViewEditorFragment extends qA {
             quickPropsCurrentBean = bean;
             quickPropsPanel.setVisibility(View.VISIBLE);
             showBottomToggle();
+            // При включенном быстром режиме нижняя панель всегда скрыта по умолчанию
+            if (isPropertyViewVisible) {
+                a(false);
+            }
             if (quickPropsId != null) quickPropsId.setText(bean.id == null ? "" : bean.id);
             boolean hasText = hasTextField(bean);
             if (quickPropsTextLayout != null) quickPropsTextLayout.setVisibility(hasText ? View.VISIBLE : View.GONE);
