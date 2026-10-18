@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import mod.agus.jcoderz.beans.ViewBeans;
 import pro.sketchware.activities.usercode.UserCodeManager;
 import pro.sketchware.utility.FileUtil;
 import a.a.a.wq;
@@ -38,8 +39,63 @@ public final class ProjectPreflightChecker {
         checkIcon(context, scId, issues);
         checkActivities(context, activities, issues);
         checkUserCodeClasses(context, scId, issues);
+        checkAppCompat(context, scId, activities, issues);
 
         return issues;
+    }
+
+    /**
+     * Проверяет, что для Material-виджетов (TabLayout, BottomNav, FAB, CardView,
+     * MaterialButton) включена библиотека AppCompat.
+     */
+    private static void checkAppCompat(Context ctx, String scId,
+                                       List<ProjectFileBean> activities,
+                                       List<BlockLogicChecker.Issue> issues) {
+        try {
+            // Если AppCompat уже включён — всё ок
+            com.besome.sketch.beans.ProjectLibraryBean appCompat =
+                    a.a.a.jC.c(scId).c();
+            if (appCompat != null && appCompat.isEnabled()) return;
+
+            // Иначе — ищем Material-виджеты на экранах
+            java.util.LinkedHashSet<String> found = new java.util.LinkedHashSet<>();
+            for (ProjectFileBean pfb : activities) {
+                if (pfb == null) continue;
+                String javaName = pfb.getJavaName();
+                if (javaName == null || javaName.isEmpty()) continue;
+                java.util.ArrayList<com.besome.sketch.beans.ViewBean> views;
+                try {
+                    views = a.a.a.jC.a(scId).d(javaName);
+                } catch (Throwable t) {
+                    continue;
+                }
+                if (views == null) continue;
+                for (com.besome.sketch.beans.ViewBean v : views) {
+                    if (v == null) continue;
+                    int t = v.type;
+                    String widgetName = null;
+                    if (t == ViewBeans.VIEW_TYPE_LAYOUT_TABLAYOUT) widgetName = "TabLayout";
+                    else if (t == ViewBeans.VIEW_TYPE_LAYOUT_BOTTOMNAVIGATIONVIEW) widgetName = "BottomNavigationView";
+                    else if (t == ViewBeans.VIEW_TYPE_LAYOUT_CARDVIEW) widgetName = "CardView";
+                    else if (t == ViewBeans.VIEW_TYPE_WIDGET_MATERIALBUTTON) widgetName = "MaterialButton";
+                    else if (t == com.besome.sketch.beans.ViewBean.VIEW_TYPE_WIDGET_FAB) widgetName = "FloatingActionButton";
+                    if (widgetName != null) found.add(widgetName);
+                }
+            }
+
+            if (!found.isEmpty()) {
+                String list = android.text.TextUtils.join(", ", found);
+                issues.add(new BlockLogicChecker.Issue(
+                        null,
+                        mod.hey.studios.util.Helper.getResString(
+                                pro.sketchware.R.string.preflight_appcompat_missing, list),
+                        new ArrayList<>(),
+                        BlockLogicChecker.Severity.CRITICAL,
+                        null,
+                        null,
+                        "AppCompat library is required for Material widgets"));
+            }
+        } catch (Throwable ignored) {}
     }
 
     /** Иконка приложения — /sdcard/.sketchware/data/{scId}/icon.png */

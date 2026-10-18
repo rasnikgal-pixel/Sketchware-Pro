@@ -2874,4 +2874,5 @@ ACTION_VIEW
     <string name="widget_actions_all_properties">All properties</string>
     <string name="widget_actions_block_editor">Block editor (onClick)</string>
     <string name="block_category_app_control">App control</string>
+    <string name="preflight_appcompat_missing">Enable AppCompat library (Library manager) — Material widgets are used: %1$s</string>
 </resources>

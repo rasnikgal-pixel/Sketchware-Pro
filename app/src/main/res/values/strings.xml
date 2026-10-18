@@ -2884,4 +2884,5 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="widget_actions_all_properties">Все свойства</string>
     <string name="widget_actions_block_editor">Редактор блоков (onClick)</string>
     <string name="block_category_app_control">Управление приложением</string>
+    <string name="preflight_appcompat_missing">Включите библиотеку AppCompat (Менеджер библиотек) — используются виджеты Material: %1$s</string>
 </resources>
