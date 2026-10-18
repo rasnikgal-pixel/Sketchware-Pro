@@ -142,6 +142,15 @@ public class ViewEditorFragment extends qA {
                 });
             }
 
+            // Слушатель клавиатуры (WindowInsets), чтобы панель не пряталась за ней
+            if (quickPropsPanel != null) {
+                androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(quickPropsPanel, (v, insets) -> {
+                    int imeBottom = insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.ime()).bottom;
+                    v.setTranslationY(-imeBottom);
+                    return insets;
+                });
+            }
+
             if (quickPropsWidth != null) {
                 quickPropsWidth.setOnClickListener(v -> {
                     if (quickPropsCurrentBean != null) showMeasureDialog(true, quickPropsCurrentBean);
