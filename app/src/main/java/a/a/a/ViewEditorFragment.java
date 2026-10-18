@@ -325,7 +325,12 @@ public class ViewEditorFragment extends qA {
                     hideQuickPropsPanel();
                 }
 
-                ViewEditorFragment.this.a(var1);
+                // Если включена быстрая панель сверху, нижнюю панель НЕ открываем
+                if (isQuickPropsEnabled()) {
+                    ViewEditorFragment.this.a(false);
+                } else {
+                    ViewEditorFragment.this.a(var1);
+                }
             }
         });
         viewEditor.setOnDraggingListener(new DraggingListener() {
