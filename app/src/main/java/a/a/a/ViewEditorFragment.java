@@ -106,7 +106,7 @@ public class ViewEditorFragment extends qA {
     /** Инициализация кнопки-шторки нижней панели свойств. */
     private void initBottomToggle(ViewGroup viewGroup) {
         try {
-            quickBottomToggle = requireActivity().findViewById(R.id.bottom_panel_toggle);
+            quickBottomToggle = requireActivity().findViewById(R.id.bottom_panel_toggle_include);
             if (quickBottomToggle == null) return;
             quickBottomToggle.setOnClickListener(v -> {
                 try {

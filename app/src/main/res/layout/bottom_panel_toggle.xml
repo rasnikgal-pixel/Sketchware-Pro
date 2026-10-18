@@ -5,6 +5,7 @@
     android:layout_height="24dp"
     android:background="?attr/colorSurfaceContainerHigh"
     android:clickable="true"
+    android:elevation="12dp"
     android:focusable="true"
     android:gravity="center"
     android:orientation="horizontal"
