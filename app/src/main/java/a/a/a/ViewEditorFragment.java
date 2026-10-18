@@ -149,6 +149,17 @@ public class ViewEditorFragment extends qA {
         }
     }
 
+    /** Мгновенно скрывает нижнюю панель без анимации. */
+    private void hideViewPropertyViewInstant() {
+        if (isPropertyViewVisible) {
+            if (showPropertyViewAnimator != null) showPropertyViewAnimator.cancel();
+            if (hidePropertyViewAnimator != null) hidePropertyViewAnimator.cancel();
+            viewProperty.setTranslationY(wB.a(requireActivity(), 170f));
+            isPropertyViewVisible = false;
+            updateBottomTogglePosition(false);
+        }
+    }
+
     private void hideBottomToggle() {
         if (quickBottomToggle != null) quickBottomToggle.setVisibility(View.GONE);
     }
