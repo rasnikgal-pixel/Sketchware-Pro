@@ -472,20 +472,6 @@ public class ViewEditorFragment extends qA {
         widgetsCreatorManager = new WidgetsCreatorManager(this);
         viewEditor.widgetsCreatorManager = widgetsCreatorManager;
         viewProperty = requireActivity().findViewById(R.id.view_property);
-        // Слушатель клавиатуры (WindowInsets), чтобы панель не пряталась за ней
-        if (viewProperty != null) {
-            androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(viewProperty, (v, insets) -> {
-                int imeBottom = insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.ime()).bottom;
-                if (imeBottom > 0) {
-                    v.setTranslationY(-imeBottom);
-                } else {
-                    // Если клавиатуры нет, возвращаем панель на её штатное место
-                    // (высота 170dp, как указано в design.xml)
-                    v.setTranslationY(0);
-                }
-                return insets;
-            });
-        }
         viewProperty.setOnPropertyListener(new Iw() {
             @Override
             public void a() {
