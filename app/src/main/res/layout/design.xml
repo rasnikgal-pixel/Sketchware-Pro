@@ -91,6 +91,8 @@
                     app:trackStopIndicatorSize="0dp" />
             </LinearLayout>
 
+            
+
             <include
                 android:id="@+id/bottom_panel_toggle_include"
                 layout="@layout/bottom_panel_toggle"

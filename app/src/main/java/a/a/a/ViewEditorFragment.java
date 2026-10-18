@@ -100,6 +100,11 @@ public class ViewEditorFragment extends qA {
             if (quickPropsHint != null) quickPropsHint.addTextChangedListener(watcher);
 
             initBottomToggle(viewGroup);
+            
+            // Если тумблер включен, нижняя панель должна быть скрыта по умолчанию
+            if (isQuickPropsEnabled()) {
+                hideViewPropertyViewInstant();
+            }
         } catch (Throwable ignored) {}
     }
 
@@ -135,8 +140,8 @@ public class ViewEditorFragment extends qA {
                         ? R.string.quick_props_collapse
                         : R.string.quick_props_expand));
             }
-            // Кнопка всегда должна быть видимой, когда мы её вызываем
-            if (quickBottomToggle.getVisibility() != View.VISIBLE) {
+            // Кнопка всегда видима, если выбран виджет (если тумблер включен)
+            if (isQuickPropsEnabled() && quickBottomToggle.getVisibility() != View.VISIBLE) {
                 quickBottomToggle.setVisibility(View.VISIBLE);
             }
         } catch (Throwable ignored) {}
@@ -151,13 +156,13 @@ public class ViewEditorFragment extends qA {
 
     /** Мгновенно скрывает нижнюю панель без анимации. */
     private void hideViewPropertyViewInstant() {
-        if (isPropertyViewVisible) {
+        try {
             if (showPropertyViewAnimator != null) showPropertyViewAnimator.cancel();
             if (hidePropertyViewAnimator != null) hidePropertyViewAnimator.cancel();
             viewProperty.setTranslationY(wB.a(requireActivity(), 170f));
             isPropertyViewVisible = false;
             updateBottomTogglePosition(false);
-        }
+        } catch (Throwable ignored) {}
     }
 
     private void hideBottomToggle() {
