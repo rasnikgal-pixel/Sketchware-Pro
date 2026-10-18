@@ -488,8 +488,8 @@ public class ViewEditorFragment extends qA {
         viewEditor.setOnWidgetDoubleTapListener(viewBean -> {
             if (viewBean == null) return;
 
-            // Двойной тап — открыть список событий виджета (как в Delphi)
-            showWidgetEventsDialog(viewBean);
+            // Двойной тап — диалог действий с виджетом
+            showWidgetActionsDialog(viewBean);
         });
 
         viewEditor.setOnWidgetSelectedListener(new cy() {
@@ -596,6 +596,41 @@ public class ViewEditorFragment extends qA {
      * Показывает диалог со списком всех событий виджета (как в Delphi).
      * По выбору открывает LogicEditorActivity для создания блоков события.
      */
+    /** Диалог действий с виджетом при двойном клике: События / Все свойства / Редактор блоков. */
+    private void showWidgetActionsDialog(ViewBean bean) {
+        if (bean == null || getContext() == null) return;
+        try {
+            CharSequence[] items = new CharSequence[]{
+                    Helper.getResString(R.string.widget_actions_events),
+                    Helper.getResString(R.string.widget_actions_all_properties),
+                    Helper.getResString(R.string.widget_actions_block_editor)
+            };
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(R.string.widget_actions_title)
+                    .setItems(items, (d, which) -> {
+                        if (which == 0) {
+                            // События
+                            showWidgetEventsDialog(bean);
+                        } else if (which == 1) {
+                            // Все свойства (полная PropertyActivity)
+                            openPropertyActivity(bean);
+                        } else {
+                            // Редактор блоков (onClick)
+                            try {
+                                toLogicEditorActivity(bean.id, "onClick", "onClick");
+                            } catch (Throwable t) {
+                                SketchwareUtil.toast("onClick: " + t);
+                            }
+                        }
+                    })
+                    .setNegativeButton(R.string.common_word_cancel, null)
+                    .show();
+        } catch (Throwable t) {
+            pro.sketchware.smartdrop.DebugLogger.get(requireContext())
+                    .d("ViewEditorFragment", "showWidgetActionsDialog_error", String.valueOf(t.getMessage()));
+        }
+    }
+
     private void showWidgetEventsDialog(ViewBean bean) {
         if (bean == null || bean.id == null) return;
         try {

@@ -2815,4 +2815,8 @@ ACTION_VIEW
     <string name="quick_props_set_value">设置数值…</string>
     <string name="quick_props_reset_zero">重置 (0)</string>
     <string name="quick_props_dp_hint">dp</string>
+    <string name="widget_actions_title">控件操作</string>
+    <string name="widget_actions_events">事件</string>
+    <string name="widget_actions_all_properties">所有属性</string>
+    <string name="widget_actions_block_editor">积木编辑器 (onClick)</string>
 </resources>

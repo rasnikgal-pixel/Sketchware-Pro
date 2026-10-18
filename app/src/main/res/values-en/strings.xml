@@ -2869,4 +2869,8 @@ ACTION_VIEW
     <string name="quick_props_set_value">Set value…</string>
     <string name="quick_props_reset_zero">Reset (0)</string>
     <string name="quick_props_dp_hint">dp</string>
+    <string name="widget_actions_title">Widget action</string>
+    <string name="widget_actions_events">Events</string>
+    <string name="widget_actions_all_properties">All properties</string>
+    <string name="widget_actions_block_editor">Block editor (onClick)</string>
 </resources>

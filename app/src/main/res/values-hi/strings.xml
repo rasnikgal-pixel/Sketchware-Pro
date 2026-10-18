@@ -2815,4 +2815,8 @@ ACTION_VIEW
     <string name="quick_props_set_value">मान सेट करें…</string>
     <string name="quick_props_reset_zero">रीसेट (0)</string>
     <string name="quick_props_dp_hint">dp</string>
+    <string name="widget_actions_title">विजेट क्रिया</string>
+    <string name="widget_actions_events">इवेंट्स</string>
+    <string name="widget_actions_all_properties">सभी गुण</string>
+    <string name="widget_actions_block_editor">ब्लॉक संपादक (onClick)</string>
 </resources>
