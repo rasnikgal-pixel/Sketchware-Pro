@@ -2883,4 +2883,8 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="widget_actions_events">События</string>
     <string name="widget_actions_all_properties">Все свойства</string>
     <string name="widget_actions_block_editor">Редактор блоков (onClick)</string>
+    <string name="app_control_palette">Управление приложением</string>
+    <string name="app_control_close">Закрыть приложение</string>
+    <string name="app_control_minimize">Свернуть приложение</string>
+    <string name="app_control_restore">Развернуть приложение</string>
 </resources>

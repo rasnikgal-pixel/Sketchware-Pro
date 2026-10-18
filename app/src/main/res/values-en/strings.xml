@@ -2873,4 +2873,8 @@ ACTION_VIEW
     <string name="widget_actions_events">Events</string>
     <string name="widget_actions_all_properties">All properties</string>
     <string name="widget_actions_block_editor">Block editor (onClick)</string>
+    <string name="app_control_palette">App control</string>
+    <string name="app_control_close">Close app</string>
+    <string name="app_control_minimize">Minimize app</string>
+    <string name="app_control_restore">Restore app</string>
 </resources>
