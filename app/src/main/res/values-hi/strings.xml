@@ -2811,4 +2811,8 @@ ACTION_VIEW
     <string name="quick_props_tab_indent">स्पेसिंग</string>
     <string name="quick_props_margin">मार्जिन</string>
     <string name="quick_props_padding">पैडिंग</string>
+    <string name="quick_props_enter_dp">संख्या दर्ज करें (dp)</string>
+    <string name="quick_props_set_value">मान सेट करें…</string>
+    <string name="quick_props_reset_zero">रीसेट (0)</string>
+    <string name="quick_props_dp_hint">dp</string>
 </resources>

@@ -2875,4 +2875,8 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="quick_props_tab_indent">Отступы</string>
     <string name="quick_props_margin">Снаружи (Margin)</string>
     <string name="quick_props_padding">Внутри (Padding)</string>
+    <string name="quick_props_enter_dp">Ввести число (dp)</string>
+    <string name="quick_props_set_value">Установить значение…</string>
+    <string name="quick_props_reset_zero">Сбросить (0)</string>
+    <string name="quick_props_dp_hint">dp</string>
 </resources>

@@ -2865,4 +2865,8 @@ ACTION_VIEW
     <string name="quick_props_tab_indent">Spacing</string>
     <string name="quick_props_margin">Margin</string>
     <string name="quick_props_padding">Padding</string>
+    <string name="quick_props_enter_dp">Enter number (dp)</string>
+    <string name="quick_props_set_value">Set value…</string>
+    <string name="quick_props_reset_zero">Reset (0)</string>
+    <string name="quick_props_dp_hint">dp</string>
 </resources>

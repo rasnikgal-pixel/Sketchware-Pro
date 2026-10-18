@@ -292,14 +292,14 @@ public class ViewEditorFragment extends qA {
     private void showIndentDialog(boolean isMargin, ViewBean bean) {
         if (getContext() == null || bean.layout == null) return;
         String title = isMargin ? "Margin" : "Padding";
-        CharSequence[] items = new CharSequence[]{"Установить значение…", "Сбросить (0)"};
+        CharSequence[] items = new CharSequence[]{Helper.getResString(R.string.quick_props_set_value), Helper.getResString(R.string.quick_props_reset_zero)};
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
                 .setTitle(title)
                 .setItems(items, (d, which) -> {
                     if (which == 0) {
                         android.widget.EditText input = new android.widget.EditText(requireContext());
                         input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-                        input.setHint("dp");
+                        input.setHint(Helper.getResString(R.string.quick_props_dp_hint));
                         int cur = isMargin ? bean.layout.marginLeft : bean.layout.paddingLeft;
                         if (cur > 0) input.setText(String.valueOf(cur));
                         int pad = (int) wB.a(requireActivity(), 16f);
@@ -358,7 +358,7 @@ public class ViewEditorFragment extends qA {
         CharSequence[] items = new CharSequence[]{
                 "match_parent",
                 "wrap_content",
-                "Ввести число dp"
+                Helper.getResString(R.string.quick_props_enter_dp)
         };
         new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
                 .setTitle(title)
@@ -381,7 +381,7 @@ public class ViewEditorFragment extends qA {
     private void showCustomMeasureDialog(boolean isWidth, ViewBean bean, int current) {
         android.widget.EditText input = new android.widget.EditText(requireContext());
         input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-        input.setHint("dp");
+        input.setHint(Helper.getResString(R.string.quick_props_dp_hint));
         if (current > 0) input.setText(String.valueOf(current));
         int pad = (int) wB.a(requireActivity(), 16f);
         input.setPadding(pad, pad, pad, pad);
