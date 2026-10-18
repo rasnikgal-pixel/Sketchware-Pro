@@ -524,7 +524,6 @@ public class ViewEditorFragment extends qA {
                     viewProperty.e();
                     try {
                         ViewBean qb = viewEditor.findViewBeanByTag(viewId);
-                        SketchwareUtil.toast("cy.a: viewId=" + viewId + ", qb=" + (qb == null ? "NULL" : "OK"));
                         if (qb != null) showQuickPropsPanel(qb);
                     } catch (Throwable t) {
                         SketchwareUtil.toast("cy.a error: " + t);
