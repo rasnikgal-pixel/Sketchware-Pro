@@ -125,14 +125,7 @@ public class ViewEditorFragment extends qA {
     private void updateBottomTogglePosition(boolean panelVisible) {
         if (quickBottomToggle == null || getContext() == null) return;
         try {
-            if (quickBottomToggle.getVisibility() != View.VISIBLE) return;
-            float h = wB.a(requireActivity(), 170f);
-            float newY = panelVisible ? -h : 0f;
-            quickBottomToggle.animate()
-                    .translationY(newY)
-                    .setDuration(300L)
-                    .setInterpolator(new DecelerateInterpolator())
-                    .start();
+            // Кнопка внутри viewProperty — позиция автоматическая. Меняем только иконку.
             android.widget.ImageView icon = quickBottomToggle.findViewById(R.id.bottom_panel_toggle_icon);
             if (icon != null) {
                 icon.setImageResource(panelVisible
