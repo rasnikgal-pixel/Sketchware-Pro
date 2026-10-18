@@ -472,6 +472,14 @@ public class ViewEditorFragment extends qA {
         widgetsCreatorManager = new WidgetsCreatorManager(this);
         viewEditor.widgetsCreatorManager = widgetsCreatorManager;
         viewProperty = requireActivity().findViewById(R.id.view_property);
+        // Слушатель клавиатуры (WindowInsets), чтобы панель не пряталась за ней
+        if (viewProperty != null) {
+            androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(viewProperty, (v, insets) -> {
+                int imeBottom = insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.ime()).bottom;
+                v.setTranslationY(-imeBottom);
+                return insets;
+            });
+        }
         viewProperty.setOnPropertyListener(new Iw() {
             @Override
             public void a() {
