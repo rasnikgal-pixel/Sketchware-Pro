@@ -2871,4 +2871,8 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="quick_props_collapse">Свернуть панель свойств</string>
     <string name="quick_props_width">Ширина</string>
     <string name="quick_props_height">Высота</string>
+    <string name="quick_props_tab_size">Размер</string>
+    <string name="quick_props_tab_indent">Отступы</string>
+    <string name="quick_props_margin">Снаружи (Margin)</string>
+    <string name="quick_props_padding">Внутри (Padding)</string>
 </resources>

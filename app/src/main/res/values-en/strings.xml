@@ -2861,4 +2861,8 @@ ACTION_VIEW
     <string name="quick_props_collapse">Collapse properties panel</string>
     <string name="quick_props_width">Width</string>
     <string name="quick_props_height">Height</string>
+    <string name="quick_props_tab_size">Size</string>
+    <string name="quick_props_tab_indent">Spacing</string>
+    <string name="quick_props_margin">Margin</string>
+    <string name="quick_props_padding">Padding</string>
 </resources>

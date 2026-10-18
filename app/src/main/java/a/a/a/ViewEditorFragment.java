@@ -52,6 +52,11 @@ public class ViewEditorFragment extends qA {
     private EditText quickPropsHint;
     private com.google.android.material.button.MaterialButton quickPropsWidth;
     private com.google.android.material.button.MaterialButton quickPropsHeight;
+    private com.google.android.material.button.MaterialButton quickPropsMargin;
+    private com.google.android.material.button.MaterialButton quickPropsPadding;
+    private View quickPropsGroupSize;
+    private View quickPropsGroupIndent;
+    private com.google.android.material.tabs.TabLayout quickPropsTabs;
     private View quickPropsTextLayout;
     private View quickPropsHintLayout;
     private View quickPropsWidthLayout;
@@ -104,6 +109,38 @@ public class ViewEditorFragment extends qA {
             if (quickPropsId != null) quickPropsId.addTextChangedListener(watcher);
             if (quickPropsText != null) quickPropsText.addTextChangedListener(watcher);
             if (quickPropsHint != null) quickPropsHint.addTextChangedListener(watcher);
+
+            quickPropsTabs = quickPropsPanel.findViewById(R.id.quick_props_tabs);
+            quickPropsGroupSize = quickPropsPanel.findViewById(R.id.quick_props_group_size);
+            quickPropsGroupIndent = quickPropsPanel.findViewById(R.id.quick_props_group_indent);
+            quickPropsMargin = quickPropsPanel.findViewById(R.id.quick_props_margin);
+            quickPropsPadding = quickPropsPanel.findViewById(R.id.quick_props_padding);
+
+            if (quickPropsTabs != null) {
+                quickPropsTabs.removeAllTabs();
+                quickPropsTabs.addTab(quickPropsTabs.newTab().setText(R.string.quick_props_tab_size));
+                quickPropsTabs.addTab(quickPropsTabs.newTab().setText(R.string.quick_props_tab_indent));
+                quickPropsTabs.addOnTabSelectedListener(new com.google.android.material.tabs.TabLayout.OnTabSelectedListener() {
+                    @Override public void onTabSelected(com.google.android.material.tabs.TabLayout.Tab tab) {
+                        boolean isSize = tab.getPosition() == 0;
+                        if (quickPropsGroupSize != null) quickPropsGroupSize.setVisibility(isSize ? View.VISIBLE : View.GONE);
+                        if (quickPropsGroupIndent != null) quickPropsGroupIndent.setVisibility(isSize ? View.GONE : View.VISIBLE);
+                    }
+                    @Override public void onTabUnselected(com.google.android.material.tabs.TabLayout.Tab tab) {}
+                    @Override public void onTabReselected(com.google.android.material.tabs.TabLayout.Tab tab) {}
+                });
+            }
+
+            if (quickPropsMargin != null) {
+                quickPropsMargin.setOnClickListener(v -> {
+                    if (quickPropsCurrentBean != null) showIndentDialog(true, quickPropsCurrentBean);
+                });
+            }
+            if (quickPropsPadding != null) {
+                quickPropsPadding.setOnClickListener(v -> {
+                    if (quickPropsCurrentBean != null) showIndentDialog(false, quickPropsCurrentBean);
+                });
+            }
 
             if (quickPropsWidth != null) {
                 quickPropsWidth.setOnClickListener(v -> {
@@ -249,6 +286,67 @@ public class ViewEditorFragment extends qA {
     /** Тип виджета поддерживает "hint" (только EditText)? */
     private boolean hasHintField(ViewBean bean) {
         return bean.type == ViewBean.VIEW_TYPE_WIDGET_EDITTEXT;
+    }
+
+    /** Диалог выбора отступов: для Margin (снаружи) или Padding (внутри). */
+    private void showIndentDialog(boolean isMargin, ViewBean bean) {
+        if (getContext() == null || bean.layout == null) return;
+        String title = isMargin ? "Margin" : "Padding";
+        CharSequence[] items = new CharSequence[]{"Установить значение…", "Сбросить (0)"};
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                .setTitle(title)
+                .setItems(items, (d, which) -> {
+                    if (which == 0) {
+                        android.widget.EditText input = new android.widget.EditText(requireContext());
+                        input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+                        input.setHint("dp");
+                        int cur = isMargin ? bean.layout.marginLeft : bean.layout.paddingLeft;
+                        if (cur > 0) input.setText(String.valueOf(cur));
+                        int pad = (int) wB.a(requireActivity(), 16f);
+                        input.setPadding(pad, pad, pad, pad);
+                        new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                                .setTitle(title)
+                                .setView(input)
+                                .setPositiveButton(R.string.common_word_ok, (dd, ww) -> {
+                                    try {
+                                        int val = Integer.parseInt(input.getText().toString().trim());
+                                        if (isMargin) {
+                                            bean.layout.marginLeft = val;
+                                            bean.layout.marginTop = val;
+                                            bean.layout.marginRight = val;
+                                            bean.layout.marginBottom = val;
+                                        } else {
+                                            bean.layout.paddingLeft = val;
+                                            bean.layout.paddingTop = val;
+                                            bean.layout.paddingRight = val;
+                                            bean.layout.paddingBottom = val;
+                                        }
+                                        viewEditor.updateSelection(bean.id);
+                                        a(bean.id);
+                                        showQuickPropsPanel(bean);
+                                    } catch (Throwable ignored) {}
+                                })
+                                .setNegativeButton(R.string.common_word_cancel, null)
+                                .show();
+                    } else {
+                        if (isMargin) {
+                            bean.layout.marginLeft = 0;
+                            bean.layout.marginTop = 0;
+                            bean.layout.marginRight = 0;
+                            bean.layout.marginBottom = 0;
+                        } else {
+                            bean.layout.paddingLeft = 0;
+                            bean.layout.paddingTop = 0;
+                            bean.layout.paddingRight = 0;
+                            bean.layout.paddingBottom = 0;
+                        }
+                        viewEditor.updateSelection(bean.id);
+                        a(bean.id);
+                        showQuickPropsPanel(bean);
+                    }
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
     }
 
     /** Диалог выбора размера (width/height): match_parent / wrap_content / ввести число. */

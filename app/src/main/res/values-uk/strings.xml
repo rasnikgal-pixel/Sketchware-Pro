@@ -2807,4 +2807,8 @@ ACTION_VIEW
     <string name="quick_props_collapse">Згорнути панель властивостей</string>
     <string name="quick_props_width">Ширина</string>
     <string name="quick_props_height">Висота</string>
+    <string name="quick_props_tab_size">Розмір</string>
+    <string name="quick_props_tab_indent">Відступи</string>
+    <string name="quick_props_margin">Зовнішній (Margin)</string>
+    <string name="quick_props_padding">Внутрішній (Padding)</string>
 </resources>

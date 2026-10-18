@@ -99,12 +99,23 @@
             android:text="@string/quick_props_more" />
     </LinearLayout>
 
-    <!-- Строка 3: Ширина + Высота -->
+    <!-- Вкладки: Размер / Отступы -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/quick_props_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        android:layout_marginTop="2dp" />
+
+    <!-- Группа 1: Размер -->
     <LinearLayout
+        android:id="@+id/quick_props_group_size"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="4dp">
+        android:layout_marginTop="4dp"
+        android:visibility="visible">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_props_width"
@@ -124,6 +135,37 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/quick_props_height"
+            android:insetTop="0dp"
+            android:insetBottom="0dp" />
+    </LinearLayout>
+
+    <!-- Группа 2: Отступы -->
+    <LinearLayout
+        android:id="@+id/quick_props_group_indent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:visibility="gone">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/quick_props_margin"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:text="Margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/quick_props_padding"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Padding"
             android:insetTop="0dp"
             android:insetBottom="0dp" />
     </LinearLayout>

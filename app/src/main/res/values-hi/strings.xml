@@ -2807,4 +2807,8 @@ ACTION_VIEW
     <string name="quick_props_collapse">गुण पैनल संक्षिप्त करें</string>
     <string name="quick_props_width">चौड़ाई</string>
     <string name="quick_props_height">ऊँचाई</string>
+    <string name="quick_props_tab_size">आकार</string>
+    <string name="quick_props_tab_indent">स्पेसिंग</string>
+    <string name="quick_props_margin">मार्जिन</string>
+    <string name="quick_props_padding">पैडिंग</string>
 </resources>

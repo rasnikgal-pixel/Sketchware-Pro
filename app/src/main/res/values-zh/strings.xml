@@ -2807,4 +2807,8 @@ ACTION_VIEW
     <string name="quick_props_collapse">折叠属性面板</string>
     <string name="quick_props_width">宽度</string>
     <string name="quick_props_height">高度</string>
+    <string name="quick_props_tab_size">尺寸</string>
+    <string name="quick_props_tab_indent">间距</string>
+    <string name="quick_props_margin">外边距</string>
+    <string name="quick_props_padding">内边距</string>
 </resources>
