@@ -2819,8 +2819,4 @@ ACTION_VIEW
     <string name="widget_actions_events">इवेंट्स</string>
     <string name="widget_actions_all_properties">सभी गुण</string>
     <string name="widget_actions_block_editor">ब्लॉक संपादक (onClick)</string>
-    <string name="app_control_palette">ऐप नियंत्रण</string>
-    <string name="app_control_close">ऐप बंद करें</string>
-    <string name="app_control_minimize">ऐप छोटा करें</string>
-    <string name="app_control_restore">ऐप पुनर्स्थापित करें</string>
 </resources>

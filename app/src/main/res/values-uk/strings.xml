@@ -2819,8 +2819,4 @@ ACTION_VIEW
     <string name="widget_actions_events">Події</string>
     <string name="widget_actions_all_properties">Усі властивості</string>
     <string name="widget_actions_block_editor">Редактор блоків (onClick)</string>
-    <string name="app_control_palette">Керування застосунком</string>
-    <string name="app_control_close">Закрити застосунок</string>
-    <string name="app_control_minimize">Згорнути застосунок</string>
-    <string name="app_control_restore">Розгорнути застосунок</string>
 </resources>
