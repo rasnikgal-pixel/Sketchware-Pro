@@ -476,7 +476,13 @@ public class ViewEditorFragment extends qA {
         if (viewProperty != null) {
             androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(viewProperty, (v, insets) -> {
                 int imeBottom = insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.ime()).bottom;
-                v.setTranslationY(-imeBottom);
+                if (imeBottom > 0) {
+                    v.setTranslationY(-imeBottom);
+                } else {
+                    // Если клавиатуры нет, возвращаем панель на её штатное место
+                    // (высота 170dp, как указано в design.xml)
+                    v.setTranslationY(0);
+                }
                 return insets;
             });
         }
