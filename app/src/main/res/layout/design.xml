@@ -59,7 +59,7 @@
                     layout="@layout/quick_props_panel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top"
+                    android:layout_gravity="bottom"
                     android:elevation="16dp"
                     android:translationZ="16dp"
                     android:visibility="gone" />
