@@ -135,6 +135,10 @@ public class ViewEditorFragment extends qA {
                         ? R.string.quick_props_collapse
                         : R.string.quick_props_expand));
             }
+            // Кнопка всегда должна быть видимой, когда мы её вызываем
+            if (quickBottomToggle.getVisibility() != View.VISIBLE) {
+                quickBottomToggle.setVisibility(View.VISIBLE);
+            }
         } catch (Throwable ignored) {}
     }
 
@@ -165,9 +169,9 @@ public class ViewEditorFragment extends qA {
             quickPropsCurrentBean = bean;
             quickPropsPanel.setVisibility(View.VISIBLE);
             showBottomToggle();
-            // При включенном быстром режиме нижняя панель всегда скрыта по умолчанию
+            // При включенном быстром режиме нижняя панель ВСЕГДА скрыта по умолчанию
             if (isPropertyViewVisible) {
-                a(false);
+                hideViewPropertyViewInstant(); // Скрываем мгновенно
             }
             if (quickPropsId != null) quickPropsId.setText(bean.id == null ? "" : bean.id);
             boolean hasText = hasTextField(bean);
