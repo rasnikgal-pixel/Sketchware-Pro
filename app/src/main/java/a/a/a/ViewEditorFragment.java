@@ -50,8 +50,8 @@ public class ViewEditorFragment extends qA {
     private EditText quickPropsId;
     private EditText quickPropsText;
     private EditText quickPropsHint;
-    private EditText quickPropsWidth;
-    private EditText quickPropsHeight;
+    private com.google.android.material.button.MaterialButton quickPropsWidth;
+    private com.google.android.material.button.MaterialButton quickPropsHeight;
     private View quickPropsTextLayout;
     private View quickPropsHintLayout;
     private View quickPropsWidthLayout;
@@ -85,8 +85,6 @@ public class ViewEditorFragment extends qA {
             quickPropsHintLayout = quickPropsPanel.findViewById(R.id.quick_props_hint_layout);
             quickPropsWidth = quickPropsPanel.findViewById(R.id.quick_props_width);
             quickPropsHeight = quickPropsPanel.findViewById(R.id.quick_props_height);
-            quickPropsWidthLayout = quickPropsPanel.findViewById(R.id.quick_props_width_layout);
-            quickPropsHeightLayout = quickPropsPanel.findViewById(R.id.quick_props_height_layout);
 
             ImageButton close = quickPropsPanel.findViewById(R.id.quick_props_close);
             if (close != null) close.setOnClickListener(v -> hideQuickPropsPanel());
@@ -106,8 +104,17 @@ public class ViewEditorFragment extends qA {
             if (quickPropsId != null) quickPropsId.addTextChangedListener(watcher);
             if (quickPropsText != null) quickPropsText.addTextChangedListener(watcher);
             if (quickPropsHint != null) quickPropsHint.addTextChangedListener(watcher);
-            if (quickPropsWidth != null) quickPropsWidth.addTextChangedListener(watcher);
-            if (quickPropsHeight != null) quickPropsHeight.addTextChangedListener(watcher);
+
+            if (quickPropsWidth != null) {
+                quickPropsWidth.setOnClickListener(v -> {
+                    if (quickPropsCurrentBean != null) showMeasureDialog(true, quickPropsCurrentBean);
+                });
+            }
+            if (quickPropsHeight != null) {
+                quickPropsHeight.setOnClickListener(v -> {
+                    if (quickPropsCurrentBean != null) showMeasureDialog(false, quickPropsCurrentBean);
+                });
+            }
 
             initBottomToggle(viewGroup);
             
@@ -214,8 +221,8 @@ public class ViewEditorFragment extends qA {
                 quickPropsHint.setText(hint);
             }
             if (bean.layout != null) {
-                if (quickPropsWidth != null) quickPropsWidth.setText(measureToString(bean.layout.width));
-                if (quickPropsHeight != null) quickPropsHeight.setText(measureToString(bean.layout.height));
+                if (quickPropsWidth != null) quickPropsWidth.setText(Helper.getResString(R.string.quick_props_width) + ": " + measureToString(bean.layout.width));
+                if (quickPropsHeight != null) quickPropsHeight.setText(Helper.getResString(R.string.quick_props_height) + ": " + measureToString(bean.layout.height));
             }
         } finally {
             quickPropsUpdating = false;
@@ -242,6 +249,60 @@ public class ViewEditorFragment extends qA {
     /** Тип виджета поддерживает "hint" (только EditText)? */
     private boolean hasHintField(ViewBean bean) {
         return bean.type == ViewBean.VIEW_TYPE_WIDGET_EDITTEXT;
+    }
+
+    /** Диалог выбора размера (width/height): match_parent / wrap_content / ввести число. */
+    private void showMeasureDialog(boolean isWidth, ViewBean bean) {
+        if (getContext() == null || bean.layout == null) return;
+        int current = isWidth ? bean.layout.width : bean.layout.height;
+        String title = Helper.getResString(isWidth ? R.string.quick_props_width : R.string.quick_props_height);
+
+        CharSequence[] items = new CharSequence[]{
+                "match_parent",
+                "wrap_content",
+                "Ввести число dp"
+        };
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                .setTitle(title)
+                .setSingleChoiceItems(items, -1, (d, which) -> {
+                    d.dismiss();
+                    int newVal;
+                    if (which == 0) newVal = -1;
+                    else if (which == 1) newVal = -2;
+                    else { showCustomMeasureDialog(isWidth, bean, current); return; }
+                    if (isWidth) bean.layout.width = newVal;
+                    else bean.layout.height = newVal;
+                    viewEditor.updateSelection(bean.id);
+                    a(bean.id);
+                    showQuickPropsPanel(bean); // обновить панель
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
+    }
+
+    private void showCustomMeasureDialog(boolean isWidth, ViewBean bean, int current) {
+        android.widget.EditText input = new android.widget.EditText(requireContext());
+        input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        input.setHint("dp");
+        if (current > 0) input.setText(String.valueOf(current));
+        int pad = (int) wB.a(requireActivity(), 16f);
+        input.setPadding(pad, pad, pad, pad);
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                .setTitle(Helper.getResString(isWidth ? R.string.quick_props_width : R.string.quick_props_height))
+                .setView(input)
+                .setPositiveButton(R.string.common_word_ok, (d, w) -> {
+                    try {
+                        int val = Integer.parseInt(input.getText().toString().trim());
+                        if (isWidth) bean.layout.width = val;
+                        else bean.layout.height = val;
+                        viewEditor.updateSelection(bean.id);
+                        a(bean.id);
+                        showQuickPropsPanel(bean);
+                    } catch (Throwable ignored) {}
+                })
+                .setNegativeButton(R.string.common_word_cancel, null)
+                .show();
     }
 
     /** int из ViewBean.layout.width/height → строка для EditText. */
@@ -285,14 +346,7 @@ public class ViewEditorFragment extends qA {
                 if (bean.text == null) bean.text = new com.besome.sketch.beans.TextBean();
                 bean.text.hint = quickPropsHint.getText() == null ? "" : quickPropsHint.getText().toString();
             }
-            if (bean.layout != null) {
-                if (quickPropsWidth != null) {
-                    bean.layout.width = stringToMeasure(quickPropsWidth.getText() == null ? "" : quickPropsWidth.getText().toString());
-                }
-                if (quickPropsHeight != null) {
-                    bean.layout.height = stringToMeasure(quickPropsHeight.getText() == null ? "" : quickPropsHeight.getText().toString());
-                }
-            }
+            // width/height применяются из диалога showMeasureDialog — тут не трогаем.
             // Обновить отображение в редакторе + сохранить
             viewEditor.updateSelection(bean.id);
             a(bean.id);
