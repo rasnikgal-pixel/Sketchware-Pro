@@ -2821,4 +2821,8 @@ ACTION_VIEW
     <string name="widget_actions_block_editor">积木编辑器 (onClick)</string>
     <string name="block_category_app_control">应用控制</string>
     <string name="preflight_appcompat_missing">启用 AppCompat 库（库管理器）——使用了 Material 控件：%1$s</string>
+    <string name="preflight_material3_stale">Material3 已禁用，但 styles.xml 使用了 Material3 主题。请在库管理器中启用 Material3 或删除文件：%1$s</string>
+    <string name="preflight_fix_and_build">修复并构建</string>
+    <string name="preflight_fix_message">将启用：%1$s。继续？</string>
+    <string name="preflight_fixed_toast">已启用：%1$s。正在重新构建...</string>
 </resources>

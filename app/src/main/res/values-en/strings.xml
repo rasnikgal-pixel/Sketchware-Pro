@@ -2875,4 +2875,8 @@ ACTION_VIEW
     <string name="widget_actions_block_editor">Block editor (onClick)</string>
     <string name="block_category_app_control">App control</string>
     <string name="preflight_appcompat_missing">Enable AppCompat library (Library manager) — Material widgets are used: %1$s</string>
+    <string name="preflight_material3_stale">Material3 is disabled, but styles.xml uses Material3 themes. Enable Material3 in Library manager or delete the file: %1$s</string>
+    <string name="preflight_fix_and_build">Fix and build</string>
+    <string name="preflight_fix_message">Will be enabled: %1$s. Continue?</string>
+    <string name="preflight_fixed_toast">Enabled: %1$s. Rebuilding...</string>
 </resources>

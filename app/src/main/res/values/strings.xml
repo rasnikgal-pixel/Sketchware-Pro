@@ -2885,4 +2885,8 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="widget_actions_block_editor">Редактор блоков (onClick)</string>
     <string name="block_category_app_control">Управление приложением</string>
     <string name="preflight_appcompat_missing">Включите библиотеку AppCompat (Менеджер библиотек) — используются виджеты Material: %1$s</string>
+    <string name="preflight_material3_stale">Material3 выключен, но styles.xml использует Material3-темы. Включите Material3 в менеджере библиотек или удалите файл: %1$s</string>
+    <string name="preflight_fix_and_build">Исправить и собрать</string>
+    <string name="preflight_fix_message">Будут включены: %1$s. Продолжить?</string>
+    <string name="preflight_fixed_toast">Включено: %1$s. Пересборка...</string>
 </resources>

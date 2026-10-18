@@ -2821,4 +2821,8 @@ ACTION_VIEW
     <string name="widget_actions_block_editor">ब्लॉक संपादक (onClick)</string>
     <string name="block_category_app_control">ऐप नियंत्रण</string>
     <string name="preflight_appcompat_missing">AppCompat लाइब्रेरी सक्षम करें (लाइब्रेरी मैनेजर) — Material विजेट उपयोग किए गए हैं: %1$s</string>
+    <string name="preflight_material3_stale">Material3 अक्षम है, लेकिन styles.xml Material3 थीम का उपयोग करता है। लाइब्रेरी मैनेजर में Material3 सक्षम करें या फ़ाइल हटाएँ: %1$s</string>
+    <string name="preflight_fix_and_build">ठीक करें और बनाएँ</string>
+    <string name="preflight_fix_message">सक्षम किया जाएगा: %1$s। जारी रखें?</string>
+    <string name="preflight_fixed_toast">सक्षम किया गया: %1$s। पुनर्निर्माण हो रहा है...</string>
 </resources>

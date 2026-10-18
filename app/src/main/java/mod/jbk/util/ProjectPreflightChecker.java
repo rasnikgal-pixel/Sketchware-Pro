@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import mod.agus.jcoderz.beans.ViewBeans;
+import com.besome.sketch.editor.manage.library.material3.Material3LibraryManager;
 import pro.sketchware.activities.usercode.UserCodeManager;
 import pro.sketchware.utility.FileUtil;
 import a.a.a.wq;
@@ -40,8 +41,56 @@ public final class ProjectPreflightChecker {
         checkActivities(context, activities, issues);
         checkUserCodeClasses(context, scId, issues);
         checkAppCompat(context, scId, activities, issues);
+        checkMaterial3(context, scId, issues);
 
         return issues;
+    }
+
+    /**
+     * Проверяет, что если styles.xml содержит Theme.Material3, то Material3 включён.
+     * Иначе сборка падает с "resource style/Theme.Material3... not found".
+     */
+    private static void checkMaterial3(Context ctx, String scId,
+                                       List<BlockLogicChecker.Issue> issues) {
+        try {
+            Material3LibraryManager mgr = new Material3LibraryManager(scId);
+            if (mgr.isMaterial3Enabled()) return;
+
+            String stylesPath = a.a.a.wq.b(scId) + "/files/resource/values/styles.xml";
+            if (!pro.sketchware.utility.FileUtil.isExistFile(stylesPath)) return;
+
+            String content = pro.sketchware.utility.FileUtil.readFile(stylesPath);
+            if (content != null && content.contains("Theme.Material3")) {
+                issues.add(new BlockLogicChecker.Issue(
+                        null,
+                        mod.hey.studios.util.Helper.getResString(
+                                pro.sketchware.R.string.preflight_material3_stale, stylesPath),
+                        new ArrayList<>(),
+                        BlockLogicChecker.Severity.CRITICAL,
+                        null,
+                        null,
+                        "styles.xml contains Theme.Material3, but Material3 is disabled"));
+            }
+        } catch (Throwable ignored) {}
+    }
+
+    /** Включает AppCompat и сохраняет в файл. */
+    public static void enableAppCompat(String scId) {
+        try {
+            a.a.a.jC.c(scId).c().useYn = "Y";
+            a.a.a.jC.c(scId).l();  // save
+        } catch (Throwable ignored) {}
+    }
+
+    /** Включает AppCompat + Material3 и сохраняет в файл. */
+    public static void enableMaterial3(String scId) {
+        try {
+            com.besome.sketch.beans.ProjectLibraryBean bean = a.a.a.jC.c(scId).c();
+            bean.useYn = "Y";
+            if (bean.configurations == null) bean.configurations = new java.util.HashMap<>();
+            bean.configurations.put("material3", true);
+            a.a.a.jC.c(scId).l();  // save
+        } catch (Throwable ignored) {}
     }
 
     /**

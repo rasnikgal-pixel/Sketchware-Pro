@@ -834,12 +834,46 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                     ? Helper.getResString(R.string.auto_design_activity_019)
                     : Helper.getResString(R.string.auto_design_activity_020);
 
-            new MaterialAlertDialogBuilder(this)
+            // Проверяем, можно ли всё автофиксить (только AppCompat/Material3, без block-issues)
+            boolean canAutoFix = byEventKey.isEmpty() && preflightIssues != null;
+            boolean needAppCompat = false;
+            boolean needMaterial3 = false;
+            if (canAutoFix) {
+                for (mod.jbk.util.BlockLogicChecker.Issue i : preflightIssues) {
+                    String loc = i.humanLocation == null ? "" : i.humanLocation;
+                    if (loc.contains("AppCompat library is required")) needAppCompat = true;
+                    else if (loc.contains("Material3 is disabled")) needMaterial3 = true;
+                    else { canAutoFix = false; break; }
+                }
+            }
+
+            final boolean fAppCompat = needAppCompat;
+            final boolean fMaterial3 = needMaterial3;
+
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
                     .setTitle(title)
                     .setMessage(msg.toString())
                     .setPositiveButton(Helper.getResString(R.string.auto_design_activity_021), (d, w) -> startBuildTask())
-                    .setNegativeButton(Helper.getResString(R.string.auto_design_activity_022), null)
-                    .show();
+                    .setNegativeButton(Helper.getResString(R.string.auto_design_activity_022), null);
+
+            if (canAutoFix && (needAppCompat || needMaterial3)) {
+                builder.setNeutralButton(Helper.getResString(R.string.preflight_fix_and_build), (d, w) -> {
+                    StringBuilder enabled = new StringBuilder();
+                    if (fAppCompat) {
+                        mod.jbk.util.ProjectPreflightChecker.enableAppCompat(sc_id);
+                        enabled.append("AppCompat");
+                    }
+                    if (fMaterial3) {
+                        if (enabled.length() > 0) enabled.append(", ");
+                        mod.jbk.util.ProjectPreflightChecker.enableMaterial3(sc_id);
+                        enabled.append("Material3");
+                    }
+                    SketchwareUtil.toast(Helper.getResString(R.string.preflight_fixed_toast, enabled.toString()));
+                    startBuildTask();
+                });
+            }
+
+            builder.show();
 
         } catch (Throwable t) {
             // При любой ошибке — собираем без проверки
