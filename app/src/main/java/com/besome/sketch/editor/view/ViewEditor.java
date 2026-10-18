@@ -520,7 +520,9 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                     }
                     ViewBean bean = sy.getBean();
                     if (bean != null) {
-                        pendingWidgetSingleTap = () -> showWidgetContextMenu(bean);
+                        // Одинарный клик: панель уже показана через OnWidgetSelectedListener.
+                        // Старое контекстное меню отключено — его заменил новый диалог по двойному тапу.
+                        pendingWidgetSingleTap = () -> {};
                         handler.postDelayed(pendingWidgetSingleTap, 300L);
                     }
                 }

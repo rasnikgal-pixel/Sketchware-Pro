@@ -64,8 +64,6 @@ public class ViewEditorFragment extends qA {
     private ViewBean quickPropsCurrentBean;
     private boolean quickPropsUpdating = false;
     private View quickBottomToggle;
-    private final android.os.Handler selectionHandler = new android.os.Handler(android.os.Looper.getMainLooper());
-    private Runnable pendingSelectionRunnable;
     private ObjectAnimator showPropertyViewAnimator;
     private ObjectAnimator hidePropertyViewAnimator;
     private boolean isPropertyViewVisible;
@@ -490,11 +488,6 @@ public class ViewEditorFragment extends qA {
         viewEditor.setOnWidgetDoubleTapListener(viewBean -> {
             if (viewBean == null) return;
 
-            // Отменяем отложенный показ панели (одинарный клик)
-            if (pendingSelectionRunnable != null) {
-                selectionHandler.removeCallbacks(pendingSelectionRunnable);
-                pendingSelectionRunnable = null;
-            }
             // Скрываем панель, чтобы она не перекрывала диалог
             hideQuickPropsPanel();
 
@@ -526,25 +519,16 @@ public class ViewEditorFragment extends qA {
                     a();
                     viewProperty.a(viewId);
                     viewProperty.e();
+                    try {
+                        ViewBean qb = viewEditor.findViewBeanByTag(viewId);
+                        if (qb != null) showQuickPropsPanel(qb);
+                    } catch (Throwable ignored) {}
                     
-                    // Задерживаем показ панели на 250 мс, чтобы отличить одинарный клик от двойного
-                    if (pendingSelectionRunnable != null) {
-                        selectionHandler.removeCallbacks(pendingSelectionRunnable);
+                    if (isQuickPropsEnabled()) {
+                        ViewEditorFragment.this.a(false);
+                    } else {
+                        ViewEditorFragment.this.a(var1);
                     }
-                    pendingSelectionRunnable = () -> {
-                        try {
-                            ViewBean qb = viewEditor.findViewBeanByTag(viewId);
-                            if (qb != null) showQuickPropsPanel(qb);
-                        } catch (Throwable ignored) {}
-                        
-                        // Если включена быстрая панель сверху, нижнюю панель НЕ открываем
-                        if (isQuickPropsEnabled()) {
-                            ViewEditorFragment.this.a(false);
-                        } else {
-                            ViewEditorFragment.this.a(var1);
-                        }
-                    };
-                    selectionHandler.postDelayed(pendingSelectionRunnable, 250);
                 } else {
                     hideQuickPropsPanel();
                     if (isQuickPropsEnabled()) {
