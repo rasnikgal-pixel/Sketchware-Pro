@@ -118,8 +118,8 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     private float lastTapX = 0f;
     private float lastTapY = 0f;
     /** Окно двойного тапа (мс) и допуск позиции (px). */
-    private static final long DOUBLE_TAP_TIMEOUT_MS = 300L;
-    private static final float DOUBLE_TAP_SLOP_PX = 40f;
+    private static final long DOUBLE_TAP_TIMEOUT_MS = 400L;
+    private static final float DOUBLE_TAP_SLOP_PX = 150f;
     private int screenType;
     private boolean da = true;
     private int[] countItems = new int[20];
