@@ -234,7 +234,10 @@ public class ViewEditorFragment extends qA {
     }
 
     private void showQuickPropsPanel(ViewBean bean) {
-        if (quickPropsPanel == null || bean == null || !isQuickPropsEnabled()) return;
+        if (quickPropsPanel == null || bean == null || !isQuickPropsEnabled()) {
+            SketchwareUtil.toast("showQuickPropsPanel early: panel=" + (quickPropsPanel == null ? "NULL" : "OK") + ", bean=" + (bean == null ? "NULL" : "OK") + ", enabled=" + isQuickPropsEnabled());
+            return;
+        }
         quickPropsUpdating = true;
         try {
             quickPropsCurrentBean = bean;
@@ -521,8 +524,11 @@ public class ViewEditorFragment extends qA {
                     viewProperty.e();
                     try {
                         ViewBean qb = viewEditor.findViewBeanByTag(viewId);
+                        SketchwareUtil.toast("cy.a: viewId=" + viewId + ", qb=" + (qb == null ? "NULL" : "OK"));
                         if (qb != null) showQuickPropsPanel(qb);
-                    } catch (Throwable ignored) {}
+                    } catch (Throwable t) {
+                        SketchwareUtil.toast("cy.a error: " + t);
+                    }
                     
                     if (isQuickPropsEnabled()) {
                         ViewEditorFragment.this.a(false);
