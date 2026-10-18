@@ -79,6 +79,17 @@ Translation covers **all interface levels**:
 
 ---
 
+## 🆕 What's new in 7.8.5
+
+- **GPU acceleration** for the block editor (settings toggle)
+- **Quick properties panel** — tap a widget to see ID, Text, Hint, Size, Spacing at the top
+- **Double-tap** — dialog (Events / All properties / Block editor)
+- **Pre-flight** — AppCompat/Material3 check before build + "Fix and build" button
+- **New palette** "App control" — close / minimize / restore
+- **Localization** — all settings in 5 languages, 0 hardcode
+
+⚠️ **Rebuild your apps!**
+
 ## 🆕 What's new in 7.5.0
 
 **Major update with three new developer tools.**
