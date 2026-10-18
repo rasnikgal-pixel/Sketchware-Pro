@@ -12,7 +12,7 @@ public final class AppControlBlocks {
     private AppControlBlocks() {}
 
     private static final String COLOR_FUNC = "#4a6cd4";
-    private static final String PALETTE_FUNC = "7";
+    private static final String PALETTE_FUNC = "9";
 
     private static HashMap<String, Object> blk(String name, String type, String typeName,
                                                String code, String spec) {

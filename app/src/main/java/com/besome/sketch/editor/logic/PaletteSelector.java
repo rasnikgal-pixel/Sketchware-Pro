@@ -40,7 +40,8 @@ public class PaletteSelector extends RecyclerView {
             Helper.getResString(R.string.block_category_view_func),
             Helper.getResString(R.string.block_category_component_func),
             Helper.getResString(R.string.xml_strings),
-            Helper.getResString(R.string.block_category_moreblock)
+            Helper.getResString(R.string.block_category_moreblock),
+            Helper.getResString(R.string.block_category_app_control)
     };
 
     private final int[] MainCategoriesColors = {
@@ -49,13 +50,13 @@ public class PaletteSelector extends RecyclerView {
             0xffee7d16, 0xffcc5b22, 0xffe1a92a,
             0xff5cb722, 0xff23b9a9, 0xffa1887f,
             0xff4a6cd4, 0xff2ca5e2, 0xff7c83db,
-            0xff8a55d7
+            0xff8a55d7, 0xffee7d16
     };
 
     private final int[] MainCategoriesIds = {
             mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID,
             mod.jbk.util.FavoriteBlocksManager.FAVORITE_PALETTE_ID,
-            0, 1, 2, 3, 4, 5, 6, 7, -1, 8
+            0, 1, 2, 3, 4, 5, 6, 7, -1, 8, 9
     };
 
     private String searchValue = "";

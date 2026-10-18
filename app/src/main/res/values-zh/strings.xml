@@ -2819,4 +2819,5 @@ ACTION_VIEW
     <string name="widget_actions_events">事件</string>
     <string name="widget_actions_all_properties">所有属性</string>
     <string name="widget_actions_block_editor">积木编辑器 (onClick)</string>
+    <string name="block_category_app_control">应用控制</string>
 </resources>

@@ -2873,4 +2873,5 @@ ACTION_VIEW
     <string name="widget_actions_events">Events</string>
     <string name="widget_actions_all_properties">All properties</string>
     <string name="widget_actions_block_editor">Block editor (onClick)</string>
+    <string name="block_category_app_control">App control</string>
 </resources>
