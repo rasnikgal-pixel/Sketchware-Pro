@@ -2805,4 +2805,6 @@ ACTION_VIEW
     <string name="quick_props_close">Закрити</string>
     <string name="quick_props_expand">Розгорнути панель властивостей</string>
     <string name="quick_props_collapse">Згорнути панель властивостей</string>
+    <string name="quick_props_width">Ширина</string>
+    <string name="quick_props_height">Висота</string>
 </resources>

@@ -50,8 +50,12 @@ public class ViewEditorFragment extends qA {
     private EditText quickPropsId;
     private EditText quickPropsText;
     private EditText quickPropsHint;
+    private EditText quickPropsWidth;
+    private EditText quickPropsHeight;
     private View quickPropsTextLayout;
     private View quickPropsHintLayout;
+    private View quickPropsWidthLayout;
+    private View quickPropsHeightLayout;
     private ViewBean quickPropsCurrentBean;
     private boolean quickPropsUpdating = false;
     private View quickBottomToggle;
@@ -79,6 +83,10 @@ public class ViewEditorFragment extends qA {
             quickPropsHint = quickPropsPanel.findViewById(R.id.quick_props_hint);
             quickPropsTextLayout = quickPropsPanel.findViewById(R.id.quick_props_text_layout);
             quickPropsHintLayout = quickPropsPanel.findViewById(R.id.quick_props_hint_layout);
+            quickPropsWidth = quickPropsPanel.findViewById(R.id.quick_props_width);
+            quickPropsHeight = quickPropsPanel.findViewById(R.id.quick_props_height);
+            quickPropsWidthLayout = quickPropsPanel.findViewById(R.id.quick_props_width_layout);
+            quickPropsHeightLayout = quickPropsPanel.findViewById(R.id.quick_props_height_layout);
 
             ImageButton close = quickPropsPanel.findViewById(R.id.quick_props_close);
             if (close != null) close.setOnClickListener(v -> hideQuickPropsPanel());
@@ -98,6 +106,8 @@ public class ViewEditorFragment extends qA {
             if (quickPropsId != null) quickPropsId.addTextChangedListener(watcher);
             if (quickPropsText != null) quickPropsText.addTextChangedListener(watcher);
             if (quickPropsHint != null) quickPropsHint.addTextChangedListener(watcher);
+            if (quickPropsWidth != null) quickPropsWidth.addTextChangedListener(watcher);
+            if (quickPropsHeight != null) quickPropsHeight.addTextChangedListener(watcher);
 
             initBottomToggle(viewGroup);
             
@@ -203,6 +213,10 @@ public class ViewEditorFragment extends qA {
                 String hint = bean.text != null && bean.text.hint != null ? bean.text.hint : "";
                 quickPropsHint.setText(hint);
             }
+            if (bean.layout != null) {
+                if (quickPropsWidth != null) quickPropsWidth.setText(measureToString(bean.layout.width));
+                if (quickPropsHeight != null) quickPropsHeight.setText(measureToString(bean.layout.height));
+            }
         } finally {
             quickPropsUpdating = false;
         }
@@ -230,6 +244,27 @@ public class ViewEditorFragment extends qA {
         return bean.type == ViewBean.VIEW_TYPE_WIDGET_EDITTEXT;
     }
 
+    /** int из ViewBean.layout.width/height → строка для EditText. */
+    private String measureToString(int value) {
+        if (value == -1) return "match";
+        if (value == -2) return "wrap";
+        return String.valueOf(value);
+    }
+
+    /** строка из EditText → int для ViewBean.layout.width/height. */
+    private int stringToMeasure(String str) {
+        if (str == null) return -2;
+        String v = str.trim().toLowerCase();
+        if (v.isEmpty()) return -2;
+        if (v.equals("match") || v.equals("match_parent") || v.equals("m")) return -1;
+        if (v.equals("wrap") || v.equals("wrap_content") || v.equals("w")) return -2;
+        try {
+            return Integer.parseInt(v);
+        } catch (Throwable t) {
+            return -2;
+        }
+    }
+
     /** Применяет изменения из панели к выбранному ViewBean. */
     private void applyQuickPropsChanges() {
         if (quickPropsUpdating) return;
@@ -249,6 +284,14 @@ public class ViewEditorFragment extends qA {
             if (hasHintField(bean) && quickPropsHint != null) {
                 if (bean.text == null) bean.text = new com.besome.sketch.beans.TextBean();
                 bean.text.hint = quickPropsHint.getText() == null ? "" : quickPropsHint.getText().toString();
+            }
+            if (bean.layout != null) {
+                if (quickPropsWidth != null) {
+                    bean.layout.width = stringToMeasure(quickPropsWidth.getText() == null ? "" : quickPropsWidth.getText().toString());
+                }
+                if (quickPropsHeight != null) {
+                    bean.layout.height = stringToMeasure(quickPropsHeight.getText() == null ? "" : quickPropsHeight.getText().toString());
+                }
             }
             // Обновить отображение в редакторе + сохранить
             viewEditor.updateSelection(bean.id);

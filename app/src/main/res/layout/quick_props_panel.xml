@@ -98,4 +98,47 @@
             android:layout_height="wrap_content"
             android:text="@string/quick_props_more" />
     </LinearLayout>
+
+    <!-- Строка 3: Ширина + Высота -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/quick_props_width_layout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:hint="@string/quick_props_width"
+            app:helperText="match / wrap / N">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/quick_props_width"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/quick_props_height_layout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/quick_props_height"
+            app:helperText="match / wrap / N">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/quick_props_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 </LinearLayout>
