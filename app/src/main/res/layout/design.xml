@@ -43,6 +43,13 @@
                     app:dividerColor="?attr/colorSurfaceContainerHighest" />
             </com.google.android.material.appbar.AppBarLayout>
 
+            <include
+                android:id="@+id/quick_props_include"
+                layout="@layout/quick_props_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/layout_coordinator"
                 android:layout_width="match_parent"

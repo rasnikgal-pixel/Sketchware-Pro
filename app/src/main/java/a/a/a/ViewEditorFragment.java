@@ -72,7 +72,7 @@ public class ViewEditorFragment extends qA {
      */
     private void initQuickPropsPanel(ViewGroup viewGroup) {
         try {
-            quickPropsPanel = viewGroup.findViewById(R.id.quick_props_include);
+            quickPropsPanel = requireActivity().findViewById(R.id.quick_props_include);
             if (quickPropsPanel == null) return;
             quickPropsId = quickPropsPanel.findViewById(R.id.quick_props_id);
             quickPropsText = quickPropsPanel.findViewById(R.id.quick_props_text);
