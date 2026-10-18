@@ -111,7 +111,8 @@ public class ViewEditorFragment extends qA {
     /** Инициализация кнопки-шторки нижней панели свойств. */
     private void initBottomToggle(ViewGroup viewGroup) {
         try {
-            quickBottomToggle = requireActivity().findViewById(R.id.bottom_panel_toggle_include);
+            // Кнопка теперь внутри viewProperty. Ищем её там.
+            quickBottomToggle = viewProperty.findViewById(R.id.bottom_panel_toggle_include);
             if (quickBottomToggle == null) return;
             quickBottomToggle.setOnClickListener(v -> {
                 try {
@@ -302,6 +303,10 @@ public class ViewEditorFragment extends qA {
                 n();
                 viewProperty.e();
                 hideQuickPropsPanel();
+                // Скрываем и нижнюю панель, чтобы всё было чисто при клике по пустому месту
+                if (isQuickPropsEnabled()) {
+                    ViewEditorFragment.this.a(false);
+                }
             }
 
             @Override

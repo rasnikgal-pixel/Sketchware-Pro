@@ -93,11 +93,7 @@
 
             
 
-            <include
-                android:id="@+id/bottom_panel_toggle_include"
-                layout="@layout/bottom_panel_toggle"
-                android:layout_width="match_parent"
-                android:layout_height="24dp" />
+            
 
             <LinearLayout
                 android:id="@+id/bottom_bar"
