@@ -719,7 +719,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
      */
     private void checkLogicBeforeBuild() {
         try {
-            new MaterialAlertDialogBuilder(this).setTitle("DEBUG").setMessage("PREFLIGHT: start").setPositiveButton("OK", null).show();
             // Тумблер выключен → сразу сборка
             if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
                     mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD)) {
@@ -729,7 +728,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
 
             // Обходим Activity-экраны проекта
             java.util.ArrayList<ProjectFileBean> activities = jC.b(sc_id).b();
-            new MaterialAlertDialogBuilder(this).setTitle("DEBUG").setMessage("PREFLIGHT: activities=" + (activities == null ? "null" : activities.size())).setPositiveButton("OK", null).show();
             if (activities == null || activities.isEmpty()) {
                 startBuildTask();
                 return;
@@ -741,10 +739,8 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 preflightIssues = mod.jbk.util.ProjectPreflightChecker.check(
                         this, sc_id, activities, null);
             } catch (Throwable t) {
-                new MaterialAlertDialogBuilder(this).setTitle("DEBUG").setMessage("PREFLIGHT: exception=" + t).setPositiveButton("OK", null).show();
                 preflightIssues = new java.util.ArrayList<>();
             }
-            new MaterialAlertDialogBuilder(this).setTitle("DEBUG").setMessage("PREFLIGHT: issues=" + (preflightIssues == null ? "null" : preflightIssues.size())).setPositiveButton("OK", null).show();
             int preflightCritical = 0;
             int preflightWarning = 0;
             if (preflightIssues != null) {
@@ -834,7 +830,6 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
                 msg.append("\n");
             }
 
-            new MaterialAlertDialogBuilder(this).setTitle("DEBUG").setMessage("PREFLIGHT: showing dialog, C=" + totalCritical + " W=" + totalWarning).setPositiveButton("OK", null).show();
             String title = totalCritical > 0
                     ? Helper.getResString(R.string.auto_design_activity_019)
                     : Helper.getResString(R.string.auto_design_activity_020);

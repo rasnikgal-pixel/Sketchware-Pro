@@ -110,21 +110,19 @@ public final class ProjectPreflightChecker {
             java.util.LinkedHashSet<String> found = new java.util.LinkedHashSet<>();
             for (ProjectFileBean pfb : activities) {
                 if (pfb == null) continue;
-                String javaName = pfb.getJavaName();
-                if (javaName == null || javaName.isEmpty()) continue;
+                String xmlName = pfb.getXmlName();
+                if (xmlName == null || xmlName.isEmpty()) continue;
+                String xmlWithExt = xmlName.endsWith(".xml") ? xmlName : xmlName + ".xml";
                 java.util.ArrayList<com.besome.sketch.beans.ViewBean> views;
                 try {
-                    views = a.a.a.jC.a(scId).d(javaName);
+                    views = a.a.a.jC.a(scId).d(xmlWithExt);
                 } catch (Throwable t) {
                     continue;
                 }
                 if (views == null) continue;
-                StringBuilder debugInfo = new StringBuilder();
-                debugInfo.append("views.size()=").append(views.size()).append("; ");
                 for (com.besome.sketch.beans.ViewBean v : views) {
                     if (v == null) continue;
                     int t = v.type;
-                    debugInfo.append("type=").append(t).append(",");
                     String widgetName = null;
                     if (t == ViewBeans.VIEW_TYPE_LAYOUT_TABLAYOUT) widgetName = "TabLayout";
                     else if (t == ViewBeans.VIEW_TYPE_LAYOUT_BOTTOMNAVIGATIONVIEW) widgetName = "BottomNavigationView";
@@ -133,13 +131,7 @@ public final class ProjectPreflightChecker {
                     else if (t == com.besome.sketch.beans.ViewBean.VIEW_TYPE_WIDGET_FAB) widgetName = "FloatingActionButton";
                     if (widgetName != null) found.add(widgetName);
                 }
-                if (ctx instanceof android.app.Activity) {
-                    new com.google.android.material.dialog.MaterialAlertDialogBuilder((android.app.Activity) ctx)
-                            .setTitle("PREFLIGHT DEBUG")
-                            .setMessage("AppCompat enabled=" + appCompat.isEnabled() + "\n" + debugInfo.toString())
-                            .setPositiveButton("OK", null)
-                            .show();
-                }
+                // (отладка убрана)
             }
 
             if (!found.isEmpty()) {
