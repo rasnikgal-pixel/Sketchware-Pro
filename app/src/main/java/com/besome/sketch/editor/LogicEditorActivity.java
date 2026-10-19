@@ -2108,6 +2108,26 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
         // Search field for block palette (issue #1971)
         android.widget.EditText blockSearchInput = findViewById(R.id.block_search_input);
+        
+        // Обработчик крестика очистки (чтобы поиск сбрасывался мгновенно)
+        com.google.android.material.textfield.TextInputLayout searchLayout = findViewById(R.id.block_search_layout);
+        if (searchLayout != null) {
+            searchLayout.setEndIconOnClickListener(v -> {
+                if (blockSearchInput != null) {
+                    blockSearchInput.setText("");
+                    blockSearchQuery = "";
+                    if (m != null) m.setBlockSearchQuery("");
+                    if (extraPaletteBlock != null) {
+                        if (lastPaletteId != -1) {
+                            extraPaletteBlock.setBlock(lastPaletteId, lastPaletteColor);
+                        } else {
+                            extraPaletteBlock.setBlockAll(lastPaletteColor);
+                        }
+                    }
+                }
+            });
+        }
+
         if (blockSearchInput != null) {
             blockSearchInput.addTextChangedListener(new android.text.TextWatcher() {
                 @Override
