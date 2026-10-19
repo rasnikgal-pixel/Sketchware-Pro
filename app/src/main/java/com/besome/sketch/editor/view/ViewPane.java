@@ -1069,7 +1069,9 @@ public class ViewPane extends RelativeLayout {
     }
 
     public void addViewAndUpdateIndex(View view) {
+        if (!(view instanceof ItemView)) return; // защита от NPE (view может быть не ItemView)
         ViewBean bean = ((ItemView) view).getBean();
+        if (bean == null) return; // защита от NPE (bean может быть null)
         if (rootLayout != null) {
             ViewGroup viewGroup = rootLayout.findViewWithTag(bean.parent);
             viewGroup.addView(view, bean.index);
