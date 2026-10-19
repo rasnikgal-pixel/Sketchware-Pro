@@ -194,7 +194,7 @@ public final class ScienceBlocks {
                 "alpha %1$d on color %2$s"));
 
         // Date: текущая дата в формате
-        list.add(blk("sciFormatDateNow", "s", "",
+        list.add(blk("sciFormatDateNow", "d", "",
                 "((java.util.function.Supplier<String>) () -> { try { return new java.text.SimpleDateFormat(%1$s, java.util.Locale.getDefault()).format(new java.util.Date()); } catch (Throwable _t) { return \"\"; } }).get()",
                 "now in format %1$s"));
 
@@ -204,12 +204,12 @@ public final class ScienceBlocks {
                 "parse %1$s with format %2$s to millis"));
 
         // File: имя файла из пути
-        list.add(blk("sciGetFileName", "s", "",
+        list.add(blk("sciGetFileName", "d", "",
                 "((java.util.function.Supplier<String>) () -> { try { return new java.io.File(%1$s).getName(); } catch (Throwable _t) { return \"\"; } }).get()",
                 "name of %1$s"));
 
         // File: расширение файла из пути
-        list.add(blk("sciGetFileExtension", "s", "",
+        list.add(blk("sciGetFileExtension", "d", "",
                 "((java.util.function.Supplier<String>) () -> { try { String _n = new java.io.File(%1$s).getName(); int _i = _n.lastIndexOf('.'); return _i > 0 ? _n.substring(_i + 1) : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
                 "extension of %1$s"));
 
@@ -227,7 +227,7 @@ public final class ScienceBlocks {
 
 
         // Accounting: Сумма прописью (рубли и копейки)
-        list.add(blk("sciMoneyToWords", "s", "",
+        list.add(blk("sciMoneyToWords", "d", "",
                 "((java.util.function.Supplier<String>) () -> { try { " +
                 "double _val = Math.abs((double)(%1$s)); " +
                 "long _rub = (long) _val; " +
