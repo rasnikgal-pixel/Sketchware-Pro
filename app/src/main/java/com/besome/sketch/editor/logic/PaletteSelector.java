@@ -93,7 +93,9 @@ public class PaletteSelector extends RecyclerView {
             for (java.util.HashMap<String, Object> map : allBlocks) {
                 Object paletteId = map.get("palette");
                 if (paletteId != null) {
-                    String key = paletteId.toString();
+                    // Приводим к строке и убираем возможные пробелы/хвосты .0
+                    String key = String.valueOf(paletteId).trim();
+                    if (key.endsWith(".0")) key = key.substring(0, key.length() - 2);
                     blockCounts.put(key, blockCounts.getOrDefault(key, 0) + 1);
                 }
             }
@@ -112,7 +114,8 @@ public class PaletteSelector extends RecyclerView {
             // Добавляем счётчик, если это не системная палитра (Конструктор/Избранное)
             if (id != mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID
                     && id != mod.jbk.util.FavoriteBlocksManager.FAVORITE_PALETTE_ID) {
-                int count = blockCounts.getOrDefault(String.valueOf(id), 0);
+                String idStr = String.valueOf(id).trim();
+                int count = blockCounts.getOrDefault(idStr, 0);
                 displayName = displayName + " (" + count + ")";
             }
             
