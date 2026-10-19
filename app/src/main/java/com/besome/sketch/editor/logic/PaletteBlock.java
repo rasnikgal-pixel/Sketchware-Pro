@@ -64,6 +64,12 @@ public class PaletteBlock extends LinearLayout {
     }
 
     /** Restores the scroll position for the active palette. Call after blocks have been added. */
+    public void scrollToTop() {
+        if (binding != null && binding.scroll != null) {
+            binding.scroll.post(() -> binding.scroll.scrollTo(0, 0));
+        }
+    }
+
     public void restoreScrollPosition() {
         if (currentPaletteId < 0) return;
         try {

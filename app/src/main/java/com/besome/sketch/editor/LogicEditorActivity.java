@@ -2009,7 +2009,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         // Открываем панель после полной отрисовки, чтобы избежать бага с пустым экраном
         findViewById(android.R.id.content).post(() -> {
             e(true);
-            if (O != null) O.scrollToTop();
+            if (m != null) m.scrollToTop();
         });
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
         

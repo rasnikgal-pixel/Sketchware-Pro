@@ -113,7 +113,7 @@ public class PaletteSelector extends RecyclerView {
         paletteAdapter.selectPaletteById(tag);
         if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
                 mod.hilal.saif.activities.tools.ConfigActivity.SETTING_REMEMBER_PALETTE_POSITION)) {
-            scrollToTop();
+            postDelayed(() -> scrollToPosition(0), 100);
         }
     }
 
