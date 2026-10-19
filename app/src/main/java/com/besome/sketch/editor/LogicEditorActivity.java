@@ -221,7 +221,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         ArrayList<BlockBean> eventBlocks = jC.a(scId).a(M.getJavaName(), id + "_" + eventName);
         if (eventBlocks != null) {
             if (eventBlocks.isEmpty()) {
-                runOnUiThread(() -> e(X));
+                // Панель блоков не сбрасываем — она уже открыта в onCreate
             }
 
             boolean needToFindRoot = true;
