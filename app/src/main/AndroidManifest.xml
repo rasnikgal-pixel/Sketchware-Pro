@@ -59,7 +59,7 @@
             android:name="com.besome.sketch.editor.LogicEditorActivity"
             android:configChanges="orientation"
             android:theme="@style/Theme.SketchwarePro.SmallToolbar"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.besome.sketch.editor.PropertyActivity"
             android:configChanges="orientation|screenSize" />
