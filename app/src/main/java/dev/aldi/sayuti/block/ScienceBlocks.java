@@ -172,5 +172,25 @@ public final class ScienceBlocks {
         list.add(blk("sciUsn15", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)((%1$s - %2$s) * 15.0 / 100.0); } catch (Throwable _t) { return 0.0; } }).get()",
                 "💰 Accounting: USN 15%"));
+
+        // ✅ Validation: email
+        list.add(blk("sciIsValidEmail", "b", "",
+                "((java.util.function.Supplier<Boolean>) () -> { try { return android.util.Patterns.EMAIL_ADDRESS.matcher(%1$s).matches(); } catch (Throwable _t) { return false; } }).get()",
+                "✅ Validation: %1$s is valid email"));
+
+        // ✅ Validation: пустая строка (с учётом пробелов)
+        list.add(blk("sciIsEmptyString", "b", "",
+                "%1$s.trim().isEmpty()",
+                "✅ Validation: %1$s is empty"));
+
+        // 🎨 Color: parse "#RRGGBB" -> int
+        list.add(blk("sciParseColor", "d", "",
+                "((java.util.function.Supplier<Double>) () -> { try { return (double) android.graphics.Color.parseColor(%1$s); } catch (Throwable _t) { return 0.0; } }).get()",
+                "🎨 Color: parse %1$s to int"));
+
+        // 🎨 Color: add alpha (0-255) to color
+        list.add(blk("sciColorWithAlpha", "d", "",
+                "((java.util.function.Supplier<Double>) () -> { try { return (double) (((int)(%2$s) & 0xFFFFFF) | (((int)(%1$s) & 0xFF) << 24)); } catch (Throwable _t) { return 0.0; } }).get()",
+                "🎨 Color: alpha %1$d on color %2$s"));
     }
 }
