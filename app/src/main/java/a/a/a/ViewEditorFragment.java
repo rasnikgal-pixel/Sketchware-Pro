@@ -279,7 +279,14 @@ public class ViewEditorFragment extends qA {
     }
 
     private void hideQuickPropsPanel() {
-        if (quickPropsPanel != null) quickPropsPanel.setVisibility(View.GONE);
+        // Не скрываем панель, если пользователь вводит текст (фокус на EditText)
+        if (quickPropsPanel != null) {
+            android.view.View focused = quickPropsPanel.findFocus();
+            if (focused instanceof android.widget.EditText) {
+                return; // панель остаётся видимой, пока идёт ввод
+            }
+            quickPropsPanel.setVisibility(View.GONE);
+        }
         hideBottomToggle();
         quickPropsCurrentBean = null;
     }
