@@ -1524,6 +1524,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     }
 
     public void e(boolean z) {
+        android.util.Log.e("PALETTE_BUG", "e(" + z + ") вызван из:", new Throwable());
         ObjectAnimator objectAnimator;
         if (!W) {
             h(getResources().getConfiguration().orientation);
