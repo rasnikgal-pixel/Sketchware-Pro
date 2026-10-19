@@ -1939,9 +1939,15 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     }
 
     @Override
+    private int lastOrientation = -1;
+
     public void onConfigurationChanged(@NonNull Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        g(configuration.orientation);
+        // Защита от сброса панели при появлении клавиатуры (меняется screenSize, но не orientation)
+        if (lastOrientation != configuration.orientation) {
+            lastOrientation = configuration.orientation;
+            g(configuration.orientation);
+        }
     }
 
     @Override
