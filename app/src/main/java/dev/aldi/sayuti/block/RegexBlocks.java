@@ -52,8 +52,6 @@ public final class RegexBlocks {
                 "((java.util.function.Supplier<String>) () -> { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return (_m.find() && _m.groupCount() >= (int)(%3$s)) ? _m.group((int)(%3$s)) : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
                 "group %3$d of regex %2$s in %1$s"));
 
-        list.add(blk("regexIsValid", "b", "",
-                "((java.util.function.Supplier<Boolean>) () -> { try { java.util.regex.Pattern.compile(%1$s); return true; } catch (Throwable _t) { return false; } }).get()",
-                "regex %s is valid"));
+        list.add(blk("regexIsValid", "b", "", "((java.util.function.Supplier<Boolean>) () -> { try { java.util.regex.Pattern.compile(%1$s); return true; } catch (Throwable _t) { return false; } }).get()", "regex %s is valid %1$s"));
     }
 }

@@ -24,24 +24,14 @@ public final class SqliteBlocks {
     }
 
     public static void addBlocks(ArrayList<HashMap<String, Object>> list) {
-        list.add(blk("sqliteOpen", "v", "android.database.sqlite.SQLiteDatabase",
-                "openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null)",
-                "open SQLite DB %s"));
+        list.add(blk("sqliteOpen", "v", "android.database.sqlite.SQLiteDatabase", "openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null)", "open SQLite DB %s %1$s"));
 
-        list.add(blk("sqliteExec", " ", "",
-                "%1$s.execSQL(%2$s);",
-                "SQLite %m.db exec SQL %s"));
+        list.add(blk("sqliteExec", " ", "", "%1$s.execSQL(%2$s);", "SQLite %m.db exec SQL %s %1$s %2$s"));
 
-        list.add(blk("sqliteQuery", "s", "",
-                "((java.util.function.Supplier<String>) () -> { StringBuilder _sb = new StringBuilder(); android.database.Cursor _c = null; try { _c = %1$s.rawQuery(%2$s, null); if (_c != null) { while (_c.moveToNext()) { for (int _i = 0; _i < _c.getColumnCount(); _i++) { _sb.append(_c.getString(_i)).append(\"|\"); } _sb.append(\"\\n\"); } } } catch (Throwable _t) {} finally { if (_c != null) _c.close(); } return _sb.toString(); }).get()",
-                "SQLite %m.db query %s"));
+        list.add(blk("sqliteQuery", "s", "", "((java.util.function.Supplier<String>) () -> { StringBuilder _sb = new StringBuilder(); android.database.Cursor _c = null; try { _c = %1$s.rawQuery(%2$s, null); if (_c != null) { while (_c.moveToNext()) { for (int _i = 0; _i < _c.getColumnCount(); _i++) { _sb.append(_c.getString(_i)).append(\"|\"); } _sb.append(\"\\n\"); } } } catch (Throwable _t) {} finally { if (_c != null) _c.close(); } return _sb.toString(); }).get()", "SQLite %m.db query %s %1$s %2$s"));
 
-        list.add(blk("sqliteGetCount", "d", "",
-                "((java.util.function.Supplier<Double>) () -> { double _n = 0; android.database.Cursor _c = null; try { _c = %1$s.rawQuery(%2$s, null); if (_c != null) _n = (double) _c.getCount(); } catch (Throwable _t) {} finally { if (_c != null) _c.close(); } return _n; }).get()",
-                "SQLite %m.db count rows in %s"));
+        list.add(blk("sqliteGetCount", "d", "", "((java.util.function.Supplier<Double>) () -> { double _n = 0; android.database.Cursor _c = null; try { _c = %1$s.rawQuery(%2$s, null); if (_c != null) _n = (double) _c.getCount(); } catch (Throwable _t) {} finally { if (_c != null) _c.close(); } return _n; }).get()", "SQLite %m.db count rows in %s %1$s %2$s"));
 
-        list.add(blk("sqliteClose", " ", "",
-                "%1$s.close();",
-                "SQLite %m.db close"));
+        list.add(blk("sqliteClose", " ", "", "%1$s.close();", "SQLite %m.db close %1$s"));
     }
 }

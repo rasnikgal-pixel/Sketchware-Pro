@@ -31,147 +31,147 @@ public final class ScienceBlocks {
         // Закон Ома
         list.add(blk("sciOhmI", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Ohm: I = U / R"));
+                "Ohm: I = %1$s / %2$s"));
 
         list.add(blk("sciOhmU", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Ohm: U = I * R"));
+                "Ohm: U = %1$s * %2$s"));
 
         list.add(blk("sciOhmR", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Ohm: R = U / I"));
+                "Ohm: R = %1$s / %2$s"));
 
         // Мощность
         list.add(blk("sciPowerUI", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Power: P = U * I"));
+                "Power: P = %1$s * %2$s"));
 
         list.add(blk("sciPowerI2R", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %1$s * %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Power: P = I² * R"));
+                "Power: P = %1$s² * %2$s"));
 
         list.add(blk("sciPowerU2R", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Power: P = U² / R"));
+                "Power: P = %1$s² / %2$s"));
 
         // Реактивное сопротивление
         list.add(blk("sciXc", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(1.0 / (2.0 * Math.PI * %1$s * %2$s)); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Xc = 1 / (2πfC)"));
+                "Xc = 1 / (2π * %1$s * %2$s)"));
 
         list.add(blk("sciXl", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(2.0 * Math.PI * %1$s * %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Xl = 2πfL"));
+                "Xl = 2π * %1$s * %2$s"));
 
         // Механика
         list.add(blk("sciSpeed", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Mechanics: v = s / t"));
+                "Mechanics: v = %1$s / %2$s"));
 
         list.add(blk("sciAccel", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)((%1$s - %2$s) / %3$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Mechanics: a = (v - v0) / t"));
+                "Mechanics: a = (%1$s - %2$s) / %3$s"));
 
         list.add(blk("sciForce", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "Mechanics: F = m * a"));
+                "Mechanics: F = %1$s * %2$s"));
 
         // Химия
         list.add(blk("sciMolarMass", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "M = m / n"));
+                "M = %1$s / %2$s"));
 
         list.add(blk("sciDensity", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "density ρ = m / V"));
+                "density ρ = %1$s / %2$s"));
 
         list.add(blk("sciPressure", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "pressure P = F / S"));
+                "pressure P = %1$s / %2$s"));
 
         list.add(blk("sciWork", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "work A = F * s"));
+                "work A = %1$s * %2$s"));
 
         list.add(blk("sciEnergy", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * 9.8 * %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "energy E = mgh (g=9.8)"));
+                "energy E = %1$s * 9.8 * %2$s"));
 
         list.add(blk("sciMechPower", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "power N = A / t"));
+                "power N = %1$s / %2$s"));
 
         list.add(blk("sciGravity", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(6.674e-11 * %1$s * %2$s / (%3$s * %3$s)); } catch (Throwable _t) { return 0.0; } }).get()",
-                "gravity F = G·m1·m2/r²"));
+                "gravity F = G·%1$s·%2$s/%3$s²"));
 
         list.add(blk("sciConcentration", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "concentration C = n / V"));
+                "concentration C = %1$s / %2$s"));
 
         list.add(blk("sciSolutionMass", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s + %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "solution mass = m1 + m2"));
+                "solution mass = %1$s + %2$s"));
 
         list.add(blk("sciAmount", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s / %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "amount n = m / M"));
+                "amount n = %1$s / %2$s"));
 
         list.add(blk("sciMolarVolume", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * 22.4); } catch (Throwable _t) { return 0.0; } }).get()",
-                "molar volume V = n · 22.4"));
+                "molar volume V = %1$s * 22.4"));
 
         list.add(blk("sciVat", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %2$s / 100.0); } catch (Throwable _t) { return 0.0; } }).get()",
-                "VAT = sum · rate / 100"));
+                "VAT = %1$s * %2$s / 100"));
 
         list.add(blk("sciVatIncluded", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * (1.0 + %2$s / 100.0)); } catch (Throwable _t) { return 0.0; } }).get()",
-                "sum with VAT"));
+                "sum with VAT = %1$s * (1 + %2$s/100)"));
 
         list.add(blk("sciVatExtract", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %2$s / (100.0 + %2$s)); } catch (Throwable _t) { return 0.0; } }).get()",
-                "extract VAT"));
+                "extract VAT = %1$s * %2$s / (100 + %2$s)"));
 
         list.add(blk("sciPercent", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * %2$s / 100.0); } catch (Throwable _t) { return 0.0; } }).get()",
-                "percent of number"));
+                "percent of number = %1$s * %2$s / 100"));
 
         list.add(blk("sciAddPercent", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * (1.0 + %2$s / 100.0)); } catch (Throwable _t) { return 0.0; } }).get()",
-                "number + percent"));
+                "number + percent = %1$s * (1 + %2$s/100)"));
 
         list.add(blk("sciSubPercent", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * (1.0 - %2$s / 100.0)); } catch (Throwable _t) { return 0.0; } }).get()",
-                "number - percent"));
+                "number - percent = %1$s * (1 - %2$s/100)"));
 
         list.add(blk("sciProfit", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s - %2$s); } catch (Throwable _t) { return 0.0; } }).get()",
-                "profit = income - expense"));
+                "profit = %1$s - %2$s"));
 
         list.add(blk("sciMargin", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)((%1$s - %2$s) / %1$s * 100.0); } catch (Throwable _t) { return 0.0; } }).get()",
-                "margin % = (profit/income)·100"));
+                "margin % = (%1$s - %2$s) / %1$s * 100"));
 
         list.add(blk("sciMarkup", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)((%1$s - %2$s) / %2$s * 100.0); } catch (Throwable _t) { return 0.0; } }).get()",
-                "markup % = (profit/cost)·100"));
+                "markup % = (%1$s - %2$s) / %2$s * 100"));
 
         list.add(blk("sciCompound", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * Math.pow(1.0 + %2$s / 100.0, %3$s)); } catch (Throwable _t) { return 0.0; } }).get()",
-                "compound interest"));
+                "compound interest = %1$s * (1 + %2$s/100)^%3$s"));
 
         list.add(blk("sciAnnuity", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * (%2$s / 100.0) / (1.0 - Math.pow(1.0 + %2$s / 100.0, -%3$s))); } catch (Throwable _t) { return 0.0; } }).get()",
-                "annuity payment"));
+                "annuity payment = %1$s * %2$s / (1 - (1+%2$s)^-%3$s)"));
 
         list.add(blk("sciUsn6", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)(%1$s * 6.0 / 100.0); } catch (Throwable _t) { return 0.0; } }).get()",
-                "USN 6%"));
+                "USN 6% = %1$s * 6 / 100"));
 
         list.add(blk("sciUsn15", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double)((%1$s - %2$s) * 15.0 / 100.0); } catch (Throwable _t) { return 0.0; } }).get()",
-                "USN 15%"));
+                "USN 15% = (%1$s - %2$s) * 15 / 100"));
 
         // Validation: email
         list.add(blk("sciIsValidEmail", "b", "",

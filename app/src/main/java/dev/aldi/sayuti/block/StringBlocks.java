@@ -27,14 +27,11 @@ public final class StringBlocks {
     }
 
     public static void addBlocks(ArrayList<HashMap<String, Object>> list) {
-        list.add(blk("strToUpper", "s", "",
-                "%1$s.toUpperCase()", "%s to uppercase"));
+        list.add(blk("strToUpper", "s", "", "%1$s.toUpperCase()", "%s to uppercase %1$s"));
 
-        list.add(blk("strToLower", "s", "",
-                "%1$s.toLowerCase()", "%s to lowercase"));
+        list.add(blk("strToLower", "s", "", "%1$s.toLowerCase()", "%s to lowercase %1$s"));
 
-        list.add(blk("strTrim", "s", "",
-                "%1$s.trim()", "%s trimmed"));
+        list.add(blk("strTrim", "s", "", "%1$s.trim()", "%s trimmed %1$s"));
 
         list.add(blk("strReplace", "s", "",
                 "%1$s.replace(%2$s, %3$s)", "%1$s replace %2$s with %3$s"));
@@ -47,8 +44,7 @@ public final class StringBlocks {
                 "(double) %1$s.split(java.util.regex.Pattern.quote(%2$s)).length",
                 "%1$s split by %2$s count"));
 
-        list.add(blk("strLength", "d", "",
-                "(double) %1$s.length()", "length of %s"));
+        list.add(blk("strLength", "d", "", "(double) %1$s.length()", "length of %s %1$s"));
 
         list.add(blk("strContains", "b", "",
                 "%1$s.contains(%2$s)", "%1$s contains %2$s"));
@@ -62,7 +58,6 @@ public final class StringBlocks {
         list.add(blk("strIndexOf", "d", "",
                 "(double) %1$s.indexOf(%2$s)", "index of %2$s in %1$s"));
 
-        list.add(blk("strReverse", "s", "",
-                "new StringBuilder(%1$s).reverse().toString()", "%s reversed"));
+        list.add(blk("strReverse", "s", "", "new StringBuilder(%1$s).reverse().toString()", "%s reversed %1$s"));
     }
 }

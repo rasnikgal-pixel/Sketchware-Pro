@@ -36,17 +36,13 @@ public final class MathBlocks {
                 "Math.hypot(%3$s - %1$s, %4$s - %2$s)",
                 "distance between (%1$s, %2$s) and (%3$s, %4$s)"));
 
-        list.add(blk("mathDegToRad", "d", "",
-                "Math.toRadians(%1$s)", "%s degrees to radians"));
+        list.add(blk("mathDegToRad", "d", "", "Math.toRadians(%1$s)", "%s degrees to radians %1$s"));
 
-        list.add(blk("mathRadToDeg", "d", "",
-                "Math.toDegrees(%1$s)", "%s radians to degrees"));
+        list.add(blk("mathRadToDeg", "d", "", "Math.toDegrees(%1$s)", "%s radians to degrees %1$s"));
 
-        list.add(blk("mathSign", "d", "",
-                "Math.signum(%1$s)", "sign of %s"));
+        list.add(blk("mathSign", "d", "", "Math.signum(%1$s)", "sign of %s %1$s"));
 
-        list.add(blk("mathLog2", "d", "",
-                "(Math.log(%1$s) / Math.log(2))", "log2 of %s"));
+        list.add(blk("mathLog2", "d", "", "(Math.log(%1$s) / Math.log(2))", "log2 of %s %1$s"));
 
         list.add(blk("mathRandomFloat", "d", "",
                 "Math.random()", "random float 0..1"));
