@@ -2900,4 +2900,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="palette_view_func">Элементы</string>
     <string name="palette_component_func">Компоненты</string>
     <string name="palette_moreblock">Больше блоков</string>
+    <string name="settings_category_palette">Палитра блоков</string>
+    <string name="settings_remember_palette_position_title">Запоминать положение в палитре</string>
+    <string name="settings_remember_palette_position_summary">При открытии редактора прокручивать палитру и блоки к последнему выбранному</string>
 </resources>

@@ -2836,4 +2836,7 @@ ACTION_VIEW
     <string name="palette_view_func">Елементи</string>
     <string name="palette_component_func">Компоненти</string>
     <string name="palette_moreblock">Більше блоків</string>
+    <string name="settings_category_palette">Палітра блоків</string>
+    <string name="settings_remember_palette_position_title">Запам\'ятовувати позицію в палітрі</string>
+    <string name="settings_remember_palette_position_summary">Прокручувати палітру та блоки до останнього вибраного при відкритті редактора</string>
 </resources>

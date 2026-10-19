@@ -104,8 +104,16 @@ public class PaletteSelector extends RecyclerView {
         }
     }
 
+    public void scrollToTop() {
+        smoothScrollToPosition(0);
+    }
+
     public void performClickPalette(int tag) {
         paletteAdapter.selectPaletteById(tag);
+        if (!mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_REMEMBER_PALETTE_POSITION)) {
+            scrollToTop();
+        }
     }
 
     private void addDynamicPalette(HashMap<String, Object> paletteMap) {

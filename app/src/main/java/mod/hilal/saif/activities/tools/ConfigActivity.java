@@ -74,6 +74,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
     public static final String SETTING_LIVE_SEARCH_ENABLED = "live-search-enabled";
     public static final String SETTING_LOGIC_EDITOR_GPU = "logic-editor-gpu";
     public static final String SETTING_QUICK_PROPS_PANEL = "quick-props-panel";
+    public static final String SETTING_REMEMBER_PALETTE_POSITION = "remember-palette-position";
     public static final String SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH = "blockDir";
     // SkProj export settings
     public static final String SETTING_SKPROJ_INCLUDE_COMPONENTS = "skproj-include-components";

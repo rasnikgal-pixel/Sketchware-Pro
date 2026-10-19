@@ -2890,4 +2890,7 @@ ACTION_VIEW
     <string name="palette_view_func">Views</string>
     <string name="palette_component_func">Components</string>
     <string name="palette_moreblock">More blocks</string>
+    <string name="settings_category_palette">Block palette</string>
+    <string name="settings_remember_palette_position_title">Remember palette position</string>
+    <string name="settings_remember_palette_position_summary">Scroll palette and blocks to the last selected when opening the editor</string>
 </resources>

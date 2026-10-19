@@ -230,4 +230,12 @@
             app:summary="@string/settings_icons_mixed_summary"
             app:title="@string/settings_icons_mixed_title" />
     </PreferenceCategory>
+    <PreferenceCategory app:title="@string/settings_category_palette">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:defaultValue="false"
+            app:key="remember-palette-position"
+            app:summary="@string/settings_remember_palette_position_summary"
+            app:title="@string/settings_remember_palette_position_title" />
+    </PreferenceCategory>
 </PreferenceScreen>

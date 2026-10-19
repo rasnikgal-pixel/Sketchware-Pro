@@ -2836,4 +2836,7 @@ ACTION_VIEW
     <string name="palette_view_func">元素</string>
     <string name="palette_component_func">组件</string>
     <string name="palette_moreblock">更多积木</string>
+    <string name="settings_category_palette">积木面板</string>
+    <string name="settings_remember_palette_position_title">记住积木面板位置</string>
+    <string name="settings_remember_palette_position_summary">打开编辑器时滚动到上次选中的积木</string>
 </resources>
