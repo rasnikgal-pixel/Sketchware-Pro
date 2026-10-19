@@ -192,5 +192,35 @@ public final class ScienceBlocks {
         list.add(blk("sciColorWithAlpha", "d", "",
                 "((java.util.function.Supplier<Double>) () -> { try { return (double) (((int)(%2$s) & 0xFFFFFF) | (((int)(%1$s) & 0xFF) << 24)); } catch (Throwable _t) { return 0.0; } }).get()",
                 "🎨 Color: alpha %1$d on color %2$s"));
+
+        // 📅 Date: текущая дата в формате
+        list.add(blk("sciFormatDateNow", "s", "",
+                "((java.util.function.Supplier<String>) () -> { try { return new java.text.SimpleDateFormat(%1$s, java.util.Locale.getDefault()).format(new java.util.Date()); } catch (Throwable _t) { return \"\"; } }).get()",
+                "📅 Date: now in format %1$s"));
+
+        // 📅 Date: строка с датой -> миллисекунды
+        list.add(blk("sciParseDate", "d", "",
+                "((java.util.function.Supplier<Double>) () -> { try { return (double) new java.text.SimpleDateFormat(%2$s, java.util.Locale.getDefault()).parse(%1$s).getTime(); } catch (Throwable _t) { return 0.0; } }).get()",
+                "📅 Date: parse %1$s with format %2$s to millis"));
+
+        // 📁 File: имя файла из пути
+        list.add(blk("sciGetFileName", "s", "",
+                "((java.util.function.Supplier<String>) () -> { try { return new java.io.File(%1$s).getName(); } catch (Throwable _t) { return \"\"; } }).get()",
+                "📁 File: name of %1$s"));
+
+        // 📁 File: расширение файла из пути
+        list.add(blk("sciGetFileExtension", "s", "",
+                "((java.util.function.Supplier<String>) () -> { try { String _n = new java.io.File(%1$s).getName(); int _i = _n.lastIndexOf('.'); return _i > 0 ? _n.substring(_i + 1) : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
+                "📁 File: extension of %1$s"));
+
+        // 📐 Math: округлить до N знаков
+        list.add(blk("sciRoundTo", "d", "",
+                "((java.util.function.Supplier<Double>) () -> { try { return (double) java.math.BigDecimal.valueOf((double)(%1$s)).setScale((int)(%2$s), java.math.RoundingMode.HALF_UP).doubleValue(); } catch (Throwable _t) { return 0.0; } }).get()",
+                "📐 Math: round %1$s to %2$d decimals"));
+
+        // 🌐 Network: есть ли интернет
+        list.add(blk("sciIsNetworkAvailable", "b", "",
+                "((java.util.function.Supplier<Boolean>) () -> { try { android.net.ConnectivityManager _cm = (android.net.ConnectivityManager) getSystemService(android.content.Context.CONNECTIVITY_SERVICE); android.net.NetworkInfo _ni = _cm.getActiveNetworkInfo(); return _ni != null && _ni.isConnected(); } catch (Throwable _t) { return false; } }).get()",
+                "🌐 Network: is available"));
     }
 }
