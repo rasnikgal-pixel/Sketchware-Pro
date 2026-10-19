@@ -85,12 +85,38 @@ public class PaletteSelector extends RecyclerView {
         boolean hideTemplates = !mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
                 mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_TEMPLATES);
 
+        // --- Подсчёт блоков для каждой палитры ---
+        java.util.HashMap<String, Integer> blockCounts = new java.util.HashMap<>();
+        try {
+            java.util.ArrayList<java.util.HashMap<String, Object>> allBlocks = new java.util.ArrayList<>();
+            mod.hilal.saif.blocks.BlocksHandler.builtInBlocks(allBlocks);
+            for (java.util.HashMap<String, Object> map : allBlocks) {
+                Object paletteId = map.get("palette");
+                if (paletteId != null) {
+                    String key = paletteId.toString();
+                    blockCounts.put(key, blockCounts.getOrDefault(key, 0) + 1);
+                }
+            }
+        } catch (Throwable ignored) {}
+        // -----------------------------------------
+
         for (int i = 0; i < MainCategoriesNames.length; i++) {
             if (hideTemplates
                     && MainCategoriesIds[i] == mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID) {
                 continue;
             }
-            allPalettes.add(new paletteSelectorRecord(MainCategoriesIds[i], MainCategoriesNames[i], MainCategoriesColors[i]));
+            
+            String displayName = MainCategoriesNames[i];
+            int id = MainCategoriesIds[i];
+            
+            // Добавляем счётчик, если это не системная палитра (Конструктор/Избранное)
+            if (id != mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID
+                    && id != mod.jbk.util.FavoriteBlocksManager.FAVORITE_PALETTE_ID) {
+                int count = blockCounts.getOrDefault(String.valueOf(id), 0);
+                displayName = displayName + " (" + count + ")";
+            }
+            
+            allPalettes.add(new paletteSelectorRecord(id, displayName, MainCategoriesColors[i]));
         }
 
         new mod.agus.jcoderz.editor.manage.block.palette.PaletteSelector()
