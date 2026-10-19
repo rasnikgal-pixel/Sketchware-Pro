@@ -2012,6 +2012,37 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             if (O != null) O.scrollToTop();
         });
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
+        
+        // --- Счётчики для UI ---
+        // 1. Количество палитр (из массива в PaletteSelector)
+        try {
+            java.lang.reflect.Field field = paletteSelector.getClass().getDeclaredField("MainCategoriesNames");
+            field.setAccessible(true);
+            String[] palettes = (String[]) field.get(paletteSelector);
+            if (palettes != null) {
+                android.widget.TextView searchHeader = findViewById(R.id.search_header);
+                if (searchHeader != null) {
+                    searchHeader.setText(Helper.getResString(R.string.search_header) + " (" + palettes.length + ")");
+                }
+            }
+        } catch (Throwable ignored) {}
+
+        // 2. Количество блоков (все, кроме Избранного)
+        try {
+            ArrayList<HashMap<String, Object>> allBlocks = new ArrayList<>();
+            mod.hilal.saif.blocks.BlocksHandler.builtInBlocks(allBlocks);
+            int totalBlocks = allBlocks.size();
+            
+            // Устанавливаем hint для поля поиска блока (используем локализованный из XML)
+            android.widget.EditText blockSearchInput = findViewById(R.id.block_search_input);
+            if (blockSearchInput != null) {
+                CharSequence currentHint = blockSearchInput.getHint();
+                if (currentHint != null) {
+                    blockSearchInput.setHint(currentHint + " (" + totalBlocks + ")");
+                }
+            }
+        } catch (Throwable ignored) {}
+        // --- Конец счётчиков ---
         mod.jbk.util.BlockTemplatesManager.setContext(getApplicationContext());
 
         exportTemplatesLauncher = registerForActivityResult(
