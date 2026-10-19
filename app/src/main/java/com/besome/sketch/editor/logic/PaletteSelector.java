@@ -105,7 +105,7 @@ public class PaletteSelector extends RecyclerView {
     }
 
     public void scrollToTop() {
-        smoothScrollToPosition(0);
+        post(() -> scrollToPosition(0));
     }
 
     public void performClickPalette(int tag) {

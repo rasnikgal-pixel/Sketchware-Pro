@@ -38,7 +38,7 @@ public class LogicEditorDrawer extends LinearLayout {
 
     public void scrollToTop() {
         if (scrollView != null) {
-            scrollView.smoothScrollTo(0, 0);
+            scrollView.post(() -> scrollView.scrollTo(0, 0));
         }
     }
 

@@ -2445,6 +2445,12 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         LoadEventBlocksTask loadEventBlocksTask = new LoadEventBlocksTask(this);
         loadEventBlocksTask.execute();
 
+        // Restore block scroll position after blocks are loaded (if setting enabled)
+        if (mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_REMEMBER_PALETTE_POSITION) && m != null) {
+            m.postDelayed(m::restoreScrollPosition, 200);
+        }
+
         z();
     }
 
