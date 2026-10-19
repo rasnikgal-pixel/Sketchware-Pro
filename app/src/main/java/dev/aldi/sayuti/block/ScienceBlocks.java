@@ -222,5 +222,12 @@ public final class ScienceBlocks {
         list.add(blk("sciIsNetworkAvailable", "b", "",
                 "((java.util.function.Supplier<Boolean>) () -> { try { android.net.ConnectivityManager _cm = (android.net.ConnectivityManager) getSystemService(android.content.Context.CONNECTIVITY_SERVICE); android.net.NetworkInfo _ni = _cm.getActiveNetworkInfo(); return _ni != null && _ni.isConnected(); } catch (Throwable _t) { return false; } }).get()",
                 "🌐 Network: is available"));
+
+
+
+        // 💰 Accounting: Сумма прописью (рубли и копейки)
+        list.add(blk("sciMoneyToWords", "s", "",
+                "dev.aldi.sayuti.block.MoneyToWordsHelper.toWords(%1$s)",
+                "💰 Accounting: sum to words (rubles and kopecks)"));
     }
 }
