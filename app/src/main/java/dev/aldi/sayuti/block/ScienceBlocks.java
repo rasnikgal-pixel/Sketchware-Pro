@@ -228,8 +228,8 @@ public final class ScienceBlocks {
 
         // Accounting: Сумма прописью (рубли и копейки)
         list.add(blk("sciMoneyToWords", "d", "",
-                "((java.util.function.Supplier<String>) () -> { try { " +
-                "double _val = Math.abs((double)(%1$s)); " +
+                "com.my.newproject.MainActivity.toWords(%1$s)",
+                "%1$d sum to words")); " +
                 "long _rub = (long) _val; " +
                 "int _kop = (int) Math.round((_val - _rub) * 100); " +
                 "if (_kop >= 100) { _kop = 0; _rub++; } " +
