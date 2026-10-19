@@ -220,7 +220,9 @@ public class ViewPane extends RelativeLayout {
         viewBean.preIndex = -1;
         viewBean.preParent = "";
         viewBean.preParentType = -1;
-        findViewWithTag.setVisibility(VISIBLE);
+        if (findViewWithTag != null) {
+            findViewWithTag.setVisibility(VISIBLE);
+        }
         return (ItemView) findViewWithTag;
     }
 
