@@ -2017,6 +2017,14 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             e(true);
             if (m != null) m.scrollToTop();
         });
+        
+        // Пересчитываем панель при появлении клавиатуры (adjustResize сжимает экран)
+        findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            if (X) {
+                f(getResources().getConfiguration().orientation);
+            }
+        });
+        
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
         
         // --- Счётчики для UI ---
