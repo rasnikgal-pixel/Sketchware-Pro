@@ -225,9 +225,45 @@ public final class ScienceBlocks {
 
 
 
+
         // 💰 Accounting: Сумма прописью (рубли и копейки)
         list.add(blk("sciMoneyToWords", "s", "",
-                "dev.aldi.sayuti.block.MoneyToWordsHelper.toWords(%1$s)",
+                "((java.util.function.Supplier<String>) () -> { try { " +
+                "double _val = Math.abs((double)(%1$s)); " +
+                "long _rub = (long) _val; " +
+                "int _kop = (int) Math.round((_val - _rub) * 100); " +
+                "if (_kop >= 100) { _kop = 0; _rub++; } " +
+                "String[] _ed = {\"\", \"один\", \"два\", \"три\", \"четыре\", \"пять\", \"шесть\", \"семь\", \"восемь\", \"девять\"}; " +
+                "String[] _edf = {\"\", \"одна\", \"две\", \"три\", \"четыре\", \"пять\", \"шесть\", \"семь\", \"восемь\", \"девять\"}; " +
+                "String[] _des = {\"\", \"десять\", \"двадцать\", \"тридцать\", \"сорок\", \"пятьдесят\", \"шестьдесят\", \"семьдесят\", \"восемьдесят\", \"девяносто\"}; " +
+                "String[] _sot = {\"\", \"сто\", \"двести\", \"триста\", \"четыреста\", \"пятьсот\", \"шестьсот\", \"семьсот\", \"восемьсот\", \"девятьсот\"}; " +
+                "String[] _teens = {\"десять\", \"одиннадцать\", \"двенадцать\", \"тринадцать\", \"четырнадцать\", \"пятнадцать\", \"шестнадцать\", \"семнадцать\", \"восемнадцать\", \"девятнадцать\"}; " +
+                "String[] _tys = {\"тысяча\", \"тысячи\", \"тысяч\"}; " +
+                "String[] _mils = {\"миллион\", \"миллиона\", \"миллионов\"}; " +
+                "String[] _mlds = {\"миллиард\", \"миллиарда\", \"миллиардов\"}; " +
+                "java.util.function.BiFunction<Long, String[], String> _fmt = (n, forms) -> { " +
+                "  long _n100 = n % 100; " +
+                "  if (_n100 >= 11 && _n100 <= 19) return forms[2]; " +
+                "  long _n10 = n % 10; " +
+                "  if (_n10 == 1) return forms[0]; " +
+                "  if (_n10 >= 2 && _n10 <= 4) return forms[1]; " +
+                "  return forms[2]; " +
+                "}; " +
+                "StringBuilder _res = new StringBuilder(); " +
+                "if (_rub == 0) { _res.append(\"ноль рублей, \"); } " +
+                "else { " +
+                "  long _r = _rub; " +
+                "  if (_r / 1000000000 > 0) { _res.append(_fmt.apply(_r / 1000000000, _mlds)).append(\" \"); _r %= 1000000000; } " +
+                "  if (_r / 1000000 > 0) { _res.append(_fmt.apply(_r / 1000000, _mils)).append(\" \"); _r %= 1000000; } " +
+                "  if (_r / 1000 > 0) { long _t = _r / 1000; _res.append(_fmt.apply(_t, _tys)).append(\" \"); _r %= 1000; } " +
+                "  if (_r > 0) { _res.append(_fmt.apply(_r, new String[]{\"рубль\", \"рубля\", \"рублей\"})).append(\" \"); } " +
+                "  _res.append(\", \"); " +
+                "} " +
+                "if (_kop == 0) { _res.append(\"ноль копеек\"); } " +
+                "else { _res.append(_fmt.apply((long)_kop, new String[]{\"копейка\", \"копейки\", \"копеек\"})).append(\" \"); } " +
+                "String _s = _res.toString().replace(\",  \", \", \").replace(\" , \", \", \").trim(); " +
+                "return _s; " +
+                "} catch (Throwable _t) { return \"\"; } }).get()",
                 "💰 Accounting: sum to words (rubles and kopecks)"));
     }
 }
