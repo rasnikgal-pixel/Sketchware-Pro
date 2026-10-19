@@ -2881,4 +2881,13 @@ ACTION_VIEW
     <string name="preflight_fixed_toast">Enabled: %1$s. Rebuilding...</string>
     <string name="block_category_currency">Currencies</string>
     <string name="block_category_science">Science</string>
+    <string name="palette_var">Variables</string>
+    <string name="palette_list">Lists</string>
+    <string name="palette_control">Control</string>
+    <string name="palette_operator">Operators</string>
+    <string name="palette_math">Math</string>
+    <string name="palette_file">Files</string>
+    <string name="palette_view_func">Views</string>
+    <string name="palette_component_func">Components</string>
+    <string name="palette_moreblock">More blocks</string>
 </resources>

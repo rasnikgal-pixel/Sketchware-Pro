@@ -2891,4 +2891,13 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="preflight_fixed_toast">Включено: %1$s. Пересборка...</string>
     <string name="block_category_currency">Валюты</string>
     <string name="block_category_science">Наука</string>
+    <string name="palette_var">Переменные</string>
+    <string name="palette_list">Списки</string>
+    <string name="palette_control">Управление</string>
+    <string name="palette_operator">Операторы</string>
+    <string name="palette_math">Математика</string>
+    <string name="palette_file">Файлы</string>
+    <string name="palette_view_func">Элементы</string>
+    <string name="palette_component_func">Компоненты</string>
+    <string name="palette_moreblock">Больше блоков</string>
 </resources>

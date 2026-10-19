@@ -2827,4 +2827,13 @@ ACTION_VIEW
     <string name="preflight_fixed_toast">已启用：%1$s。正在重新构建...</string>
     <string name="block_category_currency">货币</string>
     <string name="block_category_science">科学</string>
+    <string name="palette_var">变量</string>
+    <string name="palette_list">列表</string>
+    <string name="palette_control">控制</string>
+    <string name="palette_operator">运算符</string>
+    <string name="palette_math">数学</string>
+    <string name="palette_file">文件</string>
+    <string name="palette_view_func">元素</string>
+    <string name="palette_component_func">组件</string>
+    <string name="palette_moreblock">更多积木</string>
 </resources>

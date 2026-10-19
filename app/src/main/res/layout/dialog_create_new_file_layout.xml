@@ -64,7 +64,7 @@
             android:id="@+id/chip_file"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/block_category_file"
+            android:text="@string/palette_file"
             android:visibility="gone"
             tools:visibility="visible" />
 

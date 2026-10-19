@@ -2827,4 +2827,13 @@ ACTION_VIEW
     <string name="preflight_fixed_toast">Увімкнено: %1$s. Перебудова...</string>
     <string name="block_category_currency">Валюти</string>
     <string name="block_category_science">Наука</string>
+    <string name="palette_var">Змінні</string>
+    <string name="palette_list">Списки</string>
+    <string name="palette_control">Керування</string>
+    <string name="palette_operator">Оператори</string>
+    <string name="palette_math">Математика</string>
+    <string name="palette_file">Файли</string>
+    <string name="palette_view_func">Елементи</string>
+    <string name="palette_component_func">Компоненти</string>
+    <string name="palette_moreblock">Більше блоків</string>
 </resources>

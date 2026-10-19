@@ -2827,4 +2827,13 @@ ACTION_VIEW
     <string name="preflight_fixed_toast">सक्षम किया गया: %1$s। पुनर्निर्माण हो रहा है...</string>
     <string name="block_category_currency">मुद्राएँ</string>
     <string name="block_category_science">विज्ञान</string>
+    <string name="palette_var">चर</string>
+    <string name="palette_list">सूचियाँ</string>
+    <string name="palette_control">नियंत्रण</string>
+    <string name="palette_operator">ऑपरेटर</string>
+    <string name="palette_math">गणित</string>
+    <string name="palette_file">फ़ाइलें</string>
+    <string name="palette_view_func">तत्व</string>
+    <string name="palette_component_func">घटक</string>
+    <string name="palette_moreblock">अधिक ब्लॉक</string>
 </resources>
