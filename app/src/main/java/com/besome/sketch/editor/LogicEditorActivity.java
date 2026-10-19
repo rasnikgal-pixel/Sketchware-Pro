@@ -1524,7 +1524,14 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     }
 
     public void e(boolean z) {
-        android.util.Log.e("PALETTE_BUG", "e(" + z + ") вызван из:", new Throwable());
+        try {
+            java.util.List<String> _issues = new java.util.ArrayList<>();
+            _issues.add("PALETTE_BUG: e(" + z + ")");
+            for (StackTraceElement _el : new Throwable().getStackTrace()) {
+                _issues.add(_el.toString());
+            }
+            mod.jbk.util.BlockLogicJournal.record(scId, "PALETTE_BUG", _issues);
+        } catch (Throwable ignored) {}
         ObjectAnimator objectAnimator;
         if (!W) {
             h(getResources().getConfiguration().orientation);
