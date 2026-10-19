@@ -43,6 +43,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/quick_props_id_layout"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            android:textSize="11sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -54,12 +55,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/quick_props_text_layout"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            android:textSize="11sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -71,12 +74,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/quick_props_hint_layout"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            android:textSize="11sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -88,12 +93,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="12sp"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_props_more"
             style="@style/Widget.Material3.Button.TextButton"
+            android:textSize="11sp"
+            android:minHeight="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/quick_props_more" />
@@ -105,6 +115,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
+        app:tabTextAppearance="@style/TextAppearance.Material3.LabelSmall"
         app:tabGravity="fill"
         android:layout_marginTop="2dp" />
 
@@ -120,6 +131,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_props_width"
             style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textSize="11sp"
+            android:minHeight="0dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -131,6 +144,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_props_height"
             style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textSize="11sp"
+            android:minHeight="0dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -151,6 +166,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_props_margin"
             style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textSize="11sp"
+            android:minHeight="0dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -162,6 +179,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/quick_props_padding"
             style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textSize="11sp"
+            android:minHeight="0dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

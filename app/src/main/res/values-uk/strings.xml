@@ -2839,4 +2839,6 @@ ACTION_VIEW
     <string name="settings_category_palette">Палітра блоків</string>
     <string name="settings_remember_palette_position_title">Запам\'ятовувати позицію в палітрі</string>
     <string name="settings_remember_palette_position_summary">Прокручувати палітру та блоки до останнього вибраного при відкритті редактора</string>
+    <string name="settings_save_on_property_change_title">Зберігати при зміні властивостей</string>
+    <string name="settings_save_on_property_change_summary">Автоматично зберігати проєкт після зміни властивостей віджета</string>
 </resources>

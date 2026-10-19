@@ -2839,4 +2839,6 @@ ACTION_VIEW
     <string name="settings_category_palette">积木面板</string>
     <string name="settings_remember_palette_position_title">记住积木面板位置</string>
     <string name="settings_remember_palette_position_summary">打开编辑器时滚动到上次选中的积木</string>
+    <string name="settings_save_on_property_change_title">更改属性时保存</string>
+    <string name="settings_save_on_property_change_summary">更改小部件属性后自动保存项目</string>
 </resources>

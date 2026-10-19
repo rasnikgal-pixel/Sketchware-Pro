@@ -237,5 +237,11 @@
             app:key="remember-palette-position"
             app:summary="@string/settings_remember_palette_position_summary"
             app:title="@string/settings_remember_palette_position_title" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:defaultValue="false"
+            app:key="save-on-property-change"
+            app:summary="@string/settings_save_on_property_change_summary"
+            app:title="@string/settings_save_on_property_change_title" />
     </PreferenceCategory>
 </PreferenceScreen>

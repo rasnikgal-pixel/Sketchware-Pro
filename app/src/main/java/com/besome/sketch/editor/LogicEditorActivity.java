@@ -2270,7 +2270,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
 
-        if (itemId == R.id.menu_block_helper) {
+        if (itemId == R.id.menu_logic_save) {
+            new ProjectSaver(this).execute();
+            com.besome.sketch.design.DesignActivity.hasUnsavedChangesStatic = false;
+            return true;
+        } else if (itemId == R.id.menu_block_helper) {
             e(false);
             g(!ia);
         } else if (itemId == R.id.menu_smartdrop_update_blocks) {

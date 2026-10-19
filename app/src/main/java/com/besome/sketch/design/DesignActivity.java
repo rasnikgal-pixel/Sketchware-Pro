@@ -445,7 +445,7 @@ public class DesignActivity extends BaseAppCompatActivity implements View.OnClic
         saveChangesProjectCloser.execute();
     }
 
-    private void saveProject() {
+    public void saveProject() {
         k();
         ProjectSaver projectSaver = new ProjectSaver(this);
         projectSaver.execute();

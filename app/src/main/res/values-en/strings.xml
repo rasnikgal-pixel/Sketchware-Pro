@@ -2893,4 +2893,6 @@ ACTION_VIEW
     <string name="settings_category_palette">Block palette</string>
     <string name="settings_remember_palette_position_title">Remember palette position</string>
     <string name="settings_remember_palette_position_summary">Scroll palette and blocks to the last selected when opening the editor</string>
+    <string name="settings_save_on_property_change_title">Save on property change</string>
+    <string name="settings_save_on_property_change_summary">Automatically save project after changing widget properties</string>
 </resources>

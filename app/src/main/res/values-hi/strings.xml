@@ -2839,4 +2839,6 @@ ACTION_VIEW
     <string name="settings_category_palette">ब्लॉक पैलेट</string>
     <string name="settings_remember_palette_position_title">पैलेट स्थिति याद रखें</string>
     <string name="settings_remember_palette_position_summary">संपादक खोलते समय अंतिम चयनित ब्लॉक तक स्क्रॉल करें</string>
+    <string name="settings_save_on_property_change_title">संपत्ति बदलने पर सहेजें</string>
+    <string name="settings_save_on_property_change_summary">विजेट गुण बदलने के बाद प्रोजेक्ट स्वचालित रूप से सहेजें</string>
 </resources>

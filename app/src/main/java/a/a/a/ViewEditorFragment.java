@@ -88,11 +88,51 @@ public class ViewEditorFragment extends qA {
             quickPropsHint = quickPropsPanel.findViewById(R.id.quick_props_hint);
             quickPropsTextLayout = quickPropsPanel.findViewById(R.id.quick_props_text_layout);
             quickPropsHintLayout = quickPropsPanel.findViewById(R.id.quick_props_hint_layout);
+            
+            // Обработчик "✓" на клавиатуре для сохранения
+            android.view.View.OnClickListener saveAction = v -> {
+                if (quickPropsPanel != null) {
+                    quickPropsPanel.clearFocus();
+                    android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        android.view.View focused = requireActivity().getCurrentFocus();
+                        if (focused != null) imm.hideSoftInputFromWindow(focused.getWindowToken(), 0);
+                    }
+                }
+                if (mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                        mod.hilal.saif.activities.tools.ConfigActivity.SETTING_SAVE_ON_PROPERTY_CHANGE)) {
+                    if (requireActivity() instanceof DesignActivity designActivity) {
+                        designActivity.saveProject();
+                    }
+                }
+            };
+            if (quickPropsText != null) quickPropsText.setOnEditorActionListener((v, actionId, event) -> {
+                if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) { saveAction.onClick(v); return true; }
+                return false;
+            });
+            if (quickPropsHint != null) quickPropsHint.setOnEditorActionListener((v, actionId, event) -> {
+                if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) { saveAction.onClick(v); return true; }
+                return false;
+            });
             quickPropsWidth = quickPropsPanel.findViewById(R.id.quick_props_width);
             quickPropsHeight = quickPropsPanel.findViewById(R.id.quick_props_height);
 
             ImageButton close = quickPropsPanel.findViewById(R.id.quick_props_close);
-            if (close != null) close.setOnClickListener(v -> hideQuickPropsPanel());
+            if (close != null) close.setOnClickListener(v -> {
+            // Снимаем фокус, чтобы наша проверка не блокировала закрытие
+            if (quickPropsPanel != null) {
+                quickPropsPanel.clearFocus();
+                android.view.inputmethod.InputMethodManager imm = 
+                    (android.view.inputmethod.InputMethodManager) requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    android.view.View focused = requireActivity().getCurrentFocus();
+                    if (focused != null) {
+                        imm.hideSoftInputFromWindow(focused.getWindowToken(), 0);
+                    }
+                }
+            }
+            hideQuickPropsPanel();
+        });
 
             View more = quickPropsPanel.findViewById(R.id.quick_props_more);
             if (more != null) more.setOnClickListener(v -> {

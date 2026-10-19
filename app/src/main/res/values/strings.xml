@@ -2903,4 +2903,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="settings_category_palette">Палитра блоков</string>
     <string name="settings_remember_palette_position_title">Запоминать положение в палитре</string>
     <string name="settings_remember_palette_position_summary">При открытии редактора прокручивать палитру и блоки к последнему выбранному</string>
+    <string name="settings_save_on_property_change_title">Сохранять при изменении свойств</string>
+    <string name="settings_save_on_property_change_summary">Автоматически сохранять проект после изменения свойств виджета</string>
 </resources>
