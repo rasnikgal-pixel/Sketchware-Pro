@@ -2825,4 +2825,6 @@ ACTION_VIEW
     <string name="preflight_fix_and_build">Виправити та зібрати</string>
     <string name="preflight_fix_message">Буде увімкнено: %1$s. Продовжити?</string>
     <string name="preflight_fixed_toast">Увімкнено: %1$s. Перебудова...</string>
+    <string name="block_category_currency">Валюти</string>
+    <string name="block_category_science">Наука</string>
 </resources>

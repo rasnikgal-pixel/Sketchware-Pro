@@ -2889,4 +2889,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="preflight_fix_and_build">Исправить и собрать</string>
     <string name="preflight_fix_message">Будут включены: %1$s. Продолжить?</string>
     <string name="preflight_fixed_toast">Включено: %1$s. Пересборка...</string>
+    <string name="block_category_currency">Валюты</string>
+    <string name="block_category_science">Наука</string>
 </resources>

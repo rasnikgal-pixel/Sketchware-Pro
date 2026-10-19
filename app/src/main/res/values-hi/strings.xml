@@ -2825,4 +2825,6 @@ ACTION_VIEW
     <string name="preflight_fix_and_build">ठीक करें और बनाएँ</string>
     <string name="preflight_fix_message">सक्षम किया जाएगा: %1$s। जारी रखें?</string>
     <string name="preflight_fixed_toast">सक्षम किया गया: %1$s। पुनर्निर्माण हो रहा है...</string>
+    <string name="block_category_currency">मुद्राएँ</string>
+    <string name="block_category_science">विज्ञान</string>
 </resources>

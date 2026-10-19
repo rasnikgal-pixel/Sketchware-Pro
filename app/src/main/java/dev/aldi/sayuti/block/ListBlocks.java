@@ -41,5 +41,25 @@ public final class ListBlocks {
 
         list.add(blk("listReverse", " ", "",
                 "java.util.Collections.reverse(%1$s);", "reverse list %m.list"));
+
+        // Удалить строку таблицы по индексу
+        list.add(blk("listMapRemoveRow", " ", "",
+                "%1$s.remove((int)(%2$s));",
+                "remove row %2$d from %1$s"));
+
+        // Удалить ключ (столбец) во всех строках таблицы
+        list.add(blk("listMapRemoveKey", " ", "",
+                "for (Object _row : %1$s) { if (_row instanceof java.util.Map) ((java.util.Map)_row).remove(%2$s); }",
+                "remove key %2$s from all rows of %1$s"));
+
+        // Получить список ключей (столбцов) таблицы
+        list.add(blk("listMapGetKeys", " ", "",
+                "%2$s = new java.util.ArrayList<String>(((java.util.Map)%1$s.get(0)).keySet());",
+                "get keys of %1$s into %m.listStr"));
+
+        // Создать пустую таблицу
+        list.add(blk("listMapCreateEmpty", " ", "",
+                "%1$s = new java.util.ArrayList<java.util.HashMap<String,Object>>();",
+                "create empty table in %m.listMap"));
     }
 }

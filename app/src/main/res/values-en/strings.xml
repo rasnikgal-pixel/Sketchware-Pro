@@ -2879,4 +2879,6 @@ ACTION_VIEW
     <string name="preflight_fix_and_build">Fix and build</string>
     <string name="preflight_fix_message">Will be enabled: %1$s. Continue?</string>
     <string name="preflight_fixed_toast">Enabled: %1$s. Rebuilding...</string>
+    <string name="block_category_currency">Currencies</string>
+    <string name="block_category_science">Science</string>
 </resources>

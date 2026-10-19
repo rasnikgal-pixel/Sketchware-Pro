@@ -2825,4 +2825,6 @@ ACTION_VIEW
     <string name="preflight_fix_and_build">修复并构建</string>
     <string name="preflight_fix_message">将启用：%1$s。继续？</string>
     <string name="preflight_fixed_toast">已启用：%1$s。正在重新构建...</string>
+    <string name="block_category_currency">货币</string>
+    <string name="block_category_science">科学</string>
 </resources>

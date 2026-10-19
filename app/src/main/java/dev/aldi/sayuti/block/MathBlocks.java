@@ -50,5 +50,20 @@ public final class MathBlocks {
 
         list.add(blk("mathRandomFloat", "d", "",
                 "Math.random()", "random float 0..1"));
+
+        // Число -> строка
+        list.add(blk("mathNumToStr", "s", "",
+                "String.valueOf(%1$s)",
+                "number %1$s to string"));
+
+        // Строка -> число (безопасно, 0 если не число)
+        list.add(blk("mathStrToNum", "d", "",
+                "((java.util.function.Supplier<Double>) () -> { try { return Double.parseDouble(%1$s.trim()); } catch (Throwable _t) { return 0.0; } }).get()",
+                "string %1$s to number (0 if invalid)"));
+
+        // Сумма -> текст в рублях и копейках
+        list.add(blk("mathMoneyToStr", "s", "",
+                "((java.util.function.Supplier<String>) () -> { try { java.text.NumberFormat _nf = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale(\"ru\", \"RU\")); _nf.setMinimumFractionDigits(2); _nf.setMaximumFractionDigits(2); return _nf.format(%1$s); } catch (Throwable _t) { return \"0,00 \u20BD\"; } }).get()",
+                "money %1$s as rubles and kopecks"));
     }
 }
