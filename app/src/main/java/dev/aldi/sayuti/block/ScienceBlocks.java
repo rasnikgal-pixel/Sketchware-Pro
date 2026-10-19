@@ -264,6 +264,6 @@ public final class ScienceBlocks {
                 "String _s = _res.toString().replace(\",  \", \", \").replace(\" , \", \", \").trim(); " +
                 "return _s; " +
                 "} catch (Throwable _t) { return \"\"; } }).get()",
-                "sum to words %1$s"));
+                "%1$s sum to words"));
     }
 }
