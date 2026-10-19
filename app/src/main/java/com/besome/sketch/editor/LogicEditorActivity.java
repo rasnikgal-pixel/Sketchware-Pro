@@ -2006,6 +2006,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
         openBlocksMenuButton.setOnClickListener(v -> e(!X));
         logicTopMenu = findViewById(R.id.top_menu);
         O = findViewById(R.id.right_drawer);
+        e(true); // открыть панель блоков при старте
         findViewById(R.id.search_header).setOnClickListener(v -> paletteSelector.showSearchDialog());
         mod.jbk.util.BlockTemplatesManager.setContext(getApplicationContext());
 
