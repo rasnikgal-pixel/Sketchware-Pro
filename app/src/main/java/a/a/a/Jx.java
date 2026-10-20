@@ -422,45 +422,6 @@ public class Jx {
             }
         }
 
-        // Вставляем метод toWords для блока "Сумма прописью"
-        sb.append("public static String toWords(double sum) {").append(EOL);
-        sb.append("  try {").append(EOL);
-        sb.append("    long rubles = (long) Math.floor(Math.abs(sum));").append(EOL);
-        sb.append("    int kopecks = (int) Math.round((Math.abs(sum) - rubles) * 100);").append(EOL);
-        sb.append("    if (kopecks >= 100) { rubles++; kopecks = 0; }").append(EOL);
-        sb.append("    String[] ed = {\"\", \"один\", \"два\", \"три\", \"четыре\", \"пять\", \"шесть\", \"семь\", \"восемь\", \"девять\"};").append(EOL);
-        sb.append("    String[] edf = {\"\", \"одна\", \"две\", \"три\", \"четыре\", \"пять\", \"шесть\", \"семь\", \"восемь\", \"девять\"};").append(EOL);
-        sb.append("    String[] des = {\"\", \"десять\", \"двадцать\", \"тридцать\", \"сорок\", \"пятьдесят\", \"шестьдесят\", \"семьдесят\", \"восемьдесят\", \"девяносто\"};").append(EOL);
-        sb.append("    String[] sot = {\"\", \"сто\", \"двести\", \"триста\", \"четыреста\", \"пятьсот\", \"шестьсот\", \"семьсот\", \"восемьсот\", \"девятьсот\"};").append(EOL);
-        sb.append("    String[] teens = {\"десять\", \"одиннадцать\", \"двенадцать\", \"тринадцать\", \"четырнадцать\", \"пятнадцать\", \"шестнадцать\", \"семнадцать\", \"восемнадцать\", \"девятнадцать\"};").append(EOL);
-        sb.append("    String[] tys = {\"тысяча\", \"тысячи\", \"тысяч\"};").append(EOL);
-        sb.append("    String[] mils = {\"миллион\", \"миллиона\", \"миллионов\"};").append(EOL);
-        sb.append("    String[] mlds = {\"миллиард\", \"миллиарда\", \"миллиардов\"};").append(EOL);
-        sb.append("    java.util.function.BiFunction<Long, String[], String> fmt = (n, forms) -> {").append(EOL);
-        sb.append("      long n100 = n % 100;").append(EOL);
-        sb.append("      if (n100 >= 11 && n100 <= 19) return forms[2];").append(EOL);
-        sb.append("      long n10 = n % 10;").append(EOL);
-        sb.append("      if (n10 == 1) return forms[0];").append(EOL);
-        sb.append("      if (n10 >= 2 && n10 <= 4) return forms[1];").append(EOL);
-        sb.append("      return forms[2];").append(EOL);
-        sb.append("    };").append(EOL);
-        sb.append("    StringBuilder res = new StringBuilder();").append(EOL);
-        sb.append("    if (rubles == 0) { res.append(\"ноль рублей, \"); }").append(EOL);
-        sb.append("    else {").append(EOL);
-        sb.append("      long r = rubles;").append(EOL);
-        sb.append("      if (r / 1000000000 > 0) { res.append(fmt.apply(r / 1000000000, mlds)).append(\" \"); r %= 1000000000; }").append(EOL);
-        sb.append("      if (r / 1000000 > 0) { res.append(fmt.apply(r / 1000000, mils)).append(\" \"); r %= 1000000; }").append(EOL);
-        sb.append("      if (r / 1000 > 0) { long t = r / 1000; res.append(fmt.apply(t, tys)).append(\" \"); r %= 1000; }").append(EOL);
-        sb.append("      if (r > 0) { res.append(fmt.apply(r, new String[]{\"рубль\", \"рубля\", \"рублей\"})).append(\" \"); }").append(EOL);
-        sb.append("      res.append(\", \");").append(EOL);
-        sb.append("    }").append(EOL);
-        sb.append("    if (kopecks == 0) { res.append(\"ноль копеек\"); }").append(EOL);
-        sb.append("    else { res.append(fmt.apply((long)kopecks, new String[]{\"копейка\", \"копейки\", \"копеек\"})).append(\" \"); }").append(EOL);
-        sb.append("    String s = res.toString().replace(\",  \", \", \").replace(\" , \", \", \").trim();").append(EOL);
-        sb.append("    return s;").append(EOL);
-        sb.append("  } catch (Throwable t) { return \"\"; }").append(EOL);
-        sb.append("}").append(EOL);
-        sb.append(EOL);
         sb.append("}").append(EOL);
 
         if (permissionManager.hasPermission && !isFragment) {
@@ -620,6 +581,47 @@ public class Jx {
             sb.append(getDeprecatedMethodsCode());
         }
         sb.append("}").append(EOL);
+
+        // Генерируем метод toWords в конце класса MainActivity
+        sb.append(EOL);
+        sb.append("    public static String toWords(double sum) {").append(EOL);
+        sb.append("      try {").append(EOL);
+        sb.append("        long rubles = (long) Math.floor(Math.abs(sum));").append(EOL);
+        sb.append("        int kopecks = (int) Math.round((Math.abs(sum) - rubles) * 100);").append(EOL);
+        sb.append("        if (kopecks >= 100) { rubles++; kopecks = 0; }").append(EOL);
+        sb.append("        String[] ed = {\"\", \"один\", \"два\", \"три\", \"четыре\", \"пять\", \"шесть\", \"семь\", \"восемь\", \"девять\"};").append(EOL);
+        sb.append("        String[] edf = {\"\", \"одна\", \"две\", \"три\", \"четыре\", \"пять\", \"шесть\", \"семь\", \"восемь\", \"девять\"};").append(EOL);
+        sb.append("        String[] des = {\"\", \"десять\", \"двадцать\", \"тридцать\", \"сорок\", \"пятьдесят\", \"шестьдесят\", \"семьдесят\", \"восемьдесят\", \"девяносто\"};").append(EOL);
+        sb.append("        String[] sot = {\"\", \"сто\", \"двести\", \"триста\", \"четыреста\", \"пятьсот\", \"шестьсот\", \"семьсот\", \"восемьсот\", \"девятьсот\"};").append(EOL);
+        sb.append("        String[] teens = {\"десять\", \"одиннадцать\", \"двенадцать\", \"тринадцать\", \"четырнадцать\", \"пятнадцать\", \"шестнадцать\", \"семнадцать\", \"восемнадцать\", \"девятнадцать\"};").append(EOL);
+        sb.append("        String[] tys = {\"тысяча\", \"тысячи\", \"тысяч\"};").append(EOL);
+        sb.append("        String[] mils = {\"миллион\", \"миллиона\", \"миллионов\"};").append(EOL);
+        sb.append("        String[] mlds = {\"миллиард\", \"миллиарда\", \"миллиардов\"};").append(EOL);
+        sb.append("        java.util.function.BiFunction<Long, String[], String> fmt = (n, forms) -> {").append(EOL);
+        sb.append("          long n100 = n % 100;").append(EOL);
+        sb.append("          if (n100 >= 11 && n100 <= 19) return forms[2];").append(EOL);
+        sb.append("          long n10 = n % 10;").append(EOL);
+        sb.append("          if (n10 == 1) return forms[0];").append(EOL);
+        sb.append("          if (n10 >= 2 && n10 <= 4) return forms[1];").append(EOL);
+        sb.append("          return forms[2];").append(EOL);
+        sb.append("        };").append(EOL);
+        sb.append("        StringBuilder res = new StringBuilder();").append(EOL);
+        sb.append("        if (rubles == 0) { res.append(\"ноль рублей, \"); }").append(EOL);
+        sb.append("        else {").append(EOL);
+        sb.append("          long r = rubles;").append(EOL);
+        sb.append("          if (r / 1000000000 > 0) { res.append(fmt.apply(r / 1000000000, mlds)).append(\" \"); r %= 1000000000; }").append(EOL);
+        sb.append("          if (r / 1000000 > 0) { res.append(fmt.apply(r / 1000000, mils)).append(\" \"); r %= 1000000; }").append(EOL);
+        sb.append("          if (r / 1000 > 0) { long t = r / 1000; res.append(fmt.apply(t, tys)).append(\" \"); r %= 1000; }").append(EOL);
+        sb.append("          if (r > 0) { res.append(fmt.apply(r, new String[]{\"рубль\", \"рубля\", \"рублей\"})).append(\" \"); }").append(EOL);
+        sb.append("          res.append(\", \");").append(EOL);
+        sb.append("        }").append(EOL);
+        sb.append("        if (kopecks == 0) { res.append(\"ноль копеек\"); }").append(EOL);
+        sb.append("        else { res.append(fmt.apply((long)kopecks, new String[]{\"копейка\", \"копейки\", \"копеек\"})).append(\" \"); }").append(EOL);
+        sb.append("        String s = res.toString().replace(\",  \", \", \").replace(\" , \", \", \").trim();").append(EOL);
+        sb.append("        return s;").append(EOL);
+        sb.append("      } catch (Throwable t) { return \"\"; }").append(EOL);
+        sb.append("    }").append(EOL);
+        sb.append(EOL);
         String code = sb.toString();
 
         if (isFragment) {
