@@ -1977,5 +1977,1515 @@ public final class ScienceBlocks {
         list.add(blk("sciDayOfMonth", "d", "",
                 "((new Object() { public double f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); return (double) _c.get(java.util.Calendar.DAY_OF_MONTH); } catch (Throwable _t) { return 0.0; } } }).f())",
                 "day of month of %1$s"));
+
+        // 📶 Bluetooth: включён ли
+        list.add(blk("sciBtEnabled", "b", "",
+                "((android.bluetooth.BluetoothManager) %1$s.getSystemService(android.content.Context.BLUETOOTH_SERVICE)).getAdapter().isEnabled()",
+                "bluetooth enabled from %m.context"));
+
+        // 📶 Bluetooth: имя устройства
+        list.add(blk("sciBtName", "d", "",
+                "((android.bluetooth.BluetoothManager) %1$s.getSystemService(android.content.Context.BLUETOOTH_SERVICE)).getAdapter().getName()",
+                "bluetooth name from %m.context"));
+
+        // 📶 Wi-Fi: включён ли
+        list.add(blk("sciWifiEnabled", "b", "",
+                "((android.net.wifi.WifiManager) %1$s.getSystemService(android.content.Context.WIFI_SERVICE)).isWifiEnabled()",
+                "wifi enabled from %m.context"));
+
+        // 📶 Wi-Fi: имя сети (SSID)
+        list.add(blk("sciWifiSsid", "d", "",
+                "((android.net.wifi.WifiManager) %1$s.getSystemService(android.content.Context.WIFI_SERVICE)).getConnectionInfo().getSSID()",
+                "wifi ssid from %m.context"));
+
+        // 📶 Wi-Fi: IP-адрес
+        list.add(blk("sciWifiIp", "d", "",
+                "((new Object() { public String f() { try { int _ip = ((android.net.wifi.WifiManager) %1$s.getSystemService(android.content.Context.WIFI_SERVICE)).getConnectionInfo().getIpAddress(); return String.format(\"%%d.%%d.%%d.%%d\", (_ip & 0xff), (_ip >> 8 & 0xff), (_ip >> 16 & 0xff), (_ip >> 24 & 0xff)); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "wifi ip from %m.context"));
+
+        // 📶 NFC: доступен ли
+        list.add(blk("sciNfcAvailable", "b", "",
+                "%1$s.getPackageManager().hasSystemFeature(android.content.pm.PackageManager.FEATURE_NFC)",
+                "nfc available from %m.context"));
+
+        // 📶 NFC: включён ли
+        list.add(blk("sciNfcEnabled", "b", "",
+                "((android.nfc.NfcManager) %1$s.getSystemService(android.content.Context.NFC_SERVICE)).getDefaultAdapter().isEnabled()",
+                "nfc enabled from %m.context"));
+
+        // 🗄️ DB: создать таблицу
+        list.add(blk("sciDbCreateTable", " ", "",
+                "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(\"CREATE TABLE IF NOT EXISTS \" + %3$s + \" (\" + %4$s + \")\"); _db.close(); } catch (Throwable _t) {} } }).f());",
+                "db %1$s create table %3$s columns %4$s from %m.context"));
+
+        // 🗄️ DB: удалить таблицу
+        list.add(blk("sciDbDropTable", " ", "",
+                "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(\"DROP TABLE IF EXISTS \" + %3$s); _db.close(); } catch (Throwable _t) {} } }).f());",
+                "db %1$s drop table %3$s from %m.context"));
+
+        // 🗄️ DB: количество строк в таблице
+        list.add(blk("sciDbCount", "d", "",
+                "((new Object() { public double f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.database.Cursor _c = _db.rawQuery(\"SELECT COUNT(*) FROM \" + %3$s, null); double _n = 0; if (_c.moveToFirst()) _n = _c.getDouble(0); _c.close(); _db.close(); return _n; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "db %1$s count rows in %3$s from %m.context"));
+
+        // 🗄️ DB: очистить таблицу
+        list.add(blk("sciDbClear", " ", "",
+                "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(\"DELETE FROM \" + %3$s); _db.close(); } catch (Throwable _t) {} } }).f());",
+                "db %1$s clear table %3$s from %m.context"));
+
+        // 🎵 Media: громкость (0-100)
+        list.add(blk("sciMediaVolume", "d", "",
+                "((new Object() { public double f() { try { android.media.AudioManager _am = (android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE); int _max = _am.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC); int _cur = _am.getStreamVolume(android.media.AudioManager.STREAM_MUSIC); return (double)(_cur * 100 / _max); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "media volume from %m.context"));
+
+        // 🎵 Media: установить громкость (0-100)
+        list.add(blk("sciSetMediaVolume", " ", "",
+                "((new Object() { public void f() { try { android.media.AudioManager _am = (android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE); int _max = _am.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC); _am.setStreamVolume(android.media.AudioManager.STREAM_MUSIC, (int)(%2$s) * _max / 100, 0); } catch (Throwable _t) {} } }).f());",
+                "set media volume %2$d from %m.context"));
+
+        // 🎵 Media: беззвучный режим
+        list.add(blk("sciSetRingerSilent", " ", "",
+                "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).setRingerMode(android.media.AudioManager.RINGER_MODE_SILENT);",
+                "set ringer silent from %m.context"));
+
+        // 🎵 Media: виброрежим
+        list.add(blk("sciSetRingerVibrate", " ", "",
+                "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).setRingerMode(android.media.AudioManager.RINGER_MODE_VIBRATE);",
+                "set ringer vibrate from %m.context"));
+
+        // 🎵 Media: обычный режим
+        list.add(blk("sciSetRingerNormal", " ", "",
+                "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).setRingerMode(android.media.AudioManager.RINGER_MODE_NORMAL);",
+                "set ringer normal from %m.context"));
+
+        // 🎵 Media: проиграть звук уведомления
+        list.add(blk("sciPlayNotificationSound", " ", "",
+                "((android.media.RingtoneManager) null); try { android.media.Ringtone _r = android.media.RingtoneManager.getRingtone(%1$s, android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_NOTIFICATION)); if (_r != null) _r.play(); } catch (Throwable _t) {}",
+                "play notification sound from %m.context"));
+
+        // 🎵 Media: проиграть звук будильника
+        list.add(blk("sciPlayAlarmSound", " ", "",
+                "try { android.media.Ringtone _r = android.media.RingtoneManager.getRingtone(%1$s, android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_ALARM)); if (_r != null) _r.play(); } catch (Throwable _t) {}",
+                "play alarm sound from %m.context"));
+
+        // 🎵 Media: проиграть звук звонка
+        list.add(blk("sciPlayRingtone", " ", "",
+                "try { android.media.Ringtone _r = android.media.RingtoneManager.getRingtone(%1$s, android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_RINGTONE)); if (_r != null) _r.play(); } catch (Throwable _t) {}",
+                "play ringtone from %m.context"));
+
+        // 🎵 Media: остановить все рингтоны
+        list.add(blk("sciStopRingtones", " ", "",
+                "try { android.media.RingtoneManager.getRingtone(%1$s, android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_NOTIFICATION)).stop(); } catch (Throwable _t) {}",
+                "stop ringtones from %m.context"));
+
+        // 🎵 Media: звук нажаттия (click)
+        list.add(blk("sciPlayClickSound", " ", "",
+                "%1$s.playSoundEffect(android.media.AudioManager.FX_KEY_CLICK);",
+                "play click sound from %m.context"));
+
+        // 🎵 Media: звук ошибки
+        list.add(blk("sciPlayErrorSound", " ", "",
+                "%1$s.playSoundEffect(android.media.AudioManager.FX_KEYPRESS_STANDARD);",
+                "play error sound from %m.context"));
+
+        // 🎵 Media: звук успеха
+        list.add(blk("sciPlaySuccessSound", " ", "",
+                "%1$s.playSoundEffect(android.media.AudioManager.FX_KEYPRESS_RETURN);",
+                "play success sound from %m.context"));
+
+        // 🎵 Media: вибрация с паттерном
+        list.add(blk("sciVibratePattern2", " ", "",
+                "((android.os.Vibrator) %2$s.getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{0, (long)(%1$s), 100, (long)(%1$s)}, -1);",
+                "vibrate pattern %1$d from %m.context"));
+
+        // 🎵 Media: двойная вибрация
+        list.add(blk("sciVibrateDouble", " ", "",
+                "((android.os.Vibrator) %1$s.getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{0, 100, 100, 100}, -1);",
+                "vibrate double from %m.context"));
+
+        // 🎵 Media: длинная вибрация
+        list.add(blk("sciVibrateLong", " ", "",
+                "((android.os.Vibrator) %1$s.getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(1000);",
+                "vibrate long from %m.context"));
+
+        // 🎵 Media: отменить вибрацию
+        list.add(blk("sciVibrateCancel", " ", "",
+                "((android.os.Vibrator) %1$s.getSystemService(android.content.Context.VIBRATOR_SERVICE)).cancel();",
+                "cancel vibration from %m.context"));
+
+        // 🎵 Media: воспроизвести видео (URL)
+        list.add(blk("sciPlayVideoUrl", " ", "",
+                "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_VIEW); _i.setDataAndType(android.net.Uri.parse(%1$s), \"video/*\"); %2$s.startActivity(_i); } catch (Throwable _t) {}",
+                "play video url %1$s from %m.context"));
+
+        // 🎵 Media: воспроизвести аудио (URL)
+        list.add(blk("sciPlayAudioUrl", " ", "",
+                "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_VIEW); _i.setDataAndType(android.net.Uri.parse(%1$s), \"audio/*\"); %2$s.startActivity(_i); } catch (Throwable _t) {}",
+                "play audio url %1$s from %m.context"));
+
+        // 🎵 Media: открыть изображение
+        list.add(blk("sciOpenImage", " ", "",
+                "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_VIEW); _i.setDataAndType(android.net.Uri.parse(%1$s), \"image/*\"); %2$s.startActivity(_i); } catch (Throwable _t) {}",
+                "open image %1$s from %m.context"));
+
+        // 🎵 Media: открыть PDF
+        list.add(blk("sciOpenPdf", " ", "",
+                "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_VIEW); _i.setDataAndType(android.net.Uri.parse(%1$s), \"application/pdf\"); %2$s.startActivity(_i); } catch (Throwable _t) {}",
+                "open pdf %1$s from %m.context"));
+
+        // 🎵 Media: открыть текстовый файл
+        list.add(blk("sciOpenTextFile", " ", "",
+                "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_VIEW); _i.setDataAndType(android.net.Uri.parse(%1$s), \"text/plain\"); %2$s.startActivity(_i); } catch (Throwable _t) {}",
+                "open text file %1$s from %m.context"));
+
+        // 🎵 Media: поделиться файлом
+        list.add(blk("sciShareFile2", " ", "",
+                "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_SEND); _i.setType(\"*/*\"); _i.putExtra(android.content.Intent.EXTRA_STREAM, android.net.Uri.parse(%1$s)); %2$s.startActivity(android.content.Intent.createChooser(_i, \"Share\")); } catch (Throwable _t) {}",
+                "share file %1$s from %m.context"));
+
+        // 🎵 Media: сохранить изображение в галерею
+        list.add(blk("sciSaveImageToGallery2", " ", "",
+                "((new Object() { public void f() { try { android.graphics.Bitmap _b = android.graphics.BitmapFactory.decodeFile(%1$s); java.io.File _o = new java.io.File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_PICTURES), %2$s); java.io.FileOutputStream _os = new java.io.FileOutputStream(_o); _b.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, _os); _os.flush(); _os.close(); android.media.MediaScannerConnection.scanFile(%3$s, new String[]{_o.getAbsolutePath()}, null, null); } catch (Throwable _t) {} } }).f());",
+                "save image %1$s to gallery as %2$s from %m.context"));
+
+        // 🎵 Media: получить обложку аудио
+        list.add(blk("sciAudioAlbumArt", "d", "",
+                "((new Object() { public String f() { try { android.media.MediaMetadataRetriever _m = new android.media.MediaMetadataRetriever(); _m.setDataSource(%1$s); byte[] _b = _m.getEmbeddedPicture(); _m.release(); return _b != null ? android.util.Base64.encodeToString(_b, android.util.Base64.NO_WRAP) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "album art of %1$s"));
+
+        // 🎵 Media: длительность видео (мс)
+        list.add(blk("sciVideoDuration", "d", "",
+                "((new Object() { public double f() { try { android.media.MediaMetadataRetriever _m = new android.media.MediaMetadataRetriever(); _m.setDataSource(%1$s); String _d = _m.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_DURATION); _m.release(); return _d != null ? Double.parseDouble(_d) : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "video duration of %1$s"));
+
+        // 🎵 Media: разрешение видео (ширина)
+        list.add(blk("sciVideoWidth", "d", "",
+                "((new Object() { public double f() { try { android.media.MediaMetadataRetriever _m = new android.media.MediaMetadataRetriever(); _m.setDataSource(%1$s); String _w = _m.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH); _m.release(); return _w != null ? Double.parseDouble(_w) : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "video width of %1$s"));
+
+        // 🎵 Media: разрешение видео (высота)
+        list.add(blk("sciVideoHeight", "d", "",
+                "((new Object() { public double f() { try { android.media.MediaMetadataRetriever _m = new android.media.MediaMetadataRetriever(); _m.setDataSource(%1$s); String _h = _m.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT); _m.release(); return _h != null ? Double.parseDouble(_h) : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "video height of %1$s"));
+
+        // 📍 Location: широта (GPS)
+        list.add(blk("sciGpsLat", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? _l.getLatitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gps latitude from %m.context"));
+
+        // 📍 Location: долгота (GPS)
+        list.add(blk("sciGpsLon", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? _l.getLongitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gps longitude from %m.context"));
+
+        // 📍 Location: высота над уровнем моря
+        list.add(blk("sciGpsAltitude", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? _l.getAltitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gps altitude from %m.context"));
+
+        // 📍 Location: скорость (м/с)
+        list.add(blk("sciGpsSpeed", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? _l.getSpeed() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gps speed from %m.context"));
+
+        // 📍 Location: расстояние между двумя точками (метры)
+        list.add(blk("sciDistanceBetween", "d", "",
+                "((new Object() { public double f() { try { float[] _r = new float[1]; android.location.Location.distanceBetween((double)(%1$s), (double)(%2$s), (double)(%3$s), (double)(%4$s), _r); return (double) _r[0]; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "distance between (%1$s, %2$s) and (%3$s, %4$s)"));
+
+        // 📍 Location: GPS включён?
+        list.add(blk("sciGpsEnabled", "b", "",
+                "((android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE)).isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)",
+                "gps enabled from %m.context"));
+
+        // 📱 Sensor: акселерометр X
+        list.add(blk("sciSensorAccelX", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "accelerometer X from %m.context"));
+
+        // 📱 Sensor: акселерометр Y
+        list.add(blk("sciSensorAccelY", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "accelerometer Y from %m.context"));
+
+        // 📱 Sensor: акселерометр Z
+        list.add(blk("sciSensorAccelZ", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "accelerometer Z from %m.context"));
+
+        // 📱 Sensor: гироскоп X
+        list.add(blk("sciSensorGyroX", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_GYROSCOPE); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gyroscope X from %m.context"));
+
+        // 📱 Sensor: компас (азимут)
+        list.add(blk("sciSensorCompass", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ORIENTATION); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "compass azimuth from %m.context"));
+
+        // 📱 Sensor: датчик света (люкс)
+        list.add(blk("sciSensorLight", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_LIGHT); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "light sensor from %m.context"));
+
+        // 📱 Sensor: датчик приближения (см)
+        list.add(blk("sciSensorProximity", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_PROXIMITY); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "proximity sensor from %m.context"));
+
+        // 📱 Sensor: шагомер
+        list.add(blk("sciSensorStep", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_STEP_COUNTER); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "step counter from %m.context"));
+
+        // 📱 Sensor: пульс
+        list.add(blk("sciSensorHeart", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_HEART_RATE); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "heart rate sensor from %m.context"));
+
+        // 📞 Phone: получить IMEI (требует READ_PHONE_STATE)
+        list.add(blk("sciImei", "d", "",
+                "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm.getImei(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "device imei from %m.context"));
+
+        // 📞 Phone: SIM-серийный номер
+        list.add(blk("sciSimSerial", "d", "",
+                "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm.getSimSerialNumber(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "sim serial from %m.context"));
+
+        // 📞 Phone: номер телефона
+        list.add(blk("sciPhoneNumber", "d", "",
+                "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm.getLine1Number(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "phone number from %m.context"));
+
+        // 📞 Phone: код страны сети
+        list.add(blk("sciNetworkCountry", "d", "",
+                "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm.getNetworkCountryIso(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "network country from %m.context"));
+
+        // 📞 Phone: имя оператора
+        list.add(blk("sciOperatorName", "d", "",
+                "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm.getNetworkOperatorName(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "operator name from %m.context"));
+
+        // 📞 Phone: тип сети (2G/3G/4G)
+        list.add(blk("sciNetworkType2", "d", "",
+                "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); int _t = _tm.getNetworkType(); return _t == 13 ? \"4G\" : _t == 3 ? \"3G\" : _t == 2 ? \"EDGE\" : \"Unknown\"; } catch (Throwable _t) { return \"Unknown\"; } } }).f())",
+                "network type from %m.context"));
+
+        // 📞 Phone: авиарежим?
+        list.add(blk("sciAirplaneMode", "b", "",
+                "((new Object() { public boolean f() { try { return android.provider.Settings.System.getInt(%1$s.getContentResolver(), android.provider.Settings.System.AIRPLANE_MODE_ON) == 1; } catch (Throwable _t) { return false; } } }).f())",
+                "airplane mode from %m.context"));
+
+        // 📞 Phone: режим вибрации?
+        list.add(blk("sciVibrateMode", "b", "",
+                "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).getRingerMode() == android.media.AudioManager.RINGER_MODE_VIBRATE",
+                "vibrate mode from %m.context"));
+
+        // 📞 Phone: экран заблокирован?
+        list.add(blk("sciScreenLocked", "b", "",
+                "((android.app.KeyguardManager) %1$s.getSystemService(android.content.Context.KEYGUARD_SERVICE)).isKeyguardLocked()",
+                "screen locked from %m.context"));
+
+        // 📞 Phone: устройство заряжается?
+        list.add(blk("sciIsCharging", "b", "",
+                "((new Object() { public boolean f() { try { android.content.Intent _i = %1$s.registerReceiver(null, new android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED)); int _s = _i.getIntExtra(android.os.BatteryManager.EXTRA_STATUS, -1); return _s == android.os.BatteryManager.BATTERY_STATUS_CHARGING || _s == android.os.BatteryManager.BATTERY_STATUS_FULL; } catch (Throwable _t) { return false; } } }).f())",
+                "is charging from %m.context"));
+
+        // 📞 Phone: режим разработчика?
+        list.add(blk("sciDevMode", "b", "",
+                "android.provider.Settings.Global.getInt(%1$s.getContentResolver(), android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) == 1",
+                "developer mode from %m.context"));
+
+        // 📞 Phone: эмулятор?
+        list.add(blk("sciIsEmulator", "b", "",
+                "android.os.Build.FINGERPRINT.startsWith(\"generic\") || android.os.Build.MODEL.contains(\"google_sdk\")",
+                "is emulator"));
+
+        // 📞 Phone: время работы (uptime, мс)
+        list.add(blk("sciUptime", "d", "",
+                "(double) android.os.SystemClock.elapsedRealtime()",
+                "uptime millis"));
+
+        // 📞 Phone: версия ядра
+        list.add(blk("sciKernelVersion", "d", "",
+                "System.getProperty(\"os.version\")",
+                "kernel version"));
+
+        // 📞 Phone: версия Java
+        list.add(blk("sciJavaVersion", "d", "",
+                "System.getProperty(\"java.version\")",
+                "java version"));
+
+        // 📞 Phone: версия ОС
+        list.add(blk("sciOsVersion", "d", "",
+                "System.getProperty(\"os.name\") + \" \" + System.getProperty(\"os.version\")",
+                "os version"));
+
+        // 📞 Phone: архитектура
+        list.add(blk("sciArchitecture", "d", "",
+                "System.getProperty(\"os.arch\")",
+                "architecture"));
+
+        // 📞 Phone: количество ядер
+        list.add(blk("sciCores", "d", "",
+                "(double) Runtime.getRuntime().availableProcessors()",
+                "cpu cores"));
+
+        // 📞 Phone: свободная память (МБ)
+        list.add(blk("sciFreeMemory", "d", "",
+                "(double) (Runtime.getRuntime().freeMemory() / (1024 * 1024))",
+                "free memory MB"));
+
+        // 📞 Phone: общая память (МБ)
+        list.add(blk("sciTotalMemory", "d", "",
+                "(double) (Runtime.getRuntime().totalMemory() / (1024 * 1024))",
+                "total memory MB"));
+
+        // 📞 Phone: максимальная память (МБ)
+        list.add(blk("sciMaxMemory", "d", "",
+                "(double) (Runtime.getRuntime().maxMemory() / (1024 * 1024))",
+                "max memory MB"));
+
+        // 📱 Sensor: акселерометр X (реальный)
+        list.add(blk("sciAccelXReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "accelerometer X real from %m.context"));
+
+        // 📱 Sensor: акселерометр Y (реальный)
+        list.add(blk("sciAccelYReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "accelerometer Y real from %m.context"));
+
+        // 📱 Sensor: акселерометр Z (реальный)
+        list.add(blk("sciAccelZReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "accelerometer Z real from %m.context"));
+
+        // 📱 Sensor: гироскоп X (реальный)
+        list.add(blk("sciGyroXReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_GYROSCOPE); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gyroscope X real from %m.context"));
+
+        // 📱 Sensor: гироскоп Y (реальный)
+        list.add(blk("sciGyroYReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_GYROSCOPE); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gyroscope Y real from %m.context"));
+
+        // 📱 Sensor: гироскоп Z (реальный)
+        list.add(blk("sciGyroZReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_GYROSCOPE); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gyroscope Z real from %m.context"));
+
+        // 📱 Sensor: магнитометр X
+        list.add(blk("sciMagXReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_MAGNETIC_FIELD); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "magnetometer X real from %m.context"));
+
+        // 📱 Sensor: магнитометр Y
+        list.add(blk("sciMagYReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_MAGNETIC_FIELD); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "magnetometer Y real from %m.context"));
+
+        // 📱 Sensor: магнитометр Z
+        list.add(blk("sciMagZReal", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_MAGNETIC_FIELD); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "magnetometer Z real from %m.context"));
+
+        // 📱 Sensor: линейное ускорение X
+        list.add(blk("sciLinearAccelX", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_LINEAR_ACCELERATION); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "linear accel X from %m.context"));
+
+        // 📱 Sensor: линейное ускорение Y
+        list.add(blk("sciLinearAccelY", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_LINEAR_ACCELERATION); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "linear accel Y from %m.context"));
+
+        // 📱 Sensor: линейное ускорение Z
+        list.add(blk("sciLinearAccelZ", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_LINEAR_ACCELERATION); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "linear accel Z from %m.context"));
+
+        // 📱 Sensor: гравитация X
+        list.add(blk("sciGravityX", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_GRAVITY); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gravity X from %m.context"));
+
+        // 📱 Sensor: гравитация Y
+        list.add(blk("sciGravityY", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_GRAVITY); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gravity Y from %m.context"));
+
+        // 📱 Sensor: гравитация Z
+        list.add(blk("sciGravityZ", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_GRAVITY); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "gravity Z from %m.context"));
+
+        // 📱 Sensor: вращение X
+        list.add(blk("sciRotationX", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ROTATION_VECTOR); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "rotation X from %m.context"));
+
+        // 📱 Sensor: вращение Y
+        list.add(blk("sciRotationY", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ROTATION_VECTOR); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "rotation Y from %m.context"));
+
+        // 📱 Sensor: вращение Z
+        list.add(blk("sciRotationZ", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ROTATION_VECTOR); float[] _v = new float[3]; return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "rotation Z from %m.context"));
+
+        // 📱 Sensor: влажность
+        list.add(blk("sciHumidity", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_RELATIVE_HUMIDITY); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "humidity from %m.context"));
+
+        // 📱 Sensor: температура
+        list.add(blk("sciAmbientTemp", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_AMBIENT_TEMPERATURE); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "ambient temperature from %m.context"));
+
+        // 📱 Sensor: давление (барометр)
+        list.add(blk("sciPressureSensor", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_PRESSURE); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "pressure sensor from %m.context"));
+
+        // 📱 Sensor: количество шагов (с момента загрузки)
+        list.add(blk("sciStepCounter", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_STEP_COUNTER); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "step counter from %m.context"));
+
+        // 📱 Sensor: детектор шагов (для фонового)
+        list.add(blk("sciStepDetector", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_STEP_DETECTOR); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "step detector from %m.context"));
+
+        // 📍 Location: широта (сеть)
+        list.add(blk("sciNetLat", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.NETWORK_PROVIDER); return _l != null ? _l.getLatitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "network latitude from %m.context"));
+
+        // 📍 Location: долгота (сеть)
+        list.add(blk("sciNetLon", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.NETWORK_PROVIDER); return _l != null ? _l.getLongitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "network longitude from %m.context"));
+
+        // 📍 Location: GPS-провайдер включён?
+        list.add(blk("sciGpsProvider", "b", "",
+                "((android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE)).isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)",
+                "gps provider enabled from %m.context"));
+
+        // 📍 Location: сетевой провайдер включён?
+        list.add(blk("sciNetProvider", "b", "",
+                "((android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE)).isProviderEnabled(android.location.LocationManager.NETWORK_PROVIDER)",
+                "network provider enabled from %m.context"));
+
+        // 📍 Location: включено ли определение местоположения
+        list.add(blk("sciLocationEnabled", "b", "",
+                "((android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE)).isLocationEnabled()",
+                "location enabled from %m.context"));
+
+        // 📍 Location: последнее обновление (millis)
+        list.add(blk("sciLocationTime", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? (double) _l.getTime() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "last location time from %m.context"));
+
+        // 📍 Location: точность (метры)
+        list.add(blk("sciLocationAccuracy", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? (double) _l.getAccuracy() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "location accuracy from %m.context"));
+
+        // 📍 Location: направление (градусы)
+        list.add(blk("sciLocationBearing", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? (double) _l.getBearing() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "location bearing from %m.context"));
+
+        // 📞 Phone: получить список контактов (имена)
+        list.add(blk("sciContactsNames", "d", "",
+                "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, new String[]{android.provider.ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME}, null, null, null); StringBuilder _sb = new StringBuilder(); if (_c != null) { while (_c.moveToNext()) { _sb.append(_c.getString(0)).append(\"\\n\"); } _c.close(); } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "contacts names from %m.context"));
+
+        // 📞 Phone: получить список номеров
+        list.add(blk("sciContactsNumbers", "d", "",
+                "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, new String[]{android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER}, null, null, null); StringBuilder _sb = new StringBuilder(); if (_c != null) { while (_c.moveToNext()) { _sb.append(_c.getString(0)).append(\"\\n\"); } _c.close(); } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "contacts numbers from %m.context"));
+
+        // 📞 Phone: количество контактов
+        list.add(blk("sciContactsCount", "d", "",
+                "((new Object() { public double f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, new String[]{android.provider.ContactsContract.CommonDataKinds.Phone._ID}, null, null, null); double _n = _c != null ? _c.getCount() : 0; if (_c != null) _c.close(); return _n; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "contacts count from %m.context"));
+
+        // 📞 Phone: получить email контакта
+        list.add(blk("sciContactEmail", "d", "",
+                "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Email.CONTENT_URI, new String[]{android.provider.ContactsContract.CommonDataKinds.Email.ADDRESS}, android.provider.ContactsContract.CommonDataKinds.Email.CONTACT_ID + \" = ?\", new String[]{%1$s}, null); if (_c != null && _c.moveToFirst()) { String _e = _c.getString(0); _c.close(); return _e; } return \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "contact email from %m.context"));
+
+        // 📞 Phone: добавить контакт (имя + номер)
+        list.add(blk("sciAddContact", " ", "",
+                "((new Object() { public void f() { try { android.content.ContentValues _v = new android.content.ContentValues(); _v.put(android.provider.ContactsContract.Data.MIMETYPE, android.provider.ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE); _v.put(android.provider.ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, %1$s); android.net.Uri _u = %2$s.getContentResolver().insert(android.provider.ContactsContract.Data.CONTENT_URI, _v); if (_u != null) { android.content.ContentValues _p = new android.content.ContentValues(); _p.put(android.provider.ContactsContract.Data.MIMETYPE, android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE); _p.put(android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER, %3$s); _p.put(android.provider.ContactsContract.Data.CONTACT_ID, android.content.ContentUris.parseId(_u)); _p.put(android.provider.ContactsContract.CommonDataKinds.Phone.TYPE, android.provider.ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE); %2$s.getContentResolver().insert(android.provider.ContactsContract.Data.CONTENT_URI, _p); } } catch (Throwable _t) {} } }).f());",
+                "add contact name %1$s number %3$s from %m.context"));
+
+        // 📞 Phone: количество SMS в Inbox
+        list.add(blk("sciSmsCount", "d", "",
+                "((new Object() { public double f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), new String[]{\"_id\"}, null, null, null); double _n = _c != null ? _c.getCount() : 0; if (_c != null) _c.close(); return _n; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "sms inbox count from %m.context"));
+
+        // 📞 Phone: текст SMS по индексу
+        list.add(blk("sciSmsBody", "d", "",
+                "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), new String[]{\"body\"}, null, null, \"date DESC\"); String _b = \"\"; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _b = _c.getString(0); _c.close(); } return _b; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "sms body at %2$d from %m.context"));
+
+        // 📞 Phone: номер отправителя SMS
+        list.add(blk("sciSmsAddress", "d", "",
+                "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), new String[]{\"address\"}, null, null, \"date DESC\"); String _a = \"\"; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _a = _c.getString(0); _c.close(); } return _a; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "sms address at %2$d from %m.context"));
+
+        // 📞 Phone: дата SMS (millis)
+        list.add(blk("sciSmsDate", "d", "",
+                "((new Object() { public double f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), new String[]{\"date\"}, null, null, \"date DESC\"); double _d = 0; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _d = _c.getDouble(0); _c.close(); } return _d; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "sms date at %2$d from %m.context"));
+
+        // 📞 Phone: количество звонков (история)
+        list.add(blk("sciCallLogCount", "d", "",
+                "((new Object() { public double f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI, new String[]{android.provider.CallLog.Calls._ID}, null, null, null); double _n = _c != null ? _c.getCount() : 0; if (_c != null) _c.close(); return _n; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "call log count from %m.context"));
+
+        // 📞 Phone: номер звонка по индексу
+        list.add(blk("sciCallLogNumber", "d", "",
+                "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI, new String[]{android.provider.CallLog.Calls.NUMBER}, null, null, \"date DESC\"); String _n = \"\"; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _n = _c.getString(0); _c.close(); } return _n; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "call log number at %2$d from %m.context"));
+
+        // 📞 Phone: тип звонка
+        list.add(blk("sciCallLogType", "d", "",
+                "((new Object() { public double f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI, new String[]{android.provider.CallLog.Calls.TYPE}, null, null, \"date DESC\"); double _t = 0; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _t = _c.getDouble(0); _c.close(); } return _t; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "call log type at %2$d from %m.context"));
+
+        // 📞 Phone: удалить контакт
+        list.add(blk("sciDeleteContact", " ", "",
+                "((new Object() { public void f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, new String[]{android.provider.ContactsContract.CommonDataKinds.Phone.CONTACT_ID}, android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER + \" = ?\", new String[]{%2$s}, null); if (_c != null && _c.moveToFirst()) { long _id = _c.getLong(0); _c.close(); %1$s.getContentResolver().delete(android.provider.ContactsContract.RawContacts.CONTENT_URI, android.provider.ContactsContract.RawContacts.CONTACT_ID + \" = ?\", new String[]{String.valueOf(_id)}); } } catch (Throwable _t) {} } }).f());",
+                "delete contact by number %2$s from %m.context"));
+
+        // 📁 File: записать в конец файла
+        list.add(blk("sciFileAppend", " ", "",
+                "((new Object() { public void f() { try { java.io.FileWriter _w = new java.io.FileWriter(%1$s, true); _w.write(%2$s); _w.close(); } catch (Throwable _t) {} } }).f());",
+                "append %2$s to %1$s"));
+
+        // 📁 File: создать папку
+        list.add(blk("sciFileMkdirs", "b", "",
+                "new java.io.File(%1$s).mkdirs()",
+                "mkdirs %1$s"));
+
+        // 📁 File: получить все файлы в папке
+        list.add(blk("sciFileList", "d", "",
+                "((new Object() { public String f() { try { java.io.File _d = new java.io.File(%1$s); StringBuilder _sb = new StringBuilder(); java.io.File[] _fs = _d.listFiles(); if (_fs != null) { for (java.io.File _f : _fs) { _sb.append(_f.getName()).append(\"\\n\"); } } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "list files in %1$s"));
+
+        // 📁 File: получить все папки в директории
+        list.add(blk("sciDirList", "d", "",
+                "((new Object() { public String f() { try { java.io.File _d = new java.io.File(%1$s); StringBuilder _sb = new StringBuilder(); java.io.File[] _fs = _d.listFiles(); if (_fs != null) { for (java.io.File _f : _fs) { if (_f.isDirectory()) _sb.append(_f.getName()).append(\"\\n\"); } } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "list dirs in %1$s"));
+
+        // 📁 File: получить размер папки (МБ)
+        list.add(blk("sciDirSize", "d", "",
+                "((new Object() { public double f() { try { long _s = 0; java.util.Stack _st = new java.util.Stack(); _st.push(new java.io.File(%1$s)); while (!_st.isEmpty()) { java.io.File _f = (java.io.File) _st.pop(); if (_f.isDirectory()) { java.io.File[] _fs = _f.listFiles(); if (_fs != null) { for (java.io.File _c : _fs) _st.push(_c); } } else { _s += _f.length(); } } return (double) (_s / (1024 * 1024)); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "dir size MB of %1$s"));
+
+        // 📁 File: проверить, пуста ли папка
+        list.add(blk("sciDirEmpty", "b", "",
+                "((new Object() { public boolean f() { try { java.io.File _d = new java.io.File(%1$s); java.io.File[] _fs = _d.listFiles(); return _fs == null || _fs.length == 0; } catch (Throwable _t) { return false; } } }).f())",
+                "dir %1$s is empty"));
+
+        // 📁 File: получить путь к external storage
+        list.add(blk("sciExternalStorage", "d", "",
+                "android.os.Environment.getExternalStorageDirectory().getAbsolutePath()",
+                "external storage path"));
+
+        // 📁 File: получить путь к DCIM
+        list.add(blk("sciDcimDir", "d", "",
+                "android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DCIM).getAbsolutePath()",
+                "dcim directory path"));
+
+        // 📁 File: получить путь к Music
+        list.add(blk("sciMusicDir", "d", "",
+                "android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_MUSIC).getAbsolutePath()",
+                "music directory path"));
+
+        // 📁 File: получить путь к Movies
+        list.add(blk("sciMoviesDir", "d", "",
+                "android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_MOVIES).getAbsolutePath()",
+                "movies directory path"));
+
+        // 📁 File: получить путь к Downloads
+        list.add(blk("sciDownloadsDir", "d", "",
+                "android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()",
+                "downloads directory path"));
+
+        // 📁 File: существует ли папка
+        list.add(blk("sciDirExists", "b", "",
+                "new java.io.File(%1$s).isDirectory()",
+                "dir %1$s exists"));
+
+        // 📁 File: скопировать файл
+        list.add(blk("sciFileCopy", "b", "",
+                "((new Object() { public boolean f() { try { java.io.FileInputStream _is = new java.io.FileInputStream(%1$s); java.io.FileOutputStream _os = new java.io.FileOutputStream(%2$s); byte[] _b = new byte[4096]; int _len; while ((_len = _is.read(_b)) > 0) _os.write(_b, 0, _len); _is.close(); _os.close(); return true; } catch (Throwable _t) { return false; } } }).f())",
+                "copy file %1$s to %2$s"));
+
+        // 📁 File: переместить файл
+        list.add(blk("sciFileMove", "b", "",
+                "new java.io.File(%1$s).renameTo(new java.io.File(%2$s))",
+                "move file %1$s to %2$s"));
+
+        // 📁 File: удалить файл
+        list.add(blk("sciFileDelete2", "b", "",
+                "new java.io.File(%1$s).delete()",
+                "delete file %1$s"));
+
+        // 📁 File: размер файла в КБ
+        list.add(blk("sciFileSizeKB2", "d", "",
+                "(double)(new java.io.File(%1$s).length() / 1024)",
+                "file size KB of %1$s"));
+
+        // 📁 File: дата изменения файла
+        list.add(blk("sciFileLastModified2", "d", "",
+                "(double) new java.io.File(%1$s).lastModified()",
+                "last modified of %1$s"));
+
+        // 📁 File: скрытый файл
+        list.add(blk("sciFileIsHidden2", "b", "",
+                "new java.io.File(%1$s).isHidden()",
+                "file %1$s is hidden"));
+
+        // 📁 File: только для чтения
+        list.add(blk("sciFileReadOnly", "b", "",
+                "new java.io.File(%1$s).canRead() && !new java.io.File(%1$s).canWrite()",
+                "file %1$s is read only"));
+
+        // 📁 File: сделать файл только для чтения
+        list.add(blk("sciSetReadOnly", "b", "",
+                "new java.io.File(%1$s).setReadOnly()",
+                "set read only %1$s"));
+
+        // 📁 File: получить MIME-тип
+        list.add(blk("sciMimeType", "d", "",
+                "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); String _e = _n.substring(_n.lastIndexOf('.') + 1).toLowerCase(); if (_e.equals(\"jpg\") || _e.equals(\"jpeg\")) return \"image/jpeg\"; if (_e.equals(\"png\")) return \"image/png\"; if (_e.equals(\"pdf\")) return \"application/pdf\"; if (_e.equals(\"txt\")) return \"text/plain\"; return \"application/octet-stream\"; } catch (Throwable _t) { return \"application/octet-stream\"; } } }).f())",
+                "mime type of %1$s"));
+
+        // 📁 File: получить все файлы с расширением
+        list.add(blk("sciFileFindByExt", "d", "",
+                "((new Object() { public String f() { try { java.io.File _d = new java.io.File(%1$s); StringBuilder _sb = new StringBuilder(); java.io.File[] _fs = _d.listFiles(); if (_fs != null) { for (java.io.File _f : _fs) { if (_f.getName().endsWith(\".\" + %2$s)) _sb.append(_f.getAbsolutePath()).append(\"\\n\"); } } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "find files with ext %2$s in %1$s"));
+
+        // 📁 File: проверить, является ли файл картинкой
+        list.add(blk("sciIsImage", "b", "",
+                "((new Object() { public boolean f() { try { String _n = new java.io.File(%1$s).getName().toLowerCase(); return _n.endsWith(\".jpg\") || _n.endsWith(\".jpeg\") || _n.endsWith(\".png\") || _n.endsWith(\".gif\") || _n.endsWith(\".bmp\") || _n.endsWith(\".webp\"); } catch (Throwable _t) { return false; } } }).f())",
+                "file %1$s is image"));
+
+        // 📁 File: проверить, является ли файл видео
+        list.add(blk("sciIsVideo", "b", "",
+                "((new Object() { public boolean f() { try { String _n = new java.io.File(%1$s).getName().toLowerCase(); return _n.endsWith(\".mp4\") || _n.endsWith(\".avi\") || _n.endsWith(\".mkv\") || _n.endsWith(\".mov\") || _n.endsWith(\".3gp\"); } catch (Throwable _t) { return false; } } }).f())",
+                "file %1$s is video"));
+
+        // 📁 File: проверить, является ли файл аудио
+        list.add(blk("sciIsAudio", "b", "",
+                "((new Object() { public boolean f() { try { String _n = new java.io.File(%1$s).getName().toLowerCase(); return _n.endsWith(\".mp3\") || _n.endsWith(\".wav\") || _n.endsWith(\".ogg\") || _n.endsWith(\".m4a\") || _n.endsWith(\".flac\"); } catch (Throwable _t) { return false; } } }).f())",
+                "file %1$s is audio"));
+
+        // 📁 File: проверить, является ли файл текстом
+        list.add(blk("sciIsText", "b", "",
+                "((new Object() { public boolean f() { try { String _n = new java.io.File(%1$s).getName().toLowerCase(); return _n.endsWith(\".txt\") || _n.endsWith(\".json\") || _n.endsWith(\".xml\") || _n.endsWith(\".html\") || _n.endsWith(\".css\") || _n.endsWith(\".js\") || _n.endsWith(\".java\") || _n.endsWith(\".kt\"); } catch (Throwable _t) { return false; } } }).f())",
+                "file %1$s is text"));
+
+        // 📁 File: получить владельца файла (требует root)
+        list.add(blk("sciFileOwner", "d", "",
+                "((new Object() { public String f() { try { java.io.File _f = new java.io.File(%1$s); return _f.getParentFile().getName() + \"/\" + _f.getName(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "file owner of %1$s"));
+
+        // 📁 File: сравнить два файла (размер)
+        list.add(blk("sciFileCompare", "b", "",
+                "new java.io.File(%1$s).length() == new java.io.File(%2$s).length()",
+                "files %1$s and %2$s same size"));
+
+        // 📁 File: получить все файлы рекурсивно
+        list.add(blk("sciFileListAll", "d", "",
+                "((new Object() { public String f() { try { StringBuilder _sb = new StringBuilder(); java.util.Stack _st = new java.util.Stack(); _st.push(new java.io.File(%1$s)); while (!_st.isEmpty()) { java.io.File _f = (java.io.File) _st.pop(); if (_f.isDirectory()) { java.io.File[] _fs = _f.listFiles(); if (_fs != null) { for (java.io.File _c : _fs) _st.push(_c); } } else { _sb.append(_f.getAbsolutePath()).append(\"\\n\"); } } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "list all files in %1$s recursively"));
+
+        // 📁 File: получить размер папки в КБ
+        list.add(blk("sciDirSizeKB", "d", "",
+                "((new Object() { public double f() { try { long _s = 0; java.util.Stack _st = new java.util.Stack(); _st.push(new java.io.File(%1$s)); while (!_st.isEmpty()) { java.io.File _f = (java.io.File) _st.pop(); if (_f.isDirectory()) { java.io.File[] _fs = _f.listFiles(); if (_fs != null) { for (java.io.File _c : _fs) _st.push(_c); } } else { _s += _f.length(); } } return (double) (_s / 1024); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "dir size KB of %1$s"));
+
+        // 📁 File: удалить папку (рекурсивно)
+        list.add(blk("sciDeleteDirRecursive", " ", "",
+                "((new Object() { public void f() { try { java.io.File _d = new java.io.File(%1$s); if (_d.isDirectory()) { java.io.File[] _fs = _d.listFiles(); if (_fs != null) { for (java.io.File _c : _fs) _c.delete(); } } _d.delete(); } catch (Throwable _t) {} } }).f());",
+                "delete dir %1$s recursively"));
+
+        // 📁 File: создать пустой файл
+        list.add(blk("sciCreateFile", "b", "",
+                "((new Object() { public boolean f() { try { return new java.io.File(%1$s).createNewFile(); } catch (Throwable _t) { return false; } } }).f())",
+                "create file %1$s"));
+
+        // 📁 File: получить имя файла из пути
+        list.add(blk("sciFileNameFromPath", "d", "",
+                "new java.io.File(%1$s).getName()",
+                "file name from %1$s"));
+
+        // 📁 File: получить расширение файла
+        list.add(blk("sciFileExtFromPath", "d", "",
+                "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); return _n.substring(_n.lastIndexOf('.') + 1); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "file extension from %1$s"));
+
+        // 🎨 UI: установить шрифт (monospace)
+        list.add(blk("sciSetMonospace", " ", "",
+                "%1$s.setTypeface(android.graphics.Typeface.MONOSPACE);",
+                "set monospace on %1$s"));
+
+        // 🎨 UI: установить шрифт (serif)
+        list.add(blk("sciSetSerif", " ", "",
+                "%1$s.setTypeface(android.graphics.Typeface.SERIF);",
+                "set serif on %1$s"));
+
+        // 🎨 UI: установить шрифт (sans-serif)
+        list.add(blk("sciSetSansSerif", " ", "",
+                "%1$s.setTypeface(android.graphics.Typeface.SANS_SERIF);",
+                "set sans-serif on %1$s"));
+
+        // 🎨 UI: установить шрифт (bold)
+        list.add(blk("sciSetTypefaceBold", " ", "",
+                "%1$s.setTypeface(null, android.graphics.Typeface.BOLD);",
+                "set bold on %1$s"));
+
+        // 🎨 UI: установить шрифт (italic)
+        list.add(blk("sciSetTypefaceItalic", " ", "",
+                "%1$s.setTypeface(null, android.graphics.Typeface.ITALIC);",
+                "set italic on %1$s"));
+
+        // 🎨 UI: установить шрифт (bold+italic)
+        list.add(blk("sciSetTypefaceBoldItalic", " ", "",
+                "%1$s.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC);",
+                "set bold italic on %1$s"));
+
+        // 🎨 UI: межбуквенный интервал (em)
+        list.add(blk("sciSetLetterSpacingEm", " ", "",
+                "%1$s.setLetterSpacing((float)(%2$s));",
+                "letter spacing %2$s em on %1$s"));
+
+        // 🎨 UI: межстрочный интервал (multiplier)
+        list.add(blk("sciSetLineSpacingMult", " ", "",
+                "%1$s.setLineSpacing(0, (float)(%2$s));",
+                "line spacing multiplier %2$s on %1$s"));
+
+        // 🎨 UI: тень текста
+        list.add(blk("sciSetTextShadow", " ", "",
+                "%1$s.setShadowLayer((float)(%2$s), (float)(%3$s), (float)(%4$s), (int)(%5$s));",
+                "text shadow %1$s radius %2$s dx %3$s dy %4$s color %5$d"));
+
+        // 🎨 UI: выравнивание текста (left)
+        list.add(blk("sciSetTextLeft", " ", "",
+                "%1$s.setGravity(android.view.Gravity.LEFT);",
+                "text left %1$s"));
+
+        // 🎨 UI: выравнивание текста (center)
+        list.add(blk("sciSetTextCenter", " ", "",
+                "%1$s.setGravity(android.view.Gravity.CENTER);",
+                "text center %1$s"));
+
+        // 🎨 UI: выравнивание текста (right)
+        list.add(blk("sciSetTextRight", " ", "",
+                "%1$s.setGravity(android.view.Gravity.RIGHT);",
+                "text right %1$s"));
+
+        // 🎨 UI: отступ (padding) сверху
+        list.add(blk("sciSetPaddingTop", " ", "",
+                "%1$s.setPadding(%1$s.getPaddingLeft(), (int)(%2$s), %1$s.getPaddingRight(), %1$s.getPaddingBottom());",
+                "padding top %2$d on %1$s"));
+
+        // 🎨 UI: отступ (padding) снизу
+        list.add(blk("sciSetPaddingBottom", " ", "",
+                "%1$s.setPadding(%1$s.getPaddingLeft(), %1$s.getPaddingTop(), %1$s.getPaddingRight(), (int)(%2$s));",
+                "padding bottom %2$d on %1$s"));
+
+        // 🎨 UI: отступ (padding) слева
+        list.add(blk("sciSetPaddingLeft", " ", "",
+                "%1$s.setPadding((int)(%2$s), %1$s.getPaddingTop(), %1$s.getPaddingRight(), %1$s.getPaddingBottom());",
+                "padding left %2$d on %1$s"));
+
+        // 🎨 UI: отступ (padding) справа
+        list.add(blk("sciSetPaddingRight", " ", "",
+                "%1$s.setPadding(%1$s.getPaddingLeft(), %1$s.getPaddingTop(), (int)(%2$s), %1$s.getPaddingBottom());",
+                "padding right %2$d on %1$s"));
+
+        // 🎨 UI: ширина (dp)
+        list.add(blk("sciSetWidthDp", " ", "",
+                "((new Object() { public void f() { try { android.view.ViewGroup.LayoutParams _p = %1$s.getLayoutParams(); _p.width = (int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()); %1$s.setLayoutParams(_p); } catch (Throwable _t) {} } }).f());",
+                "set width %2$d dp on %1$s from %m.context"));
+
+        // 🎨 UI: высота (dp)
+        list.add(blk("sciSetHeightDp", " ", "",
+                "((new Object() { public void f() { try { android.view.ViewGroup.LayoutParams _p = %1$s.getLayoutParams(); _p.height = (int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()); %1$s.setLayoutParams(_p); } catch (Throwable _t) {} } }).f());",
+                "set height %2$d dp on %1$s from %m.context"));
+
+        // 🎨 UI: минимальная ширина (dp)
+        list.add(blk("sciSetMinWidthDp", " ", "",
+                "%1$s.setMinimumWidth((int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()));",
+                "min width %2$d dp on %1$s from %m.context"));
+
+        // 🎨 UI: минимальная высота (dp)
+        list.add(blk("sciSetMinHeightDp", " ", "",
+                "%1$s.setMinimumHeight((int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()));",
+                "min height %2$d dp on %1$s from %m.context"));
+
+        // 🎨 UI: максимальная ширина (dp)
+        list.add(blk("sciSetMaxWidthDp", " ", "",
+                "%1$s.setMaxWidth((int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()));",
+                "max width %2$d dp on %1$s from %m.context"));
+
+        // 🎨 UI: максимальная высота (dp)
+        list.add(blk("sciSetMaxHeightDp", " ", "",
+                "%1$s.setMaxHeight((int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()));",
+                "max height %2$d dp on %1$s from %m.context"));
+
+        // 🎬 Animation: fade in (с задержкой)
+        list.add(blk("sciFadeInDelay", " ", "",
+                "%1$s.animate().alpha(1.0f).setStartDelay((long)(%3$s)).setDuration((long)(%2$s)).start();",
+                "fade in %1$s over %2$d ms delay %3$d ms"));
+
+        // 🎬 Animation: fade out (с задержкой)
+        list.add(blk("sciFadeOutDelay", " ", "",
+                "%1$s.animate().alpha(0.0f).setStartDelay((long)(%3$s)).setDuration((long)(%2$s)).start();",
+                "fade out %1$s over %2$d ms delay %3$d ms"));
+
+        // 🎬 Animation: slide up
+        list.add(blk("sciSlideUp", " ", "",
+                "%1$s.animate().translationY(-(float)(%2$s)).setDuration((long)(%3$s)).start();",
+                "slide up %1$s to -Y %2$s over %3$d ms"));
+
+        // 🎬 Animation: slide left
+        list.add(blk("sciSlideLeft", " ", "",
+                "%1$s.animate().translationX(-(float)(%2$s)).setDuration((long)(%3$s)).start();",
+                "slide left %1$s to -X %2$s over %3$d ms"));
+
+        // 🎬 Animation: scale up
+        list.add(blk("sciScaleUp", " ", "",
+                "%1$s.animate().scaleX((float)(%2$s)).scaleY((float)(%2$s)).setDuration((long)(%3$s)).start();",
+                "scale up %1$s to %2$s over %3$d ms"));
+
+        // 🎬 Animation: scale down
+        list.add(blk("sciScaleDown", " ", "",
+                "%1$s.animate().scaleX((float)(%2$s)).scaleY((float)(%2$s)).setDuration((long)(%3$s)).start();",
+                "scale down %1$s to %2$s over %3$d ms"));
+
+        // 🎬 Animation: rotate to 360
+        list.add(blk("sciRotate360", " ", "",
+                "%1$s.animate().rotation(360f).setDuration((long)(%2$s)).start();",
+                "rotate %1$s 360 over %2$d ms"));
+
+        // 🎬 Animation: bounce (отскок)
+        list.add(blk("sciBounce", " ", "",
+                "((new Object() { public void f() { try { android.animation.ObjectAnimator _a = android.animation.ObjectAnimator.ofFloat(%1$s, \"translationY\", 0f, -50f, 0f); _a.setDuration((long)(%2$s)); _a.setInterpolator(new android.view.animation.BounceInterpolator()); _a.start(); } catch (Throwable _t) {} } }).f());",
+                "bounce %1$s over %2$d ms"));
+
+        // 🎬 Animation: shake (тряска)
+        list.add(blk("sciShake", " ", "",
+                "((new Object() { public void f() { try { android.animation.ObjectAnimator _a = android.animation.ObjectAnimator.ofFloat(%1$s, \"translationX\", 0f, 25f, -25f, 25f, -25f, 15f, -15f, 6f, -6f, 0f); _a.setDuration((long)(%2$s)); _a.start(); } catch (Throwable _t) {} } }).f());",
+                "shake %1$s over %2$d ms"));
+
+        // 🎬 Animation: flip (переворот)
+        list.add(blk("sciFlip", " ", "",
+                "((new Object() { public void f() { try { android.animation.ObjectAnimator _a = android.animation.ObjectAnimator.ofFloat(%1$s, \"rotationY\", 0f, 180f, 360f); _a.setDuration((long)(%2$s)); _a.start(); } catch (Throwable _t) {} } }).f());",
+                "flip %1$s over %2$d ms"));
+
+        // 🎬 Animation: blink (мигание)
+        list.add(blk("sciBlink", " ", "",
+                "((new Object() { public void f() { try { android.animation.ObjectAnimator _a = android.animation.ObjectAnimator.ofFloat(%1$s, \"alpha\", 1f, 0f, 1f); _a.setDuration((long)(%2$s)); _a.setRepeatCount(android.animation.ValueAnimator.INFINITE); _a.start(); } catch (Throwable _t) {} } }).f());",
+                "blink %1$s over %2$d ms"));
+
+        // 🎬 Animation: stop animation
+        list.add(blk("sciStopAnimation", " ", "",
+                "%1$s.animate().cancel();",
+                "stop animation %1$s"));
+
+        // 🖼️ Custom View: фон с градиентом (радиальный)
+        list.add(blk("sciSetRadialGradient", " ", "",
+                "((new Object() { public void f() { try { android.graphics.drawable.GradientDrawable _g = new android.graphics.drawable.GradientDrawable(); _g.setGradientType(android.graphics.drawable.GradientDrawable.RADIAL_GRADIENT); _g.setColors(new int[]{(int)(%2$s), (int)(%3$s)}); %1$s.setBackground(_g); } catch (Throwable _t) {} } }).f());",
+                "radial gradient %2$d to %3$d on %1$s"));
+
+        // 🖼️ Custom View: фон с градиентом (линейный)
+        list.add(blk("sciSetLinearGradient", " ", "",
+                "((new Object() { public void f() { try { android.graphics.drawable.GradientDrawable _g = new android.graphics.drawable.GradientDrawable(android.graphics.drawable.GradientDrawable.Orientation.LEFT_RIGHT, new int[]{(int)(%2$s), (int)(%3$s)}); %1$s.setBackground(_g); } catch (Throwable _t) {} } }).f());",
+                "linear gradient %2$d to %3$d on %1$s"));
+
+        // 🖼️ Custom View: фон с обводкой и скруглением
+        list.add(blk("sciSetRoundBorder", " ", "",
+                "((new Object() { public void f() { try { android.graphics.drawable.GradientDrawable _g = new android.graphics.drawable.GradientDrawable(); _g.setCornerRadius((float)(%2$s)); _g.setStroke((int)(%3$s), (int)(%4$s)); _g.setColor((int)(%5$s)); %1$s.setBackground(_g); } catch (Throwable _t) {} } }).f());",
+                "round border %1$s radius %2$s width %3$d color %4$d bg %5$d"));
+
+        // 🖼️ Custom View: прозрачность (0-255)
+        list.add(blk("sciSetAlphaInt", " ", "",
+                "%1$s.setAlpha((float)(%2$s) / 255.0f);",
+                "alpha %2$d on %1$s"));
+
+        // 🖼️ Custom View: поворот (0-360)
+        list.add(blk("sciSetRotationDeg", " ", "",
+                "%1$s.setRotation((float)(%2$s));",
+                "rotation %2$s deg on %1$s"));
+
+        // 🖼️ Custom View: масштаб X
+        list.add(blk("sciSetScaleX2", " ", "",
+                "%1$s.setScaleX((float)(%2$s));",
+                "scale X %2$s on %1$s"));
+
+        // 🖼️ Custom View: масштаб Y
+        list.add(blk("sciSetScaleY2", " ", "",
+                "%1$s.setScaleY((float)(%2$s));",
+                "scale Y %2$s on %1$s"));
+
+        // 🖼️ Custom View: тень (elevation)
+        list.add(blk("sciSetElevation2", " ", "",
+                "%1$s.setElevation((float)(%2$s));",
+                "elevation %2$s on %1$s"));
+
+        // 🖼️ Custom View: цвет фона (hex)
+        list.add(blk("sciSetBgHex", " ", "",
+                "%1$s.setBackgroundColor(android.graphics.Color.parseColor(%2$s));",
+                "background hex %2$s on %1$s"));
+
+        // 🖼️ Custom View: цвет текста (hex)
+        list.add(blk("sciSetTextColorHex", " ", "",
+                "%1$s.setTextColor(android.graphics.Color.parseColor(%2$s));",
+                "text color hex %2$s on %1$s"));
+
+        // 🖼️ Custom View: радиус скругления (dp)
+        list.add(blk("sciSetCornerRadiusDp", " ", "",
+                "((new Object() { public void f() { try { android.graphics.drawable.GradientDrawable _g = new android.graphics.drawable.GradientDrawable(); _g.setCornerRadius((float) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics())); %1$s.setBackground(_g); } catch (Throwable _t) {} } }).f());",
+                "corner radius %2$d dp on %1$s from %m.context"));
+
+        // 🖼️ Custom View: фон (color)
+        list.add(blk("sciSetBgColor", " ", "",
+                "%1$s.setBackgroundColor((int)(%2$s));",
+                "background color %2$d on %1$s"));
+
+        // 🖼️ Custom View: цвет текста (int)
+        list.add(blk("sciSetTextColorInt", " ", "",
+                "%1$s.setTextColor((int)(%2$s));",
+                "text color %2$d on %1$s"));
+
+        // 🖼️ Custom View: размер текста (sp)
+        list.add(blk("sciSetTextSizeSp2", " ", "",
+                "%1$s.setTextSize((float)(%2$s));",
+                "text size %2$s sp on %1$s"));
+
+        // 🖼️ Custom View: размер текста (px)
+        list.add(blk("sciSetTextSizePx", " ", "",
+                "%1$s.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, (float)(%2$s));",
+                "text size %2$s px on %1$s"));
+
+        // 🖼️ Custom View: размер текста (dp)
+        list.add(blk("sciSetTextSizeDp", " ", "",
+                "%1$s.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s));",
+                "text size %2$s dp on %1$s"));
+
+        // 🖼️ Custom View: видимость (invisible/gone/visible)
+        list.add(blk("sciSetVisibility2", " ", "",
+                "%1$s.setVisibility((int)(%2$s));",
+                "visibility %2$d on %1$s"));
+
+        // 🖼️ Custom View: кликабельность
+        list.add(blk("sciSetClickable2", " ", "",
+                "%1$s.setClickable(%2$s);",
+                "clickable %2$b on %1$s"));
+
+        // 🖼️ Custom View: фокусируемость
+        list.add(blk("sciSetFocusable2", " ", "",
+                "%1$s.setFocusable(%2$s);",
+                "focusable %2$b on %1$s"));
+
+        // 🖼️ Custom View: включен/выключен
+        list.add(blk("sciSetEnabled2", " ", "",
+                "%1$s.setEnabled(%2$s);",
+                "enabled %2$b on %1$s"));
+
+        // 🖼️ Custom View: выделение (selected)
+        list.add(blk("sciSetSelected", " ", "",
+                "%1$s.setSelected(%2$s);",
+                "selected %2$b on %1$s"));
+
+        // 🖼️ Custom View: активирован (activated)
+        list.add(blk("sciSetActivated", " ", "",
+                "%1$s.setActivated(%2$s);",
+                "activated %2$b on %1$s"));
+
+        // 🌐 Network: HTTP GET (с возвратом заголовков)
+        list.add(blk("sciHttpGetFull", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"GET\"); StringBuilder _sb = new StringBuilder(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http get full %1$s"));
+
+        // 🌐 Network: HTTP HEAD (получить все заголовки)
+        list.add(blk("sciHttpHeadFull", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"HEAD\"); StringBuilder _sb = new StringBuilder(); for (java.util.Map.Entry<String, java.util.List<String>> _e : _c.getHeaderFields().entrySet()) { _sb.append(_e.getKey()).append(\": \").append(_e.getValue()).append(\"\\n\"); } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http head full %1$s"));
+
+        // 🌐 Network: HTTP OPTIONS
+        list.add(blk("sciHttpOptions", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"OPTIONS\"); StringBuilder _sb = new StringBuilder(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http options %1$s"));
+
+        // 🌐 Network: скачать файл (с прогрессом)
+        list.add(blk("sciDownloadFile", " ", "",
+                "((new Object() { public void f() { try { java.net.URL _u = new java.net.URL(%1$s); java.net.HttpURLConnection _c = (java.net.HttpURLConnection) _u.openConnection(); _c.connect(); int _total = _c.getContentLength(); java.io.InputStream _is = _c.getInputStream(); java.io.FileOutputStream _os = new java.io.FileOutputStream(%2$s); byte[] _b = new byte[4096]; int _len; long _down = 0; while ((_len = _is.read(_b)) > 0) { _os.write(_b, 0, _len); _down += _len; } _is.close(); _os.close(); } catch (Throwable _t) {} } }).f());",
+                "download %1$s to %2$s"));
+
+        // 🌐 Network: загрузить файл (POST)
+        list.add(blk("sciUploadFile", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"POST\"); _c.setDoOutput(true); _c.setRequestProperty(\"Content-Type\", \"multipart/form-data\"); java.io.FileInputStream _is = new java.io.FileInputStream(%2$s); java.io.OutputStream _os = _c.getOutputStream(); byte[] _b = new byte[4096]; int _len; while ((_len = _is.read(_b)) > 0) _os.write(_b, 0, _len); _is.close(); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "upload %2$s to %1$s"));
+
+        // 🌐 Network: JSON → список строк
+        list.add(blk("sciJsonToStringList", " ", "",
+                "((new Object() { public void f() { try { org.json.JSONArray _a = new org.json.JSONArray(%1$s); %2$s.clear(); for (int _i = 0; _i < _a.length(); _i++) %2$s.add(_a.getString(_i)); } catch (Throwable _t) {} } }).f());",
+                "json %1$s to list %2$s"));
+
+        // 🌐 Network: JSON → список чисел
+        list.add(blk("sciJsonToNumberList", " ", "",
+                "((new Object() { public void f() { try { org.json.JSONArray _a = new org.json.JSONArray(%1$s); %2$s.clear(); for (int _i = 0; _i < _a.length(); _i++) %2$s.add(_a.getDouble(_i)); } catch (Throwable _t) {} } }).f());",
+                "json %1$s to number list %2$s"));
+
+        // 🌐 Network: список строк → JSON
+        list.add(blk("sciStringListToJson", "d", "",
+                "new org.json.JSONArray(%1$s).toString()",
+                "list %1$s to json"));
+
+        // 🌐 Network: список чисел → JSON
+        list.add(blk("sciNumberListToJson", "d", "",
+                "new org.json.JSONArray(%1$s).toString()",
+                "number list %1$s to json"));
+
+        // 🌐 Network: Map → JSON
+        list.add(blk("sciMapToJson", "d", "",
+                "new org.json.JSONObject(%1$s).toString()",
+                "map %1$s to json"));
+
+        // 🌐 Network: JSON → Map
+        list.add(blk("sciJsonToMap", "d", "",
+                "((new Object() { public String f() { try { org.json.JSONObject _o = new org.json.JSONObject(%1$s); java.util.Iterator _i = _o.keys(); StringBuilder _sb = new StringBuilder(); while (_i.hasNext()) { String _k = (String) _i.next(); _sb.append(_k).append(\"=\").append(_o.getString(_k)).append(\";\"); } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "json %1$s to map"));
+
+        // 🌐 Network: JSON → размер
+        list.add(blk("sciJsonLength", "d", "",
+                "((new Object() { public double f() { try { return (double) new org.json.JSONArray(%1$s).length(); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "json %1$s length"));
+
+        // 🌐 Network: JSON → есть ли ключ
+        list.add(blk("sciJsonHasKey", "b", "",
+                "((new Object() { public boolean f() { try { return new org.json.JSONObject(%1$s).has(%2$s); } catch (Throwable _t) { return false; } } }).f())",
+                "json %1$s has key %2$s"));
+
+        // 🌐 Network: XML → значение тега
+        list.add(blk("sciXmlTagValue", "d", "",
+                "((new Object() { public String f() { try { javax.xml.parsers.DocumentBuilder _b = javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder(); org.w3c.dom.Document _d = _b.parse(new java.io.ByteArrayInputStream(%1$s.getBytes())); org.w3c.dom.NodeList _n = _d.getElementsByTagName(%2$s); return _n.getLength() > 0 ? _n.item(0).getTextContent() : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "xml %1$s tag %2$s value"));
+
+        // 🌐 Network: XML → количество тегов
+        list.add(blk("sciXmlTagCount", "d", "",
+                "((new Object() { public double f() { try { javax.xml.parsers.DocumentBuilder _b = javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder(); org.w3c.dom.Document _d = _b.parse(new java.io.ByteArrayInputStream(%1$s.getBytes())); return (double) _d.getElementsByTagName(%2$s).getLength(); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "xml %1$s tag %2$s count"));
+
+        // 🌐 Network: XML → атрибут тега
+        list.add(blk("sciXmlAttr2", "d", "",
+                "((new Object() { public String f() { try { javax.xml.parsers.DocumentBuilder _b = javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder(); org.w3c.dom.Document _d = _b.parse(new java.io.ByteArrayInputStream(%1$s.getBytes())); org.w3c.dom.NodeList _n = _d.getElementsByTagName(%2$s); if (_n.getLength() > 0) { org.w3c.dom.NamedNodeMap _a = _n.item(0).getAttributes(); if (_a != null && _a.getNamedItem(%3$s) != null) return _a.getNamedItem(%3$s).getNodeValue(); } return \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "xml %1$s tag %2$s attr %3$s"));
+
+        // 🌐 Network: построить URL с параметрами
+        list.add(blk("sciBuildUrlParams", "d", "",
+                "((new Object() { public String f() { try { String _u = %1$s; String _p = %2$s; if (_p == null || _p.isEmpty()) return _u; String _sep = _u.contains(\"?\") ? \"&\" : \"?\"; StringBuilder _sb = new StringBuilder(_u).append(_sep); String[] _parts = _p.split(\"&\"); for (int _i = 0; _i < _parts.length; _i++) { if (_i > 0) _sb.append(\"&\"); String[] _kv = _parts[_i].split(\"=\"); if (_kv.length == 2) _sb.append(java.net.URLEncoder.encode(_kv[0], \"UTF-8\")).append(\"=\").append(java.net.URLEncoder.encode(_kv[1], \"UTF-8\")); } return _sb.toString(); } catch (Throwable _t) { return %1$s; } } }).f())",
+                "build url %1$s with params %2$s"));
+
+        // 🌐 Network: получить все параметры URL
+        list.add(blk("sciUrlAllParams", "d", "",
+                "((new Object() { public String f() { try { String _q = new java.net.URL(%1$s).getQuery(); if (_q == null) return \"\"; StringBuilder _sb = new StringBuilder(); for (String _p : _q.split(\"&\")) { String[] _kv = _p.split(\"=\"); if (_kv.length == 2) _sb.append(_kv[0]).append(\"=\").append(java.net.URLDecoder.decode(_kv[1], \"UTF-8\")).append(\";\"); } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "url params of %1$s"));
+
+        // 🌐 Network: проверить, является ли строка JSON
+        list.add(blk("sciIsJson", "b", "",
+                "((new Object() { public boolean f() { try { new org.json.JSONObject(%1$s); return true; } catch (Throwable _t) { try { new org.json.JSONArray(%1$s); return true; } catch (Throwable _t2) { return false; } } } }).f())",
+                "is json %1$s"));
+
+        // 🌐 Network: проверить, является ли строка XML
+        list.add(blk("sciIsXml", "b", "",
+                "((new Object() { public boolean f() { try { javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new java.io.ByteArrayInputStream(%1$s.getBytes())); return true; } catch (Throwable _t) { return false; } } }).f())",
+                "is xml %1$s"));
+
+        // 🌐 Network: получить заголовок Accept
+        list.add(blk("sciHttpAccept", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestProperty(\"Accept\", %2$s); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http accept %1$s with %2$s"));
+
+        // 🌐 Network: получить заголовок User-Agent
+        list.add(blk("sciHttpUserAgent", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestProperty(\"User-Agent\", %2$s); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http user agent %1$s with %2$s"));
+
+        // 🌐 Network: скачать JSON и получить поле
+        list.add(blk("sciHttpJsonField2", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return new org.json.JSONObject(_sb.toString()).optString(%2$s); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http json %2$s from %1$s"));
+
+        // 🌐 Network: HTTP Basic Auth (base64)
+        list.add(blk("sciHttpBasicAuth2", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); String _auth = android.util.Base64.encodeToString((%2$s + \":\" + %3$s).getBytes(), android.util.Base64.NO_WRAP); _c.setRequestProperty(\"Authorization\", \"Basic \" + _auth); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http basic auth %1$s user %2$s pass %3$s"));
+
+        // 🌐 Network: HTTP Bearer Token
+        list.add(blk("sciHttpBearer", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestProperty(\"Authorization\", \"Bearer \" + %2$s); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http bearer %1$s token %2$s"));
+
+        // 🌐 Network: HTTP POST с JSON
+        list.add(blk("sciHttpPostJson2", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"POST\"); _c.setRequestProperty(\"Content-Type\", \"application/json\"); _c.setDoOutput(true); java.io.OutputStream _os = _c.getOutputStream(); _os.write(%2$s.getBytes(\"UTF-8\")); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http post json %1$s data %2$s"));
+
+        // 🌐 Network: HTTP POST Form
+        list.add(blk("sciHttpPostForm2", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"POST\"); _c.setRequestProperty(\"Content-Type\", \"application/x-www-form-urlencoded\"); _c.setDoOutput(true); java.io.OutputStream _os = _c.getOutputStream(); _os.write(%2$s.getBytes(\"UTF-8\")); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http post form %1$s data %2$s"));
+
+        // 🌐 Network: скачать изображение в Bitmap
+        list.add(blk("sciDownloadImage", "d", "",
+                "((new Object() { public String f() { try { java.net.URL _u = new java.net.URL(%1$s); android.graphics.Bitmap _b = android.graphics.BitmapFactory.decodeStream(_u.openStream()); return _b != null ? android.util.Base64.encodeToString(_b.toString().getBytes(), android.util.Base64.NO_WRAP) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "download image %1$s"));
+
+        // 🌐 Network: скачать текст
+        list.add(blk("sciDownloadText", "d", "",
+                "((new Object() { public String f() { try { java.net.URL _u = new java.net.URL(%1$s); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_u.openStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l).append(\"\\n\"); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "download text %1$s"));
+
+        // 🌐 Network: проверить доступность (ping)
+        list.add(blk("sciPingCheck", "b", "",
+                "((new Object() { public boolean f() { try { return java.net.InetAddress.getByName(%1$s).isReachable(3000); } catch (Throwable _t) { return false; } } }).f())",
+                "ping check %1$s"));
+
+        // 🌐 Network: получить IP по хосту
+        list.add(blk("sciDnsLookup", "d", "",
+                "((new Object() { public String f() { try { return java.net.InetAddress.getByName(%1$s).getHostAddress(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "dns lookup %1$s"));
+
+        // 🌐 Network: проверить SSL
+        list.add(blk("sciSslValid", "b", "",
+                "((new Object() { public boolean f() { try { javax.net.ssl.HttpsURLConnection _c = (javax.net.ssl.HttpsURLConnection) new java.net.URL(%1$s).openConnection(); _c.connect(); return true; } catch (Throwable _t) { return false; } } }).f())",
+                "ssl valid %1$s"));
+
+        // 🌐 Network: получить сертификат
+        list.add(blk("sciSslCert", "d", "",
+                "((new Object() { public String f() { try { javax.net.ssl.HttpsURLConnection _c = (javax.net.ssl.HttpsURLConnection) new java.net.URL(%1$s).openConnection(); _c.connect(); return _c.getCipherSuite(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "ssl cert %1$s"));
+
+        // 🌐 Network: HTTP с таймаутом
+        list.add(blk("sciHttpGetTimeout2", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setConnectTimeout((int)(%2$s)); _c.setReadTimeout((int)(%2$s)); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http get %1$s timeout %2$d"));
+
+        // 🌐 Network: HTTP с прокси
+        list.add(blk("sciHttpProxy", "d", "",
+                "((new Object() { public String f() { try { java.net.Proxy _p = new java.net.Proxy(java.net.Proxy.Type.HTTP, new java.net.InetSocketAddress(%2$s, (int)(%3$s))); java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(_p); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http proxy %1$s host %2$s port %3$d"));
+
+        // 🌐 Network: кодировать Base64 URL
+        list.add(blk("sciUrlBase64", "d", "",
+                "android.util.Base64.encodeToString(%1$s.getBytes(), android.util.Base64.URL_SAFE | android.util.Base64.NO_WRAP)",
+                "url base64 %1$s"));
+
+        // 🌐 Network: декодировать Base64 URL
+        list.add(blk("sciUrlBase64Decode", "d", "",
+                "new String(android.util.Base64.decode(%1$s, android.util.Base64.URL_SAFE | android.util.Base64.NO_WRAP))",
+                "url base64 decode %1$s"));
+
+        // 🌐 Network: разбить URL на части
+        list.add(blk("sciUrlParse", "d", "",
+                "((new Object() { public String f() { try { java.net.URL _u = new java.net.URL(%1$s); return \"protocol=\" + _u.getProtocol() + \";host=\" + _u.getHost() + \";port=\" + _u.getPort() + \";path=\" + _u.getPath() + \";query=\" + _u.getQuery(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "url parse %1$s"));
+
+        // 🌐 Network: получить протокол URL
+        list.add(blk("sciUrlProtocol", "d", "",
+                "((new Object() { public String f() { try { return new java.net.URL(%1$s).getProtocol(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "url protocol of %1$s"));
+
+        // 🌐 Network: получить порт URL
+        list.add(blk("sciUrlPort", "d", "",
+                "((new Object() { public double f() { try { return (double) new java.net.URL(%1$s).getPort(); } catch (Throwable _t) { return -1.0; } } }).f())",
+                "url port of %1$s"));
+
+        // 🌐 Network: получить путь URL
+        list.add(blk("sciUrlPath", "d", "",
+                "((new Object() { public String f() { try { return new java.net.URL(%1$s).getPath(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "url path of %1$s"));
+
+        // 🌐 Network: проверить, является ли строка URL
+        list.add(blk("sciIsUrl", "b", "",
+                "((new Object() { public boolean f() { try { new java.net.URL(%1$s); return true; } catch (Throwable _t) { return false; } } }).f())",
+                "is url %1$s"));
+
+        // 🌐 Network: получить параметр из URL (с учётом кодирования)
+        list.add(blk("sciUrlParam", "d", "",
+                "((new Object() { public String f() { try { String _q = new java.net.URL(%1$s).getQuery(); if (_q == null) return \"\"; for (String _p : _q.split(\"&\")) { String[] _kv = _p.split(\"=\"); if (_kv.length == 2 && _kv[0].equals(%2$s)) return java.net.URLDecoder.decode(_kv[1], \"UTF-8\"); } return \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "url param %2$s from %1$s"));
+
+        // 🌐 Network: соединить URL и путь
+        list.add(blk("sciUrlJoin", "d", "",
+                "((new Object() { public String f() { try { String _b = %1$s; String _p = %2$s; if (_b.endsWith(\"/\") && _p.startsWith(\"/\")) return _b + _p.substring(1); if (!_b.endsWith(\"/\") && !_p.startsWith(\"/\")) return _b + \"/\" + _p; return _b + _p; } catch (Throwable _t) { return %1$s; } } }).f())",
+                "url join %1$s and %2$s"));
+
+        // 🌐 Network: проверить HTTPS
+        list.add(blk("sciIsHttps", "b", "",
+                "((new Object() { public boolean f() { try { return new java.net.URL(%1$s).getProtocol().equals(\"https\"); } catch (Throwable _t) { return false; } } }).f())",
+                "is https %1$s"));
+
+        // 🌐 Network: установить User-Agent для всех запросов
+        list.add(blk("sciSetUserAgent", " ", "",
+                "System.setProperty(\"http.agent\", %1$s);",
+                "set user agent %1$s"));
+
+        // 🌐 Network: получить заголовок ответа
+        list.add(blk("sciResponseHeader", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"HEAD\"); return _c.getHeaderField(%2$s); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "response header %2$s of %1$s"));
+
+        // 🗄️ SQLite: вставить строку
+        list.add(blk("sciDbInsert", " ", "",
+                "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.content.ContentValues _v = new android.content.ContentValues(); _v.put(%3$s, %4$s); _db.insert(%5$s, null, _v); _db.close(); } catch (Throwable _t) {} } }).f());",
+                "db %1$s insert %3$s = %4$s into %5$s from %m.context"));
+
+        // 🗄️ SQLite: обновить строку
+        list.add(blk("sciDbUpdate", " ", "",
+                "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.content.ContentValues _v = new android.content.ContentValues(); _v.put(%3$s, %4$s); _db.update(%5$s, _v, %6$s, null); _db.close(); } catch (Throwable _t) {} } }).f());",
+                "db %1$s update %3$s = %4$s in %5$s where %6$s from %m.context"));
+
+        // 🗄️ SQLite: удалить строки
+        list.add(blk("sciDbDelete", " ", "",
+                "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.delete(%3$s, %4$s, null); _db.close(); } catch (Throwable _t) {} } }).f());",
+                "db %1$s delete from %3$s where %4$s from %m.context"));
+
+        // 🗄️ SQLite: проверить существование таблицы
+        list.add(blk("sciDbTableExists", "b", "",
+                "((new Object() { public boolean f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.database.Cursor _c = _db.rawQuery(\"SELECT name FROM sqlite_master WHERE type='table' AND name='\" + %3$s + \"'\", null); boolean _e = _c.getCount() > 0; _c.close(); _db.close(); return _e; } catch (Throwable _t) { return false; } } }).f())",
+                "db %1$s table %3$s exists from %m.context"));
+
+        // 🗄️ SQLite: получить все таблицы
+        list.add(blk("sciDbTables", "d", "",
+                "((new Object() { public String f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.database.Cursor _c = _db.rawQuery(\"SELECT name FROM sqlite_master WHERE type='table'\", null); StringBuilder _sb = new StringBuilder(); while (_c.moveToNext()) _sb.append(_c.getString(0)).append(\"\\n\"); _c.close(); _db.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "db %1$s tables from %m.context"));
+
+        // 🗄️ SQLite: получить версию БД
+        list.add(blk("sciDbVersion", "d", "",
+                "((new Object() { public double f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); double _v = _db.getVersion(); _db.close(); return _v; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "db %1$s version from %m.context"));
+
+        // 🗄️ SQLite: сжать (VACUUM)
+        list.add(blk("sciDbVacuum", " ", "",
+                "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(\"VACUUM\"); _db.close(); } catch (Throwable _t) {} } }).f());",
+                "db %1$s vacuum from %m.context"));
+
+        // 🗄️ SQLite: получить путь к БД
+        list.add(blk("sciDbPath", "d", "",
+                "%1$s.getDatabasePath(%2$s).getAbsolutePath()",
+                "db %2$s path from %m.context"));
+
+        // 🗄️ SQLite: удалить БД
+        list.add(blk("sciDbDeleteFile", "b", "",
+                "%1$s.deleteDatabase(%2$s)",
+                "db %2$s delete from %m.context"));
+
+        // 🗄️ SQLite: выполнить транзакцию
+        list.add(blk("sciDbTransaction", " ", "",
+                "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.beginTransaction(); try { _db.execSQL(%3$s); _db.setTransactionSuccessful(); } finally { _db.endTransaction(); } _db.close(); } catch (Throwable _t) {} } }).f());",
+                "db %1$s transaction %3$s from %m.context"));
+
+        // 🔍 Regex: проверить соответствие
+        list.add(blk("sciRegexMatches2", "b", "",
+                "%1$s.matches(%2$s)",
+                "%1$s matches %2$s"));
+
+        // 🔍 Regex: найти первое вхождение
+        list.add(blk("sciRegexFind2", "d", "",
+                "((new Object() { public String f() { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return _m.find() ? _m.group() : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "regex find %2$s in %1$s"));
+
+        // 🔍 Regex: найти все вхождения
+        list.add(blk("sciRegexFindAll2", "d", "",
+                "((new Object() { public String f() { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); StringBuilder _sb = new StringBuilder(); while (_m.find()) _sb.append(_m.group()).append(\"\\n\"); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "regex find all %2$s in %1$s"));
+
+        // 🔍 Regex: заменить все
+        list.add(blk("sciRegexReplaceAll2", "d", "",
+                "%1$s.replaceAll(%2$s, %3$s)",
+                "%1$s replace all %2$s with %3$s"));
+
+        // 🔍 Regex: заменить первое
+        list.add(blk("sciRegexReplaceFirst2", "d", "",
+                "%1$s.replaceFirst(%2$s, %3$s)",
+                "%1$s replace first %2$s with %3$s"));
+
+        // 🔍 Regex: разделить
+        list.add(blk("sciRegexSplit2", "d", "",
+                "java.util.Arrays.toString(%1$s.split(%2$s))",
+                "%1$s split by %2$s"));
+
+        // 🔍 Regex: извлечь группу
+        list.add(blk("sciRegexGroup2", "d", "",
+                "((new Object() { public String f() { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return _m.find() ? _m.group((int)(%3$s)) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "regex group %3$d of %2$s in %1$s"));
+
+        // 🔍 Regex: проверить, является ли regex валидным
+        list.add(blk("sciRegexValid2", "b", "",
+                "((new Object() { public boolean f() { try { java.util.regex.Pattern.compile(%1$s); return true; } catch (Throwable _t) { return false; } } }).f())",
+                "regex %1$s is valid"));
+
+        // 🔍 Regex: получить количество групп
+        list.add(blk("sciRegexGroupCount", "d", "",
+                "((new Object() { public double f() { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); if (_m.find()) return (double) _m.groupCount(); return 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "regex %2$s group count in %1$s"));
+
+        // 🎨 Color: смешать два цвета (50/50)
+        list.add(blk("sciMixColor", "d", "",
+                "(((int)(%1$s) & 0xFF000000) | (((((int)(%1$s) & 0xFF0000) + ((int)(%2$s) & 0xFF0000)) / 2) & 0xFF0000) | (((((int)(%1$s) & 0xFF00) + ((int)(%2$s) & 0xFF00)) / 2) & 0xFF00) | (((((int)(%1$s) & 0xFF) + ((int)(%2$s) & 0xFF)) / 2) & 0xFF))",
+                "mix color %1$s and %2$s"));
+
+        // 🎨 Color: прозрачность (0-255)
+        list.add(blk("sciColorAlpha2", "d", "",
+                "(double)(((int)(%1$s) >> 24) & 0xFF)",
+                "alpha of %1$s"));
+
+        // 🎨 Color: цвет из HEX
+        list.add(blk("sciColorHex", "d", "",
+                "android.graphics.Color.parseColor(%1$s)",
+                "color from hex %1$s"));
+
+        // 🎨 Color: цвет в HEX
+        list.add(blk("sciColorToHex2", "d", "",
+                "String.format(\"#%08X\", (int)(%1$s))",
+                "color %1$s to hex"));
+
+        // 🎨 Color: красный компонент
+        list.add(blk("sciColorRed2", "d", "",
+                "(double) android.graphics.Color.red((int)(%1$s))",
+                "red of %1$s"));
+
+        // 🎨 Color: зелёный компонент
+        list.add(blk("sciColorGreen2", "d", "",
+                "(double) android.graphics.Color.green((int)(%1$s))",
+                "green of %1$s"));
+
+        // 🎨 Color: синий компонент
+        list.add(blk("sciColorBlue2", "d", "",
+                "(double) android.graphics.Color.blue((int)(%1$s))",
+                "blue of %1$s"));
+
+        // 🎨 Color: прозрачный (0)
+        list.add(blk("sciColorTransparent", "d", "",
+                "android.graphics.Color.TRANSPARENT",
+                "transparent color"));
+
+        // 🎨 Color: белый
+        list.add(blk("sciColorWhite", "d", "",
+                "android.graphics.Color.WHITE",
+                "white color"));
+
+        // 🎨 Color: чёрный
+        list.add(blk("sciColorBlack", "d", "",
+                "android.graphics.Color.BLACK",
+                "black color"));
+
+        // 🎨 Color: красный
+        list.add(blk("sciColorRedBase", "d", "",
+                "android.graphics.Color.RED",
+                "red color"));
+
+        // 🎨 Color: зелёный
+        list.add(blk("sciColorGreenBase", "d", "",
+                "android.graphics.Color.GREEN",
+                "green color"));
+
+        // 🎨 Color: синий
+        list.add(blk("sciColorBlueBase", "d", "",
+                "android.graphics.Color.BLUE",
+                "blue color"));
+
+        // 🎨 Color: жёлтый
+        list.add(blk("sciColorYellow", "d", "",
+                "android.graphics.Color.YELLOW",
+                "yellow color"));
+
+        // 🎨 Color: серый
+        list.add(blk("sciColorGray", "d", "",
+                "android.graphics.Color.GRAY",
+                "gray color"));
+
+        // 🎨 Color: тёмно-серый
+        list.add(blk("sciColorDarkGray", "d", "",
+                "android.graphics.Color.DKGRAY",
+                "dark gray color"));
+
+        // 🎨 Color: светло-серый
+        list.add(blk("sciColorLightGray", "d", "",
+                "android.graphics.Color.LTGRAY",
+                "light gray color"));
+
+        // 🎨 Color: голубой
+        list.add(blk("sciColorCyan", "d", "",
+                "android.graphics.Color.CYAN",
+                "cyan color"));
+
+        // 🎨 Color: пурпурный
+        list.add(blk("sciColorMagenta", "d", "",
+                "android.graphics.Color.MAGENTA",
+                "magenta color"));
+
+        // 🎨 Color: с прозрачностью
+        list.add(blk("sciColorWithAlpha2", "d", "",
+                "android.graphics.Color.argb((int)(%1$s), android.graphics.Color.red((int)(%2$s)), android.graphics.Color.green((int)(%2$s)), android.graphics.Color.blue((int)(%2$s)))",
+                "color %2$s with alpha %1$d"));
+
+        // 📁 File: получить размер файла (МБ)
+        list.add(blk("sciFileSizeMB2", "d", "",
+                "(double)(new java.io.File(%1$s).length() / (1024.0 * 1024.0))",
+                "file size MB of %1$s"));
+
+        // 📁 File: получить размер файла (байты)
+        list.add(blk("sciFileSizeBytes2", "d", "",
+                "(double) new java.io.File(%1$s).length()",
+                "file size bytes of %1$s"));
+
+        // 📁 File: получить путь к родительской папке
+        list.add(blk("sciFileParentPath", "d", "",
+                "((new Object() { public String f() { try { return new java.io.File(%1$s).getParent(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "file parent path of %1$s"));
+
+        // 📁 File: получить абсолютный путь
+        list.add(blk("sciFileAbsPath", "d", "",
+                "new java.io.File(%1$s).getAbsolutePath()",
+                "file absolute path of %1$s"));
+
+        // 📁 File: проверить, является ли путь директорией
+        list.add(blk("sciFileIsDir", "b", "",
+                "new java.io.File(%1$s).isDirectory()",
+                "file %1$s is directory"));
+
+        // 📁 File: проверить, является ли путь файлом
+        list.add(blk("sciFileIsFile2", "b", "",
+                "new java.io.File(%1$s).isFile()",
+                "file %1$s is file"));
+
+        // 📁 File: проверить, является ли путь скрытым
+        list.add(blk("sciFileIsHidden3", "b", "",
+                "new java.io.File(%1$s).isHidden()",
+                "file %1$s is hidden"));
+
+        // 📁 File: создать пустой файл
+        list.add(blk("sciFileCreate", "b", "",
+                "((new Object() { public boolean f() { try { return new java.io.File(%1$s).createNewFile(); } catch (Throwable _t) { return false; } } }).f())",
+                "create file %1$s"));
     }
 }
