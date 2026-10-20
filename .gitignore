@@ -75,3 +75,4 @@ javac.*.args
 *.bak
 *.bak2
 /docs/
+block_jsons/BLOCKS_REFERENCE_FULL.html
