@@ -2845,4 +2845,5 @@ ACTION_VIEW
     <string name="preflight_unknown_block">Невідомий блок «%1$s». Можливо, він зі старої версії.</string>
     <string name="preflight_too_many_blocks">У події занадто багато блоків (%1$s). Це може сповільнити додаток.</string>
     <string name="preflight_duplicate_block">Однаковий блок повторюється %1$s разів. Можливо, це помилка.</string>
+    <string name="menu_save_block_list">Зберегти список блоків</string>
 </resources>

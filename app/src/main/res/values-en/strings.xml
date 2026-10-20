@@ -2899,4 +2899,5 @@ ACTION_VIEW
     <string name="preflight_unknown_block">Unknown block «%1$s». It may be from an old version.</string>
     <string name="preflight_too_many_blocks">Too many blocks in event (%1$s). It may slow down the app.</string>
     <string name="preflight_duplicate_block">The same block repeats %1$s times. It may be an error.</string>
+    <string name="menu_save_block_list">Save block list</string>
 </resources>

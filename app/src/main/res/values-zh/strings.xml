@@ -2845,4 +2845,5 @@ ACTION_VIEW
     <string name="preflight_unknown_block">未知积木«%1$s»。它可能来自旧版本。</string>
     <string name="preflight_too_many_blocks">事件中有太多积木（%1$s）。可能会减慢应用速度。</string>
     <string name="preflight_duplicate_block">相同的积木重复了%1$s次。可能是错误。</string>
+    <string name="menu_save_block_list">保存积木列表</string>
 </resources>

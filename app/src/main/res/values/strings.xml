@@ -2909,4 +2909,5 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="preflight_unknown_block">Неизвестный блок «%1$s». Возможно, он из старой версии.</string>
     <string name="preflight_too_many_blocks">В событии слишком много блоков (%1$s). Это может замедлить приложение.</string>
     <string name="preflight_duplicate_block">Одинаковый блок повторяется %1$s раз. Возможно, это ошибка.</string>
+    <string name="menu_save_block_list">Сохранить список блоков</string>
 </resources>

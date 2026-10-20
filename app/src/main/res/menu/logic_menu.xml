@@ -59,7 +59,7 @@
     <item
         android:id="@+id/menu_save_block_list"
         android:orderInCategory="200"
-        android:title="Сохранить список блоков"
+        android:title="@string/menu_save_block_list"
         app:showAsAction="never" />
 
     <item
