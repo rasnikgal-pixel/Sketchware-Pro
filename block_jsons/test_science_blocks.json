@@ -1,0 +1,42 @@
+[
+  {
+    "name": "sciTextLength",
+    "type": "d",
+    "spec": "length of %1$s",
+    "code": "(double)(%1$s.length())",
+    "palette": "11",
+    "color": "#6a1b9a"
+  },
+  {
+    "name": "sciTextUpper",
+    "type": "d",
+    "spec": "uppercase of %1$s",
+    "code": "%1$s.toUpperCase()",
+    "palette": "11",
+    "color": "#6a1b9a"
+  },
+  {
+    "name": "sciTextLower",
+    "type": "d",
+    "spec": "lowercase of %1$s",
+    "code": "%1$s.toLowerCase()",
+    "palette": "11",
+    "color": "#6a1b9a"
+  },
+  {
+    "name": "sciMd5",
+    "type": "d",
+    "spec": "md5 of %1$s",
+    "code": "((new Object() { public String f() { try { java.security.MessageDigest _md = java.security.MessageDigest.getInstance(\"MD5\"); byte[] _b = _md.digest(%1$s.getBytes()); StringBuilder _sb = new StringBuilder(); for (byte _x : _b) _sb.append(String.format(\"%02x\", _x)); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+    "palette": "11",
+    "color": "#6a1b9a"
+  },
+  {
+    "name": "sciIsEmptyString",
+    "type": "b",
+    "spec": "%1$s is empty",
+    "code": "%1$s.trim().isEmpty()",
+    "palette": "11",
+    "color": "#6a1b9a"
+  }
+]

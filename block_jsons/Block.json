@@ -1,0 +1,1890 @@
+[
+  {
+    "name": "sciOhmI",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Ohm: I = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciOhmU",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Ohm: U = %1$s * %2$s",
+    "code": "(double)((double)(%1$s * %2$s))"
+  },
+  {
+    "name": "sciOhmR",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Ohm: R = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciPowerUI",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Power: P = %1$s * %2$s",
+    "code": "(double)((double)(%1$s * %2$s))"
+  },
+  {
+    "name": "sciPowerI2R",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Power: P = %1$s² * %2$s",
+    "code": "(double)((double)(%1$s * %1$s * %2$s))"
+  },
+  {
+    "name": "sciPowerU2R",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Power: P = %1$s² / %2$s",
+    "code": "(double)((double)(%1$s * %1$s / %2$s))"
+  },
+  {
+    "name": "sciXc",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Xc = 1 / (2π * %1$s * %2$s)",
+    "code": "(double)((double)(1.0 / (2.0 * Math.PI * %1$s * %2$s)))"
+  },
+  {
+    "name": "sciXl",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Xl = 2π * %1$s * %2$s",
+    "code": "(double)((double)(2.0 * Math.PI * %1$s * %2$s))"
+  },
+  {
+    "name": "sciSpeed",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Mechanics: v = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciAccel",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Mechanics: a = (%1$s - %2$s) / %3$s",
+    "code": "(double)((double)((%1$s - %2$s) / %3$s))"
+  },
+  {
+    "name": "sciForce",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "Mechanics: F = %1$s * %2$s",
+    "code": "(double)((double)(%1$s * %2$s))"
+  },
+  {
+    "name": "sciMolarMass",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "M = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciDensity",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "density ρ = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciPressure",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "pressure P = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciWork",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "work A = %1$s * %2$s",
+    "code": "(double)((double)(%1$s * %2$s))"
+  },
+  {
+    "name": "sciEnergy",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "energy E = %1$s * 9.8 * %2$s",
+    "code": "(double)((double)(%1$s * 9.8 * %2$s))"
+  },
+  {
+    "name": "sciMechPower",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "power N = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciGravity",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "gravity F = G·%1$s·%2$s/%3$s²",
+    "code": "(double)((double)(6.674e-11 * %1$s * %2$s / (%3$s * %3$s)))"
+  },
+  {
+    "name": "sciConcentration",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "concentration C = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciSolutionMass",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "solution mass = %1$s + %2$s",
+    "code": "(double)((double)(%1$s + %2$s))"
+  },
+  {
+    "name": "sciAmount",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "amount n = %1$s / %2$s",
+    "code": "(double)((double)(%1$s / %2$s))"
+  },
+  {
+    "name": "sciMolarVolume",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "molar volume V = %1$s * 22.4",
+    "code": "(double)((double)(%1$s * 22.4))"
+  },
+  {
+    "name": "sciVat",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "VAT = %1$s * %2$s / 100",
+    "code": "(double)((double)(%1$s * %2$s / 100.0))"
+  },
+  {
+    "name": "sciVatIncluded",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "sum with VAT = %1$s * (1 + %2$s/100)",
+    "code": "(double)((double)(%1$s * (1.0 + %2$s / 100.0)))"
+  },
+  {
+    "name": "sciVatExtract",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "extract VAT = %1$s * %2$s / (100 + %2$s)",
+    "code": "(double)((double)(%1$s * %2$s / (100.0 + %2$s)))"
+  },
+  {
+    "name": "sciPercent",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "percent of number = %1$s * %2$s / 100",
+    "code": "(double)((double)(%1$s * %2$s / 100.0))"
+  },
+  {
+    "name": "sciAddPercent",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "number + percent = %1$s * (1 + %2$s/100)",
+    "code": "(double)((double)(%1$s * (1.0 + %2$s / 100.0)))"
+  },
+  {
+    "name": "sciSubPercent",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "number - percent = %1$s * (1 - %2$s/100)",
+    "code": "(double)((double)(%1$s * (1.0 - %2$s / 100.0)))"
+  },
+  {
+    "name": "sciProfit",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "profit = %1$s - %2$s",
+    "code": "(double)((double)(%1$s - %2$s))"
+  },
+  {
+    "name": "sciMargin",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "margin % = (%1$s - %2$s) / %1$s * 100",
+    "code": "(double)((double)((%1$s - %2$s) / %1$s * 100.0))"
+  },
+  {
+    "name": "sciMarkup",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "markup % = (%1$s - %2$s) / %2$s * 100",
+    "code": "(double)((double)((%1$s - %2$s) / %2$s * 100.0))"
+  },
+  {
+    "name": "sciCompound",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "compound interest = %1$s * (1 + %2$s/100)^%3$s",
+    "code": "(double)((double)(%1$s * Math.pow(1.0 + %2$s / 100.0, %3$s)))"
+  },
+  {
+    "name": "sciAnnuity",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "annuity payment = %1$s * %2$s / (1 - (1+%2$s)^-%3$s)",
+    "code": "(double)((double)(%1$s * (%2$s / 100.0) / (1.0 - Math.pow(1.0 + %2$s / 100.0, -%3$s))))"
+  },
+  {
+    "name": "sciUsn6",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "USN 6% = %1$s * 6 / 100",
+    "code": "(double)((double)(%1$s * 6.0 / 100.0))"
+  },
+  {
+    "name": "sciUsn15",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "USN 15% = (%1$s - %2$s) * 15 / 100",
+    "code": "(double)((double)((%1$s - %2$s) * 15.0 / 100.0))"
+  },
+  {
+    "name": "sciIsValidEmail",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "%1$s is valid email",
+    "code": "android.util.Patterns.EMAIL_ADDRESS.matcher(%1$s).matches()"
+  },
+  {
+    "name": "sciIsEmptyString",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "%1$s is empty",
+    "code": "%1$s.trim().isEmpty()"
+  },
+  {
+    "name": "sciParseColor",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "parse %1$s to int",
+    "code": "(double)((double) android.graphics.Color.parseColor(%1$s))"
+  },
+  {
+    "name": "sciColorWithAlpha",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "alpha %1$d on color %2$s",
+    "code": "(double)((double) (((int)(%2$s) & 0xFFFFFF) | (((int)(%1$s) & 0xFF) << 24)))"
+  },
+  {
+    "name": "sciFormatDateNow",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "now in format %1$s",
+    "code": "((new Object() { public String f() { try { return new java.text.SimpleDateFormat(%1$s, java.util.Locale.getDefault()).format(new java.util.Date()); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciParseDate",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "parse %1$s with format %2$s to millis",
+    "code": "(double)((double) new java.text.SimpleDateFormat(%2$s, java.util.Locale.getDefault()).parse(%1$s).getTime())"
+  },
+  {
+    "name": "sciGetFileName",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "name of %1$s",
+    "code": "((new Object() { public String f() { try { return new java.io.File(%1$s).getName(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciGetFileExtension",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "extension of %1$s",
+    "code": "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); int _i = _n.lastIndexOf('.'); return _i > 0 ? _n.substring(_i + 1) : \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciRoundTo",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "round %1$s to %2$d decimals",
+    "code": "(double)((double) java.math.BigDecimal.valueOf((double)(%1$s)).setScale((int)(%2$s), java.math.RoundingMode.HALF_UP).doubleValue())"
+  },
+  {
+    "name": "sciIsNetworkAvailable",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "is available",
+    "code": "((new Object() { public boolean f() { try { android.net.ConnectivityManager _cm = (android.net.ConnectivityManager) getSystemService(android.content.Context.CONNECTIVITY_SERVICE); android.net.NetworkInfo _ni = _cm.getActiveNetworkInfo(); return _ni != null && _ni.isConnected(); } catch (Throwable _t) { return false; } } }).f())"
+  },
+  {
+    "name": "sciHttpGet",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "http get %1$s",
+    "code": "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\\\"GET\\\"); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) { _sb.append(_l); } _r.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciHttpPost",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "http post %1$s data %2$s",
+    "code": "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\\\"POST\\\"); _c.setDoOutput(true); java.io.OutputStream _os = _c.getOutputStream(); _os.write(%2$s.getBytes(\\\"UTF-8\\\")); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) { _sb.append(_l); } _r.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciSendEmail",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "send email to %1$s subject %2$s body %3$s from %m.context",
+    "code": "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_SENDTO); _i.setData(android.net.Uri.parse(\\\"mailto:\\\")); _i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{%1$s}); _i.putExtra(android.content.Intent.EXTRA_SUBJECT, %2$s); _i.putExtra(android.content.Intent.EXTRA_TEXT, %3$s); %4$s.startActivity(android.content.Intent.createChooser(_i, \\\"Send email\\\")); } catch (Throwable _t) {}"
+  },
+  {
+    "name": "sciGetFileNameNoExt",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "file name without extension %1$s",
+    "code": "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); int _i = _n.lastIndexOf('.'); return _i > 0 ? _n.substring(0, _i) : _n; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciGetFilePath",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "file path %1$s",
+    "code": "((new Object() { public String f() { try { return new java.io.File(%1$s).getAbsolutePath(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciTextDeleteLine",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "delete line %2$d from %1$s",
+    "code": "((new Object() { public void f() { try { String[] _l = %1$s.split(\\\"\\\\n\\\", -1); StringBuilder _sb = new StringBuilder(); for (int _i = 0; _i < _l.length; _i++) { if (_i != (int)(%2$s) - 1) { _sb.append(_l[_i]).append(\\\"\\\\n\\\"); } } %1$s = _sb.toString().trim(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciTextGetLine",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "get line %2$d from %1$s",
+    "code": "((new Object() { public String f() { try { String[] _l = %1$s.split(\\\"\\\\n\\\", -1); int _n = (int)(%2$s) - 1; return (_n >= 0 && _n < _l.length) ? _l[_n] : \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciTextClear",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "clear text %1$s",
+    "code": "%1$s = \\\"\\\";"
+  },
+  {
+    "name": "sciTextLength",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "length of %1$s",
+    "code": "(double)(%1$s.length())"
+  },
+  {
+    "name": "sciTextLengthNoSpaces",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "length without spaces of %1$s",
+    "code": "(double)(%1$s.replace(\\\" \\\", \\\"\\\").length())"
+  },
+  {
+    "name": "sciTextUpper",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "uppercase of %1$s",
+    "code": "%1$s.toUpperCase()"
+  },
+  {
+    "name": "sciTextLower",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "lowercase of %1$s",
+    "code": "%1$s.toLowerCase()"
+  },
+  {
+    "name": "sciTextLineLength",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "line %2$d length of %1$s",
+    "code": "((new Object() { public double f() { try { String[] _l = %1$s.split(\\\"\\\\n\\\", -1); int _n = (int)(%2$s) - 1; return (_n >= 0 && _n < _l.length) ? (double)_l[_n].length() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciTextReverseLines",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "reverse lines of %1$s",
+    "code": "((new Object() { public String f() { try { String[] _l = %1$s.split(\\\"\\\\n\\\", -1); StringBuilder _sb = new StringBuilder(); for (int _i = _l.length - 1; _i >= 0; _i--) { _sb.append(_l[_i]); if (_i > 0) _sb.append(\\\"\\\\n\\\"); } return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciTextCharAt",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "char at %2$d of %1$s",
+    "code": "((new Object() { public String f() { try { int _i = (int)(%2$s); return (_i >= 0 && _i < %1$s.length()) ? String.valueOf(%1$s.charAt(_i)) : \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciTextIsEmpty",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "is empty %1$s",
+    "code": "%1$s.trim().isEmpty()"
+  },
+  {
+    "name": "sciTextReverse",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "reverse text of %1$s",
+    "code": "new StringBuilder(%1$s).reverse().toString()"
+  },
+  {
+    "name": "sciTextReplaceRange",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "replace in %1$s from %2$d length %3$d with %4$s",
+    "code": "((new Object() { public void f() { try { int _s = (int)(%2$s); int _l = (int)(%3$s); %1$s = %1$s.substring(0, _s) + %4$s + %1$s.substring(_s + _l); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciTextSubstring",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "substring from %2$d of %1$s",
+    "code": "((new Object() { public String f() { try { int _s = (int)(%2$s); return (_s >= 0 && _s < %1$s.length()) ? %1$s.substring(_s) : \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciTextCapitalize",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "capitalize words of %1$s",
+    "code": "((new Object() { public String f() { try { String[] _w = %1$s.split(\\\" \\\"); StringBuilder _sb = new StringBuilder(); for (String _s : _w) { if (!_s.isEmpty()) { _sb.append(Character.toUpperCase(_s.charAt(0))).append(_s.substring(1).toLowerCase()).append(\\\" \\\"); } } return _sb.toString().trim(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciTextRemoveSpaces",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "remove spaces from %1$s",
+    "code": "%1$s.replace(\\\" \\\", \\\"\\\")"
+  },
+  {
+    "name": "sciTextRemoveLineComments",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "remove // comments from %1$s",
+    "code": "%1$s.replaceAll(\\\"//.*\\\", \\\"\\\")"
+  },
+  {
+    "name": "sciTextRemoveAllComments",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "remove all comments from %1$s",
+    "code": "%1$s.replaceAll(\\\"//.*|/\\\\\\\\*[\\\\\\\\s\\\\\\\\S]*?\\\\\\\\*/\\\", \\\"\\\")"
+  },
+  {
+    "name": "sciTextSetHint",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set hint %2$s on %1$s",
+    "code": "%1$s.setHint(%2$s);"
+  },
+  {
+    "name": "sciMd5",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "md5 of %1$s",
+    "code": "((new Object() { public String f() { try { java.security.MessageDigest _md = java.security.MessageDigest.getInstance(\\\"MD5\\\"); byte[] _b = _md.digest(%1$s.getBytes()); StringBuilder _sb = new StringBuilder(); for (byte _x : _b) _sb.append(String.format(\\\"%02x\\\", _x)); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciBase64Encode",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "base64 encode %1$s",
+    "code": "android.util.Base64.encodeToString(%1$s.getBytes(), android.util.Base64.NO_WRAP)"
+  },
+  {
+    "name": "sciBase64Decode",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "base64 decode %1$s",
+    "code": "new String(android.util.Base64.decode(%1$s, android.util.Base64.NO_WRAP))"
+  },
+  {
+    "name": "sciSha256",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "sha256 of %1$s",
+    "code": "((new Object() { public String f() { try { java.security.MessageDigest _md = java.security.MessageDigest.getInstance(\\\"SHA-256\\\"); byte[] _b = _md.digest(%1$s.getBytes()); StringBuilder _sb = new StringBuilder(); for (byte _x : _b) _sb.append(String.format(\\\"%02x\\\", _x)); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciDateToday",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "today date",
+    "code": "new java.text.SimpleDateFormat(\\\"dd.MM.yyyy\\\", java.util.Locale.getDefault()).format(new java.util.Date())"
+  },
+  {
+    "name": "sciTimeNow",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "current time",
+    "code": "new java.text.SimpleDateFormat(\\\"HH:mm\\\", java.util.Locale.getDefault()).format(new java.util.Date())"
+  },
+  {
+    "name": "sciDaysBetween",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "days between %1$s and %2$s",
+    "code": "((new Object() { public double f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\\\"dd.MM.yyyy\\\", java.util.Locale.getDefault()); long _d1 = _fmt.parse(%1$s).getTime(); long _d2 = _fmt.parse(%2$s).getTime(); return (double) Math.abs((_d2 - _d1) / (1000 * 60 * 60 * 24)); } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciDeviceModel",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "device model",
+    "code": "android.os.Build.MODEL"
+  },
+  {
+    "name": "sciAndroidVersion",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "android version",
+    "code": "android.os.Build.VERSION.RELEASE"
+  },
+  {
+    "name": "sciBatteryLevel",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "battery level",
+    "code": "((new Object() { public double f() { try { android.content.IntentFilter _if = new android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED); android.content.Intent _b = getApplicationContext().registerReceiver(null, _if); int _lvl = _b.getIntExtra(android.os.BatteryManager.EXTRA_LEVEL, -1); int _scale = _b.getIntExtra(android.os.BatteryManager.EXTRA_SCALE, -1); return (double)(_lvl * 100 / (float)_scale); } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciListJoin",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "join list %1$s with %2$s",
+    "code": "((new Object() { public String f() { try { StringBuilder _sb = new StringBuilder(); for (int _i = 0; _i < %1$s.size(); _i++) { if (_i > 0) _sb.append(%2$s); _sb.append(%1$s.get(_i)); } return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciListSort",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "sort list %1$s",
+    "code": "((new Object() { public void f() { try { java.util.Collections.sort(%1$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListReverse",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "reverse list %1$s",
+    "code": "((new Object() { public void f() { try { java.util.Collections.reverse(%1$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListUnique",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "remove duplicates from %1$s",
+    "code": "((new Object() { public void f() { try { java.util.LinkedHashSet _set = new java.util.LinkedHashSet(%1$s); %1$s.clear(); %1$s.addAll(_set); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListFirst",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "first of %1$s",
+    "code": "((new Object() { public String f() { try { return %1$s.isEmpty() ? \\\"\\\" : String.valueOf(%1$s.get(0)); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciListLast",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "last of %1$s",
+    "code": "((new Object() { public String f() { try { return %1$s.isEmpty() ? \\\"\\\" : String.valueOf(%1$s.get(%1$s.size() - 1)); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciListIndexOf",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "index of %2$s in %1$s",
+    "code": "(double)(%1$s.indexOf(%2$s))"
+  },
+  {
+    "name": "sciListCopy",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "copy %1$s to %2$s",
+    "code": "((new Object() { public void f() { try { %2$s.clear(); %2$s.addAll(%1$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListShuffle",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "shuffle %1$s",
+    "code": "((new Object() { public void f() { try { java.util.Collections.shuffle(%1$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciJsonGet",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "json get %2$s from %1$s",
+    "code": "((new Object() { public String f() { try { org.json.JSONObject _o = new org.json.JSONObject(%1$s); return _o.optString(%2$s, \\\"\\\"); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciJsonCreate",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "json create key %1$s value %2$s",
+    "code": "((new Object() { public String f() { try { org.json.JSONObject _o = new org.json.JSONObject(); _o.put(%1$s, %2$s); return _o.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciJsonArray",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "json array from list %1$s",
+    "code": "new org.json.JSONArray(%1$s).toString()"
+  },
+  {
+    "name": "sciSqliteOpen",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "open sqlite db %1$s from %m.context",
+    "code": "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.close(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciSqliteExec",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "sqlite exec %3$s in %1$s",
+    "code": "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(%3$s); _db.close(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciSqliteQuery",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "sqlite query %3$s in %1$s",
+    "code": "((new Object() { public String f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.database.Cursor _c = _db.rawQuery(%3$s, null); StringBuilder _sb = new StringBuilder(); while (_c.moveToNext()) { for (int _i = 0; _i < _c.getColumnCount(); _i++) { _sb.append(_c.getString(_i)).append(\\\" | \\\"); } _sb.append(\\\"\\\\n\\\"); } _c.close(); _db.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciRandomInt",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "random int from %1$d to %2$d",
+    "code": "(double)(new java.util.Random().nextInt((int)(%2$s - %1$s + 1)) + (int)(%1$s))"
+  },
+  {
+    "name": "sciRandomString",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "random string length %1$d",
+    "code": "((new Object() { public String f() { try { String _chars = \\\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\\\"; StringBuilder _sb = new StringBuilder(); java.util.Random _r = new java.util.Random(); for (int _i = 0; _i < (int)(%1$s); _i++) _sb.append(_chars.charAt(_r.nextInt(_chars.length()))); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciRandomFromList",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "random from list %1$s",
+    "code": "((new Object() { public String f() { try { return %1$s.isEmpty() ? \\\"\\\" : String.valueOf(%1$s.get(new java.util.Random().nextInt(%1$s.size()))); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciShowToast",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "show toast %1$s from %m.context",
+    "code": "android.widget.Toast.makeText(%2$s, %1$s, android.widget.Toast.LENGTH_SHORT).show();"
+  },
+  {
+    "name": "sciShowNotification",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "show notification %2$s %3$s from %m.context",
+    "code": "((new Object() { public void f() { try { androidx.core.app.NotificationCompat.Builder _b = new androidx.core.app.NotificationCompat.Builder(%1$s, \\\"default\\\").setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle(%2$s).setContentText(%3$s).setAutoCancel(true); androidx.core.app.NotificationManagerCompat.from(%1$s).notify((int)System.currentTimeMillis(), _b.build()); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciOpenUrl",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "open url %1$s from %m.context",
+    "code": "%2$s.startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(%1$s)));"
+  },
+  {
+    "name": "sciCallPhone",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "call %1$s from %m.context",
+    "code": "%2$s.startActivity(new android.content.Intent(android.content.Intent.ACTION_DIAL, android.net.Uri.parse(\\\"tel:\\\" + %1$s)));"
+  },
+  {
+    "name": "sciSendSms",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "send sms to %1$s text %2$s from %m.context",
+    "code": "%3$s.startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(\\\"sms:\\\" + %1$s + \\\"?body=\\\" + android.net.Uri.encode(%2$s))));"
+  },
+  {
+    "name": "sciOpenApp",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "open app %1$s from %m.context",
+    "code": "try { %2$s.startActivity(%2$s.getPackageManager().getLaunchIntentForPackage(%1$s)); } catch (Throwable _t) {}"
+  },
+  {
+    "name": "sciShareText",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "share text %1$s from %m.context",
+    "code": "android.content.Intent _s = new android.content.Intent(android.content.Intent.ACTION_SEND); _s.setType(\\\"text/plain\\\"); _s.putExtra(android.content.Intent.EXTRA_TEXT, %1$s); %2$s.startActivity(android.content.Intent.createChooser(_s, \\\"Share\\\"));"
+  },
+  {
+    "name": "sciFileRead",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "read file %1$s",
+    "code": "((new Object() { public String f() { try { java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.FileReader(%1$s)); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) { _sb.append(_l).append(\\\"\\\\n\\\"); } _r.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciFileWrite",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "write %2$s to file %1$s",
+    "code": "((new Object() { public void f() { try { java.io.FileWriter _w = new java.io.FileWriter(%1$s); _w.write(%2$s); _w.close(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciFileExists",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "file %1$s exists",
+    "code": "new java.io.File(%1$s).exists()"
+  },
+  {
+    "name": "sciFileDelete",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "delete file %1$s",
+    "code": "((new Object() { public void f() { try { new java.io.File(%1$s).delete(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciHttpGetHeader",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "http get %1$s header %2$s: %3$s",
+    "code": "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestProperty(%2$s, %3$s); _c.setRequestMethod(\\\"GET\\\"); _c.setConnectTimeout(5000); _c.setReadTimeout(5000); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) { _sb.append(_l); } _r.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciColorMix",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "mix color %1$s and %2$s",
+    "code": "(((int)(%1$s) & 0xFF000000) | ((((int)(%1$s) & 0xFF0000) + ((int)(%2$s) & 0xFF0000)) / 2 & 0xFF0000) | ((((int)(%1$s) & 0xFF00) + ((int)(%2$s) & 0xFF00)) / 2 & 0xFF00) | ((((int)(%1$s) & 0xFF) + ((int)(%2$s) & 0xFF)) / 2 & 0xFF))"
+  },
+  {
+    "name": "sciColorAlpha",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "alpha of %1$s",
+    "code": "(double)(((int)(%1$s) >> 24) & 0xFF)"
+  },
+  {
+    "name": "sciColorFromHex",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "color from hex %1$s",
+    "code": "android.graphics.Color.parseColor(%1$s)"
+  },
+  {
+    "name": "sciColorToHex",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "color %1$s to hex",
+    "code": "String.format(\\\"#%08X\\\", (int)(%1$s))"
+  },
+  {
+    "name": "sciSetProgress",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set progress %2$d on %1$s",
+    "code": "%1$s.setProgress((int)(%2$s));"
+  },
+  {
+    "name": "sciSetProgressVisible",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set progress %1$s visible %2$s",
+    "code": "%1$s.setVisibility((%2$s) ? android.view.View.VISIBLE : android.view.View.GONE);"
+  },
+  {
+    "name": "sciVibrate",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "vibrate %1$d ms from %m.context",
+    "code": "((android.os.Vibrator) %2$s.getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate((long)(%1$s));"
+  },
+  {
+    "name": "sciCalcExpression",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "calc expression %1$s",
+    "code": "((new Object() { public double f() { try { javax.script.ScriptEngine _e = new javax.script.ScriptEngineManager().getEngineByName(\\\"js\\\"); return ((Number) _e.eval(%1$s)).doubleValue(); } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciAesEncrypt",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "aes encrypt %1$s",
+    "code": "((new Object() { public String f() { try { javax.crypto.Cipher _c = javax.crypto.Cipher.getInstance(\\\"AES/ECB/PKCS5Padding\\\"); _c.init(javax.crypto.Cipher.ENCRYPT_MODE, new javax.crypto.spec.SecretKeySpec(\\\"0123456789abcdef\\\".getBytes(), \\\"AES\\\")); return android.util.Base64.encodeToString(_c.doFinal(%1$s.getBytes()), android.util.Base64.NO_WRAP); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciAesDecrypt",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "aes decrypt %1$s",
+    "code": "((new Object() { public String f() { try { javax.crypto.Cipher _c = javax.crypto.Cipher.getInstance(\\\"AES/ECB/PKCS5Padding\\\"); _c.init(javax.crypto.Cipher.DECRYPT_MODE, new javax.crypto.spec.SecretKeySpec(\\\"0123456789abcdef\\\".getBytes(), \\\"AES\\\")); return new String(_c.doFinal(android.util.Base64.decode(%1$s, android.util.Base64.NO_WRAP))); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciUnzip",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "unzip %1$s to %2$s",
+    "code": "((new Object() { public void f() { try { java.util.zip.ZipInputStream _z = new java.util.zip.ZipInputStream(new java.io.FileInputStream(%1$s)); java.util.zip.ZipEntry _e; while ((_e = _z.getNextEntry()) != null) { java.io.File _o = new java.io.File(%2$s, _e.getName()); if (_e.isDirectory()) _o.mkdirs(); else { new java.io.File(_o.getParent()).mkdirs(); java.io.FileOutputStream _os = new java.io.FileOutputStream(_o); byte[] _b = new byte[4096]; int _len; while ((_len = _z.read(_b)) > 0) _os.write(_b, 0, _len); _os.close(); } } _z.close(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciZip",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "zip folder %1$s to %2$s",
+    "code": "((new Object() { public void f() { try { java.util.zip.ZipOutputStream _z = new java.util.zip.ZipOutputStream(new java.io.FileOutputStream(%2$s)); java.io.File[] _fs = new java.io.File(%1$s).listFiles(); if (_fs != null) { for (java.io.File _file : _fs) { java.io.FileInputStream _is = new java.io.FileInputStream(_file); _z.putNextEntry(new java.util.zip.ZipEntry(_file.getName())); byte[] _b = new byte[4096]; int _len; while ((_len = _is.read(_b)) > 0) _z.write(_b, 0, _len); _is.close(); _z.closeEntry(); } } _z.close(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciNetworkType",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "network type",
+    "code": "((new Object() { public String f() { try { android.net.ConnectivityManager _cm = (android.net.ConnectivityManager) getSystemService(android.content.Context.CONNECTIVITY_SERVICE); android.net.NetworkInfo _ni = _cm.getActiveNetworkInfo(); if (_ni == null || !_ni.isConnected()) return \\\"None\\\"; return _ni.getType() == android.net.ConnectivityManager.TYPE_WIFI ? \\\"WiFi\\\" : \\\"Mobile\\\"; } catch (Throwable _t) { return \\\"None\\\"; } } }).f())"
+  },
+  {
+    "name": "sciSetBrightness",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set brightness %1$d from %m.activity",
+    "code": "((new Object() { public void f() { try { android.view.WindowManager.LayoutParams _p = %2$s.getWindow().getAttributes(); _p.screenBrightness = (float)((int)(%1$s)) / 255.0f; %2$s.getWindow().setAttributes(_p); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciSetVolume",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set volume %1$d%% from %m.context",
+    "code": "((new Object() { public void f() { try { android.media.AudioManager _am = (android.media.AudioManager) %2$s.getSystemService(android.content.Context.AUDIO_SERVICE); int _max = _am.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC); _am.setStreamVolume(android.media.AudioManager.STREAM_MUSIC, (int)(%1$s) * _max / 100, 0); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciOpenArchive",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "open archive %1$s from %m.context",
+    "code": "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_VIEW); _i.setDataAndType(android.net.Uri.fromFile(new java.io.File(%1$s)), \\\"*/*\\\"); _i.addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION); %2$s.startActivity(android.content.Intent.createChooser(_i, \\\"Open archive\\\")); } catch (Throwable _t) {}"
+  },
+  {
+    "name": "sciImageWidth",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "image width of %1$s",
+    "code": "((new Object() { public double f() { try { android.graphics.BitmapFactory.Options _o = new android.graphics.BitmapFactory.Options(); _o.inJustDecodeBounds = true; android.graphics.BitmapFactory.decodeFile(%1$s, _o); return (double) _o.outWidth; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciImageHeight",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "image height of %1$s",
+    "code": "((new Object() { public double f() { try { android.graphics.BitmapFactory.Options _o = new android.graphics.BitmapFactory.Options(); _o.inJustDecodeBounds = true; android.graphics.BitmapFactory.decodeFile(%1$s, _o); return (double) _o.outHeight; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciSaveToGallery",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "save image %1$s to gallery as %2$s from %m.context",
+    "code": "((new Object() { public void f() { try { android.graphics.Bitmap _b = android.graphics.BitmapFactory.decodeFile(%1$s); java.io.File _out = new java.io.File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_PICTURES), %2$s); java.io.FileOutputStream _os = new java.io.FileOutputStream(_out); _b.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, _os); _os.flush(); _os.close(); android.media.MediaScannerConnection.scanFile(%3$s, new String[]{_out.getAbsolutePath()}, null, null); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciPlaySound",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "play sound %1$s",
+    "code": "((new Object() { public void f() { try { android.media.MediaPlayer _mp = new android.media.MediaPlayer(); _mp.setDataSource(%1$s); _mp.prepare(); _mp.start(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciGetContactName",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "contact name for %1$s from %m.context",
+    "code": "((new Object() { public String f() { try { android.net.Uri _u = android.net.Uri.withAppendedPath(android.provider.ContactsContract.PhoneLookup.CONTENT_FILTER_URI, android.net.Uri.encode(%1$s)); android.database.Cursor _c = %2$s.getContentResolver().query(_u, new String[]{android.provider.ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null); if (_c != null && _c.moveToFirst()) { String _n = _c.getString(0); _c.close(); return _n; } return %1$s; } catch (Throwable _t) { return %1$s; } } }).f())"
+  },
+  {
+    "name": "sciAddDays",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "add %2$d days to %1$s",
+    "code": "((new Object() { public String f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\\\"dd.MM.yyyy\\\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); _c.add(java.util.Calendar.DAY_OF_MONTH, (int)(%2$s)); return _fmt.format(_c.getTime()); } catch (Throwable _t) { return %1$s; } } }).f())"
+  },
+  {
+    "name": "sciDayOfWeek",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "day of week for %1$s",
+    "code": "((new Object() { public double f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\\\"dd.MM.yyyy\\\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); return (double) _c.get(java.util.Calendar.DAY_OF_WEEK); } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciAesEncryptKey",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "aes encrypt %1$s with key %2$s",
+    "code": "((new Object() { public String f() { try { javax.crypto.Cipher _c = javax.crypto.Cipher.getInstance(\\\"AES/ECB/PKCS5Padding\\\"); _c.init(javax.crypto.Cipher.ENCRYPT_MODE, new javax.crypto.spec.SecretKeySpec(%2$s.getBytes(), \\\"AES\\\")); return android.util.Base64.encodeToString(_c.doFinal(%1$s.getBytes()), android.util.Base64.NO_WRAP); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciAesDecryptKey",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "aes decrypt %1$s with key %2$s",
+    "code": "((new Object() { public String f() { try { javax.crypto.Cipher _c = javax.crypto.Cipher.getInstance(\\\"AES/ECB/PKCS5Padding\\\"); _c.init(javax.crypto.Cipher.DECRYPT_MODE, new javax.crypto.spec.SecretKeySpec(%2$s.getBytes(), \\\"AES\\\")); return new String(_c.doFinal(android.util.Base64.decode(%1$s, android.util.Base64.NO_WRAP))); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciSetBackgroundColor",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set background color %2$d on %1$s",
+    "code": "%1$s.setBackgroundColor((int)(%2$s));"
+  },
+  {
+    "name": "sciSetPadding",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set padding %1$s left %2$d top %3$d right %4$d bottom %5$d",
+    "code": "%1$s.setPadding((int)(%2$s), (int)(%3$s), (int)(%4$s), (int)(%5$s));"
+  },
+  {
+    "name": "sciSetRotation",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set rotation %2$s on %1$s",
+    "code": "%1$s.setRotation((float)(%2$s));"
+  },
+  {
+    "name": "sciSetScaleX",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set scaleX %2$s on %1$s",
+    "code": "%1$s.setScaleX((float)(%2$s));"
+  },
+  {
+    "name": "sciSetScaleY",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set scaleY %2$s on %1$s",
+    "code": "%1$s.setScaleY((float)(%2$s));"
+  },
+  {
+    "name": "sciSetElevation",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set elevation %2$s on %1$s",
+    "code": "%1$s.setElevation((float)(%2$s));"
+  },
+  {
+    "name": "sciSetEnabled",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set enabled %2$b on %1$s",
+    "code": "%1$s.setEnabled(%2$s);"
+  },
+  {
+    "name": "sciSetClickable",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set clickable %2$b on %1$s",
+    "code": "%1$s.setClickable(%2$s);"
+  },
+  {
+    "name": "sciSetFocusable",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set focusable %2$b on %1$s",
+    "code": "%1$s.setFocusable(%2$s);"
+  },
+  {
+    "name": "sciSetHintText",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set hint %2$s on %1$s",
+    "code": "%1$s.setHint(%2$s);"
+  },
+  {
+    "name": "sciListSubList",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "sub list %1$s from %2$d to %3$d",
+    "code": "new java.util.ArrayList(%1$s.subList(Math.min((int)(%2$s), %1$s.size()), Math.min((int)(%3$s), %1$s.size())))"
+  },
+  {
+    "name": "sciListConcat",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "concat %1$s and %2$s into %3$s",
+    "code": "((new Object() { public void f() { try { %3$s.clear(); %3$s.addAll(%1$s); %3$s.addAll(%2$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListFill",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "fill %1$s with %2$s",
+    "code": "((new Object() { public void f() { try { java.util.Collections.fill(%1$s, %2$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListBinarySearch",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "binary search %2$s in %1$s",
+    "code": "(double) java.util.Collections.binarySearch(%1$s, %2$s)"
+  },
+  {
+    "name": "sciListMax",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "max of %1$s",
+    "code": "((new Object() { public String f() { try { return %1$s.isEmpty() ? \\\"\\\" : String.valueOf(java.util.Collections.max((java.util.Collection) %1$s)); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciListMin",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "min of %1$s",
+    "code": "((new Object() { public String f() { try { return %1$s.isEmpty() ? \\\"\\\" : String.valueOf(java.util.Collections.min((java.util.Collection) %1$s)); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciListFilterContains",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "filter %1$s contains %2$s",
+    "code": "((new Object() { public void f() { try { java.util.ArrayList _tmp = new java.util.ArrayList(); for (Object _o : %1$s) { if (_o != null && _o.toString().contains(%2$s)) _tmp.add(_o); } %1$s.clear(); %1$s.addAll(_tmp); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListRemoveValue",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "remove %2$s from %1$s",
+    "code": "((new Object() { public void f() { try { %1$s.remove(%2$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListRemoveIndex",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "remove index %2$d from %1$s",
+    "code": "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i < %1$s.size()) %1$s.remove(_i); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListInsert",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "insert %3$s at %2$d in %1$s",
+    "code": "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i <= %1$s.size()) %1$s.add(_i, %3$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListSet",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set %3$s at %2$d in %1$s",
+    "code": "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i < %1$s.size()) %1$s.set(_i, %3$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListGet",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "get %2$d from %1$s",
+    "code": "((new Object() { public String f() { try { int _i = (int)(%2$s); return (_i >= 0 && _i < %1$s.size()) ? String.valueOf(%1$s.get(_i)) : \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciListSizeNum",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "size of %1$s",
+    "code": "(double)(%1$s.size())"
+  },
+  {
+    "name": "sciListClear",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "clear %1$s",
+    "code": "%1$s.clear();"
+  },
+  {
+    "name": "sciListHas",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "%1$s contains %2$s",
+    "code": "%1$s.contains(%2$s)"
+  },
+  {
+    "name": "sciListToArray",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "to array from %1$s",
+    "code": "%1$s.toArray()"
+  },
+  {
+    "name": "sciListRemoveAll",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "remove all %2$s from %1$s",
+    "code": "((new Object() { public void f() { try { java.util.ArrayList _tmp = new java.util.ArrayList(); for (Object _o : %1$s) { if (_o == null || !_o.equals(%2$s)) _tmp.add(_o); } %1$s.clear(); %1$s.addAll(_tmp); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListDistinctStr",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "distinct strings in %1$s",
+    "code": "((new Object() { public void f() { try { java.util.LinkedHashSet _s = new java.util.LinkedHashSet(); for (Object _o : %1$s) _s.add(String.valueOf(_o)); %1$s.clear(); %1$s.addAll(_s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListJoinNum",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "join numbers %1$s with %2$s",
+    "code": "((new Object() { public String f() { try { StringBuilder _sb = new StringBuilder(); for (int _i = 0; _i < %1$s.size(); _i++) { if (_i > 0) _sb.append(%2$s); _sb.append(%1$s.get(_i)); } return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciListFindContains",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "find %2$s in %1$s",
+    "code": "((new Object() { public double f() { try { for (int _i = 0; _i < %1$s.size(); _i++) { if (String.valueOf(%1$s.get(_i)).contains(%2$s)) return (double)_i; } return -1.0; } catch (Throwable _t) { return -1.0; } } }).f())"
+  },
+  {
+    "name": "sciListFromString",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "split %1$s by %3$s into %2$s",
+    "code": "((new Object() { public void f() { try { %2$s.clear(); for (String _s : %1$s.split(%3$s)) %2$s.add(_s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListSortDesc",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "sort descending %1$s",
+    "code": "((new Object() { public void f() { try { java.util.Collections.sort(%1$s); java.util.Collections.reverse(%1$s); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciListFirstIndex",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "first index of %2$s in %1$s",
+    "code": "(double)(%1$s.indexOf(%2$s))"
+  },
+  {
+    "name": "sciListLastIndex",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "last index of %2$s in %1$s",
+    "code": "(double)(%1$s.lastIndexOf(%2$s))"
+  },
+  {
+    "name": "sciListIsEmptyList",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "%1$s is empty",
+    "code": "%1$s.isEmpty()"
+  },
+  {
+    "name": "sciListToString",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "%1$s to string",
+    "code": "%1$s.toString()"
+  },
+  {
+    "name": "sciFileRename",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "rename file %1$s to %2$s",
+    "code": "((new Object() { public void f() { try { new java.io.File(%1$s).renameTo(new java.io.File(%2$s)); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciFileAbsolutePath",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "absolute path of %1$s",
+    "code": "new java.io.File(%1$s).getAbsolutePath()"
+  },
+  {
+    "name": "sciFileParent",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "parent of %1$s",
+    "code": "((new Object() { public String f() { try { return new java.io.File(%1$s).getParent(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciFileListRecursive",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "list files recursively from %1$s into %2$s",
+    "code": "((new Object() { public void f() { try { java.util.ArrayList _r = new java.util.ArrayList(); java.io.File[] _fs = new java.io.File(%1$s).listFiles(); if (_fs != null) { for (java.io.File _x : _fs) { if (_x.isDirectory()) { java.io.File[] _sub = _x.listFiles(); if (_sub != null) { for (java.io.File _y : _sub) _r.add(_y.getAbsolutePath()); } } else { _r.add(_x.getAbsolutePath()); } } } %2$s.clear(); %2$s.addAll(_r); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciFileDeleteRecursive",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "delete folder %1$s recursively",
+    "code": "((new Object() { public void f() { try { java.io.File _d = new java.io.File(%1$s); if (_d.isDirectory()) { java.io.File[] _fs = _d.listFiles(); if (_fs != null) { for (java.io.File _x : _fs) _x.delete(); } } _d.delete(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciFileSizeKB",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "size KB of %1$s",
+    "code": "(double)(new java.io.File(%1$s).length() / 1024)"
+  },
+  {
+    "name": "sciFileSizeMB",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "size MB of %1$s",
+    "code": "(double)(new java.io.File(%1$s).length() / (1024 * 1024))"
+  },
+  {
+    "name": "sciFileIsHidden",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "file %1$s is hidden",
+    "code": "new java.io.File(%1$s).isHidden()"
+  },
+  {
+    "name": "sciFileLastModified",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "last modified of %1$s",
+    "code": "(double)(new java.io.File(%1$s).lastModified())"
+  },
+  {
+    "name": "sciFileCreateNew",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "create new file %1$s",
+    "code": "((new Object() { public boolean f() { try { return new java.io.File(%1$s).createNewFile(); } catch (Throwable _t) { return false; } } }).f())"
+  },
+  {
+    "name": "sciFileMimeType",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "mime type of %1$s",
+    "code": "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); String _e = _n.substring(_n.lastIndexOf('.') + 1).toLowerCase(); if (_e.equals(\\\"jpg\\\") || _e.equals(\\\"jpeg\\\")) return \\\"image/jpeg\\\"; if (_e.equals(\\\"png\\\")) return \\\"image/png\\\"; if (_e.equals(\\\"pdf\\\")) return \\\"application/pdf\\\"; if (_e.equals(\\\"txt\\\")) return \\\"text/plain\\\"; if (_e.equals(\\\"mp3\\\")) return \\\"audio/mpeg\\\"; if (_e.equals(\\\"mp4\\\")) return \\\"video/mp4\\\"; return \\\"application/octet-stream\\\"; } catch (Throwable _t) { return \\\"application/octet-stream\\\"; } } }).f())"
+  },
+  {
+    "name": "sciFileTotalSpace",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "total space MB of %1$s",
+    "code": "(double)(new java.io.File(%1$s).getTotalSpace() / (1024 * 1024))"
+  },
+  {
+    "name": "sciFileFreeSpace",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "free space MB of %1$s",
+    "code": "(double)(new java.io.File(%1$s).getFreeSpace() / (1024 * 1024))"
+  },
+  {
+    "name": "sciFileUsableSpace",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "usable space MB of %1$s",
+    "code": "(double)(new java.io.File(%1$s).getUsableSpace() / (1024 * 1024))"
+  },
+  {
+    "name": "sciFileIsFile",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "file %1$s is a file",
+    "code": "new java.io.File(%1$s).isFile()"
+  },
+  {
+    "name": "sciFileCopyRecursive",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "copy folder %1$s to %2$s recursively",
+    "code": "((new Object() { public void f() { try { java.io.File _src = new java.io.File(%1$s); java.io.File _dst = new java.io.File(%2$s); if (_src.isDirectory()) { _dst.mkdirs(); java.io.File[] _fs = _src.listFiles(); if (_fs != null) { for (java.io.File _x : _fs) { java.io.File _to = new java.io.File(_dst, _x.getName()); java.io.FileInputStream _is = new java.io.FileInputStream(_x); java.io.FileOutputStream _os = new java.io.FileOutputStream(_to); byte[] _b = new byte[4096]; int _len; while ((_len = _is.read(_b)) > 0) _os.write(_b, 0, _len); _is.close(); _os.close(); } } } } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciFileMoveRecursive",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "move folder %1$s to %2$s",
+    "code": "((new Object() { public void f() { try { java.io.File _src = new java.io.File(%1$s); java.io.File _dst = new java.io.File(%2$s); _src.renameTo(_dst); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciFileExtOnly",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "extension of %1$s",
+    "code": "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); int _i = _n.lastIndexOf('.'); return _i > 0 ? _n.substring(_i + 1) : \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciFileReadFirst",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "read first %2$d chars of %1$s",
+    "code": "((new Object() { public String f() { try { java.io.RandomAccessFile _r = new java.io.RandomAccessFile(%1$s, \\\"r\\\"); byte[] _b = new byte[(int)(%2$s)]; _r.readFully(_b); _r.close(); return new String(_b); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciFileAppendText",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "append %2$s to file %1$s",
+    "code": "((new Object() { public void f() { try { java.io.FileWriter _w = new java.io.FileWriter(%1$s, true); _w.append(%2$s); _w.close(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciDownloadFile",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "download %1$s to %2$s",
+    "code": "((new Object() { public void f() { try { java.io.InputStream _is = new java.net.URL(%1$s).openStream(); java.io.FileOutputStream _os = new java.io.FileOutputStream(%2$s); byte[] _b = new byte[4096]; int _len; while ((_len = _is.read(_b)) > 0) _os.write(_b, 0, _len); _is.close(); _os.close(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciUrlEncode",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "url encode %1$s",
+    "code": "((new Object() { public String f() { try { return java.net.URLEncoder.encode(%1$s, \\\"UTF-8\\\"); } catch (Throwable _t) { return %1$s; } } }).f())"
+  },
+  {
+    "name": "sciUrlDecode",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "url decode %1$s",
+    "code": "((new Object() { public String f() { try { return java.net.URLDecoder.decode(%1$s, \\\"UTF-8\\\"); } catch (Throwable _t) { return %1$s; } } }).f())"
+  },
+  {
+    "name": "sciJsonArrayGet",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "json array %1$s get %2$d",
+    "code": "((new Object() { public String f() { try { org.json.JSONArray _a = new org.json.JSONArray(%1$s); int _i = (int)(%2$s); return (_i >= 0 && _i < _a.length()) ? _a.getString(_i) : \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciJsonArrayLength",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "json array %1$s length",
+    "code": "((new Object() { public double f() { try { return (double) new org.json.JSONArray(%1$s).length(); } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciJsonGetInt",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "json get int %2$s from %1$s",
+    "code": "((new Object() { public double f() { try { return new org.json.JSONObject(%1$s).optDouble(%2$s, 0.0); } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciJsonGetBool",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "json get bool %2$s from %1$s",
+    "code": "((new Object() { public boolean f() { try { return new org.json.JSONObject(%1$s).optBoolean(%2$s, false); } catch (Throwable _t) { return false; } } }).f())"
+  },
+  {
+    "name": "sciHttpPut",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "http put %1$s data %2$s",
+    "code": "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\\\"PUT\\\"); _c.setDoOutput(true); java.io.OutputStream _os = _c.getOutputStream(); _os.write(%2$s.getBytes(\\\"UTF-8\\\")); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciHttpDelete",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "http delete %1$s",
+    "code": "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\\\"DELETE\\\"); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciHttpGetResponseCode",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "http response code for %1$s",
+    "code": "((new Object() { public double f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\\\"HEAD\\\"); return (double) _c.getResponseCode(); } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciIsUrlValid",
+    "palette": "11",
+    "type": "b",
+    "typeName": "",
+    "spec": "url %1$s is valid",
+    "code": "((new Object() { public boolean f() { try { new java.net.URL(%1$s); return true; } catch (Throwable _t) { return false; } } }).f())"
+  },
+  {
+    "name": "sciGetDomain",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "domain of %1$s",
+    "code": "((new Object() { public String f() { try { return new java.net.URL(%1$s).getHost(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciGetUrlParam",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "url param %2$s from %1$s",
+    "code": "((new Object() { public String f() { try { String _q = new java.net.URL(%1$s).getQuery(); if (_q != null) { for (String _p : _q.split(\\\"&\\\")) { String[] _kv = _p.split(\\\"=\\\"); if (_kv.length == 2 && _kv[0].equals(%2$s)) return java.net.URLDecoder.decode(_kv[1], \\\"UTF-8\\\"); } } return \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciBuildUrl",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "build url %1$s with %2$s=%3$s",
+    "code": "((new Object() { public String f() { try { if (!%1$s.contains(\\\"?\\\")) return %1$s + \\\"?\\\" + java.net.URLEncoder.encode(%2$s, \\\"UTF-8\\\") + \\\"=\\\" + java.net.URLEncoder.encode(%3$s, \\\"UTF-8\\\"); return %1$s + \\\"&\\\" + java.net.URLEncoder.encode(%2$s, \\\"UTF-8\\\") + \\\"=\\\" + java.net.URLEncoder.encode(%3$s, \\\"UTF-8\\\"); } catch (Throwable _t) { return %1$s; } } }).f())"
+  },
+  {
+    "name": "sciHttpPostJson",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "http post json to %1$s data %2$s",
+    "code": "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\\\"POST\\\"); _c.setRequestProperty(\\\"Content-Type\\\", \\\"application/json\\\"); _c.setDoOutput(true); java.io.OutputStream _os = _c.getOutputStream(); _os.write(%2$s.getBytes(\\\"UTF-8\\\")); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciHttpGetTimeout",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "http get %1$s timeout %2$d ms",
+    "code": "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setConnectTimeout((int)(%2$s)); _c.setReadTimeout((int)(%2$s)); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciGetIpAddress",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "device ip address",
+    "code": "((new Object() { public String f() { try { java.util.Enumeration _e = java.net.NetworkInterface.getNetworkInterfaces(); while (_e.hasMoreElements()) { java.net.NetworkInterface _n = (java.net.NetworkInterface) _e.nextElement(); java.util.Enumeration _a = _n.getInetAddresses(); while (_a.hasMoreElements()) { java.net.InetAddress _i = (java.net.InetAddress) _a.nextElement(); if (!_i.isLoopbackAddress() && _i instanceof java.net.Inet4Address) return _i.getHostAddress(); } } return \\\"\\\"; } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciPingHost",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "ping %1$s",
+    "code": "((new Object() { public double f() { try { java.net.InetAddress _a = java.net.InetAddress.getByName(%1$s); long _s = System.currentTimeMillis(); _a.isReachable(3000); return (double)(System.currentTimeMillis() - _s); } catch (Throwable _t) { return -1.0; } } }).f())"
+  },
+  {
+    "name": "sciPlaySoundRes",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "play sound resource %1$d from %m.context",
+    "code": "android.media.MediaPlayer.create(%2$s, %1$s).start();"
+  },
+  {
+    "name": "sciStopAllSounds",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "stop all sounds from %m.context",
+    "code": "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).abandonAudioFocus(null);"
+  },
+  {
+    "name": "sciAudioDuration",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "duration of audio %1$s",
+    "code": "((new Object() { public double f() { try { android.media.MediaPlayer _mp = new android.media.MediaPlayer(); _mp.setDataSource(%1$s); _mp.prepare(); double _d = (double) _mp.getDuration(); _mp.release(); return _d; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciOpenCamera",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "open camera from %m.context",
+    "code": "%1$s.startActivity(new android.content.Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE));"
+  },
+  {
+    "name": "sciTakePhoto",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "take photo request %1$d from %m.activity",
+    "code": "%2$s.startActivityForResult(new android.content.Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE), (int)(%1$s));"
+  },
+  {
+    "name": "sciLocationLat",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "location latitude from %m.context",
+    "code": "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? _l.getLatitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciLocationLon",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "location longitude from %m.context",
+    "code": "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? _l.getLongitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciAccelX",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "accelerometer X from %m.context",
+    "code": "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciVibratePattern",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "vibrate pattern %1$d from %m.context",
+    "code": "((android.os.Vibrator) %2$s.getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{(long)(%1$s), 100, (long)(%1$s)}, -1);"
+  },
+  {
+    "name": "sciFlashlightOn",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "flashlight on from %m.context",
+    "code": "((new Object() { public void f() { try { android.hardware.camera2.CameraManager _cm = (android.hardware.camera2.CameraManager) %1$s.getSystemService(android.content.Context.CAMERA_SERVICE); _cm.setTorchMode(_cm.getCameraIdList()[0], true); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciFlashlightOff",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "flashlight off from %m.context",
+    "code": "((new Object() { public void f() { try { android.hardware.camera2.CameraManager _cm = (android.hardware.camera2.CameraManager) %1$s.getSystemService(android.content.Context.CAMERA_SERVICE); _cm.setTorchMode(_cm.getCameraIdList()[0], false); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciKeepScreenOn",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "keep screen on from %m.activity",
+    "code": "%1$s.getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);"
+  },
+  {
+    "name": "sciAllowScreenOff",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "allow screen off from %m.activity",
+    "code": "%1$s.getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);"
+  },
+  {
+    "name": "sciGetVolume",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "get volume from %m.context",
+    "code": "((new Object() { public double f() { try { android.media.AudioManager _am = (android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE); int _max = _am.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC); int _cur = _am.getStreamVolume(android.media.AudioManager.STREAM_MUSIC); return (double)(_cur * 100 / _max); } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciSetSilent",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set silent mode from %m.context",
+    "code": "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).setRingerMode(android.media.AudioManager.RINGER_MODE_SILENT);"
+  },
+  {
+    "name": "sciSetNormal",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "set normal mode from %m.context",
+    "code": "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).setRingerMode(android.media.AudioManager.RINGER_MODE_NORMAL);"
+  },
+  {
+    "name": "sciStartRecording",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "start recording to %1$s",
+    "code": "((new Object() { public void f() { try { android.media.MediaRecorder _mr = new android.media.MediaRecorder(); _mr.setAudioSource(android.media.MediaRecorder.AudioSource.MIC); _mr.setOutputFormat(android.media.MediaRecorder.OutputFormat.THREE_GPP); _mr.setAudioEncoder(android.media.MediaRecorder.AudioEncoder.AMR_NB); _mr.setOutputFile(%1$s); _mr.prepare(); _mr.start(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciStopRecording",
+    "palette": "11",
+    "type": " ",
+    "typeName": "",
+    "spec": "stop recording",
+    "code": "((new Object() { public void f() { try { android.media.MediaRecorder _mr = new android.media.MediaRecorder(); _mr.stop(); _mr.release(); } catch (Throwable _t) {} } }).f());"
+  },
+  {
+    "name": "sciGetCarrier",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "carrier name from %m.context",
+    "code": "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm.getNetworkOperatorName(); } catch (Throwable _t) { return \\\"\\\"; } } }).f())"
+  },
+  {
+    "name": "sciGetNetworkClass",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "network class from %m.context",
+    "code": "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); int _t = _tm.getNetworkType(); return _t == 13 ? \\\"4G\\\" : _t == 3 ? \\\"3G\\\" : _t == 2 ? \\\"EDGE\\\" : \\\"Unknown\\\"; } catch (Throwable _t) { return \\\"Unknown\\\"; } } }).f())"
+  },
+  {
+    "name": "sciDeviceSerial",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "device serial",
+    "code": "android.os.Build.SERIAL"
+  },
+  {
+    "name": "sciDeviceBrand",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "device brand",
+    "code": "android.os.Build.BRAND"
+  },
+  {
+    "name": "sciSdkInt",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "sdk int",
+    "code": "(double) android.os.Build.VERSION.SDK_INT"
+  },
+  {
+    "name": "sciSystemLanguage",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "system language",
+    "code": "java.util.Locale.getDefault().getLanguage()"
+  },
+  {
+    "name": "sciSystemTimezone",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "system timezone",
+    "code": "java.util.TimeZone.getDefault().getID()"
+  },
+  {
+    "name": "sciScreenWidth",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "screen width from %m.activity",
+    "code": "((new Object() { public double f() { try { android.util.DisplayMetrics _dm = new android.util.DisplayMetrics(); %1$s.getWindowManager().getDefaultDisplay().getMetrics(_dm); return (double) _dm.widthPixels; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciScreenHeight",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "screen height from %m.activity",
+    "code": "((new Object() { public double f() { try { android.util.DisplayMetrics _dm = new android.util.DisplayMetrics(); %1$s.getWindowManager().getDefaultDisplay().getMetrics(_dm); return (double) _dm.heightPixels; } catch (Throwable _t) { return 0.0; } } }).f())"
+  },
+  {
+    "name": "sciScreenDpi",
+    "palette": "11",
+    "type": "d",
+    "typeName": "",
+    "spec": "screen dpi from %m.activity",
+    "code": "((new Object() { public double f() { try { android.util.DisplayMetrics _dm = new android.util.DisplayMetrics(); %1$s.getWindowManager().getDefaultDisplay().getMetrics(_dm); return (double) _dm.densityDpi; } catch (Throwable _t) { return 0.0; } } }).f())"
+  }
+]
