@@ -2843,4 +2843,6 @@ ACTION_VIEW
     <string name="settings_save_on_property_change_summary">विजेट गुण बदलने के बाद प्रोजेक्ट स्वचालित रूप से सहेजें</string>
     <string name="preflight_empty_param">ब्लॉक «%1$s» में पैरामीटर %2$d में कोई मान नहीं है। संख्या या चर डालें!</string>
     <string name="preflight_unknown_block">अज्ञात ब्लॉक «%1$s»। यह पुराने संस्करण से हो सकता है।</string>
+    <string name="preflight_too_many_blocks">इवेंट में बहुत अधिक ब्लॉक (%1$s)। यह ऐप को धीमा कर सकता है।</string>
+    <string name="preflight_duplicate_block">वही ब्लॉक %1$s बार दोहराया गया है। यह एक त्रुटि हो सकती है।</string>
 </resources>

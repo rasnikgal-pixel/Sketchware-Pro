@@ -2843,4 +2843,6 @@ ACTION_VIEW
     <string name="settings_save_on_property_change_summary">更改小部件属性后自动保存项目</string>
     <string name="preflight_empty_param">积木«%1$s»的参数%2$d没有值。请插入数字或变量！</string>
     <string name="preflight_unknown_block">未知积木«%1$s»。它可能来自旧版本。</string>
+    <string name="preflight_too_many_blocks">事件中有太多积木（%1$s）。可能会减慢应用速度。</string>
+    <string name="preflight_duplicate_block">相同的积木重复了%1$s次。可能是错误。</string>
 </resources>

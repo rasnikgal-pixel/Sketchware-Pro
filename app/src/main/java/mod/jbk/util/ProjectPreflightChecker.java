@@ -243,6 +243,7 @@ public final class ProjectPreflightChecker {
      * Проверяет, что у блоков с параметрами (%1$s) заполнены значения.
      * Если параметр пуст — это критическая ошибка (блок не соберётся).
      */
+
     private static void checkEmptyBlockParams(Context ctx, String scId,
                                               List<ProjectFileBean> activities,
                                               List<BlockLogicChecker.Issue> issues) {
@@ -252,7 +253,6 @@ public final class ProjectPreflightChecker {
                 String javaName = pfb.getJavaName();
                 if (javaName == null || javaName.isEmpty()) continue;
 
-                // Получаем все события экрана
                 java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events =
                         a.a.a.jC.a(scId).b(javaName);
                 if (events == null) continue;
@@ -261,18 +261,44 @@ public final class ProjectPreflightChecker {
                     java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks = entry.getValue();
                     if (blocks == null) continue;
 
+                    // 1. Проверка на огромное количество блоков
+                    if (blocks.size() > 1000) {
+                        issues.add(new BlockLogicChecker.Issue(
+                                null,
+                                mod.hey.studios.util.Helper.getResString(
+                                        pro.sketchware.R.string.preflight_too_many_blocks, String.valueOf(blocks.size())),
+                                new java.util.ArrayList<>(),
+                                BlockLogicChecker.Severity.WARNING,
+                                null,
+                                null,
+                                "too many blocks"));
+                    }
+
                     for (com.besome.sketch.beans.BlockBean block : blocks) {
                         if (block.spec == null) continue;
-                        // Ищем блоки с параметрами (%1$s, %2$d и т.д.)
-                        if (!block.spec.contains("%")) continue;
 
-                        // Проверяем, что все параметры заполнены
+                        // 2. Проверка на неизвестный блок (пустой opCode)
+                        if (block.opCode == null || block.opCode.isEmpty()) {
+                            issues.add(new BlockLogicChecker.Issue(
+                                    null,
+                                    mod.hey.studios.util.Helper.getResString(
+                                            pro.sketchware.R.string.preflight_unknown_block, block.spec),
+                                    new java.util.ArrayList<>(),
+                                    BlockLogicChecker.Severity.WARNING,
+                                    null,
+                                    null,
+                                    "unknown block"));
+                            continue;
+                        }
+
+                        // 3. Проверка на пустые параметры (если spec содержит %)
+                        if (!block.spec.contains("%")) continue;
                         java.util.ArrayList<String> params = block.parameters;
                         if (params == null) continue;
                         for (int i = 0; i < params.size(); i++) {
                             String param = params.get(i);
                             if (param == null || param.trim().isEmpty()) {
-                                String blockName = block.spec.replace("%1$s", "…").replace("%2$s", "…");
+                                String blockName = block.spec.replace("%1$s", "…").replace("%2$s", "…").replace("%1$d", "…").replace("%2$d", "…");
                                 issues.add(new BlockLogicChecker.Issue(
                                         null,
                                         mod.hey.studios.util.Helper.getResString(
@@ -285,9 +311,112 @@ public final class ProjectPreflightChecker {
                                 break;
                             }
                         }
+
+                        // 4. Проверка на дубликаты (если одинаковый блок встречается 5+ раз)
+                        int count = 0;
+                        for (com.besome.sketch.beans.BlockBean b : blocks) {
+                            if (b.opCode != null && b.opCode.equals(block.opCode) && b.spec != null && b.spec.equals(block.spec)) {
+                                count++;
+                            }
+                        }
+                        if (count >= 5) {
+                            issues.add(new BlockLogicChecker.Issue(
+                                    null,
+                                    mod.hey.studios.util.Helper.getResString(
+                                            pro.sketchware.R.string.preflight_duplicate_block, String.valueOf(count)),
+                                    new java.util.ArrayList<>(),
+                                    BlockLogicChecker.Severity.WARNING,
+                                    null,
+                                    null,
+                                    "duplicate block"));
+                        }
+
+                        // 5. Проверка на пустой spec
+                        if (block.spec == null || block.spec.trim().isEmpty()) {
+                            issues.add(new BlockLogicChecker.Issue(
+                                    null,
+                                    "Блок с пустым описанием (spec). Возможно, он повреждён.",
+                                    new java.util.ArrayList<>(),
+                                    BlockLogicChecker.Severity.CRITICAL,
+                                    null,
+                                    null,
+                                    "empty spec"));
+                            continue;
+                        }
+
+                        // 6. Проверка на неверный тип параметра (если spec требует число, а параметр — строка)
+                        if (block.spec.contains("%1$d") || block.spec.contains("%2$d")) {
+                            if (block.parameters != null && !block.parameters.isEmpty()) {
+                                String p0 = block.parameters.get(0);
+                                if (p0 != null && !p0.isEmpty() && !p0.matches("-?\\d+\\.?\\d*")) {
+                                    // Параметр не похож на число (но может быть переменной — это нормально)
+                                    // Пропускаем, так как переменные тоже допустимы
+                                }
+                            }
+                        }
+
+                        // 7. Проверка на ссылку на несуществующий виджет
+                        if (block.spec.contains("%m.")) {
+                            String widgetId = block.spec.substring(block.spec.indexOf("%m.") + 3);
+                            int end = widgetId.indexOf(' ');
+                            if (end > 0) widgetId = widgetId.substring(0, end);
+                            // Проверяем, есть ли такой виджет в проекте
+                            boolean exists = false;
+                            for (com.besome.sketch.beans.ViewBean vb : a.a.a.jC.a(scId).d(pfb.getXmlName() + ".xml")) {
+                                if (vb.id != null && vb.id.equals(widgetId)) {
+                                    exists = true;
+                                    break;
+                                }
+                            }
+                            if (!exists && !widgetId.equals("context") && !widgetId.equals("activity")) {
+                                issues.add(new BlockLogicChecker.Issue(
+                                        null,
+                                        "Блок ссылается на виджет «" + widgetId + "», которого нет на экране.",
+                                        new java.util.ArrayList<>(),
+                                        BlockLogicChecker.Severity.WARNING,
+                                        null,
+                                        null,
+                                        "missing widget"));
+                            }
+                        }
+
+                        // 8. Проверка на отрицательный или слишком большой id
+                        if (block.id != null && !block.id.isEmpty()) {
+                            try {
+                                int bid = Integer.parseInt(block.id);
+                                if (bid < 0 || bid > 100000) {
+                                    issues.add(new BlockLogicChecker.Issue(
+                                            null,
+                                            "Блок имеет некорректный ID: " + bid,
+                                            new java.util.ArrayList<>(),
+                                            BlockLogicChecker.Severity.WARNING,
+                                            null,
+                                            null,
+                                            "invalid block id"));
+                                }
+                            } catch (NumberFormatException ignored) {}
+                        }
+
+                        // 9. Проверка на spec с % без параметров
+                        if (block.spec.contains("%") && (block.parameters == null || block.parameters.isEmpty())) {
+                            issues.add(new BlockLogicChecker.Issue(
+                                    null,
+                                    "Блок «" + block.spec + "» содержит параметры (%), но они не заданы.",
+                                    new java.util.ArrayList<>(),
+                                    BlockLogicChecker.Severity.CRITICAL,
+                                    null,
+                                    null,
+                                    "missing parameters"));
+                        }
+                    }
+
+                    // 10. Проверка на пустое событие (блоков нет, но событие добавлено)
+                    if (blocks.isEmpty()) {
+                        // Это нормально для новых событий, не считаем ошибкой
                     }
                 }
             }
         } catch (Throwable ignored) {}
     }
+
 }

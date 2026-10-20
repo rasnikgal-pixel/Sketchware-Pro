@@ -2907,4 +2907,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="settings_save_on_property_change_summary">Автоматически сохранять проект после изменения свойств виджета</string>
     <string name="preflight_empty_param">Блок «%1$s» не имеет значения в параметре %2$d. Вставьте число или переменную!</string>
     <string name="preflight_unknown_block">Неизвестный блок «%1$s». Возможно, он из старой версии.</string>
+    <string name="preflight_too_many_blocks">В событии слишком много блоков (%1$s). Это может замедлить приложение.</string>
+    <string name="preflight_duplicate_block">Одинаковый блок повторяется %1$s раз. Возможно, это ошибка.</string>
 </resources>

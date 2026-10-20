@@ -2897,4 +2897,6 @@ ACTION_VIEW
     <string name="settings_save_on_property_change_summary">Automatically save project after changing widget properties</string>
     <string name="preflight_empty_param">Block «%1$s» has no value in parameter %2$d. Insert a number or variable!</string>
     <string name="preflight_unknown_block">Unknown block «%1$s». It may be from an old version.</string>
+    <string name="preflight_too_many_blocks">Too many blocks in event (%1$s). It may slow down the app.</string>
+    <string name="preflight_duplicate_block">The same block repeats %1$s times. It may be an error.</string>
 </resources>
