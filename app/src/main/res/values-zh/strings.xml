@@ -2841,4 +2841,6 @@ ACTION_VIEW
     <string name="settings_remember_palette_position_summary">打开编辑器时滚动到上次选中的积木</string>
     <string name="settings_save_on_property_change_title">更改属性时保存</string>
     <string name="settings_save_on_property_change_summary">更改小部件属性后自动保存项目</string>
+    <string name="preflight_empty_param">积木«%1$s»的参数%2$d没有值。请插入数字或变量！</string>
+    <string name="preflight_unknown_block">未知积木«%1$s»。它可能来自旧版本。</string>
 </resources>

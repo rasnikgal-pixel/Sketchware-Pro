@@ -2895,4 +2895,6 @@ ACTION_VIEW
     <string name="settings_remember_palette_position_summary">Scroll palette and blocks to the last selected when opening the editor</string>
     <string name="settings_save_on_property_change_title">Save on property change</string>
     <string name="settings_save_on_property_change_summary">Automatically save project after changing widget properties</string>
+    <string name="preflight_empty_param">Block «%1$s» has no value in parameter %2$d. Insert a number or variable!</string>
+    <string name="preflight_unknown_block">Unknown block «%1$s». It may be from an old version.</string>
 </resources>

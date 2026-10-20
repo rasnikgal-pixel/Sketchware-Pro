@@ -42,6 +42,7 @@ public final class ProjectPreflightChecker {
         checkUserCodeClasses(context, scId, issues);
         checkAppCompat(context, scId, activities, issues);
         checkMaterial3(context, scId, issues);
+        checkEmptyBlockParams(context, scId, activities, issues);
 
         return issues;
     }
@@ -233,6 +234,58 @@ public final class ProjectPreflightChecker {
                             null,
                             null,
                             "Имя должно начинаться с буквы, без пробелов и спецсимволов."));
+                }
+            }
+        } catch (Throwable ignored) {}
+    }
+
+    /**
+     * Проверяет, что у блоков с параметрами (%1$s) заполнены значения.
+     * Если параметр пуст — это критическая ошибка (блок не соберётся).
+     */
+    private static void checkEmptyBlockParams(Context ctx, String scId,
+                                              List<ProjectFileBean> activities,
+                                              List<BlockLogicChecker.Issue> issues) {
+        if (activities == null) return;
+        try {
+            for (ProjectFileBean pfb : activities) {
+                String javaName = pfb.getJavaName();
+                if (javaName == null || javaName.isEmpty()) continue;
+
+                // Получаем все события экрана
+                java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events =
+                        a.a.a.jC.a(scId).b(javaName);
+                if (events == null) continue;
+
+                for (java.util.Map.Entry<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> entry : events.entrySet()) {
+                    java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks = entry.getValue();
+                    if (blocks == null) continue;
+
+                    for (com.besome.sketch.beans.BlockBean block : blocks) {
+                        if (block.spec == null) continue;
+                        // Ищем блоки с параметрами (%1$s, %2$d и т.д.)
+                        if (!block.spec.contains("%")) continue;
+
+                        // Проверяем, что все параметры заполнены
+                        java.util.ArrayList<String> params = block.parameters;
+                        if (params == null) continue;
+                        for (int i = 0; i < params.size(); i++) {
+                            String param = params.get(i);
+                            if (param == null || param.trim().isEmpty()) {
+                                String blockName = block.spec.replace("%1$s", "…").replace("%2$s", "…");
+                                issues.add(new BlockLogicChecker.Issue(
+                                        null,
+                                        mod.hey.studios.util.Helper.getResString(
+                                                pro.sketchware.R.string.preflight_empty_param, blockName, String.valueOf(i + 1)),
+                                        new java.util.ArrayList<>(),
+                                        BlockLogicChecker.Severity.CRITICAL,
+                                        null,
+                                        null,
+                                        "empty block parameter"));
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         } catch (Throwable ignored) {}

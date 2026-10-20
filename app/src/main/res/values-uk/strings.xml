@@ -2841,4 +2841,6 @@ ACTION_VIEW
     <string name="settings_remember_palette_position_summary">Прокручувати палітру та блоки до останнього вибраного при відкритті редактора</string>
     <string name="settings_save_on_property_change_title">Зберігати при зміні властивостей</string>
     <string name="settings_save_on_property_change_summary">Автоматично зберігати проєкт після зміни властивостей віджета</string>
+    <string name="preflight_empty_param">Блок «%1$s» не має значення в параметрі %2$d. Вставте число або змінну!</string>
+    <string name="preflight_unknown_block">Невідомий блок «%1$s». Можливо, він зі старої версії.</string>
 </resources>

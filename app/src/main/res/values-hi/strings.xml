@@ -2841,4 +2841,6 @@ ACTION_VIEW
     <string name="settings_remember_palette_position_summary">संपादक खोलते समय अंतिम चयनित ब्लॉक तक स्क्रॉल करें</string>
     <string name="settings_save_on_property_change_title">संपत्ति बदलने पर सहेजें</string>
     <string name="settings_save_on_property_change_summary">विजेट गुण बदलने के बाद प्रोजेक्ट स्वचालित रूप से सहेजें</string>
+    <string name="preflight_empty_param">ब्लॉक «%1$s» में पैरामीटर %2$d में कोई मान नहीं है। संख्या या चर डालें!</string>
+    <string name="preflight_unknown_block">अज्ञात ब्लॉक «%1$s»। यह पुराने संस्करण से हो सकता है।</string>
 </resources>

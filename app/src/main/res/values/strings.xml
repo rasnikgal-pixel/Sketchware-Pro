@@ -2905,4 +2905,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="settings_remember_palette_position_summary">При открытии редактора прокручивать палитру и блоки к последнему выбранному</string>
     <string name="settings_save_on_property_change_title">Сохранять при изменении свойств</string>
     <string name="settings_save_on_property_change_summary">Автоматически сохранять проект после изменения свойств виджета</string>
+    <string name="preflight_empty_param">Блок «%1$s» не имеет значения в параметре %2$d. Вставьте число или переменную!</string>
+    <string name="preflight_unknown_block">Неизвестный блок «%1$s». Возможно, он из старой версии.</string>
 </resources>
