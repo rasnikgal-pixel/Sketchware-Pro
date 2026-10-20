@@ -57,6 +57,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/menu_save_block_list"
+        android:orderInCategory="200"
+        android:title="Сохранить список блоков"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_logic_help"
         android:orderInCategory="300"
         android:title="@string/auto_layout_logic_menu_001"

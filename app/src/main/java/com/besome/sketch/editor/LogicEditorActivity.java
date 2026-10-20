@@ -2294,6 +2294,9 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
             new ProjectSaver(this).execute();
             com.besome.sketch.design.DesignActivity.hasUnsavedChangesStatic = false;
             return true;
+        } else if (itemId == R.id.menu_save_block_list) {
+            saveBlockListToFile();
+            return true;
         } else if (itemId == R.id.menu_block_helper) {
             e(false);
             g(!ia);
@@ -3972,4 +3975,31 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 .show();
     }
 
+
+    private void saveBlockListToFile() {
+        try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("# Список всех блоков\n\n");
+            for (java.util.HashMap<String, Object> map : getBuiltInBlocks()) {
+                String spec = String.valueOf(map.get("spec"));
+                String type = String.valueOf(map.get("type"));
+                sb.append("- ").append(spec).append(" (type: ").append(type).append(")\n");
+            }
+            java.io.File file = new java.io.File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS), "block_list.txt");
+            java.io.FileWriter fw = new java.io.FileWriter(file);
+            fw.write(sb.toString());
+            fw.close();
+            android.widget.Toast.makeText(this, "Сохранено: " + file.getAbsolutePath(), android.widget.Toast.LENGTH_LONG).show();
+        } catch (Throwable t) {
+            android.widget.Toast.makeText(this, "Ошибка: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private java.util.ArrayList<java.util.HashMap<String, Object>> getBuiltInBlocks() {
+        java.util.ArrayList<java.util.HashMap<String, Object>> list = new java.util.ArrayList<>();
+        try {
+            mod.hilal.saif.blocks.BlocksHandler.builtInBlocks(list);
+        } catch (Throwable ignored) {}
+        return list;
+    }
 }
