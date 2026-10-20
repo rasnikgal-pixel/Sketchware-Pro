@@ -580,8 +580,6 @@ public class Jx {
                 .equals(BuildSettings.SETTING_GENERIC_VALUE_TRUE)) {
             sb.append(getDeprecatedMethodsCode());
         }
-        sb.append("}").append(EOL);
-
         // Генерируем метод toWords в конце класса MainActivity
         sb.append(EOL);
         sb.append("    public static String toWords(double sum) {").append(EOL);
@@ -622,6 +620,8 @@ public class Jx {
         sb.append("      } catch (Throwable t) { return \"\"; }").append(EOL);
         sb.append("    }").append(EOL);
         sb.append(EOL);
+        sb.append("}").append(EOL);
+
         String code = sb.toString();
 
         if (isFragment) {
