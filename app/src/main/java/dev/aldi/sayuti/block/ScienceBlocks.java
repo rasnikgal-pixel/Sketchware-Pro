@@ -627,5 +627,560 @@ public final class ScienceBlocks {
         list.add(blk("sciOpenArchive", " ", "",
                 "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_VIEW); _i.setDataAndType(android.net.Uri.fromFile(new java.io.File(%1$s)), \"*/*\"); _i.addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION); %2$s.startActivity(android.content.Intent.createChooser(_i, \"Open archive\")); } catch (Throwable _t) {}",
                 "open archive %1$s from %m.context"));
+
+        // 🖼️ Image: получить ширину изображения
+        list.add(blk("sciImageWidth", "d", "",
+                "((new Object() { public double f() { try { android.graphics.BitmapFactory.Options _o = new android.graphics.BitmapFactory.Options(); _o.inJustDecodeBounds = true; android.graphics.BitmapFactory.decodeFile(%1$s, _o); return (double) _o.outWidth; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "image width of %1$s"));
+
+        // 🖼️ Image: получить высоту изображения
+        list.add(blk("sciImageHeight", "d", "",
+                "((new Object() { public double f() { try { android.graphics.BitmapFactory.Options _o = new android.graphics.BitmapFactory.Options(); _o.inJustDecodeBounds = true; android.graphics.BitmapFactory.decodeFile(%1$s, _o); return (double) _o.outHeight; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "image height of %1$s"));
+
+        // 🖼️ Image: сохранить в галерею
+        list.add(blk("sciSaveToGallery", " ", "",
+                "((new Object() { public void f() { try { android.graphics.Bitmap _b = android.graphics.BitmapFactory.decodeFile(%1$s); java.io.File _out = new java.io.File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_PICTURES), %2$s); java.io.FileOutputStream _os = new java.io.FileOutputStream(_out); _b.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, _os); _os.flush(); _os.close(); android.media.MediaScannerConnection.scanFile(%3$s, new String[]{_out.getAbsolutePath()}, null, null); } catch (Throwable _t) {} } }).f());",
+                "save image %1$s to gallery as %2$s from %m.context"));
+
+        // 🎵 Audio: воспроизвести звук
+        list.add(blk("sciPlaySound", " ", "",
+                "((new Object() { public void f() { try { android.media.MediaPlayer _mp = new android.media.MediaPlayer(); _mp.setDataSource(%1$s); _mp.prepare(); _mp.start(); } catch (Throwable _t) {} } }).f());",
+                "play sound %1$s"));
+
+        // 📞 Contacts: получить имя по номеру
+        list.add(blk("sciGetContactName", "d", "",
+                "((new Object() { public String f() { try { android.net.Uri _u = android.net.Uri.withAppendedPath(android.provider.ContactsContract.PhoneLookup.CONTENT_FILTER_URI, android.net.Uri.encode(%1$s)); android.database.Cursor _c = %2$s.getContentResolver().query(_u, new String[]{android.provider.ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null); if (_c != null && _c.moveToFirst()) { String _n = _c.getString(0); _c.close(); return _n; } return %1$s; } catch (Throwable _t) { return %1$s; } } }).f())",
+                "contact name for %1$s from %m.context"));
+
+        // 📅 Date: добавить дни к дате (dd.MM.yyyy)
+        list.add(blk("sciAddDays", "d", "",
+                "((new Object() { public String f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); _c.add(java.util.Calendar.DAY_OF_MONTH, (int)(%2$s)); return _fmt.format(_c.getTime()); } catch (Throwable _t) { return %1$s; } } }).f())",
+                "add %2$d days to %1$s"));
+
+        // 📅 Date: день недели (1-7)
+        list.add(blk("sciDayOfWeek", "d", "",
+                "((new Object() { public double f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); return (double) _c.get(java.util.Calendar.DAY_OF_WEEK); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "day of week for %1$s"));
+
+        // 🔐 AES: зашифровать с ключом
+        list.add(blk("sciAesEncryptKey", "d", "",
+                "((new Object() { public String f() { try { javax.crypto.Cipher _c = javax.crypto.Cipher.getInstance(\"AES/ECB/PKCS5Padding\"); _c.init(javax.crypto.Cipher.ENCRYPT_MODE, new javax.crypto.spec.SecretKeySpec(%2$s.getBytes(), \"AES\")); return android.util.Base64.encodeToString(_c.doFinal(%1$s.getBytes()), android.util.Base64.NO_WRAP); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "aes encrypt %1$s with key %2$s"));
+
+        // 🔐 AES: расшифровать с ключом
+        list.add(blk("sciAesDecryptKey", "d", "",
+                "((new Object() { public String f() { try { javax.crypto.Cipher _c = javax.crypto.Cipher.getInstance(\"AES/ECB/PKCS5Padding\"); _c.init(javax.crypto.Cipher.DECRYPT_MODE, new javax.crypto.spec.SecretKeySpec(%2$s.getBytes(), \"AES\")); return new String(_c.doFinal(android.util.Base64.decode(%1$s, android.util.Base64.NO_WRAP))); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "aes decrypt %1$s with key %2$s"));
+
+        // 🎨 UI: установить цвет фона
+        list.add(blk("sciSetBackgroundColor", " ", "",
+                "%1$s.setBackgroundColor((int)(%2$s));",
+                "set background color %2$d on %1$s"));
+
+        // 🎨 UI: установить отступы (padding)
+        list.add(blk("sciSetPadding", " ", "",
+                "%1$s.setPadding((int)(%2$s), (int)(%3$s), (int)(%4$s), (int)(%5$s));",
+                "set padding %1$s left %2$d top %3$d right %4$d bottom %5$d"));
+
+        // 🎨 UI: установить поворот
+        list.add(blk("sciSetRotation", " ", "",
+                "%1$s.setRotation((float)(%2$s));",
+                "set rotation %2$s on %1$s"));
+
+        // 🎨 UI: установить масштаб по X
+        list.add(blk("sciSetScaleX", " ", "",
+                "%1$s.setScaleX((float)(%2$s));",
+                "set scaleX %2$s on %1$s"));
+
+        // 🎨 UI: установить масштаб по Y
+        list.add(blk("sciSetScaleY", " ", "",
+                "%1$s.setScaleY((float)(%2$s));",
+                "set scaleY %2$s on %1$s"));
+
+        // 🎨 UI: установить тень (elevation)
+        list.add(blk("sciSetElevation", " ", "",
+                "%1$s.setElevation((float)(%2$s));",
+                "set elevation %2$s on %1$s"));
+
+        // 🎨 UI: включить/выключить виджет
+        list.add(blk("sciSetEnabled", " ", "",
+                "%1$s.setEnabled(%2$s);",
+                "set enabled %2$b on %1$s"));
+
+        // 🎨 UI: сделать кликабельным
+        list.add(blk("sciSetClickable", " ", "",
+                "%1$s.setClickable(%2$s);",
+                "set clickable %2$b on %1$s"));
+
+        // 🎨 UI: сделать фокусируемым
+        list.add(blk("sciSetFocusable", " ", "",
+                "%1$s.setFocusable(%2$s);",
+                "set focusable %2$b on %1$s"));
+
+        // 🎨 UI: установить подсказку (для EditText)
+        list.add(blk("sciSetHintText", " ", "",
+                "%1$s.setHint(%2$s);",
+                "set hint %2$s on %1$s"));
+
+        // 📋 List: получить подсписок (с index по index)
+        list.add(blk("sciListSubList", "d", "",
+                "new java.util.ArrayList(%1$s.subList(Math.min((int)(%2$s), %1$s.size()), Math.min((int)(%3$s), %1$s.size())))",
+                "sub list %1$s from %2$d to %3$d"));
+
+        // 📋 List: объединить два списка
+        list.add(blk("sciListConcat", " ", "",
+                "((new Object() { public void f() { try { %3$s.clear(); %3$s.addAll(%1$s); %3$s.addAll(%2$s); } catch (Throwable _t) {} } }).f());",
+                "concat %1$s and %2$s into %3$s"));
+
+        // 📋 List: заполнить список значением
+        list.add(blk("sciListFill", " ", "",
+                "((new Object() { public void f() { try { java.util.Collections.fill(%1$s, %2$s); } catch (Throwable _t) {} } }).f());",
+                "fill %1$s with %2$s"));
+
+        // 📋 List: бинарный поиск (предполагает сортировку)
+        list.add(blk("sciListBinarySearch", "d", "",
+                "(double) java.util.Collections.binarySearch(%1$s, %2$s)",
+                "binary search %2$s in %1$s"));
+
+        // 📋 List: максимальный элемент
+        list.add(blk("sciListMax", "d", "",
+                "((new Object() { public String f() { try { return %1$s.isEmpty() ? \"\" : String.valueOf(java.util.Collections.max((java.util.Collection) %1$s)); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "max of %1$s"));
+
+        // 📋 List: минимальный элемент
+        list.add(blk("sciListMin", "d", "",
+                "((new Object() { public String f() { try { return %1$s.isEmpty() ? \"\" : String.valueOf(java.util.Collections.min((java.util.Collection) %1$s)); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "min of %1$s"));
+
+        // 📋 List: фильтр (только элементы, содержащие подстроку)
+        list.add(blk("sciListFilterContains", " ", "",
+                "((new Object() { public void f() { try { java.util.ArrayList _tmp = new java.util.ArrayList(); for (Object _o : %1$s) { if (_o != null && _o.toString().contains(%2$s)) _tmp.add(_o); } %1$s.clear(); %1$s.addAll(_tmp); } catch (Throwable _t) {} } }).f());",
+                "filter %1$s contains %2$s"));
+
+        // 📋 List: удалить элемент по значению
+        list.add(blk("sciListRemoveValue", " ", "",
+                "((new Object() { public void f() { try { %1$s.remove(%2$s); } catch (Throwable _t) {} } }).f());",
+                "remove %2$s from %1$s"));
+
+        // 📋 List: удалить элемент по индексу
+        list.add(blk("sciListRemoveIndex", " ", "",
+                "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i < %1$s.size()) %1$s.remove(_i); } catch (Throwable _t) {} } }).f());",
+                "remove index %2$d from %1$s"));
+
+        // 📋 List: вставить элемент по индексу
+        list.add(blk("sciListInsert", " ", "",
+                "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i <= %1$s.size()) %1$s.add(_i, %3$s); } catch (Throwable _t) {} } }).f());",
+                "insert %3$s at %2$d in %1$s"));
+
+        // 📋 List: заменить элемент по индексу
+        list.add(blk("sciListSet", " ", "",
+                "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i < %1$s.size()) %1$s.set(_i, %3$s); } catch (Throwable _t) {} } }).f());",
+                "set %3$s at %2$d in %1$s"));
+
+        // 📋 List: получить элемент по индексу
+        list.add(blk("sciListGet", "d", "",
+                "((new Object() { public String f() { try { int _i = (int)(%2$s); return (_i >= 0 && _i < %1$s.size()) ? String.valueOf(%1$s.get(_i)) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "get %2$d from %1$s"));
+
+        // 📋 List: размер списка (число)
+        list.add(blk("sciListSizeNum", "d", "",
+                "(double)(%1$s.size())",
+                "size of %1$s"));
+
+        // 📋 List: очистить список
+        list.add(blk("sciListClear", " ", "",
+                "%1$s.clear();",
+                "clear %1$s"));
+
+        // 📋 List: проверить, содержит ли список элемент
+        list.add(blk("sciListHas", "b", "",
+                "%1$s.contains(%2$s)",
+                "%1$s contains %2$s"));
+
+        // 📋 List: преобразовать в массив строк
+        list.add(blk("sciListToArray", "d", "",
+                "%1$s.toArray()",
+                "to array from %1$s"));
+
+        // 📋 List: удалить все вхождения значения
+        list.add(blk("sciListRemoveAll", " ", "",
+                "((new Object() { public void f() { try { java.util.ArrayList _tmp = new java.util.ArrayList(); for (Object _o : %1$s) { if (_o == null || !_o.equals(%2$s)) _tmp.add(_o); } %1$s.clear(); %1$s.addAll(_tmp); } catch (Throwable _t) {} } }).f());",
+                "remove all %2$s from %1$s"));
+
+        // 📋 List: оставить только уникальные (по строке)
+        list.add(blk("sciListDistinctStr", " ", "",
+                "((new Object() { public void f() { try { java.util.LinkedHashSet _s = new java.util.LinkedHashSet(); for (Object _o : %1$s) _s.add(String.valueOf(_o)); %1$s.clear(); %1$s.addAll(_s); } catch (Throwable _t) {} } }).f());",
+                "distinct strings in %1$s"));
+
+        // 📋 List: соединить в строку с разделителем (для чисел)
+        list.add(blk("sciListJoinNum", "d", "",
+                "((new Object() { public String f() { try { StringBuilder _sb = new StringBuilder(); for (int _i = 0; _i < %1$s.size(); _i++) { if (_i > 0) _sb.append(%2$s); _sb.append(%1$s.get(_i)); } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "join numbers %1$s with %2$s"));
+
+        // 📋 List: найти первый индекс с подстрокой
+        list.add(blk("sciListFindContains", "d", "",
+                "((new Object() { public double f() { try { for (int _i = 0; _i < %1$s.size(); _i++) { if (String.valueOf(%1$s.get(_i)).contains(%2$s)) return (double)_i; } return -1.0; } catch (Throwable _t) { return -1.0; } } }).f())",
+                "find %2$s in %1$s"));
+
+        // 📋 List: создать список из строки (разделитель)
+        list.add(blk("sciListFromString", " ", "",
+                "((new Object() { public void f() { try { %2$s.clear(); for (String _s : %1$s.split(%3$s)) %2$s.add(_s); } catch (Throwable _t) {} } }).f());",
+                "split %1$s by %3$s into %2$s"));
+
+        // 📋 List: обратная сортировка
+        list.add(blk("sciListSortDesc", " ", "",
+                "((new Object() { public void f() { try { java.util.Collections.sort(%1$s); java.util.Collections.reverse(%1$s); } catch (Throwable _t) {} } }).f());",
+                "sort descending %1$s"));
+
+        // 📋 List: первый индекс (поиск)
+        list.add(blk("sciListFirstIndex", "d", "",
+                "(double)(%1$s.indexOf(%2$s))",
+                "first index of %2$s in %1$s"));
+
+        // 📋 List: последний индекс
+        list.add(blk("sciListLastIndex", "d", "",
+                "(double)(%1$s.lastIndexOf(%2$s))",
+                "last index of %2$s in %1$s"));
+
+        // 📋 List: проверить, пустой ли список
+        list.add(blk("sciListIsEmptyList", "b", "",
+                "%1$s.isEmpty()",
+                "%1$s is empty"));
+
+        // 📋 List: преобразовать в строку
+        list.add(blk("sciListToString", "d", "",
+                "%1$s.toString()",
+                "%1$s to string"));
+
+        // 📁 File: переименовать
+        list.add(blk("sciFileRename", " ", "",
+                "((new Object() { public void f() { try { new java.io.File(%1$s).renameTo(new java.io.File(%2$s)); } catch (Throwable _t) {} } }).f());",
+                "rename file %1$s to %2$s"));
+
+        // 📁 File: полный путь
+        list.add(blk("sciFileAbsolutePath", "d", "",
+                "new java.io.File(%1$s).getAbsolutePath()",
+                "absolute path of %1$s"));
+
+        // 📁 File: родительская папка
+        list.add(blk("sciFileParent", "d", "",
+                "((new Object() { public String f() { try { return new java.io.File(%1$s).getParent(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "parent of %1$s"));
+
+        // 📁 File: рекурсивный список файлов
+        list.add(blk("sciFileListRecursive", " ", "",
+                "((new Object() { public void f() { try { java.util.ArrayList _r = new java.util.ArrayList(); java.io.File[] _fs = new java.io.File(%1$s).listFiles(); if (_fs != null) { for (java.io.File _x : _fs) { if (_x.isDirectory()) { java.io.File[] _sub = _x.listFiles(); if (_sub != null) { for (java.io.File _y : _sub) _r.add(_y.getAbsolutePath()); } } else { _r.add(_x.getAbsolutePath()); } } } %2$s.clear(); %2$s.addAll(_r); } catch (Throwable _t) {} } }).f());",
+                "list files recursively from %1$s into %2$s"));
+
+        // 📁 File: удалить папку со всем содержимым
+        list.add(blk("sciFileDeleteRecursive", " ", "",
+                "((new Object() { public void f() { try { java.io.File _d = new java.io.File(%1$s); if (_d.isDirectory()) { java.io.File[] _fs = _d.listFiles(); if (_fs != null) { for (java.io.File _x : _fs) _x.delete(); } } _d.delete(); } catch (Throwable _t) {} } }).f());",
+                "delete folder %1$s recursively"));
+
+        // 📁 File: размер в КБ
+        list.add(blk("sciFileSizeKB", "d", "",
+                "(double)(new java.io.File(%1$s).length() / 1024)",
+                "size KB of %1$s"));
+
+        // 📁 File: размер в МБ
+        list.add(blk("sciFileSizeMB", "d", "",
+                "(double)(new java.io.File(%1$s).length() / (1024 * 1024))",
+                "size MB of %1$s"));
+
+        // 📁 File: скрытый ли файл
+        list.add(blk("sciFileIsHidden", "b", "",
+                "new java.io.File(%1$s).isHidden()",
+                "file %1$s is hidden"));
+
+        // 📁 File: дата последнего изменения (millis)
+        list.add(blk("sciFileLastModified", "d", "",
+                "(double)(new java.io.File(%1$s).lastModified())",
+                "last modified of %1$s"));
+
+        // 📁 File: создать пустой файл
+        list.add(blk("sciFileCreateNew", "b", "",
+                "((new Object() { public boolean f() { try { return new java.io.File(%1$s).createNewFile(); } catch (Throwable _t) { return false; } } }).f())",
+                "create new file %1$s"));
+
+        // 📁 File: MIME-тип по расширению
+        list.add(blk("sciFileMimeType", "d", "",
+                "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); String _e = _n.substring(_n.lastIndexOf('.') + 1).toLowerCase(); if (_e.equals(\"jpg\") || _e.equals(\"jpeg\")) return \"image/jpeg\"; if (_e.equals(\"png\")) return \"image/png\"; if (_e.equals(\"pdf\")) return \"application/pdf\"; if (_e.equals(\"txt\")) return \"text/plain\"; if (_e.equals(\"mp3\")) return \"audio/mpeg\"; if (_e.equals(\"mp4\")) return \"video/mp4\"; return \"application/octet-stream\"; } catch (Throwable _t) { return \"application/octet-stream\"; } } }).f())",
+                "mime type of %1$s"));
+
+        // 📁 File: общее место на диске (МБ)
+        list.add(blk("sciFileTotalSpace", "d", "",
+                "(double)(new java.io.File(%1$s).getTotalSpace() / (1024 * 1024))",
+                "total space MB of %1$s"));
+
+        // 📁 File: свободное место на диске (МБ)
+        list.add(blk("sciFileFreeSpace", "d", "",
+                "(double)(new java.io.File(%1$s).getFreeSpace() / (1024 * 1024))",
+                "free space MB of %1$s"));
+
+        // 📁 File: доступное место (МБ)
+        list.add(blk("sciFileUsableSpace", "d", "",
+                "(double)(new java.io.File(%1$s).getUsableSpace() / (1024 * 1024))",
+                "usable space MB of %1$s"));
+
+        // 📁 File: является ли файлом (не папкой)
+        list.add(blk("sciFileIsFile", "b", "",
+                "new java.io.File(%1$s).isFile()",
+                "file %1$s is a file"));
+
+        // 📁 File: копировать рекурсивно
+        list.add(blk("sciFileCopyRecursive", " ", "",
+                "((new Object() { public void f() { try { java.io.File _src = new java.io.File(%1$s); java.io.File _dst = new java.io.File(%2$s); if (_src.isDirectory()) { _dst.mkdirs(); java.io.File[] _fs = _src.listFiles(); if (_fs != null) { for (java.io.File _x : _fs) { java.io.File _to = new java.io.File(_dst, _x.getName()); java.io.FileInputStream _is = new java.io.FileInputStream(_x); java.io.FileOutputStream _os = new java.io.FileOutputStream(_to); byte[] _b = new byte[4096]; int _len; while ((_len = _is.read(_b)) > 0) _os.write(_b, 0, _len); _is.close(); _os.close(); } } } } catch (Throwable _t) {} } }).f());",
+                "copy folder %1$s to %2$s recursively"));
+
+        // 📁 File: переместить рекурсивно
+        list.add(blk("sciFileMoveRecursive", " ", "",
+                "((new Object() { public void f() { try { java.io.File _src = new java.io.File(%1$s); java.io.File _dst = new java.io.File(%2$s); _src.renameTo(_dst); } catch (Throwable _t) {} } }).f());",
+                "move folder %1$s to %2$s"));
+
+        // 📁 File: получить расширение файла
+        list.add(blk("sciFileExtOnly", "d", "",
+                "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); int _i = _n.lastIndexOf('.'); return _i > 0 ? _n.substring(_i + 1) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "extension of %1$s"));
+
+        // 📁 File: прочитать первые N символов
+        list.add(blk("sciFileReadFirst", "d", "",
+                "((new Object() { public String f() { try { java.io.RandomAccessFile _r = new java.io.RandomAccessFile(%1$s, \"r\"); byte[] _b = new byte[(int)(%2$s)]; _r.readFully(_b); _r.close(); return new String(_b); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "read first %2$d chars of %1$s"));
+
+        // 📁 File: записать в конец файла
+        list.add(blk("sciFileAppendText", " ", "",
+                "((new Object() { public void f() { try { java.io.FileWriter _w = new java.io.FileWriter(%1$s, true); _w.append(%2$s); _w.close(); } catch (Throwable _t) {} } }).f());",
+                "append %2$s to file %1$s"));
+
+        // 🌐 Network: скачать файл по URL
+        list.add(blk("sciDownloadFile", " ", "",
+                "((new Object() { public void f() { try { java.io.InputStream _is = new java.net.URL(%1$s).openStream(); java.io.FileOutputStream _os = new java.io.FileOutputStream(%2$s); byte[] _b = new byte[4096]; int _len; while ((_len = _is.read(_b)) > 0) _os.write(_b, 0, _len); _is.close(); _os.close(); } catch (Throwable _t) {} } }).f());",
+                "download %1$s to %2$s"));
+
+        // 🌐 Network: URL-кодировать
+        list.add(blk("sciUrlEncode", "d", "",
+                "((new Object() { public String f() { try { return java.net.URLEncoder.encode(%1$s, \"UTF-8\"); } catch (Throwable _t) { return %1$s; } } }).f())",
+                "url encode %1$s"));
+
+        // 🌐 Network: URL-декодировать
+        list.add(blk("sciUrlDecode", "d", "",
+                "((new Object() { public String f() { try { return java.net.URLDecoder.decode(%1$s, \"UTF-8\"); } catch (Throwable _t) { return %1$s; } } }).f())",
+                "url decode %1$s"));
+
+        // 🌐 Network: получить элемент JSON-массива
+        list.add(blk("sciJsonArrayGet", "d", "",
+                "((new Object() { public String f() { try { org.json.JSONArray _a = new org.json.JSONArray(%1$s); int _i = (int)(%2$s); return (_i >= 0 && _i < _a.length()) ? _a.getString(_i) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "json array %1$s get %2$d"));
+
+        // 🌐 Network: JSON-массив → размер
+        list.add(blk("sciJsonArrayLength", "d", "",
+                "((new Object() { public double f() { try { return (double) new org.json.JSONArray(%1$s).length(); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "json array %1$s length"));
+
+        // 🌐 Network: JSON-объект → число
+        list.add(blk("sciJsonGetInt", "d", "",
+                "((new Object() { public double f() { try { return new org.json.JSONObject(%1$s).optDouble(%2$s, 0.0); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "json get int %2$s from %1$s"));
+
+        // 🌐 Network: JSON-объект → boolean
+        list.add(blk("sciJsonGetBool", "b", "",
+                "((new Object() { public boolean f() { try { return new org.json.JSONObject(%1$s).optBoolean(%2$s, false); } catch (Throwable _t) { return false; } } }).f())",
+                "json get bool %2$s from %1$s"));
+
+        // 🌐 Network: HTTP PUT
+        list.add(blk("sciHttpPut", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"PUT\"); _c.setDoOutput(true); java.io.OutputStream _os = _c.getOutputStream(); _os.write(%2$s.getBytes(\"UTF-8\")); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http put %1$s data %2$s"));
+
+        // 🌐 Network: HTTP DELETE
+        list.add(blk("sciHttpDelete", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"DELETE\"); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http delete %1$s"));
+
+        // 🌐 Network: код ответа HTTP
+        list.add(blk("sciHttpGetResponseCode", "d", "",
+                "((new Object() { public double f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"HEAD\"); return (double) _c.getResponseCode(); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "http response code for %1$s"));
+
+        // 🌐 Network: валидный ли URL
+        list.add(blk("sciIsUrlValid", "b", "",
+                "((new Object() { public boolean f() { try { new java.net.URL(%1$s); return true; } catch (Throwable _t) { return false; } } }).f())",
+                "url %1$s is valid"));
+
+        // 🌐 Network: домен из URL
+        list.add(blk("sciGetDomain", "d", "",
+                "((new Object() { public String f() { try { return new java.net.URL(%1$s).getHost(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "domain of %1$s"));
+
+        // 🌐 Network: параметр из URL
+        list.add(blk("sciGetUrlParam", "d", "",
+                "((new Object() { public String f() { try { String _q = new java.net.URL(%1$s).getQuery(); if (_q != null) { for (String _p : _q.split(\"&\")) { String[] _kv = _p.split(\"=\"); if (_kv.length == 2 && _kv[0].equals(%2$s)) return java.net.URLDecoder.decode(_kv[1], \"UTF-8\"); } } return \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "url param %2$s from %1$s"));
+
+        // 🌐 Network: собрать URL с параметрами
+        list.add(blk("sciBuildUrl", "d", "",
+                "((new Object() { public String f() { try { if (!%1$s.contains(\"?\")) return %1$s + \"?\" + java.net.URLEncoder.encode(%2$s, \"UTF-8\") + \"=\" + java.net.URLEncoder.encode(%3$s, \"UTF-8\"); return %1$s + \"&\" + java.net.URLEncoder.encode(%2$s, \"UTF-8\") + \"=\" + java.net.URLEncoder.encode(%3$s, \"UTF-8\"); } catch (Throwable _t) { return %1$s; } } }).f())",
+                "build url %1$s with %2$s=%3$s"));
+
+        // 🌐 Network: POST JSON
+        list.add(blk("sciHttpPostJson", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"POST\"); _c.setRequestProperty(\"Content-Type\", \"application/json\"); _c.setDoOutput(true); java.io.OutputStream _os = _c.getOutputStream(); _os.write(%2$s.getBytes(\"UTF-8\")); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http post json to %1$s data %2$s"));
+
+        // 🌐 Network: GET с таймаутом
+        list.add(blk("sciHttpGetTimeout", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setConnectTimeout((int)(%2$s)); _c.setReadTimeout((int)(%2$s)); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http get %1$s timeout %2$d ms"));
+
+        // 🌐 Network: IP-адрес устройства
+        list.add(blk("sciGetIpAddress", "d", "",
+                "((new Object() { public String f() { try { java.util.Enumeration _e = java.net.NetworkInterface.getNetworkInterfaces(); while (_e.hasMoreElements()) { java.net.NetworkInterface _n = (java.net.NetworkInterface) _e.nextElement(); java.util.Enumeration _a = _n.getInetAddresses(); while (_a.hasMoreElements()) { java.net.InetAddress _i = (java.net.InetAddress) _a.nextElement(); if (!_i.isLoopbackAddress() && _i instanceof java.net.Inet4Address) return _i.getHostAddress(); } } return \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "device ip address"));
+
+        // 🌐 Network: пинг хоста
+        list.add(blk("sciPingHost", "d", "",
+                "((new Object() { public double f() { try { java.net.InetAddress _a = java.net.InetAddress.getByName(%1$s); long _s = System.currentTimeMillis(); _a.isReachable(3000); return (double)(System.currentTimeMillis() - _s); } catch (Throwable _t) { return -1.0; } } }).f())",
+                "ping %1$s"));
+
+        // 🎵 Media: воспроизвести звук (ресурс)
+        list.add(blk("sciPlaySoundRes", " ", "",
+                "android.media.MediaPlayer.create(%2$s, %1$s).start();",
+                "play sound resource %1$d from %m.context"));
+
+        // 🎵 Media: остановить все звуки
+        list.add(blk("sciStopAllSounds", " ", "",
+                "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).abandonAudioFocus(null);",
+                "stop all sounds from %m.context"));
+
+        // 🎵 Media: длительность аудио (мс)
+        list.add(blk("sciAudioDuration", "d", "",
+                "((new Object() { public double f() { try { android.media.MediaPlayer _mp = new android.media.MediaPlayer(); _mp.setDataSource(%1$s); _mp.prepare(); double _d = (double) _mp.getDuration(); _mp.release(); return _d; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "duration of audio %1$s"));
+
+        // 📷 Camera: открыть камеру
+        list.add(blk("sciOpenCamera", " ", "",
+                "%1$s.startActivity(new android.content.Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE));",
+                "open camera from %m.context"));
+
+        // 📷 Camera: сделать фото (Intent)
+        list.add(blk("sciTakePhoto", " ", "",
+                "%2$s.startActivityForResult(new android.content.Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE), (int)(%1$s));",
+                "take photo request %1$d from %m.activity"));
+
+        // 📍 Location: получить последнюю известную локацию (широта)
+        list.add(blk("sciLocationLat", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? _l.getLatitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "location latitude from %m.context"));
+
+        // 📍 Location: получить последнюю известную локацию (долгота)
+        list.add(blk("sciLocationLon", "d", "",
+                "((new Object() { public double f() { try { android.location.LocationManager _lm = (android.location.LocationManager) %1$s.getSystemService(android.content.Context.LOCATION_SERVICE); android.location.Location _l = _lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER); return _l != null ? _l.getLongitude() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "location longitude from %m.context"));
+
+        // 📱 Sensor: данные акселерометра X
+        list.add(blk("sciAccelX", "d", "",
+                "((new Object() { public double f() { try { android.hardware.SensorManager _sm = (android.hardware.SensorManager) %1$s.getSystemService(android.content.Context.SENSOR_SERVICE); android.hardware.Sensor _s = _sm.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER); return _s != null ? 0.0 : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "accelerometer X from %m.context"));
+
+        // 📳 Vibrate: вибрация с паттерном
+        list.add(blk("sciVibratePattern", " ", "",
+                "((android.os.Vibrator) %2$s.getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{(long)(%1$s), 100, (long)(%1$s)}, -1);",
+                "vibrate pattern %1$d from %m.context"));
+
+        // 🔦 Flashlight: включить фонарик
+        list.add(blk("sciFlashlightOn", " ", "",
+                "((new Object() { public void f() { try { android.hardware.camera2.CameraManager _cm = (android.hardware.camera2.CameraManager) %1$s.getSystemService(android.content.Context.CAMERA_SERVICE); _cm.setTorchMode(_cm.getCameraIdList()[0], true); } catch (Throwable _t) {} } }).f());",
+                "flashlight on from %m.context"));
+
+        // 🔦 Flashlight: выключить фонарик
+        list.add(blk("sciFlashlightOff", " ", "",
+                "((new Object() { public void f() { try { android.hardware.camera2.CameraManager _cm = (android.hardware.camera2.CameraManager) %1$s.getSystemService(android.content.Context.CAMERA_SERVICE); _cm.setTorchMode(_cm.getCameraIdList()[0], false); } catch (Throwable _t) {} } }).f());",
+                "flashlight off from %m.context"));
+
+        // ☀️ Screen: не выключать экран
+        list.add(blk("sciKeepScreenOn", " ", "",
+                "%1$s.getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);",
+                "keep screen on from %m.activity"));
+
+        // ☀️ Screen: можно выключать экран
+        list.add(blk("sciAllowScreenOff", " ", "",
+                "%1$s.getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);",
+                "allow screen off from %m.activity"));
+
+        // 🎵 Audio: громкость музыки (0-100)
+        list.add(blk("sciGetVolume", "d", "",
+                "((new Object() { public double f() { try { android.media.AudioManager _am = (android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE); int _max = _am.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC); int _cur = _am.getStreamVolume(android.media.AudioManager.STREAM_MUSIC); return (double)(_cur * 100 / _max); } catch (Throwable _t) { return 0.0; } } }).f())",
+                "get volume from %m.context"));
+
+        // 🔇 Audio: беззвучный режим
+        list.add(blk("sciSetSilent", " ", "",
+                "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).setRingerMode(android.media.AudioManager.RINGER_MODE_SILENT);",
+                "set silent mode from %m.context"));
+
+        // 🔊 Audio: обычный режим
+        list.add(blk("sciSetNormal", " ", "",
+                "((android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE)).setRingerMode(android.media.AudioManager.RINGER_MODE_NORMAL);",
+                "set normal mode from %m.context"));
+
+        // 🎤 Audio: начать запись (требует разрешения)
+        list.add(blk("sciStartRecording", " ", "",
+                "((new Object() { public void f() { try { android.media.MediaRecorder _mr = new android.media.MediaRecorder(); _mr.setAudioSource(android.media.MediaRecorder.AudioSource.MIC); _mr.setOutputFormat(android.media.MediaRecorder.OutputFormat.THREE_GPP); _mr.setAudioEncoder(android.media.MediaRecorder.AudioEncoder.AMR_NB); _mr.setOutputFile(%1$s); _mr.prepare(); _mr.start(); } catch (Throwable _t) {} } }).f());",
+                "start recording to %1$s"));
+
+        // 🎤 Audio: остановить запись
+        list.add(blk("sciStopRecording", " ", "",
+                "((new Object() { public void f() { try { android.media.MediaRecorder _mr = new android.media.MediaRecorder(); _mr.stop(); _mr.release(); } catch (Throwable _t) {} } }).f());",
+                "stop recording"));
+
+        // 📞 Phone: получить оператора связи
+        list.add(blk("sciGetCarrier", "d", "",
+                "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); return _tm.getNetworkOperatorName(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "carrier name from %m.context"));
+
+        // 📞 Phone: тип сети (WiFi/Mobile)
+        list.add(blk("sciGetNetworkClass", "d", "",
+                "((new Object() { public String f() { try { android.telephony.TelephonyManager _tm = (android.telephony.TelephonyManager) %1$s.getSystemService(android.content.Context.TELEPHONY_SERVICE); int _t = _tm.getNetworkType(); return _t == 13 ? \"4G\" : _t == 3 ? \"3G\" : _t == 2 ? \"EDGE\" : \"Unknown\"; } catch (Throwable _t) { return \"Unknown\"; } } }).f())",
+                "network class from %m.context"));
+
+        // 📱 Device: серийный номер
+        list.add(blk("sciDeviceSerial", "d", "",
+                "android.os.Build.SERIAL",
+                "device serial"));
+
+        // 📱 Device: производитель
+        list.add(blk("sciDeviceBrand", "d", "",
+                "android.os.Build.BRAND",
+                "device brand"));
+
+        // 📱 Device: версия SDK (int)
+        list.add(blk("sciSdkInt", "d", "",
+                "(double) android.os.Build.VERSION.SDK_INT",
+                "sdk int"));
+
+        // 📱 Device: язык системы
+        list.add(blk("sciSystemLanguage", "d", "",
+                "java.util.Locale.getDefault().getLanguage()",
+                "system language"));
+
+        // 📱 Device: часовой пояс
+        list.add(blk("sciSystemTimezone", "d", "",
+                "java.util.TimeZone.getDefault().getID()",
+                "system timezone"));
+
+        // 📱 Device: разрешение экрана (ширина)
+        list.add(blk("sciScreenWidth", "d", "",
+                "((new Object() { public double f() { try { android.util.DisplayMetrics _dm = new android.util.DisplayMetrics(); %1$s.getWindowManager().getDefaultDisplay().getMetrics(_dm); return (double) _dm.widthPixels; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "screen width from %m.activity"));
+
+        // 📱 Device: разрешение экрана (высота)
+        list.add(blk("sciScreenHeight", "d", "",
+                "((new Object() { public double f() { try { android.util.DisplayMetrics _dm = new android.util.DisplayMetrics(); %1$s.getWindowManager().getDefaultDisplay().getMetrics(_dm); return (double) _dm.heightPixels; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "screen height from %m.activity"));
+
+        // 📱 Device: плотность экрана (dpi)
+        list.add(blk("sciScreenDpi", "d", "",
+                "((new Object() { public double f() { try { android.util.DisplayMetrics _dm = new android.util.DisplayMetrics(); %1$s.getWindowManager().getDefaultDisplay().getMetrics(_dm); return (double) _dm.densityDpi; } catch (Throwable _t) { return 0.0; } } }).f())",
+                "screen dpi from %m.activity"));
     }
 }
