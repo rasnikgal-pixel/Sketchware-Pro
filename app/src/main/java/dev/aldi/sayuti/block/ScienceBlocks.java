@@ -226,54 +226,6 @@ public final class ScienceBlocks {
 
 
 
-        // Accounting: Сумма прописью (Java 1.7, без лямбд)
-        list.add(blk("sciMoneyToWords", "s", "",
-                "(new Object() { public String toWords(double sum) { try { " +
-                "double _val = Math.abs(sum); " +
-                "long _rub = (long) _val; " +
-                "int _kop = (int) Math.round((_val - _rub) * 100); " +
-                "if (_kop >= 100) { _kop = 0; _rub++; } " +
-                "String[] _ed = {\"\", \"один\", \"два\", \"три\", \"четыре\", \"пять\", \"шесть\", \"семь\", \"восемь\", \"девять\"}; " +
-                "String[] _edf = {\"\", \"одна\", \"две\", \"три\", \"четыре\", \"пять\", \"шесть\", \"семь\", \"восемь\", \"девять\"}; " +
-                "String[] _des = {\"\", \"десять\", \"двадцать\", \"тридцать\", \"сорок\", \"пятьдесят\", \"шестьдесят\", \"семьдесят\", \"восемьдесят\", \"девяносто\"}; " +
-                "String[] _sot = {\"\", \"сто\", \"двести\", \"триста\", \"четыреста\", \"пятьсот\", \"шестьсот\", \"семьсот\", \"восемьсот\", \"девятьсот\"}; " +
-                "String[] _teens = {\"десять\", \"одиннадцать\", \"двенадцать\", \"тринадцать\", \"четырнадцать\", \"пятнадцать\", \"шестнадцать\", \"семнадцать\", \"восемнадцать\", \"девятнадцать\"}; " +
-                "String[] _tys = {\"тысяча\", \"тысячи\", \"тысяч\"}; " +
-                "String[] _mils = {\"миллион\", \"миллиона\", \"миллионов\"}; " +
-                "String[] _mlds = {\"миллиард\", \"миллиарда\", \"миллиардов\"}; " +
-                "StringBuilder _res = new StringBuilder(); " +
-                "long _r = _rub; " +
-                "if (_r == 0) { _res.append(\"ноль рублей, \"); } " +
-                "else { " +
-                "  if (_r / 1000000000 > 0) { _res.append(_f(_r / 1000000000, _mlds, false)).append(\" \"); _r %= 1000000000; } " +
-                "  if (_r / 1000000 > 0) { _res.append(_f(_r / 1000000, _mils, false)).append(\" \"); _r %= 1000000; } " +
-                "  if (_r / 1000 > 0) { _res.append(_f(_r / 1000, _tys, true)).append(\" \"); _r %= 1000; } " +
-                "  if (_r > 0) { _res.append(_f(_r, new String[]{\"рубль\", \"рубля\", \"рублей\"}, false)).append(\" \"); } " +
-                "  _res.append(\", \"); " +
-                "} " +
-                "if (_kop == 0) { _res.append(\"ноль копеек\"); } " +
-                "else { _res.append(_f((long)_kop, new String[]{\"копейка\", \"копейки\", \"копеек\"}, true)).append(\" \"); } " +
-                "String _s = _res.toString().replace(\",  \", \", \").replace(\" , \", \", \").trim(); " +
-                "return _s; " +
-                "} catch (Throwable _t) { return \"\"; } } " +
-                "private String _f(long n, String[] forms, boolean female) { " +
-                "  StringBuilder sb = new StringBuilder(); " +
-                "  long n100 = n % 100; " +
-                "  long n10 = n % 10; " +
-                "  int hundreds = (int)(n / 100); " +
-                "  if (hundreds > 0) sb.append(_sot[hundreds]).append(\" \"); " +
-                "  if (n100 >= 11 && n100 <= 19) { sb.append(_teens[(int)n100 - 10]).append(\" \"); } " +
-                "  else { " +
-                "    int tens = (int)(n100 / 10); " +
-                "    if (tens > 0) sb.append(_des[tens]).append(\" \"); " +
-                "    if (n10 > 0) sb.append(female ? _edf[(int)n10] : _ed[(int)n10]).append(\" \"); " +
-                "  } " +
-                "  if (n100 >= 11 && n100 <= 19) sb.append(forms[2]); " +
-                "  else if (n10 == 1) sb.append(forms[0]); " +
-                "  else if (n10 >= 2 && n10 <= 4) sb.append(forms[1]); " +
-                "  else sb.append(forms[2]); " +
-                "  return sb.toString(); " +
-                "} }).toWords(%1$s)",
-                "sum to words %1$s"));
+
     }
 }
