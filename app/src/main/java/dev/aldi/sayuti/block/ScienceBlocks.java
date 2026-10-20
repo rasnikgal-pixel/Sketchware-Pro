@@ -226,10 +226,11 @@ public final class ScienceBlocks {
 
 
 
-        // Accounting: Сумма прописью (рубли и копейки)
-        list.add(blk("sciMoneyToWords", "d", "",
-                "%1$s == null ? \"\" : com.my.newproject.MainActivity.toWords((double)(%1$s))",
-                "%1$d sum to words"));
+        // Accounting: Сумма прописью (действие, записывает в поле)
+        list.add(blk("sciMoneyToWordsAction", " ", "",
+                "%2$s.setText(com.my.newproject.MainActivity.toWords((double)(%1$s)));",
+                "set %2$s to sum to words %1$s"));
+
 
     }
 }
