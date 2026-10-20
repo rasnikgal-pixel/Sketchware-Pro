@@ -265,11 +265,5 @@ public final class ScienceBlocks {
                 "return _s; " +
                 "} catch (Throwable _t) { return \"\"; } }).get()",
                 "sum to words %1$s"));
-",
-                "set %m.textview to sum to words %d"));
-",
-                "set %m.textview to sum to words %d"));
-
-
     }
 }
