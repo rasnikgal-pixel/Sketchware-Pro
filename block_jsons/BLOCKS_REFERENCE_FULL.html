@@ -11,6 +11,7 @@ h2 { color: #03dac6; border-bottom: 1px solid #333; padding-bottom: 4px; margin-
 details { background: #1e1e1e; border-radius: 8px; padding: 8px 12px; margin: 6px 0; border-left: 4px solid #bb86fc; }
 details summary { cursor: pointer; font-weight: bold; color: #fff; }
 details summary:hover { color: #03dac6; }
+details[open] summary { color: #03dac6; }
 .spec { color: #03dac6; font-size: 0.95em; margin: 4px 0; }
 .type { font-size: 0.8em; color: #888; }
 .desc { color: #ccc; font-size: 0.9em; margin-top: 6px; }
@@ -22,7 +23,7 @@ details summary:hover { color: #03dac6; }
 <h1>📚 Справочник блоков</h1>
 <input class="search" id="search" placeholder="Поиск блока..." onkeyup="filter()">
 <div id="content">
-<h2>Другое (233)</h2>
+<details><summary>Другое (233)</summary>
 <details data-name="case %s and"><summary>case %s and <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: case %s and</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="case %d and"><summary>case %d and <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: case %d and</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="continue"><summary>continue <span class="type">(type: f)</span></summary><div class="desc">📝 Описание отсутствует. Блок: continue</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -256,7 +257,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.interstitialad show ad in %m.activity"><summary>%m.interstitialad show ad in %m.activity <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.interstitialad show ad in %m.activity</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.interstitialad is loaded"><summary>%m.interstitialad is loaded <span class="type">(type: b)</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.interstitialad is loaded</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="get String from %m.ResString"><summary>get String from %m.ResString <span class="type">(type: s)</span></summary><div class="desc">📝 Описание отсутствует. Блок: get String from %m.ResString</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📁 Файлы (48)</h2>
+</details>
+<details><summary>📁 Файлы (48)</summary>
 <details data-name="copy dir path %s to path %s"><summary>copy dir path %s to path %s <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: copy dir path %s to path %s</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.file contains %s"><summary>%m.file contains %s <span class="type">(type: b)</span></summary><div class="desc">📝 Проверяет, содержит ли строка подстроку.</div><div class="example">💡 Вставь путь → получишь результат.</div></details>
 <details data-name="%m.File canExecute"><summary>%m.File canExecute <span class="type">(type: b)</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.File canExecute</div><div class="example">💡 Вставь путь → получишь результат.</div></details>
@@ -305,7 +307,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.inputstream getFileFromAsset path %s"><summary>%m.inputstream getFileFromAsset path %s <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.inputstream getFileFromAsset path %s</div><div class="example">💡 Вставь путь → получишь результат.</div></details>
 <details data-name="rename file path %s to %s"><summary>rename file path %s to %s <span class="type">(type: )</span></summary><div class="desc">📝 Переименовывает файл.</div><div class="example">💡 Вставь путь → получишь результат.</div></details>
 <details data-name="add source directly %s.inputOnly"><summary>add source directly %s.inputOnly <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: add source directly %s.inputOnly</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🖼️ View (62)</h2>
+</details>
+<details><summary>🖼️ View (62)</summary>
 <details data-name="visibility of %m.view equals %m.visible"><summary>visibility of %m.view equals %m.visible <span class="type">(type: b)</span></summary><div class="desc">📝 Работает с View.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.view getChildAt %d"><summary>%m.view getChildAt %d <span class="type">(type: v)</span></summary><div class="desc">📝 Работает с View.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.otpview setFieldCount %d"><summary>%m.otpview setFieldCount %d <span class="type">(type: )</span></summary><div class="desc">📝 Работает с View.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -368,17 +371,20 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.youtubeview getLifecycle"><summary>%m.youtubeview getLifecycle <span class="type">(type: )</span></summary><div class="desc">📝 Работает с View.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.viewpager notifyDataSetChanged"><summary>%m.viewpager notifyDataSetChanged <span class="type">(type: )</span></summary><div class="desc">📝 Работает с View.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="return %m.view"><summary>return %m.view <span class="type">(type: )</span></summary><div class="desc">📝 Работает с View.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📱 Intent (4)</h2>
+</details>
+<details><summary>📱 Intent (4)</summary>
 <details data-name="%m.intent setType %s"><summary>%m.intent setType %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с Intent.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.intent removeExtra key %s"><summary>%m.intent removeExtra key %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с Intent.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="StartActivity %m.intent with Chooser %s"><summary>StartActivity %m.intent with Chooser %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с Intent.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.intent set app package %s"><summary>%m.intent set app package %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с Intent.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📊 Прогресс (4)</h2>
+</details>
+<details><summary>📊 Прогресс (4)</summary>
 <details data-name="%m.webview getProgress"><summary>%m.webview getProgress <span class="type">(type: d)</span></summary><div class="desc">📝 Работает с прогресс-баром.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="set progress %2$d on %1$s"><summary>set progress %2$d on %1$s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с прогресс-баром.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="set progress %1$s visible %2$s"><summary>set progress %1$s visible %2$s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с прогресс-баром.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="publish progress %d"><summary>publish progress %d <span class="type">(type: )</span></summary><div class="desc">📝 Работает с прогресс-баром.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📋 Меню (7)</h2>
+</details>
+<details><summary>📋 Меню (7)</summary>
 <details data-name="%m.MenuItem setVisible %b"><summary>%m.MenuItem setVisible %b <span class="type">(type: )</span></summary><div class="desc">📝 Работает с меню.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.MenuItem setEnabled %b"><summary>%m.MenuItem setEnabled %b <span class="type">(type: )</span></summary><div class="desc">📝 Включает/выключает виджет.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="MenuItem findItem %s.inputOnly"><summary>MenuItem findItem %s.inputOnly <span class="type">(type: v)</span></summary><div class="desc">📝 Работает с меню.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -386,7 +392,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.menuitem add id %d title %s icon %m.resource showAsAction %m.menuaction"><summary>%m.menuitem add id %d title %s icon %m.resource showAsAction %m.menuaction <span class="type">(type: )</span></summary><div class="desc">📝 Работает с меню.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="Menu add %m.submenu title %s;"><summary>Menu add %m.submenu title %s; <span class="type">(type: c)</span></summary><div class="desc">📝 Работает с меню.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.submenu add id %d title %s"><summary>%m.submenu add id %d title %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с меню.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📊 Списки (54)</h2>
+</details>
+<details><summary>📊 Списки (54)</summary>
 <details data-name="%m.listStr addAll from %m.list"><summary>%m.listStr addAll from %m.list <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.listStr addAll from %m.list</div><div class="example">💡 Вставь список → получишь результат.</div></details>
 <details data-name="size of list %m.list %1$s"><summary>size of list %m.list %1$s <span class="type">(type: d)</span></summary><div class="desc">📝 Описание отсутствует. Блок: size of list %m.list %1$s</div><div class="example">💡 Вставь список → получишь результат.</div></details>
 <details data-name="list %m.list is empty %1$s"><summary>list %m.list is empty %1$s <span class="type">(type: b)</span></summary><div class="desc">📝 Описание отсутствует. Блок: list %m.list is empty %1$s</div><div class="example">💡 Вставь список → получишь результат.</div></details>
@@ -441,10 +448,12 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.varMap put key %s value %m.listStr"><summary>%m.varMap put key %s value %m.listStr <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.varMap put key %s value %m.listStr</div><div class="example">💡 Вставь список → получишь результат.</div></details>
 <details data-name="%m.varMap get List Map key %s"><summary>%m.varMap get List Map key %s <span class="type">(type: l)</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.varMap get List Map key %s</div><div class="example">💡 Вставь список → получишь результат.</div></details>
 <details data-name="%m.varMap put key %s value %m.listMap"><summary>%m.varMap put key %s value %m.listMap <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.varMap put key %s value %m.listMap</div><div class="example">💡 Вставь список → получишь результат.</div></details>
-<h2>🔑 Разрешения (2)</h2>
+</details>
+<details><summary>🔑 Разрешения (2)</summary>
 <details data-name="Permission Command Block: add %m.Permission"><summary>Permission Command Block: add %m.Permission <span class="type">(type: )</span></summary><div class="desc">📝 Работает с разрешениями.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="Permission Command Block: remove %m.Permission"><summary>Permission Command Block: remove %m.Permission <span class="type">(type: )</span></summary><div class="desc">📝 Работает с разрешениями.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📝 Текст (73)</h2>
+</details>
+<details><summary>📝 Текст (73)</summary>
 <details data-name="%m.otpview setOTPText %s"><summary>%m.otpview setOTPText %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с View.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.otpview getOTPText"><summary>%m.otpview getOTPText <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с View.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="send SMS to %s with text %s"><summary>send SMS to %s with text %s <span class="type">(type: )</span></summary><div class="desc">📝 Отправляет SMS.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -518,7 +527,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.textinputlayout setError %s"><summary>%m.textinputlayout setError %s <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.textinputlayout setError %s</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.textinputlayout setErrorEnabled %b"><summary>%m.textinputlayout setErrorEnabled %b <span class="type">(type: )</span></summary><div class="desc">📝 Включает/выключает виджет.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.textinputlayout setCounterEnabled %b"><summary>%m.textinputlayout setCounterEnabled %b <span class="type">(type: )</span></summary><div class="desc">📝 Включает/выключает виджет.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🎨 UI (33)</h2>
+</details>
+<details><summary>🎨 UI (33)</summary>
 <details data-name="%m.signinbutton setColorScheme %m.SignButtonColor"><summary>%m.signinbutton setColorScheme %m.SignButtonColor <span class="type">(type: )</span></summary><div class="desc">📝 Работает с цветом (смешивание, прозрачность, HEX).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="Bitmap %m.bitmap to grayscale"><summary>Bitmap %m.bitmap to grayscale <span class="type">(type: v)</span></summary><div class="desc">📝 Масштабирует виджет.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="color from R %d G %d B %d %1$s %2$s %3$s"><summary>color from R %d G %d B %d %1$s %2$s %3$s <span class="type">(type: d)</span></summary><div class="desc">📝 Работает с цветом (смешивание, прозрачность, HEX).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -552,7 +562,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.patternview setCorrectStateColor %m.color"><summary>%m.patternview setCorrectStateColor %m.color <span class="type">(type: )</span></summary><div class="desc">📝 Работает с цветом (смешивание, прозрачность, HEX).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.patternview setWrongStateColor %m.color"><summary>%m.patternview setWrongStateColor %m.color <span class="type">(type: )</span></summary><div class="desc">📝 Работает с цветом (смешивание, прозрачность, HEX).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.activity set statebar color %m.color"><summary>%m.activity set statebar color %m.color <span class="type">(type: )</span></summary><div class="desc">📝 Работает с цветом (смешивание, прозрачность, HEX).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📣 Уведомления (11)</h2>
+</details>
+<details><summary>📣 Уведомления (11)</summary>
 <details data-name="SMS inbox count"><summary>SMS inbox count <span class="type">(type: d)</span></summary><div class="desc">📝 Отправляет SMS.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="SMS body at index %d"><summary>SMS body at index %d <span class="type">(type: s)</span></summary><div class="desc">📝 Отправляет SMS.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="call phone number %s"><summary>call phone number %s <span class="type">(type: )</span></summary><div class="desc">📝 Совершает звонок.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -564,16 +575,19 @@ details summary:hover { color: #03dac6; }
 <details data-name="notifications are enabled"><summary>notifications are enabled <span class="type">(type: b)</span></summary><div class="desc">📝 Включает/выключает виджет.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="open notification settings"><summary>open notification settings <span class="type">(type: )</span></summary><div class="desc">📝 Показывает уведомление.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%1$s is valid email"><summary>%1$s is valid email <span class="type">(type: b)</span></summary><div class="desc">📝 Отправляет email.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📞 Телефон/Контакты (4)</h2>
+</details>
+<details><summary>📞 Телефон/Контакты (4)</summary>
 <details data-name="contacts count"><summary>contacts count <span class="type">(type: d)</span></summary><div class="desc">📝 Работает с контактами и телефоном.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="read all contact names"><summary>read all contact names <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с контактами и телефоном.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="phone number of contact %s"><summary>phone number of contact %s <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с контактами и телефоном.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="add contact with name %s"><summary>add contact with name %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с контактами и телефоном.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📶 Связь (3)</h2>
+</details>
+<details><summary>📶 Связь (3)</summary>
 <details data-name="NFC is available"><summary>NFC is available <span class="type">(type: b)</span></summary><div class="desc">📝 Работает с NFC.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="NFC is enabled"><summary>NFC is enabled <span class="type">(type: b)</span></summary><div class="desc">📝 Включает/выключает виджет.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="open Bluetooth settings"><summary>open Bluetooth settings <span class="type">(type: )</span></summary><div class="desc">📝 Работает с Bluetooth.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🌐 Сеть (44)</h2>
+</details>
+<details><summary>🌐 Сеть (44)</summary>
 <details data-name="get network country ISO"><summary>get network country ISO <span class="type">(type: s)</span></summary><div class="desc">📝 Проверяет состояние сети.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="paste from clipboard"><summary>paste from clipboard <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с буфером обмена.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="clear clipboard"><summary>clear clipboard <span class="type">(type: )</span></summary><div class="desc">📝 Работает с буфером обмена.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -618,7 +632,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.list to JSON String"><summary>%m.list to JSON String <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с JSON (парсинг, создание, извлечение).</div><div class="example">💡 Вставь список → получишь результат.</div></details>
 <details data-name="JSON %s to %m.listStr"><summary>JSON %s to %m.listStr <span class="type">(type: )</span></summary><div class="desc">📝 Работает с JSON (парсинг, создание, извлечение).</div><div class="example">💡 Вставь список → получишь результат.</div></details>
 <details data-name="JSON %s to %m.listInt"><summary>JSON %s to %m.listInt <span class="type">(type: )</span></summary><div class="desc">📝 Работает с JSON (парсинг, создание, извлечение).</div><div class="example">💡 Вставь список → получишь результат.</div></details>
-<h2>💰 Бухгалтерия (15)</h2>
+</details>
+<details><summary>💰 Бухгалтерия (15)</summary>
 <details data-name="battery level percent"><summary>battery level percent <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет процент от числа.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="format percent %d"><summary>format percent %d <span class="type">(type: s)</span></summary><div class="desc">📝 Вычисляет процент от числа.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="VAT = %1$s * %2$s / 100"><summary>VAT = %1$s * %2$s / 100 <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет НДС (сумма * ставка / 100).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -634,7 +649,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="set elevation %2$s on %1$s"><summary>set elevation %2$s on %1$s <span class="type">(type: )</span></summary><div class="desc">📝 Вычисляет НДС (сумма * ставка / 100).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.view setElevation %d"><summary>%m.view setElevation %d <span class="type">(type: )</span></summary><div class="desc">📝 Вычисляет НДС (сумма * ставка / 100).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.cardview setCardElevation %d"><summary>%m.cardview setCardElevation %d <span class="type">(type: )</span></summary><div class="desc">📝 Вычисляет НДС (сумма * ставка / 100).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📱 Устройство (30)</h2>
+</details>
+<details><summary>📱 Устройство (30)</summary>
 <details data-name="battery is charging"><summary>battery is charging <span class="type">(type: b)</span></summary><div class="desc">📝 Возвращает информацию о батарее.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="device model"><summary>device model <span class="type">(type: s)</span></summary><div class="desc">📝 Возвращает информацию об устройстве.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="android version"><summary>android version <span class="type">(type: s)</span></summary><div class="desc">📝 Описание отсутствует. Блок: android version</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -665,12 +681,14 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.viewpager setOffscreenPageLimit %d"><summary>%m.viewpager setOffscreenPageLimit %d <span class="type">(type: )</span></summary><div class="desc">📝 Возвращает информацию об экране.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.interstitialad register fullscreen content callbacks (This Block isn't needed anymore, please remove it)"><summary>%m.interstitialad register fullscreen content callbacks (This Block isn't needed anymore, please remove it) <span class="type">(type: )</span></summary><div class="desc">📝 Возвращает информацию об экране.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.videoad register fullscreen content callbacks (This Block isn't needed anymore, please remove it)"><summary>%m.videoad register fullscreen content callbacks (This Block isn't needed anymore, please remove it) <span class="type">(type: )</span></summary><div class="desc">📝 Возвращает информацию об экране.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>💾 Настройки (4)</h2>
+</details>
+<details><summary>💾 Настройки (4)</summary>
 <details data-name="prefs save key %s value %s"><summary>prefs save key %s value %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с настройками (SharedPreferences).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="prefs load key %s default %s"><summary>prefs load key %s default %s <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с настройками (SharedPreferences).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="prefs remove key %s"><summary>prefs remove key %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с настройками (SharedPreferences).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="prefs clear all"><summary>prefs clear all <span class="type">(type: )</span></summary><div class="desc">📝 Работает с настройками (SharedPreferences).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🛡️ Безопасность (14)</h2>
+</details>
+<details><summary>🛡️ Безопасность (14)</summary>
 <details data-name="Base64 encode %s"><summary>Base64 encode %s <span class="type">(type: s)</span></summary><div class="desc">📝 Кодирует/декодирует Base64.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="Base64 decode %s"><summary>Base64 decode %s <span class="type">(type: s)</span></summary><div class="desc">📝 Кодирует/декодирует Base64.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="MD5 hash of %s"><summary>MD5 hash of %s <span class="type">(type: s)</span></summary><div class="desc">📝 Вычисляет MD5-хеш.</div><div class="example">💡 Вставь строку → получишь MD5-хеш.</div></details>
@@ -685,7 +703,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="aes decrypt %1$s"><summary>aes decrypt %1$s <span class="type">(type: d)</span></summary><div class="desc">📝 Шифрует/расшифровывает данные (AES).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="aes encrypt %1$s with key %2$s"><summary>aes encrypt %1$s with key %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Шифрует/расшифровывает данные (AES).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="aes decrypt %1$s with key %2$s"><summary>aes decrypt %1$s with key %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Шифрует/расшифровывает данные (AES).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📅 Дата (17)</h2>
+</details>
+<details><summary>📅 Дата (17)</summary>
 <details data-name="current time in millis"><summary>current time in millis <span class="type">(type: d)</span></summary><div class="desc">📝 Работает с датой и временем.</div><div class="example">💡 Вставь формат (dd.MM.yyyy) → получишь дату.</div></details>
 <details data-name="format date pattern %s time %d"><summary>format date pattern %s time %d <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с датой и временем.</div><div class="example">💡 Вставь формат (dd.MM.yyyy) → получишь дату.</div></details>
 <details data-name="parse date %s pattern %s to millis"><summary>parse date %s pattern %s to millis <span class="type">(type: d)</span></summary><div class="desc">📝 Работает с датой и временем.</div><div class="example">💡 Вставь формат (dd.MM.yyyy) → получишь дату.</div></details>
@@ -703,16 +722,19 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.timepicker setCurrentMinute%d"><summary>%m.timepicker setCurrentMinute%d <span class="type">(type: )</span></summary><div class="desc">📝 Работает с датой и временем.</div><div class="example">💡 Вставь формат (dd.MM.yyyy) → получишь дату.</div></details>
 <details data-name="%m.timepicker setHour %d"><summary>%m.timepicker setHour %d <span class="type">(type: )</span></summary><div class="desc">📝 Работает с датой и временем.</div><div class="example">💡 Вставь формат (dd.MM.yyyy) → получишь дату.</div></details>
 <details data-name="%m.timepicker setMinute%d"><summary>%m.timepicker setMinute%d <span class="type">(type: )</span></summary><div class="desc">📝 Работает с датой и временем.</div><div class="example">💡 Вставь формат (dd.MM.yyyy) → получишь дату.</div></details>
-<h2>📍 Сенсоры/Локация (1)</h2>
+</details>
+<details><summary>📍 Сенсоры/Локация (1)</summary>
 <details data-name="open location settings"><summary>open location settings <span class="type">(type: )</span></summary><div class="desc">📝 Работает с геолокацией.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🎲 Random (6)</h2>
+</details>
+<details><summary>🎲 Random (6)</summary>
 <details data-name="random float 0..1"><summary>random float 0..1 <span class="type">(type: d)</span></summary><div class="desc">📝 Генерирует случайное значение.</div><div class="example">💡 Вставь диапазон → получишь случайное число.</div></details>
 <details data-name="random UUID"><summary>random UUID <span class="type">(type: s)</span></summary><div class="desc">📝 Генерирует случайное значение.</div><div class="example">💡 Вставь диапазон → получишь случайное число.</div></details>
 <details data-name="random int from %d to %d %1$s %2$s"><summary>random int from %d to %d %1$s %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Генерирует случайное значение.</div><div class="example">💡 Вставь диапазон → получишь случайное число.</div></details>
 <details data-name="random string of length %d %1$s"><summary>random string of length %d %1$s <span class="type">(type: s)</span></summary><div class="desc">📝 Возвращает длину строки.</div><div class="example">💡 Вставь диапазон → получишь случайное число.</div></details>
 <details data-name="random int from %1$d to %2$d"><summary>random int from %1$d to %2$d <span class="type">(type: d)</span></summary><div class="desc">📝 Генерирует случайное значение.</div><div class="example">💡 Вставь диапазон → получишь случайное число.</div></details>
 <details data-name="random string length %1$d"><summary>random string length %1$d <span class="type">(type: d)</span></summary><div class="desc">📝 Возвращает длину строки.</div><div class="example">💡 Вставь диапазон → получишь случайное число.</div></details>
-<h2>🗄️ SQLite (7)</h2>
+</details>
+<details><summary>🗄️ SQLite (7)</summary>
 <details data-name="open SQLite DB %s %1$s"><summary>open SQLite DB %s %1$s <span class="type">(type: v)</span></summary><div class="desc">📝 Работает с базой данных SQLite.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="SQLite %m.db exec SQL %s %1$s %2$s"><summary>SQLite %m.db exec SQL %s %1$s %2$s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с базой данных SQLite.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="SQLite %m.db query %s %1$s %2$s"><summary>SQLite %m.db query %s %1$s %2$s <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с базой данных SQLite.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -720,7 +742,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="SQLite %m.db close %1$s"><summary>SQLite %m.db close %1$s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с базой данных SQLite.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="sqlite exec %3$s in %1$s"><summary>sqlite exec %3$s in %1$s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с базой данных SQLite.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="sqlite query %3$s in %1$s"><summary>sqlite query %3$s in %1$s <span class="type">(type: d)</span></summary><div class="desc">📝 Работает с базой данных SQLite.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🔧 Физика (10)</h2>
+</details>
+<details><summary>🔧 Физика (10)</summary>
 <details data-name="screen density"><summary>screen density <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет плотность (ρ = m / V).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="Mechanics: v = %1$s / %2$s"><summary>Mechanics: v = %1$s / %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет механическую величину (скорость, ускорение, сила).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="Mechanics: a = (%1$s - %2$s) / %3$s"><summary>Mechanics: a = (%1$s - %2$s) / %3$s <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет механическую величину (скорость, ускорение, сила).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -731,7 +754,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="CustomToast %s textColor %m.color textSize %d bgColor %m.color cornerRadius %d gravity %m.gravity_t"><summary>CustomToast %s textColor %m.color textSize %d bgColor %m.color cornerRadius %d gravity %m.gravity_t <span class="type">(type: )</span></summary><div class="desc">📝 Вычисляет силу гравитации (F = G·m1·m2/r²).</div><div class="example">💡 Вставь текст → появится Toast.</div></details>
 <details data-name="CustomToastWithIcon %s textColor %m.color textSize %d bgColor %m.color cornerRadius %d gravity %m.gravity_t Icon %m.resource"><summary>CustomToastWithIcon %s textColor %m.color textSize %d bgColor %m.color cornerRadius %d gravity %m.gravity_t Icon %m.resource <span class="type">(type: )</span></summary><div class="desc">📝 Вычисляет силу гравитации (F = G·m1·m2/r²).</div><div class="example">💡 Вставь текст → появится Toast.</div></details>
 <details data-name="%m.view setGravity %m.gravity_v %m.gravity_h"><summary>%m.view setGravity %m.gravity_v %m.gravity_h <span class="type">(type: )</span></summary><div class="desc">📝 Вычисляет силу гравитации (F = G·m1·m2/r²).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🔍 Regex (11)</h2>
+</details>
+<details><summary>🔍 Regex (11)</summary>
 <details data-name="%1$s fully matches regex %2$s"><summary>%1$s fully matches regex %2$s <span class="type">(type: b)</span></summary><div class="desc">📝 Работает с регулярными выражениями.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="first match of regex %2$s in %1$s"><summary>first match of regex %2$s in %1$s <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с регулярными выражениями.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="all matches of regex %2$s in %1$s"><summary>all matches of regex %2$s in %1$s <span class="type">(type: s)</span></summary><div class="desc">📝 Работает с регулярными выражениями.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -743,7 +767,8 @@ details summary:hover { color: #03dac6; }
 <details data-name="%s matches RegExp %s"><summary>%s matches RegExp %s <span class="type">(type: b)</span></summary><div class="desc">📝 Работает с регулярными выражениями.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%s replace first RegExp %s with %s"><summary>%s replace first RegExp %s with %s <span class="type">(type: s)</span></summary><div class="desc">📝 Заменяет часть строки на другую.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%s replace all RegExp %s with %s"><summary>%s replace all RegExp %s with %s <span class="type">(type: s)</span></summary><div class="desc">📝 Заменяет часть строки на другую.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>⚡ Электротехника (12)</h2>
+</details>
+<details><summary>⚡ Электротехника (12)</summary>
 <details data-name="Ohm: I = %1$s / %2$s"><summary>Ohm: I = %1$s / %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет значение по закону Ома (I = U/R, U = I*R, R = U/I).</div><div class="example">💡 Вставь U=12, R=4 → получишь 3 (ампера).</div></details>
 <details data-name="Ohm: U = %1$s * %2$s"><summary>Ohm: U = %1$s * %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет значение по закону Ома (I = U/R, U = I*R, R = U/I).</div><div class="example">💡 Вставь U=12, R=4 → получишь 3 (ампера).</div></details>
 <details data-name="Ohm: R = %1$s / %2$s"><summary>Ohm: R = %1$s / %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет значение по закону Ома (I = U/R, U = I*R, R = U/I).</div><div class="example">💡 Вставь U=12, R=4 → получишь 3 (ампера).</div></details>
@@ -756,13 +781,16 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.textinputlayout setBoxCornerRadius TL %d TR %d BL %d BR %d"><summary>%m.textinputlayout setBoxCornerRadius TL %d TR %d BL %d BR %d <span class="type">(type: )</span></summary><div class="desc">📝 Вычисляет ёмкостное сопротивление (Xc = 1 / (2πfC)).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.textinputlayout setCounterMaxLength %d"><summary>%m.textinputlayout setCounterMaxLength %d <span class="type">(type: )</span></summary><div class="desc">📝 Вычисляет индуктивное сопротивление (Xl = 2πfL).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.textinputlayout getCounterMaxLength"><summary>%m.textinputlayout getCounterMaxLength <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет индуктивное сопротивление (Xl = 2πfL).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🧪 Химия (3)</h2>
+</details>
+<details><summary>🧪 Химия (3)</summary>
 <details data-name="concentration C = %1$s / %2$s"><summary>concentration C = %1$s / %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет концентрацию (C = n / V).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="amount n = %1$s / %2$s"><summary>amount n = %1$s / %2$s <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет количество вещества (n = m / M).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="molar volume V = %1$s * 22.4"><summary>molar volume V = %1$s * 22.4 <span class="type">(type: d)</span></summary><div class="desc">📝 Вычисляет молярную массу (M = m / n).</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>📄 XML (1)</h2>
+</details>
+<details><summary>📄 XML (1)</summary>
 <details data-name="XML Command Block: reference %s distance %d frontend %d backend %d command %m.Command xml name %s.inputOnly"><summary>XML Command Block: reference %s distance %d frontend %d backend %d command %m.Command xml name %s.inputOnly <span class="type">(type: c)</span></summary><div class="desc">📝 Работает с XML.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>💬 Диалоги (19)</h2>
+</details>
+<details><summary>💬 Диалоги (19)</summary>
 <details data-name="%m.progressdialog Create in %m.activity"><summary>%m.progressdialog Create in %m.activity <span class="type">(type: )</span></summary><div class="desc">📝 Работает с диалогами.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.progressdialog setCancelableWhenTouchOutside %b"><summary>%m.progressdialog setCancelableWhenTouchOutside %b <span class="type">(type: )</span></summary><div class="desc">📝 Работает с диалогами.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.progressdialog setTitle %s"><summary>%m.progressdialog setTitle %s <span class="type">(type: )</span></summary><div class="desc">📝 Работает с диалогами.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
@@ -782,17 +810,25 @@ details summary:hover { color: #03dac6; }
 <details data-name="%m.dialog show"><summary>%m.dialog show <span class="type">(type: )</span></summary><div class="desc">📝 Работает с диалогами.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.dialog dismiss"><summary>%m.dialog dismiss <span class="type">(type: )</span></summary><div class="desc">📝 Работает с диалогами.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
 <details data-name="%m.dialog setIcon %m.resource_bg"><summary>%m.dialog setIcon %m.resource_bg <span class="type">(type: )</span></summary><div class="desc">📝 Работает с диалогами.</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
-<h2>🎬 Анимации (1)</h2>
+</details>
+<details><summary>🎬 Анимации (1)</summary>
 <details data-name="%m.lottie setAnimationFromAsset %s"><summary>%m.lottie setAnimationFromAsset %s <span class="type">(type: )</span></summary><div class="desc">📝 Описание отсутствует. Блок: %m.lottie setAnimationFromAsset %s</div><div class="example">💡 Вставь параметры в блок и используй результат.</div></details>
+</details>
 </div>
 <script>
 function filter() {
     const q = document.getElementById('search').value.toLowerCase();
-    document.querySelectorAll('details').forEach(el => {
+    document.querySelectorAll('details[data-name]').forEach(el => {
         const name = el.dataset.name.toLowerCase();
         if (name.includes(q)) {
             el.style.display = 'block';
             el.open = true;
+            // Раскрываем родительский спойлер
+            let parent = el.parentElement.closest('details');
+            while (parent) {
+                parent.open = true;
+                parent = parent.parentElement.closest('details');
+            }
         } else {
             el.style.display = 'none';
             el.open = false;
