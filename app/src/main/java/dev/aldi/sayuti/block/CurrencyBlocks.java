@@ -27,7 +27,7 @@ public final class CurrencyBlocks {
     }
 
     private static String moneyBlock(String localeLang, String localeCountry, String fallback) {
-        return "((java.util.function.Supplier<String>) () -> { try { java.text.NumberFormat _nf = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale(\"" + localeLang + "\", \"" + localeCountry + "\")); _nf.setMinimumFractionDigits(2); _nf.setMaximumFractionDigits(2); return _nf.format(%1$s); } catch (Throwable _t) { return \"" + fallback + "\"; } }).get()";
+        return "((new Object() { public String f() { try { java.text.NumberFormat _nf = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale(\"" + localeLang + "\", \"" + localeCountry + "\")); _nf.setMinimumFractionDigits(2); _nf.setMaximumFractionDigits(2); return _nf.format(%1$s); } catch (Throwable _t) { return \"" + fallback + "\"; } } }).f())";
     }
 
     public static void addBlocks(ArrayList<HashMap<String, Object>> list) {
