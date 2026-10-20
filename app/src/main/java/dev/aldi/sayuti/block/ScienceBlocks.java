@@ -227,5 +227,30 @@ public final class ScienceBlocks {
 
 
 
+
+        // 🌐 HTTP: GET запрос (возвращает текст ответа)
+        list.add(blk("sciHttpGet", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"GET\"); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) { _sb.append(_l); } _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http get %1$s"));
+
+        // 🌐 HTTP: POST запрос (отправляет данные, возвращает ответ)
+        list.add(blk("sciHttpPost", "d", "",
+                "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"POST\"); _c.setDoOutput(true); java.io.OutputStream _os = _c.getOutputStream(); _os.write(%2$s.getBytes(\"UTF-8\")); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) { _sb.append(_l); } _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "http post %1$s data %2$s"));
+
+        // 📧 Email: отправка через почтовый клиент
+        list.add(blk("sciSendEmail", " ", "",
+                "try { android.content.Intent _i = new android.content.Intent(android.content.Intent.ACTION_SENDTO); _i.setData(android.net.Uri.parse(\"mailto:\")); _i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{%1$s}); _i.putExtra(android.content.Intent.EXTRA_SUBJECT, %2$s); _i.putExtra(android.content.Intent.EXTRA_TEXT, %3$s); %4$s.startActivity(android.content.Intent.createChooser(_i, \"Send email\")); } catch (Throwable _t) {}",
+                "send email to %1$s subject %2$s body %3$s from %m.context"));
+
+        // 📁 File: имя файла без расширения
+        list.add(blk("sciGetFileNameNoExt", "d", "",
+                "((new Object() { public String f() { try { String _n = new java.io.File(%1$s).getName(); int _i = _n.lastIndexOf('.'); return _i > 0 ? _n.substring(0, _i) : _n; } catch (Throwable _t) { return \"\"; } } }).f())",
+                "file name without extension %1$s"));
+
+        // 📁 File: полный путь к файлу (абсолютный)
+        list.add(blk("sciGetFilePath", "d", "",
+                "((new Object() { public String f() { try { return new java.io.File(%1$s).getAbsolutePath(); } catch (Throwable _t) { return \"\"; } } }).f())",
+                "file path %1$s"));
     }
 }
