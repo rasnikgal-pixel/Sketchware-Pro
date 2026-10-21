@@ -1382,7 +1382,16 @@ public class ExtraPaletteBlock {
      * без этого не отображаются.
      */
     private void addCustomBlocksForPalette(int paletteId) {
-        ArrayList<HashMap<String, Object>> data = ExtraBlockFile.getExtraBlockData();
+        ArrayList<HashMap<String, Object>> data;
+        // If new palette map is enabled and this is a new logical palette (200+), load blocks from NewPaletteBlocks
+        boolean useNew = mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_USE_NEW_PALETTES);
+        if (useNew && paletteId >= 200) {
+            data = new ArrayList<>();
+            dev.aldi.sayuti.block.NewPaletteBlocks.addBlocks(data);
+        } else {
+            data = ExtraBlockFile.getExtraBlockData();
+        }
         int added = 0;
         for (HashMap<String, Object> map : data) {
             Object pal = map.get("palette");
