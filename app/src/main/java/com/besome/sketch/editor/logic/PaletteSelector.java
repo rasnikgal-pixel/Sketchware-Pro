@@ -97,8 +97,7 @@ public class PaletteSelector extends RecyclerView {
             Helper.getResString(R.string.palette_new_xml_json),
             Helper.getResString(R.string.palette_new_math),
             Helper.getResString(R.string.palette_new_currencies),
-            Helper.getResString(R.string.palette_new_math_extra),
-            Helper.getResString(R.string.palette_new_lists_tables)
+            Helper.getResString(R.string.palette_new_lists)
     };
 
     private final int[] NewMainCategoriesColors = {
@@ -107,13 +106,13 @@ public class PaletteSelector extends RecyclerView {
             0xffef6c00, 0xff00695c, 0xff558b2f, 0xff283593, 0xff00838f, 0xff6a1b9a,
             0xff4e342e, 0xfff57f17, 0xff37474f, 0xffb71c1c, 0xffad1457, 0xff5d4037,
             0xff1b5e20, 0xff6a1b9a, 0xff00897b, 0xff455a64, 0xffef6c00, 0xff2ca5e2,
-            0xff7b1fa2, 0xff455a64, 0xff4a6cd4, 0xff2e7d32, 0xff4a6cd4, 0xff4a6cd4
+            0xff7b1fa2, 0xff455a64, 0xff4a6cd4, 0xff2e7d32
     };
 
     private final int[] NewMainCategoriesIds = {
             200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211,
             212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223,
-            224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235
+            224, 225, 226, 227, 228, 229, 230, 231, 232, 233
     };
 
     private String searchValue = "";
