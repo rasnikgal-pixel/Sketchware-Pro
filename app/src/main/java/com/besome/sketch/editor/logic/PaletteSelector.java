@@ -63,6 +63,8 @@ public class PaletteSelector extends RecyclerView {
 
     // ===== New logical palettes (200+) — used when SETTING_USE_NEW_PALETTES is enabled =====
     private final String[] NewMainCategoriesNames = {
+            Helper.getResString(R.string.auto_palette_selector_001),
+            Helper.getResString(R.string.auto_palette_selector_002),
             Helper.getResString(R.string.palette_new_electricity),
             Helper.getResString(R.string.palette_new_mechanics),
             Helper.getResString(R.string.palette_new_chemistry),
@@ -100,6 +102,8 @@ public class PaletteSelector extends RecyclerView {
     };
 
     private final int[] NewMainCategoriesColors = {
+            mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_COLOR,
+            0xffd4af37,
             0xff1565c0, 0xff1976d2, 0xff2e7d32, 0xfff9a825, 0xff6a1b9a, 0xff00838f,
             0xff5d4037, 0xff0277bd, 0xff37474f, 0xffad1457, 0xff4527a0, 0xffc62828,
             0xffef6c00, 0xff00695c, 0xff558b2f, 0xff283593, 0xff00838f, 0xff6a1b9a,
@@ -109,6 +113,8 @@ public class PaletteSelector extends RecyclerView {
     };
 
     private final int[] NewMainCategoriesIds = {
+            mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID,
+            mod.jbk.util.FavoriteBlocksManager.FAVORITE_PALETTE_ID,
             200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211,
             212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223,
             224, 225, 226, 227, 228, 229, 230, 231, 232, 233
