@@ -395,7 +395,13 @@ public class ExtraPaletteBlock {
     }
 
     public void setBlock(int paletteId, int paletteColor) {
-        // Remove previous palette's blocks
+        boolean _useNew = mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_USE_NEW_PALETTES);
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(logicEditor)
+            .setTitle("PALETTE DIAG")
+            .setMessage("paletteId=" + paletteId + "\nuseNew=" + _useNew)
+            .setPositiveButton("OK", null)
+            .show();
         logicEditor.m.a();
         setBlockInternal(paletteId, paletteColor);
     }
