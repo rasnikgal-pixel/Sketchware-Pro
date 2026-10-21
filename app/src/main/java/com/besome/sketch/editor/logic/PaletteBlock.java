@@ -70,6 +70,38 @@ public class PaletteBlock extends LinearLayout {
         }
     }
 
+    /** Scrolls palette to block with given opCode and briefly highlights it. */
+    public void scrollToBlock(String opCode) {
+        if (opCode == null || opCode.isEmpty() || binding == null || binding.blockBuilder == null) return;
+        binding.blockBuilder.post(() -> {
+            for (int i = 0; i < binding.blockBuilder.getChildCount(); i++) {
+                android.view.View child = binding.blockBuilder.getChildAt(i);
+                if (child == null) continue;
+                if (opCode.equals(String.valueOf(child.getTag()))) {
+                    highlightAndScroll(child);
+                    return;
+                }
+                if (child instanceof android.view.ViewGroup) {
+                    android.view.ViewGroup vg = (android.view.ViewGroup) child;
+                    for (int j = 0; j < vg.getChildCount(); j++) {
+                        android.view.View inner = vg.getChildAt(j);
+                        if (inner != null && opCode.equals(String.valueOf(inner.getTag()))) {
+                            highlightAndScroll(child);
+                            return;
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void highlightAndScroll(android.view.View v) {
+        binding.scroll.smoothScrollTo(0, Math.max(0, v.getTop() - 100));
+        final android.graphics.drawable.Drawable oldBg = v.getBackground();
+        v.setBackgroundColor(0x33FFC107);
+        v.postDelayed(() -> v.setBackground(oldBg), 800);
+    }
+
     public void restoreScrollPosition() {
         if (currentPaletteId < 0) return;
         try {

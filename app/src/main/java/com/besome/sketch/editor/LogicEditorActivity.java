@@ -749,6 +749,35 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 return;
             }
         }
+        showBlockInPalette(rs);
+    }
+
+    private void showBlockInPalette(Rs rs) {
+        try {
+            if (rs == null || rs.getBean() == null) return;
+            String opCode = rs.getBean().opCode;
+            if (opCode == null || opCode.isEmpty()) return;
+
+            int paletteId = -1;
+            ArrayList<HashMap<String, Object>> all =
+                    dev.aldi.sayuti.block.ExtraBlockFile.getExtraBlockData();
+            for (HashMap<String, Object> entry : all) {
+                if (opCode.equals(String.valueOf(entry.get("name")))) {
+                    try {
+                        paletteId = (int) Double.parseDouble(String.valueOf(entry.get("palette")));
+                    } catch (Throwable ignored) {}
+                    break;
+                }
+            }
+            if (paletteId == -1) return;
+
+            final int pid = paletteId;
+            final String code = opCode;
+            paletteSelector.performClickPalette(pid);
+            if (m != null) {
+                m.postDelayed(() -> m.scrollToBlock(code), 150);
+            }
+        } catch (Throwable ignored) {}
     }
 
     public void a(Ss ss, Object obj) {
