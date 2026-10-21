@@ -97,7 +97,6 @@ public class PaletteSelector extends RecyclerView {
             Helper.getResString(R.string.palette_new_xml_json),
             Helper.getResString(R.string.palette_new_math),
             Helper.getResString(R.string.palette_new_currencies),
-            Helper.getResString(R.string.palette_new_lists)
     };
 
     private final int[] NewMainCategoriesColors = {
@@ -145,7 +144,8 @@ public class PaletteSelector extends RecyclerView {
         int[] paletteColors = useNew ? NewMainCategoriesColors : MainCategoriesColors;
         int[] paletteIds = useNew ? NewMainCategoriesIds : MainCategoriesIds;
 
-        for (int i = 0; i < paletteNames.length; i++) {
+        int paletteCount = Math.min(paletteNames.length, Math.min(paletteIds.length, paletteColors.length));
+        for (int i = 0; i < paletteCount; i++) {
             if (hideTemplates
                     && paletteIds[i] == mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID) {
                 continue;
