@@ -1392,6 +1392,7 @@ public class ExtraPaletteBlock {
         } else {
             data = ExtraBlockFile.getExtraBlockData();
         }
+        android.util.Log.d("PALETTE_NEW", "addCustomBlocksForPalette: " + paletteId + ", data.size=" + data.size());
         int added = 0;
         for (HashMap<String, Object> map : data) {
             Object pal = map.get("palette");
@@ -1418,6 +1419,7 @@ public class ExtraPaletteBlock {
         try {
             pro.sketchware.smartdrop.DebugLogger.get(logicEditor)
                 .i("Blocks", "palette_" + paletteId, "all=" + data.size() + ", added=" + added);
+            android.util.Log.d("PALETTE_NEW", "added=" + added);
         } catch (Throwable ignored) {}
     }
 
