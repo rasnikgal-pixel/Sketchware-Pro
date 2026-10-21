@@ -61,6 +61,61 @@ public class PaletteSelector extends RecyclerView {
             0, 1, 2, 3, 4, 5, 6, 7, -1, 8, 9, 10, 11
     };
 
+    // ===== New logical palettes (200+) — used when SETTING_USE_NEW_PALETTES is enabled =====
+    private final String[] NewMainCategoriesNames = {
+            Helper.getResString(R.string.palette_new_electricity),
+            Helper.getResString(R.string.palette_new_mechanics),
+            Helper.getResString(R.string.palette_new_chemistry),
+            Helper.getResString(R.string.palette_new_accounting),
+            Helper.getResString(R.string.palette_new_text),
+            Helper.getResString(R.string.palette_new_lists),
+            Helper.getResString(R.string.palette_new_files),
+            Helper.getResString(R.string.palette_new_network),
+            Helper.getResString(R.string.palette_new_sqlite),
+            Helper.getResString(R.string.palette_new_color),
+            Helper.getResString(R.string.palette_new_ui),
+            Helper.getResString(R.string.palette_new_animations),
+            Helper.getResString(R.string.palette_new_datetime),
+            Helper.getResString(R.string.palette_new_device),
+            Helper.getResString(R.string.palette_new_sensors),
+            Helper.getResString(R.string.palette_new_location),
+            Helper.getResString(R.string.palette_new_bluetooth),
+            Helper.getResString(R.string.palette_new_sound),
+            Helper.getResString(R.string.palette_new_vibration),
+            Helper.getResString(R.string.palette_new_flashlight),
+            Helper.getResString(R.string.palette_new_camera),
+            Helper.getResString(R.string.palette_new_video),
+            Helper.getResString(R.string.palette_new_images),
+            Helper.getResString(R.string.palette_new_archives),
+            Helper.getResString(R.string.palette_new_crypto),
+            Helper.getResString(R.string.palette_new_random),
+            Helper.getResString(R.string.palette_new_contacts),
+            Helper.getResString(R.string.palette_new_validation),
+            Helper.getResString(R.string.palette_new_notifications),
+            Helper.getResString(R.string.palette_new_intents),
+            Helper.getResString(R.string.palette_new_regex),
+            Helper.getResString(R.string.palette_new_xml_json),
+            Helper.getResString(R.string.palette_new_math),
+            Helper.getResString(R.string.palette_new_currencies),
+            Helper.getResString(R.string.palette_new_math_extra),
+            Helper.getResString(R.string.palette_new_lists_tables)
+    };
+
+    private final int[] NewMainCategoriesColors = {
+            0xff1565c0, 0xff1976d2, 0xff2e7d32, 0xfff9a825, 0xff6a1b9a, 0xff00838f,
+            0xff5d4037, 0xff0277bd, 0xff37474f, 0xffad1457, 0xff4527a0, 0xffc62828,
+            0xffef6c00, 0xff00695c, 0xff558b2f, 0xff283593, 0xff00838f, 0xff6a1b9a,
+            0xff4e342e, 0xfff57f17, 0xff37474f, 0xffb71c1c, 0xffad1457, 0xff5d4037,
+            0xff1b5e20, 0xff6a1b9a, 0xff00897b, 0xff455a64, 0xffef6c00, 0xff2ca5e2,
+            0xff7b1fa2, 0xff455a64, 0xff4a6cd4, 0xff2e7d32, 0xff4a6cd4, 0xff4a6cd4
+    };
+
+    private final int[] NewMainCategoriesIds = {
+            200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211,
+            212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223,
+            224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235
+    };
+
     private String searchValue = "";
     private PaletteSelectorAdapter paletteAdapter;
     private List<paletteSelectorRecord> allPalettes;
@@ -85,13 +140,19 @@ public class PaletteSelector extends RecyclerView {
         boolean hideTemplates = !mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
                 mod.hilal.saif.activities.tools.ConfigActivity.SETTING_BLOCK_TEMPLATES);
 
-        for (int i = 0; i < MainCategoriesNames.length; i++) {
+        boolean useNew = mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
+                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_USE_NEW_PALETTES);
+        String[] paletteNames = useNew ? NewMainCategoriesNames : MainCategoriesNames;
+        int[] paletteColors = useNew ? NewMainCategoriesColors : MainCategoriesColors;
+        int[] paletteIds = useNew ? NewMainCategoriesIds : MainCategoriesIds;
+
+        for (int i = 0; i < paletteNames.length; i++) {
             if (hideTemplates
-                    && MainCategoriesIds[i] == mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID) {
+                    && paletteIds[i] == mod.jbk.util.BlockTemplatesManager.TEMPLATES_PALETTE_ID) {
                 continue;
             }
-            
-            allPalettes.add(new paletteSelectorRecord(MainCategoriesIds[i], MainCategoriesNames[i], MainCategoriesColors[i]));
+
+            allPalettes.add(new paletteSelectorRecord(paletteIds[i], paletteNames[i], paletteColors[i]));
         }
 
         new mod.agus.jcoderz.editor.manage.block.palette.PaletteSelector()

@@ -243,5 +243,11 @@
             app:key="save-on-property-change"
             app:summary="@string/settings_save_on_property_change_summary"
             app:title="@string/settings_save_on_property_change_title" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:defaultValue="false"
+        app:key="use-new-palettes"
+        app:summary="@string/settings_use_new_palettes_summary"
+        app:title="@string/settings_use_new_palettes_title" />
     </PreferenceCategory>
 </PreferenceScreen>
