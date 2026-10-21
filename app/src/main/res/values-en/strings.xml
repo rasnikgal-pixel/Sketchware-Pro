@@ -2914,7 +2914,7 @@ ACTION_VIEW
     <string name="palette_new_color">Color</string>
     <string name="palette_new_ui">UI / Widgets</string>
     <string name="palette_new_animations">Animations</string>
-    <string name="palette_new_datetime">Date & Time</string>
+    <string name="palette_new_datetime">Date &amp; Time</string>
     <string name="palette_new_device">Device / System</string>
     <string name="palette_new_sensors">Sensors</string>
     <string name="palette_new_location">Location</string>
