@@ -754,6 +754,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     private void showBlockInPalette(Rs rs) {
         try {
+            android.util.Log.d("PALETTE_DEBUG", "showBlockInPalette called");
             StringBuilder dbg = new StringBuilder();
             dbg.append("rs=").append(rs != null).append("\n");
             if (rs != null) {
@@ -775,6 +776,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 return;
             }
 
+            android.util.Log.d("PALETTE_DEBUG", "opCode: " + opCode);
             int paletteId = -1;
             ArrayList<HashMap<String, Object>> all =
                     dev.aldi.sayuti.block.ExtraBlockFile.getExtraBlockData();
@@ -786,6 +788,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                     break;
                 }
             }
+            android.util.Log.d("PALETTE_DEBUG", "paletteId found: " + paletteId);
             if (paletteId == -1) return;
 
             final int pid = paletteId;
