@@ -754,9 +754,26 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
     private void showBlockInPalette(Rs rs) {
         try {
-            if (rs == null || rs.getBean() == null) return;
+            StringBuilder dbg = new StringBuilder();
+            dbg.append("rs=").append(rs != null).append("\n");
+            if (rs != null) {
+                dbg.append("blockType=").append(rs.getBlockType()).append("\n");
+                dbg.append("getBean=").append(rs.getBean() != null).append("\n");
+            }
+            if (rs == null || rs.getBean() == null) {
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("DIAG showBlockInPalette").setMessage(dbg.toString())
+                    .setPositiveButton("OK", null).show();
+                return;
+            }
             String opCode = rs.getBean().opCode;
-            if (opCode == null || opCode.isEmpty()) return;
+            dbg.append("opCode=").append(opCode).append("\n");
+            if (opCode == null || opCode.isEmpty()) {
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                    .setTitle("DIAG showBlockInPalette").setMessage(dbg.toString())
+                    .setPositiveButton("OK", null).show();
+                return;
+            }
 
             int paletteId = -1;
             ArrayList<HashMap<String, Object>> all =
