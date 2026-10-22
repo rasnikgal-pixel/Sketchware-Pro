@@ -91,6 +91,7 @@ public class ViewEditorFragment extends qA {
             
             // Обработчик "✓" на клавиатуре для сохранения
             android.view.View.OnClickListener saveAction = v -> {
+                applyQuickPropsChanges();
                 if (quickPropsPanel != null) {
                     quickPropsPanel.clearFocus();
                     android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
@@ -131,6 +132,7 @@ public class ViewEditorFragment extends qA {
                     }
                 }
             }
+            applyQuickPropsChanges();
             hideQuickPropsPanel();
         });
 
