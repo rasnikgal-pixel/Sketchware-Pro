@@ -267,7 +267,10 @@ public class Fx {
                         String param = getParamValue(params.get(i), paramType);
                         if (param.isEmpty()) {
                             Gx paramInfo = bean.getParamClassInfo().get(i);
-                            if (paramInfo.b("boolean")) {
+                            if (paramInfo == null) {
+                                // FIX: защита от NPE при рассинхроне параметров
+                                hasStringParam = true;
+                            } else if (paramInfo.b("boolean")) {
                                 opcode += "true";
                             } else if (paramInfo.b("double")) {
                                 opcode += "0";
