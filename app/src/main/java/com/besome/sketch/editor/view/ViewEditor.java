@@ -1519,8 +1519,8 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         if (oldId == null || newId == null || oldId.isEmpty() || newId.isEmpty()) return;
         try {
             java.util.ArrayList<com.besome.sketch.beans.ProjectFileBean> files = new java.util.ArrayList<>();
-            try { files.addAll(a.a.a.jC.b(a).b()); } catch (Throwable ignored) {}
-            try { files.addAll(a.a.a.jC.b(a).c()); } catch (Throwable ignored) {}
+            try { files.addAll(a.a.a.jC.b(scIdLocal).b()); } catch (Throwable ignored) {}
+            try { files.addAll(a.a.a.jC.b(scIdLocal).c()); } catch (Throwable ignored) {}
 
             for (com.besome.sketch.beans.ProjectFileBean file : files) {
                 String javaName = file.getJavaName();
