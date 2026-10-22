@@ -395,13 +395,7 @@ public class ExtraPaletteBlock {
     }
 
     public void setBlock(int paletteId, int paletteColor) {
-        boolean _useNew = mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
-                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_USE_NEW_PALETTES);
-        new com.google.android.material.dialog.MaterialAlertDialogBuilder(logicEditor)
-            .setTitle("PALETTE DIAG")
-            .setMessage("paletteId=" + paletteId + "\nuseNew=" + _useNew)
-            .setPositiveButton("OK", null)
-            .show();
+        // Remove previous palette's blocks
         logicEditor.m.a();
         setBlockInternal(paletteId, paletteColor);
     }
@@ -1388,17 +1382,7 @@ public class ExtraPaletteBlock {
      * без этого не отображаются.
      */
     private void addCustomBlocksForPalette(int paletteId) {
-        ArrayList<HashMap<String, Object>> data;
-        // If new palette map is enabled and this is a new logical palette (200+), load blocks from NewPaletteBlocks
-        boolean useNew = mod.hilal.saif.activities.tools.ConfigActivity.isSettingEnabled(
-                mod.hilal.saif.activities.tools.ConfigActivity.SETTING_USE_NEW_PALETTES);
-        if (useNew && paletteId >= 200) {
-            data = new ArrayList<>();
-            dev.aldi.sayuti.block.NewPaletteBlocks.addBlocks(data);
-        } else {
-            data = ExtraBlockFile.getExtraBlockData();
-        }
-        android.util.Log.d("PALETTE_NEW", "addCustomBlocksForPalette: " + paletteId + ", data.size=" + data.size());
+        ArrayList<HashMap<String, Object>> data = ExtraBlockFile.getExtraBlockData();
         int added = 0;
         for (HashMap<String, Object> map : data) {
             Object pal = map.get("palette");
@@ -1417,15 +1401,14 @@ public class ExtraPaletteBlock {
             String tn = (typeName instanceof String) ? (String) typeName : "";
 
             if (tn.isEmpty()) {
-                logicEditor.m.a("", t, o);
+                logicEditor.a(t, o);
             } else {
-                logicEditor.m.a("", t, o);
+                logicEditor.a("", t, o);
             }
         }
         try {
             pro.sketchware.smartdrop.DebugLogger.get(logicEditor)
                 .i("Blocks", "palette_" + paletteId, "all=" + data.size() + ", added=" + added);
-            android.util.Log.d("PALETTE_NEW", "added=" + added);
         } catch (Throwable ignored) {}
     }
 
