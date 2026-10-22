@@ -260,27 +260,32 @@ public class ViewPane extends RelativeLayout {
                 java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events =
                         a.a.a.jC.a(sc_id).b(javaName);
                 if (events == null) continue;
-                for (java.util.Map.Entry<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> e : events.entrySet()) {
+                
+                // Копируем блоки под новым ключом (oldId_eventName -> newId_eventName)
+                java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> eventsCopy = new java.util.HashMap<>(events);
+                for (java.util.Map.Entry<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> e : eventsCopy.entrySet()) {
                     String eventName = e.getKey();
                     java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks = e.getValue();
-                    boolean changed = false;
-                    for (com.besome.sketch.beans.BlockBean bb : blocks) {
-                        if (bb.spec != null && bb.spec.contains(oldId)) {
-                            bb.spec = bb.spec.replace(oldId, newId);
-                            changed = true;
-                        }
-                        if (bb.parameters != null) {
-                            for (int i = 0; i < bb.parameters.size(); i++) {
-                                String pv = bb.parameters.get(i);
-                                if (pv != null && pv.contains(oldId)) {
-                                    bb.parameters.set(i, pv.replace(oldId, newId));
-                                    changed = true;
+                    
+                    // Если ключ начинается с oldId_, меняем на newId_
+                    if (eventName.startsWith(oldId + "_")) {
+                        String newKey = newId + eventName.substring(oldId.length());
+                        // Обновляем параметры внутри блоков
+                        for (com.besome.sketch.beans.BlockBean bb : blocks) {
+                            if (bb.spec != null && bb.spec.contains(oldId)) {
+                                bb.spec = bb.spec.replace(oldId, newId);
+                            }
+                            if (bb.parameters != null) {
+                                for (int i = 0; i < bb.parameters.size(); i++) {
+                                    String pv = bb.parameters.get(i);
+                                    if (pv != null && pv.contains(oldId)) {
+                                        bb.parameters.set(i, pv.replace(oldId, newId));
+                                    }
                                 }
                             }
                         }
-                    }
-                    if (changed) {
-                        a.a.a.jC.a(sc_id).a(javaName, eventName, blocks);
+                        // Сохраняем блоки под новым ключом
+                        a.a.a.jC.a(sc_id).a(javaName, newKey, blocks);
                     }
                 }
             }
