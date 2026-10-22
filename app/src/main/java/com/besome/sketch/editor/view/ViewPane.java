@@ -228,7 +228,6 @@ public class ViewPane extends RelativeLayout {
     }
 
     private void updateLogicBlocksForRenamedWidget(String oldId, String newId) {
-        if (true) return; // TEMP DISABLED TO FIX CLICKS
         if (oldId == null || newId == null || oldId.isEmpty() || newId.isEmpty()) return;
         try {
             java.util.ArrayList<com.besome.sketch.beans.ProjectFileBean> files = new java.util.ArrayList<>();
@@ -240,6 +239,24 @@ public class ViewPane extends RelativeLayout {
             } catch (Throwable ignored) {}
             for (com.besome.sketch.beans.ProjectFileBean file : files) {
                 String javaName = file.getJavaName();
+                
+                // Обновляем EventBean (события)
+                try {
+                    java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = a.a.a.jC.a(sc_id).g(javaName);
+                    if (evts != null) {
+                        boolean evtChanged = false;
+                        for (com.besome.sketch.beans.EventBean ev : evts) {
+                            if (oldId.equals(ev.targetId)) {
+                                ev.targetId = newId;
+                                evtChanged = true;
+                                // Пересохраняем событие
+                                a.a.a.jC.a(sc_id).a(javaName, ev);
+                            }
+                        }
+                        if (evtChanged) a.a.a.jC.a(sc_id).k();
+                    }
+                } catch (Throwable ignored) {}
+
                 java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events =
                         a.a.a.jC.a(sc_id).b(javaName);
                 if (events == null) continue;
