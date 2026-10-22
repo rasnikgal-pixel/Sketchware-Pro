@@ -500,7 +500,16 @@ public class ViewEditorFragment extends qA {
     else { bean.preId = oldId; bean.id = newId; }
     try {
         java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = jC.a(sc_id).g(projectFileBean.getJavaName());
-        if (evts != null) { for (com.besome.sketch.beans.EventBean evt : evts) if (oldId.equals(evt.targetId)) evt.targetId = newId; }
+        if (evts != null) {
+            java.util.HashSet<String> seen = new java.util.HashSet<>();
+            for (int i = evts.size() - 1; i >= 0; i--) {
+                com.besome.sketch.beans.EventBean e = evts.get(i);
+                if (oldId.equals(e.targetId)) e.targetId = newId;
+                String key = e.targetId + "_" + e.eventName;
+                if (seen.contains(key)) evts.remove(i);
+                else seen.add(key);
+            }
+        }
     } catch (Throwable ignored) {}
             }
             }
