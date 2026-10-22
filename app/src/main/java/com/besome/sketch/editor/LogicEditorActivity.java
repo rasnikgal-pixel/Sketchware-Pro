@@ -749,10 +749,11 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 return;
             }
         }
-        showBlockInPalette(rs);
+        // showBlockInPalette(rs); // TEMP DISABLED
     }
 
     private void showBlockInPalette(Rs rs) {
+        if (true) return; // TEMP DISABLED
         try {
             StringBuilder dbg = new StringBuilder();
             dbg.append("rs=").append(rs != null).append("\n");
