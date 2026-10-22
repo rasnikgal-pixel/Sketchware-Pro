@@ -228,6 +228,7 @@ public class ViewPane extends RelativeLayout {
     }
 
     private void updateLogicBlocksForRenamedWidget(String oldId, String newId) {
+        if (true) return; // TEMP DISABLED TO FIX CLICKS
         if (oldId == null || newId == null || oldId.isEmpty() || newId.isEmpty()) return;
         try {
             java.util.ArrayList<com.besome.sketch.beans.ProjectFileBean> files = new java.util.ArrayList<>();
