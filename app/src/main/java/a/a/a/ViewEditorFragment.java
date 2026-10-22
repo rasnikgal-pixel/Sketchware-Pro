@@ -498,7 +498,7 @@ public class ViewEditorFragment extends qA {
                     bean.preId = oldId;
                     bean.id = newId;
                     try {
-                        viewEditor.updateLogicBlocksForRenamedWidget(oldId, newId);
+                        // viewEditor.updateLogicBlocksForRenamedWidget(oldId, newId); // REMOVED
                     } catch (Throwable ignored) {}
                 }
             }
