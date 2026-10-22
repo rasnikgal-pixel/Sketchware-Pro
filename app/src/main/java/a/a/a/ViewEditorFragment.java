@@ -500,7 +500,7 @@ public class ViewEditorFragment extends qA {
                     
                     // Удаляем старые события (чтобы не было дубликатов)
                     try {
-                        java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = a.a.a.jC.a(sc_id).g(projectFileBean.getJavaName());
+                        java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = jC.a(sc_id).g(projectFileBean.getJavaName());
                         if (evts != null) {
                             for (int i = evts.size() - 1; i >= 0; i--) {
                                 if (oldId.equals(evts.get(i).targetId)) {
