@@ -1515,6 +1515,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     }
 
     public void updateLogicBlocksForRenamedWidget(String oldId, String newId) {
+        String scIdLocal = this.a;
         if (oldId == null || newId == null || oldId.isEmpty() || newId.isEmpty()) return;
         try {
             java.util.ArrayList<com.besome.sketch.beans.ProjectFileBean> files = new java.util.ArrayList<>();
@@ -1526,12 +1527,12 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 
                 // 1. Обновляем EventBean
                 try {
-                    java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = a.a.a.jC.a(a).g(javaName);
+                    java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = a.a.a.jC.a(scIdLocal).g(javaName);
                     if (evts != null) {
                         for (com.besome.sketch.beans.EventBean ev : evts) {
                             if (oldId.equals(ev.targetId)) {
                                 ev.targetId = newId;
-                                a.a.a.jC.a(a).a(javaName, ev);
+                                a.a.a.jC.a(scIdLocal).a(javaName, ev);
                             }
                         }
                     }
@@ -1539,7 +1540,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
 
                 // 2. Копируем блоки под новый ключ
                 try {
-                    java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events = a.a.a.jC.a(a).b(javaName);
+                    java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events = a.a.a.jC.a(scIdLocal).b(javaName);
                     if (events != null) {
                         for (java.util.Map.Entry<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> e : events.entrySet()) {
                             String key = e.getKey();
@@ -1556,14 +1557,14 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                                             }
                                         }
                                     }
-                                    a.a.a.jC.a(a).a(javaName, newKey, blocks);
+                                    a.a.a.jC.a(scIdLocal).a(javaName, newKey, blocks);
                                 }
                             }
                         }
                     }
                 } catch (Throwable ignored) {}
             }
-            a.a.a.jC.a(a).k();
+            a.a.a.jC.a(scIdLocal).k();
         } catch (Throwable ignored) {}
     }
 
