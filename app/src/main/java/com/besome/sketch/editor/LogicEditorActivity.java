@@ -2326,6 +2326,7 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
         // Сохраняем блоки
         try {
+            android.util.Log.d("LOGIC_SAVE", "Saving blocks for: " + id + "_" + eventName + ", count=" + o.getBlocks().size());
             jC.a(scId).a(M.getJavaName(), id + "_" + eventName, o.getBlocks());
         } catch (Exception e) {
             pro.sketchware.smartdrop.DebugLogger.get(this)

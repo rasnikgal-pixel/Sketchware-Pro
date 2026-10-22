@@ -133,7 +133,10 @@ public class Hx {
 
     private void a(ArrayList<EventBean> events, HashMap<String, ArrayList<BlockBean>> logicBlocks) {
         for (EventBean eventBean : events) {
-            ArrayList<BlockBean> eventLogicBlocks = logicBlocks.get(eventBean.targetId + "_" + eventBean.eventName);
+            String key = eventBean.targetId + "_" + eventBean.eventName;
+        android.util.Log.d("LOGIC_GEN", "Looking for key: " + key);
+        ArrayList<BlockBean> eventLogicBlocks = logicBlocks.get(key);
+        android.util.Log.d("LOGIC_GEN", "Found blocks: " + (eventLogicBlocks != null ? eventLogicBlocks.size() : 0));
             String eventLogic = (eventLogicBlocks == null || eventLogicBlocks.isEmpty()) ? "" :
                     new Fx(projectFileBean.getActivityName(), jq, eventLogicBlocks, isViewBindingEnabled).a();
 
