@@ -1519,20 +1519,20 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         if (oldId == null || newId == null || oldId.isEmpty() || newId.isEmpty()) return;
         try {
             java.util.ArrayList<com.besome.sketch.beans.ProjectFileBean> files = new java.util.ArrayList<>();
-            try { files.addAll(a.a.a.jC.b(scIdLocal).b()); } catch (Throwable ignored) {}
-            try { files.addAll(a.a.a.jC.b(scIdLocal).c()); } catch (Throwable ignored) {}
+            try { files.addAll(jC.b(scIdLocal).b()); } catch (Throwable ignored) {}
+            try { files.addAll(jC.b(scIdLocal).c()); } catch (Throwable ignored) {}
 
             for (com.besome.sketch.beans.ProjectFileBean file : files) {
                 String javaName = file.getJavaName();
                 
                 // 1. Обновляем EventBean
                 try {
-                    java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = a.a.a.jC.a(scIdLocal).g(javaName);
+                    java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = jC.a(scIdLocal).g(javaName);
                     if (evts != null) {
                         for (com.besome.sketch.beans.EventBean ev : evts) {
                             if (oldId.equals(ev.targetId)) {
                                 ev.targetId = newId;
-                                a.a.a.jC.a(scIdLocal).a(javaName, ev);
+                                jC.a(scIdLocal).a(javaName, ev);
                             }
                         }
                     }
@@ -1540,7 +1540,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
 
                 // 2. Копируем блоки под новый ключ
                 try {
-                    java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events = a.a.a.jC.a(scIdLocal).b(javaName);
+                    java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events = jC.a(scIdLocal).b(javaName);
                     if (events != null) {
                         for (java.util.Map.Entry<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> e : events.entrySet()) {
                             String key = e.getKey();
@@ -1557,14 +1557,14 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                                             }
                                         }
                                     }
-                                    a.a.a.jC.a(scIdLocal).a(javaName, newKey, blocks);
+                                    jC.a(scIdLocal).a(javaName, newKey, blocks);
                                 }
                             }
                         }
                     }
                 } catch (Throwable ignored) {}
             }
-            a.a.a.jC.a(scIdLocal).k();
+            jC.a(scIdLocal).k();
         } catch (Throwable ignored) {}
     }
 
