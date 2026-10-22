@@ -123,7 +123,21 @@ public class PropertyActivity extends BaseAppCompatActivity implements Kw {
         }
 
         cC.c(sc_id).a(projectFileBean.getXmlName(), viewBean.clone(), this.viewBean);
+        String oldId = viewBean.id;
+        String newId = this.viewBean.id;
         viewBean.copy(this.viewBean);
+        // Перенос targetId событий при переименовании виджета
+        if (oldId != null && newId != null && !oldId.equals(newId)) {
+            try {
+                java.util.ArrayList<com.besome.sketch.beans.EventBean> evts =
+                        jC.a(sc_id).g(projectFileBean.getJavaName());
+                if (evts != null) {
+                    for (com.besome.sketch.beans.EventBean evt : evts) {
+                        if (oldId.equals(evt.targetId)) evt.targetId = newId;
+                    }
+                }
+            } catch (Throwable ignored) {}
+        }
         Intent var2 = new Intent();
         var2.putExtra("view_id", this.viewBean.id);
         var2.putExtra("is_edit_image", p);

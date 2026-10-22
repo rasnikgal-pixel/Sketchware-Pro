@@ -494,22 +494,15 @@ public class ViewEditorFragment extends qA {
             if (quickPropsId != null) {
                 String newId = quickPropsId.getText() == null ? "" : quickPropsId.getText().toString().trim();
                 if (!newId.isEmpty() && !newId.equals(bean.id)) {
-                    String oldId = bean.id;
-                    bean.preId = oldId;
-                    bean.id = newId;
-                    
-                    // Удаляем старые события (чтобы не было дубликатов)
-                    try {
-                        java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = jC.a(sc_id).g(projectFileBean.getJavaName());
-                        if (evts != null) {
-                            for (int i = evts.size() - 1; i >= 0; i--) {
-                                if (oldId.equals(evts.get(i).targetId)) {
-                                    evts.remove(i);
-                                }
-                            }
-                        }
-                    } catch (Throwable ignored) {}
-                }
+    String oldId = bean.id;
+    com.besome.sketch.beans.ViewBean rb = jC.a(sc_id).c(projectFileBean.getXmlName(), oldId);
+    if (rb != null) { rb.preId = oldId; rb.id = newId; jC.a(sc_id).a(projectFileBean, rb); }
+    else { bean.preId = oldId; bean.id = newId; }
+    try {
+        java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = jC.a(sc_id).g(projectFileBean.getJavaName());
+        if (evts != null) { for (com.besome.sketch.beans.EventBean evt : evts) if (oldId.equals(evt.targetId)) evt.targetId = newId; }
+    } catch (Throwable ignored) {}
+            }
             }
             if (hasTextField(bean) && quickPropsText != null) {
                 if (bean.text == null) bean.text = new com.besome.sketch.beans.TextBean();
@@ -1124,5 +1117,14 @@ public class ViewEditorFragment extends qA {
         if (viewEditor != null) {
             viewEditor.resetPaletteTapState();
         }
+        try {
+            if (viewProperty != null && quickPropsCurrentBean != null && sc_id != null) {
+                String xml = projectFileBean.getXmlName();
+                com.besome.sketch.beans.ViewBean fresh =
+                        jC.a(sc_id).c(xml, quickPropsCurrentBean.id);
+                if (fresh == null) fresh = quickPropsCurrentBean;
+                viewProperty.refresh(sc_id, projectFileBean, fresh);
+            }
+        } catch (Throwable ignored) {}
     }
 }

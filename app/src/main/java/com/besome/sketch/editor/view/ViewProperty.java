@@ -140,6 +140,18 @@ public class ViewProperty extends LinearLayout implements Kw {
         }
     }
 
+    /** Публичный метод для перерисовки панели свойств и списка событий. */
+    public void refresh(String sc_id, ProjectFileBean projectFileBean, ViewBean viewBean) {
+        try {
+            if (viewPropertyItems != null && viewBean != null) {
+                viewPropertyItems.a(sc_id, viewBean);
+            }
+            if (viewEvent != null && projectFileBean != null && viewBean != null) {
+                viewEvent.setData(sc_id, projectFileBean, viewBean);
+            }
+        } catch (Throwable ignored) {}
+    }
+
     public void e() {
         for (int i = 0; i < layoutPropertyGroup.getChildCount(); i++) {
             GroupItem item = (GroupItem) layoutPropertyGroup.getChildAt(i);
