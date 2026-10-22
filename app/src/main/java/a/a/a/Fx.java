@@ -1525,6 +1525,11 @@ public class Fx {
 
         Gx paramClassInfo = blockBean.getParamClassInfo().get(parameterIndex);
 
+        // FIX: защита от NPE
+        if (paramClassInfo == null) {
+            return 3;
+        }
+
         if (paramClassInfo.b("boolean")) {
             blockType = 0;
         } else if (paramClassInfo.b("double")) {
