@@ -190,6 +190,7 @@ public class ViewPane extends RelativeLayout {
         if (preId != null && !preId.isEmpty() && !preId.equals(viewBean.id)) {
             View preView = rootLayout.findViewWithTag(preId);
             if (preView != null) preView.setTag(viewBean.id);
+            updateLogicBlocksForRenamedWidget(preId, viewBean.id);
             viewBean.preId = "";
         }
         if (viewBean.id != null && !viewBean.id.isEmpty() && viewBean.id.charAt(0) == '_') {
@@ -224,6 +225,48 @@ public class ViewPane extends RelativeLayout {
             findViewWithTag.setVisibility(VISIBLE);
         }
         return (ItemView) findViewWithTag;
+    }
+
+    private void updateLogicBlocksForRenamedWidget(String oldId, String newId) {
+        if (oldId == null || newId == null || oldId.isEmpty() || newId.isEmpty()) return;
+        try {
+            java.util.ArrayList<com.besome.sketch.beans.ProjectFileBean> files = new java.util.ArrayList<>();
+            try {
+                files.addAll(a.a.a.jC.b(sc_id).b());
+            } catch (Throwable ignored) {}
+            try {
+                files.addAll(a.a.a.jC.b(sc_id).c());
+            } catch (Throwable ignored) {}
+            for (com.besome.sketch.beans.ProjectFileBean file : files) {
+                String javaName = file.getJavaName();
+                java.util.HashMap<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> events =
+                        a.a.a.jC.a(sc_id).b(javaName);
+                if (events == null) continue;
+                for (java.util.Map.Entry<String, java.util.ArrayList<com.besome.sketch.beans.BlockBean>> e : events.entrySet()) {
+                    String eventName = e.getKey();
+                    java.util.ArrayList<com.besome.sketch.beans.BlockBean> blocks = e.getValue();
+                    boolean changed = false;
+                    for (com.besome.sketch.beans.BlockBean bb : blocks) {
+                        if (bb.spec != null && bb.spec.contains(oldId)) {
+                            bb.spec = bb.spec.replace(oldId, newId);
+                            changed = true;
+                        }
+                        if (bb.parameters != null) {
+                            for (int i = 0; i < bb.parameters.size(); i++) {
+                                String pv = bb.parameters.get(i);
+                                if (pv != null && pv.contains(oldId)) {
+                                    bb.parameters.set(i, pv.replace(oldId, newId));
+                                    changed = true;
+                                }
+                            }
+                        }
+                    }
+                    if (changed) {
+                        a.a.a.jC.a(sc_id).a(javaName, eventName, blocks);
+                    }
+                }
+            }
+        } catch (Throwable ignored) {}
     }
 
     public void initialize(String sc_id, boolean isPreviewMode) {
