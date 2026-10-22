@@ -1417,9 +1417,9 @@ public class ExtraPaletteBlock {
             String tn = (typeName instanceof String) ? (String) typeName : "";
 
             if (tn.isEmpty()) {
-                logicEditor.a(t, o);
+                logicEditor.m.a("", t, o);
             } else {
-                logicEditor.a("", t, o);
+                logicEditor.m.a("", t, o);
             }
         }
         try {
