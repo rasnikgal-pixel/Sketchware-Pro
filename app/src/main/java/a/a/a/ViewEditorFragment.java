@@ -531,6 +531,9 @@ public class ViewEditorFragment extends qA {
             }
         });
         viewProperty.setOnPropertyValueChangedListener(viewBean -> {
+            if (viewBean.preId != null && !viewBean.preId.isEmpty() && !viewBean.preId.equals(viewBean.id)) {
+                viewEditor.updateLogicBlocksForRenamedWidget(viewBean.preId, viewBean.id);
+            }
             a(viewBean.id);
             viewProperty.e();
             invalidateOptionsMenu();
