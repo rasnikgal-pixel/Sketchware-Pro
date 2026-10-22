@@ -494,8 +494,12 @@ public class ViewEditorFragment extends qA {
             if (quickPropsId != null) {
                 String newId = quickPropsId.getText() == null ? "" : quickPropsId.getText().toString().trim();
                 if (!newId.isEmpty() && !newId.equals(bean.id)) {
-                    bean.preId = bean.id;
+                    String oldId = bean.id;
+                    bean.preId = oldId;
                     bean.id = newId;
+                    try {
+                        viewEditor.updateLogicBlocksForRenamedWidget(oldId, newId);
+                    } catch (Throwable ignored) {}
                 }
             }
             if (hasTextField(bean) && quickPropsText != null) {
