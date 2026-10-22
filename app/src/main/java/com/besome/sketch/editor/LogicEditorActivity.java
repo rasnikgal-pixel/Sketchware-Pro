@@ -749,53 +749,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
                 return;
             }
         }
-        // showBlockInPalette(rs); // TEMP DISABLED
-    }
-
-    private void showBlockInPalette(Rs rs) {
-        if (true) return; // TEMP DISABLED
-        try {
-            StringBuilder dbg = new StringBuilder();
-            dbg.append("rs=").append(rs != null).append("\n");
-            if (rs != null) {
-                dbg.append("blockType=").append(rs.getBlockType()).append("\n");
-                dbg.append("getBean=").append(rs.getBean() != null).append("\n");
-            }
-            if (rs == null || rs.getBean() == null) {
-                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("DIAG showBlockInPalette").setMessage(dbg.toString())
-                    .setPositiveButton("OK", null).show();
-                return;
-            }
-            String opCode = rs.getBean().opCode;
-            dbg.append("opCode=").append(opCode).append("\n");
-            if (opCode == null || opCode.isEmpty()) {
-                new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("DIAG showBlockInPalette").setMessage(dbg.toString())
-                    .setPositiveButton("OK", null).show();
-                return;
-            }
-
-            int paletteId = -1;
-            ArrayList<HashMap<String, Object>> all =
-                    dev.aldi.sayuti.block.ExtraBlockFile.getExtraBlockData();
-            for (HashMap<String, Object> entry : all) {
-                if (opCode.equals(String.valueOf(entry.get("name")))) {
-                    try {
-                        paletteId = (int) Double.parseDouble(String.valueOf(entry.get("palette")));
-                    } catch (Throwable ignored) {}
-                    break;
-                }
-            }
-            if (paletteId == -1) return;
-
-            final int pid = paletteId;
-            final String code = opCode;
-            paletteSelector.performClickPalette(pid);
-            if (m != null) {
-                m.postDelayed(() -> m.scrollToBlock(code), 150);
-            }
-        } catch (Throwable ignored) {}
     }
 
     public void a(Ss ss, Object obj) {
@@ -2326,7 +2279,6 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
 
         // Сохраняем блоки
         try {
-            android.util.Log.d("LOGIC_SAVE", "Saving blocks for: " + id + "_" + eventName + ", count=" + o.getBlocks().size());
             jC.a(scId).a(M.getJavaName(), id + "_" + eventName, o.getBlocks());
         } catch (Exception e) {
             pro.sketchware.smartdrop.DebugLogger.get(this)

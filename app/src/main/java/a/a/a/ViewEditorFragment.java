@@ -531,14 +531,6 @@ public class ViewEditorFragment extends qA {
             }
         });
         viewProperty.setOnPropertyValueChangedListener(viewBean -> {
-            new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
-                .setTitle("RENAME DEBUG")
-                .setMessage("preId=" + viewBean.preId + "\nnewId=" + viewBean.id)
-                .setPositiveButton("OK", null)
-                .show();
-            if (viewBean.preId != null && !viewBean.preId.isEmpty() && !viewBean.preId.equals(viewBean.id)) {
-                // viewEditor.updateLogicBlocksForRenamedWidget(viewBean.preId, viewBean.id); // TEMP DISABLED
-            }
             a(viewBean.id);
             viewProperty.e();
             invalidateOptionsMenu();
