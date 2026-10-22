@@ -1515,6 +1515,11 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     }
 
     public void updateLogicBlocksForRenamedWidget(String oldId, String newId) {
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
+            .setTitle("RENAME METHOD")
+            .setMessage("oldId=" + oldId + "\nnewId=" + newId)
+            .setPositiveButton("OK", null)
+            .show();
         String scIdLocal = this.a;
         if (oldId == null || newId == null || oldId.isEmpty() || newId.isEmpty()) return;
         try {
