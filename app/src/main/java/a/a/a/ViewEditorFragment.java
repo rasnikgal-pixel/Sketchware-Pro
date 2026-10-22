@@ -497,8 +497,17 @@ public class ViewEditorFragment extends qA {
                     String oldId = bean.id;
                     bean.preId = oldId;
                     bean.id = newId;
+                    
+                    // Удаляем старые события (чтобы не было дубликатов)
                     try {
-                        // viewEditor.updateLogicBlocksForRenamedWidget(oldId, newId); // REMOVED
+                        java.util.ArrayList<com.besome.sketch.beans.EventBean> evts = a.a.a.jC.a(sc_id).g(projectFileBean.getJavaName());
+                        if (evts != null) {
+                            for (int i = evts.size() - 1; i >= 0; i--) {
+                                if (oldId.equals(evts.get(i).targetId)) {
+                                    evts.remove(i);
+                                }
+                            }
+                        }
                     } catch (Throwable ignored) {}
                 }
             }
