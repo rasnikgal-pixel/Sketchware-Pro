@@ -2884,4 +2884,6 @@ ACTION_VIEW
     <string name="palette_new_currencies">मुद्राएँ</string>
     <string name="palette_new_math_extra">गणित</string>
     <string name="palette_new_lists_tables">सूचियाँ</string>
+    <string name="settings_translate_custom_blocks_title">कस्टम ब्लॉक का अनुवाद करें</string>
+    <string name="settings_translate_custom_blocks_summary">सक्षम होने पर डिफ़ॉल्ट ब्लॉक (लेआउट, ध्वनि, उपयोगिताएँ) सिस्टम भाषा में होंगे। अक्षम — केवल अंग्रेज़ी। पुनः आरंभ और Block Manager से पैलेट हटाना आवश्यक है।</string>
 </resources>

@@ -2948,4 +2948,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="palette_new_currencies">Валюты</string>
     <string name="palette_new_math_extra">Математика</string>
     <string name="palette_new_lists_tables">Списки</string>
+    <string name="settings_translate_custom_blocks_title">Переводить кастомные блоки</string>
+    <string name="settings_translate_custom_blocks_summary">Если включено, дефолтные блоки (Макет, Звук, Утилиты) будут на языке системы. Выключено — на английском. Требует перезапуска и удаления палитр в Block Manager.</string>
 </resources>

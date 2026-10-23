@@ -2884,4 +2884,6 @@ ACTION_VIEW
     <string name="palette_new_currencies">Валюти</string>
     <string name="palette_new_math_extra">Математика</string>
     <string name="palette_new_lists_tables">Списки</string>
+    <string name="settings_translate_custom_blocks_title">Перекладати кастомні блоки</string>
+    <string name="settings_translate_custom_blocks_summary">Якщо увімкнено, стандартні блоки (Макет, Звук, Утиліти) будуть мовою системи. Вимкнено — лише англійською. Потрібен перезапуск і очищення палітр у Block Manager.</string>
 </resources>

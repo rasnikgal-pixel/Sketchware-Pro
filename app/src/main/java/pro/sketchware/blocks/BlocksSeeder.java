@@ -92,7 +92,7 @@ public final class BlocksSeeder {
             }
 
             // Сколько палитр было до merge — это стартовый индекс для новых
-            int baseIndex = 9 + curPalettes.size();
+            int baseIndex = 100 + curPalettes.size();
             Map<String, Integer> newPaletteIndexByName = new HashMap<>();
             for (Map<String, Object> p : newPalettes) {
                 String name = (String) p.get("name");
@@ -106,7 +106,7 @@ public final class BlocksSeeder {
                     // уже существует — найдём его индекс
                     for (int i = 0; i < curPalettes.size(); i++) {
                         if (name.equals(curPalettes.get(i).get("name"))) {
-                            newPaletteIndexByName.put(name, 9 + i);
+                            newPaletteIndexByName.put(name, 100 + i);
                             break;
                         }
                     }
@@ -127,7 +127,7 @@ public final class BlocksSeeder {
             for (int i = 0; i < newPalettes.size(); i++) {
                 String pname = (String) newPalettes.get(i).get("name");
                 if (pname != null && newPaletteIndexByName.containsKey(pname)) {
-                    assetsIndexToReal.put(String.valueOf(9 + i), newPaletteIndexByName.get(pname));
+                    assetsIndexToReal.put(String.valueOf(100 + i), newPaletteIndexByName.get(pname));
                 }
             }
 

@@ -90,6 +90,12 @@
         app:key="block-templates"
         app:summary="@string/settings_block_templates_summary"
         app:title="@string/settings_block_templates_title" />
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:key="translate_custom_blocks"
+        app:defaultValue="false"
+        app:summary="@string/settings_translate_custom_blocks_summary"
+        app:title="@string/settings_translate_custom_blocks_title" />
     <PreferenceCategory app:title="@string/settings_category_skproj_export">
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"

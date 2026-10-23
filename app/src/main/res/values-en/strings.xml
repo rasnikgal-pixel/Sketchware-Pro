@@ -2938,4 +2938,6 @@ ACTION_VIEW
     <string name="palette_new_currencies">Currencies</string>
     <string name="palette_new_math_extra">Math</string>
     <string name="palette_new_lists_tables">Lists</string>
+    <string name="settings_translate_custom_blocks_title">Translate custom blocks</string>
+    <string name="settings_translate_custom_blocks_summary">If enabled, default blocks (Layout, Sound, Utils) will match the system language. Disabled — English only. Requires restart and clearing Block Manager palettes.</string>
 </resources>

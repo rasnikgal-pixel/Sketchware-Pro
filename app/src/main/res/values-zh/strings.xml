@@ -2884,4 +2884,6 @@ ACTION_VIEW
     <string name="palette_new_currencies">货币</string>
     <string name="palette_new_math_extra">数学</string>
     <string name="palette_new_lists_tables">列表</string>
+    <string name="settings_translate_custom_blocks_title">翻译自定义块</string>
+    <string name="settings_translate_custom_blocks_summary">启用后，默认块（布局、声音、工具）将使用系统语言。禁用则仅英文。需重启并清除块管理器中的调色板。</string>
 </resources>
