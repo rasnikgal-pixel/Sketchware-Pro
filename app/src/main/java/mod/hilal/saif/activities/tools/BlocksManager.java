@@ -269,8 +269,8 @@ public class BlocksManager extends BaseAppCompatActivity {
         try {
             if (!FileUtil.isExistFile(blocks_dir) || FileUtil.readFile(blocks_dir).trim().isEmpty()) {
                 android.content.Context _ctx = getApplicationContext();
-                boolean _useLocalized = ConfigActivity.getBooleanSettingValueOrSetAndGet(
-                        ConfigActivity.SETTING_TRANSLATE_CUSTOM_BLOCKS, false);
+                boolean _useLocalized = ConfigActivity.isSettingEnabled(
+                        ConfigActivity.SETTING_TRANSLATE_CUSTOM_BLOCKS);
                 String _lang = _useLocalized
                         ? java.util.Locale.getDefault().getLanguage()
                         : "en";
