@@ -2694,7 +2694,16 @@ public class BlocksHandler {
                     int resId = ctx.getResources().getIdentifier(
                         "block_" + name + "_spec", "string", ctx.getPackageName());
                     if (resId != 0) {
-                        map.put("spec", ctx.getString(resId));
+                        String spec = ctx.getString(resId);
+                        // Конвертируем %1$s/%2$d → %s/%d для Sketchware
+                        java.util.regex.Matcher m = java.util.regex.Pattern
+                            .compile("%\\d+\\$([sdb])").matcher(spec);
+                        StringBuilder sb = new StringBuilder();
+                        while (m.find()) {
+                            m.appendReplacement(sb, "%" + m.group(1));
+                        }
+                        m.appendTail(sb);
+                        map.put("spec", sb.toString());
                     }
                 }
             }
