@@ -2687,6 +2687,13 @@ public class BlocksHandler {
         try {
             android.content.Context ctx = pro.sketchware.SketchApplication.getContext();
             if (ctx != null) {
+                try {
+                    String lang = pro.sketchware.i18n.LocaleHelper.getEffectiveLanguage(ctx);
+                    android.content.res.Configuration conf =
+                        new android.content.res.Configuration(ctx.getResources().getConfiguration());
+                    conf.setLocale(new java.util.Locale(lang));
+                    ctx = ctx.createConfigurationContext(conf);
+                } catch (Throwable ignored) {}
                 for (HashMap<String, Object> map : arrayList) {
                     Object nameObj = map.get("name");
                     if (!(nameObj instanceof String)) continue;
