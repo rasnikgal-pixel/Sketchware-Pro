@@ -25,8 +25,8 @@ public class BlocksHandler {
         dev.aldi.sayuti.block.FileBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.IntentBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.StringBlocks.addBlocks(arrayList);
-        dev.aldi.sayuti.block.ListBlocks.addBlocks(arrayList);
-        dev.aldi.sayuti.block.MathBlocks.addBlocks(arrayList);
+        // TEMP DISABLED (duplicate of NewPaletteBlocks): dev.aldi.sayuti.block.ListBlocks.addBlocks(arrayList);
+        // TEMP DISABLED (duplicate of NewPaletteBlocks): dev.aldi.sayuti.block.MathBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.ColorBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.SystemInfoBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.CryptoBlocks.addBlocks(arrayList);
@@ -39,7 +39,7 @@ public class BlocksHandler {
         dev.aldi.sayuti.block.RegexBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.AppControlBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.CurrencyBlocks.addBlocks(arrayList);
-        dev.aldi.sayuti.block.ScienceBlocks.addBlocks(arrayList);
+        // TEMP DISABLED (duplicate of NewPaletteBlocks): dev.aldi.sayuti.block.ScienceBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.NewPaletteBlocks.addBlocks(arrayList);
 
         HashMap<String, Object> hashMap = new HashMap<>();
