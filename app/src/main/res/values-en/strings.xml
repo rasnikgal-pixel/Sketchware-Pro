@@ -3061,12 +3061,12 @@ ACTION_VIEW
     <string name="block_sciAddPercent_spec">number + percent = %1$s * (1 + %2$s/100)</string>
     <string name="block_sciSubPercent_spec">number - percent = %1$s * (1 - %2$s/100)</string>
     <string name="block_sciProfit_spec">profit = %1$s - %2$s</string>
-    <string name="block_sciMargin_spec">margin %% = (%1$s - %2$s) / %3$s * 100</string>
-    <string name="block_sciMarkup_spec">markup %% = (%1$s - %2$s) / %3$s * 100</string>
+    <string name="block_sciMargin_spec">margin % = (%1$s - %2$s) / %3$s * 100</string>
+    <string name="block_sciMarkup_spec">markup % = (%1$s - %2$s) / %3$s * 100</string>
     <string name="block_sciCompound_spec">compound interest = %1$s * (1 + %2$s/100)^%3$s</string>
     <string name="block_sciAnnuity_spec">annuity payment = %1$s * %2$s / (1 - (1+%3$s)^-%4$s)</string>
-    <string name="block_sciUsn6_spec">USN 6%% = %1$s * 6 / 100</string>
-    <string name="block_sciUsn15_spec">USN 15%% = (%1$s - %2$s) * 15 / 100</string>
+    <string name="block_sciUsn6_spec">USN 6% = %1$s * 6 / 100</string>
+    <string name="block_sciUsn15_spec">USN 15% = (%1$s - %2$s) * 15 / 100</string>
     <string name="block_sciIsValidEmail_spec">%1$s is valid email</string>
     <string name="block_sciIsEmptyString_spec">%1$s is empty</string>
     <string name="block_sciParseColor_spec">parse %1$s to int</string>
