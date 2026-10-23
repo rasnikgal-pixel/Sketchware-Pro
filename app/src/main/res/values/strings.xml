@@ -3850,4 +3850,16 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="block_bannerAdViewLoadAd_spec">%m.adview загрузить</string>
     <string name="block_rewardedVideoAdLoad_spec">%m.videoad загрузить в %m.activity</string>
     <string name="block_rewardedVideoAdShow_spec">%m.videoad show в %m.activity</string>
+    <string name="block_wvEvaluateJS_spec">%m.webview выполнить JS %s</string>
+    <string name="block_wvLoadDataWithBase_spec">%m.webview загрузить HTML %s</string>
+    <string name="block_wvSetUserAgent_spec">%m.webview установить User-Agent %s</string>
+    <string name="block_wvSetCacheMode_spec">%m.webview установить CacheMode %s</string>
+    <string name="block_wvClearCache_spec">%m.webview очистить кэш</string>
+    <string name="block_wvClearHistory_spec">%m.webview очистить историю</string>
+    <string name="block_wvCanGoBack_spec">%m.webview можно назад?</string>
+    <string name="block_wvCanGoForward_spec">%m.webview можно вперёд?</string>
+    <string name="block_wvGetUrl_spec">%m.webview текущий URL</string>
+    <string name="block_wvGetTitle_spec">%m.webview заголовок страницы</string>
+    <string name="block_wvSetJavaScriptEnabled_spec">%m.webview установить JavaScript %b</string>
+    <string name="block_wvSetDomStorageEnabled_spec">%m.webview установить DOM storage %b</string>
 </resources>

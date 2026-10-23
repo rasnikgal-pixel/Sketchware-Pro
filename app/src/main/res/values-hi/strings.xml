@@ -3786,4 +3786,16 @@ ACTION_VIEW
     <string name="block_bannerAdViewLoadAd_spec">%m.adview लोड करें</string>
     <string name="block_rewardedVideoAdLoad_spec">%m.videoad लोड करें में %m.activity</string>
     <string name="block_rewardedVideoAdShow_spec">%m.videoad show में %m.activity</string>
+    <string name="block_wvEvaluateJS_spec">%m.webview JS निष्पादित करें %s</string>
+    <string name="block_wvLoadDataWithBase_spec">%m.webview HTML डेटा लोड करें %s</string>
+    <string name="block_wvSetUserAgent_spec">%m.webview User-Agent सेट करें %s</string>
+    <string name="block_wvSetCacheMode_spec">%m.webview CacheMode सेट करें %s</string>
+    <string name="block_wvClearCache_spec">%m.webview कैश साफ़ करें</string>
+    <string name="block_wvClearHistory_spec">%m.webview इतिहास साफ़ करें</string>
+    <string name="block_wvCanGoBack_spec">%m.webview पीछे जा सकते हैं?</string>
+    <string name="block_wvCanGoForward_spec">%m.webview आगे जा सकते हैं?</string>
+    <string name="block_wvGetUrl_spec">%m.webview वर्तमान URL प्राप्त करें</string>
+    <string name="block_wvGetTitle_spec">%m.webview पृष्ठ शीर्षक प्राप्त करें</string>
+    <string name="block_wvSetJavaScriptEnabled_spec">%m.webview JavaScript सेट करें %b</string>
+    <string name="block_wvSetDomStorageEnabled_spec">%m.webview DOM स्टोरेज सेट करें %b</string>
 </resources>

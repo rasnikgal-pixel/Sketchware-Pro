@@ -3786,4 +3786,16 @@ ACTION_VIEW
     <string name="block_bannerAdViewLoadAd_spec">%m.adview завантажити</string>
     <string name="block_rewardedVideoAdLoad_spec">%m.videoad завантажити в %m.activity</string>
     <string name="block_rewardedVideoAdShow_spec">%m.videoad show в %m.activity</string>
+    <string name="block_wvEvaluateJS_spec">%m.webview виконати JS %s</string>
+    <string name="block_wvLoadDataWithBase_spec">%m.webview завантажити HTML %s</string>
+    <string name="block_wvSetUserAgent_spec">%m.webview встановити User-Agent %s</string>
+    <string name="block_wvSetCacheMode_spec">%m.webview встановити CacheMode %s</string>
+    <string name="block_wvClearCache_spec">%m.webview очистити кеш</string>
+    <string name="block_wvClearHistory_spec">%m.webview очистити історію</string>
+    <string name="block_wvCanGoBack_spec">%m.webview можна назад?</string>
+    <string name="block_wvCanGoForward_spec">%m.webview можна вперед?</string>
+    <string name="block_wvGetUrl_spec">%m.webview поточний URL</string>
+    <string name="block_wvGetTitle_spec">%m.webview заголовок сторінки</string>
+    <string name="block_wvSetJavaScriptEnabled_spec">%m.webview встановити JavaScript %b</string>
+    <string name="block_wvSetDomStorageEnabled_spec">%m.webview встановити DOM storage %b</string>
 </resources>

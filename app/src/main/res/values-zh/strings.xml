@@ -3786,4 +3786,16 @@ ACTION_VIEW
     <string name="block_bannerAdViewLoadAd_spec">%m.adview 加载</string>
     <string name="block_rewardedVideoAdLoad_spec">%m.videoad 加载 在 %m.activity</string>
     <string name="block_rewardedVideoAdShow_spec">%m.videoad show 在 %m.activity</string>
+    <string name="block_wvEvaluateJS_spec">%m.webview 执行 JS %s</string>
+    <string name="block_wvLoadDataWithBase_spec">%m.webview 加载 HTML 数据 %s</string>
+    <string name="block_wvSetUserAgent_spec">%m.webview 设置 User-Agent %s</string>
+    <string name="block_wvSetCacheMode_spec">%m.webview 设置缓存模式 %s</string>
+    <string name="block_wvClearCache_spec">%m.webview 清除缓存</string>
+    <string name="block_wvClearHistory_spec">%m.webview 清除历史</string>
+    <string name="block_wvCanGoBack_spec">%m.webview 可后退?</string>
+    <string name="block_wvCanGoForward_spec">%m.webview 可前进?</string>
+    <string name="block_wvGetUrl_spec">%m.webview 获取当前 URL</string>
+    <string name="block_wvGetTitle_spec">%m.webview 获取页面标题</string>
+    <string name="block_wvSetJavaScriptEnabled_spec">%m.webview 设置 JavaScript %b</string>
+    <string name="block_wvSetDomStorageEnabled_spec">%m.webview 设置 DOM 存储 %b</string>
 </resources>

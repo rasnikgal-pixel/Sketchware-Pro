@@ -3840,4 +3840,16 @@ ACTION_VIEW
     <string name="block_bannerAdViewLoadAd_spec">%m.adview load</string>
     <string name="block_rewardedVideoAdLoad_spec">%m.videoad load in %m.activity</string>
     <string name="block_rewardedVideoAdShow_spec">%m.videoad show in %m.activity</string>
+    <string name="block_wvEvaluateJS_spec">%m.webview evaluate JS %s</string>
+    <string name="block_wvLoadDataWithBase_spec">%m.webview load HTML data %s</string>
+    <string name="block_wvSetUserAgent_spec">%m.webview set User-Agent %s</string>
+    <string name="block_wvSetCacheMode_spec">%m.webview set CacheMode %s</string>
+    <string name="block_wvClearCache_spec">%m.webview clear cache</string>
+    <string name="block_wvClearHistory_spec">%m.webview clear history</string>
+    <string name="block_wvCanGoBack_spec">%m.webview canGoBack</string>
+    <string name="block_wvCanGoForward_spec">%m.webview canGoForward</string>
+    <string name="block_wvGetUrl_spec">%m.webview get current URL</string>
+    <string name="block_wvGetTitle_spec">%m.webview get page title</string>
+    <string name="block_wvSetJavaScriptEnabled_spec">%m.webview set JavaScript enabled %b</string>
+    <string name="block_wvSetDomStorageEnabled_spec">%m.webview set DOM storage enabled %b</string>
 </resources>

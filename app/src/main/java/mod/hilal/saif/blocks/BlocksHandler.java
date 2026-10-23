@@ -41,6 +41,7 @@ public class BlocksHandler {
         // TEMP DISABLED (duplicate of NewPaletteBlocks): dev.aldi.sayuti.block.CurrencyBlocks.addBlocks(arrayList);
         // TEMP DISABLED (duplicate of NewPaletteBlocks): dev.aldi.sayuti.block.ScienceBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.NewPaletteBlocks.addBlocks(arrayList);
+        dev.aldi.sayuti.block.WebViewExtBlocks.addBlocks(arrayList);
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("name", "CommandBlockJava");
