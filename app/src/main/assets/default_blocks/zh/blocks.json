@@ -3,7 +3,7 @@
     "name": "layout_open_activity",
     "type": " ",
     "typeName": "",
-    "spec": "打开屏幕 %1$s",
+    "spec": "打开屏幕 %s",
     "color": "#FF6B35",
     "code": "startActivity(new android.content.Intent(this, %1$s.class));",
     "palette": "9"
@@ -21,7 +21,7 @@
     "name": "layout_set_content",
     "type": " ",
     "typeName": "",
-    "spec": "将布局 %1$s 附加到屏幕",
+    "spec": "将布局 %s 附加到屏幕",
     "color": "#FF6B35",
     "code": "setContentView(pro.sketchware.R.layout.%1$s);",
     "palette": "9"
@@ -48,7 +48,7 @@
     "name": "snd_vibrate",
     "type": " ",
     "typeName": "",
-    "spec": "振动 %1$s 毫秒",
+    "spec": "振动 %s 毫秒",
     "color": "#9C27B0",
     "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate((long)(%1$s));",
     "palette": "10"
@@ -57,7 +57,7 @@
     "name": "snd_vibrate_pattern",
     "type": " ",
     "typeName": "",
-    "spec": "振动模式 %1$s",
+    "spec": "振动模式 %s",
     "color": "#9C27B0",
     "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{%1$s}, -1);",
     "palette": "10"
@@ -75,7 +75,7 @@
     "name": "snd_play_raw",
     "type": " ",
     "typeName": "",
-    "spec": "播放声音 R.raw.%1$s",
+    "spec": "播放声音 R.raw.%s",
     "color": "#9C27B0",
     "code": "android.media.MediaPlayer.create(this, R.raw.%1$s).start();",
     "palette": "10"
@@ -84,7 +84,7 @@
     "name": "snd_play_asset",
     "type": " ",
     "typeName": "",
-    "spec": "从 assets 播放声音: %1$s",
+    "spec": "从 assets 播放声音: %s",
     "color": "#9C27B0",
     "code": "try { android.media.MediaPlayer mp = new android.media.MediaPlayer(); mp.setDataSource(getAssets().openFd(\"%1$s\").getFileDescriptor()); mp.prepare(); mp.start(); } catch (Exception e) {}",
     "palette": "10"
@@ -93,7 +93,7 @@
     "name": "snd_play_raw_loop",
     "type": " ",
     "typeName": "",
-    "spec": "循环播放声音 R.raw.%1$s",
+    "spec": "循环播放声音 R.raw.%s",
     "color": "#9C27B0",
     "code": "android.media.MediaPlayer _mp = android.media.MediaPlayer.create(this, R.raw.%1$s); _mp.setLooping(true); _mp.start();",
     "palette": "10"
@@ -111,7 +111,7 @@
     "name": "util_toast_long",
     "type": " ",
     "typeName": "",
-    "spec": "显示长 Toast %1$s",
+    "spec": "显示长 Toast %s",
     "color": "#2196F3",
     "code": "android.widget.Toast.makeText(getApplicationContext(), %1$s, android.widget.Toast.LENGTH_LONG).show();",
     "palette": "11"
@@ -120,7 +120,7 @@
     "name": "util_copy_clipboard",
     "type": " ",
     "typeName": "",
-    "spec": "复制到剪贴板: %1$s",
+    "spec": "复制到剪贴板: %s",
     "color": "#2196F3",
     "code": "((android.content.ClipboardManager) getSystemService(android.content.Context.CLIPBOARD_SERVICE)).setText(%1$s);",
     "palette": "11"
@@ -129,7 +129,7 @@
     "name": "util_open_url",
     "type": " ",
     "typeName": "",
-    "spec": "打开链接 %1$s",
+    "spec": "打开链接 %s",
     "color": "#2196F3",
     "code": "startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(%1$s)));",
     "palette": "11"
@@ -138,7 +138,7 @@
     "name": "util_open_app",
     "type": " ",
     "typeName": "",
-    "spec": "打开应用 %1$s",
+    "spec": "打开应用 %s",
     "color": "#2196F3",
     "code": "android.content.Intent _i = getPackageManager().getLaunchIntentForPackage(%1$s); if (_i != null) startActivity(_i);",
     "palette": "11"
@@ -183,7 +183,7 @@
     "name": "util_sleep",
     "type": " ",
     "typeName": "",
-    "spec": "延迟 %1$s 毫秒",
+    "spec": "延迟 %s 毫秒",
     "color": "#2196F3",
     "code": "try { Thread.sleep((long)(%1$s)); } catch (InterruptedException e) {}",
     "palette": "11"
@@ -192,7 +192,7 @@
     "name": "util_run_ui",
     "type": " ",
     "typeName": "",
-    "spec": "在 UI 线程运行: %1$s",
+    "spec": "在 UI 线程运行: %s",
     "color": "#2196F3",
     "code": "runOnUiThread(new Runnable() { public void run() { %1$s } });",
     "palette": "11"

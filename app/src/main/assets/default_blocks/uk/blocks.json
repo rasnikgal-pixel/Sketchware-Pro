@@ -3,7 +3,7 @@
     "name": "layout_open_activity",
     "type": " ",
     "typeName": "",
-    "spec": "Відкрити екран %1$s",
+    "spec": "Відкрити екран %s",
     "color": "#FF6B35",
     "code": "startActivity(new android.content.Intent(this, %1$s.class));",
     "palette": "9"
@@ -21,7 +21,7 @@
     "name": "layout_set_content",
     "type": " ",
     "typeName": "",
-    "spec": "Підключити макет %1$s до екрану",
+    "spec": "Підключити макет %s до екрану",
     "color": "#FF6B35",
     "code": "setContentView(pro.sketchware.R.layout.%1$s);",
     "palette": "9"
@@ -48,7 +48,7 @@
     "name": "snd_vibrate",
     "type": " ",
     "typeName": "",
-    "spec": "Вібрація %1$s мс",
+    "spec": "Вібрація %s мс",
     "color": "#9C27B0",
     "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate((long)(%1$s));",
     "palette": "10"
@@ -57,7 +57,7 @@
     "name": "snd_vibrate_pattern",
     "type": " ",
     "typeName": "",
-    "spec": "Вібрація патерн %1$s",
+    "spec": "Вібрація патерн %s",
     "color": "#9C27B0",
     "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{%1$s}, -1);",
     "palette": "10"
@@ -75,7 +75,7 @@
     "name": "snd_play_raw",
     "type": " ",
     "typeName": "",
-    "spec": "Грати мелодію з R.raw.%1$s",
+    "spec": "Грати мелодію з R.raw.%s",
     "color": "#9C27B0",
     "code": "android.media.MediaPlayer.create(this, R.raw.%1$s).start();",
     "palette": "10"
@@ -84,7 +84,7 @@
     "name": "snd_play_asset",
     "type": " ",
     "typeName": "",
-    "spec": "Грати мелодію з assets: %1$s",
+    "spec": "Грати мелодію з assets: %s",
     "color": "#9C27B0",
     "code": "try { android.media.MediaPlayer mp = new android.media.MediaPlayer(); mp.setDataSource(getAssets().openFd(\"%1$s\").getFileDescriptor()); mp.prepare(); mp.start(); } catch (Exception e) {}",
     "palette": "10"
@@ -93,7 +93,7 @@
     "name": "snd_play_raw_loop",
     "type": " ",
     "typeName": "",
-    "spec": "Грати мелодію %1$s по колу",
+    "spec": "Грати мелодію %s по колу",
     "color": "#9C27B0",
     "code": "android.media.MediaPlayer _mp = android.media.MediaPlayer.create(this, R.raw.%1$s); _mp.setLooping(true); _mp.start();",
     "palette": "10"
@@ -111,7 +111,7 @@
     "name": "util_toast_long",
     "type": " ",
     "typeName": "",
-    "spec": "Показати довгий Toast %1$s",
+    "spec": "Показати довгий Toast %s",
     "color": "#2196F3",
     "code": "android.widget.Toast.makeText(getApplicationContext(), %1$s, android.widget.Toast.LENGTH_LONG).show();",
     "palette": "11"
@@ -120,7 +120,7 @@
     "name": "util_copy_clipboard",
     "type": " ",
     "typeName": "",
-    "spec": "Скопіювати в буфер: %1$s",
+    "spec": "Скопіювати в буфер: %s",
     "color": "#2196F3",
     "code": "((android.content.ClipboardManager) getSystemService(android.content.Context.CLIPBOARD_SERVICE)).setText(%1$s);",
     "palette": "11"
@@ -129,7 +129,7 @@
     "name": "util_open_url",
     "type": " ",
     "typeName": "",
-    "spec": "Відкрити посилання %1$s",
+    "spec": "Відкрити посилання %s",
     "color": "#2196F3",
     "code": "startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(%1$s)));",
     "palette": "11"
@@ -138,7 +138,7 @@
     "name": "util_open_app",
     "type": " ",
     "typeName": "",
-    "spec": "Відкрити додаток %1$s",
+    "spec": "Відкрити додаток %s",
     "color": "#2196F3",
     "code": "android.content.Intent _i = getPackageManager().getLaunchIntentForPackage(%1$s); if (_i != null) startActivity(_i);",
     "palette": "11"
@@ -183,7 +183,7 @@
     "name": "util_sleep",
     "type": " ",
     "typeName": "",
-    "spec": "Затримка %1$s мс",
+    "spec": "Затримка %s мс",
     "color": "#2196F3",
     "code": "try { Thread.sleep((long)(%1$s)); } catch (InterruptedException e) {}",
     "palette": "11"
@@ -192,7 +192,7 @@
     "name": "util_run_ui",
     "type": " ",
     "typeName": "",
-    "spec": "Виконати в UI-потоці: %1$s",
+    "spec": "Виконати в UI-потоці: %s",
     "color": "#2196F3",
     "code": "runOnUiThread(new Runnable() { public void run() { %1$s } });",
     "palette": "11"
