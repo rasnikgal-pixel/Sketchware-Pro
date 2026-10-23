@@ -63,6 +63,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
     public static final String SETTING_BLOCK_LOGIC_CHECK_BEFORE_BUILD = "block-logic-check-before-build";
     public static final String SETTING_AUTO_BACKUP_ENABLED = "auto-backup-enabled";
     public static final String SETTING_AUTO_BACKUP_KEEP_COUNT = "auto-backup-keep-count";
+    public static final String SETTING_TRANSLATE_CUSTOM_BLOCKS = "translate_custom_blocks";
     public static final String SETTING_BLOCK_TEMPLATES = "block-templates";
     public static final String SETTING_USE_NEW_VERSION_CONTROL = "use-new-version-control";
     public static final String SETTING_USE_ASD_HIGHLIGHTER = "use-asd-highlighter";
@@ -326,6 +327,7 @@ public class ConfigActivity extends BaseAppCompatActivity {
             case SETTING_SKPROJ_FORMAT_ZIP -> true;
             case SETTING_SKPROJ_OUTPUT_DIR -> "/.sketchware/backups/exports/";
             case SETTING_BLOCK_TEMPLATES -> true;
+            case SETTING_TRANSLATE_CUSTOM_BLOCKS -> false;
             case SETTING_BLOCK_DEPENDENCY_HINTS -> true;
             case SETTING_LIVE_SEARCH_ENABLED -> false;
             case SETTING_LOGIC_EDITOR_GPU -> false;

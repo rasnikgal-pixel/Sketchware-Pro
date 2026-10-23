@@ -265,6 +265,40 @@ public class BlocksManager extends BaseAppCompatActivity {
         blocks_dir = FileUtil.getExternalStorageDir() + ConfigActivity.getStringSettingValueOrSetAndGet(ConfigActivity.SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH,
                 (String) ConfigActivity.getDefaultValue(ConfigActivity.SETTING_BLOCKMANAGER_DIRECTORY_BLOCK_FILE_PATH));
 
+        // Seed default custom blocks/palettes from assets on first run
+        try {
+            if (!FileUtil.isExistFile(blocks_dir) || FileUtil.readFile(blocks_dir).trim().isEmpty()) {
+                android.content.Context _ctx = getApplicationContext();
+                boolean _useLocalized = ConfigActivity.getBooleanSettingValueOrSetAndGet(
+                        ConfigActivity.SETTING_TRANSLATE_CUSTOM_BLOCKS, false);
+                String _lang = _useLocalized
+                        ? java.util.Locale.getDefault().getLanguage()
+                        : "en";
+                String _dir = "default_blocks/" + _lang;
+                // fallback to en
+                try { _ctx.getAssets().open(_dir + "/blocks.json").close(); }
+                catch (Throwable t) { _dir = "default_blocks/en"; }
+
+                java.io.ByteArrayOutputStream _pb = new java.io.ByteArrayOutputStream();
+                java.io.InputStream _pi = _ctx.getAssets().open(_dir + "/palettes.json");
+                byte[] _buf = new byte[8192]; int _n;
+                while ((_n = _pi.read(_buf)) > 0) _pb.write(_buf, 0, _n);
+                _pi.close();
+                String _pjson = _pb.toString("UTF-8");
+
+                java.io.ByteArrayOutputStream _bb = new java.io.ByteArrayOutputStream();
+                java.io.InputStream _bi = _ctx.getAssets().open(_dir + "/blocks.json");
+                while ((_n = _bi.read(_buf)) > 0) _bb.write(_buf, 0, _n);
+                _bi.close();
+                String _bjson = _bb.toString("UTF-8");
+
+                java.io.File _f = new java.io.File(blocks_dir);
+                if (_f.getParentFile() != null) _f.getParentFile().mkdirs();
+                FileUtil.writeFile(pallet_dir, _pjson);
+                FileUtil.writeFile(blocks_dir, _bjson);
+            }
+        } catch (Throwable ignored) {}
+
         if (FileUtil.isExistFile(blocks_dir) && isValidJson(FileUtil.readFile(blocks_dir))) {
             try {
                 all_blocks_list = getGson().fromJson(FileUtil.readFile(blocks_dir), Helper.TYPE_MAP_LIST);

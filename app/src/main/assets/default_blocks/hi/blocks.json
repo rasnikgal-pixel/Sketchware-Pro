@@ -1,0 +1,218 @@
+[
+  {
+    "name": "layout_open_activity",
+    "type": " ",
+    "typeName": "",
+    "spec": "स्क्रीन खोलें %1$s",
+    "color": "#FF6B35",
+    "code": "startActivity(new android.content.Intent(this, %1$s.class));",
+    "palette": "0"
+  },
+  {
+    "name": "layout_close_activity",
+    "type": " ",
+    "typeName": "",
+    "spec": "वर्तमान स्क्रीन बंद करें",
+    "color": "#FF6B35",
+    "code": "finish();",
+    "palette": "0"
+  },
+  {
+    "name": "layout_set_content",
+    "type": " ",
+    "typeName": "",
+    "spec": "लेआउट %1$s स्क्रीन से जोड़ें",
+    "color": "#FF6B35",
+    "code": "setContentView(pro.sketchware.R.layout.%1$s);",
+    "palette": "0"
+  },
+  {
+    "name": "layout_get_name",
+    "type": "s",
+    "typeName": "String",
+    "spec": "वर्तमान स्क्रीन का नाम",
+    "color": "#FF6B35",
+    "code": "getClass().getSimpleName()",
+    "palette": "0"
+  },
+  {
+    "name": "layout_finish_affinity",
+    "type": " ",
+    "typeName": "",
+    "spec": "ऐप की सभी स्क्रीन बंद करें",
+    "color": "#FF6B35",
+    "code": "finishAffinity();",
+    "palette": "0"
+  },
+  {
+    "name": "snd_vibrate",
+    "type": " ",
+    "typeName": "",
+    "spec": "कंपन %1$s मि.से.",
+    "color": "#9C27B0",
+    "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate((long)(%1$s));",
+    "palette": "1"
+  },
+  {
+    "name": "snd_vibrate_pattern",
+    "type": " ",
+    "typeName": "",
+    "spec": "कंपन पैटर्न %1$s",
+    "color": "#9C27B0",
+    "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{%1$s}, -1);",
+    "palette": "1"
+  },
+  {
+    "name": "snd_vibrate_cancel",
+    "type": " ",
+    "typeName": "",
+    "spec": "कंपन रोकें",
+    "color": "#9C27B0",
+    "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).cancel();",
+    "palette": "1"
+  },
+  {
+    "name": "snd_play_raw",
+    "type": " ",
+    "typeName": "",
+    "spec": "ध्वनि चलाएँ R.raw.%1$s",
+    "color": "#9C27B0",
+    "code": "android.media.MediaPlayer.create(this, R.raw.%1$s).start();",
+    "palette": "1"
+  },
+  {
+    "name": "snd_play_asset",
+    "type": " ",
+    "typeName": "",
+    "spec": "assets से ध्वनि चलाएँ: %1$s",
+    "color": "#9C27B0",
+    "code": "try { android.media.MediaPlayer mp = new android.media.MediaPlayer(); mp.setDataSource(getAssets().openFd(\"%1$s\").getFileDescriptor()); mp.prepare(); mp.start(); } catch (Exception e) {}",
+    "palette": "1"
+  },
+  {
+    "name": "snd_play_raw_loop",
+    "type": " ",
+    "typeName": "",
+    "spec": "ध्वनि लूप करें R.raw.%1$s",
+    "color": "#9C27B0",
+    "code": "android.media.MediaPlayer _mp = android.media.MediaPlayer.create(this, R.raw.%1$s); _mp.setLooping(true); _mp.start();",
+    "palette": "1"
+  },
+  {
+    "name": "snd_stop_all",
+    "type": " ",
+    "typeName": "",
+    "spec": "सभी ध्वनियाँ रोकें",
+    "color": "#9C27B0",
+    "code": "android.media.AudioManager am = (android.media.AudioManager) getSystemService(android.content.Context.AUDIO_SERVICE); am.abandonAudioFocus(null);",
+    "palette": "1"
+  },
+  {
+    "name": "util_toast_long",
+    "type": " ",
+    "typeName": "",
+    "spec": "लंबा टोस्ट दिखाएँ %1$s",
+    "color": "#2196F3",
+    "code": "android.widget.Toast.makeText(getApplicationContext(), %1$s, android.widget.Toast.LENGTH_LONG).show();",
+    "palette": "2"
+  },
+  {
+    "name": "util_copy_clipboard",
+    "type": " ",
+    "typeName": "",
+    "spec": "क्लिपबोर्ड में कॉपी करें: %1$s",
+    "color": "#2196F3",
+    "code": "((android.content.ClipboardManager) getSystemService(android.content.Context.CLIPBOARD_SERVICE)).setText(%1$s);",
+    "palette": "2"
+  },
+  {
+    "name": "util_open_url",
+    "type": " ",
+    "typeName": "",
+    "spec": "URL खोलें %1$s",
+    "color": "#2196F3",
+    "code": "startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(%1$s)));",
+    "palette": "2"
+  },
+  {
+    "name": "util_open_app",
+    "type": " ",
+    "typeName": "",
+    "spec": "ऐप खोलें %1$s",
+    "color": "#2196F3",
+    "code": "android.content.Intent _i = getPackageManager().getLaunchIntentForPackage(%1$s); if (_i != null) startActivity(_i);",
+    "palette": "2"
+  },
+  {
+    "name": "util_screen_on",
+    "type": " ",
+    "typeName": "",
+    "spec": "स्क्रीन चालू रखें",
+    "color": "#2196F3",
+    "code": "getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);",
+    "palette": "2"
+  },
+  {
+    "name": "util_screen_off",
+    "type": " ",
+    "typeName": "",
+    "spec": "स्क्रीन बंद होने दें",
+    "color": "#2196F3",
+    "code": "getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);",
+    "palette": "2"
+  },
+  {
+    "name": "util_fullscreen_on",
+    "type": " ",
+    "typeName": "",
+    "spec": "फ़ुलस्क्रीन सक्षम करें",
+    "color": "#2196F3",
+    "code": "getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN, android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);",
+    "palette": "2"
+  },
+  {
+    "name": "util_fullscreen_off",
+    "type": " ",
+    "typeName": "",
+    "spec": "फ़ुलस्क्रीन अक्षम करें",
+    "color": "#2196F3",
+    "code": "getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);",
+    "palette": "2"
+  },
+  {
+    "name": "util_sleep",
+    "type": " ",
+    "typeName": "",
+    "spec": "देरी %1$s मि.से.",
+    "color": "#2196F3",
+    "code": "try { Thread.sleep((long)(%1$s)); } catch (InterruptedException e) {}",
+    "palette": "2"
+  },
+  {
+    "name": "util_run_ui",
+    "type": " ",
+    "typeName": "",
+    "spec": "UI थ्रेड पर चलाएँ: %1$s",
+    "color": "#2196F3",
+    "code": "runOnUiThread(new Runnable() { public void run() { %1$s } });",
+    "palette": "2"
+  },
+  {
+    "name": "util_get_sdk",
+    "type": "d",
+    "typeName": "double",
+    "spec": "Android SDK संस्करण",
+    "color": "#2196F3",
+    "code": "(double) android.os.Build.VERSION.SDK_INT",
+    "palette": "2"
+  },
+  {
+    "name": "util_get_device_model",
+    "type": "s",
+    "typeName": "String",
+    "spec": "डिवाइस मॉडल",
+    "color": "#2196F3",
+    "code": "android.os.Build.MODEL",
+    "palette": "2"
+  }
+]

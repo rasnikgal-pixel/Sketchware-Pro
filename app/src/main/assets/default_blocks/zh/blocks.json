@@ -1,0 +1,218 @@
+[
+  {
+    "name": "layout_open_activity",
+    "type": " ",
+    "typeName": "",
+    "spec": "打开屏幕 %1$s",
+    "color": "#FF6B35",
+    "code": "startActivity(new android.content.Intent(this, %1$s.class));",
+    "palette": "0"
+  },
+  {
+    "name": "layout_close_activity",
+    "type": " ",
+    "typeName": "",
+    "spec": "关闭当前屏幕",
+    "color": "#FF6B35",
+    "code": "finish();",
+    "palette": "0"
+  },
+  {
+    "name": "layout_set_content",
+    "type": " ",
+    "typeName": "",
+    "spec": "将布局 %1$s 附加到屏幕",
+    "color": "#FF6B35",
+    "code": "setContentView(pro.sketchware.R.layout.%1$s);",
+    "palette": "0"
+  },
+  {
+    "name": "layout_get_name",
+    "type": "s",
+    "typeName": "String",
+    "spec": "当前屏幕名称",
+    "color": "#FF6B35",
+    "code": "getClass().getSimpleName()",
+    "palette": "0"
+  },
+  {
+    "name": "layout_finish_affinity",
+    "type": " ",
+    "typeName": "",
+    "spec": "关闭应用的所用屏幕",
+    "color": "#FF6B35",
+    "code": "finishAffinity();",
+    "palette": "0"
+  },
+  {
+    "name": "snd_vibrate",
+    "type": " ",
+    "typeName": "",
+    "spec": "振动 %1$s 毫秒",
+    "color": "#9C27B0",
+    "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate((long)(%1$s));",
+    "palette": "1"
+  },
+  {
+    "name": "snd_vibrate_pattern",
+    "type": " ",
+    "typeName": "",
+    "spec": "振动模式 %1$s",
+    "color": "#9C27B0",
+    "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{%1$s}, -1);",
+    "palette": "1"
+  },
+  {
+    "name": "snd_vibrate_cancel",
+    "type": " ",
+    "typeName": "",
+    "spec": "停止振动",
+    "color": "#9C27B0",
+    "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).cancel();",
+    "palette": "1"
+  },
+  {
+    "name": "snd_play_raw",
+    "type": " ",
+    "typeName": "",
+    "spec": "播放声音 R.raw.%1$s",
+    "color": "#9C27B0",
+    "code": "android.media.MediaPlayer.create(this, R.raw.%1$s).start();",
+    "palette": "1"
+  },
+  {
+    "name": "snd_play_asset",
+    "type": " ",
+    "typeName": "",
+    "spec": "从 assets 播放声音: %1$s",
+    "color": "#9C27B0",
+    "code": "try { android.media.MediaPlayer mp = new android.media.MediaPlayer(); mp.setDataSource(getAssets().openFd(\"%1$s\").getFileDescriptor()); mp.prepare(); mp.start(); } catch (Exception e) {}",
+    "palette": "1"
+  },
+  {
+    "name": "snd_play_raw_loop",
+    "type": " ",
+    "typeName": "",
+    "spec": "循环播放声音 R.raw.%1$s",
+    "color": "#9C27B0",
+    "code": "android.media.MediaPlayer _mp = android.media.MediaPlayer.create(this, R.raw.%1$s); _mp.setLooping(true); _mp.start();",
+    "palette": "1"
+  },
+  {
+    "name": "snd_stop_all",
+    "type": " ",
+    "typeName": "",
+    "spec": "停止所有声音",
+    "color": "#9C27B0",
+    "code": "android.media.AudioManager am = (android.media.AudioManager) getSystemService(android.content.Context.AUDIO_SERVICE); am.abandonAudioFocus(null);",
+    "palette": "1"
+  },
+  {
+    "name": "util_toast_long",
+    "type": " ",
+    "typeName": "",
+    "spec": "显示长 Toast %1$s",
+    "color": "#2196F3",
+    "code": "android.widget.Toast.makeText(getApplicationContext(), %1$s, android.widget.Toast.LENGTH_LONG).show();",
+    "palette": "2"
+  },
+  {
+    "name": "util_copy_clipboard",
+    "type": " ",
+    "typeName": "",
+    "spec": "复制到剪贴板: %1$s",
+    "color": "#2196F3",
+    "code": "((android.content.ClipboardManager) getSystemService(android.content.Context.CLIPBOARD_SERVICE)).setText(%1$s);",
+    "palette": "2"
+  },
+  {
+    "name": "util_open_url",
+    "type": " ",
+    "typeName": "",
+    "spec": "打开链接 %1$s",
+    "color": "#2196F3",
+    "code": "startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(%1$s)));",
+    "palette": "2"
+  },
+  {
+    "name": "util_open_app",
+    "type": " ",
+    "typeName": "",
+    "spec": "打开应用 %1$s",
+    "color": "#2196F3",
+    "code": "android.content.Intent _i = getPackageManager().getLaunchIntentForPackage(%1$s); if (_i != null) startActivity(_i);",
+    "palette": "2"
+  },
+  {
+    "name": "util_screen_on",
+    "type": " ",
+    "typeName": "",
+    "spec": "保持屏幕常亮",
+    "color": "#2196F3",
+    "code": "getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);",
+    "palette": "2"
+  },
+  {
+    "name": "util_screen_off",
+    "type": " ",
+    "typeName": "",
+    "spec": "允许屏幕关闭",
+    "color": "#2196F3",
+    "code": "getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);",
+    "palette": "2"
+  },
+  {
+    "name": "util_fullscreen_on",
+    "type": " ",
+    "typeName": "",
+    "spec": "启用全屏",
+    "color": "#2196F3",
+    "code": "getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN, android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);",
+    "palette": "2"
+  },
+  {
+    "name": "util_fullscreen_off",
+    "type": " ",
+    "typeName": "",
+    "spec": "禁用全屏",
+    "color": "#2196F3",
+    "code": "getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);",
+    "palette": "2"
+  },
+  {
+    "name": "util_sleep",
+    "type": " ",
+    "typeName": "",
+    "spec": "延迟 %1$s 毫秒",
+    "color": "#2196F3",
+    "code": "try { Thread.sleep((long)(%1$s)); } catch (InterruptedException e) {}",
+    "palette": "2"
+  },
+  {
+    "name": "util_run_ui",
+    "type": " ",
+    "typeName": "",
+    "spec": "在 UI 线程运行: %1$s",
+    "color": "#2196F3",
+    "code": "runOnUiThread(new Runnable() { public void run() { %1$s } });",
+    "palette": "2"
+  },
+  {
+    "name": "util_get_sdk",
+    "type": "d",
+    "typeName": "double",
+    "spec": "Android SDK 版本",
+    "color": "#2196F3",
+    "code": "(double) android.os.Build.VERSION.SDK_INT",
+    "palette": "2"
+  },
+  {
+    "name": "util_get_device_model",
+    "type": "s",
+    "typeName": "String",
+    "spec": "设备型号",
+    "color": "#2196F3",
+    "code": "android.os.Build.MODEL",
+    "palette": "2"
+  }
+]
