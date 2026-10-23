@@ -76,3 +76,12 @@ javac.*.args
 *.bak2
 /docs/
 block_jsons/BLOCKS_REFERENCE_FULL.html
+
+# Temp scripts and JSON
+*.pyc
+__pycache__/
+block_specs.json
+block_specs_unique.json
+block_translations.csv
+.tmp_*
+*.pyy
