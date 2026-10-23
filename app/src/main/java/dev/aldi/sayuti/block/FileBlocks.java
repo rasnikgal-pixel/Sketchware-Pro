@@ -116,10 +116,12 @@ public final class FileBlocks {
                 COLOR_FUNC, PALETTE_FUNC,
                 "external storage directory"));
 
+        /* TEMP DISABLED (duplicate in ExtraBlocks):
         list.add(blk("fileGetName", "s", "",
                 "FileUtil.getFileNameNoExtension(%1$s)",
                 COLOR_FUNC, PALETTE_FUNC,
                 "file name (no extension) of %s"));
+        */
 
         list.add(blk("fileGetExtension", "s", "",
                 "FileUtil.getFileExtension(%1$s)",
