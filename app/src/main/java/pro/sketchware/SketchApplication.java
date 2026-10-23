@@ -39,6 +39,9 @@ public class SketchApplication extends Application {
         // Применяем сохранённый язык интерфейса (RU/EN/системный)
         pro.sketchware.i18n.LocaleHelper.apply(this);
 
+        // Seed default custom blocks (Layout, Sound, Utils)
+        pro.sketchware.blocks.BlocksSeeder.seedOnStartup(this);
+
         pro.sketchware.smartdrop.DebugLogger.get(this)
                 .i("App", "log_app_started", "");
 
