@@ -38,7 +38,7 @@ public class BlocksHandler {
         dev.aldi.sayuti.block.BatteryBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.RegexBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.AppControlBlocks.addBlocks(arrayList);
-        dev.aldi.sayuti.block.CurrencyBlocks.addBlocks(arrayList);
+        // TEMP DISABLED (duplicate of NewPaletteBlocks): dev.aldi.sayuti.block.CurrencyBlocks.addBlocks(arrayList);
         // TEMP DISABLED (duplicate of NewPaletteBlocks): dev.aldi.sayuti.block.ScienceBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.NewPaletteBlocks.addBlocks(arrayList);
 
@@ -2682,6 +2682,24 @@ public class BlocksHandler {
         hashMap.put("palette", "-1");
         hashMap.put("spec", "get String from %m.ResString");
         arrayList.add(hashMap);
+
+        // Локализация spec — в конце builtInBlocks()
+        try {
+            android.content.Context ctx = pro.sketchware.SketchApplication.getContext();
+            if (ctx != null) {
+                for (HashMap<String, Object> map : arrayList) {
+                    Object nameObj = map.get("name");
+                    if (!(nameObj instanceof String)) continue;
+                    String name = (String) nameObj;
+                    int resId = ctx.getResources().getIdentifier(
+                        "block_" + name + "_spec", "string", ctx.getPackageName());
+                    if (resId != 0) {
+                        map.put("spec", ctx.getString(resId));
+                    }
+                }
+            }
+        } catch (Throwable ignored) {}
+
     }
 
     private static boolean showAll() {
