@@ -3155,7 +3155,7 @@ ACTION_VIEW
     <string name="block_sciZip_spec">zip folder %1$s to %2$s</string>
     <string name="block_sciNetworkType_spec">network type</string>
     <string name="block_sciSetBrightness_spec">set brightness %1$d from %m.activity</string>
-    <string name="block_sciSetVolume_spec">set volume %1$d%%% from %m.context</string>
+    <string name="block_sciSetVolume_spec">set volume %1$d%% from %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive from %m.context</string>
     <string name="block_sciImageWidth_spec">image width of %1$s</string>
     <string name="block_sciImageHeight_spec">image height of %1$s</string>

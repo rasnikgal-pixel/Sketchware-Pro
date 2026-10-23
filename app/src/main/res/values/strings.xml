@@ -3165,7 +3165,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="block_sciZip_spec">zip folder %1$s в %2$s</string>
     <string name="block_sciNetworkType_spec">тип сети</string>
     <string name="block_sciSetBrightness_spec">set brightness %1$d из %m.activity</string>
-    <string name="block_sciSetVolume_spec">set объём %1$d%%% из %m.context</string>
+    <string name="block_sciSetVolume_spec">set объём %1$d%% из %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive из %m.context</string>
     <string name="block_sciImageWidth_spec">ширина изображения %1$s</string>
     <string name="block_sciImageHeight_spec">высота изображения %1$s</string>

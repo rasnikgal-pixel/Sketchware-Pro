@@ -2935,7 +2935,7 @@ ACTION_VIEW
     <string name="block_fileMkdirs_spec">створити директорія %1$s</string>
     <string name="block_fileListDir_spec">list files в %1$s на extension %2$s</string>
     <string name="block_externalStorageDir_spec">зовнішня папка сховища</string>
-    <string name="block_fileGetName_spec">%m.File ім'я</string>
+    <string name="block_fileGetName_spec">%m.File ім\'я</string>
     <string name="block_fileGetExtension_spec">розширення файлу %1$s</string>
     <string name="block_openApp_spec">open додаток на package %1$s</string>
     <string name="block_openSettings_spec">open додаток settings</string>
@@ -2999,7 +2999,7 @@ ACTION_VIEW
     <string name="block_sciConcentration_spec">концентрація C = %1$s / %2$s</string>
     <string name="block_sciSolutionMass_spec">solution маса = %1$s + %2$s</string>
     <string name="block_sciAmount_spec">сума n = %1$s / %2$s</string>
-    <string name="block_sciMolarVolume_spec">molar об'єм V = %1$s * 22.4</string>
+    <string name="block_sciMolarVolume_spec">molar об\'єм V = %1$s * 22.4</string>
     <string name="block_sciVat_spec">ПДВ = %1$s * %2$s / 100</string>
     <string name="block_sciVatIncluded_spec">sum на ПДВ = %1$s * (1 + %2$s/100)</string>
     <string name="block_sciVatExtract_spec">extract ПДВ = %1$s * %2$s / (100 + %3$s)</string>
@@ -3019,14 +3019,14 @@ ACTION_VIEW
     <string name="block_sciColorWithAlpha_spec">alpha %1$d на color %1$s</string>
     <string name="block_sciFormatDateNow_spec">now в формат %1$s</string>
     <string name="block_sciParseDate_spec">parse %1$s на формат %2$s в millis</string>
-    <string name="block_sciGetFileName_spec">ім'я %1$s</string>
+    <string name="block_sciGetFileName_spec">ім\'я %1$s</string>
     <string name="block_sciGetFileExtension_spec">розширення %1$s</string>
     <string name="block_sciRoundTo_spec">round %1$s в %1$d decimals</string>
     <string name="block_sciIsNetworkAvailable_spec">доступно?</string>
     <string name="block_sciHttpGet_spec">HTTP GET %1$s</string>
     <string name="block_sciHttpPost_spec">HTTP POST %1$s дані %2$s</string>
     <string name="block_sciSendEmail_spec">надіслати email в subject body з %m.context</string>
-    <string name="block_sciGetFileNameNoExt_spec">ім'я файлу без розширення %1$s</string>
+    <string name="block_sciGetFileNameNoExt_spec">ім\'я файлу без розширення %1$s</string>
     <string name="block_sciGetFilePath_spec">шлях файлу %1$s</string>
     <string name="block_sciTextDeleteLine_spec">delete line %1$d з %1$s</string>
     <string name="block_sciTextGetLine_spec">get line %1$d з %1$s</string>
@@ -3101,7 +3101,7 @@ ACTION_VIEW
     <string name="block_sciZip_spec">zip folder %1$s в %2$s</string>
     <string name="block_sciNetworkType_spec">тип мережі</string>
     <string name="block_sciSetBrightness_spec">set brightness %1$d з %m.activity</string>
-    <string name="block_sciSetVolume_spec">set об'єм %1$d%%% з %m.context</string>
+    <string name="block_sciSetVolume_spec">set об\'єм %1$d%% з %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive з %m.context</string>
     <string name="block_sciImageWidth_spec">ширина зображення %1$s</string>
     <string name="block_sciImageHeight_spec">висота зображення %1$s</string>
@@ -3199,7 +3199,7 @@ ACTION_VIEW
     <string name="block_sciFlashlightOff_spec">flashlight off з %m.context</string>
     <string name="block_sciKeepScreenOn_spec">keep екран на з %m.activity</string>
     <string name="block_sciAllowScreenOff_spec">allow екран off з %m.activity</string>
-    <string name="block_sciGetVolume_spec">get об'єм з %m.context</string>
+    <string name="block_sciGetVolume_spec">get об\'єм з %m.context</string>
     <string name="block_sciSetSilent_spec">set silent mode з %m.context</string>
     <string name="block_sciSetNormal_spec">set normal mode з %m.context</string>
     <string name="block_sciStartRecording_spec">запустити recording в %1$s</string>
@@ -3384,8 +3384,8 @@ ACTION_VIEW
     <string name="block_sciDbDropTable_spec">БД drop table з %m.context</string>
     <string name="block_sciDbCount_spec">БД кількість rows в з %m.context</string>
     <string name="block_sciDbClear_spec">БД очистити table з %m.context</string>
-    <string name="block_sciMediaVolume_spec">media об'єм з %m.context</string>
-    <string name="block_sciSetMediaVolume_spec">set media об'єм %1$d з %m.context</string>
+    <string name="block_sciMediaVolume_spec">media об\'єм з %m.context</string>
+    <string name="block_sciSetMediaVolume_spec">set media об\'єм %1$d з %m.context</string>
     <string name="block_sciSetRingerSilent_spec">set ringer silent з %m.context</string>
     <string name="block_sciSetRingerVibrate_spec">set ringer vibrate з %m.context</string>
     <string name="block_sciSetRingerNormal_spec">set ringer normal з %m.context</string>
@@ -3444,9 +3444,9 @@ ACTION_VIEW
     <string name="block_sciOsVersion_spec">os версія</string>
     <string name="block_sciArchitecture_spec">архітектура</string>
     <string name="block_sciCores_spec">ядра CPU</string>
-    <string name="block_sciFreeMemory_spec">вільна пам'ять МБ</string>
-    <string name="block_sciTotalMemory_spec">всього пам'яті МБ</string>
-    <string name="block_sciMaxMemory_spec">максимум пам'яті МБ</string>
+    <string name="block_sciFreeMemory_spec">вільна пам\'ять МБ</string>
+    <string name="block_sciTotalMemory_spec">всього пам\'яті МБ</string>
+    <string name="block_sciMaxMemory_spec">максимум пам\'яті МБ</string>
     <string name="block_sciAccelXReal_spec">accelerometer X real з %m.context</string>
     <string name="block_sciAccelYReal_spec">accelerometer Y real з %m.context</string>
     <string name="block_sciAccelZReal_spec">accelerometer Z real з %m.context</string>

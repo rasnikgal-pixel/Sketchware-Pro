@@ -3101,7 +3101,7 @@ ACTION_VIEW
     <string name="block_sciZip_spec">zip folder %1$s 到 %2$s</string>
     <string name="block_sciNetworkType_spec">网络类型</string>
     <string name="block_sciSetBrightness_spec">set brightness %1$d 从 %m.activity</string>
-    <string name="block_sciSetVolume_spec">set 体积 %1$d%%% 从 %m.context</string>
+    <string name="block_sciSetVolume_spec">set 体积 %1$d%% 从 %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive 从 %m.context</string>
     <string name="block_sciImageWidth_spec">图片宽度 %1$s</string>
     <string name="block_sciImageHeight_spec">图片高度 %1$s</string>

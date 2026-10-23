@@ -3101,7 +3101,7 @@ ACTION_VIEW
     <string name="block_sciZip_spec">zip folder %1$s में %2$s</string>
     <string name="block_sciNetworkType_spec">नेटवर्क प्रकार</string>
     <string name="block_sciSetBrightness_spec">set brightness %1$d से %m.activity</string>
-    <string name="block_sciSetVolume_spec">set आयतन %1$d%%% से %m.context</string>
+    <string name="block_sciSetVolume_spec">set आयतन %1$d%% से %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive से %m.context</string>
     <string name="block_sciImageWidth_spec">छवि चौड़ाई %1$s</string>
     <string name="block_sciImageHeight_spec">छवि ऊँचाई %1$s</string>
