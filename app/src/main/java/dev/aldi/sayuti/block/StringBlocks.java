@@ -27,37 +27,37 @@ public final class StringBlocks {
     }
 
     public static void addBlocks(ArrayList<HashMap<String, Object>> list) {
-        list.add(blk("strToUpper", "s", "", "%1$s.toUpperCase()", "%s to uppercase %1$s"));
+        list.add(blk("strToUpper", "s", "", "%1$s.toUpperCase()", "%s to uppercase"));
 
-        list.add(blk("strToLower", "s", "", "%1$s.toLowerCase()", "%s to lowercase %1$s"));
+        list.add(blk("strToLower", "s", "", "%1$s.toLowerCase()", "%s to lowercase"));
 
-        list.add(blk("strTrim", "s", "", "%1$s.trim()", "%s trimmed %1$s"));
+        list.add(blk("strTrim", "s", "", "%1$s.trim()", "%s trimmed"));
 
         list.add(blk("strReplace", "s", "",
-                "%1$s.replace(%2$s, %3$s)", "%1$s replace %2$s with %3$s"));
+                "%1$s.replace(%2$s, %3$s)", "%s replace %s with %s"));
 
         list.add(blk("strSplitGet", "s", "",
                 "((java.util.function.Supplier<String>) () -> { try { String[] _parts = %1$s.split(java.util.regex.Pattern.quote(%2$s)); int _i = (int)(%3$s); return (_i >= 0 && _i < _parts.length) ? _parts[_i] : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
-                "%1$s split by %2$s get item %3$d"));
+                "%s split by %s get item %d"));
 
         list.add(blk("strSplitSize", "d", "",
                 "(double) %1$s.split(java.util.regex.Pattern.quote(%2$s)).length",
-                "%1$s split by %2$s count"));
+                "%s split by %s count"));
 
-        list.add(blk("strLength", "d", "", "(double) %1$s.length()", "length of %s %1$s"));
+        list.add(blk("strLength", "d", "", "(double) %1$s.length()", "length of %s"));
 
         list.add(blk("strContains", "b", "",
-                "%1$s.contains(%2$s)", "%1$s contains %2$s"));
+                "%1$s.contains(%2$s)", "%s contains %s"));
 
         list.add(blk("strStartsWith", "b", "",
-                "%1$s.startsWith(%2$s)", "%1$s starts with %2$s"));
+                "%1$s.startsWith(%2$s)", "%s starts with %s"));
 
         list.add(blk("strEndsWith", "b", "",
-                "%1$s.endsWith(%2$s)", "%1$s ends with %2$s"));
+                "%1$s.endsWith(%2$s)", "%s ends with %s"));
 
         list.add(blk("strIndexOf", "d", "",
-                "(double) %1$s.indexOf(%2$s)", "index of %2$s in %1$s"));
+                "(double) %1$s.indexOf(%2$s)", "index of %s in %s"));
 
-        list.add(blk("strReverse", "s", "", "new StringBuilder(%1$s).reverse().toString()", "%s reversed %1$s"));
+        list.add(blk("strReverse", "s", "", "new StringBuilder(%1$s).reverse().toString()", "%s reversed"));
     }
 }

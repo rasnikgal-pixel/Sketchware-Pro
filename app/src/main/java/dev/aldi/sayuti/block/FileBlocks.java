@@ -54,12 +54,12 @@ public final class FileBlocks {
         list.add(blk("fileWriteText", " ", "",
                 "FileUtil.writeFile(%1$s, %2$s);",
                 COLOR_OP, PALETTE_OP,
-                "write text %2$s to file %1$s"));
+                "write text %s to file %s"));
 
         list.add(blk("fileAppendText", " ", "",
                 "FileUtil.writeFile(%1$s, FileUtil.readFileIfExist(%1$s) + %2$s);",
                 COLOR_OP, PALETTE_OP,
-                "append text %2$s to file %1$s"));
+                "append text %s to file %s"));
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -89,12 +89,12 @@ public final class FileBlocks {
         list.add(blk("fileCopyTo", " ", "",
                 "FileUtil.copyFile(%1$s, %2$s);",
                 COLOR_OP, PALETTE_OP,
-                "copy file %1$s to %2$s"));
+                "copy file %s to %s"));
 
         list.add(blk("fileMoveTo", " ", "",
                 "FileUtil.moveFile(%1$s, %2$s);",
                 COLOR_OP, PALETTE_OP,
-                "move file %1$s to %2$s"));
+                "move file %s to %s"));
 
         list.add(blk("fileMkdirs", " ", "",
                 "FileUtil.makeDir(%1$s);",
