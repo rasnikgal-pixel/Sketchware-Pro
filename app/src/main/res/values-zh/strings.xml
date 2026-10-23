@@ -3007,12 +3007,12 @@ ACTION_VIEW
     <string name="block_sciAddPercent_spec">number + 百分比 = %s * (1 + %s/100)</string>
     <string name="block_sciSubPercent_spec">number - 百分比 = %s * (1 - %s/100)</string>
     <string name="block_sciProfit_spec">利润 = %s - %s</string>
-    <string name="block_sciMargin_spec">保证金 % = (%s - %s) / %s * 100</string>
-    <string name="block_sciMarkup_spec">加价 % = (%s - %s) / %s * 100</string>
+    <string name="block_sciMargin_spec">保证金 %% = (%s - %s) / %s * 100</string>
+    <string name="block_sciMarkup_spec">加价 %% = (%s - %s) / %s * 100</string>
     <string name="block_sciCompound_spec">复利 = %s * (1 + %s/100)^%s</string>
     <string name="block_sciAnnuity_spec">年金付款 = %s * %s / (1 - (1+%s)^-%s)</string>
-    <string name="block_sciUsn6_spec">USN 6% = %s * 6 / 100</string>
-    <string name="block_sciUsn15_spec">USN 15% = (%s - %s) * 15 / 100</string>
+    <string name="block_sciUsn6_spec">USN 6%% = %s * 6 / 100</string>
+    <string name="block_sciUsn15_spec">USN 15%% = (%s - %s) * 15 / 100</string>
     <string name="block_sciIsValidEmail_spec">%s 有效邮箱</string>
     <string name="block_sciIsEmptyString_spec">%s 为空</string>
     <string name="block_sciParseColor_spec">parse %s 到 int</string>
@@ -3101,7 +3101,7 @@ ACTION_VIEW
     <string name="block_sciZip_spec">zip folder %s 到 %s</string>
     <string name="block_sciNetworkType_spec">网络类型</string>
     <string name="block_sciSetBrightness_spec">set brightness %d 从 %m.activity</string>
-    <string name="block_sciSetVolume_spec">set 体积 %d%% 从 %m.context</string>
+    <string name="block_sciSetVolume_spec">set 体积 %d%%% 从 %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive 从 %m.context</string>
     <string name="block_sciImageWidth_spec">图片宽度 %s</string>
     <string name="block_sciImageHeight_spec">图片高度 %s</string>

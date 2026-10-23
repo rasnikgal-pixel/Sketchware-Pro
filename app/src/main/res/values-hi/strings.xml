@@ -3007,12 +3007,12 @@ ACTION_VIEW
     <string name="block_sciAddPercent_spec">number + प्रतिशत = %s * (1 + %s/100)</string>
     <string name="block_sciSubPercent_spec">number - प्रतिशत = %s * (1 - %s/100)</string>
     <string name="block_sciProfit_spec">लाभ = %s - %s</string>
-    <string name="block_sciMargin_spec">मार्जिन % = (%s - %s) / %s * 100</string>
-    <string name="block_sciMarkup_spec">मार्कअप % = (%s - %s) / %s * 100</string>
+    <string name="block_sciMargin_spec">मार्जिन %% = (%s - %s) / %s * 100</string>
+    <string name="block_sciMarkup_spec">मार्कअप %% = (%s - %s) / %s * 100</string>
     <string name="block_sciCompound_spec">चक्रवृद्धि ब्याज = %s * (1 + %s/100)^%s</string>
     <string name="block_sciAnnuity_spec">वार्षिक भुगतान = %s * %s / (1 - (1+%s)^-%s)</string>
-    <string name="block_sciUsn6_spec">USN 6% = %s * 6 / 100</string>
-    <string name="block_sciUsn15_spec">USN 15% = (%s - %s) * 15 / 100</string>
+    <string name="block_sciUsn6_spec">USN 6%% = %s * 6 / 100</string>
+    <string name="block_sciUsn15_spec">USN 15%% = (%s - %s) * 15 / 100</string>
     <string name="block_sciIsValidEmail_spec">%s वैध ईमेल</string>
     <string name="block_sciIsEmptyString_spec">%s खाली है</string>
     <string name="block_sciParseColor_spec">parse %s में int</string>
@@ -3101,7 +3101,7 @@ ACTION_VIEW
     <string name="block_sciZip_spec">zip folder %s में %s</string>
     <string name="block_sciNetworkType_spec">नेटवर्क प्रकार</string>
     <string name="block_sciSetBrightness_spec">set brightness %d से %m.activity</string>
-    <string name="block_sciSetVolume_spec">set आयतन %d%% से %m.context</string>
+    <string name="block_sciSetVolume_spec">set आयतन %d%%% से %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive से %m.context</string>
     <string name="block_sciImageWidth_spec">छवि चौड़ाई %s</string>
     <string name="block_sciImageHeight_spec">छवि ऊँचाई %s</string>

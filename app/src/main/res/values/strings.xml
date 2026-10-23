@@ -3071,12 +3071,12 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="block_sciAddPercent_spec">number + процент = %s * (1 + %s/100)</string>
     <string name="block_sciSubPercent_spec">number - процент = %s * (1 - %s/100)</string>
     <string name="block_sciProfit_spec">прибыль = %s - %s</string>
-    <string name="block_sciMargin_spec">наценка % = (%s - %s) / %s * 100</string>
-    <string name="block_sciMarkup_spec">наценка % = (%s - %s) / %s * 100</string>
+    <string name="block_sciMargin_spec">наценка %% = (%s - %s) / %s * 100</string>
+    <string name="block_sciMarkup_spec">наценка %% = (%s - %s) / %s * 100</string>
     <string name="block_sciCompound_spec">сложный процент = %s * (1 + %s/100)^%s</string>
     <string name="block_sciAnnuity_spec">аннуитетный платёж = %s * %s / (1 - (1+%s)^-%s)</string>
-    <string name="block_sciUsn6_spec">УСН 6% = %s * 6 / 100</string>
-    <string name="block_sciUsn15_spec">УСН 15% = (%s - %s) * 15 / 100</string>
+    <string name="block_sciUsn6_spec">УСН 6%% = %s * 6 / 100</string>
+    <string name="block_sciUsn15_spec">УСН 15%% = (%s - %s) * 15 / 100</string>
     <string name="block_sciIsValidEmail_spec">%s корректный email</string>
     <string name="block_sciIsEmptyString_spec">%s пусто</string>
     <string name="block_sciParseColor_spec">parse %s в int</string>
@@ -3165,7 +3165,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="block_sciZip_spec">zip folder %s в %s</string>
     <string name="block_sciNetworkType_spec">тип сети</string>
     <string name="block_sciSetBrightness_spec">set brightness %d из %m.activity</string>
-    <string name="block_sciSetVolume_spec">set объём %d%% из %m.context</string>
+    <string name="block_sciSetVolume_spec">set объём %d%%% из %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive из %m.context</string>
     <string name="block_sciImageWidth_spec">ширина изображения %s</string>
     <string name="block_sciImageHeight_spec">высота изображения %s</string>
@@ -3786,7 +3786,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="block_clipboardCopy_spec">copy в clipboard text %s</string>
     <string name="block_clipboardPaste_spec">paste из clipboard</string>
     <string name="block_clipboardClear_spec">очистить буфер</string>
-    <string name="block_batteryLevel_spec">уровень батареи %</string>
+    <string name="block_batteryLevel_spec">уровень батареи %%</string>
     <string name="block_isCharging_spec">батарея заряжается</string>
     <string name="block_deviceModel_spec">модель устройства</string>
     <string name="block_androidVersion_spec">версия Android</string>

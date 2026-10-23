@@ -3007,12 +3007,12 @@ ACTION_VIEW
     <string name="block_sciAddPercent_spec">number + відсоток = %s * (1 + %s/100)</string>
     <string name="block_sciSubPercent_spec">number - відсоток = %s * (1 - %s/100)</string>
     <string name="block_sciProfit_spec">прибуток = %s - %s</string>
-    <string name="block_sciMargin_spec">націнка % = (%s - %s) / %s * 100</string>
-    <string name="block_sciMarkup_spec">націнка % = (%s - %s) / %s * 100</string>
+    <string name="block_sciMargin_spec">націнка %% = (%s - %s) / %s * 100</string>
+    <string name="block_sciMarkup_spec">націнка %% = (%s - %s) / %s * 100</string>
     <string name="block_sciCompound_spec">складний відсоток = %s * (1 + %s/100)^%s</string>
     <string name="block_sciAnnuity_spec">ануїтетний платіж = %s * %s / (1 - (1+%s)^-%s)</string>
-    <string name="block_sciUsn6_spec">УСН 6% = %s * 6 / 100</string>
-    <string name="block_sciUsn15_spec">УСН 15% = (%s - %s) * 15 / 100</string>
+    <string name="block_sciUsn6_spec">УСН 6%% = %s * 6 / 100</string>
+    <string name="block_sciUsn15_spec">УСН 15%% = (%s - %s) * 15 / 100</string>
     <string name="block_sciIsValidEmail_spec">%s коректний email</string>
     <string name="block_sciIsEmptyString_spec">%s порожньо</string>
     <string name="block_sciParseColor_spec">parse %s в int</string>
@@ -3101,7 +3101,7 @@ ACTION_VIEW
     <string name="block_sciZip_spec">zip folder %s в %s</string>
     <string name="block_sciNetworkType_spec">тип мережі</string>
     <string name="block_sciSetBrightness_spec">set brightness %d з %m.activity</string>
-    <string name="block_sciSetVolume_spec">set об'єм %d%% з %m.context</string>
+    <string name="block_sciSetVolume_spec">set об'єм %d%%% з %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive з %m.context</string>
     <string name="block_sciImageWidth_spec">ширина зображення %s</string>
     <string name="block_sciImageHeight_spec">висота зображення %s</string>
@@ -3722,7 +3722,7 @@ ACTION_VIEW
     <string name="block_clipboardCopy_spec">copy в clipboard text %s</string>
     <string name="block_clipboardPaste_spec">paste з clipboard</string>
     <string name="block_clipboardClear_spec">очистити буфер</string>
-    <string name="block_batteryLevel_spec">рівень батареї %</string>
+    <string name="block_batteryLevel_spec">рівень батареї %%</string>
     <string name="block_isCharging_spec">батарея заряджається</string>
     <string name="block_deviceModel_spec">модель пристрою</string>
     <string name="block_androidVersion_spec">версія Android</string>

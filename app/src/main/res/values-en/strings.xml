@@ -3061,12 +3061,12 @@ ACTION_VIEW
     <string name="block_sciAddPercent_spec">number + percent = %s * (1 + %s/100)</string>
     <string name="block_sciSubPercent_spec">number - percent = %s * (1 - %s/100)</string>
     <string name="block_sciProfit_spec">profit = %s - %s</string>
-    <string name="block_sciMargin_spec">margin % = (%s - %s) / %s * 100</string>
-    <string name="block_sciMarkup_spec">markup % = (%s - %s) / %s * 100</string>
+    <string name="block_sciMargin_spec">margin %% = (%s - %s) / %s * 100</string>
+    <string name="block_sciMarkup_spec">markup %% = (%s - %s) / %s * 100</string>
     <string name="block_sciCompound_spec">compound interest = %s * (1 + %s/100)^%s</string>
     <string name="block_sciAnnuity_spec">annuity payment = %s * %s / (1 - (1+%s)^-%s)</string>
-    <string name="block_sciUsn6_spec">USN 6% = %s * 6 / 100</string>
-    <string name="block_sciUsn15_spec">USN 15% = (%s - %s) * 15 / 100</string>
+    <string name="block_sciUsn6_spec">USN 6%% = %s * 6 / 100</string>
+    <string name="block_sciUsn15_spec">USN 15%% = (%s - %s) * 15 / 100</string>
     <string name="block_sciIsValidEmail_spec">%s is valid email</string>
     <string name="block_sciIsEmptyString_spec">%s is empty</string>
     <string name="block_sciParseColor_spec">parse %s to int</string>
@@ -3155,7 +3155,7 @@ ACTION_VIEW
     <string name="block_sciZip_spec">zip folder %s to %s</string>
     <string name="block_sciNetworkType_spec">network type</string>
     <string name="block_sciSetBrightness_spec">set brightness %d from %m.activity</string>
-    <string name="block_sciSetVolume_spec">set volume %d%% from %m.context</string>
+    <string name="block_sciSetVolume_spec">set volume %d%%% from %m.context</string>
     <string name="block_sciOpenArchive_spec">open archive from %m.context</string>
     <string name="block_sciImageWidth_spec">image width of %s</string>
     <string name="block_sciImageHeight_spec">image height of %s</string>
