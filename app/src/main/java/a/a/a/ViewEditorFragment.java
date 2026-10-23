@@ -554,6 +554,18 @@ public class ViewEditorFragment extends qA {
             invalidateOptionsMenu();
         });
         viewProperty.setOnPropertyDeleted(viewBean -> {
+            try {
+                java.util.ArrayList<com.besome.sketch.beans.EventBean> evts =
+                        jC.a(sc_id).g(projectFileBean.getJavaName());
+                if (evts != null && viewBean != null && viewBean.id != null) {
+                    for (int i = evts.size() - 1; i >= 0; i--) {
+                        com.besome.sketch.beans.EventBean e = evts.get(i);
+                        if (viewBean.id.equals(e.targetId)) {
+                            evts.remove(i);
+                        }
+                    }
+                }
+            } catch (Throwable ignored) {}
             viewEditor.deleteWidget(viewBean);
             if (requireActivity() instanceof DesignActivity designActivity) {
                 designActivity.hideViewPropertyView();
