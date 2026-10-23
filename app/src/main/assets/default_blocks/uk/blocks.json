@@ -6,7 +6,7 @@
     "spec": "Відкрити екран %1$s",
     "color": "#FF6B35",
     "code": "startActivity(new android.content.Intent(this, %1$s.class));",
-    "palette": "0"
+    "palette": "9"
   },
   {
     "name": "layout_close_activity",
@@ -15,7 +15,7 @@
     "spec": "Закрити поточний екран",
     "color": "#FF6B35",
     "code": "finish();",
-    "palette": "0"
+    "palette": "9"
   },
   {
     "name": "layout_set_content",
@@ -24,7 +24,7 @@
     "spec": "Підключити макет %1$s до екрану",
     "color": "#FF6B35",
     "code": "setContentView(pro.sketchware.R.layout.%1$s);",
-    "palette": "0"
+    "palette": "9"
   },
   {
     "name": "layout_get_name",
@@ -33,7 +33,7 @@
     "spec": "Ім'я поточного екрану",
     "color": "#FF6B35",
     "code": "getClass().getSimpleName()",
-    "palette": "0"
+    "palette": "9"
   },
   {
     "name": "layout_finish_affinity",
@@ -42,7 +42,7 @@
     "spec": "Закрити всі екрани додатку",
     "color": "#FF6B35",
     "code": "finishAffinity();",
-    "palette": "0"
+    "palette": "9"
   },
   {
     "name": "snd_vibrate",
@@ -51,7 +51,7 @@
     "spec": "Вібрація %1$s мс",
     "color": "#9C27B0",
     "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate((long)(%1$s));",
-    "palette": "1"
+    "palette": "10"
   },
   {
     "name": "snd_vibrate_pattern",
@@ -60,7 +60,7 @@
     "spec": "Вібрація патерн %1$s",
     "color": "#9C27B0",
     "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).vibrate(new long[]{%1$s}, -1);",
-    "palette": "1"
+    "palette": "10"
   },
   {
     "name": "snd_vibrate_cancel",
@@ -69,7 +69,7 @@
     "spec": "Зупинити вібрацію",
     "color": "#9C27B0",
     "code": "((android.os.Vibrator) getSystemService(android.content.Context.VIBRATOR_SERVICE)).cancel();",
-    "palette": "1"
+    "palette": "10"
   },
   {
     "name": "snd_play_raw",
@@ -78,7 +78,7 @@
     "spec": "Грати мелодію з R.raw.%1$s",
     "color": "#9C27B0",
     "code": "android.media.MediaPlayer.create(this, R.raw.%1$s).start();",
-    "palette": "1"
+    "palette": "10"
   },
   {
     "name": "snd_play_asset",
@@ -87,7 +87,7 @@
     "spec": "Грати мелодію з assets: %1$s",
     "color": "#9C27B0",
     "code": "try { android.media.MediaPlayer mp = new android.media.MediaPlayer(); mp.setDataSource(getAssets().openFd(\"%1$s\").getFileDescriptor()); mp.prepare(); mp.start(); } catch (Exception e) {}",
-    "palette": "1"
+    "palette": "10"
   },
   {
     "name": "snd_play_raw_loop",
@@ -96,7 +96,7 @@
     "spec": "Грати мелодію %1$s по колу",
     "color": "#9C27B0",
     "code": "android.media.MediaPlayer _mp = android.media.MediaPlayer.create(this, R.raw.%1$s); _mp.setLooping(true); _mp.start();",
-    "palette": "1"
+    "palette": "10"
   },
   {
     "name": "snd_stop_all",
@@ -105,7 +105,7 @@
     "spec": "Зупинити всі звуки",
     "color": "#9C27B0",
     "code": "android.media.AudioManager am = (android.media.AudioManager) getSystemService(android.content.Context.AUDIO_SERVICE); am.abandonAudioFocus(null);",
-    "palette": "1"
+    "palette": "10"
   },
   {
     "name": "util_toast_long",
@@ -114,7 +114,7 @@
     "spec": "Показати довгий Toast %1$s",
     "color": "#2196F3",
     "code": "android.widget.Toast.makeText(getApplicationContext(), %1$s, android.widget.Toast.LENGTH_LONG).show();",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_copy_clipboard",
@@ -123,7 +123,7 @@
     "spec": "Скопіювати в буфер: %1$s",
     "color": "#2196F3",
     "code": "((android.content.ClipboardManager) getSystemService(android.content.Context.CLIPBOARD_SERVICE)).setText(%1$s);",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_open_url",
@@ -132,7 +132,7 @@
     "spec": "Відкрити посилання %1$s",
     "color": "#2196F3",
     "code": "startActivity(new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(%1$s)));",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_open_app",
@@ -141,7 +141,7 @@
     "spec": "Відкрити додаток %1$s",
     "color": "#2196F3",
     "code": "android.content.Intent _i = getPackageManager().getLaunchIntentForPackage(%1$s); if (_i != null) startActivity(_i);",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_screen_on",
@@ -150,7 +150,7 @@
     "spec": "Не гасити екран",
     "color": "#2196F3",
     "code": "getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_screen_off",
@@ -159,7 +159,7 @@
     "spec": "Дозволити гасити екран",
     "color": "#2196F3",
     "code": "getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_fullscreen_on",
@@ -168,7 +168,7 @@
     "spec": "Увімкнути повноекранний режим",
     "color": "#2196F3",
     "code": "getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN, android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_fullscreen_off",
@@ -177,7 +177,7 @@
     "spec": "Вимкнути повноекранний режим",
     "color": "#2196F3",
     "code": "getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_sleep",
@@ -186,7 +186,7 @@
     "spec": "Затримка %1$s мс",
     "color": "#2196F3",
     "code": "try { Thread.sleep((long)(%1$s)); } catch (InterruptedException e) {}",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_run_ui",
@@ -195,7 +195,7 @@
     "spec": "Виконати в UI-потоці: %1$s",
     "color": "#2196F3",
     "code": "runOnUiThread(new Runnable() { public void run() { %1$s } });",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_get_sdk",
@@ -204,7 +204,7 @@
     "spec": "Версія Android (SDK)",
     "color": "#2196F3",
     "code": "(double) android.os.Build.VERSION.SDK_INT",
-    "palette": "2"
+    "palette": "11"
   },
   {
     "name": "util_get_device_model",
@@ -213,6 +213,6 @@
     "spec": "Модель пристрою",
     "color": "#2196F3",
     "code": "android.os.Build.MODEL",
-    "palette": "2"
+    "palette": "11"
   }
 ]
