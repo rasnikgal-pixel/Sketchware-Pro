@@ -18,15 +18,15 @@ public class BlocksHandler {
 
     public static void builtInBlocks(ArrayList<HashMap<String, Object>> arrayList) {
         ExtraBlocks.extraBlocks(arrayList);
-        dev.aldi.sayuti.block.SecurityBlocks.addBlocks(arrayList);
+// TEMP DISABLED:         dev.aldi.sayuti.block.SecurityBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.UtilityBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.NetworkBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.BitmapBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.FileBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.IntentBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.StringBlocks.addBlocks(arrayList);
-        dev.aldi.sayuti.block.ListBlocks.addBlocks(arrayList);
-        dev.aldi.sayuti.block.MathBlocks.addBlocks(arrayList);
+// TEMP DISABLED:         dev.aldi.sayuti.block.ListBlocks.addBlocks(arrayList);
+// TEMP DISABLED:         dev.aldi.sayuti.block.MathBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.ColorBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.SystemInfoBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.CryptoBlocks.addBlocks(arrayList);
@@ -38,7 +38,7 @@ public class BlocksHandler {
         dev.aldi.sayuti.block.BatteryBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.RegexBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.AppControlBlocks.addBlocks(arrayList);
-        dev.aldi.sayuti.block.CurrencyBlocks.addBlocks(arrayList);
+// TEMP DISABLED:         dev.aldi.sayuti.block.CurrencyBlocks.addBlocks(arrayList);
 // TEMP DISABLED:         dev.aldi.sayuti.block.ScienceBlocks.addBlocks(arrayList);
         dev.aldi.sayuti.block.NewPaletteBlocks.addBlocks(arrayList);
 
