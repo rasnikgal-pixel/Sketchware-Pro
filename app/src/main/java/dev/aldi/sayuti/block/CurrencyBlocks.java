@@ -33,26 +33,26 @@ public final class CurrencyBlocks {
     public static void addBlocks(ArrayList<HashMap<String, Object>> list) {
         list.add(blk("currencyMoneyToStrRU", "s", "",
                 moneyBlock("ru", "RU", "0,00 \u20BD"),
-                "🇷🇺 Russia: money %1$s"));
+                "🇷🇺 Russia: money %s"));
 
         list.add(blk("currencyMoneyToStrUA", "s", "",
                 moneyBlock("uk", "UA", "0,00 \u20B4"),
-                "🇺🇦 Ukraine: money %1$s"));
+                "🇺🇦 Ukraine: money %s"));
 
         list.add(blk("currencyMoneyToStrGB", "s", "",
                 moneyBlock("en", "GB", "0.00 \u00A3"),
-                "🇬🇧 UK: money %1$s"));
+                "🇬🇧 UK: money %s"));
 
         list.add(blk("currencyMoneyToStrUS", "s", "",
                 moneyBlock("en", "US", "$0.00"),
-                "🇺🇸 USA: money %1$s"));
+                "🇺🇸 USA: money %s"));
 
         list.add(blk("currencyMoneyToStrCN", "s", "",
                 moneyBlock("zh", "CN", "0.00 \u00A5"),
-                "🇨🇳 China: money %1$s"));
+                "🇨🇳 China: money %s"));
 
         list.add(blk("currencyMoneyToStrIN", "s", "",
                 moneyBlock("hi", "IN", "0.00 \u20B9"),
-                "🇮🇳 India: money %1$s"));
+                "🇮🇳 India: money %s"));
     }
 }

@@ -728,12 +728,12 @@ public final class NewPaletteBlocks {
         list.add(blk("sciFileIsFile2", "b", "", "new java.io.File(%1$s).isFile()", "file %s is file", "8", "#5D4037"));
         list.add(blk("sciFileIsHidden3", "b", "", "new java.io.File(%1$s).isHidden()", "file %s is hidden", "8", "#5D4037"));
         list.add(blk("sciFileCreate", "b", "", "((new Object() { public boolean f() { try { return new java.io.File(%1$s).createNewFile(); } catch (Throwable _t) { return false; } } }).f())", "create file %s", "8", "#5D4037"));
-        list.add(blk("currencyMoneyToStrRU", "s", "", moneyBlock("ru", "RU", "0,00 \u20BD"), "🇷🇺 Russia: money %1$s", "36", "#2E7D32"));
-        list.add(blk("currencyMoneyToStrUA", "s", "", moneyBlock("uk", "UA", "0,00 \u20B4"), "🇺🇦 Ukraine: money %1$s", "36", "#2E7D32"));
-        list.add(blk("currencyMoneyToStrGB", "s", "", moneyBlock("en", "GB", "0.00 \u00A3"), "🇬🇧 UK: money %1$s", "36", "#2E7D32"));
-        list.add(blk("currencyMoneyToStrUS", "s", "", moneyBlock("en", "US", "$0.00"), "🇺🇸 USA: money %1$s", "36", "#2E7D32"));
-        list.add(blk("currencyMoneyToStrCN", "s", "", moneyBlock("zh", "CN", "0.00 \u00A5"), "🇨🇳 China: money %1$s", "36", "#2E7D32"));
-        list.add(blk("currencyMoneyToStrIN", "s", "", moneyBlock("hi", "IN", "0.00 \u20B9"), "🇮🇳 India: money %1$s", "36", "#2E7D32"));
+        list.add(blk("currencyMoneyToStrRU", "s", "", moneyBlock("ru", "RU", "0,00 \u20BD"), "🇷🇺 Russia: money %s", "36", "#2E7D32"));
+        list.add(blk("currencyMoneyToStrUA", "s", "", moneyBlock("uk", "UA", "0,00 \u20B4"), "🇺🇦 Ukraine: money %s", "36", "#2E7D32"));
+        list.add(blk("currencyMoneyToStrGB", "s", "", moneyBlock("en", "GB", "0.00 \u00A3"), "🇬🇧 UK: money %s", "36", "#2E7D32"));
+        list.add(blk("currencyMoneyToStrUS", "s", "", moneyBlock("en", "US", "$0.00"), "🇺🇸 USA: money %s", "36", "#2E7D32"));
+        list.add(blk("currencyMoneyToStrCN", "s", "", moneyBlock("zh", "CN", "0.00 \u00A5"), "🇨🇳 China: money %s", "36", "#2E7D32"));
+        list.add(blk("currencyMoneyToStrIN", "s", "", moneyBlock("hi", "IN", "0.00 \u20B9"), "🇮🇳 India: money %s", "36", "#2E7D32"));
         list.add(blk("mathClamp", "d", "", "Math.max(%2$s, Math.min(%3$s, %1$s))", "clamp %s between %s and %s", "35", "#4A6CD4"));
         list.add(blk("mathLerp", "d", "", "(%2$s + (%3$s - %2$s) * %1$s)", "lerp %s from %s to %s", "35", "#4A6CD4"));
         list.add(blk("mathDistance2d", "d", "", "Math.hypot(%3$s - %1$s, %4$s - %2$s)", "distance between (%s, %s) and (%s, %s)", "35", "#4A6CD4"));
