@@ -56,7 +56,7 @@ public final class StringBlocks {
                 "%1$s.endsWith(%2$s)", "%s ends with %s"));
 
         list.add(blk("strIndexOf", "d", "",
-                "(double) %1$s.indexOf(%2$s)", "index of %2$s in %1$s"));
+                "(double) %1$s.indexOf(%2$s)", "index of %s in %s"));
 
         list.add(blk("strReverse", "s", "", "new StringBuilder(%1$s).reverse().toString()", "%s reversed %s"));
     }

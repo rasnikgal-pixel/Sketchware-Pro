@@ -131,7 +131,7 @@ public final class ScienceBlocks {
 
         list.add(blk("sciVatExtract", "d", "",
                 "(double)((double)(%1$s * %2$s / (100.0 + %2$s)))",
-                "extract VAT = %1$s * %2$s / (100 + %2$s)"));
+                "extract VAT = %s * %s / (100 + )"));
 
         list.add(blk("sciPercent", "d", "",
                 "(double)((double)(%1$s * %2$s / 100.0))",
@@ -151,11 +151,11 @@ public final class ScienceBlocks {
 
         list.add(blk("sciMargin", "d", "",
                 "(double)((double)((%1$s - %2$s) / %1$s * 100.0))",
-                "margin % = (%1$s - %2$s) / %1$s * 100"));
+                "margin % = (%s - %s) /  * 100"));
 
         list.add(blk("sciMarkup", "d", "",
                 "(double)((double)((%1$s - %2$s) / %2$s * 100.0))",
-                "markup % = (%1$s - %2$s) / %2$s * 100"));
+                "markup % = (%s - %s) /  * 100"));
 
         list.add(blk("sciCompound", "d", "",
                 "(double)((double)(%1$s * Math.pow(1.0 + %2$s / 100.0, %3$s)))",
@@ -163,7 +163,7 @@ public final class ScienceBlocks {
 
         list.add(blk("sciAnnuity", "d", "",
                 "(double)((double)(%1$s * (%2$s / 100.0) / (1.0 - Math.pow(1.0 + %2$s / 100.0, -%3$s))))",
-                "annuity payment = %1$s * %2$s / (1 - (1+%2$s)^-%3$s)"));
+                "annuity payment = %s * %s / (1 - (1+)^-%s)"));
 
         list.add(blk("sciUsn6", "d", "",
                 "(double)((double)(%1$s * 6.0 / 100.0))",
@@ -256,12 +256,12 @@ public final class ScienceBlocks {
         // 📝 Text: удалить строку по номеру
         list.add(blk("sciTextDeleteLine", " ", "",
                 "((new Object() { public void f() { try { String[] _l = %1$s.split(\"\\n\", -1); StringBuilder _sb = new StringBuilder(); for (int _i = 0; _i < _l.length; _i++) { if (_i != (int)(%2$s) - 1) { _sb.append(_l[_i]).append(\"\\n\"); } } %1$s = _sb.toString().trim(); } catch (Throwable _t) {} } }).f());",
-                "delete line %2$d from %1$s"));
+                "delete line %d from %s"));
 
         // 📝 Text: получить текст строки по номеру
         list.add(blk("sciTextGetLine", "d", "",
                 "((new Object() { public String f() { try { String[] _l = %1$s.split(\"\\n\", -1); int _n = (int)(%2$s) - 1; return (_n >= 0 && _n < _l.length) ? _l[_n] : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "get line %2$d from %1$s"));
+                "get line %d from %s"));
 
         // 📝 Text: очистить текст
         list.add(blk("sciTextClear", " ", "",
@@ -291,7 +291,7 @@ public final class ScienceBlocks {
         // 📝 Text: длина строки по номеру
         list.add(blk("sciTextLineLength", "d", "",
                 "((new Object() { public double f() { try { String[] _l = %1$s.split(\"\\n\", -1); int _n = (int)(%2$s) - 1; return (_n >= 0 && _n < _l.length) ? (double)_l[_n].length() : 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
-                "line %2$d length of %1$s"));
+                "line %d length of %s"));
 
         // 📝 Text: реверс строк
         list.add(blk("sciTextReverseLines", "d", "",
@@ -301,7 +301,7 @@ public final class ScienceBlocks {
         // 📝 Text: символ по индексу
         list.add(blk("sciTextCharAt", "d", "",
                 "((new Object() { public String f() { try { int _i = (int)(%2$s); return (_i >= 0 && _i < %1$s.length()) ? String.valueOf(%1$s.charAt(_i)) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "char at %2$d of %1$s"));
+                "char at %d of %s"));
 
         // 📝 Text: пустой ли текст
         list.add(blk("sciTextIsEmpty", "b", "",
@@ -321,7 +321,7 @@ public final class ScienceBlocks {
         // 📝 Text: подстрока с индекса
         list.add(blk("sciTextSubstring", "d", "",
                 "((new Object() { public String f() { try { int _s = (int)(%2$s); return (_s >= 0 && _s < %1$s.length()) ? %1$s.substring(_s) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "substring from %2$d of %1$s"));
+                "substring from %d of %s"));
 
         // 📝 Text: капитализация слов
         list.add(blk("sciTextCapitalize", "d", "",
@@ -346,7 +346,7 @@ public final class ScienceBlocks {
         // 📝 Text: установить подсказку (hint) для поля
         list.add(blk("sciTextSetHint", " ", "",
                 "%1$s.setHint(%2$s);",
-                "set hint %2$s on %1$s"));
+                "set hint %s on %s"));
 
         // 🛡️ Security: MD5
         list.add(blk("sciMd5", "d", "",
@@ -431,7 +431,7 @@ public final class ScienceBlocks {
         // 📋 List: найти индекс элемента
         list.add(blk("sciListIndexOf", "d", "",
                 "(double)(%1$s.indexOf(%2$s))",
-                "index of %2$s in %1$s"));
+                "index of %s in %s"));
 
         // 📋 List: создать копию списка
         list.add(blk("sciListCopy", " ", "",
@@ -446,7 +446,7 @@ public final class ScienceBlocks {
         // 📦 JSON: получить значение по ключу (из строки JSON)
         list.add(blk("sciJsonGet", "d", "",
                 "((new Object() { public String f() { try { org.json.JSONObject _o = new org.json.JSONObject(%1$s); return _o.optString(%2$s, \"\"); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "json get %2$s from %1$s"));
+                "json get %s from %s"));
 
         // 📦 JSON: создать строку JSON из ключа и значения
         list.add(blk("sciJsonCreate", "d", "",
@@ -466,12 +466,12 @@ public final class ScienceBlocks {
         // 🗄️ SQLite: выполнить запрос (INSERT/UPDATE/DELETE)
         list.add(blk("sciSqliteExec", " ", "",
                 "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(%3$s); _db.close(); } catch (Throwable _t) {} } }).f());",
-                "sqlite exec %3$s in %1$s"));
+                "sqlite exec %s in %s"));
 
         // 🗄️ SQLite: запрос SELECT (возвращает курсор в виде строки)
         list.add(blk("sciSqliteQuery", "d", "",
                 "((new Object() { public String f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.database.Cursor _c = _db.rawQuery(%3$s, null); StringBuilder _sb = new StringBuilder(); while (_c.moveToNext()) { for (int _i = 0; _i < _c.getColumnCount(); _i++) { _sb.append(_c.getString(_i)).append(\" | \"); } _sb.append(\"\\n\"); } _c.close(); _db.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "sqlite query %3$s in %1$s"));
+                "sqlite query %s in %s"));
 
         // 🎲 Random: случайное целое от min до max
         list.add(blk("sciRandomInt", "d", "",
@@ -496,7 +496,7 @@ public final class ScienceBlocks {
         // 🔔 Notification: показать системное уведомление
         list.add(blk("sciShowNotification", " ", "",
                 "((new Object() { public void f() { try { androidx.core.app.NotificationCompat.Builder _b = new androidx.core.app.NotificationCompat.Builder(%1$s, \"default\").setSmallIcon(android.R.drawable.ic_dialog_info).setContentTitle(%2$s).setContentText(%3$s).setAutoCancel(true); androidx.core.app.NotificationManagerCompat.from(%1$s).notify((int)System.currentTimeMillis(), _b.build()); } catch (Throwable _t) {} } }).f());",
-                "show notification %2$s %3$s from %m.context"));
+                "show notification %s %s from %m.context"));
 
         // 📱 Intent: открыть ссылку в браузере
         list.add(blk("sciOpenUrl", " ", "",
@@ -531,7 +531,7 @@ public final class ScienceBlocks {
         // 📁 File: записать текст в файл
         list.add(blk("sciFileWrite", " ", "",
                 "((new Object() { public void f() { try { java.io.FileWriter _w = new java.io.FileWriter(%1$s); _w.write(%2$s); _w.close(); } catch (Throwable _t) {} } }).f());",
-                "write %2$s to file %1$s"));
+                "write %s to file %s"));
 
         // 📁 File: проверить существование файла
         list.add(blk("sciFileExists", "b", "",
@@ -571,7 +571,7 @@ public final class ScienceBlocks {
         // 📊 Progress: установить прогресс (0-100)
         list.add(blk("sciSetProgress", " ", "",
                 "%1$s.setProgress((int)(%2$s));",
-                "set progress %2$d on %1$s"));
+                "set progress %d on %s"));
 
         // 📊 Progress: показать/скрыть прогресс-бар
         list.add(blk("sciSetProgressVisible", " ", "",
@@ -656,7 +656,7 @@ public final class ScienceBlocks {
         // 📅 Date: добавить дни к дате (dd.MM.yyyy)
         list.add(blk("sciAddDays", "d", "",
                 "((new Object() { public String f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); _c.add(java.util.Calendar.DAY_OF_MONTH, (int)(%2$s)); return _fmt.format(_c.getTime()); } catch (Throwable _t) { return %1$s; } } }).f())",
-                "add %2$d days to %1$s"));
+                "add %d days to %s"));
 
         // 📅 Date: день недели (1-7)
         list.add(blk("sciDayOfWeek", "d", "",
@@ -676,7 +676,7 @@ public final class ScienceBlocks {
         // 🎨 UI: установить цвет фона
         list.add(blk("sciSetBackgroundColor", " ", "",
                 "%1$s.setBackgroundColor((int)(%2$s));",
-                "set background color %2$d on %1$s"));
+                "set background color %d on %s"));
 
         // 🎨 UI: установить отступы (padding)
         list.add(blk("sciSetPadding", " ", "",
@@ -686,42 +686,42 @@ public final class ScienceBlocks {
         // 🎨 UI: установить поворот
         list.add(blk("sciSetRotation", " ", "",
                 "%1$s.setRotation((float)(%2$s));",
-                "set rotation %2$s on %1$s"));
+                "set rotation %s on %s"));
 
         // 🎨 UI: установить масштаб по X
         list.add(blk("sciSetScaleX", " ", "",
                 "%1$s.setScaleX((float)(%2$s));",
-                "set scaleX %2$s on %1$s"));
+                "set scaleX %s on %s"));
 
         // 🎨 UI: установить масштаб по Y
         list.add(blk("sciSetScaleY", " ", "",
                 "%1$s.setScaleY((float)(%2$s));",
-                "set scaleY %2$s on %1$s"));
+                "set scaleY %s on %s"));
 
         // 🎨 UI: установить тень (elevation)
         list.add(blk("sciSetElevation", " ", "",
                 "%1$s.setElevation((float)(%2$s));",
-                "set elevation %2$s on %1$s"));
+                "set elevation %s on %s"));
 
         // 🎨 UI: включить/выключить виджет
         list.add(blk("sciSetEnabled", " ", "",
                 "%1$s.setEnabled(%2$s);",
-                "set enabled %2$b on %1$s"));
+                "set enabled %b on %s"));
 
         // 🎨 UI: сделать кликабельным
         list.add(blk("sciSetClickable", " ", "",
                 "%1$s.setClickable(%2$s);",
-                "set clickable %2$b on %1$s"));
+                "set clickable %b on %s"));
 
         // 🎨 UI: сделать фокусируемым
         list.add(blk("sciSetFocusable", " ", "",
                 "%1$s.setFocusable(%2$s);",
-                "set focusable %2$b on %1$s"));
+                "set focusable %b on %s"));
 
         // 🎨 UI: установить подсказку (для EditText)
         list.add(blk("sciSetHintText", " ", "",
                 "%1$s.setHint(%2$s);",
-                "set hint %2$s on %1$s"));
+                "set hint %s on %s"));
 
         // 📋 List: получить подсписок (с index по index)
         list.add(blk("sciListSubList", "d", "",
@@ -741,7 +741,7 @@ public final class ScienceBlocks {
         // 📋 List: бинарный поиск (предполагает сортировку)
         list.add(blk("sciListBinarySearch", "d", "",
                 "(double) java.util.Collections.binarySearch(%1$s, %2$s)",
-                "binary search %2$s in %1$s"));
+                "binary search %s in %s"));
 
         // 📋 List: максимальный элемент
         list.add(blk("sciListMax", "d", "",
@@ -761,27 +761,27 @@ public final class ScienceBlocks {
         // 📋 List: удалить элемент по значению
         list.add(blk("sciListRemoveValue", " ", "",
                 "((new Object() { public void f() { try { %1$s.remove(%2$s); } catch (Throwable _t) {} } }).f());",
-                "remove %2$s from %1$s"));
+                "remove %s from %s"));
 
         // 📋 List: удалить элемент по индексу
         list.add(blk("sciListRemoveIndex", " ", "",
                 "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i < %1$s.size()) %1$s.remove(_i); } catch (Throwable _t) {} } }).f());",
-                "remove index %2$d from %1$s"));
+                "remove index %d from %s"));
 
         // 📋 List: вставить элемент по индексу
         list.add(blk("sciListInsert", " ", "",
                 "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i <= %1$s.size()) %1$s.add(_i, %3$s); } catch (Throwable _t) {} } }).f());",
-                "insert %3$s at %2$d in %1$s"));
+                "insert %s at %d in %s"));
 
         // 📋 List: заменить элемент по индексу
         list.add(blk("sciListSet", " ", "",
                 "((new Object() { public void f() { try { int _i = (int)(%2$s); if (_i >= 0 && _i < %1$s.size()) %1$s.set(_i, %3$s); } catch (Throwable _t) {} } }).f());",
-                "set %3$s at %2$d in %1$s"));
+                "set %s at %d in %s"));
 
         // 📋 List: получить элемент по индексу
         list.add(blk("sciListGet", "d", "",
                 "((new Object() { public String f() { try { int _i = (int)(%2$s); return (_i >= 0 && _i < %1$s.size()) ? String.valueOf(%1$s.get(_i)) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "get %2$d from %1$s"));
+                "get %d from %s"));
 
         // 📋 List: размер списка (число)
         list.add(blk("sciListSizeNum", "d", "",
@@ -806,7 +806,7 @@ public final class ScienceBlocks {
         // 📋 List: удалить все вхождения значения
         list.add(blk("sciListRemoveAll", " ", "",
                 "((new Object() { public void f() { try { java.util.ArrayList _tmp = new java.util.ArrayList(); for (Object _o : %1$s) { if (_o == null || !_o.equals(%2$s)) _tmp.add(_o); } %1$s.clear(); %1$s.addAll(_tmp); } catch (Throwable _t) {} } }).f());",
-                "remove all %2$s from %1$s"));
+                "remove all %s from %s"));
 
         // 📋 List: оставить только уникальные (по строке)
         list.add(blk("sciListDistinctStr", " ", "",
@@ -821,12 +821,12 @@ public final class ScienceBlocks {
         // 📋 List: найти первый индекс с подстрокой
         list.add(blk("sciListFindContains", "d", "",
                 "((new Object() { public double f() { try { for (int _i = 0; _i < %1$s.size(); _i++) { if (String.valueOf(%1$s.get(_i)).contains(%2$s)) return (double)_i; } return -1.0; } catch (Throwable _t) { return -1.0; } } }).f())",
-                "find %2$s in %1$s"));
+                "find %s in %s"));
 
         // 📋 List: создать список из строки (разделитель)
         list.add(blk("sciListFromString", " ", "",
                 "((new Object() { public void f() { try { %2$s.clear(); for (String _s : %1$s.split(%3$s)) %2$s.add(_s); } catch (Throwable _t) {} } }).f());",
-                "split %1$s by %3$s into %2$s"));
+                "split %s by %s into %s"));
 
         // 📋 List: обратная сортировка
         list.add(blk("sciListSortDesc", " ", "",
@@ -836,12 +836,12 @@ public final class ScienceBlocks {
         // 📋 List: первый индекс (поиск)
         list.add(blk("sciListFirstIndex", "d", "",
                 "(double)(%1$s.indexOf(%2$s))",
-                "first index of %2$s in %1$s"));
+                "first index of %s in %s"));
 
         // 📋 List: последний индекс
         list.add(blk("sciListLastIndex", "d", "",
                 "(double)(%1$s.lastIndexOf(%2$s))",
-                "last index of %2$s in %1$s"));
+                "last index of %s in %s"));
 
         // 📋 List: проверить, пустой ли список
         list.add(blk("sciListIsEmptyList", "b", "",
@@ -946,12 +946,12 @@ public final class ScienceBlocks {
         // 📁 File: прочитать первые N символов
         list.add(blk("sciFileReadFirst", "d", "",
                 "((new Object() { public String f() { try { java.io.RandomAccessFile _r = new java.io.RandomAccessFile(%1$s, \"r\"); byte[] _b = new byte[(int)(%2$s)]; _r.readFully(_b); _r.close(); return new String(_b); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "read first %2$d chars of %1$s"));
+                "read first %d chars of %s"));
 
         // 📁 File: записать в конец файла
         list.add(blk("sciFileAppendText", " ", "",
                 "((new Object() { public void f() { try { java.io.FileWriter _w = new java.io.FileWriter(%1$s, true); _w.append(%2$s); _w.close(); } catch (Throwable _t) {} } }).f());",
-                "append %2$s to file %1$s"));
+                "append %s to file %s"));
 
         // 🌐 Network: скачать файл по URL
         list.add(blk("sciDownloadFile", " ", "",
@@ -981,12 +981,12 @@ public final class ScienceBlocks {
         // 🌐 Network: JSON-объект → число
         list.add(blk("sciJsonGetInt", "d", "",
                 "((new Object() { public double f() { try { return new org.json.JSONObject(%1$s).optDouble(%2$s, 0.0); } catch (Throwable _t) { return 0.0; } } }).f())",
-                "json get int %2$s from %1$s"));
+                "json get int %s from %s"));
 
         // 🌐 Network: JSON-объект → boolean
         list.add(blk("sciJsonGetBool", "b", "",
                 "((new Object() { public boolean f() { try { return new org.json.JSONObject(%1$s).optBoolean(%2$s, false); } catch (Throwable _t) { return false; } } }).f())",
-                "json get bool %2$s from %1$s"));
+                "json get bool %s from %s"));
 
         // 🌐 Network: HTTP PUT
         list.add(blk("sciHttpPut", "d", "",
@@ -1016,7 +1016,7 @@ public final class ScienceBlocks {
         // 🌐 Network: параметр из URL
         list.add(blk("sciGetUrlParam", "d", "",
                 "((new Object() { public String f() { try { String _q = new java.net.URL(%1$s).getQuery(); if (_q != null) { for (String _p : _q.split(\"&\")) { String[] _kv = _p.split(\"=\"); if (_kv.length == 2 && _kv[0].equals(%2$s)) return java.net.URLDecoder.decode(_kv[1], \"UTF-8\"); } } return \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "url param %2$s from %1$s"));
+                "url param %s from %s"));
 
         // 🌐 Network: собрать URL с параметрами
         list.add(blk("sciBuildUrl", "d", "",
@@ -1191,7 +1191,7 @@ public final class ScienceBlocks {
         // 📁 File: записать байты
         list.add(blk("sciFileWriteBytes", " ", "",
                 "((new Object() { public void f() { try { java.io.FileOutputStream _os = new java.io.FileOutputStream(%1$s); _os.write(%2$s.getBytes()); _os.close(); } catch (Throwable _t) {} } }).f());",
-                "write bytes %2$s to %1$s"));
+                "write bytes %s to %s"));
 
         // 📁 File: количество строк в файле
         list.add(blk("sciFileLineCount", "d", "",
@@ -1306,7 +1306,7 @@ public final class ScienceBlocks {
         // 🌐 Network: заголовок ответа
         list.add(blk("sciGetResponseHeader", "d", "",
                 "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); return _c.getHeaderField(%2$s); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "response header %2$s of %1$s"));
+                "response header %s of %s"));
 
         // 🌐 Network: WebSocket подключение (упрощённо)
         list.add(blk("sciWebSocketConnect", " ", "",
@@ -1341,7 +1341,7 @@ public final class ScienceBlocks {
         // 🌐 Network: JSON из ответа (получить поле)
         list.add(blk("sciHttpJsonField", "d", "",
                 "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return new org.json.JSONObject(_sb.toString()).optString(%2$s); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "http json field %2$s from %1$s"));
+                "http json field %s from %s"));
 
         // 🌐 Network: проверить доступность URL (HEAD)
         list.add(blk("sciUrlAvailable", "b", "",
@@ -1446,7 +1446,7 @@ public final class ScienceBlocks {
         // 📝 Text: заменить первое вхождение
         list.add(blk("sciTextReplaceFirst", "d", "",
                 "%1$s.replaceFirst(%2$s, %3$s)",
-                "replace first %2$s with %3$s in %1$s"));
+                "replace first %s with %s in %s"));
 
         // 📝 Text: удалить все пробелы (включая табы)
         list.add(blk("sciTextRemoveAllSpaces", "d", "",
@@ -1516,7 +1516,7 @@ public final class ScienceBlocks {
         // 📊 List: найти все индексы элемента
         list.add(blk("sciListAllIndexes", "d", "",
                 "((new Object() { public String f() { try { StringBuilder _sb = new StringBuilder(); for (int _i = 0; _i < %1$s.size(); _i++) { if (%1$s.get(_i).equals(%2$s)) _sb.append(_i).append(\",\"); } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "all indexes of %2$s in %1$s"));
+                "all indexes of %s in %s"));
 
         // 📊 List: удалить пустые элементы
         list.add(blk("sciListRemoveEmpty", " ", "",
@@ -1526,17 +1526,17 @@ public final class ScienceBlocks {
         // 📊 List: заменить все вхождения
         list.add(blk("sciListReplaceAll", " ", "",
                 "((new Object() { public void f() { try { java.util.ArrayList _tmp = new java.util.ArrayList(); for (Object _o : %1$s) { _tmp.add(_o.equals(%2$s) ? %3$s : _o); } %1$s.clear(); %1$s.addAll(_tmp); } catch (Throwable _t) {} } }).f());",
-                "replace all %2$s with %3$s in %1$s"));
+                "replace all %s with %s in %s"));
 
         // 📊 List: обрезать до N элементов
         list.add(blk("sciListTake", " ", "",
                 "((new Object() { public void f() { try { while (%1$s.size() > (int)(%2$s)) %1$s.remove(%1$s.size() - 1); } catch (Throwable _t) {} } }).f());",
-                "take first %2$d from %1$s"));
+                "take first %d from %s"));
 
         // 📊 List: пропустить первые N элементов
         list.add(blk("sciListDrop", " ", "",
                 "((new Object() { public void f() { try { for (int _i = 0; _i < (int)(%2$s) && !%1$s.isEmpty(); _i++) %1$s.remove(0); } catch (Throwable _t) {} } }).f());",
-                "drop first %2$d from %1$s"));
+                "drop first %d from %s"));
 
         // 📊 List: проверить, все ли элементы true
         list.add(blk("sciListAllTrue", "b", "",
@@ -1581,22 +1581,22 @@ public final class ScienceBlocks {
         // 🎨 UI: шрифт (жирный/обычный)
         list.add(blk("sciSetBold", " ", "",
                 "%1$s.setTypeface(null, (%2$s) ? android.graphics.Typeface.BOLD : android.graphics.Typeface.NORMAL);",
-                "set bold %2$b on %1$s"));
+                "set bold %b on %s"));
 
         // 🎨 UI: курсив
         list.add(blk("sciSetItalic", " ", "",
                 "%1$s.setTypeface(null, (%2$s) ? android.graphics.Typeface.ITALIC : android.graphics.Typeface.NORMAL);",
-                "set italic %2$b on %1$s"));
+                "set italic %b on %s"));
 
         // 🎨 UI: межбуквенный интервал
         list.add(blk("sciSetLetterSpacing", " ", "",
                 "%1$s.setLetterSpacing((float)(%2$s));",
-                "letter spacing %2$s on %1$s"));
+                "letter spacing %s on %s"));
 
         // 🎨 UI: межстрочный интервал
         list.add(blk("sciSetLineSpacing", " ", "",
                 "%1$s.setLineSpacing((float)(%2$s), 1.0f);",
-                "line spacing %2$s on %1$s"));
+                "line spacing %s on %s"));
 
         // 🎨 UI: тень текста
         list.add(blk("sciSetShadow", " ", "",
@@ -1606,47 +1606,47 @@ public final class ScienceBlocks {
         // 🎨 UI: гравитация (внутри контейнера)
         list.add(blk("sciSetGravity", " ", "",
                 "%1$s.setGravity((int)(%2$s));",
-                "set gravity %2$d on %1$s"));
+                "set gravity %d on %s"));
 
         // 🎨 UI: минимальная ширина
         list.add(blk("sciSetMinWidth", " ", "",
                 "%1$s.setMinimumWidth((int)(%2$s));",
-                "min width %2$d on %1$s"));
+                "min width %d on %s"));
 
         // 🎨 UI: максимальная ширина
         list.add(blk("sciSetMaxWidth", " ", "",
                 "%1$s.setMaxWidth((int)(%2$s));",
-                "max width %2$d on %1$s"));
+                "max width %d on %s"));
 
         // 🎨 UI: минимальная высота
         list.add(blk("sciSetMinHeight", " ", "",
                 "%1$s.setMinimumHeight((int)(%2$s));",
-                "min height %2$d on %1$s"));
+                "min height %d on %s"));
 
         // 🎨 UI: максимальная высота
         list.add(blk("sciSetMaxHeight", " ", "",
                 "%1$s.setMaxHeight((int)(%2$s));",
-                "max height %2$d on %1$s"));
+                "max height %d on %s"));
 
         // 🎨 UI: прозрачность (0-255)
         list.add(blk("sciSetAlpha", " ", "",
                 "%1$s.setAlpha((float)(%2$s) / 255.0f);",
-                "set alpha %2$d on %1$s"));
+                "set alpha %d on %s"));
 
         // 🎨 UI: цвет текста
         list.add(blk("sciSetTextColor", " ", "",
                 "%1$s.setTextColor((int)(%2$s));",
-                "set text color %2$d on %1$s"));
+                "set text color %d on %s"));
 
         // 🎨 UI: размер текста (sp)
         list.add(blk("sciSetTextSizeSp", " ", "",
                 "%1$s.setTextSize((float)(%2$s));",
-                "set text size %2$s sp on %1$s"));
+                "set text size %s sp on %s"));
 
         // 🎨 UI: фон (drawable)
         list.add(blk("sciSetBackground", " ", "",
                 "%1$s.setBackgroundResource((int)(%2$s));",
-                "set background resource %2$d on %1$s"));
+                "set background resource %d on %s"));
 
         // 🎨 UI: отступы (margin) через LayoutParams
         list.add(blk("sciSetMargin", " ", "",
@@ -1656,17 +1656,17 @@ public final class ScienceBlocks {
         // 🎨 UI: ширина (LayoutParams)
         list.add(blk("sciSetWidth", " ", "",
                 "((new Object() { public void f() { try { android.view.ViewGroup.LayoutParams _p = %1$s.getLayoutParams(); _p.width = (int)(%2$s); %1$s.setLayoutParams(_p); } catch (Throwable _t) {} } }).f());",
-                "set width %2$d on %1$s"));
+                "set width %d on %s"));
 
         // 🎨 UI: высота (LayoutParams)
         list.add(blk("sciSetHeight", " ", "",
                 "((new Object() { public void f() { try { android.view.ViewGroup.LayoutParams _p = %1$s.getLayoutParams(); _p.height = (int)(%2$s); %1$s.setLayoutParams(_p); } catch (Throwable _t) {} } }).f());",
-                "set height %2$d on %1$s"));
+                "set height %d on %s"));
 
         // 🎨 UI: вес (weight) в LinearLayout
         list.add(blk("sciSetWeight", " ", "",
                 "((new Object() { public void f() { try { android.widget.LinearLayout.LayoutParams _p = (android.widget.LinearLayout.LayoutParams) %1$s.getLayoutParams(); _p.weight = (float)(%2$s); %1$s.setLayoutParams(_p); } catch (Throwable _t) {} } }).f());",
-                "set weight %2$s on %1$s"));
+                "set weight %s on %s"));
 
         // 🎨 UI: показать клавиатуру
         list.add(blk("sciShowKeyboard", " ", "",
@@ -1881,22 +1881,22 @@ public final class ScienceBlocks {
         // 📅 Date: добавить месяцы
         list.add(blk("sciAddMonths", "d", "",
                 "((new Object() { public String f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); _c.add(java.util.Calendar.MONTH, (int)(%2$s)); return _fmt.format(_c.getTime()); } catch (Throwable _t) { return %1$s; } } }).f())",
-                "add %2$d months to %1$s"));
+                "add %d months to %s"));
 
         // 📅 Date: добавить годы
         list.add(blk("sciAddYears", "d", "",
                 "((new Object() { public String f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); _c.add(java.util.Calendar.YEAR, (int)(%2$s)); return _fmt.format(_c.getTime()); } catch (Throwable _t) { return %1$s; } } }).f())",
-                "add %2$d years to %1$s"));
+                "add %d years to %s"));
 
         // 📅 Date: добавить часы
         list.add(blk("sciAddHours", "d", "",
                 "((new Object() { public String f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy HH:mm\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); _c.add(java.util.Calendar.HOUR_OF_DAY, (int)(%2$s)); return _fmt.format(_c.getTime()); } catch (Throwable _t) { return %1$s; } } }).f())",
-                "add %2$d hours to %1$s"));
+                "add %d hours to %s"));
 
         // 📅 Date: добавить минуты
         list.add(blk("sciAddMinutes", "d", "",
                 "((new Object() { public String f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy HH:mm\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); _c.add(java.util.Calendar.MINUTE, (int)(%2$s)); return _fmt.format(_c.getTime()); } catch (Throwable _t) { return %1$s; } } }).f())",
-                "add %2$d minutes to %1$s"));
+                "add %d minutes to %s"));
 
         // 📅 Date: формат "относительно" (5 минут назад)
         list.add(blk("sciRelativeTime", "d", "",
@@ -1966,7 +1966,7 @@ public final class ScienceBlocks {
         // 📅 Date: добавить секунды
         list.add(blk("sciAddSeconds", "d", "",
                 "((new Object() { public String f() { try { java.text.SimpleDateFormat _fmt = new java.text.SimpleDateFormat(\"dd.MM.yyyy HH:mm:ss\", java.util.Locale.getDefault()); java.util.Calendar _c = java.util.Calendar.getInstance(); _c.setTime(_fmt.parse(%1$s)); _c.add(java.util.Calendar.SECOND, (int)(%2$s)); return _fmt.format(_c.getTime()); } catch (Throwable _t) { return %1$s; } } }).f())",
-                "add %2$d seconds to %1$s"));
+                "add %d seconds to %s"));
 
         // 📅 Date: формат даты и времени
         list.add(blk("sciFormatDateTime", "d", "",
@@ -2016,22 +2016,22 @@ public final class ScienceBlocks {
         // 🗄️ DB: создать таблицу
         list.add(blk("sciDbCreateTable", " ", "",
                 "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(\"CREATE TABLE IF NOT EXISTS \" + %3$s + \" (\" + %4$s + \")\"); _db.close(); } catch (Throwable _t) {} } }).f());",
-                "db %1$s create table %3$s columns %4$s from %m.context"));
+                "db %s create table %s columns %s from %m.context"));
 
         // 🗄️ DB: удалить таблицу
         list.add(blk("sciDbDropTable", " ", "",
                 "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(\"DROP TABLE IF EXISTS \" + %3$s); _db.close(); } catch (Throwable _t) {} } }).f());",
-                "db %1$s drop table %3$s from %m.context"));
+                "db %s drop table %s from %m.context"));
 
         // 🗄️ DB: количество строк в таблице
         list.add(blk("sciDbCount", "d", "",
                 "((new Object() { public double f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.database.Cursor _c = _db.rawQuery(\"SELECT COUNT(*) FROM \" + %3$s, null); double _n = 0; if (_c.moveToFirst()) _n = _c.getDouble(0); _c.close(); _db.close(); return _n; } catch (Throwable _t) { return 0.0; } } }).f())",
-                "db %1$s count rows in %3$s from %m.context"));
+                "db %s count rows in %s from %m.context"));
 
         // 🗄️ DB: очистить таблицу
         list.add(blk("sciDbClear", " ", "",
                 "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.execSQL(\"DELETE FROM \" + %3$s); _db.close(); } catch (Throwable _t) {} } }).f());",
-                "db %1$s clear table %3$s from %m.context"));
+                "db %s clear table %s from %m.context"));
 
         // 🎵 Media: громкость (0-100)
         list.add(blk("sciMediaVolume", "d", "",
@@ -2041,7 +2041,7 @@ public final class ScienceBlocks {
         // 🎵 Media: установить громкость (0-100)
         list.add(blk("sciSetMediaVolume", " ", "",
                 "((new Object() { public void f() { try { android.media.AudioManager _am = (android.media.AudioManager) %1$s.getSystemService(android.content.Context.AUDIO_SERVICE); int _max = _am.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC); _am.setStreamVolume(android.media.AudioManager.STREAM_MUSIC, (int)(%2$s) * _max / 100, 0); } catch (Throwable _t) {} } }).f());",
-                "set media volume %2$d from %m.context"));
+                "set media volume %d from %m.context"));
 
         // 🎵 Media: беззвучный режим
         list.add(blk("sciSetRingerSilent", " ", "",
@@ -2526,7 +2526,7 @@ public final class ScienceBlocks {
         // 📞 Phone: добавить контакт (имя + номер)
         list.add(blk("sciAddContact", " ", "",
                 "((new Object() { public void f() { try { android.content.ContentValues _v = new android.content.ContentValues(); _v.put(android.provider.ContactsContract.Data.MIMETYPE, android.provider.ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE); _v.put(android.provider.ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, %1$s); android.net.Uri _u = %2$s.getContentResolver().insert(android.provider.ContactsContract.Data.CONTENT_URI, _v); if (_u != null) { android.content.ContentValues _p = new android.content.ContentValues(); _p.put(android.provider.ContactsContract.Data.MIMETYPE, android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE); _p.put(android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER, %3$s); _p.put(android.provider.ContactsContract.Data.CONTACT_ID, android.content.ContentUris.parseId(_u)); _p.put(android.provider.ContactsContract.CommonDataKinds.Phone.TYPE, android.provider.ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE); %2$s.getContentResolver().insert(android.provider.ContactsContract.Data.CONTENT_URI, _p); } } catch (Throwable _t) {} } }).f());",
-                "add contact name %1$s number %3$s from %m.context"));
+                "add contact name %s number %s from %m.context"));
 
         // 📞 Phone: количество SMS в Inbox
         list.add(blk("sciSmsCount", "d", "",
@@ -2536,17 +2536,17 @@ public final class ScienceBlocks {
         // 📞 Phone: текст SMS по индексу
         list.add(blk("sciSmsBody", "d", "",
                 "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), new String[]{\"body\"}, null, null, \"date DESC\"); String _b = \"\"; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _b = _c.getString(0); _c.close(); } return _b; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "sms body at %2$d from %m.context"));
+                "sms body at %d from %m.context"));
 
         // 📞 Phone: номер отправителя SMS
         list.add(blk("sciSmsAddress", "d", "",
                 "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), new String[]{\"address\"}, null, null, \"date DESC\"); String _a = \"\"; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _a = _c.getString(0); _c.close(); } return _a; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "sms address at %2$d from %m.context"));
+                "sms address at %d from %m.context"));
 
         // 📞 Phone: дата SMS (millis)
         list.add(blk("sciSmsDate", "d", "",
                 "((new Object() { public double f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.net.Uri.parse(\"content://sms/inbox\"), new String[]{\"date\"}, null, null, \"date DESC\"); double _d = 0; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _d = _c.getDouble(0); _c.close(); } return _d; } catch (Throwable _t) { return 0.0; } } }).f())",
-                "sms date at %2$d from %m.context"));
+                "sms date at %d from %m.context"));
 
         // 📞 Phone: количество звонков (история)
         list.add(blk("sciCallLogCount", "d", "",
@@ -2556,22 +2556,22 @@ public final class ScienceBlocks {
         // 📞 Phone: номер звонка по индексу
         list.add(blk("sciCallLogNumber", "d", "",
                 "((new Object() { public String f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI, new String[]{android.provider.CallLog.Calls.NUMBER}, null, null, \"date DESC\"); String _n = \"\"; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _n = _c.getString(0); _c.close(); } return _n; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "call log number at %2$d from %m.context"));
+                "call log number at %d from %m.context"));
 
         // 📞 Phone: тип звонка
         list.add(blk("sciCallLogType", "d", "",
                 "((new Object() { public double f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI, new String[]{android.provider.CallLog.Calls.TYPE}, null, null, \"date DESC\"); double _t = 0; if (_c != null) { if (_c.moveToPosition((int)(%2$s))) _t = _c.getDouble(0); _c.close(); } return _t; } catch (Throwable _t) { return 0.0; } } }).f())",
-                "call log type at %2$d from %m.context"));
+                "call log type at %d from %m.context"));
 
         // 📞 Phone: удалить контакт
         list.add(blk("sciDeleteContact", " ", "",
                 "((new Object() { public void f() { try { android.database.Cursor _c = %1$s.getContentResolver().query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI, new String[]{android.provider.ContactsContract.CommonDataKinds.Phone.CONTACT_ID}, android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER + \" = ?\", new String[]{%2$s}, null); if (_c != null && _c.moveToFirst()) { long _id = _c.getLong(0); _c.close(); %1$s.getContentResolver().delete(android.provider.ContactsContract.RawContacts.CONTENT_URI, android.provider.ContactsContract.RawContacts.CONTACT_ID + \" = ?\", new String[]{String.valueOf(_id)}); } } catch (Throwable _t) {} } }).f());",
-                "delete contact by number %2$s from %m.context"));
+                "delete contact by number %s from %m.context"));
 
         // 📁 File: записать в конец файла
         list.add(blk("sciFileAppend", " ", "",
                 "((new Object() { public void f() { try { java.io.FileWriter _w = new java.io.FileWriter(%1$s, true); _w.write(%2$s); _w.close(); } catch (Throwable _t) {} } }).f());",
-                "append %2$s to %1$s"));
+                "append %s to %s"));
 
         // 📁 File: создать папку
         list.add(blk("sciFileMkdirs", "b", "",
@@ -2676,7 +2676,7 @@ public final class ScienceBlocks {
         // 📁 File: получить все файлы с расширением
         list.add(blk("sciFileFindByExt", "d", "",
                 "((new Object() { public String f() { try { java.io.File _d = new java.io.File(%1$s); StringBuilder _sb = new StringBuilder(); java.io.File[] _fs = _d.listFiles(); if (_fs != null) { for (java.io.File _f : _fs) { if (_f.getName().endsWith(\".\" + %2$s)) _sb.append(_f.getAbsolutePath()).append(\"\\n\"); } } return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "find files with ext %2$s in %1$s"));
+                "find files with ext %s in %s"));
 
         // 📁 File: проверить, является ли файл картинкой
         list.add(blk("sciIsImage", "b", "",
@@ -2771,12 +2771,12 @@ public final class ScienceBlocks {
         // 🎨 UI: межбуквенный интервал (em)
         list.add(blk("sciSetLetterSpacingEm", " ", "",
                 "%1$s.setLetterSpacing((float)(%2$s));",
-                "letter spacing %2$s em on %1$s"));
+                "letter spacing %s em on %s"));
 
         // 🎨 UI: межстрочный интервал (multiplier)
         list.add(blk("sciSetLineSpacingMult", " ", "",
                 "%1$s.setLineSpacing(0, (float)(%2$s));",
-                "line spacing multiplier %2$s on %1$s"));
+                "line spacing multiplier %s on %s"));
 
         // 🎨 UI: тень текста
         list.add(blk("sciSetTextShadow", " ", "",
@@ -2801,52 +2801,52 @@ public final class ScienceBlocks {
         // 🎨 UI: отступ (padding) сверху
         list.add(blk("sciSetPaddingTop", " ", "",
                 "%1$s.setPadding(%1$s.getPaddingLeft(), (int)(%2$s), %1$s.getPaddingRight(), %1$s.getPaddingBottom());",
-                "padding top %2$d on %1$s"));
+                "padding top %d on %s"));
 
         // 🎨 UI: отступ (padding) снизу
         list.add(blk("sciSetPaddingBottom", " ", "",
                 "%1$s.setPadding(%1$s.getPaddingLeft(), %1$s.getPaddingTop(), %1$s.getPaddingRight(), (int)(%2$s));",
-                "padding bottom %2$d on %1$s"));
+                "padding bottom %d on %s"));
 
         // 🎨 UI: отступ (padding) слева
         list.add(blk("sciSetPaddingLeft", " ", "",
                 "%1$s.setPadding((int)(%2$s), %1$s.getPaddingTop(), %1$s.getPaddingRight(), %1$s.getPaddingBottom());",
-                "padding left %2$d on %1$s"));
+                "padding left %d on %s"));
 
         // 🎨 UI: отступ (padding) справа
         list.add(blk("sciSetPaddingRight", " ", "",
                 "%1$s.setPadding(%1$s.getPaddingLeft(), %1$s.getPaddingTop(), (int)(%2$s), %1$s.getPaddingBottom());",
-                "padding right %2$d on %1$s"));
+                "padding right %d on %s"));
 
         // 🎨 UI: ширина (dp)
         list.add(blk("sciSetWidthDp", " ", "",
                 "((new Object() { public void f() { try { android.view.ViewGroup.LayoutParams _p = %1$s.getLayoutParams(); _p.width = (int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()); %1$s.setLayoutParams(_p); } catch (Throwable _t) {} } }).f());",
-                "set width %2$d dp on %1$s from %m.context"));
+                "set width %d dp on %s from %m.context"));
 
         // 🎨 UI: высота (dp)
         list.add(blk("sciSetHeightDp", " ", "",
                 "((new Object() { public void f() { try { android.view.ViewGroup.LayoutParams _p = %1$s.getLayoutParams(); _p.height = (int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()); %1$s.setLayoutParams(_p); } catch (Throwable _t) {} } }).f());",
-                "set height %2$d dp on %1$s from %m.context"));
+                "set height %d dp on %s from %m.context"));
 
         // 🎨 UI: минимальная ширина (dp)
         list.add(blk("sciSetMinWidthDp", " ", "",
                 "%1$s.setMinimumWidth((int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()));",
-                "min width %2$d dp on %1$s from %m.context"));
+                "min width %d dp on %s from %m.context"));
 
         // 🎨 UI: минимальная высота (dp)
         list.add(blk("sciSetMinHeightDp", " ", "",
                 "%1$s.setMinimumHeight((int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()));",
-                "min height %2$d dp on %1$s from %m.context"));
+                "min height %d dp on %s from %m.context"));
 
         // 🎨 UI: максимальная ширина (dp)
         list.add(blk("sciSetMaxWidthDp", " ", "",
                 "%1$s.setMaxWidth((int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()));",
-                "max width %2$d dp on %1$s from %m.context"));
+                "max width %d dp on %s from %m.context"));
 
         // 🎨 UI: максимальная высота (dp)
         list.add(blk("sciSetMaxHeightDp", " ", "",
                 "%1$s.setMaxHeight((int) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics()));",
-                "max height %2$d dp on %1$s from %m.context"));
+                "max height %d dp on %s from %m.context"));
 
         // 🎬 Animation: fade in (с задержкой)
         list.add(blk("sciFadeInDelay", " ", "",
@@ -2911,12 +2911,12 @@ public final class ScienceBlocks {
         // 🖼️ Custom View: фон с градиентом (радиальный)
         list.add(blk("sciSetRadialGradient", " ", "",
                 "((new Object() { public void f() { try { android.graphics.drawable.GradientDrawable _g = new android.graphics.drawable.GradientDrawable(); _g.setGradientType(android.graphics.drawable.GradientDrawable.RADIAL_GRADIENT); _g.setColors(new int[]{(int)(%2$s), (int)(%3$s)}); %1$s.setBackground(_g); } catch (Throwable _t) {} } }).f());",
-                "radial gradient %2$d to %3$d on %1$s"));
+                "radial gradient %d to %d on %s"));
 
         // 🖼️ Custom View: фон с градиентом (линейный)
         list.add(blk("sciSetLinearGradient", " ", "",
                 "((new Object() { public void f() { try { android.graphics.drawable.GradientDrawable _g = new android.graphics.drawable.GradientDrawable(android.graphics.drawable.GradientDrawable.Orientation.LEFT_RIGHT, new int[]{(int)(%2$s), (int)(%3$s)}); %1$s.setBackground(_g); } catch (Throwable _t) {} } }).f());",
-                "linear gradient %2$d to %3$d on %1$s"));
+                "linear gradient %d to %d on %s"));
 
         // 🖼️ Custom View: фон с обводкой и скруглением
         list.add(blk("sciSetRoundBorder", " ", "",
@@ -2926,97 +2926,97 @@ public final class ScienceBlocks {
         // 🖼️ Custom View: прозрачность (0-255)
         list.add(blk("sciSetAlphaInt", " ", "",
                 "%1$s.setAlpha((float)(%2$s) / 255.0f);",
-                "alpha %2$d on %1$s"));
+                "alpha %d on %s"));
 
         // 🖼️ Custom View: поворот (0-360)
         list.add(blk("sciSetRotationDeg", " ", "",
                 "%1$s.setRotation((float)(%2$s));",
-                "rotation %2$s deg on %1$s"));
+                "rotation %s deg on %s"));
 
         // 🖼️ Custom View: масштаб X
         list.add(blk("sciSetScaleX2", " ", "",
                 "%1$s.setScaleX((float)(%2$s));",
-                "scale X %2$s on %1$s"));
+                "scale X %s on %s"));
 
         // 🖼️ Custom View: масштаб Y
         list.add(blk("sciSetScaleY2", " ", "",
                 "%1$s.setScaleY((float)(%2$s));",
-                "scale Y %2$s on %1$s"));
+                "scale Y %s on %s"));
 
         // 🖼️ Custom View: тень (elevation)
         list.add(blk("sciSetElevation2", " ", "",
                 "%1$s.setElevation((float)(%2$s));",
-                "elevation %2$s on %1$s"));
+                "elevation %s on %s"));
 
         // 🖼️ Custom View: цвет фона (hex)
         list.add(blk("sciSetBgHex", " ", "",
                 "%1$s.setBackgroundColor(android.graphics.Color.parseColor(%2$s));",
-                "background hex %2$s on %1$s"));
+                "background hex %s on %s"));
 
         // 🖼️ Custom View: цвет текста (hex)
         list.add(blk("sciSetTextColorHex", " ", "",
                 "%1$s.setTextColor(android.graphics.Color.parseColor(%2$s));",
-                "text color hex %2$s on %1$s"));
+                "text color hex %s on %s"));
 
         // 🖼️ Custom View: радиус скругления (dp)
         list.add(blk("sciSetCornerRadiusDp", " ", "",
                 "((new Object() { public void f() { try { android.graphics.drawable.GradientDrawable _g = new android.graphics.drawable.GradientDrawable(); _g.setCornerRadius((float) android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s), %3$s.getResources().getDisplayMetrics())); %1$s.setBackground(_g); } catch (Throwable _t) {} } }).f());",
-                "corner radius %2$d dp on %1$s from %m.context"));
+                "corner radius %d dp on %s from %m.context"));
 
         // 🖼️ Custom View: фон (color)
         list.add(blk("sciSetBgColor", " ", "",
                 "%1$s.setBackgroundColor((int)(%2$s));",
-                "background color %2$d on %1$s"));
+                "background color %d on %s"));
 
         // 🖼️ Custom View: цвет текста (int)
         list.add(blk("sciSetTextColorInt", " ", "",
                 "%1$s.setTextColor((int)(%2$s));",
-                "text color %2$d on %1$s"));
+                "text color %d on %s"));
 
         // 🖼️ Custom View: размер текста (sp)
         list.add(blk("sciSetTextSizeSp2", " ", "",
                 "%1$s.setTextSize((float)(%2$s));",
-                "text size %2$s sp on %1$s"));
+                "text size %s sp on %s"));
 
         // 🖼️ Custom View: размер текста (px)
         list.add(blk("sciSetTextSizePx", " ", "",
                 "%1$s.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, (float)(%2$s));",
-                "text size %2$s px on %1$s"));
+                "text size %s px on %s"));
 
         // 🖼️ Custom View: размер текста (dp)
         list.add(blk("sciSetTextSizeDp", " ", "",
                 "%1$s.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP, (float)(%2$s));",
-                "text size %2$s dp on %1$s"));
+                "text size %s dp on %s"));
 
         // 🖼️ Custom View: видимость (invisible/gone/visible)
         list.add(blk("sciSetVisibility2", " ", "",
                 "%1$s.setVisibility((int)(%2$s));",
-                "visibility %2$d on %1$s"));
+                "visibility %d on %s"));
 
         // 🖼️ Custom View: кликабельность
         list.add(blk("sciSetClickable2", " ", "",
                 "%1$s.setClickable(%2$s);",
-                "clickable %2$b on %1$s"));
+                "clickable %b on %s"));
 
         // 🖼️ Custom View: фокусируемость
         list.add(blk("sciSetFocusable2", " ", "",
                 "%1$s.setFocusable(%2$s);",
-                "focusable %2$b on %1$s"));
+                "focusable %b on %s"));
 
         // 🖼️ Custom View: включен/выключен
         list.add(blk("sciSetEnabled2", " ", "",
                 "%1$s.setEnabled(%2$s);",
-                "enabled %2$b on %1$s"));
+                "enabled %b on %s"));
 
         // 🖼️ Custom View: выделение (selected)
         list.add(blk("sciSetSelected", " ", "",
                 "%1$s.setSelected(%2$s);",
-                "selected %2$b on %1$s"));
+                "selected %b on %s"));
 
         // 🖼️ Custom View: активирован (activated)
         list.add(blk("sciSetActivated", " ", "",
                 "%1$s.setActivated(%2$s);",
-                "activated %2$b on %1$s"));
+                "activated %b on %s"));
 
         // 🌐 Network: HTTP GET (с возвратом заголовков)
         list.add(blk("sciHttpGetFull", "d", "",
@@ -3041,7 +3041,7 @@ public final class ScienceBlocks {
         // 🌐 Network: загрузить файл (POST)
         list.add(blk("sciUploadFile", "d", "",
                 "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"POST\"); _c.setDoOutput(true); _c.setRequestProperty(\"Content-Type\", \"multipart/form-data\"); java.io.FileInputStream _is = new java.io.FileInputStream(%2$s); java.io.OutputStream _os = _c.getOutputStream(); byte[] _b = new byte[4096]; int _len; while ((_len = _is.read(_b)) > 0) _os.write(_b, 0, _len); _is.close(); _os.flush(); _os.close(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "upload %2$s to %1$s"));
+                "upload %s to %s"));
 
         // 🌐 Network: JSON → список строк
         list.add(blk("sciJsonToStringList", " ", "",
@@ -3131,7 +3131,7 @@ public final class ScienceBlocks {
         // 🌐 Network: скачать JSON и получить поле
         list.add(blk("sciHttpJsonField2", "d", "",
                 "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); java.io.BufferedReader _r = new java.io.BufferedReader(new java.io.InputStreamReader(_c.getInputStream())); StringBuilder _sb = new StringBuilder(); String _l; while ((_l = _r.readLine()) != null) _sb.append(_l); _r.close(); return new org.json.JSONObject(_sb.toString()).optString(%2$s); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "http json %2$s from %1$s"));
+                "http json %s from %s"));
 
         // 🌐 Network: HTTP Basic Auth (base64)
         list.add(blk("sciHttpBasicAuth2", "d", "",
@@ -3231,7 +3231,7 @@ public final class ScienceBlocks {
         // 🌐 Network: получить параметр из URL (с учётом кодирования)
         list.add(blk("sciUrlParam", "d", "",
                 "((new Object() { public String f() { try { String _q = new java.net.URL(%1$s).getQuery(); if (_q == null) return \"\"; for (String _p : _q.split(\"&\")) { String[] _kv = _p.split(\"=\"); if (_kv.length == 2 && _kv[0].equals(%2$s)) return java.net.URLDecoder.decode(_kv[1], \"UTF-8\"); } return \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "url param %2$s from %1$s"));
+                "url param %s from %s"));
 
         // 🌐 Network: соединить URL и путь
         list.add(blk("sciUrlJoin", "d", "",
@@ -3251,27 +3251,27 @@ public final class ScienceBlocks {
         // 🌐 Network: получить заголовок ответа
         list.add(blk("sciResponseHeader", "d", "",
                 "((new Object() { public String f() { try { java.net.HttpURLConnection _c = (java.net.HttpURLConnection) new java.net.URL(%1$s).openConnection(); _c.setRequestMethod(\"HEAD\"); return _c.getHeaderField(%2$s); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "response header %2$s of %1$s"));
+                "response header %s of %s"));
 
         // 🗄️ SQLite: вставить строку
         list.add(blk("sciDbInsert", " ", "",
                 "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.content.ContentValues _v = new android.content.ContentValues(); _v.put(%3$s, %4$s); _db.insert(%5$s, null, _v); _db.close(); } catch (Throwable _t) {} } }).f());",
-                "db %1$s insert %3$s = %4$s into %5$s from %m.context"));
+                "db %s insert %s = %s into %s from %m.context"));
 
         // 🗄️ SQLite: обновить строку
         list.add(blk("sciDbUpdate", " ", "",
                 "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.content.ContentValues _v = new android.content.ContentValues(); _v.put(%3$s, %4$s); _db.update(%5$s, _v, %6$s, null); _db.close(); } catch (Throwable _t) {} } }).f());",
-                "db %1$s update %3$s = %4$s in %5$s where %6$s from %m.context"));
+                "db %s update %s = %s in %s where %s from %m.context"));
 
         // 🗄️ SQLite: удалить строки
         list.add(blk("sciDbDelete", " ", "",
                 "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.delete(%3$s, %4$s, null); _db.close(); } catch (Throwable _t) {} } }).f());",
-                "db %1$s delete from %3$s where %4$s from %m.context"));
+                "db %s delete from %s where %s from %m.context"));
 
         // 🗄️ SQLite: проверить существование таблицы
         list.add(blk("sciDbTableExists", "b", "",
                 "((new Object() { public boolean f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); android.database.Cursor _c = _db.rawQuery(\"SELECT name FROM sqlite_master WHERE type='table' AND name='\" + %3$s + \"'\", null); boolean _e = _c.getCount() > 0; _c.close(); _db.close(); return _e; } catch (Throwable _t) { return false; } } }).f())",
-                "db %1$s table %3$s exists from %m.context"));
+                "db %s table %s exists from %m.context"));
 
         // 🗄️ SQLite: получить все таблицы
         list.add(blk("sciDbTables", "d", "",
@@ -3291,17 +3291,17 @@ public final class ScienceBlocks {
         // 🗄️ SQLite: получить путь к БД
         list.add(blk("sciDbPath", "d", "",
                 "%1$s.getDatabasePath(%2$s).getAbsolutePath()",
-                "db %2$s path from %m.context"));
+                "db %s path from %m.context"));
 
         // 🗄️ SQLite: удалить БД
         list.add(blk("sciDbDeleteFile", "b", "",
                 "%1$s.deleteDatabase(%2$s)",
-                "db %2$s delete from %m.context"));
+                "db %s delete from %m.context"));
 
         // 🗄️ SQLite: выполнить транзакцию
         list.add(blk("sciDbTransaction", " ", "",
                 "((new Object() { public void f() { try { android.database.sqlite.SQLiteDatabase _db = %2$s.openOrCreateDatabase(%1$s, android.content.Context.MODE_PRIVATE, null); _db.beginTransaction(); try { _db.execSQL(%3$s); _db.setTransactionSuccessful(); } finally { _db.endTransaction(); } _db.close(); } catch (Throwable _t) {} } }).f());",
-                "db %1$s transaction %3$s from %m.context"));
+                "db %s transaction %s from %m.context"));
 
         // 🔍 Regex: проверить соответствие
         list.add(blk("sciRegexMatches2", "b", "",
@@ -3311,12 +3311,12 @@ public final class ScienceBlocks {
         // 🔍 Regex: найти первое вхождение
         list.add(blk("sciRegexFind2", "d", "",
                 "((new Object() { public String f() { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return _m.find() ? _m.group() : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "regex find %2$s in %1$s"));
+                "regex find %s in %s"));
 
         // 🔍 Regex: найти все вхождения
         list.add(blk("sciRegexFindAll2", "d", "",
                 "((new Object() { public String f() { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); StringBuilder _sb = new StringBuilder(); while (_m.find()) _sb.append(_m.group()).append(\"\\n\"); return _sb.toString(); } catch (Throwable _t) { return \"\"; } } }).f())",
-                "regex find all %2$s in %1$s"));
+                "regex find all %s in %s"));
 
         // 🔍 Regex: заменить все
         list.add(blk("sciRegexReplaceAll2", "d", "",
@@ -3336,7 +3336,7 @@ public final class ScienceBlocks {
         // 🔍 Regex: извлечь группу
         list.add(blk("sciRegexGroup2", "d", "",
                 "((new Object() { public String f() { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return _m.find() ? _m.group((int)(%3$s)) : \"\"; } catch (Throwable _t) { return \"\"; } } }).f())",
-                "regex group %3$d of %2$s in %1$s"));
+                "regex group %d of %s in %s"));
 
         // 🔍 Regex: проверить, является ли regex валидным
         list.add(blk("sciRegexValid2", "b", "",
@@ -3346,7 +3346,7 @@ public final class ScienceBlocks {
         // 🔍 Regex: получить количество групп
         list.add(blk("sciRegexGroupCount", "d", "",
                 "((new Object() { public double f() { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); if (_m.find()) return (double) _m.groupCount(); return 0.0; } catch (Throwable _t) { return 0.0; } } }).f())",
-                "regex %2$s group count in %1$s"));
+                "regex %s group count in %s"));
 
         // 🎨 Color: смешать два цвета (50/50)
         list.add(blk("sciMixColor", "d", "",
@@ -3446,7 +3446,7 @@ public final class ScienceBlocks {
         // 🎨 Color: с прозрачностью
         list.add(blk("sciColorWithAlpha2", "d", "",
                 "android.graphics.Color.argb((int)(%1$s), android.graphics.Color.red((int)(%2$s)), android.graphics.Color.green((int)(%2$s)), android.graphics.Color.blue((int)(%2$s)))",
-                "color %2$s with alpha %1$d"));
+                "color %s with alpha %d"));
 
         // 📁 File: получить размер файла (МБ)
         list.add(blk("sciFileSizeMB2", "d", "",

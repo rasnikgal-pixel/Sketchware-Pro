@@ -31,7 +31,7 @@ public final class ListBlocks {
         list.add(blk("listContains", "b", "", "%1$s.contains(%2$s)", "list %m.list contains %s %s %s"));
 
         list.add(blk("listIndexOf", "d", "",
-                "(double) %1$s.indexOf(%2$s)", "index of %2$s in list %1$s"));
+                "(double) %1$s.indexOf(%2$s)", "index of %s in list %s"));
 
         list.add(blk("listSort", " ", "", "java.util.Collections.sort(%1$s);", "sort list %m.list %s"));
 
@@ -40,12 +40,12 @@ public final class ListBlocks {
         // Удалить строку таблицы по индексу
         list.add(blk("listMapRemoveRow", " ", "",
                 "%1$s.remove((int)(%2$s));",
-                "remove row %2$d from %1$s"));
+                "remove row %d from %s"));
 
         // Удалить ключ (столбец) во всех строках таблицы
         list.add(blk("listMapRemoveKey", " ", "",
                 "for (Object _row : %1$s) { if (_row instanceof java.util.Map) ((java.util.Map)_row).remove(%2$s); }",
-                "remove key %2$s from all rows of %1$s"));
+                "remove key %s from all rows of %s"));
 
         // Получить список ключей (столбцов) таблицы
         list.add(blk("listMapGetKeys", " ", "", "%2$s = new java.util.ArrayList<String>(((java.util.Map)%1$s.get(0)).keySet());", "get keys of %s into %m.listStr %s"));

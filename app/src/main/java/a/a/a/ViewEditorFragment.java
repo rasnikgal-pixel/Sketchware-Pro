@@ -284,7 +284,7 @@ public class ViewEditorFragment extends qA {
 
     private void showQuickPropsPanel(ViewBean bean) {
         if (quickPropsPanel == null || bean == null || !isQuickPropsEnabled()) {
-            SketchwareUtil.toast("showQuickPropsPanel early: panel=" + (quickPropsPanel == null ? "NULL" : "OK") + ", bean=" + (bean == null ? "NULL" : "OK") + ", enabled=" + isQuickPropsEnabled());
+// TEMP DISABLED:             SketchwareUtil.toast("showQuickPropsPanel early: panel=" + (quickPropsPanel == null ? "NULL" : "OK") + ", bean=" + (bean == null ? "NULL" : "OK") + ", enabled=" + isQuickPropsEnabled());
             return;
         }
         quickPropsUpdating = true;

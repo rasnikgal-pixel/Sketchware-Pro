@@ -30,11 +30,11 @@ public final class RegexBlocks {
 
         list.add(blk("regexFind", "s", "",
                 "((java.util.function.Supplier<String>) () -> { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return _m.find() ? _m.group() : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
-                "first match of regex %2$s in %1$s"));
+                "first match of regex %s in %s"));
 
         list.add(blk("regexFindAll", "s", "",
                 "((java.util.function.Supplier<String>) () -> { StringBuilder _sb = new StringBuilder(); try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); while (_m.find()) { _sb.append(_m.group()).append(\"\\n\"); } } catch (Throwable _t) {} return _sb.toString(); }).get()",
-                "all matches of regex %2$s in %1$s"));
+                "all matches of regex %s in %s"));
 
         list.add(blk("regexReplaceAll", "s", "",
                 "%1$s.replaceAll(%2$s, %3$s)",
@@ -50,7 +50,7 @@ public final class RegexBlocks {
 
         list.add(blk("regexGroup", "s", "",
                 "((java.util.function.Supplier<String>) () -> { try { java.util.regex.Matcher _m = java.util.regex.Pattern.compile(%2$s).matcher(%1$s); return (_m.find() && _m.groupCount() >= (int)(%3$s)) ? _m.group((int)(%3$s)) : \"\"; } catch (Throwable _t) { return \"\"; } }).get()",
-                "group %3$d of regex %2$s in %1$s"));
+                "group %d of regex %s in %s"));
 
         list.add(blk("regexIsValid", "b", "", "((java.util.function.Supplier<Boolean>) () -> { try { java.util.regex.Pattern.compile(%1$s); return true; } catch (Throwable _t) { return false; } }).get()", "regex %s is valid %s"));
     }
