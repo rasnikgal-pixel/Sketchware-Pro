@@ -1,0 +1,158 @@
+[
+  {
+    "name": "📐 Layout",
+    "color": "#FF6B35"
+  },
+  {
+    "name": "🎵 Sound & Vibration",
+    "color": "#9C27B0"
+  },
+  {
+    "name": "⚡ Utilities",
+    "color": "#2196F3"
+  },
+  {
+    "name": "⚡ Electricity",
+    "color": "#1565C0"
+  },
+  {
+    "name": "⚙ Mechanics",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🧪 Chemistry",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🧮 Math",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📅 Date & Time",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📁 Files",
+    "color": "#a1887f"
+  },
+  {
+    "name": "🌐 Network",
+    "color": "#2ca5e2"
+  },
+  {
+    "name": "📊 JSON",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🔐 Crypto",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📱 Device",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🎨 Color",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📝 Text",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📋 List",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🖼 Bitmap",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📶 Sensors",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📍 Location",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🔊 Media",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📞 Phone",
+    "color": "#1565C0"
+  },
+  {
+    "name": "💬 SMS",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📇 Contacts",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🗄 SQLite",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🌐 HTTP",
+    "color": "#2ca5e2"
+  },
+  {
+    "name": "🔗 URL",
+    "color": "#2ca5e2"
+  },
+  {
+    "name": "📦 ZIP",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🔔 Notifications",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📲 Intent",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🗺 GPS",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🔋 Battery",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📶 WiFi",
+    "color": "#1565C0"
+  },
+  {
+    "name": "📡 Bluetooth",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🔦 Flashlight",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🎬 Animation",
+    "color": "#FF6B35"
+  },
+  {
+    "name": "🎨 UI",
+    "color": "#FF6B35"
+  },
+  {
+    "name": "🖥 WebView",
+    "color": "#4A6CD4"
+  },
+  {
+    "name": "🤖 Android",
+    "color": "#1565C0"
+  },
+  {
+    "name": "🧩 Extra",
+    "color": "#9C27B0"
+  }
+]
