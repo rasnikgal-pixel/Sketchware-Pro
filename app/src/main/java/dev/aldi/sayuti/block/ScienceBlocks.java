@@ -151,11 +151,11 @@ public final class ScienceBlocks {
 
         list.add(blk("sciMargin", "d", "",
                 "(double)((double)((%1$s - %2$s) / %1$s * 100.0))",
-                "margin % = (%s - %s) /  * 100"));
+                "margin % = (price %s - cost %s) / price * 100"));
 
         list.add(blk("sciMarkup", "d", "",
                 "(double)((double)((%1$s - %2$s) / %2$s * 100.0))",
-                "markup % = (%s - %s) /  * 100"));
+                "markup % = (price %s - cost %s) / cost * 100"));
 
         list.add(blk("sciCompound", "d", "",
                 "(double)((double)(%1$s * Math.pow(1.0 + %2$s / 100.0, %3$s)))",
