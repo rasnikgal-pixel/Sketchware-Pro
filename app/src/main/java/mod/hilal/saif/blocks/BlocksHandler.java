@@ -2564,6 +2564,15 @@ public class BlocksHandler {
         hashMap.put("palette", "-1");
         hashMap.put("spec", "add source directly %s.inputOnly");
         arrayList.add(hashMap);
+        hashMap = new HashMap<>();
+        hashMap.put("name", "addSourceDirectly2");
+        hashMap.put("type", " ");
+        hashMap.put("typeName", "");
+        hashMap.put("code", "%s");
+        hashMap.put("color", "#5cb722");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "add source directly v2 %s.inputOnly");
+        arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
         hashMap.put("name", "asdBoolean");

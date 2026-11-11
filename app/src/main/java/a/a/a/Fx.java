@@ -494,6 +494,10 @@ public class Fx {
                 String asd = bean.parameters.get(0);
                 opcode = (asd != null) ? asd : opcode;
                 break;
+            case "addSourceDirectly2":
+                String asd2 = bean.parameters.get(0);
+                opcode = (asd2 != null) ? asd2 : opcode;
+                break;
             case "strToMap":
                 opcode = String.format("try { %s = new Gson().fromJson(%s, new TypeToken<HashMap<String, Object>>(){}.getType()); } catch (Throwable _t) {}", params.get(1), params.get(0));
                 break;
