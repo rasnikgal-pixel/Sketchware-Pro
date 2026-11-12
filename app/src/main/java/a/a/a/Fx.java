@@ -841,7 +841,7 @@ public class Fx {
             case "webViewSetCacheMode":
                 opcode = String.format("%s.getSettings().setCacheMode(WebSettings.%s);", params.get(0), params.get(1));
                 break;
-            case "webViewEnableJs":
+            case "webViewEnableJs_removed":
                 opcode = String.format(
                         "%1$s.getSettings().setJavaScriptEnabled(true); " +
                         "%1$s.getSettings().setDomStorageEnabled(true); " +

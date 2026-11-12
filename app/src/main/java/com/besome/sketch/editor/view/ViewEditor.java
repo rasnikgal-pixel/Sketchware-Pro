@@ -1184,7 +1184,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
             if (now - lastHintTime > 1000) { // защита от двойного вызова
                 lastHintTime = now;
                 new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
-                    if (getContext() != null) showWidgetSetupHint(viewBean);
+                    // Принудительно проверяем: если это не первый виджет и пользователь уже видел подсказку — не показываем
+                    if (getContext() != null && !isWidgetHintDisabled(viewBean.type)) {
+                        showWidgetSetupHint(viewBean);
+                    }
                 }, 500L);
             }
         }
