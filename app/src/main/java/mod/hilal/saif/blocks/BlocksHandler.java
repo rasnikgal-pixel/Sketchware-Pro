@@ -2931,5 +2931,14 @@ public class BlocksHandler {
 
     private static @ColorInt int getTitleBgColor(LogicEditorActivity logicEditorActivity) {
         return ThemeUtils.getColor(logicEditorActivity, ThemeUtils.isDarkThemeEnabled(logicEditorActivity) ? R.attr.colorSurfaceContainerHigh : R.attr.colorSurfaceInverse);
+        hashMap = new HashMap<>();
+        hashMap.put("name", "onCreate");
+        hashMap.put("type", " ");
+        hashMap.put("typeName", "");
+        hashMap.put("code", "");
+        hashMap.put("color", "#4A6CD4");
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "onCreate");
+        arrayList.add(hashMap);
     }
 }

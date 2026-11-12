@@ -865,7 +865,6 @@ public class ViewEditorFragment extends qA {
         widgetsCreatorManager.addWidgetsByTitle(Helper.getResString(R.string.auto_view_editor_fragment_010));
         widgetsCreatorManager.addExtraClasses();
         viewEditor.paletteWidget.post(() -> viewEditor.paletteWidget.applyAllCategoryStates());
-        showOnboardingIfFirstTime();
     }
 
     /** Показать onboarding при первом открытии дизайнера. */
