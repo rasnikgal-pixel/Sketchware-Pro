@@ -1180,10 +1180,9 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
             final long now = System.currentTimeMillis();
             if (now - lastHintTime > 1000) { // защита от двойного вызова
                 lastHintTime = now;
-                // Подсказки отключены (по просьбе пользователя)
-                // new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
-                //     if (getContext() != null) showWidgetSetupHint(viewBean);
-                // }, 500L);
+                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                    if (getContext() != null) showWidgetSetupHint(viewBean);
+                }, 500L);
             }
         }
         itemView.setContentDescription("SketchwareItem_" + viewBean.id);
