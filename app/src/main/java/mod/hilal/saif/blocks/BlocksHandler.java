@@ -2574,6 +2574,17 @@ public class BlocksHandler {
         hashMap.put("spec", "add source directly v2 %s.inputOnly");
         arrayList.add(hashMap);
 
+        // Наш новый блок WebView
+        hashMap = new HashMap<>();
+        hashMap.put("name", "webViewEnableJs");
+        hashMap.put("type", " ");
+        hashMap.put("typeName", "");
+        hashMap.put("code", "%1$s.getSettings().setJavaScriptEnabled(true); %1$s.getSettings().setDomStorageEnabled(true); %1$s.getSettings().setAllowFileAccess(true); %1$s.getSettings().setSupportZoom(true);");
+        hashMap.put("color", "#4A6CD4"); // Стандартный синий цвет
+        hashMap.put("palette", "-1");
+        hashMap.put("spec", "Enable JS & Settings in %m.webview");
+        arrayList.add(hashMap);
+
         hashMap = new HashMap<>();
         hashMap.put("name", "asdBoolean");
         hashMap.put("type", "b");

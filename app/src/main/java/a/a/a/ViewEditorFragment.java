@@ -873,12 +873,12 @@ public class ViewEditorFragment extends qA {
         try {
             if (getActivity() == null) return;
             if (pro.sketchware.settings.DesignerSettingsStore.isDesignerOnboardingShown(requireActivity())) return;
+            // Сразу сохраняем флаг, чтобы при повороте или перезапуске диалог не появился снова
+            pro.sketchware.settings.DesignerSettingsStore.setDesignerOnboardingShown(requireActivity(), true);
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireActivity())
                     .setTitle(Helper.getResString(R.string.auto_designer_onboarding_title))
                     .setMessage(Helper.getResString(R.string.auto_designer_onboarding_text))
-                    .setPositiveButton(Helper.getResString(R.string.auto_designer_onboarding_ok), (d, w) -> {
-                        pro.sketchware.settings.DesignerSettingsStore.setDesignerOnboardingShown(requireActivity(), true);
-                    })
+                    .setPositiveButton(Helper.getResString(R.string.auto_designer_onboarding_ok), null)
                     .setCancelable(false)
                     .show();
         } catch (Throwable ignored) {}

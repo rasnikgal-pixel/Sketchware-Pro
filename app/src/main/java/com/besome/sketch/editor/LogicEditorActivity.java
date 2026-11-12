@@ -2253,12 +2253,12 @@ public class LogicEditorActivity extends BaseAppCompatActivity implements View.O
     private void showOnboardingIfFirstTime() {
         try {
             if (pro.sketchware.settings.DesignerSettingsStore.isLogicOnboardingShown(this)) return;
+            // Сразу сохраняем флаг
+            pro.sketchware.settings.DesignerSettingsStore.setLogicOnboardingShown(this, true);
             new MaterialAlertDialogBuilder(this)
                     .setTitle(Helper.getResString(R.string.auto_logic_onboarding_title))
                     .setMessage(Helper.getResString(R.string.auto_logic_onboarding_text))
-                    .setPositiveButton(Helper.getResString(R.string.auto_logic_onboarding_ok), (d, w) -> {
-                        pro.sketchware.settings.DesignerSettingsStore.setLogicOnboardingShown(this, true);
-                    })
+                    .setPositiveButton(Helper.getResString(R.string.auto_logic_onboarding_ok), null)
                     .setCancelable(false)
                     .show();
         } catch (Throwable ignored) {}

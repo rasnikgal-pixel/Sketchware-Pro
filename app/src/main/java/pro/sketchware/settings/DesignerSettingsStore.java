@@ -202,17 +202,17 @@ public final class DesignerSettingsStore {
     }
 
     public static void setShowWidgetHints(Context ctx, boolean v) {
-        prefs(ctx).edit().putBoolean(KEY_SHOW_WIDGET_HINTS, v).apply();
+        prefs(ctx).edit().putBoolean(KEY_SHOW_WIDGET_HINTS, v).commit();
         bumpCounter(ctx);
     }
 
     public static void setDesignerOnboardingShown(Context ctx, boolean v) {
-        prefs(ctx).edit().putBoolean(KEY_DESIGNER_ONBOARDING_SHOWN, v).apply();
+        prefs(ctx).edit().putBoolean(KEY_DESIGNER_ONBOARDING_SHOWN, v).commit();
         bumpCounter(ctx);
     }
 
     public static void setLogicOnboardingShown(Context ctx, boolean v) {
-        prefs(ctx).edit().putBoolean(KEY_LOGIC_ONBOARDING_SHOWN, v).apply();
+        prefs(ctx).edit().putBoolean(KEY_LOGIC_ONBOARDING_SHOWN, v).commit();
         bumpCounter(ctx);
     }
 
