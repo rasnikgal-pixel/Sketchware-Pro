@@ -1006,7 +1006,8 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
         ItemView added = a(bean, true);
         a(added, true);
-        showWidgetSetupHint(bean);
+        // Задержка, чтобы UI успел обновить свойства виджета перед показом диалога
+        postDelayed(() -> showWidgetSetupHint(bean), 400L);
     }
 
     /** Подсказка после добавления сложного виджета. */
