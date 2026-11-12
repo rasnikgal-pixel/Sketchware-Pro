@@ -1077,13 +1077,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                     try {
                         android.content.Intent intent = new android.content.Intent(
                                 getContext(),
-                                com.besome.sketch.editor.LogicEditorActivity.class);
-                        intent.setFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                com.besome.sketch.editor.AddEventActivity.class);
                         intent.putExtra("sc_id", a);
-                        intent.putExtra("id", bean.id);
-                        intent.putExtra("event", "onCreate");
                         intent.putExtra("project_file", projectFileBean);
-                        intent.putExtra("event_text", "onCreate");
+                        intent.putExtra("category_index", 1); // 1 = View
                         getContext().startActivity(intent);
                     } catch (Throwable ignored) {}
                 })
