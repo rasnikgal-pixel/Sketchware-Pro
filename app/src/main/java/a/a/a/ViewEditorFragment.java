@@ -872,9 +872,11 @@ public class ViewEditorFragment extends qA {
     private void showOnboardingIfFirstTime() {
         try {
             if (getActivity() == null) return;
-            if (pro.sketchware.settings.DesignerSettingsStore.isDesignerOnboardingShown(requireActivity())) return;
-            // Сразу сохраняем флаг, чтобы при повороте или перезапуске диалог не появился снова
-            pro.sketchware.settings.DesignerSettingsStore.setDesignerOnboardingShown(requireActivity(), true);
+            // Используем уникальный ключ для каждого проекта (sc_id)
+            String prefKey = "designer_onboarding_" + sc_id;
+            android.content.SharedPreferences prefs = requireActivity().getSharedPreferences("project_onboarding", android.content.Context.MODE_PRIVATE);
+            if (prefs.getBoolean(prefKey, false)) return;
+            prefs.edit().putBoolean(prefKey, true).commit();
             new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireActivity())
                     .setTitle(Helper.getResString(R.string.auto_designer_onboarding_title))
                     .setMessage(Helper.getResString(R.string.auto_designer_onboarding_text))
