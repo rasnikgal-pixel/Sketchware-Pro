@@ -2924,4 +2924,6 @@ ACTION_VIEW
     <string name="auto_logic_onboarding_title">Ласкаво просимо до Logic Editor!</string>
     <string name="auto_logic_onboarding_text">Logic Editor — тут задається логіка екрана.\n\n• Перетягніть блок onCreate з палітри — його вміст виконується при запуску екрана.\n• Блоки з\'єднуються зверху вниз.\n• Палітра праворуч — категорії блоків (Layout, Math, Network тощо).\n• Кнопка пошуку вгорі — швидкий пошук блоку за назвою.</string>
     <string name="auto_logic_onboarding_ok">Зрозуміло</string>
+    <string name="auto_designer_settings_activity_reset_hints">Скинути приховані підказки</string>
+    <string name="auto_designer_settings_activity_reset_hints_desc">Повернути всі приховані підказки для віджетів</string>
 </resources>

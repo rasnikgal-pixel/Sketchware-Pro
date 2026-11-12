@@ -216,6 +216,13 @@ public final class DesignerSettingsStore {
         bumpCounter(ctx);
     }
 
+    /** Сбросить все скрытые подсказки виджетов. */
+    public static void resetHiddenWidgetHints(Context ctx) {
+        ctx.getApplicationContext().getSharedPreferences("designer_widget_hints", Context.MODE_PRIVATE)
+                .edit().clear().commit();
+        bumpCounter(ctx);
+    }
+
     public static void setTabsStartState(Context ctx, String v) {
         prefs(ctx).edit().putString(KEY_TABS_START, v).apply();
         bumpCounter(ctx);

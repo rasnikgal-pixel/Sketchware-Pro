@@ -682,8 +682,7 @@ public class ExtraPaletteBlock {
                         logicEditor.a("s", "webViewGetUrl");
                         logicEditor.a("d", "webviewGetProgress");
                         logicEditor.a(" ", "webViewSetCacheMode");
-                        logicEditor.a(" ", "webViewEnableJs").setContentDescription("Enable JS & Settings");
-                        logicEditor.a("b", "webViewCanGoBack");
+                                                logicEditor.a("b", "webViewCanGoBack");
                         logicEditor.a("b", "webViewCanGoForward");
                         logicEditor.a(" ", "webViewGoBack");
                         logicEditor.a(" ", "webViewGoForward");

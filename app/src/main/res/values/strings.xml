@@ -2988,4 +2988,6 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="auto_logic_onboarding_title">Добро пожаловать в Logic Editor!</string>
     <string name="auto_logic_onboarding_text">Logic Editor — здесь задаётся логика экрана.\n\n• Перетащите блок onCreate из палитры — его содержимое выполняется при запуске экрана.\n• Блоки соединяются сверху вниз.\n• Палитра справа — категории блоков (Layout, Math, Network и др.).\n• Кнопка поиска вверху — быстрый поиск блока по имени.</string>
     <string name="auto_logic_onboarding_ok">Понятно</string>
+    <string name="auto_designer_settings_activity_reset_hints">Сбросить скрытые подсказки</string>
+    <string name="auto_designer_settings_activity_reset_hints_desc">Вернуть все скрытые подсказки для виджетов</string>
 </resources>

@@ -81,6 +81,18 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
                 Helper.getResString(R.string.auto_designer_settings_activity_show_hints_desc),
                 DesignerSettingsStore.isShowWidgetHints(this),
                 v -> DesignerSettingsStore.setShowWidgetHints(this, v));
+
+        // Кнопка сброса скрытых подсказок (в виде тумблера, который сразу выключается)
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_reset_hints),
+                Helper.getResString(R.string.auto_designer_settings_activity_reset_hints_desc),
+                false,
+                v -> {
+                    if (v) {
+                        DesignerSettingsStore.resetHiddenWidgetHints(this);
+                        // Возвращаем переключатель в положение "выкл"
+                        recreate();
+                    }
+                });
     }
 
     private void buildAppearanceSection() {

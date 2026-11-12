@@ -2924,4 +2924,6 @@ ACTION_VIEW
     <string name="auto_logic_onboarding_title">欢迎使用 Logic Editor！</string>
     <string name="auto_logic_onboarding_text">Logic Editor 用于设置屏幕逻辑。\n\n• 从面板拖动 onCreate 块 — 屏幕启动时执行其中内容。\n• 块从上到下连接。\n• 右侧面板 — 块类别（Layout、Math、Network 等）。\n• 顶部搜索按钮 — 按名称快速查找块。</string>
     <string name="auto_logic_onboarding_ok">明白了</string>
+    <string name="auto_designer_settings_activity_reset_hints">重置隐藏提示</string>
+    <string name="auto_designer_settings_activity_reset_hints_desc">恢复所有隐藏的控件提示</string>
 </resources>

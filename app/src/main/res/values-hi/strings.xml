@@ -2924,4 +2924,6 @@ ACTION_VIEW
     <string name="auto_logic_onboarding_title">Logic Editor में आपका स्वागत है!</string>
     <string name="auto_logic_onboarding_text">Logic Editor में स्क्रीन लॉजिक सेट होता है।\n\n• पैलेट से onCreate ब्लॉक खींचें — स्क्रीन शुरू होने पर इसका कंटेंट चलता है।\n• ब्लॉक ऊपर से नीचे जुड़ते हैं।\n• दाईं ओर पैलेट — ब्लॉक श्रेणियां (Layout, Math, Network आदि)।\n• ऊपर खोज बटन — नाम से ब्लॉक खोजें।</string>
     <string name="auto_logic_onboarding_ok">समझ गया</string>
+    <string name="auto_designer_settings_activity_reset_hints">छिपे संकेत रीसेट करें</string>
+    <string name="auto_designer_settings_activity_reset_hints_desc">सभी छिपे विजेट संकेत बहाल करें</string>
 </resources>

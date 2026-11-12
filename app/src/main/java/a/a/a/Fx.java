@@ -824,6 +824,8 @@ public class Fx {
             case "webViewLoadUrl":
                 opcode = String.format(
                         "try { " +
+                        "%1$s.getSettings().setJavaScriptEnabled(true); " +
+                        "%1$s.getSettings().setDomStorageEnabled(true); " +
                         "String _u = String.valueOf(%2$s); " +
                         "if (!_u.startsWith(\"http://\") && !_u.startsWith(\"https://\") " +
                         "&& !_u.startsWith(\"file://\") && !_u.startsWith(\"about:\") " +

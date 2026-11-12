@@ -2978,4 +2978,6 @@ ACTION_VIEW
     <string name="auto_logic_onboarding_title">Welcome to Logic Editor!</string>
     <string name="auto_logic_onboarding_text">Logic Editor is where screen logic is set.\n\n• Drag an onCreate block from the palette — its contents run when the screen starts.\n• Blocks connect top to bottom.\n• Palette on the right — block categories (Layout, Math, Network, etc.).\n• Search button on top — quick block search by name.</string>
     <string name="auto_logic_onboarding_ok">Got it</string>
+    <string name="auto_designer_settings_activity_reset_hints">Reset hidden hints</string>
+    <string name="auto_designer_settings_activity_reset_hints_desc">Restore all hidden widget hints</string>
 </resources>

@@ -1090,7 +1090,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 .setNeutralButton(Helper.getResString(R.string.auto_view_editor_widget_hint_dont_show), (d, w) -> {
                     disableWidgetHint(type);
                 })
-                .setNegativeButton(Helper.getResString(R.string.common_word_cancel), null)
+                .setNegativeButton("Понятно", null) // Просто закрыть
                 .show();
     }
 
