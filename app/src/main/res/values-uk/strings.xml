@@ -2886,7 +2886,7 @@ ACTION_VIEW
     <string name="palette_new_lists_tables">Списки</string>
     <string name="auto_view_editor_webview_hint_title">Налаштування WebView</string>
     <string name="auto_view_editor_webview_hint">WebView {name} додано.\n\nДля коректного завантаження сайту додайте в onCreate два блоки:\n• set JavaScript (JS + DOM + file access)\n• load URL (адресу можна без https://, додасться автоматично)\n\nВідкрити Logic Editor зараз?</string>
-    <string name="auto_view_editor_webview_hint_open">Відкрити Logic Editor</string>
+    <string name="auto_view_editor_webview_hint_open">Відкрити редактор блоків</string>
     <string name="auto_designer_settings_activity_show_hints">Показувати підказки</string>
     <string name="auto_designer_settings_activity_show_hints_desc">Підказки при додаванні складних віджетів (WebView, VideoView, MapView тощо)</string>
     <string name="auto_view_editor_widget_hint_dont_show">Не показувати для цього віджета</string>

@@ -2950,7 +2950,7 @@ $time(yyyy-MM-dd\'T\'HHmmss)
     <string name="palette_new_lists_tables">Списки</string>
     <string name="auto_view_editor_webview_hint_title">Настройка WebView</string>
     <string name="auto_view_editor_webview_hint">WebView {name} добавлен.\n\nДля корректной загрузки сайта добавьте в onCreate два блока:\n• set JavaScript (JS + DOM + file access)\n• load URL (адрес можно без https://, добавится автоматически)\n\nОткрыть Logic Editor сейчас?</string>
-    <string name="auto_view_editor_webview_hint_open">Открыть Logic Editor</string>
+    <string name="auto_view_editor_webview_hint_open">Открыть редактор блоков</string>
     <string name="auto_designer_settings_activity_show_hints">Показывать подсказки</string>
     <string name="auto_designer_settings_activity_show_hints_desc">Подсказки при добавлении сложных виджетов (WebView, VideoView, MapView и др.)</string>
     <string name="auto_view_editor_widget_hint_dont_show">Не показывать для этого виджета</string>
