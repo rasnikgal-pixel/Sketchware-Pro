@@ -76,6 +76,11 @@ public class DesignerSettingsActivity extends BaseAppCompatActivity {
                 new String[]{"expanded", "collapsed", "first_expanded"},
                 new String[]{Helper.getResString(R.string.auto_designer_settings_activity_010), Helper.getResString(R.string.auto_designer_settings_activity_011), Helper.getResString(R.string.auto_designer_settings_activity_012)},
                 v -> DesignerSettingsStore.setTabsStartState(this, v));
+
+        addSwitch(Helper.getResString(R.string.auto_designer_settings_activity_show_hints),
+                Helper.getResString(R.string.auto_designer_settings_activity_show_hints_desc),
+                DesignerSettingsStore.isShowWidgetHints(this),
+                v -> DesignerSettingsStore.setShowWidgetHints(this, v));
     }
 
     private void buildAppearanceSection() {

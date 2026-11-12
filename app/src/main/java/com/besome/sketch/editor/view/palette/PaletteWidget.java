@@ -60,9 +60,9 @@ public class PaletteWidget extends LinearLayout {
     private CustomScrollView scrollView;
 
     // Карта: имя категории → контейнер виджетов этой категории.
-    private final java.util.Map<String, LinearLayout> categoryWidgetsContainers = new java.util.HashMap<>();
+    private final java.util.Map<String, LinearLayout> categoryWidgetsContainers = new java.util.LinkedHashMap<>();
     // Карта: имя категории → подконтейнер (заголовок + виджеты).
-    private final java.util.Map<String, LinearLayout> categoryContainers = new java.util.HashMap<>();
+    private final java.util.Map<String, LinearLayout> categoryContainers = new java.util.LinkedHashMap<>();
 
     // Текущая категория (к которой добавлять виджеты). null = до первого extraTitle.
     private String currentCategoryName = null;
@@ -473,10 +473,31 @@ public class PaletteWidget extends LinearLayout {
                         pro.sketchware.palette.WidgetTabsSettings.setStateQuiet(getContext(), name,
                                 pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED);
                     }
+                } else if ("expanded".equals(startState)) {
+                    pro.sketchware.palette.WidgetTabsSettings.setStateQuiet(getContext(), name,
+                            pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED);
+                    firstDone = true;
                 }
-                // "expanded" — оставляем по умолчанию (уже expanded)
             }
             applyCategoryState(name);
+        }
+
+        // Аккордеон: если включён — оставляем открытой только первую.
+        // Без этого аккордеон работал только на клик, но не при открытии дизайнера.
+        if (pro.sketchware.settings.DesignerSettingsStore.isAccordion(getContext())) {
+            boolean anyExpanded = false;
+            for (String name : categoryContainers.keySet()) {
+                int st = pro.sketchware.palette.WidgetTabsSettings.getState(getContext(), name);
+                if (st == pro.sketchware.palette.WidgetTabsSettings.STATE_EXPANDED) {
+                    if (anyExpanded) {
+                        pro.sketchware.palette.WidgetTabsSettings.setStateQuiet(getContext(), name,
+                                pro.sketchware.palette.WidgetTabsSettings.STATE_COLLAPSED);
+                        applyCategoryState(name);
+                    } else {
+                        anyExpanded = true;
+                    }
+                }
+            }
         }
     }
 

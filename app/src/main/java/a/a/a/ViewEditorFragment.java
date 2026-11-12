@@ -797,7 +797,6 @@ public class ViewEditorFragment extends qA {
         viewEditor.paletteWidget.extraTitle(Helper.getResString(R.string.auto_view_editor_fragment_001), 0);
         viewEditor.addWidgetLayout(PaletteWidget.a.a, "");
         viewEditor.addWidgetLayout(PaletteWidget.a.b, "");
-        viewEditor.addWidget(PaletteWidget.b.b, "", "TextView", "TextView");
         viewEditor.addWidgetLayout(PaletteWidget.a.c, "");
         viewEditor.addWidgetLayout(PaletteWidget.a.d, "");
         viewEditor.extraWidgetLayout("", "RadioGroup");
@@ -814,6 +813,7 @@ public class ViewEditorFragment extends qA {
         widgetsCreatorManager.addWidgetsByTitle("AndroidX");
 
         viewEditor.paletteWidget.extraTitle(Helper.getResString(R.string.auto_view_editor_fragment_003), 1);
+        viewEditor.addWidget(PaletteWidget.b.b, "", "TextView", "TextView");
         viewEditor.addWidget(PaletteWidget.b.c, "", "EditText", "Edit Text");
         viewEditor.extraWidget("", "AutoCompleteTextView", "AutoCompleteTextView");
         viewEditor.extraWidget("", "MultiAutoCompleteTextView", "MultiAutoCompleteTextView");
@@ -821,6 +821,7 @@ public class ViewEditorFragment extends qA {
         viewEditor.extraWidget("", "MaterialButton", "MaterialButton");
         viewEditor.addWidget(PaletteWidget.b.d, "", "ImageView", "default_image");
         viewEditor.extraWidget("", "CircleImageView", "default_image");
+        viewEditor.extraWidget("", "BadgeView", "BadgeView");
         viewEditor.addWidget(PaletteWidget.b.g, "", "CheckBox", "CheckBox");
         viewEditor.extraWidget("", "RadioButton", "RadioButton");
         viewEditor.addWidget(PaletteWidget.b.i, "", "Switch", "Switch");
@@ -864,6 +865,23 @@ public class ViewEditorFragment extends qA {
         widgetsCreatorManager.addWidgetsByTitle(Helper.getResString(R.string.auto_view_editor_fragment_010));
         widgetsCreatorManager.addExtraClasses();
         viewEditor.paletteWidget.post(() -> viewEditor.paletteWidget.applyAllCategoryStates());
+        showOnboardingIfFirstTime();
+    }
+
+    /** Показать onboarding при первом открытии дизайнера. */
+    private void showOnboardingIfFirstTime() {
+        try {
+            if (getActivity() == null) return;
+            if (pro.sketchware.settings.DesignerSettingsStore.isDesignerOnboardingShown(requireActivity())) return;
+            new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireActivity())
+                    .setTitle(Helper.getResString(R.string.auto_designer_onboarding_title))
+                    .setMessage(Helper.getResString(R.string.auto_designer_onboarding_text))
+                    .setPositiveButton(Helper.getResString(R.string.auto_designer_onboarding_ok), (d, w) -> {
+                        pro.sketchware.settings.DesignerSettingsStore.setDesignerOnboardingShown(requireActivity(), true);
+                    })
+                    .setCancelable(false)
+                    .show();
+        } catch (Throwable ignored) {}
     }
 
     private void startAnimation() {

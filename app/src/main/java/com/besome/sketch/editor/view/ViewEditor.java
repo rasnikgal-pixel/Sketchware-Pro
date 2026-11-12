@@ -1006,6 +1006,110 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
         ItemView added = a(bean, true);
         a(added, true);
+        showWidgetSetupHint(bean);
+    }
+
+    /** Подсказка после добавления сложного виджета. */
+    private void showWidgetSetupHint(ViewBean bean) {
+        if (bean == null) return;
+        if (!pro.sketchware.settings.DesignerSettingsStore.isShowWidgetHints(getContext())) return;
+        if (isWidgetHintDisabled(bean.type)) return;
+
+        String title;
+        String hint;
+        int type = bean.type;
+        String convert = bean.convert != null ? bean.convert : "";
+        String widgetName = bean.id != null ? bean.id : "widget";
+        if (type == ViewBean.VIEW_TYPE_WIDGET_WEBVIEW) {
+            title = Helper.getResString(R.string.auto_view_editor_webview_hint_title);
+            hint = Helper.getResString(R.string.auto_view_editor_webview_hint)
+                    .replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_LISTVIEW) {
+            title = Helper.getResString(R.string.auto_widget_hint_listview_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_listview).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_SPINNER) {
+            title = Helper.getResString(R.string.auto_widget_hint_spinner_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_spinner).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_CALENDARVIEW) {
+            title = Helper.getResString(R.string.auto_widget_hint_calendarview_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_calendarview).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_FAB) {
+            title = Helper.getResString(R.string.auto_widget_hint_fab_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_fab).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_ADVIEW) {
+            title = Helper.getResString(R.string.auto_widget_hint_adview_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_adview).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_MAPVIEW) {
+            title = Helper.getResString(R.string.auto_widget_hint_mapview_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_mapview).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_BUTTON) {
+            title = Helper.getResString(R.string.auto_widget_hint_button_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_button).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_EDITTEXT) {
+            title = Helper.getResString(R.string.auto_widget_hint_edittext_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_edittext).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_IMAGEVIEW) {
+            title = Helper.getResString(R.string.auto_widget_hint_imageview_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_imageview).replace("{name}", widgetName);
+        } else if (type == ViewBean.VIEW_TYPE_WIDGET_TEXTVIEW) {
+            title = Helper.getResString(R.string.auto_widget_hint_textview_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_textview).replace("{name}", widgetName);
+        } else if (convert.endsWith("RecyclerView")) {
+            title = Helper.getResString(R.string.auto_widget_hint_recyclerview_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_recyclerview).replace("{name}", widgetName);
+        } else if (convert.endsWith("ViewPager")) {
+            title = Helper.getResString(R.string.auto_widget_hint_viewpager_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_viewpager).replace("{name}", widgetName);
+        } else if (convert.endsWith("YouTubePlayerView")) {
+            title = Helper.getResString(R.string.auto_widget_hint_youtubeplayer_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_youtubeplayer).replace("{name}", widgetName);
+        } else if (convert.endsWith("BottomNavigationView")) {
+            title = Helper.getResString(R.string.auto_widget_hint_bottomnav_title);
+            hint = Helper.getResString(R.string.auto_widget_hint_bottomnav).replace("{name}", widgetName);
+        } else {
+            return;
+        }
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
+                .setTitle(title)
+                .setMessage(hint)
+                .setPositiveButton(Helper.getResString(R.string.auto_view_editor_webview_hint_open), (d, w) -> {
+                    try {
+                        android.content.Intent intent = new android.content.Intent(
+                                getContext(),
+                                com.besome.sketch.editor.LogicEditorActivity.class);
+                        intent.setFlags(android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("sc_id", a);
+                        intent.putExtra("id", bean.id);
+                        intent.putExtra("event", "onCreate");
+                        intent.putExtra("project_file", projectFileBean);
+                        intent.putExtra("event_text", "onCreate");
+                        getContext().startActivity(intent);
+                    } catch (Throwable ignored) {}
+                })
+                .setNeutralButton(Helper.getResString(R.string.auto_view_editor_widget_hint_dont_show), (d, w) -> {
+                    disableWidgetHint(type);
+                })
+                .setNegativeButton(Helper.getResString(R.string.common_word_cancel), null)
+                .show();
+    }
+
+    /** Отключена ли подсказка для типа виджета. */
+    private boolean isWidgetHintDisabled(int viewType) {
+        try {
+            return getContext().getSharedPreferences("designer_widget_hints", Context.MODE_PRIVATE)
+                    .getBoolean("disabled_" + viewType, false);
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
+
+    /** Отключить подсказку для типа виджета. */
+    private void disableWidgetHint(int viewType) {
+        try {
+            getContext().getSharedPreferences("designer_widget_hints", Context.MODE_PRIVATE)
+                    .edit().putBoolean("disabled_" + viewType, true).apply();
+        } catch (Throwable ignored) {}
     }
 
     /** Диалог с информацией о виджете. */

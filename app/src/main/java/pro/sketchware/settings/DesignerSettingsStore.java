@@ -22,6 +22,12 @@ public final class DesignerSettingsStore {
     private static final String KEY_SHOW_COUNT = "show_count";
     /** Анимация сворачивания/разворачивания. */
     private static final String KEY_ANIMATION = "animation";
+    /** Показывать подсказки при добавлении виджета в дизайнер. */
+    private static final String KEY_SHOW_WIDGET_HINTS = "show_widget_hints";
+    /** Был ли показан onboarding при первом открытии дизайнера. */
+    private static final String KEY_DESIGNER_ONBOARDING_SHOWN = "designer_onboarding_shown";
+    /** Был ли показан onboarding при первом открытии Logic Editor. */
+    private static final String KEY_LOGIC_ONBOARDING_SHOWN = "logic_onboarding_shown";
 
     // ─── Внешний вид палитры ────────────────────────────────────
     /** Размер иконок палитры: "compact" / "normal" / "large". */
@@ -111,6 +117,18 @@ public final class DesignerSettingsStore {
         return prefs(ctx).getBoolean(KEY_ACCORDION, true);
     }
 
+    public static boolean isShowWidgetHints(Context ctx) {
+        return prefs(ctx).getBoolean(KEY_SHOW_WIDGET_HINTS, true);
+    }
+
+    public static boolean isDesignerOnboardingShown(Context ctx) {
+        return prefs(ctx).getBoolean(KEY_DESIGNER_ONBOARDING_SHOWN, false);
+    }
+
+    public static boolean isLogicOnboardingShown(Context ctx) {
+        return prefs(ctx).getBoolean(KEY_LOGIC_ONBOARDING_SHOWN, false);
+    }
+
     public static String getTabsStartState(Context ctx) {
         return prefs(ctx).getString(KEY_TABS_START, "first_expanded");
     }
@@ -180,6 +198,21 @@ public final class DesignerSettingsStore {
 
     public static void setAccordion(Context ctx, boolean v) {
         prefs(ctx).edit().putBoolean(KEY_ACCORDION, v).apply();
+        bumpCounter(ctx);
+    }
+
+    public static void setShowWidgetHints(Context ctx, boolean v) {
+        prefs(ctx).edit().putBoolean(KEY_SHOW_WIDGET_HINTS, v).apply();
+        bumpCounter(ctx);
+    }
+
+    public static void setDesignerOnboardingShown(Context ctx, boolean v) {
+        prefs(ctx).edit().putBoolean(KEY_DESIGNER_ONBOARDING_SHOWN, v).apply();
+        bumpCounter(ctx);
+    }
+
+    public static void setLogicOnboardingShown(Context ctx, boolean v) {
+        prefs(ctx).edit().putBoolean(KEY_LOGIC_ONBOARDING_SHOWN, v).apply();
         bumpCounter(ctx);
     }
 

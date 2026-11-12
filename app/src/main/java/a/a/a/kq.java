@@ -67,7 +67,7 @@ public class kq {
                  "spnGetSelection", "webViewLoadUrl", "webViewGetUrl", "webViewSetCacheMode",
                  "webViewCanGoBack", "webViewCanGoForward", "webViewGoBack", "webViewGoForward",
                  "webViewClearCache", "webViewClearHistory", "webViewStopLoading", "webViewZoomIn",
-                 "webViewZoomOut", "calendarViewGetDate", "calendarViewSetDate",
+                 "webViewZoomOut", "webViewEnableJs", "calendarViewGetDate", "calendarViewSetDate",
                  "calendarViewSetMinDate", "calnedarViewSetMaxDate", "adViewLoadAd",
                  "setImageFilePath", "setImageUrl", "setHint", "setHintTextColor",
                  "progressBarSetIndeterminate", "mapViewSetMapType", "mapViewMoveCamera",

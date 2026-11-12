@@ -822,13 +822,30 @@ public class Fx {
                 opcode = String.format("%s.getSelectedItemPosition()", params.get(0));
                 break;
             case "webViewLoadUrl":
-                opcode = String.format("try { %s.loadUrl(%s); } catch (Throwable _t) {}", params.get(0), params.get(1));
+                opcode = String.format(
+                        "try { " +
+                        "String _u = String.valueOf(%2$s); " +
+                        "if (!_u.startsWith(\"http://\") && !_u.startsWith(\"https://\") " +
+                        "&& !_u.startsWith(\"file://\") && !_u.startsWith(\"about:\") " +
+                        "&& !_u.startsWith(\"javascript:\")) " +
+                        "_u = \"https://\" + _u; " +
+                        "%1$s.loadUrl(_u); " +
+                        "} catch (Throwable _t) {}",
+                        params.get(0), params.get(1));
                 break;
             case "webViewGetUrl":
                 opcode = String.format("%s.getUrl()", params.get(0));
                 break;
             case "webViewSetCacheMode":
                 opcode = String.format("%s.getSettings().setCacheMode(WebSettings.%s);", params.get(0), params.get(1));
+                break;
+            case "webViewEnableJs":
+                opcode = String.format(
+                        "%1$s.getSettings().setJavaScriptEnabled(true); " +
+                        "%1$s.getSettings().setDomStorageEnabled(true); " +
+                        "%1$s.getSettings().setAllowFileAccess(true); " +
+                        "%1$s.getSettings().setSupportZoom(true);",
+                        params.get(0));
                 break;
             case "webViewCanGoBack":
                 opcode = String.format("%s.canGoBack()", params.get(0));
