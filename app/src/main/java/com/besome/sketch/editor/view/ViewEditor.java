@@ -1007,19 +1007,14 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         ItemView added = a(bean, true);
         a(added, true);
         // Задержка, чтобы UI успел обновить свойства виджета перед показом диалога
-        postDelayed(() -> showWidgetSetupHint(bean), 400L);
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            if (getContext() != null) showWidgetSetupHint(bean);
+        }, 400L);
     }
 
     /** Подсказка после добавления сложного виджета. */
     private void showWidgetSetupHint(ViewBean bean) {
         if (bean == null) return;
-        new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
-                .setTitle("ТЕСТ")
-                .setMessage("Метод вызван для типа: " + bean.type)
-                .setPositiveButton("OK", null)
-                .show();
-        if (true) return; // временно останавливаем выполнение
-
         if (!pro.sketchware.settings.DesignerSettingsStore.isShowWidgetHints(getContext())) return;
         if (isWidgetHintDisabled(bean.type)) return;
 
