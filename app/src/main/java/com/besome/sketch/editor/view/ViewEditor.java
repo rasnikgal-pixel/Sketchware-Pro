@@ -1021,10 +1021,10 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         int type = bean.type;
         String convert = bean.convert != null ? bean.convert : "";
         String widgetName = bean.id != null ? bean.id : "widget";
+        
         if (type == ViewBean.VIEW_TYPE_WIDGET_WEBVIEW) {
             title = Helper.getResString(R.string.auto_view_editor_webview_hint_title);
-            hint = Helper.getResString(R.string.auto_view_editor_webview_hint)
-                    .replace("{name}", widgetName);
+            hint = Helper.getResString(R.string.auto_view_editor_webview_hint).replace("{name}", widgetName);
         } else if (type == ViewBean.VIEW_TYPE_WIDGET_LISTVIEW) {
             title = Helper.getResString(R.string.auto_widget_hint_listview_title);
             hint = Helper.getResString(R.string.auto_widget_hint_listview).replace("{name}", widgetName);
@@ -1095,7 +1095,6 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                 .show();
     }
 
-    /** Отключена ли подсказка для типа виджета. */
     private boolean isWidgetHintDisabled(int viewType) {
         try {
             return getContext().getSharedPreferences("designer_widget_hints", Context.MODE_PRIVATE)
