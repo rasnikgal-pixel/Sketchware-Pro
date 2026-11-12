@@ -1013,6 +1013,13 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     /** Подсказка после добавления сложного виджета. */
     private void showWidgetSetupHint(ViewBean bean) {
         if (bean == null) return;
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext())
+                .setTitle("ТЕСТ")
+                .setMessage("Метод вызван для типа: " + bean.type)
+                .setPositiveButton("OK", null)
+                .show();
+        if (true) return; // временно останавливаем выполнение
+
         if (!pro.sketchware.settings.DesignerSettingsStore.isShowWidgetHints(getContext())) return;
         if (isWidgetHintDisabled(bean.type)) return;
 
