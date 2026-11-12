@@ -1014,6 +1014,9 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         if (bean == null) return;
         if (!pro.sketchware.settings.DesignerSettingsStore.isShowWidgetHints(getContext())) return;
         if (isWidgetHintDisabled(bean.type)) return;
+        // Проверяем, не нажимали ли "Понятно" для этого конкретного виджета
+        if (getContext().getSharedPreferences("designer_widget_hints", android.content.Context.MODE_PRIVATE)
+                .getBoolean("dismissed_" + bean.id, false)) return;
 
         String title;
         String hint;
@@ -1085,9 +1088,14 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                     } catch (Throwable ignored) {}
                 })
                 .setNeutralButton(Helper.getResString(R.string.auto_view_editor_widget_hint_dont_show), (d, w) -> {
+                    // Скрываем подсказку для ВСЕХ виджетов этого типа
                     disableWidgetHint(type);
                 })
-                .setNegativeButton("Понятно", null) // Просто закрыть
+                .setNegativeButton("Понятно", (d, w) -> {
+                    // Скрываем подсказку только для этого конкретного виджета (по ID)
+                    getContext().getSharedPreferences("designer_widget_hints", android.content.Context.MODE_PRIVATE)
+                            .edit().putBoolean("dismissed_" + bean.id, true).apply();
+                })
                 .show();
     }
 
