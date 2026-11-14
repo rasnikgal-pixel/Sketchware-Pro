@@ -1,5 +1,5 @@
 {
-  "versionCode": 184,
+  "versionCode": 185,
   "versionName": "7.9.0",
   "downloadUrl": "https://github.com/rasnikgal-pixel/Sketchware-Pro/releases/download/7.9.0/app-release.apk",
   "changelog": "🇷🇺 ЧТО НОВОГО В 7.9.0\n\n💡 УМНЫЕ ПОДСКАЗКИ\n• При добавлении сложных виджетов (WebView, ListView и др.) появляется подсказка\n• Кнопка «Понятно» скрывает для текущего виджета, «Не показывать» — для всех\n\n🌐 WEBVIEW\n• JavaScript, DOM и зум включаются автоматически при использовании load URL\n• Ссылки нормализуются (example.com → https://example.com)\n\n👋 ПРИВЕТСТВИЕ\n• При первом открытии Дизайнера и Logic Editor\n\n🔧 ИСПРАВЛЕНИЯ\n• TextView перенесен в «Виджеты»\n• Исправлен аккордеон\n• Добавлен BadgeView\n• Кнопка «Открыть редактор блоков» вызывает выбор событий",
