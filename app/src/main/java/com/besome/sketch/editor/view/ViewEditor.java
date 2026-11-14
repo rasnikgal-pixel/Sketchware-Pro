@@ -939,6 +939,16 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
         dummyView.setAllow(false);
         viewPane.resetView(true);
+        
+        // Показываем подсказку после перетаскивания
+        if (currentTouchedView instanceof IconBase) {
+            ViewBean newBean = ((IconBase) currentTouchedView).getBean();
+            if (newBean != null) {
+                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                    if (getContext() != null) showWidgetSetupHint(newBean);
+                }, 500L);
+            }
+        }
     }
 
     /** Сбросить состояние тапов палитры. Вызывается при возврате в экран дизайнера. */
