@@ -637,6 +637,12 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     }
 
     public void deleteWidget(ViewBean viewBean) {
+        // Сбрасываем флаг "Понятно" для этого виджета, чтобы при повторном добавлении
+        // с тем же именем подсказка снова появилась
+        if (viewBean != null && viewBean.id != null) {
+            getContext().getSharedPreferences("designer_widget_hints", android.content.Context.MODE_PRIVATE)
+                    .edit().remove("dismissed_" + viewBean.id).apply();
+        }
         ArrayList<ViewBean> b2 = jC.a(a).b(b, viewBean);
         for (int size = b2.size() - 1; size >= 0; size--) {
             jC.a(a).a(projectFileBean, b2.get(size));
