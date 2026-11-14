@@ -1007,6 +1007,11 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         }
         ItemView added = a(bean, true);
         a(added, true);
+        
+        // Показываем подсказку только при добавлении НОВОГО виджета
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            if (getContext() != null) showWidgetSetupHint(bean);
+        }, 500L);
     }
 
     /** Подсказка после добавления сложного виджета. */
@@ -1184,15 +1189,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
 
     public ItemView createAndAddView(ViewBean viewBean) {
         View itemView = viewPane.createItemView(viewBean);
-        if (viewBean != null) {
-            final long now = System.currentTimeMillis();
-            if (now - lastHintTime > 1000) { // защита от двойного вызова
-                lastHintTime = now;
-                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
-                    if (getContext() != null) showWidgetSetupHint(viewBean);
-                }, 500L);
-            }
-        }
+
         itemView.setContentDescription("SketchwareItem_" + viewBean.id);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             itemView.setAccessibilityPaneTitle("ItemView: " + viewBean.id);
