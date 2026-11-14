@@ -637,12 +637,6 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
     }
 
     public void deleteWidget(ViewBean viewBean) {
-        // Сбрасываем флаг "Понятно" для этого виджета, чтобы при повторном добавлении
-        // с тем же именем подсказка снова появилась
-        if (viewBean != null && viewBean.id != null) {
-            getContext().getSharedPreferences("designer_widget_hints", android.content.Context.MODE_PRIVATE)
-                    .edit().remove("dismissed_" + viewBean.id).apply();
-        }
         ArrayList<ViewBean> b2 = jC.a(a).b(b, viewBean);
         for (int size = b2.size() - 1; size >= 0; size--) {
             jC.a(a).a(projectFileBean, b2.get(size));
@@ -1035,9 +1029,6 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
         if (bean == null) return;
         if (!pro.sketchware.settings.DesignerSettingsStore.isShowWidgetHints(getContext())) return;
         if (isWidgetHintDisabled(bean.type)) return;
-        // Проверяем, не нажимали ли "Понятно" для этого конкретного виджета
-        if (getContext().getSharedPreferences("designer_widget_hints", android.content.Context.MODE_PRIVATE)
-                .getBoolean("dismissed_" + bean.id, false)) return;
 
         String title;
         String hint;
@@ -1112,11 +1103,7 @@ public class ViewEditor extends RelativeLayout implements View.OnClickListener, 
                     // Скрываем подсказку для ВСЕХ виджетов этого типа
                     disableWidgetHint(type);
                 })
-                .setNegativeButton("Понятно", (d, w) -> {
-                    // Скрываем подсказку только для этого конкретного виджета (по ID)
-                    getContext().getSharedPreferences("designer_widget_hints", android.content.Context.MODE_PRIVATE)
-                            .edit().putBoolean("dismissed_" + bean.id, true).apply();
-                })
+                .setNegativeButton("Понятно", null) // Просто закрыть
                 .show();
     }
 
