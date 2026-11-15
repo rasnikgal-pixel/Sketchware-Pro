@@ -76,7 +76,7 @@ public class HelpFragment extends Fragment {
         if (fab != null) {
             fab.setOnClickListener(v -> {
                 if (webView != null) {
-                    webView.loadUrl(resolveBaseUrl() + "?page=" + DEFAULT_PAGE);
+                    webView.loadUrl(buildHelpUrl(DEFAULT_PAGE));
                 }
             });
         }
@@ -110,7 +110,7 @@ public class HelpFragment extends Fragment {
         }
         if (page == null || page.isEmpty()) page = DEFAULT_PAGE;
 
-        webView.loadUrl(resolveBaseUrl() + "?page=" + page);
+        webView.loadUrl(buildHelpUrl(page));
     }
 
     /**
@@ -120,15 +120,20 @@ public class HelpFragment extends Fragment {
      * она. Когда появится /en/ — раскомментировать блок с проверкой.
      */
     private String resolveBaseUrl() {
-        String lang = null;
+        return BASE_URL;
+    }
+
+    private String buildHelpUrl(String page) {
+        String lang = pro.sketchware.i18n.LocaleHelper.LANG_RU;
         try {
             lang = pro.sketchware.i18n.LocaleHelper.getHelpLanguage(requireContext());
         } catch (Throwable ignored) {}
-
-        // if (pro.sketchware.i18n.LocaleHelper.LANG_EN.equals(lang)) {
-        //     return BASE_URL + "en/";
-        // }
-        return BASE_URL;
+        boolean ru = (lang == null || lang.isEmpty()
+                || pro.sketchware.i18n.LocaleHelper.LANG_RU.equals(lang));
+        if (ru) {
+            return BASE_URL + "?page=" + page;
+        }
+        return BASE_URL + "?lang=" + lang + "&page=" + page;
     }
 
     @Override

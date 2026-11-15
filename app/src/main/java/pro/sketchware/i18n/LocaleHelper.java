@@ -71,10 +71,8 @@ public final class LocaleHelper {
      */
     public static String getHelpLanguage(Context ctx) {
         String eff = getEffectiveLanguage(ctx);
-        if (LANG_RU.equals(eff) || LANG_UK.equals(eff)) {
-            return LANG_RU;
-        }
-        return LANG_EN;
+        if (isSupported(eff)) return eff;
+        return LANG_RU;
     }
 
     /** Применить язык ко всему приложению. Вызывать из Application.onCreate(). */
