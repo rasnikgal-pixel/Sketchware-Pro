@@ -64,7 +64,8 @@
 
     <item
         android:id="@+id/menu_logic_help"
+        android:icon="@drawable/ic_mtrl_help"
         android:orderInCategory="300"
         android:title="@string/auto_layout_logic_menu_001"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>
